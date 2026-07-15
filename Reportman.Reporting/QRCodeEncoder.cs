@@ -242,7 +242,7 @@ namespace Reportman.Drawing
                 structureappendParity = 0;
                 while (i < originaldataLength)
                 {
-                    structureappendParity ^= (originaldata[i] & 0xFF);
+                    structureappendParity = (structureappendParity ^ (originaldata[i] & 0xFF));
                     i++;
                 }
             }
@@ -713,7 +713,8 @@ namespace Reportman.Drawing
         }
         private static MemoryStream ReadResourceFile(string name, int qrcodeVersion, bool includeec, int ec)
         {
-            resourcefiles ??= new SortedList<string, MemoryStream>();
+            if (resourcefiles == null)
+                resourcefiles = new SortedList<string, MemoryStream>();
             MemoryStream nresult = null;
 
             string resname = name + System.Convert.ToString(qrcodeVersion);
@@ -721,7 +722,7 @@ namespace Reportman.Drawing
             {
                 resname = resname + "_" + System.Convert.ToString(ec);
             }
-            resname += ".dat";
+            resname = resname + ".dat";
             if (resourcefiles.IndexOfKey(resname) >= 0)
             {
                 nresult = resourcefiles[resname];
@@ -807,7 +808,7 @@ namespace Reportman.Drawing
                         }
                         else
                         {
-                            buffer &= ((1 << bufferBits) - 1);
+                            buffer = (buffer & ((1 << bufferBits) - 1));
                             flag = true;
                         }
                         codewordsCounter++;
@@ -1091,8 +1092,8 @@ namespace Reportman.Drawing
                                 d2[maskNumber] += 3;
                             }
 
-                            d2And >>= 1;
-                            d2Or >>= 1;
+                            d2And = d2And >> 1;
+                            d2Or = d2Or >> 1;
                         }
 
                         if (((xData[maskNumber] & 0x1F) == 0) || ((xData[maskNumber] & 0x1F) == 0x1F))

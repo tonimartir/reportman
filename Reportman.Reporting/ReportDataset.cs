@@ -99,12 +99,12 @@ namespace Reportman.Reporting
                     ncount = Rows.Count;
                 else
                     if (FCurrentView != null)
-                    {
-                        if (CurrentRowSet != null)
-                            ncount = CurrentRowSet.Length;
-                        else
-                            ncount = CurrentView.Count;
-                    }
+                {
+                    if (CurrentRowSet != null)
+                        ncount = CurrentRowSet.Length;
+                    else
+                        ncount = CurrentView.Count;
+                }
                 return ncount;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Reportman.Reporting;
 
 namespace Reportman.Reporting.Design
 {

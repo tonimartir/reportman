@@ -338,7 +338,7 @@ namespace Reportman.Drawing.Forms
                 try
                 {
                     string result = await httpClient.GetStringAsync(searchuri);
-
+                    
                     if (Text.Trim().Length == 0)
                     {
                         HideDropDown();
@@ -590,12 +590,12 @@ namespace Reportman.Drawing.Forms
                 imageToDraw = GoogleTermsImage;
             else
                 if (listBoxChild.Items[e.Index] is AutoCompleteInfo)
-                {
-                    AutoCompleteInfo compinfo = (AutoCompleteInfo)listBoxChild.Items[e.Index];
-                    imageToDraw = compinfo.Icon;
-                }
-                else
-                    imageToDraw = NotGoogleTermsImage;
+            {
+                AutoCompleteInfo compinfo = (AutoCompleteInfo)listBoxChild.Items[e.Index];
+                imageToDraw = compinfo.Icon;
+            }
+            else
+                imageToDraw = NotGoogleTermsImage;
 
             e.Graphics.DrawString(listBoxChild.Items[e.Index].ToString(), Font, drawbrush, StringBounds, format);
             int imoffset = (e.Bounds.Height - imwidth) / 2;
@@ -829,67 +829,67 @@ namespace Reportman.Drawing.Forms
                 }
             }
             else
-                if (m.Msg == 0x020A)
+            if (m.Msg == 0x020A)
+            {
+                // Mouse wheel
+                if (listBoxChild != null && listBoxChild.Visible)
                 {
-                    // Mouse wheel
-                    if (listBoxChild != null && listBoxChild.Visible)
+                    long wheelcode = m.WParam.ToInt64();
+                    wheelcode = wheelcode >> 16;
+                    long wheels = wheelcode / 120;
+                    long incrementtodo = -wheelcode / 120;
+                    long NewIx = listBoxChild.SelectedIndex + incrementtodo;
+                    if (NewIx < 0)
+                        NewIx = 0;
+                    if (NewIx > listBoxChild.Items.Count - 1)
+                        NewIx = listBoxChild.Items.Count - 1;
+                    // Keep the index valid!
+                    if (NewIx >= 0)
+                        listBoxChild.SelectedIndex = Convert.ToInt32(NewIx);
+                }
+            }
+            else
+            if (m.Msg == 0x100) // WM_KEYDOWN
+            {
+                if (listBoxChild != null && listBoxChild.Visible)
+                {
+                    int keycode = m.WParam.ToInt32();
+                    switch (keycode)
                     {
-                        long wheelcode = m.WParam.ToInt64();
-                        wheelcode >>= 16;
-                        long wheels = wheelcode / 120;
-                        long incrementtodo = -wheelcode / 120;
-                        long NewIx = listBoxChild.SelectedIndex + incrementtodo;
-                        if (NewIx < 0)
-                            NewIx = 0;
-                        if (NewIx > listBoxChild.Items.Count - 1)
-                            NewIx = listBoxChild.Items.Count - 1;
-                        // Keep the index valid!
-                        if (NewIx >= 0)
-                            listBoxChild.SelectedIndex = Convert.ToInt32(NewIx);
+                        case 0x1B: // Escape key
+                            this.HideTheList();
+                            return true;
+                        case 34: // Page down
+                        case 33: // Page up
+                        case 0x26: // up key
+                        case 0x28: // right key
+                                   // Change selection
+                            int increment = 1;
+                            if (keycode == 0x26)
+                                increment = -1;
+                            else
+                                if (keycode == 34)
+                                increment = Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
+                            else
+                                if (keycode == 33)
+                                increment = -Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
+
+                            int NewIx = listBoxChild.SelectedIndex + increment;
+                            if (NewIx < 0)
+                                NewIx = 0;
+                            if (NewIx > listBoxChild.Items.Count - 1)
+                                NewIx = listBoxChild.Items.Count - 1;
+                            // Keep the index valid!
+                            if (NewIx >= 0)
+                                listBoxChild.SelectedIndex = NewIx;
+                            return true;
+
+                        case 0x0D: // return (use the currently selected item)
+                            CopySelection();
+                            return false;
                     }
                 }
-                else
-                    if (m.Msg == 0x100) // WM_KEYDOWN
-                    {
-                        if (listBoxChild != null && listBoxChild.Visible)
-                        {
-                            int keycode = m.WParam.ToInt32();
-                            switch (keycode)
-                            {
-                                case 0x1B: // Escape key
-                                    this.HideTheList();
-                                    return true;
-                                case 34: // Page down
-                                case 33: // Page up
-                                case 0x26: // up key
-                                case 0x28: // right key
-                                           // Change selection
-                                    int increment = 1;
-                                    if (keycode == 0x26)
-                                        increment = -1;
-                                    else
-                                        if (keycode == 34)
-                                            increment = Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
-                                        else
-                                            if (keycode == 33)
-                                                increment = -Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
-
-                                    int NewIx = listBoxChild.SelectedIndex + increment;
-                                    if (NewIx < 0)
-                                        NewIx = 0;
-                                    if (NewIx > listBoxChild.Items.Count - 1)
-                                        NewIx = listBoxChild.Items.Count - 1;
-                                    // Keep the index valid!
-                                    if (NewIx >= 0)
-                                        listBoxChild.SelectedIndex = NewIx;
-                                    return true;
-
-                                case 0x0D: // return (use the currently selected item)
-                                    CopySelection();
-                                    return false;
-                            }
-                        }
-                    }
+            }
 
             return false;
         }
@@ -1216,67 +1216,67 @@ namespace Reportman.Drawing.Forms
                 }
             }
             else
-                if (m.Msg == 0x020A)
+            if (m.Msg == 0x020A)
+            {
+                // Mouse wheel
+                if (listBoxChild != null && listBoxChild.Visible)
                 {
-                    // Mouse wheel
-                    if (listBoxChild != null && listBoxChild.Visible)
+                    int wheelcode = m.WParam.ToInt32();
+                    wheelcode = wheelcode >> 16;
+                    int wheels = wheelcode / 120;
+                    int incrementtodo = -wheelcode / 120;
+                    int NewIx = listBoxChild.SelectedIndex + incrementtodo;
+                    if (NewIx < 0)
+                        NewIx = 0;
+                    if (NewIx > listBoxChild.Items.Count - 1)
+                        NewIx = listBoxChild.Items.Count - 1;
+                    // Keep the index valid!
+                    if (NewIx >= 0)
+                        listBoxChild.SelectedIndex = NewIx;
+                }
+            }
+            else
+            if (m.Msg == 0x100) // WM_KEYDOWN
+            {
+                if (listBoxChild != null && listBoxChild.Visible)
+                {
+                    int keycode = m.WParam.ToInt32();
+                    switch (keycode)
                     {
-                        int wheelcode = m.WParam.ToInt32();
-                        wheelcode >>= 16;
-                        int wheels = wheelcode / 120;
-                        int incrementtodo = -wheelcode / 120;
-                        int NewIx = listBoxChild.SelectedIndex + incrementtodo;
-                        if (NewIx < 0)
-                            NewIx = 0;
-                        if (NewIx > listBoxChild.Items.Count - 1)
-                            NewIx = listBoxChild.Items.Count - 1;
-                        // Keep the index valid!
-                        if (NewIx >= 0)
-                            listBoxChild.SelectedIndex = NewIx;
+                        case 0x1B: // Escape key
+                            this.HideTheList();
+                            return true;
+                        case 34: // Page down
+                        case 33: // Page up
+                        case 0x26: // up key
+                        case 0x28: // right key
+                                   // Change selection
+                            int increment = 1;
+                            if (keycode == 0x26)
+                                increment = -1;
+                            else
+                                if (keycode == 34)
+                                increment = Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
+                            else
+                                if (keycode == 33)
+                                increment = -Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
+
+                            int NewIx = listBoxChild.SelectedIndex + increment;
+                            if (NewIx < 0)
+                                NewIx = 0;
+                            if (NewIx > listBoxChild.Items.Count - 1)
+                                NewIx = listBoxChild.Items.Count - 1;
+                            // Keep the index valid!
+                            if (NewIx >= 0)
+                                listBoxChild.SelectedIndex = NewIx;
+                            return true;
+
+                        case 0x0D: // return (use the currently selected item)
+                            CopySelection();
+                            return false;
                     }
                 }
-                else
-                    if (m.Msg == 0x100) // WM_KEYDOWN
-                    {
-                        if (listBoxChild != null && listBoxChild.Visible)
-                        {
-                            int keycode = m.WParam.ToInt32();
-                            switch (keycode)
-                            {
-                                case 0x1B: // Escape key
-                                    this.HideTheList();
-                                    return true;
-                                case 34: // Page down
-                                case 33: // Page up
-                                case 0x26: // up key
-                                case 0x28: // right key
-                                           // Change selection
-                                    int increment = 1;
-                                    if (keycode == 0x26)
-                                        increment = -1;
-                                    else
-                                        if (keycode == 34)
-                                            increment = Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
-                                        else
-                                            if (keycode == 33)
-                                                increment = -Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
-
-                                    int NewIx = listBoxChild.SelectedIndex + increment;
-                                    if (NewIx < 0)
-                                        NewIx = 0;
-                                    if (NewIx > listBoxChild.Items.Count - 1)
-                                        NewIx = listBoxChild.Items.Count - 1;
-                                    // Keep the index valid!
-                                    if (NewIx >= 0)
-                                        listBoxChild.SelectedIndex = NewIx;
-                                    return true;
-
-                                case 0x0D: // return (use the currently selected item)
-                                    CopySelection();
-                                    return false;
-                            }
-                        }
-                    }
+            }
 
             return false;
         }

@@ -65,7 +65,10 @@ namespace Reportman.Drawing.Forms
         public DataGridViewNumericUpDownCell()
         {
             // Create a thread specific bitmap used for the painting of the non-edited cells
-            renderingBitmap ??= new Bitmap(DATAGRIDVIEWNUMERICUPDOWNCELL_defaultRenderingBitmapWidth, DATAGRIDVIEWNUMERICUPDOWNCELL_defaultRenderingBitmapHeight);
+            if (renderingBitmap == null)
+            {
+                renderingBitmap = new Bitmap(DATAGRIDVIEWNUMERICUPDOWNCELL_defaultRenderingBitmapWidth, DATAGRIDVIEWNUMERICUPDOWNCELL_defaultRenderingBitmapHeight);
+            }
 
             // Create a thread specific NumericUpDown control used for the painting of the non-edited cells
             if (paintingNumericUpDown == null)

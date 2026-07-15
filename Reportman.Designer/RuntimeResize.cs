@@ -264,13 +264,13 @@ namespace Reportman.Designer
             if (newwidth < 0)
             {
                 dosetbounds = false;
-                newleft -= newwidth;
+                newleft = newleft - newwidth;
                 newwidth = -newwidth;
             }
             if (newheight < 0)
             {
                 dosetbounds = false;
-                newtop += newheight;
+                newtop = newtop + newheight;
                 newheight = -newheight;
             }
             if (dosetbounds)
@@ -280,19 +280,19 @@ namespace Reportman.Designer
                 {
                     if (alignleft)
                     {
-                        newleft -= GridOffsetX;
+                        newleft = newleft - GridOffsetX;
                         int nleft = TwipsGraphics.AlignToGridPixels(newleft, GridWidth, GridHeight, GridScale);
                         newwidth = newwidth + newleft - nleft;
                         newleft = nleft;
-                        newleft += GridOffsetX;
+                        newleft = newleft + GridOffsetX;
                     }
                     if (aligntop)
                     {
-                        newtop -= GridOffsetY;
+                        newtop = newtop - GridOffsetY;
                         int ntop = TwipsGraphics.AlignToGridPixels(newtop, GridWidth, GridHeight, GridScale);
                         newheight = newheight + newtop - ntop;
                         newtop = ntop;
-                        newtop += GridOffsetY;
+                        newtop = newtop + GridOffsetY;
                     }
                     if (alignright)
                     {
@@ -332,7 +332,7 @@ namespace Reportman.Designer
         }
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing) 
             {
                 MyPen.Dispose();
                 MyBrush.Dispose();

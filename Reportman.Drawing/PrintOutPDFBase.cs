@@ -94,7 +94,7 @@ namespace Reportman.Drawing
 		public PrintOutPDFBase()
             : base()
         {
-            FPDFFile = new PDFFile(GetFontInfoProvider(), GetBitmapInfoProvider());
+            FPDFFile = new PDFFile(GetFontInfoProvider(),GetBitmapInfoProvider());
             FileName = "";
             PageQt = 0;
             FPageWidth = 11904;
@@ -169,7 +169,7 @@ namespace Reportman.Drawing
             FPageWidth = meta.CustomX;
             FPageHeight = meta.CustomY;
             FOrientation = meta.Orientation;
-            if (FOrientation == OrientationType.Landscape)
+            if (FOrientation ==OrientationType.Landscape)
             {
                 FPageRealWidth = meta.CustomY;
                 FPageRealHeight = meta.CustomX;
@@ -182,9 +182,9 @@ namespace Reportman.Drawing
 
 
             foreach (var efile in meta.EmbeddedFiles)
-            {
-                FPDFFile.EmbeddedFiles.Add((EmbeddedFile)efile.Clone());
-            }
+                {
+                    FPDFFile.EmbeddedFiles.Add((EmbeddedFile)efile.Clone());
+                }
 
             // PrinterFonts = Recalculate requests exact PDF/print parity: write plain text
             // glyph by glyph with shaped advances so the GDI redraw (TextRectHtml) can
@@ -217,7 +217,8 @@ namespace Reportman.Drawing
             if (FPDFFile.Canvas.ForceComplexShaping)
                 return;
             MetaFile nmeta = CurrentMetafile;
-            nmeta ??= MetaFile;
+            if (nmeta == null)
+                nmeta = MetaFile;
             if ((nmeta != null) && (nmeta.PrinterFonts == PrinterFontsType.Recalculate))
                 FPDFFile.Canvas.ForceComplexShaping = true;
         }
@@ -349,8 +350,8 @@ namespace Reportman.Drawing
                     if ((shape == ShapeType.Square) || (shape == ShapeType.RoundSquare)
                         || (shape == ShapeType.Circle))
                     {
-                        X += (int)((W - S) / 2);
-                        Y += (int)((H - S) / 2);
+                        X = X + (int)((W - S) / 2);
+                        Y = Y + (int)((H - S) / 2);
                         W = S;
                         H = S;
                     }
@@ -559,7 +560,7 @@ namespace Reportman.Drawing
         public Point WordExtent(string text, Point extent)
         {
             Rectangle rect = new Rectangle(0, 0, extent.X, extent.Y);
-            FPDFFile.Canvas.TextExtent(text, ref rect, false, true, false, false);
+            FPDFFile.Canvas.TextExtent(text, ref rect, false, true, false,false);
             extent.X = rect.Width;
             extent.Y = rect.Height;
             return extent;

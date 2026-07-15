@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Reportman.Reporting;
 using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Reportman.Reporting.Design.Json
@@ -210,7 +211,7 @@ namespace Reportman.Reporting.Design.Json
             }
 
             report.EnsureComponentNames();
-            report.UndoCue ??= new UndoCue();
+            report.UndoCue = report.UndoCue ?? new UndoCue();
             return report;
         }
 

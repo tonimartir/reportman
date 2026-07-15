@@ -1,7 +1,4 @@
-﻿using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.WinForms;
-using Reportman.Reporting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -9,6 +6,9 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
+using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
@@ -44,7 +44,7 @@ namespace Reportman.Designer
         private long _selectedHubDatabaseId;
         private long _selectedHubSchemaId;
         private string _selectedSchemaApiKey = "";
-
+        
         /// <summary>
         /// Raised whenever the SQL text in the editor changes as a result of user edits in the browser.
         /// </summary>
@@ -138,16 +138,16 @@ namespace Reportman.Designer
             _topPanel.Controls.Add(_schemaSelector, 1, 0);
             _topPanel.Controls.Add(_aiSelectionControl, 0, 1);
             _topPanel.SetColumnSpan(_aiSelectionControl, 2);
-
+            
             _webView = new WebView2
             {
                 Dock = DockStyle.Fill,
                 DefaultBackgroundColor = Color.White
             };
-
+            
             _webView.NavigationCompleted += WebView_NavigationCompleted;
             _webView.WebMessageReceived += WebView_WebMessageReceived;
-
+            
             this.Controls.Add(_webView);
             this.Controls.Add(_topPanel);
         }
@@ -294,7 +294,7 @@ namespace Reportman.Designer
         protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
+            
             if (DesignMode) return;
 
             try
@@ -304,9 +304,9 @@ namespace Reportman.Designer
 
                 string userDataFolder = Path.Combine(Path.GetDirectoryName(assetPath), "EdgeData");
                 var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
-
+                
                 await _webView.EnsureCoreWebView2Async(env);
-
+                
                 string url = "file:///" + assetPath.Replace('\\', '/') + "/index.html";
                 _webView.CoreWebView2.Navigate(url);
             }
@@ -869,7 +869,7 @@ namespace Reportman.Designer
                 return string.Empty;
             return value.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Environment.NewLine);
         }
-
+        
         // Expose a method to get content asynchronously directly from Monaco if needed
         /// <summary>
         /// Asynchronously retrieves the current SQL text content directly from the Monaco editor in WebView2.

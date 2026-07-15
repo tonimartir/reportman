@@ -265,12 +265,12 @@ namespace Reportman.Drawing.Forms
                     return "";
                 else
                     if (value == DBNull.Value)
-                        return "";
-                    else
+                    return "";
+                else
                         if (value.ToString().Length == 0)
-                            return "";
-                        else
-                            return "" + (char)0x25CF + (char)0x25CF + (char)0x25CF + (char)0x25CF + (char)0x25CF + (char)0x25CF;
+                    return "";
+                else
+                    return "" + (char)0x25CF + (char)0x25CF + (char)0x25CF + (char)0x25CF + (char)0x25CF + (char)0x25CF;
             }
             else
                 return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
@@ -980,10 +980,10 @@ namespace Reportman.Drawing.Forms
                                 datecontrol2.TimeFormat = "HH:mm:ss";
                             else
                                 if (FDataType == ColumnDataType.Time)
-                                {
-                                    datecontrol2.DateFormat = "";
-                                    datecontrol2.TimeFormat = "HH:mm:ss";
-                                }
+                            {
+                                datecontrol2.DateFormat = "";
+                                datecontrol2.TimeFormat = "HH:mm:ss";
+                            }
 
                             //datecontrol2.Format = DateTimePickerFormat.Custom;
                             //datecontrol2.CustomFormat = "hh:mm:ss";
@@ -1016,10 +1016,10 @@ namespace Reportman.Drawing.Forms
                                 datecontrol1.CustomFormat = "dd/MM/yyyy HH:mm:ss";
                             else
                                 if (FDataType == ColumnDataType.Time)
-                                    datecontrol1.CustomFormat = "HH:mm:ss";
-                                else
+                                datecontrol1.CustomFormat = "HH:mm:ss";
+                            else
                                     if (FDataType == ColumnDataType.Date)
-                                        datecontrol1.CustomFormat = "dd/MM/yyyy";
+                                datecontrol1.CustomFormat = "dd/MM/yyyy";
 
                             //datecontrol2.Format = DateTimePickerFormat.Custom;
                             //datecontrol2.CustomFormat = "hh:mm:ss";

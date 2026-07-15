@@ -1,9 +1,11 @@
-﻿using Reportman.Drawing;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Text;
+using System.IO;
+using Reportman.Drawing;
 using System.Windows.Documents;
+using System.Windows.Media;
 using System.Windows.Markup;
 
 namespace Reportman.WPF
@@ -12,7 +14,7 @@ namespace Reportman.WPF
     /// Render driver that lays out a report MetaFile into a WPF FixedDocument, building one
     /// fixed page per metafile page for on-screen preview and WPF-based printing.
     /// </summary>
-    public class PrintOutWPF : PrintOut
+    public class PrintOutWPF:PrintOut
     {
         FixedDocument FDoc;
         /// <summary>
@@ -50,7 +52,7 @@ namespace Reportman.WPF
             mainmeta = meta;
 
             PagePreviews.Clear();
-
+            
         }
         /// <summary>
         /// Finalization
@@ -108,34 +110,34 @@ namespace Reportman.WPF
                 }
             }
 
-            bool aresult = base.Print(meta);
-            int FCurrentPage = FromPage - 1;
-            meta.RequestPage(FCurrentPage);
-            if (meta.Pages.CurrentCount < FromPage)
-                return false;
-            SetPageSize(meta.Pages[0].PageDetail);
-            SetOrientation(meta.Orientation);
-            MetaPage apage;
-            while (meta.Pages.CurrentCount > FCurrentPage)
-            {
-                apage = meta.Pages[FCurrentPage];
-                if (FCurrentPage >= FromPage)
-                {
-                    NewPage(meta, apage);
-                }
+			bool aresult=base.Print(meta);
+			int FCurrentPage = FromPage-1;
+			meta.RequestPage(FCurrentPage);
+			if (meta.Pages.CurrentCount < FromPage)
+				return false;
+			SetPageSize(meta.Pages[0].PageDetail);
+			SetOrientation(meta.Orientation);
+			MetaPage apage;
+			while (meta.Pages.CurrentCount > FCurrentPage)
+			{
+				apage = meta.Pages[FCurrentPage];
+				if (FCurrentPage >= FromPage)
+				{
+					NewPage(meta, apage);
+				}
                 InternalPage = FCurrentPage;
-                DrawPage(meta, apage);
-                FCurrentPage++;
-                if (FCurrentPage > (ToPage - 1))
+				DrawPage(meta, apage);
+				FCurrentPage++;
+                if (FCurrentPage > (ToPage-1))
                     break;
                 meta.RequestPage(FCurrentPage);
-            }
-            EndDocument(meta);
+			}
+			EndDocument(meta);
 
 
 
             return aresult;
-        }
+		}
         /// <summary>
         /// Get page size
         /// </summary>
@@ -247,7 +249,7 @@ namespace Reportman.WPF
         override public void DrawPage(MetaFile meta, MetaPage page)
         {
             FCurrentPage = new PageContent();
-            FDoc.DocumentPaginator.PageSize = new System.Windows.Size(FPageWidth * 96 / 1000, FPageHeight * 96 / 1000);
+            FDoc.DocumentPaginator.PageSize = new System.Windows.Size(FPageWidth*96/1000, FPageHeight*96/1000);
             PreviewWPF npreview = new PreviewWPF();
             PagePreviews.Add(npreview);
 
@@ -278,7 +280,8 @@ namespace Reportman.WPF
         override public System.Drawing.Point TextExtent(TextObjectStruct aobj, System.Drawing.Point extent)
         {
             // Text extent for justify is implemented separately
-            npdfdriver ??= new PrintOutPDF();
+            if (npdfdriver == null)
+                npdfdriver = new PrintOutPDF();
             aobj.Type1Font = PDFFontType.Linked;
             extent = npdfdriver.TextExtent(aobj, extent);
 

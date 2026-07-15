@@ -203,7 +203,7 @@ namespace Reportman.Drawing.Forms
                 }
                 else
                     if (IsHandleCreated)
-                        OnWorkProgress(records, pagecount, ref docancel);
+                    OnWorkProgress(records, pagecount, ref docancel);
 #endif
 
             }
@@ -228,7 +228,7 @@ namespace Reportman.Drawing.Forms
         /// from top to bottom
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public bool EntireToDown
+		public bool EntireToDown
         {
             get { return FEntireTopDown; }
             set
@@ -834,7 +834,7 @@ namespace Reportman.Drawing.Forms
                 }
                 else
                     if ((FPageDrawn != FPage) || (FScaleDrawn != FPreviewScale) || FPagesDrawn != intentirepcount)
-                        dorefresh = true;
+                    dorefresh = true;
                 if ((dorefresh) || (forcerefresh))
                 {
                     FPagesDrawn = intentirepcount;

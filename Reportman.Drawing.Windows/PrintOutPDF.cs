@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Reportman.Drawing
 {
@@ -127,7 +131,10 @@ namespace Reportman.Drawing
                                     ngraph.DrawImage(nimage, new System.Drawing.Point(0, 0));
                                 }
                             }
-                            nbitmaptosave ??= Windows.GraphicUtils.ConvertToBitonal(nbitmaptoconvert, 255 * 3 / 2);
+                            if (nbitmaptosave == null)
+                            {
+                                nbitmaptosave = Windows.GraphicUtils.ConvertToBitonal(nbitmaptoconvert, 255 * 3 / 2);
+                            }
                             if (nbitmaptoconvert != null)
                             {
                                 if (nbitmaptoconvert != nimage)

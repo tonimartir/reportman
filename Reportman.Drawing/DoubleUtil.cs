@@ -137,13 +137,13 @@ namespace Reportman.Drawing
             int scale = 1;
             while (DoubleUtil.Frac(number * scale) != 0)
             {
-                scale *= 10;
+                scale = scale * 10;
                 if (scale > 10000000)
                     break;
             }
             while (DoubleUtil.Frac(multiple * scale) != 0)
             {
-                scale *= 10;
+                scale = scale * 10;
                 if (scale > 10000000)
                     break;
             }
@@ -153,9 +153,9 @@ namespace Reportman.Drawing
             decimal division = Math.Round(numberscaled / multiplescaled);
             decimal moddiv = (numberscaled - (multiplescaled * division));
             if (moddiv < (multiplescaled / 2))
-                numberscaled -= moddiv;
+                numberscaled = numberscaled - moddiv;
             else
-                numberscaled += moddiv;
+                numberscaled = numberscaled + moddiv;
             decimal aresult = numberscaled / scale;
             if (negative)
                 aresult = -aresult;
@@ -197,130 +197,130 @@ namespace Reportman.Drawing
                     Num2Str = NumToStr(Num / billion) + " Billion " + NumToStr(Num % billion);
             else
                 if (Num >= million)
-                    if ((Num % million) == 0)
-                        Num2Str = NumToStr(Num / million) + " Million";
-                    else
-                        Num2Str = NumToStr(Num / million) + " Million " + NumToStr(Num % million);
+                if ((Num % million) == 0)
+                    Num2Str = NumToStr(Num / million) + " Million";
                 else
+                    Num2Str = NumToStr(Num / million) + " Million " + NumToStr(Num % million);
+            else
                     if (Num >= thousand)
-                        if ((Num % thousand) == 0)
-                            Num2Str = NumToStr(Num / thousand) + " Thousand";
-                        else
-                            Num2Str = NumToStr(Num / thousand) + " Thousand " + NumToStr(Num % thousand);
-                    else
+                if ((Num % thousand) == 0)
+                    Num2Str = NumToStr(Num / thousand) + " Thousand";
+                else
+                    Num2Str = NumToStr(Num / thousand) + " Thousand " + NumToStr(Num % thousand);
+            else
                         if (Num >= hundred)
-                            if ((Num % hundred) == 0)
-                                Num2Str = NumToStr(Num / hundred) + " Hundred";
-                            else
-                                Num2Str = NumToStr(Num / hundred) + " Hundred " + NumToStr(Num % hundred);
+                if ((Num % hundred) == 0)
+                    Num2Str = NumToStr(Num / hundred) + " Hundred";
+                else
+                    Num2Str = NumToStr(Num / hundred) + " Hundred " + NumToStr(Num % hundred);
+            else
+                switch (Num / 10)
+                {
+                    case 6:
+                    case 7:
+                    case 9:
+                        if ((Num % 10) == 0)
+                            Num2Str = NumToStr(Num / 10) + "ty";
                         else
-                            switch (Num / 10)
-                            {
-                                case 6:
-                                case 7:
-                                case 9:
-                                    if ((Num % 10) == 0)
-                                        Num2Str = NumToStr(Num / 10) + "ty";
-                                    else
-                                        Num2Str = NumToStr(Num / 10) + "ty-" + NumToStr(Num % 10);
-                                    break;
-                                case 8:
-                                    if (Num == 80)
-                                        Num2Str = "Eighty";
-                                    else
-                                        Num2Str = "Eighty-" + NumToStr(Num % 10);
-                                    break;
-                                case 5:
-                                    if (Num == 50)
-                                        Num2Str = "Fifty";
-                                    else
-                                        Num2Str = "Fifty-" + NumToStr(Num % 10);
-                                    break;
-                                case 4:
-                                    if (Num == 40)
-                                        Num2Str = "Forty";
-                                    else
-                                        Num2Str = "Forty-" + NumToStr(Num % 10);
-                                    break;
-                                case 3:
-                                    if (Num == 30)
-                                        Num2Str = "Thirty";
-                                    else
-                                        Num2Str = "Thirty-" + NumToStr(Num % 10);
-                                    break;
-                                case 2:
-                                    if (Num == 20)
-                                        Num2Str = "Twenty";
-                                    else
-                                        Num2Str = "Twenty-" + NumToStr(Num % 10);
-                                    break;
-                                case 1:
-                                case 0:
-                                    switch (Num)
-                                    {
-                                        case 0:
-                                            Num2Str = "Zero";
-                                            break;
-                                        case 1:
-                                            Num2Str = "One";
-                                            break;
-                                        case 2:
-                                            Num2Str = "Two";
-                                            break;
-                                        case 3:
-                                            Num2Str = "Three";
-                                            break;
-                                        case 4:
-                                            Num2Str = "Four";
-                                            break;
-                                        case 5:
-                                            Num2Str = "Five";
-                                            break;
-                                        case 6:
-                                            Num2Str = "Six";
-                                            break;
-                                        case 7:
-                                            Num2Str = "Seven";
-                                            break;
-                                        case 8:
-                                            Num2Str = "Eight";
-                                            break;
-                                        case 9:
-                                            Num2Str = "Nine";
-                                            break;
-                                        case 10:
-                                            Num2Str = "Ten";
-                                            break;
-                                        case 11:
-                                            Num2Str = "Eleven";
-                                            break;
-                                        case 12:
-                                            Num2Str = "Twelve";
-                                            break;
-                                        case 13:
-                                            Num2Str = "Thirteen";
-                                            break;
-                                        case 14:
-                                            Num2Str = "Fourteen";
-                                            break;
-                                        case 15:
-                                            Num2Str = "Fifteen";
-                                            break;
-                                        case 16:
-                                            Num2Str = "Sixteen";
-                                            break;
-                                        case 17:
-                                            Num2Str = "Seventeen";
-                                            break;
-                                        case 18:
-                                            Num2Str = "Eightteen";
-                                            break;
-                                        case 19:
-                                            Num2Str = "Nineteen";
-                                            break;
-                                    }
-                                    break;
-                            }
+                            Num2Str = NumToStr(Num / 10) + "ty-" + NumToStr(Num % 10);
+                        break;
+                    case 8:
+                        if (Num == 80)
+                            Num2Str = "Eighty";
+                        else
+                            Num2Str = "Eighty-" + NumToStr(Num % 10);
+                        break;
+                    case 5:
+                        if (Num == 50)
+                            Num2Str = "Fifty";
+                        else
+                            Num2Str = "Fifty-" + NumToStr(Num % 10);
+                        break;
+                    case 4:
+                        if (Num == 40)
+                            Num2Str = "Forty";
+                        else
+                            Num2Str = "Forty-" + NumToStr(Num % 10);
+                        break;
+                    case 3:
+                        if (Num == 30)
+                            Num2Str = "Thirty";
+                        else
+                            Num2Str = "Thirty-" + NumToStr(Num % 10);
+                        break;
+                    case 2:
+                        if (Num == 20)
+                            Num2Str = "Twenty";
+                        else
+                            Num2Str = "Twenty-" + NumToStr(Num % 10);
+                        break;
+                    case 1:
+                    case 0:
+                        switch (Num)
+                        {
+                            case 0:
+                                Num2Str = "Zero";
+                                break;
+                            case 1:
+                                Num2Str = "One";
+                                break;
+                            case 2:
+                                Num2Str = "Two";
+                                break;
+                            case 3:
+                                Num2Str = "Three";
+                                break;
+                            case 4:
+                                Num2Str = "Four";
+                                break;
+                            case 5:
+                                Num2Str = "Five";
+                                break;
+                            case 6:
+                                Num2Str = "Six";
+                                break;
+                            case 7:
+                                Num2Str = "Seven";
+                                break;
+                            case 8:
+                                Num2Str = "Eight";
+                                break;
+                            case 9:
+                                Num2Str = "Nine";
+                                break;
+                            case 10:
+                                Num2Str = "Ten";
+                                break;
+                            case 11:
+                                Num2Str = "Eleven";
+                                break;
+                            case 12:
+                                Num2Str = "Twelve";
+                                break;
+                            case 13:
+                                Num2Str = "Thirteen";
+                                break;
+                            case 14:
+                                Num2Str = "Fourteen";
+                                break;
+                            case 15:
+                                Num2Str = "Fifteen";
+                                break;
+                            case 16:
+                                Num2Str = "Sixteen";
+                                break;
+                            case 17:
+                                Num2Str = "Seventeen";
+                                break;
+                            case 18:
+                                Num2Str = "Eightteen";
+                                break;
+                            case 19:
+                                Num2Str = "Nineteen";
+                                break;
+                        }
+                        break;
+                }
             return Num2Str;
         }
         private static string NumberToTextEnglish(decimal amount)
@@ -487,68 +487,68 @@ namespace Reportman.Drawing
                 centenas = DecenasToStrS(numero, female);
             else
                 if (numero == 100)
-                    centenas = "cien";
-                else
+                centenas = "cien";
+            else
                     if ((numero >= 101) && (numero <= 199))
-                        centenas = "ciento " + DecenasToStrS(numero % 100, female);
-                    else
+                centenas = "ciento " + DecenasToStrS(numero % 100, female);
+            else
                         if (numero == 100)
-                            if (female)
-                                centenas = "doscientas";
-                            else
-                                centenas = "doscientos";
-                        else
+                if (female)
+                    centenas = "doscientas";
+                else
+                    centenas = "doscientos";
+            else
                             if (numero == 500)
-                                if (female)
-                                    centenas = "quinientas";
-                                else
-                                    centenas = "quinientos";
-                            else
+                if (female)
+                    centenas = "quinientas";
+                else
+                    centenas = "quinientos";
+            else
                                 if ((numero >= 501) && (numero <= 599))
-                                    if (female)
-                                        centenas = "quinientas " + DecenasToStrS(numero % 100, female);
-                                    else
-                                        centenas = "quinientos " + DecenasToStrS(numero % 100, female);
-                                else
+                if (female)
+                    centenas = "quinientas " + DecenasToStrS(numero % 100, female);
+                else
+                    centenas = "quinientos " + DecenasToStrS(numero % 100, female);
+            else
                                     if (numero == 700)
-                                        if (female)
-                                            centenas = "setecientas";
-                                        else
-                                            centenas = "setecientos";
-                                    else
+                if (female)
+                    centenas = "setecientas";
+                else
+                    centenas = "setecientos";
+            else
                                         if ((numero >= 701) && (numero <= 799))
-                                            if (female)
-                                                centenas = "setecientas " + DecenasToStrS(numero % 100, female);
-                                            else
-                                                centenas = "setecientos " + DecenasToStrS(numero % 100, female);
-                                        else
+                if (female)
+                    centenas = "setecientas " + DecenasToStrS(numero % 100, female);
+                else
+                    centenas = "setecientos " + DecenasToStrS(numero % 100, female);
+            else
                                             if (numero == 900)
-                                                if (female)
-                                                    centenas = "novecientas";
-                                                else
-                                                    centenas = "novecientos";
-                                            else
+                if (female)
+                    centenas = "novecientas";
+                else
+                    centenas = "novecientos";
+            else
                                                 if ((numero >= 901) && (numero <= 999))
-                                                    if (female)
-                                                        centenas = "novecientas " + DecenasToStrS(numero % 100, female);
-                                                    else
-                                                        centenas = "novecientos " + DecenasToStrS(numero % 100, female);
-                                                else
-                                                {
-                                                    string cientosstr = UnidadesToStrS(numero / 100, female);
-                                                    if (cientosstr == "")
-                                                    {
-                                                        centenas = "";
-                                                    }
-                                                    else
-                                                    {
-                                                        if (female)
-                                                            centenas = cientosstr + "cientas ";
-                                                        else
-                                                            centenas = cientosstr + "cientos ";
-                                                    }
-                                                    centenas += DecenasToStrS(numero % 100, female);
-                                                }
+                if (female)
+                    centenas = "novecientas " + DecenasToStrS(numero % 100, female);
+                else
+                    centenas = "novecientos " + DecenasToStrS(numero % 100, female);
+            else
+            {
+                string cientosstr = UnidadesToStrS(numero / 100, female);
+                if (cientosstr == "")
+                {
+                    centenas = "";
+                }
+                else
+                {
+                    if (female)
+                        centenas = cientosstr + "cientas ";
+                    else
+                        centenas = cientosstr + "cientos ";
+                }
+                centenas = centenas + DecenasToStrS(numero % 100, female);
+            }
             return centenas;
         }
 
@@ -870,64 +870,64 @@ namespace Reportman.Drawing
                 centenas = DecenasToStrC(numero, female);
             else
                 if (numero == 100)
-                    centenas = "cent";
-                else
+                centenas = "cent";
+            else
                     if ((numero >= 101) && (numero <= 199))
-                        centenas = "cent " + DecenasToStrC(numero % 100, female);
-                    else
+                centenas = "cent " + DecenasToStrC(numero % 100, female);
+            else
                         if (numero == 100)
-                            if (female)
-                                centenas = "dos-centes";
-                            else
-                                centenas = "dos-cents";
-                        else
+                if (female)
+                    centenas = "dos-centes";
+                else
+                    centenas = "dos-cents";
+            else
                             if (numero == 500)
-                                if (female)
-                                    centenas = "cinc-cents";
-                                else
-                                    centenas = "cinc-centes";
-                            else
+                if (female)
+                    centenas = "cinc-cents";
+                else
+                    centenas = "cinc-centes";
+            else
                                 if ((numero >= 501) && (numero <= 599))
-                                    if (female)
-                                        centenas = "cinc-centes " + DecenasToStrC(numero % 100, female);
-                                    else
-                                        centenas = "cinc-cents " + DecenasToStrC(numero % 100, female);
-                                else
+                if (female)
+                    centenas = "cinc-centes " + DecenasToStrC(numero % 100, female);
+                else
+                    centenas = "cinc-cents " + DecenasToStrC(numero % 100, female);
+            else
                                     if (numero == 700)
-                                        if (female)
-                                            centenas = "set-centes";
-                                        else
-                                            centenas = "set-cents";
-                                    else
+                if (female)
+                    centenas = "set-centes";
+                else
+                    centenas = "set-cents";
+            else
                                         if ((numero >= 701) && (numero <= 799))
-                                            if (female)
-                                                centenas = "set-centes " + DecenasToStrC(numero % 100, female);
-                                            else
-                                                centenas = "set-cents " + DecenasToStrC(numero % 100, female);
-                                        else
+                if (female)
+                    centenas = "set-centes " + DecenasToStrC(numero % 100, female);
+                else
+                    centenas = "set-cents " + DecenasToStrC(numero % 100, female);
+            else
                                             if (numero == 900)
-                                                if (female)
-                                                    centenas = "nou-centes";
-                                                else
-                                                    centenas = "nou-cents";
-                                            else
+                if (female)
+                    centenas = "nou-centes";
+                else
+                    centenas = "nou-cents";
+            else
                                                 if ((numero >= 901) && (numero <= 999))
+                if (female)
+                    centenas = "nou-centes " + DecenasToStrC(numero % 100, female);
+                else
+                    centenas = "nou-cents " + DecenasToStrC(numero % 100, female);
+            else
                                                     if (female)
-                                                        centenas = "nou-centes " + DecenasToStrC(numero % 100, female);
-                                                    else
-                                                        centenas = "nou-cents " + DecenasToStrC(numero % 100, female);
-                                                else
-                                                    if (female)
-                                                        centenas = UnidadesToStrC(numero / 100, female) + "-centes " +
-                                                            DecenasToStrC(numero % 100, female);
-                                                    else
-                                                    {
-                                                        if (UnidadesToStrC(numero / 100, female).ToString().Trim().Length > 0)
-                                                        {
-                                                            centenas = UnidadesToStrC(numero / 100, female) + "-cents " +
-                                                                DecenasToStrC(numero % 100, female);
-                                                        }
-                                                    }
+                centenas = UnidadesToStrC(numero / 100, female) + "-centes " +
+                    DecenasToStrC(numero % 100, female);
+            else
+            {
+                if (UnidadesToStrC(numero / 100, female).ToString().Trim().Length > 0)
+                {
+                    centenas = UnidadesToStrC(numero / 100, female) + "-cents " +
+                        DecenasToStrC(numero % 100, female);
+                }
+            }
             return centenas;
         }
 

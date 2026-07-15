@@ -562,7 +562,8 @@ namespace Reportman.Designer
             {
                 DisableMenus();
                 FReport = value;
-                FReport.UndoCue ??= new UndoCue();
+                if (FReport.UndoCue == null)
+                    FReport.UndoCue = new UndoCue();
                 FixReport(FReport);
                 fstructure.Report = FReport;
                 fdatadef.Report = FReport;
@@ -706,7 +707,7 @@ namespace Reportman.Designer
         }
         private void OpenNewReport(Report report)
         {
-            report.UndoCue ??= new UndoCue();
+            report.UndoCue = report.UndoCue ?? new UndoCue();
             Report = report;
             CurrentFilename = "";
             CurrentReportSelection = null;
@@ -847,7 +848,10 @@ namespace Reportman.Designer
                 }
             }
             ReportToPrint.MetaFile.Clear();
-            nprintdriver ??= new PrintOutReportWinForms(ReportToPrint);
+            if (nprintdriver == null)
+            {
+                nprintdriver = new PrintOutReportWinForms(ReportToPrint);
+            }
             if (Report != nprintdriver.Report)
             {
                 nprintdriver.Dispose();
@@ -907,7 +911,7 @@ namespace Reportman.Designer
             double DrawScale = 1.0;
             string ntext = mitem.Text.Substring(0, mitem.Text.Length - 1);
             DrawScale = System.Convert.ToDouble(ntext);
-            DrawScale /= 100.0;
+            DrawScale = DrawScale / 100.0;
             subreportedit.DrawScale = DrawScale;
             dropdownzoom.Text = mitem.Text;
         }
@@ -1053,12 +1057,12 @@ namespace Reportman.Designer
                 subreportedit.parentcontrol.Invalidate();
             }
             else
-                if ((fstructure.FindSelectedNode().Tag is ReportItem))
-                {
-                    ReportItem sub = (ReportItem)fstructure.FindSelectedNode().Tag;
-                    subreportedit.ClearSelection();
-                    AfterSelectDesign(this, null);
-                }
+              if ((fstructure.FindSelectedNode().Tag is ReportItem))
+            {
+                ReportItem sub = (ReportItem)fstructure.FindSelectedNode().Tag;
+                subreportedit.ClearSelection();
+                AfterSelectDesign(this, null);
+            }
         }
         private void DataSelectionChange(object sender, EventArgs args)
         {
@@ -1338,7 +1342,7 @@ namespace Reportman.Designer
                     minx = nitem.PosX;
                     firstitem = nitem;
                 }
-                totalwidth += nitem.Width;
+                totalwidth = totalwidth + nitem.Width;
                 itemcount++;
             }
             if (firstitem == null)
@@ -1360,7 +1364,7 @@ namespace Reportman.Designer
             int freespace = lastpos - firstpos;
             foreach (PrintPosItem nitem in sorteditems.Values)
             {
-                freespace -= nitem.Width;
+                freespace = freespace - nitem.Width;
             }
             int dif = freespace / (itemcount - 1);
             foreach (PrintPosItem nitem in sorteditems.Values)
@@ -1397,7 +1401,7 @@ namespace Reportman.Designer
                     minx = nitem.PosY;
                     firstitem = nitem;
                 }
-                totalwidth += nitem.Height;
+                totalwidth = totalwidth + nitem.Height;
                 itemcount++;
             }
             if (firstitem == null)
@@ -1419,7 +1423,7 @@ namespace Reportman.Designer
             int freespace = lastpos - firstpos;
             foreach (PrintPosItem nitem in sorteditems.Values)
             {
-                freespace -= nitem.Height;
+                freespace = freespace - nitem.Height;
             }
             int dif = freespace / (itemcount - 1);
             foreach (PrintPosItem nitem in sorteditems.Values)

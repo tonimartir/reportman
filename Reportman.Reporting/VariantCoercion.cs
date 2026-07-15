@@ -1,6 +1,6 @@
-﻿using Reportman.Drawing;
-using System;
+﻿using System;
 using System.Globalization;
+using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {

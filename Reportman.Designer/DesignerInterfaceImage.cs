@@ -64,7 +64,7 @@ namespace Reportman.Designer
             // DrawStyle
             if (pname == Translator.TranslateStr(667))
             {
-                return (int)FPrintItemImage.DrawStyle;
+                   return (int)FPrintItemImage.DrawStyle;
             }
             // Expression
             if (pname == Translator.TranslateStr(571))
@@ -75,7 +75,7 @@ namespace Reportman.Designer
             if (pname == Translator.TranslateStr(639))
             {
                 Variant nvar = new Variant();
-                nvar.SetStream(FPrintItemImage.Stream);
+                nvar.SetStream(FPrintItemImage.Stream);                
                 return nvar;
             }
             // DPIRes
@@ -86,7 +86,7 @@ namespace Reportman.Designer
             // Cached
             if (pname == Translator.TranslateStr(1409))
             {
-                return (int)FPrintItemImage.SharedImage;
+                 return (int)FPrintItemImage.SharedImage;
             }
 
             return base.GetProperty(pname);

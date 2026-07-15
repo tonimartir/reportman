@@ -1,5 +1,4 @@
-﻿using Reportman.Reporting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Reportman.Reporting;
 #if NET8_0_OR_GREATER
 using Reportman.Hub.Client.DataChannel;
 #endif
@@ -556,7 +556,7 @@ namespace Reportman.Designer
             try
             {
                 string currentSql = CurrentSqlProvider != null ? await CurrentSqlProvider() : _currentSql;
-                currentSql ??= "";
+                currentSql = currentSql ?? "";
                 _currentSql = currentSql;
 
                 SafeAppendMessage("user", prompt);

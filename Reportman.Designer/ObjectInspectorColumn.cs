@@ -202,111 +202,111 @@ namespace Reportman.Designer
             }
             else
                 if (DataGridView.EditingControl is DataGridViewTextBoxEditingControl)
+            {
+                TextBoxPicker = DataGridView.EditingControl as DataGridViewTextBoxEditingControl;
+                switch (ntype)
                 {
-                    TextBoxPicker = DataGridView.EditingControl as DataGridViewTextBoxEditingControl;
-                    switch (ntype)
-                    {
-                        case ObjectInspectorCellType.FontStyle:
-                            TextBoxPicker.ReadOnly = true;
-                            TextBoxPicker.BackColor = SystemColors.Info;
-                            TextBoxPicker.ForeColor = SystemColors.InfoText;
-                            TextBoxPicker.Click += ClickFontStyleEvent;
-                            if (nvalue.IsNull)
-                                nvalue = 0;
-                            TextBoxPicker.Text = Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger((int)nvalue);
-                            break;
-                        default:
-                            TextBoxPicker.Text = nvalue.ToString();
-                            break;
-                    }
+                    case ObjectInspectorCellType.FontStyle:
+                        TextBoxPicker.ReadOnly = true;
+                        TextBoxPicker.BackColor = SystemColors.Info;
+                        TextBoxPicker.ForeColor = SystemColors.InfoText;
+                        TextBoxPicker.Click += ClickFontStyleEvent;
+                        if (nvalue.IsNull)
+                            nvalue = 0;
+                        TextBoxPicker.Text = Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger((int)nvalue);
+                        break;
+                    default:
+                        TextBoxPicker.Text = nvalue.ToString();
+                        break;
+                }
+            }
+            else
+                    if (DataGridView.EditingControl is PanelColorPicker)
+            {
+                ColorPickerc = DataGridView.EditingControl as PanelColorPicker;
+                if (nvalue.IsNull)
+                {
+                    ColorPickerc.TextDisplayed = false;
+                    ColorPickerc.Color = Reportman.Drawing.GraphicUtils.IntegerFromColor(Color.White);
                 }
                 else
-                    if (DataGridView.EditingControl is PanelColorPicker)
-                    {
-                        ColorPickerc = DataGridView.EditingControl as PanelColorPicker;
-                        if (nvalue.IsNull)
-                        {
-                            ColorPickerc.TextDisplayed = false;
-                            ColorPickerc.Color = Reportman.Drawing.GraphicUtils.IntegerFromColor(Color.White);
-                        }
-                        else
-                        {
-                            ColorPickerc.TextDisplayed = true;
-                            int valorInt = nvalue;
-                            Color ncolor = GraphicUtils.ColorFromInteger(valorInt);
-                            ColorPickerc.Color = valorInt;
-                        }
-                    }
-                    else
+                {
+                    ColorPickerc.TextDisplayed = true;
+                    int valorInt = nvalue;
+                    Color ncolor = GraphicUtils.ColorFromInteger(valorInt);
+                    ColorPickerc.Color = valorInt;
+                }
+            }
+            else
                         if (DataGridView.EditingControl is PanelImagePicker)
-                        {
-                            ImagePickerc = DataGridView.EditingControl as PanelImagePicker;
-                            ImagePickerc.xrow = ((DataRowView)DataGridView.Rows[rowIndex].DataBoundItem).Row;
-                            if (nvalue.IsNull)
-                            {
-                                ImagePickerc.MemStream = new System.IO.MemoryStream();
-                            }
-                            else
-                            {
-                                ImagePickerc.MemStream = nvalue.GetStream();
-                            }
-                        }
-                        else
-                            if (DataGridView.EditingControl is CheckBoxPickerControl)
-                            {
-                                CheckBoxPicker = DataGridView.EditingControl as CheckBoxPickerControl;
-                                if (nvalue.IsNull)
-                                    CheckBoxPicker.CheckState = CheckState.Indeterminate;
-                                else
-                                    CheckBoxPicker.Checked = (bool)nvalue;
-                            }
-                            else
-                                if (DataGridView.EditingControl is EllipsisEditingControl)
-                                {
-                                    EllipsisPicker = DataGridView.EditingControl as EllipsisEditingControl;
-                                    if (!EllipsisPicker.AssignedEvent)
-                                    {
-                                        EllipsisPicker.AssignedEvent = true;
-                                        EllipsisPicker.ButtonClick += EllipsisPicker_ButtonClick;
-                                    }
+            {
+                ImagePickerc = DataGridView.EditingControl as PanelImagePicker;
+                ImagePickerc.xrow = ((DataRowView)DataGridView.Rows[rowIndex].DataBoundItem).Row;
+                if (nvalue.IsNull)
+                {
+                    ImagePickerc.MemStream = new System.IO.MemoryStream();
+                }
+                else
+                {
+                    ImagePickerc.MemStream = nvalue.GetStream();
+                }
+            }
+            else
+                        if (DataGridView.EditingControl is CheckBoxPickerControl)
+            {
+                CheckBoxPicker = DataGridView.EditingControl as CheckBoxPickerControl;
+                if (nvalue.IsNull)
+                    CheckBoxPicker.CheckState = CheckState.Indeterminate;
+                else
+                    CheckBoxPicker.Checked = (bool)nvalue;
+            }
+            else
+                            if (DataGridView.EditingControl is EllipsisEditingControl)
+            {
+                EllipsisPicker = DataGridView.EditingControl as EllipsisEditingControl;
+                if (!EllipsisPicker.AssignedEvent)
+                {
+                    EllipsisPicker.AssignedEvent = true;
+                    EllipsisPicker.ButtonClick += EllipsisPicker_ButtonClick;
+                }
 
-                                    EllipsisPicker.Text = nvalue.ToString();
-                                    EllipsisPicker.Data = ntype;
+                EllipsisPicker.Text = nvalue.ToString();
+                EllipsisPicker.Data = ntype;
 
-                                }
-                                else
-                                    if (DataGridView.EditingControl is NumericUpDownPickerControl)
-                                    {
-                                        NumericPicker = DataGridView.EditingControl as NumericUpDownPickerControl;
-                                        switch (ntype)
-                                        {
-                                            case ObjectInspectorCellType.Decimal:
-                                                NumericPicker.DataType = TextBoxDataType.Numeric;
-                                                break;
-                                            case ObjectInspectorCellType.Integer:
-                                                NumericPicker.DataType = TextBoxDataType.Integer;
-                                                break;
+            }
+            else
+                                if (DataGridView.EditingControl is NumericUpDownPickerControl)
+            {
+                NumericPicker = DataGridView.EditingControl as NumericUpDownPickerControl;
+                switch (ntype)
+                {
+                    case ObjectInspectorCellType.Decimal:
+                        NumericPicker.DataType = TextBoxDataType.Numeric;
+                        break;
+                    case ObjectInspectorCellType.Integer:
+                        NumericPicker.DataType = TextBoxDataType.Integer;
+                        break;
 
-                                        }
-                                        if (nvalue.IsNull)
-                                        {
-                                            NumericPicker.Text = "";
-                                        }
-                                        else
-                                        {
-                                            switch (ntype)
-                                            {
-                                                case ObjectInspectorCellType.Decimal:
-                                                    NumericPicker.Text = ((decimal)nvalue).ToString("##0.0000");
-                                                    break;
-                                                case ObjectInspectorCellType.Integer:
-                                                    NumericPicker.Text = nvalue.ToString();
-                                                    break;
+                }
+                if (nvalue.IsNull)
+                {
+                    NumericPicker.Text = "";
+                }
+                else
+                {
+                    switch (ntype)
+                    {
+                        case ObjectInspectorCellType.Decimal:
+                            NumericPicker.Text = ((decimal)nvalue).ToString("##0.0000");
+                            break;
+                        case ObjectInspectorCellType.Integer:
+                            NumericPicker.Text = nvalue.ToString();
+                            break;
 
-                                            }
-                                        }
+                    }
+                }
 
-                                    }
+            }
         }
 
         private bool EllipsisPicker_ButtonClick(EllipsisEditingControl sender, ref string text)
@@ -350,20 +350,20 @@ namespace Reportman.Designer
                 }
                 else
                     if (pname == Translator.TranslateStr(563))
-                    {
-                        Variant nvar = (Variant)GetColumnValue("VALUE", i);
-                        if (nvar.IsNull)
-                            nvar = 10;
-                        fontsize = nvar;
-                    }
-                    else
+                {
+                    Variant nvar = (Variant)GetColumnValue("VALUE", i);
+                    if (nvar.IsNull)
+                        nvar = 10;
+                    fontsize = nvar;
+                }
+                else
                         if (pname == Translator.TranslateStr(566))
-                        {
-                            Variant nvar = (Variant)GetColumnValue("VALUE", i);
-                            if (nvar.IsNull)
-                                nvar = 0;
-                            fstyle = nvar;
-                        }
+                {
+                    Variant nvar = (Variant)GetColumnValue("VALUE", i);
+                    if (nvar.IsNull)
+                        nvar = 0;
+                    fstyle = nvar;
+                }
             }
             FontStyle nfstyle = Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(fstyle);
             Font nfont = new Font(fontname, fontsize, nfstyle);
@@ -380,14 +380,14 @@ namespace Reportman.Designer
                 }
                 else
                     if (pname == Translator.TranslateStr(563))
-                    {
-                        SetValue(i, fontsize);
-                    }
-                    else
+                {
+                    SetValue(i, fontsize);
+                }
+                else
                         if (pname == Translator.TranslateStr(566))
-                        {
-                            SetValue(i, fstyle);
-                        }
+                {
+                    SetValue(i, fstyle);
+                }
             }
         }
         private bool ClickExpression(EllipsisEditingControl sender, ref string expression)
@@ -693,10 +693,10 @@ namespace Reportman.Designer
                         if (boolvalue == null)
                             nstate = ButtonState.Inactive;
                         else
-                            if ((bool)boolvalue)
-                                nstate = ButtonState.Checked;
-                            else
-                                nstate = ButtonState.Normal;
+                        if ((bool)boolvalue)
+                            nstate = ButtonState.Checked;
+                        else
+                            nstate = ButtonState.Normal;
                         base.Paint(graphics, clipBounds, cellBounds, rowIndex, elementState, "", "",
                                    "", cellStyle, advancedBorderStyle, paintParts);
                         // Make square cell Bounds
@@ -714,7 +714,7 @@ namespace Reportman.Designer
                         else
                         {
                             x1 = x1 + width1 / 2 - (checkwidth / 2);
-                            y1 += (height1 - checkwidth) / 2;
+                            y1 = y1 + (height1 - checkwidth) / 2;
                             width1 = height1;
                         }
                         Rectangle nbounds = new Rectangle(x1, y1, checkwidth, checkwidth);
@@ -846,7 +846,10 @@ namespace Reportman.Designer
                         aresult = (int)Math.Round(System.Convert.ToDecimal(formattedValue));
                     break;
             }
-            aresult ??= base.ParseFormattedValue(formattedValue, cellStyle, formattedValueTypeConverter, valueTypeConverter);
+            if (aresult == null)
+            {
+                aresult = base.ParseFormattedValue(formattedValue, cellStyle, formattedValueTypeConverter, valueTypeConverter);
+            }
             return aresult;
         }
 

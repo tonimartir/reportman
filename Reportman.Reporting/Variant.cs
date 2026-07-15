@@ -25,7 +25,9 @@ using MyData;
 using System.Data;
 #endif
 using System.IO;
+using System.Drawing;
 using Reportman.Drawing;
+using System.Threading;
 
 namespace Reportman.Reporting
 {
@@ -383,7 +385,8 @@ namespace Reportman.Reporting
 		public static implicit operator Variant(string avalue)
         {
             Variant aresult = new Variant();
-            avalue ??= "";
+            if (avalue == null)
+                avalue = "";
             aresult.FString = avalue;
             aresult.FVarType = VariantType.String;
             return aresult;
@@ -965,8 +968,7 @@ namespace Reportman.Reporting
                     if (StreamUtil.CompareArrayContent(FMemStream.ToArray(), obj.FMemStream.ToArray()))
                     {
                         aresult = 0;
-                    }
-                    else
+                    } else
                     {
                         aresult = -1;
                     }
@@ -1901,22 +1903,22 @@ namespace Reportman.Reporting
 
                 case "System.Drawing.Bitmap":
                     throw new Exception("Drawing.ToBitmap() not supported in assign object");
-                /*                    FMemStream = new MemoryStream();
-                                    Bitmap nbitmap = ((System.Drawing.Bitmap)obj);
-                                    nbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                    FVarType = VariantType.Binary;
-                                    break;*/
+/*                    FMemStream = new MemoryStream();
+                    Bitmap nbitmap = ((System.Drawing.Bitmap)obj);
+                    nbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    FVarType = VariantType.Binary;
+                    break;*/
 
 
                 case "System.Drawing.Icon":
                     throw new Exception("Icon.ToBitmap() not supported in COmpact framework");
-                /*                    FMemStream = new MemoryStream();
-                                    using (System.Drawing.Bitmap rbitmap = ((System.Drawing.Icon)obj).ToBitmap())
-                                    {
-                                        rbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                        FVarType = VariantType.Binary;
-                                    }
-                                    break;*/
+/*                    FMemStream = new MemoryStream();
+                    using (System.Drawing.Bitmap rbitmap = ((System.Drawing.Icon)obj).ToBitmap())
+                    {
+                        rbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        FVarType = VariantType.Binary;
+                    }
+                    break;*/
 
 
                 case "System.String":
@@ -2124,11 +2126,11 @@ namespace Reportman.Reporting
                     DateTimeFormat.ShortDatePattern;
             else
                 if (paramtype == ParamType.Time)
-                    return System.Globalization.CultureInfo.CurrentCulture.
-                        DateTimeFormat.ShortTimePattern;
-                else
-                    return System.Globalization.CultureInfo.CurrentCulture.
-                        DateTimeFormat.FullDateTimePattern;
+                return System.Globalization.CultureInfo.CurrentCulture.
+                    DateTimeFormat.ShortTimePattern;
+            else
+                return System.Globalization.CultureInfo.CurrentCulture.
+                    DateTimeFormat.FullDateTimePattern;
         }
         /// <summary>
         /// Formats a Variant, with a display format

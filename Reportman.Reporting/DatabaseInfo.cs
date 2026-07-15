@@ -223,31 +223,31 @@ namespace Reportman.Reporting
         /// </summary>
         /// <returns>A new DatabaseInfo item with same data as the original</returns>
 		public object Clone()
-        {
-            DatabaseInfo ninfo = new DatabaseInfo();
-            ninfo.Report = Report;
-            ninfo.Alias = Alias;
-            ninfo.Driver = Driver;
-            ninfo.ProviderFactory = ProviderFactory;
-            ninfo.ReportTable = ReportTable;
-            ninfo.ReportSearchField = ReportSearchField;
-            ninfo.Name = Name;
-            ninfo.ReportField = ReportField;
-            ninfo.ReportGroupsTable = ReportGroupsTable;
-            ninfo.ConnectionString = ConnectionString;
-            ninfo.FExternalConnection = FExternalConnection;
-            ninfo.Transaction = Transaction;
-            ninfo.DotNetDriver = DotNetDriver;
-            ninfo.TransIsolation = TransIsolation;
-            // HttpAgent properties
+		{
+			DatabaseInfo ninfo = new DatabaseInfo();
+			ninfo.Report = Report;
+			ninfo.Alias = Alias;
+			ninfo.Driver = Driver;
+			ninfo.ProviderFactory = ProviderFactory;
+			ninfo.ReportTable = ReportTable;
+			ninfo.ReportSearchField = ReportSearchField;
+			ninfo.Name = Name;
+			ninfo.ReportField = ReportField;
+			ninfo.ReportGroupsTable = ReportGroupsTable;
+			ninfo.ConnectionString = ConnectionString;
+			ninfo.FExternalConnection = FExternalConnection;
+			ninfo.Transaction = Transaction;
+			ninfo.DotNetDriver = DotNetDriver;
+			ninfo.TransIsolation = TransIsolation;
+			// HttpAgent properties
             ninfo.ConfigFile = ConfigFile;
             ninfo.LoadParams = LoadParams;
-            ninfo.HttpAgentBaseUrl = HttpAgentBaseUrl;
-            ninfo.HttpAgentApiKey = HttpAgentApiKey;
-            ninfo.HttpAgentToken = HttpAgentToken;
-            ninfo.HttpAgentHubDatabaseId = HttpAgentHubDatabaseId;
-            return ninfo;
-        }
+			ninfo.HttpAgentBaseUrl = HttpAgentBaseUrl;
+			ninfo.HttpAgentApiKey = HttpAgentApiKey;
+			ninfo.HttpAgentToken = HttpAgentToken;
+			ninfo.HttpAgentHubDatabaseId = HttpAgentHubDatabaseId;
+			return ninfo;
+		}
         /// <summary>
         /// Clone the DatabaseInfo item
         /// </summary>
@@ -504,7 +504,8 @@ namespace Reportman.Reporting
             if (Connection != null)
             {
                 if (Transaction == null)
-                    IntTransaction ??= Connection.BeginTransaction(TransIsolation);
+                    if (IntTransaction == null)
+                        IntTransaction = Connection.BeginTransaction(TransIsolation);
                 return;
             }
             string UsedConnectionString = ConnectionString;

@@ -18,15 +18,19 @@
 */
 #endregion
 
-using FreeTypeSharp;
-using Icu;
 using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
+using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
+using FreeTypeSharp;
+using System.Text;
+using System.Diagnostics;
+using Icu;
+using HarfBuzzSharp;
 
 namespace Reportman.Drawing
 {
@@ -34,7 +38,7 @@ namespace Reportman.Drawing
     /// Holds the FreeType face handle and cached metrics (family, style, ascent/descent, bounding box,
     /// kerning and other attributes) for a single font file, and lazily opens the FreeType face on demand.
     /// </summary>
-    unsafe public class LogFontFt
+    unsafe public class  LogFontFt
     {
         /// <summary>True when the font is fixed-pitch (monospaced).</summary>
         public bool fixedpitch;
@@ -95,7 +99,7 @@ namespace Reportman.Drawing
         /// <summary>Path of the associated kerning/AFM file, or an empty string when none.</summary>
         public string kerningfile;
         /// <summary>Shared cache mapping a font key name to its FreeType face index.</summary>
-        public static SortedList<string, int> FontFaces = new SortedList<string, int>();
+        public static SortedList<string,int> FontFaces = new SortedList<string,int>();
         /// <summary>Index of the face within the font file.</summary>
         public int iface;
         /// <summary>Initializes a new instance with an empty kerning file and a zero face index.</summary>
@@ -128,7 +132,7 @@ namespace Reportman.Drawing
                     FT_FaceRec_* aface;
                     FontInfoFt.CheckFreeType(
                             FT.FT_New_Face(ftlibrary, (byte*)Marshal.StringToHGlobalAnsi(filename), (IntPtr)0, &aface)
-                        //FT.FT_New_Face(ftlibrary, FontInfoFt.StringToBytePtr(filename), new IntPtr(0), &aface)
+                            //FT.FT_New_Face(ftlibrary, FontInfoFt.StringToBytePtr(filename), new IntPtr(0), &aface)
                         );
                     //SharpFont.Face aface = new SharpFont.Face(ftlibrary,filename);
                     iface = aface->face_index.ToInt32();
@@ -153,7 +157,7 @@ namespace Reportman.Drawing
                     var pointer = &acharWidth;
                     int heightInt = 64 * 100;
                     var heightPointer = &heightInt;
-                    FontInfoFt.CheckFreeType(FT.FT_Set_Char_Size(aface, (IntPtr)0, (IntPtr)(64 * 100), 96, 96));
+                    FontInfoFt.CheckFreeType(FT.FT_Set_Char_Size(aface, (IntPtr)0, (IntPtr)(64*100),96,96));
                     FontFaces.Add(keyname, iface);
                 }
             }
@@ -163,22 +167,22 @@ namespace Reportman.Drawing
             }
         }
     }
-
+ 
     /// <summary>
     /// Cross-platform <see cref="FontInfoProvider"/> built on FreeType, HarfBuzz and ICU that enumerates
     /// system fonts, supplies font metrics, glyph and kerning widths, subsetted font streams and performs
     /// BiDi/script-aware text layout (including HTML) for the PDF and rendering pipeline.
     /// </summary>
-    public unsafe class FontInfoFt : FontInfoProvider, IDisposable
+    public unsafe class FontInfoFt:FontInfoProvider,IDisposable
     {
-        LogFontFt currentfont;
+        LogFontFt  currentfont;
         /// <summary>Shared monitor object used to serialize access to the FreeType library and font caches.</summary>
         public static object flag = 12345;
         static bool libraryinitialized;
-        static SortedList<string, LogFontFt> fontlist = new SortedList<string, LogFontFt>();
+        static SortedList<string,LogFontFt> fontlist = new SortedList<string,LogFontFt>();
         static SortedList<string, MemoryStream> FontStreams = new SortedList<string, MemoryStream>();
         static Strings fontpaths = new Strings();
-        static SortedList<string, string> fontfiles = new SortedList<string, string>();
+        static SortedList<string,string> fontfiles = new SortedList<string,string>();
         static LogFontFt defaultfont;
         static LogFontFt defaultfontb;
         static LogFontFt defaultfontit;
@@ -209,7 +213,7 @@ namespace Reportman.Drawing
                     + nerror.ToString() + BytePtrToString(error));
             }
             else
-                throw new Exception("Freetype function call error: " + nerror.ToString());
+                throw new Exception("Freetype function call error: "+nerror.ToString());
         }
         /// <summary>Encodes a string as a null-terminated UTF-8 byte sequence and returns a pointer to it for passing to native FreeType calls.</summary>
         /// <param name="str">The string to encode.</param>
@@ -293,40 +297,40 @@ namespace Reportman.Drawing
                     CheckFreeType(FT.FT_Init_FreeType(FreeTypeLibPointer));
                 }
                 libraryinitialized = true;
-
+                
                 Strings npaths = GetFontDirectories();
                 foreach (string ndir in npaths)
                 {
-                    if (Directory.Exists(ndir))
+					if (Directory.Exists(ndir))
+					{
+                    string[] nfiles = StreamUtil.GetFiles(ndir,"*.TTF|*.ttf|*.pf*",SearchOption.AllDirectories);
+                    foreach (string nfile in nfiles)
                     {
-                        string[] nfiles = StreamUtil.GetFiles(ndir, "*.TTF|*.ttf|*.pf*", SearchOption.AllDirectories);
-                        foreach (string nfile in nfiles)
-                        {
                             //FT_FaceRec aface = new FT_FaceRec();
                             // var aface = new FT.Face .Face(FreeTypeLib, nfile);
                             FT_FaceRec_* iface;
                             int faceIndex = 0;
                             var faceIndexPointer = &faceIndex;
-                            CheckFreeType(
-                                // FT.FT_New_Face(FreeTypeLib, StringToBytePtr(nfile), (IntPtr)faceIndexPointer, &iface)
-                                FT.FT_New_Face(FreeTypeLib, (byte*)Marshal.StringToHGlobalAnsi(nfile), (IntPtr)0, &iface));
-                            try
-                            {
+                        CheckFreeType(
+                            // FT.FT_New_Face(FreeTypeLib, StringToBytePtr(nfile), (IntPtr)faceIndexPointer, &iface)
+                            FT.FT_New_Face(FreeTypeLib, (byte*)Marshal.StringToHGlobalAnsi(nfile),(IntPtr) 0, &iface));
+                        try
+                        {
                                 //aface = (FT_FaceRec)Marshal.PtrToStructure(iface, typeof(FT_FaceRec));
                                 //if ((aface.face_flags & (int)FT_Face_Flags.FT_FACE_FLAG_SCALABLE)!=0)
                                 //string familyMame = BytePtrToString(iface->family_name);
                                 // if (aface.FaceFlags.HasFlag(SharpFont.FaceFlags.Scalable))
-                                if ((iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_SCALABLE) != 0)
-                                {
-                                    LogFontFt aobj = new LogFontFt();
-                                    aobj.ftlibrary = FreeTypeLib;
-                                    aobj.fullinfo = false;
+                            if ((iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_SCALABLE)!=0)
+                            {
+                                LogFontFt aobj = new LogFontFt();
+                                aobj.ftlibrary = FreeTypeLib;
+                                aobj.fullinfo = false;
                                     // Fill font properties
                                     //aobj.type1 = ((int)FT_Face_Flags.FT_FACE_FLAG_SFNT & aface.face_flags)==0;
                                     //aobj.type1 = !aface.FaceFlags.HasFlag(SharpFont.FaceFlags.Sfnt);
                                     aobj.type1 = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_SFNT) == 0;
                                     if (aobj.type1)
-                                    {
+                                {
                                         //       aobj.convfactor:=1000/aface.units_per_EM;
                                         //aobj.widthmult = 1024.0/aface.UnitsPerEM;
                                         //aobj.heightmult = 1024.0/aface.UnitsPerEM;
@@ -334,132 +338,131 @@ namespace Reportman.Drawing
                                         aobj.heightmult = 1;
                                     }
                                     else
-                                    {
+                                {
                                         //aobj.convfactor=1;
-                                        aobj.convfactor = 1000.0 / iface->units_per_EM;
+                                        aobj.convfactor=1000.0/iface->units_per_EM;
                                         aobj.widthmult = 1;
                                         aobj.heightmult = 1;
                                         //aobj.widthmult = 1024.0 / aface.UnitsPerEM;
                                         //aobj.heightmult = 1024.0 / aface.UnitsPerEM;
                                     }
-                                    aobj.filename = nfile;
-                                    string family_name = BytePtrToString(iface->family_name);
-                                    aobj.postcriptname = family_name.Replace(" ", "");
-                                    aobj.familyname = family_name;
-                                    aobj.keyname = family_name + "____";
+                                    aobj.filename=nfile;
+                                string family_name = BytePtrToString(iface->family_name);
+                                aobj.postcriptname=family_name.Replace(" ","");
+                                aobj.familyname=family_name;
+                                aobj.keyname = family_name + "____";
                                     //aobj.fixedpitch=(aface.face_flags & (int)FT_Face_Flags.FT_FACE_FLAG_FIXED_WIDTH)!=0;
                                     // aobj.fixedpitch = aface.FaceFlags.HasFlag(SharpFont.FaceFlags.FixedWidth);
-                                    aobj.fixedpitch = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_FIXED_WIDTH) != 0;
+                                aobj.fixedpitch = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_FIXED_WIDTH)!=0;
                                     //aobj.havekerning=(aface.face_flags & (int)FT_Face_Flags.FT_FACE_FLAG_KERNING)!=0;
-                                    //aobj.havekerning = aface.FaceFlags.HasFlag(SharpFont.FaceFlags.Kerning);
-                                    aobj.havekerning = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_KERNING) != 0;
-                                    int bboxleft = iface->bbox.xMin.ToInt32();
-                                    int bboxright = iface->bbox.xMax.ToInt32();
-                                    int bboxtop = iface->bbox.yMin.ToInt32();
-                                    int bboxbottom = iface->bbox.yMax.ToInt32();
+                                //aobj.havekerning = aface.FaceFlags.HasFlag(SharpFont.FaceFlags.Kerning);
+                                aobj.havekerning = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_KERNING) != 0;
+                                int bboxleft = iface->bbox.xMin.ToInt32();
+                                int bboxright = iface->bbox.xMax.ToInt32();
+                                int bboxtop  = iface->bbox.yMin.ToInt32();
+                                int bboxbottom = iface->bbox.yMax.ToInt32();
 
-                                    int nleft = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxleft));
-                                    int nright = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxright));
-                                    int ntop = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxtop));
-                                    int nbottom = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxbottom));
-                                    // BBox calcultions are incorrect
-                                    // aobj.BBox = new Rectangle(nleft,ntop,nright-nleft,nbottom-ntop);
-                                    aobj.ascent = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->ascender));
-                                    aobj.descent = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->descender));
-                                    aobj.height = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height));
-                                    aobj.leading = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height) - (aobj.ascent - aobj.descent));
-                                    aobj.MaxWidth = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->max_advance_width));
-                                    aobj.Capheight = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->ascender));
-                                    string style_name = BytePtrToString(iface->style_name);
-                                    aobj.stylename = style_name;
+                                int nleft = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxleft));
+                                int nright = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxright));
+                                int ntop = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxtop));
+                                int nbottom = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxbottom));
+                                // BBox calcultions are incorrect
+                                // aobj.BBox = new Rectangle(nleft,ntop,nright-nleft,nbottom-ntop);
+                                aobj.ascent=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->ascender));
+                                aobj.descent=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->descender));
+                                aobj.height=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height));
+                                aobj.leading=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height)-(aobj.ascent-aobj.descent));
+                                aobj.MaxWidth=System.Convert.ToInt32(Math.Round(aobj.convfactor*(double)iface->max_advance_width));
+                                aobj.Capheight=System.Convert.ToInt32(Math.Round(aobj.convfactor*(double)iface->ascender));
+                                string style_name = BytePtrToString(iface->style_name);
+                                aobj.stylename=style_name;
                                     //aobj.bold=(aface.style_flags & (int)FT_Style_Flags.FT_STYLE_FLAG_BOLD)!=0;
-                                    aobj.bold = (iface->style_flags.ToInt32() & (int)FT_STYLE_FLAG.FT_STYLE_FLAG_BOLD) != 0;
+                                aobj.bold = (iface->style_flags.ToInt32() &  (int)FT_STYLE_FLAG.FT_STYLE_FLAG_BOLD) != 0;
                                     //aobj.italic=(aface.style_flags & (int)FT_Style_Flags.FT_STYLE_FLAG_ITALIC)!=0;
                                     //aobj.italic = aface.StyleFlags.HasFlag(SharpFont.StyleFlags.Italic);
-                                    aobj.italic = (iface->style_flags.ToInt32() & (int)FT_STYLE_FLAG.FT_STYLE_FLAG_ITALIC) != 0;
-                                    if (aobj.bold)
-                                        aobj.keyname += "B1";
-                                    else
-                                        aobj.keyname += "B0";
+                                 aobj.italic = (iface->style_flags.ToInt32() & (int)FT_STYLE_FLAG.FT_STYLE_FLAG_ITALIC) != 0;
+                                 if (aobj.bold)
+                                    aobj.keyname = aobj.keyname + "B1";
+                                else
+                                    aobj.keyname = aobj.keyname + "B0";
 
-                                    if (aobj.italic)
-                                        aobj.keyname += "I1";
-                                    else
-                                        aobj.keyname += "I0";
-                                    // Default font configuration, LUXI SANS is default
-                                    if ((!aobj.italic) && (!aobj.bold))
-                                    {
-                                        if (defaultfont == null)
-                                            defaultfont = aobj;
-                                        else
+                                if (aobj.italic)
+                                    aobj.keyname = aobj.keyname + "I1";
+                                else
+                                    aobj.keyname = aobj.keyname + "I0";
+                                // Default font configuration, LUXI SANS is default
+                                if ((!aobj.italic) && (!aobj.bold))
+                                {
+                                   if (defaultfont==null)
+                                    defaultfont=aobj;
+                                   else
+                                   {
+                                        if (aobj.familyname.ToUpper()=="LUXI SANS")
                                         {
-                                            if (aobj.familyname.ToUpper() == "LUXI SANS")
-                                            {
-                                                defaultfont = aobj;
+                                             defaultfont=aobj;
+                                         }
+                                        else
+                                         if (aobj.familyname.ToUpper()=="DEJAVU SANS") {
+                                                defaultfont =aobj;
                                             }
-                                            else
-                                                if (aobj.familyname.ToUpper() == "DEJAVU SANS")
-                                                {
-                                                    defaultfont = aobj;
-                                                }
-                                        }
+                                   }
+                                }
+                                else
+                                    if ((!aobj.italic) && (aobj.bold))
+                                    {
+                                       if  (defaultfontb==null)
+                                        defaultfontb=aobj;
+                                       else
+                                       {
+                                            if (aobj.familyname.ToUpper()=="LUXI SANS")
+                                            {
+                                                defaultfontb=aobj;
+                                            }
+                                       }
                                     }
                                     else
-                                        if ((!aobj.italic) && (aobj.bold))
+                                        if ((aobj.italic) && (!aobj.bold))
                                         {
-                                            if (defaultfontb == null)
-                                                defaultfontb = aobj;
-                                            else
-                                            {
-                                                if (aobj.familyname.ToUpper() == "LUXI SANS")
+                                               if (defaultfontit==null)
+                                                    defaultfontit=aobj;
+                                               else
+                                               {
+                                                if (aobj.familyname.ToUpper()=="LUXI SANS")
                                                 {
-                                                    defaultfontb = aobj;
+                                                    defaultfontit=aobj;
                                                 }
-                                            }
+                                               }
                                         }
                                         else
-                                            if ((aobj.italic) && (!aobj.bold))
+                                            if ((aobj.italic) && (aobj.bold))
                                             {
-                                                if (defaultfontit == null)
-                                                    defaultfontit = aobj;
-                                                else
+                                               if (defaultfontbit==null)
+                                                defaultfontbit=aobj;
+                                               else
+                                               {
+                                                if (aobj.familyname.ToUpper()=="LUXI SANS")
                                                 {
-                                                    if (aobj.familyname.ToUpper() == "LUXI SANS")
-                                                    {
-                                                        defaultfontit = aobj;
-                                                    }
+                                                 defaultfontbit=aobj;
                                                 }
+                                               }
                                             }
-                                            else
-                                                if ((aobj.italic) && (aobj.bold))
-                                                {
-                                                    if (defaultfontbit == null)
-                                                        defaultfontbit = aobj;
-                                                    else
-                                                    {
-                                                        if (aobj.familyname.ToUpper() == "LUXI SANS")
-                                                        {
-                                                            defaultfontbit = aobj;
-                                                        }
-                                                    }
-                                                }
 
-                                    aobj.keyname = aobj.keyname.ToUpper();
-                                    if (fontlist.IndexOfKey(aobj.keyname) < 0)
-                                        fontlist.Add(aobj.keyname.ToUpper(), aobj);
+                                aobj.keyname = aobj.keyname.ToUpper();
+                                if (fontlist.IndexOfKey(aobj.keyname)<0)
+                                    fontlist.Add(aobj.keyname.ToUpper(),aobj);
 
-                                }
+                            }
                                 int nindex = fontfiles.IndexOfKey(nfile);
-                                if (nindex < 0)
-                                    fontfiles.Add(nfile, nfile);
-                            }
-                            finally
-                            {
-                                //iface.Dispose();
-
-                                CheckFreeType(FT.FT_Done_Face(iface));
-                            }
+                            if (nindex < 0)
+                                fontfiles.Add(nfile, nfile);
                         }
+                        finally
+                        {
+                                //iface.Dispose();
+                            
+                            CheckFreeType(FT.FT_Done_Face(iface));
+                        }
+						}
                     }
                 }
             }
@@ -497,10 +500,10 @@ namespace Reportman.Drawing
             else
                 suffix = "____B0";
             if (isitalic)
-                suffix += "I1";
+                suffix = suffix + "I1";
             else
-                suffix += "I0";
-            fontname += suffix;
+                suffix = suffix + "I0";
+            fontname = fontname+suffix;
             if (fontlist.IndexOfKey(fontname) >= 0)
             {
                 currentfont = fontlist[fontname];
@@ -508,7 +511,7 @@ namespace Reportman.Drawing
             }
             // Search similar font
             string familyonly = "";
-
+            
             foreach (string fname in fontlist.Keys)
             {
                 int idx = fname.IndexOf(familyname);
@@ -523,7 +526,7 @@ namespace Reportman.Drawing
                     }
                 }
             }
-            if (familyonly.Length > 0)
+            if (familyonly.Length>0)
             {
                 currentfont = fontlist[familyonly];
                 return;
@@ -546,10 +549,10 @@ namespace Reportman.Drawing
                     }
             fontlist.Add(fontname, currentfont);
         }
-        /// <summary>Selects the font matching <paramref name="pdfFont"/> and populates <paramref name="data"/> with its metrics, embedded font stream and glyph-width cache, applying OS/2 table overrides to match GDI/DirectWrite line spacing.</summary>
-        /// <param name="pdfFont">The logical font whose family, bold and italic attributes drive font selection.</param>
-        /// <param name="data">The metric container to fill.</param>
-        public override void FillFontData(PDFFont pdfFont, TTFontData data)
+		/// <summary>Selects the font matching <paramref name="pdfFont"/> and populates <paramref name="data"/> with its metrics, embedded font stream and glyph-width cache, applying OS/2 table overrides to match GDI/DirectWrite line spacing.</summary>
+		/// <param name="pdfFont">The logical font whose family, bold and italic attributes drive font selection.</param>
+		/// <param name="data">The metric container to fill.</param>
+		public override void FillFontData(PDFFont pdfFont, TTFontData data)
         {
             InitLibrary();
 
@@ -573,7 +576,7 @@ namespace Reportman.Drawing
                         MemoryStream nstream = StreamUtil.FileToMemoryStream(currentfont.filename);
                         data.FontData = new AdvFontData();
                         data.FontData.Data = nstream.ToArray();
-                        if (!FontStreams.ContainsKey(currentfont.keyname))
+                        if(!FontStreams.ContainsKey(currentfont.keyname))
                             FontStreams.Add(currentfont.keyname, nstream);
                     }
                 }
@@ -650,15 +653,15 @@ namespace Reportman.Drawing
             data.StyleName = currentfont.stylename;
             data.Flags = 32;
             if (currentfont.fixedpitch)
-                data.Flags++;
+                data.Flags = data.Flags + 1;
             if (pdfFont.Bold)
-                data.PostcriptName += ",Bold";
+                data.PostcriptName = data.PostcriptName + ",Bold";
             if (pdfFont.Italic)
             {
                 if (pdfFont.Bold)
-                    data.PostcriptName += "Italic";
+                    data.PostcriptName = data.PostcriptName + "Italic";
                 else
-                    data.PostcriptName += ",Italic";
+                    data.PostcriptName = data.PostcriptName + ",Italic";
             }
             data.Type1 = currentfont.type1;
             // Assign widths list
@@ -666,7 +669,7 @@ namespace Reportman.Drawing
             try
             {
                 WidthsCache.Clear();
-
+                
                 if (WidthsCache.IndexOfKey(data.PostcriptName) < 0)
                 {
                     SortedList<char, GlyphInfo> nlist = new SortedList<char, GlyphInfo>();
@@ -688,7 +691,7 @@ namespace Reportman.Drawing
         /// <param name="charCode">The character to measure.</param>
         /// <returns>The advance width of the character.</returns>
         public override double GetCharWidth(PDFFont pdfFont, TTFontData data,
-                 char charCode)
+				 char charCode)
         {
             int glyphindex; ;
             double newwidth;
@@ -797,7 +800,7 @@ namespace Reportman.Drawing
         /// <param name="rightChar">The right character of the pair.</param>
         /// <returns>The kerning adjustment for the pair.</returns>
         public override int GetKerning(PDFFont pdfFont, TTFontData data,
-                 char leftChar, char rightChar)
+				 char leftChar, char rightChar)
         {
             LogFontFt cfont = (LogFontFt)data.LogFont;
             if (!cfont.havekerning)
@@ -822,21 +825,21 @@ namespace Reportman.Drawing
                 // uint w1 = cfont.ftface.GetCharIndex((uint)leftChar);
                 uint lchar = (uint)leftChar;
                 var lcharPtr = &lchar;
-                uint w1 = FT.FT_Get_Char_Index(cfont.ftface, (UIntPtr)lcharPtr);
+                uint w1 = FT.FT_Get_Char_Index(cfont.ftface,(UIntPtr)lcharPtr);
                 if (w1 > 0)
                 {
                     uint rchar = (uint)rightChar;
                     var lrchar = &rightChar;
                     //uint w2 = FT.FT_Get_Char_Index(cfont.iface, (uint)rightChar);
-                    uint w2 = FT.FT_Get_Char_Index(cfont.ftface, (UIntPtr)rightChar);
+                    uint w2 = FT.FT_Get_Char_Index(cfont.ftface,(UIntPtr)rightChar);
                     if (w2 > 0)
                     {
                         FT_Vector_ akerning;
                         FT_Vector_* kerningPointer = &akerning;
-
-                        CheckFreeType(FT.FT_Get_Kerning(cfont.ftface, w1, w2, FT_Kerning_Mode_.FT_KERNING_UNSCALED, kerningPointer));
+                        
+                        CheckFreeType(FT.FT_Get_Kerning(cfont.ftface,w1,w2,FT_Kerning_Mode_.FT_KERNING_UNSCALED, kerningPointer));
                         // SharpFont.FTVector26Dot6 akerning = cfont.ftface.GetKerning(w1, w2, SharpFont.KerningMode.Unscaled);
-                        nresult = System.Convert.ToInt32(Math.Round(cfont.widthmult * -akerning.x.ToInt32()));
+                        nresult = System.Convert.ToInt32(Math.Round(cfont.widthmult*-akerning.x.ToInt32()));
                     }
                     else
                         data.Kernings.Add(nkerning, 0);
@@ -885,10 +888,10 @@ namespace Reportman.Drawing
         {
             string systemPath = Environment.GetFolderPath(Environment.SpecialFolder.System);
             string result = Path.GetDirectoryName(systemPath)
-                + Path.DirectorySeparatorChar
+                + Path.DirectorySeparatorChar 
                 + "FONTS"
                 + Path.DirectorySeparatorChar;
-            return result;
+                return result;
         }
 
 
@@ -914,27 +917,27 @@ namespace Reportman.Drawing
                     else
                         throw new Exception("File not found: /etc/fonts/fonts.conf");
                     string nstring = afile.ToSemiColon();
-                    int index = nstring.IndexOf("<dir");
-                    if (index >= 0)
-                        nstring = nstring.Substring(index + 4, nstring.Length - (index + 4));
-                    index = nstring.IndexOf(">");
-                    if (index >= 0)
-                        nstring = nstring.Substring(index + 1, nstring.Length - (index + 1));
-                    index = nstring.IndexOf("</dir");
-                    while (index >= 0)
-                    {
-                        string ndir = nstring.Substring(0, index);
-                        dirs.Add(ndir);
-                        nstring = nstring.Substring(index + 4, nstring.Length - (index + 4));
-
-                        index = nstring.IndexOf("<dir");
-                        if (index >= 0)
-                            nstring = nstring.Substring(index + 4, nstring.Length - (index + 4));
-                        index = nstring.IndexOf(">");
-                        if (index >= 0)
-                            nstring = nstring.Substring(index + 1, nstring.Length - (index + 1));
-                        index = nstring.IndexOf("</dir");
-                    }
+         int index = nstring.IndexOf("<dir");
+         if (index >= 0)
+            nstring = nstring.Substring(index + 4, nstring.Length  - (index + 4));
+         index = nstring.IndexOf(">");
+         if (index >= 0)
+            nstring = nstring.Substring(index + 1, nstring.Length - (index + 1));
+         index = nstring.IndexOf("</dir");
+         while (index >= 0)
+         {
+            string ndir = nstring.Substring(0,index);
+            dirs.Add(ndir);
+            nstring = nstring.Substring(index+4,nstring.Length-(index+4));
+            
+            index = nstring.IndexOf("<dir");
+            if (index >= 0)
+               nstring = nstring.Substring(index + 4, nstring.Length - (index + 4));
+            index = nstring.IndexOf(">");
+            if (index >= 0)
+               nstring = nstring.Substring(index + 1, nstring.Length - (index + 1));
+            index = nstring.IndexOf("</dir");
+         }
                     break;
                 default:
                     dirs.Add(GetFontPath());
@@ -975,7 +978,7 @@ namespace Reportman.Drawing
             // It's a newly discovered OpenType ligature or contextual glyph
             // Map it to a Private Use Area character so PDFCanvas sees it and subsets it
             char puaChar = (char)(0xE000 + fontData.glyphsInfo.Count);
-
+            
             InitLibrary();
             LogFontFt cfont = (LogFontFt)fontData.LogFont;
             cfont.OpenFont();
@@ -1076,7 +1079,7 @@ namespace Reportman.Drawing
             {
                 FillFontData(pdfFont, adata);
             }
-
+            
             byte[] bytes = adata.FontData.Data;
             fixed (byte* pData = bytes)
             {
@@ -1098,7 +1101,7 @@ namespace Reportman.Drawing
                     }
                     buffer.AddUtf16(text);
                     font.Shape(buffer);
-
+                    
                     var glyphInfos = buffer.GlyphInfos;
                     var glyphPositions = buffer.GlyphPositions;
 
@@ -1108,11 +1111,11 @@ namespace Reportman.Drawing
                         foreach (var gi in glyphInfos) Console.Write(gi.Codepoint + " ");
                         Console.WriteLine();
                     }
-
+                    
                     var result = new TGlyphPos[glyphInfos.Length];
-
+                    
                     double scaleFactor = FontSize * 20.0 / adata.UnitsPerEM;
-                    for (int i = 0; i < glyphInfos.Length; i++)
+                    for(int i = 0; i < glyphInfos.Length; i++)
                     {
                         result[i] = new TGlyphPos();
                         result[i].GlyphIndex = (ushort)glyphInfos[i].Codepoint;
@@ -1170,7 +1173,7 @@ namespace Reportman.Drawing
             int linespacing = (int)Math.Round(linespacingEM * FontSize * 20.0);
             int ascentSpacing = (int)Math.Round(((double)adata.Ascent / 1000.0) * FontSize * 20.0);
             Console.WriteLine($"[FreeType] Font: {pdfFont.WFontName}, Size: {FontSize}, adata.Height={adata.Height}, -> linespacing={linespacing}, ascentSpacing={ascentSpacing}");
-
+            
             // rectTop tracks the top of the current line (not the baseline)
             // This matches GDI's: lineInfo.TopPos = rectTopTwips + realBaseline
             double rectTop = 0;
@@ -1219,12 +1222,12 @@ namespace Reportman.Drawing
                     // Reconstruct logical runs manually since ICU.net exposes GetVisualRun well but logical runs maps natively 
                     var logicalRuns = new List<BiDiRun>();
                     int startLog = 0;
-                    while (startLog < line.Length)
+                    while(startLog < line.Length)
                     {
                         byte lvl = bidi.GetLevelAt(startLog);
                         int rLen = 1;
-                        while (startLog + rLen < line.Length && bidi.GetLevelAt(startLog + rLen) == lvl) rLen++;
-
+                        while(startLog + rLen < line.Length && bidi.GetLevelAt(startLog + rLen) == lvl) rLen++;
+                        
                         logicalRuns.Add(new BiDiRun { Start = startLog, Length = rLen, Level = lvl, IsRightToLeft = (lvl % 2 == 1) });
                         startLog += rLen;
                     }
@@ -1265,13 +1268,13 @@ namespace Reportman.Drawing
                                 {
                                     SelectFont(TempFont);
                                 }
-
+                                
                                 bool rToL = logicalRun.IsRightToLeft;
                                 string ChunkText = PlainText.Substring(IntStart, IntEnd - IntStart);
                                 string scriptStr = DetectScript(ChunkText);
-
+                                
                                 var positions = CalcGlyphPositions(ChunkText, rToL, scriptStr, activeSize, tempAdata, TempFont);
-
+                                
                                 // Font fallback: if any glyph has GlyphIndex=0, the current font
                                 // doesn't support these characters. Try re-selecting with content.
                                 // This matches the old Delphi TextExtent fallback logic.
@@ -1291,13 +1294,13 @@ namespace Reportman.Drawing
                                     fallbackFont.Italic = TempFont.Italic;
                                     fallbackFont.WFontName = TempFont.WFontName;
                                     fallbackFont.LFontName = TempFont.LFontName;
-
+                                    
                                     var fallbackData = new TTFontData();
                                     FillFontData(fallbackFont, fallbackData);
                                     lock (flag) { SelectFont(fallbackFont); }
                                     positions = CalcGlyphPositions(ChunkText, rToL, scriptStr, activeSize, fallbackData, fallbackFont);
                                 }
-
+                                
                                 double runWidth = 0;
                                 for (int k = 0; k < positions.Length; k++)
                                 {
@@ -1366,13 +1369,13 @@ namespace Reportman.Drawing
                         int minCluster = calculatedLine.MinClusterText;
                         int maxCluster = calculatedLine.MaxClusterText;
                         var visualGlyphs = new List<TGlyphPos>();
-
+                        
                         int vCount = bidi.CountRuns();
-                        for (int i = 0; i < vCount; i++)
+                        for (int i=0; i < vCount; i++)
                         {
                             var vDir = bidi.GetVisualRun(i, out int vStart, out int vLength);
                             bool vRtL = vDir.ToString().Contains("RTL");
-
+                            
                             var runGlyphs = new List<TGlyphPos>();
                             if (vRtL)
                             {
@@ -1399,14 +1402,14 @@ namespace Reportman.Drawing
                                     }
                                 }
                             }
-
+                            
                             visualGlyphs.AddRange(runGlyphs);
                         }
-
+                        
                         // --- Trim whitespace at word-wrap boundaries (matching DirectWrite/GDI AdjustLineSpaces) ---
                         // Direction-aware: for RTL, "trailing" whitespace is at the visual LEFT (beginning of list)
                         bool isParaRTL = (bidi.GetParaLevel() % 2) == 1;
-
+                        
                         if (!isParaRTL)
                         {
                             // LTR: remove trailing whitespace from END of list (visual right)
@@ -1474,17 +1477,17 @@ namespace Reportman.Drawing
                         lineInfo.Text = lineInfo.Size > 0 && minCluster + lineInfo.Size <= PlainText.Length
                             ? PlainText.Substring(minCluster, lineInfo.Size)
                             : (lineInfo.Size > 0 ? PlainText.Substring(minCluster) : string.Empty);
-
+                        
                         double lw = 0;
                         double maxLineFontSize = FontSize;
-                        foreach (var g in lineInfo.Glyphs)
+                        foreach (var g in lineInfo.Glyphs) 
                         {
                             lw += g.XAdvance;
                             if (g.HasFontSize && g.FontSize > maxLineFontSize)
                                 maxLineFontSize = g.FontSize;
                         }
                         lineInfo.Width = (int)Math.Round(lw);
-
+                        
                         // Compute per-line baseline (max ascent in twips) and line height
                         // matching DirectWrite's GetLineMetrics().Baseline and .Height
                         int maxAscentEM = adata.Ascent;  // default to original font
@@ -1493,12 +1496,12 @@ namespace Reportman.Drawing
                         double maxLineHeight = (double)adata.Height / 1000.0 * FontSize * 20.0;
                         // Baseline = Ascent + Leading (lineGap added above the baseline, matching DirectWrite)
                         double maxBaselineTwips = (double)(adata.Ascent + Math.Max(0, adata.Leading)) / 1000.0 * FontSize * 20.0;
-
+                        
                         foreach (var g in lineInfo.Glyphs)
                         {
                             double gFontSize = g.HasFontSize ? g.FontSize : FontSize;
                             string gFontFamily = g.FontFamily ?? pdfFont.WFontName;
-
+                            
                             // Find the font data for this glyph
                             TTFontData gFontData = null;
                             foreach (var kvp in fontDataCache)
@@ -1509,7 +1512,7 @@ namespace Reportman.Drawing
                                     break;
                                 }
                             }
-
+                            
                             if (gFontData != null)
                             {
                                 double gAscentTwips = (double)gFontData.Ascent / 1000.0 * gFontSize * 20.0;
@@ -1542,23 +1545,23 @@ namespace Reportman.Drawing
                         lineInfo.Height = currentLineSpacing;
                         lineInfo.LineHeight = currentLineSpacing;
                         lineInfo.LastLine = false;
-
+                        
                         Result.Add(lineInfo);
                         if (lw > maxWidth) maxWidth = lw;
                         rectTop += currentLineSpacing;
                     }
                 }
             }
-            if (Result.Count > 0)
+            if (Result.Count > 0) 
             {
                 var l = Result[Result.Count - 1];
                 l.LastLine = true;
                 Result[Result.Count - 1] = l;
             }
-
+            
             Rect.Width = (int)Math.Round(maxWidth);
             Rect.Height = (int)Math.Round(rectTop);
-
+            
             currentfont = originalFont;
             return Result;
         }

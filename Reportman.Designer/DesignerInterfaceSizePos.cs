@@ -53,21 +53,21 @@ namespace Reportman.Designer
                 return PrintItemAlign.Bottom;
             else
                 if (text == Translator.TranslateStr(622))
-                    return PrintItemAlign.Right;
-                else
+                return PrintItemAlign.Right;
+            else
                     if (text == (Translator.TranslateStr(621) + "/" + Translator.TranslateStr(622)))
-                        return PrintItemAlign.BottomRight;
-                    else
+                return PrintItemAlign.BottomRight;
+            else
                         if (text == Translator.TranslateStr(1224))
-                            return PrintItemAlign.LeftRight;
-                        else
+                return PrintItemAlign.LeftRight;
+            else
                             if (text == Translator.TranslateStr(1225))
-                                return PrintItemAlign.TopBottom;
-                            else
+                return PrintItemAlign.TopBottom;
+            else
                                 if (text == Translator.TranslateStr(1226))
-                                    return PrintItemAlign.AllClient;
-                                else
-                                    return PrintItemAlign.None;
+                return PrintItemAlign.AllClient;
+            else
+                return PrintItemAlign.None;
         }
         public static string PrintItemAlignToString(PrintItemAlign align)
         {

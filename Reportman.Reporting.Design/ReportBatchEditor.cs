@@ -1,20 +1,12 @@
-﻿using Reportman.Drawing;
-using Reportman.Drawing;
-using Reportman.Reporting;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-=======
-using System.Linq;
 using System.Reflection;
->>>>>>> Después
+using Reportman.Drawing;
+using Reportman.Reporting;
 using System.Linq;
-<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Reporting.Design (net48)", Antes:
-using System.Reflection;
-using System.Reflection;
 
 namespace Reportman.Reporting.Design
 {
@@ -222,7 +214,7 @@ namespace Reportman.Reporting.Design
                 return result;
             }
 
-            report.UndoCue ??= new UndoCue();
+            report.UndoCue = report.UndoCue ?? new UndoCue();
             report.EnsureComponentNames();
 
             int initialUndoCount = report.UndoCue.UndoOperations.Count;
@@ -1044,7 +1036,7 @@ namespace Reportman.Reporting.Design
 
         private static bool SetSectionChangeExpression(Section section, string newValue, ChangeObjectOperation undoOperation, bool recordUndo)
         {
-            newValue ??= string.Empty;
+            newValue = newValue ?? string.Empty;
             var oldValue = section.ChangeExpression ?? string.Empty;
             if (string.Equals(oldValue, newValue, StringComparison.Ordinal))
             {

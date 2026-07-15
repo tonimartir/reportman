@@ -1,7 +1,17 @@
-﻿using Reportman.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Reportman.Drawing;
 
 namespace Reportman.WPF
 {
@@ -53,18 +63,18 @@ namespace Reportman.WPF
             }
             FMetaFile = meta;
             InvalidateVisual();
-            /*            prdriver.NewDocument(meta);
-                        FScaleDrawn = -1.0F;
-                        FPageDrawn = -1;
-                        FOldPage = -1;
-                        FMetaFile = meta;
-                        if (FPage < 0)
-                            FPage = 0;
-                        FAutoScale = FMetaFile.AutoScale;
-                        FMetaFile.OnWorkAsyncError += new MetaFileWorkAsyncError(WorkAsyncError);
-                        FMetaFile.OnWorkProgress += new MetaFileWorkProgress(WorkProgress);
+/*            prdriver.NewDocument(meta);
+            FScaleDrawn = -1.0F;
+            FPageDrawn = -1;
+            FOldPage = -1;
+            FMetaFile = meta;
+            if (FPage < 0)
+                FPage = 0;
+            FAutoScale = FMetaFile.AutoScale;
+            FMetaFile.OnWorkAsyncError += new MetaFileWorkAsyncError(WorkAsyncError);
+            FMetaFile.OnWorkProgress += new MetaFileWorkProgress(WorkProgress);
 
-                        ReDrawPage();*/
+            ReDrawPage();*/
         }
         /// <summary>
         /// Get or set current page, first page index is 0.
@@ -97,9 +107,9 @@ namespace Reportman.WPF
             if (blackpen == null)
             {
                 transbrush = new SolidColorBrush(Colors.Transparent);
-                blackpen = new Pen(Brushes.Black, 1);
+                blackpen = new Pen(Brushes.Black,1);
             }
-            drawingContext.DrawRectangle(transbrush, blackpen, new Rect(0, 0, ActualWidth, ActualHeight));
+            drawingContext.DrawRectangle(transbrush,blackpen,new Rect(0,0,ActualWidth,ActualHeight));
             if (FMetaFile != null)
             {
                 if (FMetaFile.Pages.Count > FPage)
@@ -126,7 +136,7 @@ namespace Reportman.WPF
             const float MIN_FONT_SIZE = 2.3F;
             int intfontstyle = obj.FontStyle;
             double fontsize = obj.FontSize;
-            fontsize *= Scale;
+            fontsize = fontsize * Scale;
             if (fontsize < MIN_FONT_SIZE)
                 fontsize = MIN_FONT_SIZE;
             string fontname = page.GetWFontNameText(obj);
@@ -150,7 +160,7 @@ namespace Reportman.WPF
                 double nfontsize = fontsize;
                 //                if (fontsize == 11)
                 //                    nfontsize = 12f;
-                stock_font = new Typeface(nfam, astyle, aweigh, FontStretches.Normal);
+                stock_font = new Typeface(nfam,astyle,aweigh,FontStretches.Normal);
                 stock_fontname = fontname;
                 stock_fontsize = fontsize;
                 stock_style = intfontstyle;
@@ -168,7 +178,7 @@ namespace Reportman.WPF
             byte r = (byte)(aint);
             byte g = (byte)(aint >> 8);
             byte b = (byte)(aint >> 16);
-            Color ncolor = Color.FromArgb(255, r, g, b);
+            Color ncolor = Color.FromArgb(255,r, g, b);
             return ncolor;
         }
 
@@ -224,25 +234,26 @@ namespace Reportman.WPF
                         stock_brushcolor = FontColor;
                     }
                     string atext = page.GetText(objt);
-                    /*                    if (objt.FontRotation != 0)
-                                        {
-                                            graph.TranslateTransform(arec.Left, arec.Top);
-                                            graph.RotateTransform(-objt.FontRotation / 10);
-                                            arec = new Rectangle(0, 0, arec.Width, arec.Height);
-                                            aleft = 0;
-                                            atop = 0;
-                                        }*/
+/*                    if (objt.FontRotation != 0)
+                    {
+                        graph.TranslateTransform(arec.Left, arec.Top);
+                        graph.RotateTransform(-objt.FontRotation / 10);
+                        arec = new Rectangle(0, 0, arec.Width, arec.Height);
+                        aleft = 0;
+                        atop = 0;
+                    }*/
                     if (drawbackground)
                     {
                         if (stock_backbrush == null || stock_backbrushcolor != BackColor)
                         {
                             stock_backbrush = new SolidColorBrush(BackColor);
                             stock_backbrushcolor = BackColor;
-                            stock_backpen = new Pen(stock_backbrush, 0);
+                            stock_backpen = new Pen(stock_backbrush,0);
                         }
                         System.Drawing.Point oldextent = new System.Drawing.Point(objt.Width, objt.Height);
                         System.Drawing.Point extent;
-                        npdfdriver ??= new PrintOutPDF();
+                        if (npdfdriver == null)
+                            npdfdriver = new PrintOutPDF();
                         objt.Type1Font = PDFFontType.Linked;
                         extent = npdfdriver.TextExtent(TextObjectStruct.FromMetaObjectText(page, objt), oldextent);
 
@@ -271,22 +282,22 @@ namespace Reportman.WPF
 
                         Rect nrec = new Rect((double)bleft * dpix / 1440 * Scale,
                             (double)btop * dpiy / 1440 * Scale,
-                            (double)bwidth * dpix / 1440 * Scale,
+                            (double)bwidth * dpix / 1440 *Scale,
                             (double)bheight * dpiy / 1440 * Scale);
-                        graph.DrawRectangle(stock_backbrush, stock_backpen, nrec);
+                        graph.DrawRectangle(stock_backbrush,stock_backpen,nrec);
                     }
                     // Text justify is implemented separaterly
                     TextObjectStruct nstruc = TextObjectStruct.FromMetaObjectText(page, objt);
                     double pixelsPerDip = VisualTreeHelper.GetDpi(this).PixelsPerDip;
-                    FormattedText nformat = new FormattedText(atext, System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight,
-                        stock_font, stock_fontsize, stock_brush, pixelsPerDip);
+                    FormattedText nformat = new FormattedText(atext,System.Globalization.CultureInfo.CurrentCulture,FlowDirection.LeftToRight,
+                        stock_font,stock_fontsize,stock_brush, pixelsPerDip);
                     TextDecorationCollection ncollection = null;
                     if ((objt.FontStyle & 4) > 0)
                         ncollection = TextDecorations.Underline;
                     else
-                        if ((objt.FontStyle & 8) > 0)
-                            ncollection = TextDecorations.Strikethrough;
-                    if (ncollection != null)
+                      if ((objt.FontStyle & 8) > 0)
+                          ncollection = TextDecorations.Strikethrough;
+                    if (ncollection!=null)
                         nformat.SetTextDecorations(ncollection);
                     nformat.MaxTextHeight = obj.Height;
                     nformat.MaxTextWidth = obj.Width;
@@ -296,35 +307,35 @@ namespace Reportman.WPF
                     double topoffset = 0;
                     if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
                         nformat.TextAlignment = TextAlignment.Right;
-                    if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
-                        nformat.TextAlignment = TextAlignment.Center;
+				    if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
+					    nformat.TextAlignment = TextAlignment.Center;
                     if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0)
                         nformat.TextAlignment = TextAlignment.Justify;
-                    if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignBottom) > 0)
+    				if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignBottom) > 0)
                     {
                         double nheight = nformat.Height;
-                        topoffset = (double)objt.Height / 1440 * 96 - nheight;
+                        topoffset = (double)objt.Height/1440*96-nheight;
                     }
                     else
-                        if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignVCenter) > 0)
-                        {
-                            double nheight = nformat.Height;
-                            topoffset = ((double)objt.Height / 1440 * 96 - nheight) / 2;
-                        }
-
-                    graph.DrawText(nformat, new Point(arec.Left, arec.Top + topoffset));
-                    /*                    if ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0)
-                                        {
-                                            TextRectJustify(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
-                                        }
-                                        else
-                                        {
-                                            DrawString(graph, atext, font, stock_brush, arec, MetaObjectToStringFormat(objt));
-                                        }
-                                        if (objt.FontRotation != 0)
-                                        {
-                                            graph.ResetTransform();
-                                        }*/
+				    if ((nstruc.Alignment & MetaFile.AlignmentFlags_AlignVCenter) > 0)
+                    {
+                        double nheight = nformat.Height;
+                        topoffset = ((double)objt.Height/1440*96-nheight)/2;
+                    }
+                    
+                    graph.DrawText(nformat,new Point(arec.Left,arec.Top+topoffset));
+/*                    if ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0)
+                    {
+                        TextRectJustify(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
+                    }
+                    else
+                    {
+                        DrawString(graph, atext, font, stock_brush, arec, MetaObjectToStringFormat(objt));
+                    }
+                    if (objt.FontRotation != 0)
+                    {
+                        graph.ResetTransform();
+                    }*/
                     break;
                     /*
                 case MetaObjectType.Draw:

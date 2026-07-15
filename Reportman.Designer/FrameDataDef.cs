@@ -100,7 +100,8 @@ namespace Reportman.Designer
                     }
                 }
                 RView.ExpandAll();
-                RView.SelectedNode ??= RView.TopNode;
+                if (RView.SelectedNode == null)
+                    RView.SelectedNode = RView.TopNode;
             }
             finally
             {
@@ -290,29 +291,29 @@ namespace Reportman.Designer
             }
             else
                 if (pitem is DataInfo)
+            {
+                DataInfo dinfo = (DataInfo)pitem;
+                index = FReport.DataInfo.IndexOf(dinfo);
+                if (index > 0)
                 {
-                    DataInfo dinfo = (DataInfo)pitem;
-                    index = FReport.DataInfo.IndexOf(dinfo);
-                    if (index > 0)
-                    {
-                        DataInfo buf2 = FReport.DataInfo[index - 1];
-                        FReport.DataInfo[index - 1] = dinfo;
-                        FReport.DataInfo[index] = buf2;
-                    }
-
+                    DataInfo buf2 = FReport.DataInfo[index - 1];
+                    FReport.DataInfo[index - 1] = dinfo;
+                    FReport.DataInfo[index] = buf2;
                 }
-                else
+
+            }
+            else
                     if (pitem is Param)
-                    {
-                        Param nparam = (Param)pitem;
-                        index = FReport.Params.IndexOf(nparam);
-                        if (index > 0)
-                        {
-                            FReport.Params.Switch(index, index - 1);
-                        }
-                    }
-                    else
-                        pitem = null;
+            {
+                Param nparam = (Param)pitem;
+                index = FReport.Params.IndexOf(nparam);
+                if (index > 0)
+                {
+                    FReport.Params.Switch(index, index - 1);
+                }
+            }
+            else
+                pitem = null;
             if (pitem != null)
             {
                 index = nnode.Parent.Nodes.IndexOf(nnode);
@@ -348,29 +349,29 @@ namespace Reportman.Designer
             }
             else
                 if (pitem is DataInfo)
+            {
+                DataInfo dinfo = (DataInfo)pitem;
+                index = FReport.DataInfo.IndexOf(dinfo);
+                if (index > 0)
                 {
-                    DataInfo dinfo = (DataInfo)pitem;
-                    index = FReport.DataInfo.IndexOf(dinfo);
-                    if (index > 0)
-                    {
-                        DataInfo buf2 = FReport.DataInfo[index + 1];
-                        FReport.DataInfo[index + 1] = dinfo;
-                        FReport.DataInfo[index] = buf2;
-                    }
-
+                    DataInfo buf2 = FReport.DataInfo[index + 1];
+                    FReport.DataInfo[index + 1] = dinfo;
+                    FReport.DataInfo[index] = buf2;
                 }
-                else
+
+            }
+            else
                     if (pitem is Param)
-                    {
-                        Param nparam = (Param)pitem;
-                        index = FReport.Params.IndexOf(nparam);
-                        if (index > 0)
-                        {
-                            FReport.Params.Switch(index, index + 1);
-                        }
-                    }
-                    else
-                        pitem = null;
+            {
+                Param nparam = (Param)pitem;
+                index = FReport.Params.IndexOf(nparam);
+                if (index > 0)
+                {
+                    FReport.Params.Switch(index, index + 1);
+                }
+            }
+            else
+                pitem = null;
             if (pitem != null)
             {
                 index = nnode.Parent.Nodes.IndexOf(nnode);

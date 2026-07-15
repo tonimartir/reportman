@@ -4,10 +4,12 @@ using System.Threading;
 using System.Drawing;
 #if CROSSPF
 #else
+using System.Drawing.Imaging;
 #endif
 using System.Globalization;
 using System.Collections;
 using System.ComponentModel;
+using System.Linq;
 
 
 namespace Reportman.Drawing

@@ -1,9 +1,9 @@
-﻿using SIPSorcery.Net;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Net.Http; // not in the .NET Framework target's implicit usings
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
+using SIPSorcery.Net;
 
 namespace Reportman.Hub.Client.DataChannel;
 
@@ -858,61 +858,61 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
             switch (type)
             {
                 case "progress":
+                {
+                    var phase = root.TryGetProperty("phase", out var pp) ? pp.GetString() : null;
+                    var elapsedSec = root.TryGetProperty("elapsedSec", out var ep0) ? ep0.GetInt32() : 0;
+                    state.LastElapsedSec = elapsedSec;
+                    switch (phase)
                     {
-                        var phase = root.TryGetProperty("phase", out var pp) ? pp.GetString() : null;
-                        var elapsedSec = root.TryGetProperty("elapsedSec", out var ep0) ? ep0.GetInt32() : 0;
-                        state.LastElapsedSec = elapsedSec;
-                        switch (phase)
-                        {
-                            case "connecting":
-                                _onProgress?.Invoke(QueryProgress.Connecting());
-                                break;
-                            case "preparing":
-                                _onProgress?.Invoke(QueryProgress.Preparing(elapsedSec));
-                                break;
-                            case "serializing":
-                                _onProgress?.Invoke(QueryProgress.Serializing(elapsedSec));
-                                break;
-                            case "compressing":
-                                _onProgress?.Invoke(QueryProgress.Compressing(elapsedSec));
-                                break;
-                            case "executing":
-                                _onProgress?.Invoke(QueryProgress.Executing(elapsedSec));
-                                break;
-                            case "fetching":
-                                var rows = root.TryGetProperty("rowsRead", out var rr) ? rr.GetInt32() : 0;
-                                var cols = root.TryGetProperty("columnCount", out var cc) ? cc.GetInt32() : 0;
-                                _onProgress?.Invoke(QueryProgress.Fetching(elapsedSec, rows, cols));
-                                break;
-                            case "delivering":
-                                var bs = root.TryGetProperty("bytesSent", out var bsp) ? bsp.GetInt64() : 0;
-                                var bt = root.TryGetProperty("bytesTotal", out var btp) ? btp.GetInt64() : 0;
-                                state.LastBytesTotal = bt;
-                                // First delivering frame for a binary payload claims the binary lane.
-                                if (root.TryGetProperty("binary", out var bp) && bp.ValueKind == JsonValueKind.True)
-                                {
-                                    _currentBinaryDestRequestId = requestId;
-                                    // The Agent compresses the FastSerializer output
-                                    // with zlib before chunking it; remember the flag
-                                    // so the done handler runs ZLibStream over the
-                                    // accumulated buffer before returning it.
-                                    state.IsCompressed = root.TryGetProperty("compressed", out var cp)
-                                        && cp.ValueKind == JsonValueKind.True;
-                                }
-                                _onProgress?.Invoke(QueryProgress.Delivering(elapsedSec, bs, bt));
-                                break;
-                        }
-                        break;
+                        case "connecting":
+                            _onProgress?.Invoke(QueryProgress.Connecting());
+                            break;
+                        case "preparing":
+                            _onProgress?.Invoke(QueryProgress.Preparing(elapsedSec));
+                            break;
+                        case "serializing":
+                            _onProgress?.Invoke(QueryProgress.Serializing(elapsedSec));
+                            break;
+                        case "compressing":
+                            _onProgress?.Invoke(QueryProgress.Compressing(elapsedSec));
+                            break;
+                        case "executing":
+                            _onProgress?.Invoke(QueryProgress.Executing(elapsedSec));
+                            break;
+                        case "fetching":
+                            var rows = root.TryGetProperty("rowsRead", out var rr) ? rr.GetInt32() : 0;
+                            var cols = root.TryGetProperty("columnCount", out var cc) ? cc.GetInt32() : 0;
+                            _onProgress?.Invoke(QueryProgress.Fetching(elapsedSec, rows, cols));
+                            break;
+                        case "delivering":
+                            var bs = root.TryGetProperty("bytesSent", out var bsp) ? bsp.GetInt64() : 0;
+                            var bt = root.TryGetProperty("bytesTotal", out var btp) ? btp.GetInt64() : 0;
+                            state.LastBytesTotal = bt;
+                            // First delivering frame for a binary payload claims the binary lane.
+                            if (root.TryGetProperty("binary", out var bp) && bp.ValueKind == JsonValueKind.True)
+                            {
+                                _currentBinaryDestRequestId = requestId;
+                                // The Agent compresses the FastSerializer output
+                                // with zlib before chunking it; remember the flag
+                                // so the done handler runs ZLibStream over the
+                                // accumulated buffer before returning it.
+                                state.IsCompressed = root.TryGetProperty("compressed", out var cp)
+                                    && cp.ValueKind == JsonValueKind.True;
+                            }
+                            _onProgress?.Invoke(QueryProgress.Delivering(elapsedSec, bs, bt));
+                            break;
                     }
+                    break;
+                }
                 case "payload":
-                    {
-                        // Small JSON payloads (test_connection, read_tables, …)
-                        // arrive inline as a single text frame.
-                        var json = root.TryGetProperty("json", out var jp) ? jp.GetString() ?? "" : "";
-                        var bytes = Encoding.UTF8.GetBytes(json);
-                        state.Buffer.Write(bytes, 0, bytes.Length);
-                        break;
-                    }
+                {
+                    // Small JSON payloads (test_connection, read_tables, …)
+                    // arrive inline as a single text frame.
+                    var json = root.TryGetProperty("json", out var jp) ? jp.GetString() ?? "" : "";
+                    var bytes = Encoding.UTF8.GetBytes(json);
+                    state.Buffer.Write(bytes, 0, bytes.Length);
+                    break;
+                }
                 case "done":
                     if (_currentBinaryDestRequestId == requestId)
                         _currentBinaryDestRequestId = null;

@@ -1,9 +1,13 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Drawing.Imaging;
-using System.IO;
+using System.Drawing;
 using System.Linq;
+using System.IO;
 using System.Threading;
+using System.Text;
+using System.Threading.Tasks;
+using static ICSharpCode.SharpZipLib.Zip.ExtendedUnixData;
 
 namespace Reportman.Drawing.Windows
 {
@@ -275,11 +279,11 @@ namespace Reportman.Drawing.Windows
                         forceredraw = true;
                     else
                         if ((GWidth != gridx) || (GHeight != gridy))
-                            forceredraw = true;
-                        else
+                        forceredraw = true;
+                    else
                             if ((gridlines != Lines) || (gridscale != Scale) ||
                                 (GColor != gridcolor) || (BackColor != gridbackcolor))
-                                forceredraw = true;
+                        forceredraw = true;
                 }
                 if (!forceredraw && gridbitmap != null)
                     return gridbitmap;
@@ -318,7 +322,10 @@ namespace Reportman.Drawing.Windows
             Monitor.Enter(flag);
             try
             {
-                smallbit ??= new Bitmap(10, 10);
+                if (smallbit == null)
+                {
+                    smallbit = new Bitmap(10, 10);
+                }
                 using (Graphics metagr = Graphics.FromImage(smallbit))
                 {
                     return new System.Drawing.Imaging.Metafile(metagr.GetHdc(), new Rectangle(0, 0, Width, Height), MetafileFrameUnit.Pixel);
@@ -353,7 +360,10 @@ namespace Reportman.Drawing.Windows
             Monitor.Enter(flag);
             try
             {
-                smallbit ??= new Bitmap(10, 10);
+                if (smallbit == null)
+                {
+                    smallbit = new Bitmap(10, 10);
+                }
 
                 bool forceredraw = false;
                 if (gridmetafile == null)
@@ -364,11 +374,11 @@ namespace Reportman.Drawing.Windows
                         forceredraw = true;
                     else
                         if ((GWidth != gridx) || (GHeight != gridy))
-                            forceredraw = true;
-                        else
+                        forceredraw = true;
+                    else
                             if ((gridlines != Lines) || (gridscale != Scale) ||
                                 (GColor != gridcolor) || (BackColor != gridbackcolor))
-                                forceredraw = true;
+                        forceredraw = true;
                 }
                 if (!forceredraw && gridmetafile != null)
                     return gridmetafile;
@@ -461,7 +471,7 @@ namespace Reportman.Drawing.Windows
                             avalue2y = windowheight;
                             avalue2y = LogicalPointToDevicePoint(originY, destinationY, avalue2y);
                             gr.DrawLine(gpen, avaluex, avaluey, avalue2x, avalue2y);
-                            x += XWidth;
+                            x = x + XWidth;
                         }
                         if (y < windowheight)
                         {
@@ -473,7 +483,7 @@ namespace Reportman.Drawing.Windows
                             avalue2x = windowwidth;
                             avalue2x = LogicalPointToDevicePoint(originX, destinationX, avalue2x);
                             gr.DrawLine(gpen, avaluex, avaluey, avalue2x, avalue2y);
-                            y += XHeight;
+                            y = y + XHeight;
                         }
                     }
                 }
@@ -493,9 +503,9 @@ namespace Reportman.Drawing.Windows
 
                             gr.FillRectangle(gbrush, avaluex, avaluey, 1, 1);
 
-                            y += XHeight;
+                            y = y + XHeight;
                         }
-                        x += XWidth;
+                        x = x + XWidth;
                     }
                 }
             }
@@ -769,13 +779,13 @@ namespace Reportman.Drawing.Windows
         {
             int astyle = 0;
             if (sfontstyle.IndexOf(Translator.TranslateStr(547)) >= 0)
-                astyle++;
+                astyle = astyle + 1;
             if (sfontstyle.IndexOf(Translator.TranslateStr(549)) >= 0)
-                astyle += 2;
+                astyle = astyle + 2;
             if (sfontstyle.IndexOf(Translator.TranslateStr(548)) >= 0)
-                astyle += 4;
+                astyle = astyle + 4;
             if (sfontstyle.IndexOf(Translator.TranslateStr(550)) >= 0)
-                astyle += 8;
+                astyle = astyle + 8;
             return astyle;
         }
         /// <summary>
@@ -789,28 +799,28 @@ namespace Reportman.Drawing.Windows
             if ((astyle & FontStyle.Bold) > 0)
             {
                 if (sfontstyle != "[")
-                    sfontstyle += ",";
-                sfontstyle += Translator.TranslateStr(547);
+                    sfontstyle = sfontstyle + ",";
+                sfontstyle = sfontstyle + Translator.TranslateStr(547);
             }
             if ((astyle & FontStyle.Italic) > 0)
             {
                 if (sfontstyle != "[")
-                    sfontstyle += ",";
-                sfontstyle += Translator.TranslateStr(549);
+                    sfontstyle = sfontstyle + ",";
+                sfontstyle = sfontstyle + Translator.TranslateStr(549);
             }
             if ((astyle & FontStyle.Underline) > 0)
             {
                 if (sfontstyle != "[")
-                    sfontstyle += ",";
-                sfontstyle += Translator.TranslateStr(548);
+                    sfontstyle = sfontstyle + ",";
+                sfontstyle = sfontstyle + Translator.TranslateStr(548);
             }
             if ((astyle & FontStyle.Strikeout) > 0)
             {
                 if (sfontstyle != "[")
-                    sfontstyle += ",";
-                sfontstyle += Translator.TranslateStr(550);
+                    sfontstyle = sfontstyle + ",";
+                sfontstyle = sfontstyle + Translator.TranslateStr(550);
             }
-            sfontstyle += "]";
+            sfontstyle = sfontstyle + "]";
             return sfontstyle;
         }
         /// <summary>
@@ -1013,13 +1023,13 @@ namespace Reportman.Drawing.Windows
         {
             int intfontstyle = 0;
             if ((astyle & FontStyle.Bold) > 0)
-                intfontstyle++;
+                intfontstyle = intfontstyle + 1;
             if ((astyle & FontStyle.Italic) > 0)
-                intfontstyle += 2;
+                intfontstyle = intfontstyle + 2;
             if ((astyle & FontStyle.Underline) > 0)
-                intfontstyle += 4;
+                intfontstyle = intfontstyle + 4;
             if ((astyle & FontStyle.Strikeout) > 0)
-                intfontstyle += 8;
+                intfontstyle = intfontstyle + 8;
             return intfontstyle;
         }
         /// <summary>
@@ -1130,16 +1140,16 @@ namespace Reportman.Drawing.Windows
         {
             FontStyle astyle = new FontStyle();
             if ((intfontstyle & 1) > 0)
-                astyle |= FontStyle.Bold;
+                astyle = astyle | FontStyle.Bold;
             if ((intfontstyle & 2) > 0)
-                astyle |= FontStyle.Italic;
+                astyle = astyle | FontStyle.Italic;
             if ((intfontstyle & 4) > 0)
-                astyle |= FontStyle.Underline;
+                astyle = astyle | FontStyle.Underline;
             if ((intfontstyle & 8) > 0)
-                astyle |= FontStyle.Strikeout;
+                astyle = astyle | FontStyle.Strikeout;
             return astyle;
         }
-
+ 
 
         /// <summary>
         /// Converts a bitmap to a 1-bit-per-pixel black-and-white image using the given brightness threshold.

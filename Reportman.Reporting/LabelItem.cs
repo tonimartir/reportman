@@ -109,9 +109,9 @@ namespace Reportman.Reporting
                     return FAllStrings[lang];
                 else
                     if (FAllStrings.Count > 0)
-                        return FAllStrings[0];
-                    else
-                        return "";
+                    return FAllStrings[0];
+                else
+                    return "";
 
             }
             set
@@ -186,7 +186,7 @@ namespace Reportman.Reporting
             metaobj.IsHtml = IsHtml;
             aalign = PrintAlignment | VPrintAlignment;
             if (SingleLine)
-                aalign |= MetaFile.AlignmentFlags_SingleLine;
+                aalign = aalign | MetaFile.AlignmentFlags_SingleLine;
             metaobj.Alignment = aalign;
             apage.Objects.Add(metaobj);
         }
@@ -205,7 +205,7 @@ namespace Reportman.Reporting
             aresult.CutText = CutText;
             aalign = PrintAlignment | VPrintAlignment;
             if (SingleLine)
-                aalign |= MetaFile.AlignmentFlags_SingleLine;
+                aalign = aalign | MetaFile.AlignmentFlags_SingleLine;
             aresult.Alignment = aalign;
             aresult.WordWrap = WordWrap;
             aresult.RightToLeft = RightToLeft;

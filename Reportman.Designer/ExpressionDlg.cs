@@ -262,13 +262,13 @@ namespace Reportman.Designer
                     list1 = HelpList[2];
                 else
                     if (iden is IdenFunction)
-                        list1 = HelpList[1];
-                    else
+                    list1 = HelpList[1];
+                else
                         if (iden is IdenVariable)
-                            list1 = HelpList[2];
-                        else
-                            if (iden is IdenConstant)
-                                list1 = HelpList[3];
+                    list1 = HelpList[2];
+                else
+                    if (iden is IdenConstant)
+                    list1 = HelpList[3];
                 if (list1 != null)
                 {
                     HelpInformation newhelp = new HelpInformation(iden.Name, iden.Help, iden.Model, "");
@@ -533,7 +533,7 @@ namespace Reportman.Designer
         private void BAdd_Click(object sender, EventArgs e)
         {
             if (LItems.SelectedIndex >= 0)
-                MemoExpre.Text += LItems.Items[LItems.SelectedIndex].ToString();
+                MemoExpre.Text = MemoExpre.Text + LItems.Items[LItems.SelectedIndex].ToString();
         }
 
         private void BCheckSyn_Click(object sender, EventArgs e)
@@ -553,7 +553,7 @@ namespace Reportman.Designer
                 }
                 MemoExpre.Focus();
                 //throw;    // do not throw message it will raise unhandled exception
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -575,7 +575,7 @@ namespace Reportman.Designer
                 MemoExpre.Focus();
                 //throw;      // do not throw message it will raise unhandled exception
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }            
         }
     }
 }

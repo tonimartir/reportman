@@ -20,15 +20,16 @@
 
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
 using System.Reflection;
 using System.Text;
-using System.Threading;
 
 
 #if NETSTANDARD2_0
 #else
+using System.Drawing;
 #endif
 
 namespace Reportman.Drawing
@@ -475,7 +476,7 @@ namespace Reportman.Drawing
                         if (foundlf)
                         {
                             foundlf = false;
-                            astring += (char)10;
+                            astring = astring + (char)10;
                         }
                         else
                             foundlf = true;
@@ -488,7 +489,7 @@ namespace Reportman.Drawing
                             astring = "";
                             foundlf = false;
                         }
-                        astring += (char)((abuffer[(i * 2) + 1] << 8) + abuffer[(i * 2)]);
+                        astring = astring + (char)((abuffer[(i * 2) + 1] << 8) + abuffer[(i * 2)]);
                     }
                 }
                 readed = astream.Read(abuffer, 0, READ_BUFSIZE);
@@ -681,7 +682,7 @@ namespace Reportman.Drawing
                 return;
             DefaultStringsLoaded = true;
             using (Translator tr = new Translator())
-            {
+            {                
 #if NET6_0_OR_GREATER
                 string resname = "reportmanres.en";
 
@@ -704,7 +705,7 @@ namespace Reportman.Drawing
                         }
                     }
                 }
-
+                    
 #else
                 using (MemoryStream mstream = new MemoryStream())
                 {

@@ -393,7 +393,8 @@ namespace Reportman.Designer
         /// <summary>Pre-fill the agent fields (used when editing an existing agent connection).</summary>
         public void PopulateHttpAgent(string apiKey, string baseUrl, long hubDatabaseId, string databaseName)
         {
-            FAgentParams ??= new HttpAgentParams();
+            if (FAgentParams == null)
+                FAgentParams = new HttpAgentParams();
             FAgentParams.ApiKey = apiKey ?? "";
             FAgentParams.BaseUrl = baseUrl ?? "";
             string name = string.IsNullOrEmpty(databaseName)
@@ -417,7 +418,8 @@ namespace Reportman.Designer
             FAgentMode = true;
             FInvariant = "";
             FBuilder = null;
-            FAgentParams ??= new HttpAgentParams();
+            if (FAgentParams == null)
+                FAgentParams = new HttpAgentParams();
             grid.SelectedObject = FAgentParams;
             try { grid.ExpandAllGridItems(); }
             catch { }
@@ -497,7 +499,8 @@ namespace Reportman.Designer
                 try { b = factory.CreateConnectionStringBuilder(); }
                 catch { b = null; }
             }
-            b ??= new DbConnectionStringBuilder();
+            if (b == null)
+                b = new DbConnectionStringBuilder();
 
             if (!string.IsNullOrEmpty(connectionString))
             {
@@ -564,7 +567,8 @@ namespace Reportman.Designer
                 DbProviderFactory factory = null;
                 if (DatabaseInfo.CustomProviderFactories.IndexOfKey(FInvariant) >= 0)
                     factory = DatabaseInfo.CustomProviderFactories[FInvariant];
-                factory ??= DbProviderFactories.GetFactory(FInvariant);
+                if (factory == null)
+                    factory = DbProviderFactories.GetFactory(FInvariant);
                 if (factory == null)
                     throw new Exception("Provider factory not found: " + FInvariant);
 
