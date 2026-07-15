@@ -1,12 +1,11 @@
+﻿using Reportman.Drawing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
-using Reportman.Drawing;
-using Reportman.Reporting;
 using System.Linq;
+using System.Reflection;
 
 namespace Reportman.Reporting.Design
 {
@@ -28,7 +27,7 @@ namespace Reportman.Reporting.Design
         private const int ConstructorSectionWidth = 10700;
         private const int ConstructorSectionHeight = 1500;
 
-        private static readonly Dictionary<string, int> CommonPaperSizeIndices = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, int> CommonPaperSizeIndices = new(StringComparer.OrdinalIgnoreCase)
         {
             ["A4"] = 0,
             ["A3"] = 8,
@@ -42,7 +41,7 @@ namespace Reportman.Reporting.Design
             ["Tabloid"] = 29,
         };
 
-        private static readonly HashSet<string> TopLevelClasses = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        private static readonly HashSet<string> TopLevelClasses = new(StringComparer.OrdinalIgnoreCase)
         {
             "TRPSUBREPORT",
             "TRPPARAM",
@@ -50,7 +49,7 @@ namespace Reportman.Reporting.Design
             "TRPDATABASEINFOITEM"
         };
 
-        private static readonly HashSet<string> SectionChildClasses = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        private static readonly HashSet<string> SectionChildClasses = new(StringComparer.OrdinalIgnoreCase)
         {
             "TRPLABEL",
             "TRPEXPRESSION",

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -47,7 +47,7 @@ namespace Reportman.Drawing
             // To allow the open of any file including .Net versions newer than
             // the compiled version FileVersion is used instead
             System.Diagnostics.FileVersionInfo finfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(filename);
-            Version aversion = new Version(finfo.FileMajorPart, finfo.FileMinorPart, finfo.FileBuildPart, finfo.FilePrivatePart);
+            Version aversion = new(finfo.FileMajorPart, finfo.FileMinorPart, finfo.FileBuildPart, finfo.FilePrivatePart);
 
             return aversion;
         }
@@ -169,7 +169,7 @@ namespace Reportman.Drawing
         /// <param name="olderHashes">Hashes of currently installed files.</param>
         /// <param name="updatedHashes">Hashes of candidate files.</param>
         /// <returns>A task representing the operation, returning the filtered DataTable.</returns>
-        public static async System.Threading.Tasks.Task<DataTable> GetModifiedFilesAsync(DataTable files, string filesdir, 
+        public static async System.Threading.Tasks.Task<DataTable> GetModifiedFilesAsync(DataTable files, string filesdir,
             bool copycontent, SortedList<string, FileHash> olderHashes, SortedList<string, FileHash> updatedHashes)
         {
             DataTable xtable = CreateFilesTable();
@@ -179,25 +179,28 @@ namespace Reportman.Drawing
                 {
                     bool doupdate = false;
                     string fullPath = newrow["FULLPATH"].ToString();
-                    if (olderHashes!= null && updatedHashes != null)
+                    if (olderHashes != null && updatedHashes != null)
                     {
                         if (!olderHashes.ContainsKey(fullPath))
                         {
                             doupdate = true;
-                        } else 
-                        if (!updatedHashes.ContainsKey(fullPath))
-                        {
-                            doupdate = true;
-                        } else
-                        {
-                            var oldHash = olderHashes[fullPath];
-                            var newHash = updatedHashes[fullPath];
-                            if (oldHash.Hash != newHash.Hash)
+                        }
+                        else
+                            if (!updatedHashes.ContainsKey(fullPath))
                             {
                                 doupdate = true;
                             }
-                        }
-                    } else
+                            else
+                            {
+                                var oldHash = olderHashes[fullPath];
+                                var newHash = updatedHashes[fullPath];
+                                if (oldHash.Hash != newHash.Hash)
+                                {
+                                    doupdate = true;
+                                }
+                            }
+                    }
+                    else
                     {
                         doupdate = true;
                     }
@@ -235,7 +238,7 @@ namespace Reportman.Drawing
         /// <returns>A configured DataTable instance.</returns>
         public static DataTable CreateFilesTable()
         {
-            DataTable xtable = new DataTable();
+            DataTable xtable = new();
             xtable.Columns.Add("FULLPATH", System.Type.GetType("System.String"));
             xtable.Columns.Add("PATH", System.Type.GetType("System.String"));
             xtable.Columns.Add("FILE", System.Type.GetType("System.String"));
@@ -259,7 +262,7 @@ namespace Reportman.Drawing
 
             foreach (string fname in nfilescontent)
             {
-                FileInfo ninfo = new FileInfo(fname);
+                FileInfo ninfo = new(fname);
                 if (System.IO.Path.GetFileName(fname).ToUpper() != "THUMBS.DB")
                 {
                     DataRow xrow = xtable.NewRow();
@@ -286,9 +289,9 @@ namespace Reportman.Drawing
                     xrow["FULLPATH"] = fullpath;
                     if (copycontent)
                     {
-                        using (FileStream fstream = new FileStream(fname, FileMode.Open, FileAccess.Read))
+                        using (FileStream fstream = new(fname, FileMode.Open, FileAccess.Read))
                         {
-                            using (MemoryStream mstream = new MemoryStream())
+                            using (MemoryStream mstream = new())
                             {
                                 const int BUFSIZE = 8192;
                                 byte[] buf = new byte[BUFSIZE];
@@ -361,7 +364,7 @@ namespace Reportman.Drawing
                 string npath = Path.Combine(FFilePath, frow["PATH"].ToString());
                 Directory.CreateDirectory(npath);
                 string filename = npath + Path.DirectorySeparatorChar + frow["FILE"].ToString();
-                FileInfo nfinfo = new FileInfo(filename);
+                FileInfo nfinfo = new(filename);
                 bool docancel = false;
                 if (OnProgress != null)
                     OnProgress(filename, countfile, files.Rows.Count, 0, ((byte[])frow["STREAM"]).Length, ref docancel);
@@ -388,7 +391,7 @@ namespace Reportman.Drawing
                     }
                 }
             }
-            bool hasCreatedColumn = files.Columns.IndexOf("CREATED")>=0;
+            bool hasCreatedColumn = files.Columns.IndexOf("CREATED") >= 0;
             foreach (DataRow xrow in files.Rows)
             {
 
@@ -402,7 +405,7 @@ namespace Reportman.Drawing
                 string npath = Path.Combine(FFilePath, xrow["PATH"].ToString());
                 Directory.CreateDirectory(npath);
                 string filename = npath + Path.DirectorySeparatorChar + xrow["FILE"].ToString();
-                FileInfo nfinfo = new FileInfo(filename);
+                FileInfo nfinfo = new(filename);
                 bool docancel = false;
                 if (OnProgress != null)
                     OnProgress(filename, countfile, files.Rows.Count, 0, ((byte[])xrow["STREAM"]).Length, ref docancel);
@@ -427,7 +430,7 @@ namespace Reportman.Drawing
                     DateTime mmlast;
                     TimeSpan difmilis;
                     byte[] original = (byte[])xrow["STREAM"];
-                    using (FileStream fstream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+                    using (FileStream fstream = new(filename, FileMode.Create, FileAccess.Write))
                     {
                         int index = 0;
                         int totalwritten = 0;

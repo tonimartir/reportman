@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Reportman.Drawing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {
@@ -557,7 +557,7 @@ namespace Reportman.Reporting
             // sin efecto para esas propiedades.
             if (targetType == typeof(Strings))
             {
-                Strings nstrings = new Strings();
+                Strings nstrings = new();
                 if (value is Newtonsoft.Json.Linq.JArray jarray)
                 {
                     foreach (var token in jarray)

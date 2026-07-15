@@ -163,7 +163,7 @@ namespace Reportman.Drawing
         /// <returns>A new <see cref="EmbeddedFile"/> with the same metadata and a copy of the stream</returns>
         public object Clone()
         {
-            EmbeddedFile efile = new EmbeddedFile();
+            EmbeddedFile efile = new();
             efile.FileName = FileName;
             efile.MimeType = MimeType;
             efile.Description = Description;
@@ -968,7 +968,7 @@ namespace Reportman.Drawing
         /// <summary>True if the generated PDF stream content should be compressed</summary>
         public bool PDFCompressed;
         /// <summary>Files embedded in the metafile and later attached to the generated PDF</summary>
-        public List<EmbeddedFile> EmbeddedFiles = new List<EmbeddedFile>();
+        public List<EmbeddedFile> EmbeddedFiles = new();
         // Metadata
         /// <summary>Document author stored in the PDF metadata</summary>
         public string DocAuthor;
@@ -1022,8 +1022,8 @@ namespace Reportman.Drawing
         /// <returns>A new <see cref="MetaFile"/> holding an independent copy of the content</returns>
         public object Clone()
         {
-            MetaFile newmetafile = new MetaFile();
-            using (System.IO.MemoryStream mstream = new System.IO.MemoryStream())
+            MetaFile newmetafile = new();
+            using (System.IO.MemoryStream mstream = new())
             {
                 this.SaveToStream(mstream, false);
                 mstream.Seek(0, SeekOrigin.Begin);
@@ -1208,7 +1208,7 @@ namespace Reportman.Drawing
         /// <param name="compressed">Set to true to compress the MetaFile</param>
 		public void SaveToFile(string filename, bool compressed)
         {
-            FileStream fstream = new FileStream(filename, FileMode.Create);
+            FileStream fstream = new(filename, FileMode.Create);
             try
             {
                 SaveToStream(fstream, compressed);
@@ -1407,8 +1407,8 @@ namespace Reportman.Drawing
             if (compressed)
             {
 #if REPMAN_ZLIB
-                ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater();
-                ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(astream, inf, 131072);
+                ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new();
+                ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(astream, inf, 131072);
                 try
                 {
                     IntSaveToStream(zstream);
@@ -1450,18 +1450,18 @@ namespace Reportman.Drawing
                     FVersion = MetaFileVersion.MetaVersion2_2;
                 else
                     if (StreamUtil.CompareArrayContent(buf, sign2_4))
-                    FVersion = MetaFileVersion.MetaVersion2_4;
-                else
-                    if (StreamUtil.CompareArrayContent(buf, sign3_0))
-                    FVersion = MetaFileVersion.MetaVersion3_0;
-                else
-                    if (StreamUtil.CompareArrayContent(buf, sign4_0))
-                    FVersion = MetaFileVersion.MetaVersion4_0;
-                else
-                    if (StreamUtil.CompareArrayContent(buf, sign4_1))
-                    FVersion = MetaFileVersion.MetaVersion4_1;
-                else
-                    throw new Exception(Translator.TranslateStr(520));
+                        FVersion = MetaFileVersion.MetaVersion2_4;
+                    else
+                        if (StreamUtil.CompareArrayContent(buf, sign3_0))
+                            FVersion = MetaFileVersion.MetaVersion3_0;
+                        else
+                            if (StreamUtil.CompareArrayContent(buf, sign4_0))
+                                FVersion = MetaFileVersion.MetaVersion4_0;
+                            else
+                                if (StreamUtil.CompareArrayContent(buf, sign4_1))
+                                    FVersion = MetaFileVersion.MetaVersion4_1;
+                                else
+                                    throw new Exception(Translator.TranslateStr(520));
                 ReadBuf(astream, ref buf, 4);
                 MetaSeparator separator = MetaSeparator.FileHeader;
                 if (StreamUtil.ByteArrayToInt(buf, 4) != (int)separator)
@@ -1616,7 +1616,7 @@ namespace Reportman.Drawing
                     // Read the main stream
                     //if (acount < (Pages.CurrentCount - 1))
                     //	throw new Exception(Translator.TranslateStr(522));
-                    MetaPage apage = new MetaPage(this);
+                    MetaPage apage = new(this);
                     apage.Version = FVersion;
                     apage.UpdatedPageSize = false;
                     apage.Orientation = Orientation;
@@ -1692,7 +1692,7 @@ namespace Reportman.Drawing
                         throw new Exception(Translator.TranslateStr(522));
                     if (facount < (Pages.CurrentCount - 1))
                         throw new Exception(Translator.TranslateStr(522));
-                    MetaPage apage = new MetaPage(this);
+                    MetaPage apage = new(this);
                     apage.Version = FVersion;
                     apage.UpdatedPageSize = false;
                     apage.Orientation = Orientation;
@@ -2088,7 +2088,7 @@ namespace Reportman.Drawing
         {
             foreach (MetaFile nf in nlist)
             {
-                using (MemoryStream nstream = new MemoryStream())
+                using (MemoryStream nstream = new())
                 {
                     nf.SaveToStream(nstream, false);
                     nstream.Seek(0, SeekOrigin.Begin);

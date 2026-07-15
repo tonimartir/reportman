@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -20,16 +20,15 @@
 
 using System;
 using System.Collections;
-using System.IO;
 using System.Diagnostics;
-using System.Threading;
+using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 
 
 #if NETSTANDARD2_0
 #else
-using System.Drawing;
 #endif
 
 namespace Reportman.Drawing
@@ -148,7 +147,7 @@ namespace Reportman.Drawing
                 //string extens = System.Globalization.RegionInfo.CurrentRegion.ThreeLetterISORegionName;
                 string extens = System.Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName;
                 afilename = System.IO.Path.ChangeExtension(afilename, extens);
-                FileInfo afileinfo = new FileInfo(afilename);
+                FileInfo afileinfo = new(afilename);
                 if (!afileinfo.Exists)
                 {
                     extens = extens.Substring(0, 2);
@@ -327,7 +326,7 @@ namespace Reportman.Drawing
             if (resourcefound)
                 return true;
             string afilename = FindLocalFilename();
-            FileInfo afileinfo = new FileInfo(afilename);
+            FileInfo afileinfo = new(afilename);
             return (afileinfo.Exists);
         }
         /// <summary>
@@ -351,7 +350,7 @@ namespace Reportman.Drawing
             if (!resourcefound)
             {
                 string afilename = FindLocalFilename();
-                FileInfo afileinfo = new FileInfo(afilename);
+                FileInfo afileinfo = new(afilename);
                 if (!afileinfo.Exists)
                 {
                     throw new NamedException("File not found:" + afilename, afilename);
@@ -506,7 +505,7 @@ namespace Reportman.Drawing
 		public void LoadFromFile(String filename)
         {
             // Load the strings from a stream
-            FileStream astream = new FileStream(filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+            FileStream astream = new(filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
             try
             {
                 LoadFromStream(astream);
@@ -595,7 +594,7 @@ namespace Reportman.Drawing
         /// <param name="fileName">The output file path.</param>
         public void SaveFileJson(string fileName)
         {
-            StringBuilder nbuilder = new StringBuilder();
+            StringBuilder nbuilder = new();
             nbuilder.AppendLine("{");
             string firstIndex = TranslateStr(0);
             int idx = 0;
@@ -614,9 +613,9 @@ namespace Reportman.Drawing
                 }
             }
             nbuilder.AppendLine("}");
-            using (System.IO.FileStream nstream = new FileStream(fileName, FileMode.Create))
+            using (System.IO.FileStream nstream = new(fileName, FileMode.Create))
             {
-                using (StreamWriter nwriter = new StreamWriter(nstream, Encoding.UTF8))
+                using (StreamWriter nwriter = new(nstream, Encoding.UTF8))
                 {
                     nwriter.Write(nbuilder.ToString());
                 }
@@ -681,8 +680,8 @@ namespace Reportman.Drawing
             if (DefaultStringsLoaded)
                 return;
             DefaultStringsLoaded = true;
-            using (Translator tr = new Translator())
-            {                
+            using (Translator tr = new())
+            {
 #if NET6_0_OR_GREATER
                 string resname = "reportmanres.en";
 
@@ -705,7 +704,7 @@ namespace Reportman.Drawing
                         }
                     }
                 }
-                    
+
 #else
                 using (MemoryStream mstream = new MemoryStream())
                 {

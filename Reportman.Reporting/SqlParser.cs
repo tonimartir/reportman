@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -80,41 +80,41 @@ namespace Reportman.Reporting
                 aresult = FString;
             else
                 if (FToken == TokenType.Integer)
-                aresult = FInteger.ToString();
-            else
-                    if (FToken == TokenType.Decimal)
-                aresult = FDecimal.ToString();
-            else
-                        if (FToken == TokenType.Double)
-                aresult = FDouble.ToString();
-            else
-                            if (FToken == TokenType.Operator)
-            {
-                L = FSourcePtr - FTokenPtr;
-                if (L > 2)
-                    aresult = FExpression.Substring(FTokenPtr, L).ToUpper();
+                    aresult = FInteger.ToString();
                 else
-                    aresult = FExpression.Substring(FTokenPtr, L);
-            }
-            else
-            {
-                L = FSourcePtr - FTokenPtr;
-                aresult = FExpression.Substring(FTokenPtr, L);
-                // Brackets out
-                if (FToken == TokenType.Symbol)
-                {
-                    if (aresult[0] == '[')
-                    {
-                        if (aresult[aresult.Length - 1] == ']')
-                            aresult = aresult.Substring(1, aresult.Length - 2);
-                    }
-                    if (aresult[0] == '"')
-                    {
-                        if (aresult[aresult.Length - 1] == '"')
-                            aresult = aresult.Substring(1, aresult.Length - 2);
-                    }
-                }
-            }
+                    if (FToken == TokenType.Decimal)
+                        aresult = FDecimal.ToString();
+                    else
+                        if (FToken == TokenType.Double)
+                            aresult = FDouble.ToString();
+                        else
+                            if (FToken == TokenType.Operator)
+                            {
+                                L = FSourcePtr - FTokenPtr;
+                                if (L > 2)
+                                    aresult = FExpression.Substring(FTokenPtr, L).ToUpper();
+                                else
+                                    aresult = FExpression.Substring(FTokenPtr, L);
+                            }
+                            else
+                            {
+                                L = FSourcePtr - FTokenPtr;
+                                aresult = FExpression.Substring(FTokenPtr, L);
+                                // Brackets out
+                                if (FToken == TokenType.Symbol)
+                                {
+                                    if (aresult[0] == '[')
+                                    {
+                                        if (aresult[aresult.Length - 1] == ']')
+                                            aresult = aresult.Substring(1, aresult.Length - 2);
+                                    }
+                                    if (aresult[0] == '"')
+                                    {
+                                        if (aresult[aresult.Length - 1] == '"')
+                                            aresult = aresult.Substring(1, aresult.Length - 2);
+                                    }
+                                }
+                            }
             return aresult;
         }
         /// <summary>
@@ -181,277 +181,277 @@ namespace Reportman.Reporting
             }
             else
                 if (IsValidFirstSymbol(FExpression[P]))
-            {
-                P++;
-                while (P < FExpression.Length)
                 {
-                    if (IsValidSecondSymbol(FExpression[P]) ||
-                        (FExpression[P] == '.'))
-                        P++;
-                    else
+                    P++;
+                    while (P < FExpression.Length)
                     {
-                        break;
+                        if (IsValidSecondSymbol(FExpression[P]) ||
+                            (FExpression[P] == '.'))
+                            P++;
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    resulttype = TokenType.Symbol;
+                    // Looks if the symbol is an operator
+                    string thetoken = FExpression.Substring(FSourcePtr, P - FSourcePtr).ToUpper();
+                    if ((thetoken == "OR") || (thetoken == "AND") || (thetoken == "NOT") ||
+                        (thetoken == "||"))
+                    {
+                        resulttype = TokenType.Operator;
                     }
                 }
-                resulttype = TokenType.Symbol;
-                // Looks if the symbol is an operator
-                string thetoken = FExpression.Substring(FSourcePtr, P - FSourcePtr).ToUpper();
-                if ((thetoken == "OR") || (thetoken == "AND") || (thetoken == "NOT") ||
-                    (thetoken == "||"))
-                {
-                    resulttype = TokenType.Operator;
-                }
-            }
-            else
+                else
                     if (FExpression[P] == '[')
-            {
-                P++;
-                while (P < FExpression.Length)
-                {
-                    if (FExpression[P] != ']')
-                        P++;
-                    else
                     {
                         P++;
-                        break;
-                    }
-                }
+                        while (P < FExpression.Length)
+                        {
+                            if (FExpression[P] != ']')
+                                P++;
+                            else
+                            {
+                                P++;
+                                break;
+                            }
+                        }
 
-                if (FExpression[P - 1] != ']')
-                    throw new EvalException(String.Format(Translator.TranslateStr(448), "]"),
-                        FSourceLine, P - 1, "");
-                resulttype = TokenType.Symbol;
-            }
-            else
-            if (FExpression[P] == '"')
-            {
-                P++;
-                while (P < FExpression.Length)
-                {
-                    if (FExpression[P] != '"')
-                        P++;
-                    else
-                    {
-                        P++;
-                        break;
+                        if (FExpression[P - 1] != ']')
+                            throw new EvalException(String.Format(Translator.TranslateStr(448), "]"),
+                                FSourceLine, P - 1, "");
+                        resulttype = TokenType.Symbol;
                     }
-                }
-                resulttype = TokenType.Symbol;
-            }
-            else
-            if (FExpression[P] == '/')
-            {
-                P++;
-                if (P < FExpression.Length)
-                {
-                    if (FExpression[P] == '*')
-                    {
-                        bool asteriskfound = false;
-                        while (P < FExpression.Length)
+                    else
+                        if (FExpression[P] == '"')
                         {
-                            if (FExpression[P] == '*')
+                            P++;
+                            while (P < FExpression.Length)
                             {
-                                P++;
-                                asteriskfound = true;
-                            }
-                            else
-                            {
-                                if ((FExpression[P] == '/') && asteriskfound)
+                                if (FExpression[P] != '"')
+                                    P++;
+                                else
+                                {
+                                    P++;
                                     break;
-                                asteriskfound = false;
-                                P++;
+                                }
                             }
+                            resulttype = TokenType.Symbol;
                         }
-                        resulttype = TokenType.Comment;
-                    }
-                    else
-                        resulttype = TokenType.Operator;
-                }
-                else
-                    resulttype = TokenType.Operator;
-            }
-            else
-            if (FExpression[P] == '-')
-            {
-                P++;
-                if (P < FExpression.Length)
-                {
-                    if (FExpression[P] == '-')
-                    {
-                        while (P < FExpression.Length)
-                        {
-                            if (FExpression[P] == (char)10)
-                            {
-                                P++;
-                                break;
-                            }
-                            else
-                            {
-                                P++;
-                            }
-                        }
-                        resulttype = TokenType.Comment;
-                    }
-                    else
-                        resulttype = TokenType.Operator;
-                }
-                else
-                    resulttype = TokenType.Operator;
-            }
-            else
-            if (EvalOperators.IndexOf(FExpression[P]) >= 0)
-            {
-                aoperator = FExpression[P];
-                P++;
-                if (P < FExpression.Length)
-                {
-                    switch (Expression[P])
-                    {
-                        case '=':
-                            if (CompositeOperators.IndexOf(aoperator) >= 0)
-                                P++;
-                            break;
-                        case '<':
-                            if (aoperator == '>')
-                                P++;
-                            break;
-                        case '>':
-                            if (aoperator == '<')
-                                P++;
-                            break;
-                    }
-                }
-                resulttype = TokenType.Operator;
-            }
-            else
-                            // Strings
-                            if ((FExpression[P] == '#') || (FExpression[P] == '\''))
-            {
-                int J = 0, I = 0;
-                FString = "";
-                while (P < FExpression.Length)
-                {
-                    if (FExpression[P] == '#')
-                    {
-                        P++;
-                        while (P < FExpression.Length)
-                        {
-                            if (Char.IsDigit(FExpression[P]))
-                            {
-                                I = I * 10 + ((int)FExpression[P] - (int)'0');
-                                P++;
-                                J++;
-                            }
-                            else
-                                break;
-                        }
-                        FString = FString + (char)I;
-                    }
-                    else
-                        if (FExpression[P] == '\'')
-                    {
-                        P++;
-                        while (P < FExpression.Length)
-                        {
-                            if (FExpression[P] == '\'')
+                        else
+                            if (FExpression[P] == '/')
                             {
                                 P++;
                                 if (P < FExpression.Length)
                                 {
-                                    if (FExpression[P] != '\'')
+                                    if (FExpression[P] == '*')
                                     {
-                                        J++;
-                                        break;
+                                        bool asteriskfound = false;
+                                        while (P < FExpression.Length)
+                                        {
+                                            if (FExpression[P] == '*')
+                                            {
+                                                P++;
+                                                asteriskfound = true;
+                                            }
+                                            else
+                                            {
+                                                if ((FExpression[P] == '/') && asteriskfound)
+                                                    break;
+                                                asteriskfound = false;
+                                                P++;
+                                            }
+                                        }
+                                        resulttype = TokenType.Comment;
                                     }
                                     else
-                                        FString = FString + FExpression[P];
+                                        resulttype = TokenType.Operator;
                                 }
                                 else
-                                {
-                                    J++;
-                                    break;
-                                }
+                                    resulttype = TokenType.Operator;
                             }
                             else
-                                FString = FString + FExpression[P];
-                            J++;
-                            P++;
-                        }
-                    }
-                    else
-                        break;
-                }
-                if (P >= FExpression.Length)
-                    if (J == 0)
-                        throw new EvalException(String.Format(Translator.TranslateStr(448), "'"),
-                            FSourceLine, P - 1, "");
-                resulttype = TokenType.String;
-            }
-            else
-                                    if (Char.IsDigit(FExpression[P]))
-            {
-                string FNumber = "";
-                int decimals = -1;
+                                if (FExpression[P] == '-')
+                                {
+                                    P++;
+                                    if (P < FExpression.Length)
+                                    {
+                                        if (FExpression[P] == '-')
+                                        {
+                                            while (P < FExpression.Length)
+                                            {
+                                                if (FExpression[P] == (char)10)
+                                                {
+                                                    P++;
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    P++;
+                                                }
+                                            }
+                                            resulttype = TokenType.Comment;
+                                        }
+                                        else
+                                            resulttype = TokenType.Operator;
+                                    }
+                                    else
+                                        resulttype = TokenType.Operator;
+                                }
+                                else
+                                    if (EvalOperators.IndexOf(FExpression[P]) >= 0)
+                                    {
+                                        aoperator = FExpression[P];
+                                        P++;
+                                        if (P < FExpression.Length)
+                                        {
+                                            switch (Expression[P])
+                                            {
+                                                case '=':
+                                                    if (CompositeOperators.IndexOf(aoperator) >= 0)
+                                                        P++;
+                                                    break;
+                                                case '<':
+                                                    if (aoperator == '>')
+                                                        P++;
+                                                    break;
+                                                case '>':
+                                                    if (aoperator == '<')
+                                                        P++;
+                                                    break;
+                                            }
+                                        }
+                                        resulttype = TokenType.Operator;
+                                    }
+                                    else
+                                        // Strings
+                                        if ((FExpression[P] == '#') || (FExpression[P] == '\''))
+                                        {
+                                            int J = 0, I = 0;
+                                            FString = "";
+                                            while (P < FExpression.Length)
+                                            {
+                                                if (FExpression[P] == '#')
+                                                {
+                                                    P++;
+                                                    while (P < FExpression.Length)
+                                                    {
+                                                        if (Char.IsDigit(FExpression[P]))
+                                                        {
+                                                            I = I * 10 + ((int)FExpression[P] - (int)'0');
+                                                            P++;
+                                                            J++;
+                                                        }
+                                                        else
+                                                            break;
+                                                    }
+                                                    FString = FString + (char)I;
+                                                }
+                                                else
+                                                    if (FExpression[P] == '\'')
+                                                    {
+                                                        P++;
+                                                        while (P < FExpression.Length)
+                                                        {
+                                                            if (FExpression[P] == '\'')
+                                                            {
+                                                                P++;
+                                                                if (P < FExpression.Length)
+                                                                {
+                                                                    if (FExpression[P] != '\'')
+                                                                    {
+                                                                        J++;
+                                                                        break;
+                                                                    }
+                                                                    else
+                                                                        FString = FString + FExpression[P];
+                                                                }
+                                                                else
+                                                                {
+                                                                    J++;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            else
+                                                                FString = FString + FExpression[P];
+                                                            J++;
+                                                            P++;
+                                                        }
+                                                    }
+                                                    else
+                                                        break;
+                                            }
+                                            if (P >= FExpression.Length)
+                                                if (J == 0)
+                                                    throw new EvalException(String.Format(Translator.TranslateStr(448), "'"),
+                                                        FSourceLine, P - 1, "");
+                                            resulttype = TokenType.String;
+                                        }
+                                        else
+                                            if (Char.IsDigit(FExpression[P]))
+                                            {
+                                                string FNumber = "";
+                                                int decimals = -1;
 
-                FNumber = FNumber + FExpression[P];
-                P++;
-                resulttype = TokenType.Integer;
-                int index;
-                if (P < FExpression.Length)
-                {
-                    index = NumberSet.IndexOf(FExpression[P]);
-                    while ((index >= 0) || Char.IsDigit(FExpression[P]))
-                    {
-                        if (index == 0)
-                        {
-                            if (decimals < 0)
-                                decimals++;
-                            else
-                                throw new EvalException(Translator.TranslateStr(445),
-                                    FSourceLine, P - 1, "");
-                            FNumber = FNumber + System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator;
-                            resulttype = TokenType.Decimal;
-                        }
-                        else
-                            if (index < 0)
-                            FNumber = FNumber + FExpression[P];
-                        else
-                        {
-                            resulttype = TokenType.Double;
-                            FNumber = FNumber + FExpression[P];
-                        }
-                        P++;
-                        if (P >= FExpression.Length)
-                            break;
-                        index = NumberSet.IndexOf(FExpression[P]);
-                    }
-                }
-                if (FNumber.Length > 20)
-                    resulttype = TokenType.Double;
-                if (resulttype == TokenType.Integer)
-                    if (FNumber.Length > 8)
-                        resulttype = TokenType.Double;
-                // Floatexplicit
-                if (P < FExpression.Length)
-                    if (FloatExplicit.IndexOf(FExpression[P]) >= 0)
-                    {
-                        P++;
-                        resulttype = TokenType.Double;
-                    }
-                switch (resulttype)
-                {
-                    case TokenType.Integer:
-                        FInteger = System.Convert.ToInt32(FNumber);
-                        break;
-                    case TokenType.Decimal:
-                        FDecimal = System.Convert.ToDecimal(FNumber);
-                        break;
-                    case TokenType.Double:
-                        FDouble = System.Convert.ToDouble(FNumber);
-                        break;
-                }
+                                                FNumber = FNumber + FExpression[P];
+                                                P++;
+                                                resulttype = TokenType.Integer;
+                                                int index;
+                                                if (P < FExpression.Length)
+                                                {
+                                                    index = NumberSet.IndexOf(FExpression[P]);
+                                                    while ((index >= 0) || Char.IsDigit(FExpression[P]))
+                                                    {
+                                                        if (index == 0)
+                                                        {
+                                                            if (decimals < 0)
+                                                                decimals++;
+                                                            else
+                                                                throw new EvalException(Translator.TranslateStr(445),
+                                                                    FSourceLine, P - 1, "");
+                                                            FNumber = FNumber + System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator;
+                                                            resulttype = TokenType.Decimal;
+                                                        }
+                                                        else
+                                                            if (index < 0)
+                                                                FNumber = FNumber + FExpression[P];
+                                                            else
+                                                            {
+                                                                resulttype = TokenType.Double;
+                                                                FNumber = FNumber + FExpression[P];
+                                                            }
+                                                        P++;
+                                                        if (P >= FExpression.Length)
+                                                            break;
+                                                        index = NumberSet.IndexOf(FExpression[P]);
+                                                    }
+                                                }
+                                                if (FNumber.Length > 20)
+                                                    resulttype = TokenType.Double;
+                                                if (resulttype == TokenType.Integer)
+                                                    if (FNumber.Length > 8)
+                                                        resulttype = TokenType.Double;
+                                                // Floatexplicit
+                                                if (P < FExpression.Length)
+                                                    if (FloatExplicit.IndexOf(FExpression[P]) >= 0)
+                                                    {
+                                                        P++;
+                                                        resulttype = TokenType.Double;
+                                                    }
+                                                switch (resulttype)
+                                                {
+                                                    case TokenType.Integer:
+                                                        FInteger = System.Convert.ToInt32(FNumber);
+                                                        break;
+                                                    case TokenType.Decimal:
+                                                        FDecimal = System.Convert.ToDecimal(FNumber);
+                                                        break;
+                                                    case TokenType.Double:
+                                                        FDouble = System.Convert.ToDouble(FNumber);
+                                                        break;
+                                                }
 
-            }
+                                            }
 
             FToken = resulttype;
             FSourcePtr = P;
@@ -529,19 +529,19 @@ namespace Reportman.Reporting
                     }
                     else
                         if (FExpression[index] == '=')
-                    {
-                        if (foundtwopoints)
                         {
-                            foundequal = true;
+                            if (foundtwopoints)
+                            {
+                                foundequal = true;
+                            }
+                            break;
                         }
-                        break;
-                    }
-                    else
-                        break;
+                        else
+                            break;
                 }
                 else
                     if (foundtwopoints)
-                    break;
+                        break;
                 index++;
             }
             return (foundtwopoints && foundequal);

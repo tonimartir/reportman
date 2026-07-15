@@ -448,20 +448,20 @@ namespace Reportman.Drawing
                 }
                 else
                     if (platformId == 3)
-                {
-
-                    name = "";
-                    for (int cidx = 0; cidx < byteName.Length; cidx = cidx + 2)
                     {
-                        ushort charint = ByteArrayToUShort(rfarray, newoffset + cidx, 2);
-                        char nchar = (char)charint;
-                        name = name + nchar;
+
+                        name = "";
+                        for (int cidx = 0; cidx < byteName.Length; cidx = cidx + 2)
+                        {
+                            ushort charint = ByteArrayToUShort(rfarray, newoffset + cidx, 2);
+                            char nchar = (char)charint;
+                            name = name + nchar;
+                        }
                     }
-                }
-                else
-                {
-                    name = ASCIIEncoding.ASCII.GetString(byteName);
-                }
+                    else
+                    {
+                        name = ASCIIEncoding.ASCII.GetString(byteName);
+                    }
                 if (nameId == 6)
                 {
                     postName = name;

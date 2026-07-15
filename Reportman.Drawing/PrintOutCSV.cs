@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -61,9 +61,9 @@ namespace Reportman.Drawing
             int j, k;
             string[,] pmatrix;
             MetaPage apage;
-            SortedList<string, int> columns = new SortedList<string, int>();
-            SortedList<string, int> rows = new SortedList<string, int>();
-            StringBuilder nbuilder = new StringBuilder();
+            SortedList<string, int> columns = new();
+            SortedList<string, int> rows = new();
+            StringBuilder nbuilder = new();
             int index;
             string topstring;
             string leftstring;
@@ -224,13 +224,13 @@ namespace Reportman.Drawing
         public static List<IList<object>> ExportToArray(MetaFile nmeta,
              bool allpages, int frompage, int topage, int precision, List<List<TextFormat>> formats)
         {
-            List<IList<object>> nresult = new List<IList<object>>();
+            List<IList<object>> nresult = new();
             int j, k;
             string[,] pmatrix;
             TextFormat[,] fmatrix = null;
             MetaPage apage;
-            SortedList<string, int> columns = new SortedList<string, int>();
-            SortedList<string, int> rows = new SortedList<string, int>();
+            SortedList<string, int> columns = new();
+            SortedList<string, int> rows = new();
             int index;
             string topstring;
             string leftstring;
@@ -297,7 +297,7 @@ namespace Reportman.Drawing
                 }
                 for (j = 0; j < rows.Count; j++)
                 {
-                    List<object> Values = new List<object>();
+                    List<object> Values = new();
                     List<TextFormat> NewFormats = null;
                     if (formats != null)
                     {
@@ -335,7 +335,7 @@ namespace Reportman.Drawing
                     pmatrix[arow, acolumn] = page.GetText(otext);
                     if (fmatrix != null)
                     {
-                        TextFormat ntextformat = new TextFormat();
+                        TextFormat ntextformat = new();
                         ntextformat.FontColor = otext.FontColor;
                         ntextformat.FontSize = otext.FontSize;
                         ntextformat.FamilyName = page.GetWFontNameText(otext);
@@ -345,12 +345,12 @@ namespace Reportman.Drawing
                             ntextformat.Alignment = ntextformat.Alignment = TextFormat.AlignmentType.Center;
                         }
                         else
-                        if ((otext.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
-                        {
-                            ntextformat.Alignment = TextFormat.AlignmentType.Right;
-                        }
-                        else
-                            ntextformat.Alignment = TextFormat.AlignmentType.Left;
+                            if ((otext.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
+                            {
+                                ntextformat.Alignment = TextFormat.AlignmentType.Right;
+                            }
+                            else
+                                ntextformat.Alignment = TextFormat.AlignmentType.Left;
                         int intfontstyle = otext.FontStyle;
                         if ((intfontstyle & 1) > 0)
                             ntextformat.Style = ntextformat.Style | TextFormat.FontStyle.Bold;

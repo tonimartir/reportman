@@ -1,4 +1,4 @@
-namespace Reportman.Drawing
+﻿namespace Reportman.Drawing
 {
     /// <summary>
     /// Event arguments reporting progress of a long-running operation, exposing the current

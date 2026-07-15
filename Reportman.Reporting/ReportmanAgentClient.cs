@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -18,19 +18,19 @@ namespace Reportman.Reporting
     /// </summary>
     public class ReportmanAgentClient
     {
-    #if DEBUG
+#if DEBUG
         /// <summary>
         /// Default base URL of the Reportman AI agent service, chosen at compile time (a debug
         /// endpoint in debug builds, the production endpoint otherwise).
         /// </summary>
         public const string DefaultBaseUrl = "https://api.reportman.es:7006";
-    #else
+#else
         /// <summary>
         /// Default base URL of the Reportman AI agent service, chosen at compile time (a debug
         /// endpoint in debug builds, the production endpoint otherwise).
         /// </summary>
         public const string DefaultBaseUrl = "https://api.reportman.es:44568";
-    #endif
+#endif
 
         private static readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonOptions;
@@ -135,7 +135,7 @@ namespace Reportman.Reporting
         {
             var url = BaseUrl.TrimEnd('/') + "/" + endpoint.TrimStart('/');
             var request = new HttpRequestMessage(HttpMethod.Post, url);
-            
+
             var jsonContent = JsonSerializer.Serialize(body, _jsonOptions);
             request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/event-stream"));
@@ -263,7 +263,7 @@ namespace Reportman.Reporting
             var request = CreateRequest(endpoint, requestBody);
             var startedAt = Stopwatch.StartNew();
             var chunkedAIResponseIds = new HashSet<string>(StringComparer.Ordinal);
-            
+
             using (var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
             {
                 Log("HTTP Response Status: " + (int)response.StatusCode + " (" + startedAt.ElapsedMilliseconds + " ms)");
@@ -280,7 +280,7 @@ namespace Reportman.Reporting
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
                     JsonDocument finalResult = null;
-                    
+
                     while (!cancellationToken.IsCancellationRequested)
                     {
                         var line = await reader.ReadLineAsync().ConfigureAwait(false);
@@ -288,13 +288,13 @@ namespace Reportman.Reporting
                             break;
 
                         if (string.IsNullOrWhiteSpace(line)) continue;
-                        
+
                         if (line.StartsWith("data: "))
                         {
                             var data = line.Substring(6).Trim();
                             if (data == "[DONE]")
                                 break;
-                                
+
                             try
                             {
                                 var jsonDoc = JsonDocument.Parse(data);
@@ -340,7 +340,7 @@ namespace Reportman.Reporting
                     }
 
                     cancellationToken.ThrowIfCancellationRequested();
-                    
+
                     return finalResult;
                 }
             }
@@ -423,7 +423,7 @@ namespace Reportman.Reporting
         /// <param name="onProgress">Progress notification callback handler.</param>
         /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
         /// <returns>A JSON document containing the translated SQL query.</returns>
-        public async Task<JsonDocument> TranslateToSqlAsync(string userPrompt, string sqlToRefine, string mode, string userLanguage, 
+        public async Task<JsonDocument> TranslateToSqlAsync(string userPrompt, string sqlToRefine, string mode, string userLanguage,
             object sender, ProgressEventHandler onProgress, CancellationToken cancellationToken)
         {
             var requestBody = BuildBaseRequest(new

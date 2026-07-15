@@ -235,7 +235,7 @@ namespace Reportman.Reporting
                 }
             }
             MetaPage apage = metafile.Pages[metafile.CurrentPage];
-            MetaObjectText aobj = new MetaObjectText();
+            MetaObjectText aobj = new();
             FillAnnotation(aobj, apage);
             aobj.MetaType = MetaObjectType.Text;
             aobj.Left = aposx;
@@ -275,7 +275,7 @@ namespace Reportman.Reporting
                 {
                     avalue = FExportValue.ToString(ExportDisplayFormat, ParamType.Unknown, true);
 
-                    MetaObjectExport nobj = new MetaObjectExport();
+                    MetaObjectExport nobj = new();
                     nobj.MetaType = MetaObjectType.Export;
                     nobj.Left = aposx;
                     nobj.Top = aposy;
@@ -318,7 +318,7 @@ namespace Reportman.Reporting
                 IsPageCount = true;
             else
                 if (astring == "GROUPPAGECOUNT")
-                IsGroupPageCount = true;
+                    IsGroupPageCount = true;
         }
         /// <summary>
         /// Associates the item with a report and creates the evaluator identifier binding for it.
@@ -371,7 +371,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + (char)10 + Name  + " Prop:Expression", this, "Expression");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:Expression", this, "Expression");
             }
             FExportValue = new Variant();
             if (ExportExpression.Length > 0)
@@ -578,7 +578,7 @@ namespace Reportman.Reporting
 
         private static string BuildHtmlFromRuns(List<HtmlFormatRun> runs)
         {
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
             foreach (HtmlFormatRun run in runs)
             {
                 if (string.IsNullOrEmpty(run.Text))
@@ -620,7 +620,7 @@ namespace Reportman.Reporting
 
         private static string EncodeHtmlText(string text)
         {
-            StringBuilder builder = new StringBuilder(text.Length);
+            StringBuilder builder = new(text.Length);
             foreach (char character in text)
             {
                 switch (character)
@@ -807,7 +807,7 @@ namespace Reportman.Reporting
                             }
                             catch (Exception E)
                             {
-                                throw new ReportException(E.Message + (char)10  + Name + " Prop:AgIniValue", this, "AgIniValue");
+                                throw new ReportException(E.Message + (char)10 + Name + " Prop:AgIniValue", this, "AgIniValue");
                             }
                         }
                     }
@@ -850,7 +850,7 @@ namespace Reportman.Reporting
         private TextObjectStruct GetTextObject()
         {
             int aalign;
-            TextObjectStruct aresult = new TextObjectStruct();
+            TextObjectStruct aresult = new();
             aresult.Text = GetText();
             aresult.LFontName = LFontName;
             aresult.WFontName = WFontName;

@@ -1,4 +1,4 @@
-namespace TestDesignerApp;
+﻿namespace TestDesignerApp;
 
 public partial class Form1 : Form
 {

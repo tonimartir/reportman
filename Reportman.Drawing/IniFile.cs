@@ -362,7 +362,7 @@ namespace Reportman.Drawing
         /// <param name="nstream">Destination stream.</param>
         public void SaveToStream(Stream nstream)
         {
-            Strings nstring = new Strings();
+            Strings nstring = new();
             foreach (string secname in sections.Keys)
             {
                 IniSection inisec = sections[secname];
@@ -387,7 +387,7 @@ namespace Reportman.Drawing
             string apath = Path.GetDirectoryName(filename);
             if (!Directory.Exists(apath))
                 Directory.CreateDirectory(apath);
-            using (FileStream fstream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+            using (FileStream fstream = new(filename, FileMode.Create, FileAccess.Write))
             {
                 SaveToStream(fstream);
             }

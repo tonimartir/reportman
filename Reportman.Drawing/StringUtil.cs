@@ -51,7 +51,7 @@ namespace Reportman.Drawing
         /// </summary>
         public static void SendBytesToHost(string hostname, byte[] bytes, int port = 9100)
         {
-            System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient();
+            System.Net.Sockets.TcpClient client = new();
             client.Connect(hostname, port);
             try
             {
@@ -143,7 +143,7 @@ namespace Reportman.Drawing
         /// </summary>
         public static string ConvertLineBreaks(string nstring)
         {
-            StringBuilder nresult = new StringBuilder();
+            StringBuilder nresult = new();
             for (int i = 0; i < nstring.Length; i++)
             {
                 if (nstring[i] == '\r')
@@ -219,7 +219,7 @@ namespace Reportman.Drawing
                     }
                 }
             }
-            string xresult = new String(narray);
+            string xresult = new(narray);
             xresult = xresult.Replace("  ", " ");
             xresult = xresult.Replace("  ", " ");
             return xresult;
@@ -339,7 +339,7 @@ namespace Reportman.Drawing
                 int maxSaltSize = 8;
 
                 // Generate a random number for the size of the salt.
-                Random random = new Random();
+                Random random = new();
                 int saltSize = random.Next(minSaltSize, maxSaltSize);
 
                 // Allocate a byte array, which will hold the salt.
@@ -708,7 +708,7 @@ namespace Reportman.Drawing
         /// <returns></returns>
         public static string QuoteStr(string ident)
         {
-            StringBuilder sbuilder = new StringBuilder();
+            StringBuilder sbuilder = new();
             sbuilder.Append('\'');
             foreach (char c in ident)
             {
@@ -730,7 +730,7 @@ namespace Reportman.Drawing
         /// <returns></returns>
         public static string DoubleQuoteStr(string ident)
         {
-            StringBuilder sbuilder = new StringBuilder();
+            StringBuilder sbuilder = new();
             sbuilder.Append('"');
             foreach (char c in ident)
             {
@@ -767,7 +767,7 @@ namespace Reportman.Drawing
         /// <returns></returns>
         public static string CustomQuoteStr(string ident, char quote)
         {
-            StringBuilder sbuilder = new StringBuilder();
+            StringBuilder sbuilder = new();
             sbuilder.Append(quote);
             foreach (char c in ident)
             {
@@ -788,7 +788,7 @@ namespace Reportman.Drawing
         {
             if (count <= 0)
                 count = 10;
-            StringBuilder s = new StringBuilder(count);
+            StringBuilder s = new(count);
             for (int i = 0; i < count; i++)
             {
                 s.Append(c);
@@ -824,14 +824,14 @@ namespace Reportman.Drawing
                 aresult = true;
             else
                 if ((achar >= 'A') && (achar <= 'Z'))
-                aresult = true;
-            else
+                    aresult = true;
+                else
                     if ((achar >= 'a') && (achar <= 'z'))
-                aresult = true;
-            else
+                        aresult = true;
+                    else
                         if ((achar == '_') || (achar == ' ') || (achar == '.') || (achar == '(') ||
                          (achar == ')') || (achar == '=') || (achar == ';') || (achar == ':'))
-                aresult = true;
+                            aresult = true;
             return aresult;
         }
         /// <summary>
@@ -992,7 +992,7 @@ namespace Reportman.Drawing
                 return value;
             Encoding enc = Encoding.GetEncoding(codepage);
             byte[] bytes = enc.GetBytes(value);
-            StringBuilder nbuild = new StringBuilder();
+            StringBuilder nbuild = new();
             foreach (byte c in bytes)
             {
                 nbuild.Append((char)c);
@@ -1075,15 +1075,15 @@ namespace Reportman.Drawing
 
         private static TiposCodigosEnum GetTipoDocumento(char letra)
         {
-            Regex regexNumeros = new Regex("[0-9]");
+            Regex regexNumeros = new("[0-9]");
             if (regexNumeros.IsMatch(letra.ToString()))
                 return TiposCodigosEnum.NIF;
 
-            Regex regexLetrasNIE = new Regex("[LKXYM]");
+            Regex regexLetrasNIE = new("[LKXYM]");
             if (regexLetrasNIE.IsMatch(letra.ToString()))
                 return TiposCodigosEnum.NIE;
 
-            Regex regexLetrasCIF = new Regex("[ABCDEFGHJPQRSUVNW]");
+            Regex regexLetrasCIF = new("[ABCDEFGHJPQRSUVNW]");
             if (regexLetrasCIF.IsMatch(letra.ToString()))
                 return TiposCodigosEnum.CIF;
 
@@ -1192,7 +1192,7 @@ namespace Reportman.Drawing
             int b = 0;
             int c = 0;
             int NIF = 0;
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             strA = strA.Trim();
             if (strA.Length == 0) return "";
             // Dejar sólo los números
@@ -1286,7 +1286,7 @@ namespace Reportman.Drawing
         public static string RemoveDiacritics(string stIn)
         {
             string stFormD = stIn.Normalize(NormalizationForm.FormD);
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             for (int ich = 0; ich < stFormD.Length; ich++)
             {
@@ -1317,7 +1317,7 @@ namespace Reportman.Drawing
             // Allow 10% as a rough guess of how much the string may grow.
             // If we're wrong we'll either waste space or have extra copies -
             // it will still work
-            StringBuilder builder = new StringBuilder((int)(input.Length * 1.1));
+            StringBuilder builder = new((int)(input.Length * 1.1));
 
             bool lastWasCR = false;
 
@@ -1354,7 +1354,7 @@ namespace Reportman.Drawing
         public static bool ValidateStringRegularExpresion(string input, string regular)
         {
             bool validate = false;
-            Regex rx = new System.Text.RegularExpressions.Regex(@regular, System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            Regex rx = new(@regular, System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             MatchCollection matches = rx.Matches(input);
             if (matches.Count == 1)
                 validate = true;

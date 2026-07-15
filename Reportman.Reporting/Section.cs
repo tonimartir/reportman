@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -18,7 +18,6 @@
 */
 #endregion
 
-using Newtonsoft.Json;
 using Reportman.Drawing;
 using System;
 using System.ComponentModel;
@@ -408,7 +407,7 @@ namespace Reportman.Reporting
         /// <summary>
         /// List of child components, this components are labels, expressions, images...
         /// </summary>
-        public System.Collections.Generic.List<PrintPosItem> Components { get; set;}
+        public System.Collections.Generic.List<PrintPosItem> Components { get; set; }
         /// <summary>
         /// The backgorund image can be embedded (Stream propery) or obtained throught 
         /// this expression property, the expression is evaluated, if the expression result 
@@ -621,7 +620,7 @@ namespace Reportman.Reporting
             int minsize, maxsize, currentsize;
             Point compsize;
             int newsize, i;
-            Point newextent = new Point(Width, Height);
+            Point newextent = new(Width, Height);
             PrintPosItem acompo;
             bool DoPartialPrint;
             ExpressionItem eitem;
@@ -867,7 +866,7 @@ namespace Reportman.Reporting
                     return;
                 if (astream.Length > 0)
                 {
-                    MetaObjectImage obj = new MetaObjectImage();
+                    MetaObjectImage obj = new();
                     obj.MetaType = MetaObjectType.Image;
                     obj.Top = aposy; obj.Left = aposx;
                     obj.Height = PrintHeight; obj.Width = PrintWidth;

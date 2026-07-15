@@ -1219,7 +1219,7 @@ namespace Reportman.Drawing
                 {
                     if (matrix[j][i])
                     {
-                        MetaObjectDraw metaobj = new MetaObjectDraw();
+                        MetaObjectDraw metaobj = new();
                         metaobj.MetaType = MetaObjectType.Draw;
                         metaobj.Top = posy + i * bwidth;
                         metaobj.Left = posx + j * bwidth;
@@ -1258,7 +1258,7 @@ namespace Reportman.Drawing
         /// <returns>The ASCII-encoded bytes of the string.</returns>
         public static byte[] AsciiStringToByteArray(String str)
         {
-            ASCIIEncoding encoding = new ASCIIEncoding();
+            ASCIIEncoding encoding = new();
             return encoding.GetBytes(str);
         }
 
@@ -1269,7 +1269,7 @@ namespace Reportman.Drawing
         /// <returns>The Unicode-encoded bytes of the string.</returns>
         public static byte[] UnicodeStringToByteArray(String str)
         {
-            UnicodeEncoding encoding = new UnicodeEncoding();
+            UnicodeEncoding encoding = new();
             return encoding.GetBytes(str);
         }
         /// <summary>
@@ -1279,7 +1279,7 @@ namespace Reportman.Drawing
         /// <returns>The decoded ASCII string.</returns>
         public static String FromASCIIByteArray(byte[] characters)
         {
-            ASCIIEncoding encoding = new ASCIIEncoding();
+            ASCIIEncoding encoding = new();
             String constructedString = encoding.GetString(characters);
             return constructedString;
         }
@@ -1291,7 +1291,7 @@ namespace Reportman.Drawing
         /// <returns>The decoded Unicode string.</returns>
         public static String FromUnicodeByteArray(byte[] characters)
         {
-            UnicodeEncoding encoding = new UnicodeEncoding();
+            UnicodeEncoding encoding = new();
             String constructedString = encoding.GetString(characters);
             return constructedString;
         }

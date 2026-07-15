@@ -1,4 +1,4 @@
-
+﻿
 namespace Reportman.Drawing
 {
     /// <summary>

@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -70,7 +70,7 @@ namespace Reportman.Reporting
                     foreach (PrintPosItem item in sec.Components)
                     {
                         item.Report = this;
-                        this.Components.Add(item.Name,item);
+                        this.Components.Add(item.Name, item);
                     }
                 }
             }
@@ -87,11 +87,12 @@ namespace Reportman.Reporting
         private void UpdateExecuteSubreportIndexes(List<int> subreportIndexes, int recCount)
         {
             recCount++;
-            if (recCount>100)
+            if (recCount > 100)
             {
                 throw new Exception("Circular childsubreport reference");
             }
-            foreach (int idx in subreportIndexes) {
+            foreach (int idx in subreportIndexes)
+            {
                 var subreport = this.SubReports[idx];
                 foreach (Section sec in subreport.Sections)
                 {
@@ -258,7 +259,7 @@ namespace Reportman.Reporting
                 FDataAlias.List.Clear();
                 for (i = 0; i < DataInfo.Count; i++)
                 {
-                    AliasCollectionItem aitem = new AliasCollectionItem();
+                    AliasCollectionItem aitem = new();
                     aitem.Alias = DataInfo[i].Alias;
                     aitem.Data = DataInfo[i].Data;
                     FDataAlias.List.Add(aitem);
@@ -278,7 +279,8 @@ namespace Reportman.Reporting
                 PrepareParamsAfterOpen();
                 for (i = 0; i < SubReports.Count; i++)
                 {
-                    if (SubreportMustBeExecuted(SubReports[i])) {
+                    if (SubreportMustBeExecuted(SubReports[i]))
+                    {
                         SubReports[i].SubReportChanged(SubReportEvent.Start, "");
                     }
                 }
@@ -291,7 +293,7 @@ namespace Reportman.Reporting
                     {
                         CurrentSubReportIndex++;
                     }
-                    while (CurrentSubReportIndex< SubReports.Count && !SubreportMustBeExecuted(SubReports[CurrentSubReportIndex]));
+                    while (CurrentSubReportIndex < SubReports.Count && !SubreportMustBeExecuted(SubReports[CurrentSubReportIndex]));
                     if (CurrentSubReportIndex >= SubReports.Count)
                         break;
                     subrep = SubReports[CurrentSubReportIndex];
@@ -610,7 +612,7 @@ namespace Reportman.Reporting
                 }
                 else
                     if (subrep.CurrentGroupIndex == 0)
-                    break;
+                        break;
             }
             bool aresult = (section != null);
             // If there are still pending sections
@@ -713,7 +715,7 @@ namespace Reportman.Reporting
         }
         bool CheckSpace()
         {
-            Point MaxExtent = new Point();
+            Point MaxExtent = new();
             if (FreeSpace == 0)
                 return false;
             MaxExtent.X = pagespacex;
@@ -745,7 +747,7 @@ namespace Reportman.Reporting
         }
         void PrintSection(bool datasection, ref bool PartialPrint)
         {
-            Point MaxExtent = new Point();
+            Point MaxExtent = new();
             bool ispagerepeat;
             if (subreport.CurrentGroupIndex < 0)
             {
@@ -801,7 +803,7 @@ namespace Reportman.Reporting
             Section psection;
             int afirstdetail;
             bool printit;
-            Point MaxExtent = new Point();
+            Point MaxExtent = new();
             bool PartialPrint;
 
             PartialPrint = false;
@@ -837,7 +839,7 @@ namespace Reportman.Reporting
                     }
                 }
                 int index;
-                SubReports psubreports = new SubReports();
+                SubReports psubreports = new();
                 for (i = 0; i < PendingSections.Count; i++)
                 {
                     psection = PendingSections[i];
@@ -1046,7 +1048,7 @@ namespace Reportman.Reporting
             }
             MetaFile.CurrentPage = PageNum;
             PageSizeDetail pageDetail = InitialPageDetail;
-            DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1],pageDetail);
+            DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1], pageDetail);
             FGroupHeaders.Clear();
             PrintedSomething = false;
             if (section == null)
@@ -1081,7 +1083,7 @@ namespace Reportman.Reporting
                     pageposy = TopMargin;
                     pageposx = LeftMargin;
                     // pageDetail = MetaFile.Pages[MetaFile.Pages.CurrentCount - 1].PageDetail;
-                    DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1],pageDetail);
+                    DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1], pageDetail);
                 }
                 else
                 {
@@ -1118,7 +1120,7 @@ namespace Reportman.Reporting
             pagefooters = new Sections();
             try
             {
-                Point MaxExtent = new Point();
+                Point MaxExtent = new();
                 bool PartialPrint;
                 // Fills the page with fixed sections
                 PrintFixedSections(true);
@@ -1129,7 +1131,7 @@ namespace Reportman.Reporting
                     section = FGroupHeaders[0];
                 }
                 oldsubreport = subreport;
-                Point lastvertpos = new Point();
+                Point lastvertpos = new();
                 lastvertpos.X = pageposx;
                 lastvertpos.Y = pageposy;
                 while (section != null)

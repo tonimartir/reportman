@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -35,7 +35,7 @@ namespace Reportman.Drawing
                     filename = filename + Path.DirectorySeparatorChar + "reportman.ini";
                     if (!ForceSystemConfig)
                     {
-                        FileInfo ninfo = new FileInfo(filename);
+                        FileInfo ninfo = new(filename);
                         if (!ninfo.Exists)
                         {
                             filename = System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -222,7 +222,7 @@ namespace Reportman.Drawing
         /// <returns>A <see cref="Strings"/> object containing the driver names.</returns>
         public static Strings GetTextOnlyPrintDrivers()
         {
-            Strings drivernames = new Strings
+            Strings drivernames = new()
             {
                 " ",
                 "PLAIN",
@@ -247,7 +247,7 @@ namespace Reportman.Drawing
         /// <returns>A <see cref="Strings"/> object containing the names of configurable printers.</returns>
         public static Strings GetConfigurablePrinters()
         {
-            Strings configs = new Strings
+            Strings configs = new()
             {
                 Translator.TranslateStr(467),
                 Translator.TranslateStr(468),
