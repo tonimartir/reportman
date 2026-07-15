@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Reportman.Reporting
@@ -20,24 +20,24 @@ namespace Reportman.Reporting
         /// <param name="version">The stream serialization version to use (defaults to <see cref="StreamVersion.V2"/>).</param>
         public static void ExportSubReport(SubReport subreport, System.IO.Stream destination, StreamVersion version = StreamVersion.V2)
         {
-            using (MemoryStream mstream = new())
+            using (MemoryStream mstream = new MemoryStream())
             {
                 subreport.Report.SaveToStream(mstream, version);
                 mstream.Seek(0, SeekOrigin.Begin);
-                Report newreport = new();
+                Report newreport = new Report();
                 newreport.LoadFromStream(mstream);
-                SortedList<string, DataInfo> dataInfos = new();
+                SortedList<string, DataInfo> dataInfos = new SortedList<string, DataInfo>();
                 // Drop other subreports
-                List<SubReport> lsubreports = new();
-                List<SubReport> lchildsubreports = new();
+                List<SubReport> lsubreports = new List<SubReport>();
+                List<SubReport> lchildsubreports = new List<SubReport>();
                 foreach (SubReport subrep in newreport.SubReports)
                 {
                     if (subrep.Name != subreport.Name)
                         lsubreports.Add(subrep);
                     else
                     {
-                        if (subrep.Alias.Length > 0)
-                        {
+                        if (subrep.Alias.Length>0)
+                        {                            
                             dataInfos.Add(subrep.Alias, newreport.DataInfo[subrep.Alias]);
                         }
                         foreach (Section nsection in subrep.Sections)
@@ -45,7 +45,7 @@ namespace Reportman.Reporting
                             if (nsection.ChildSubReport != null)
                             {
                                 lchildsubreports.Add(nsection.ChildSubReport);
-                                if (nsection.ChildSubReport.Alias.Length > 0)
+                                if (nsection.ChildSubReport.Alias.Length>0)
                                 {
                                     if (!dataInfos.ContainsKey(nsection.ChildSubReport.Alias))
                                     {
@@ -63,7 +63,7 @@ namespace Reportman.Reporting
                         DeleteSubReport(newreport, subrep);
                 }
                 int i = 0;
-                while (i < newreport.DataInfo.Count)
+                while (i<newreport.DataInfo.Count)
                 {
                     var dataInfo = newreport.DataInfo[i];
                     if (dataInfos.ContainsKey(dataInfo.Alias))
@@ -77,21 +77,20 @@ namespace Reportman.Reporting
                 }
                 // Remove parameters assignable only to other datasets
                 i = 0;
-                while (i < newreport.Params.Count)
+                while (i<newreport.Params.Count)
                 {
                     var nparam = newreport.Params[i];
                     bool dropParam = true;
-                    if (nparam.Datasets.Count > 0)
+                    if (nparam.Datasets.Count>0)
                     {
-                        foreach (string dataset in nparam.Datasets)
-                        {
+                      foreach (string dataset in nparam.Datasets)
+                      {
                             if (!dataInfos.ContainsKey(dataset))
                             {
                                 dropParam = true;
                             }
-                        }
-                    }
-                    else
+                      }
+                    } else
                     {
                         dropParam = false;
                     }
@@ -117,7 +116,7 @@ namespace Reportman.Reporting
             if (subrep.Alias.Length > 0)
             {
                 // Remove parameters not assigned to the subreport
-                List<Param> lparams = new();
+                List<Param> lparams = new List<Param>();
                 foreach (Param rparam in newreport.Params)
                 {
                     if (rparam.Datasets.Count > 0)
@@ -131,7 +130,7 @@ namespace Reportman.Reporting
                         }
                         else
                         {
-                            List<string> toremove = new();
+                            List<string> toremove = new List<string>();
                             foreach (string ndataset in rparam.Datasets)
                             {
                                 if (ndataset != subrep.Alias)
@@ -194,7 +193,7 @@ namespace Reportman.Reporting
                 nparam.Report = destination;
                 if (destination.Params.IndexOf(nparam.Alias) < 0)
                 {
-                    if ((destination.Components.IndexOfKey(nparam.Name) >= 0)
+                    if ((destination.Components.IndexOfKey(nparam.Name)  >= 0)
                          || (nparam.Name.Length == 0))
                     {
                         destination.GenerateNewName(nparam);
@@ -241,20 +240,19 @@ namespace Reportman.Reporting
                 {
                     destination.GenerateNewName(dinfo);
                 }
-                else
-                {
+                else {
                     destination.Components.Add(dinfo.Name, dinfo);
                 }
                 int idx = 1;
                 string original = dinfo.Alias;
-                while (destination.DataInfo[dinfo.Alias] != null)
+                while (destination.DataInfo[dinfo.Alias]!= null)
                 {
                     dinfo.Alias = original + "_" + idx;
                     idx++;
                 }
                 destination.DataInfo.Add(dinfo);
             }
-            SortedList<string, PrintPosItem> currentIdentifiers = new();
+            SortedList<string, PrintPosItem> currentIdentifiers = new SortedList<string, PrintPosItem>();
             foreach (SubReport subrep in destination.SubReports)
             {
                 foreach (Section sec in subrep.Sections)
@@ -270,7 +268,7 @@ namespace Reportman.Reporting
                         {
                             identifier = ((ChartItem)posItem).Identifier;
                         }
-                        if (identifier.Length > 0)
+                        if (identifier.Length>0)
                         {
                             if (!currentIdentifiers.ContainsKey(identifier))
                                 currentIdentifiers.Add(identifier, posItem);
@@ -284,8 +282,7 @@ namespace Reportman.Reporting
                 if (destination.Components.IndexOfKey(nsubreport.Name) >= 0)
                 {
                     destination.GenerateNewName(nsubreport);
-                }
-                else
+                } else
                 {
                     destination.Components.Add(nsubreport.Name, nsubreport);
                 }
@@ -296,7 +293,7 @@ namespace Reportman.Reporting
                     if (destination.Components.ContainsKey(nsec.Name))
                     {
                         destination.GenerateNewName(nsec);
-                    }
+                    } 
                     else
                     {
                         destination.Components.Add(nsec.Name, nsec);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -61,7 +61,7 @@ namespace Reportman.Drawing
 
                 byte[] plainTextBytes = Encoding.UTF8.GetBytes(textoQueEncriptaremos);
 
-                PasswordDeriveBytes password = new(passBase,
+                PasswordDeriveBytes password = new PasswordDeriveBytes(passBase,
 
                   saltValueBytes, hashAlgorithm, passwordIterations);
 
@@ -79,9 +79,9 @@ namespace Reportman.Drawing
 
                   initVectorBytes);
 
-                MemoryStream memoryStream = new();
+                MemoryStream memoryStream = new MemoryStream();
 
-                CryptoStream cryptoStream = new(memoryStream, encryptor,
+                CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor,
 
                  CryptoStreamMode.Write);
 
@@ -144,7 +144,7 @@ namespace Reportman.Drawing
 
                 byte[] cipherTextBytes = Convert.FromBase64String(textoEncriptado);
 
-                PasswordDeriveBytes password = new(passBase,
+                PasswordDeriveBytes password = new PasswordDeriveBytes(passBase,
 
                   saltValueBytes, hashAlgorithm, passwordIterations);
 
@@ -162,9 +162,9 @@ namespace Reportman.Drawing
 
                   initVectorBytes);
 
-                MemoryStream memoryStream = new(cipherTextBytes);
+                MemoryStream memoryStream = new MemoryStream(cipherTextBytes);
 
-                CryptoStream cryptoStream = new(memoryStream, decryptor,
+                CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor,
 
                   CryptoStreamMode.Read);
 

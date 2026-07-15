@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,10 +38,10 @@ namespace Reportman.Reporting
             get { return sql; }
             set
             {
-                if (value == null)
-                {
-                    value = string.Empty;
-                }
+                    if (value == null)
+                    {
+                        value = string.Empty;
+                    }
                 if (string.Equals(sql, value, StringComparison.Ordinal))
                     return;
                 sql = value;
@@ -148,7 +148,7 @@ namespace Reportman.Reporting
         /// <returns>A new DataInfo item</returns>
         public object Clone()
         {
-            DataInfo ninfo = new();
+            DataInfo ninfo = new DataInfo();
             ninfo.Report = Report;
             ninfo.Alias = Alias;
             ninfo.BDEFilter = BDEFilter;
@@ -290,7 +290,7 @@ namespace Reportman.Reporting
                     }
                     else
                     {
-                        Strings primarycolumns = new();
+                        Strings primarycolumns = new Strings();
                         masterfieldslist = Strings.FromSemiColon(MyBaseMasterFields.ToUpper());
                         masterfieldslist.RemoveBlanks();
                         mastervalues = new object[masterfieldslist.Count];
@@ -568,7 +568,7 @@ namespace Reportman.Reporting
                             if (inttable != null)
                             {
                                 Strings lsorting = Strings.FromSemiColon(this.MyBaseIndexFields);
-                                Strings lnew = new();
+                                Strings lnew = new Strings();
                                 Strings nmaster = Strings.FromSemiColon(this.MyBaseMasterFields);
                                 for (int ix = 0; ix < nmaster.Count; ix++)
                                     lnew.Add(lsorting[ix]);
@@ -788,10 +788,10 @@ namespace Reportman.Reporting
                             }
                             else
                                 if (!master.CurrentRow[paramname].Equals(param.Value))
-                                {
-                                    aresult = true;
-                                    param.Value = master.CurrentRow[paramname];
-                                }
+                            {
+                                aresult = true;
+                                param.Value = master.CurrentRow[paramname];
+                            }
                         }
                     }
                 }

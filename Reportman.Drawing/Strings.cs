@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 
@@ -15,7 +15,7 @@ namespace Reportman.Drawing
         /// <returns>A object clone</returns>
 		public object Clone()
         {
-            Strings st = new();
+            Strings st = new Strings();
             foreach (string s in this)
             {
                 st.Add(s);
@@ -29,7 +29,7 @@ namespace Reportman.Drawing
         {
             get
             {
-                StringBuilder astring = new();
+                StringBuilder astring = new StringBuilder();
                 if (Count > 0)
                     astring.Append(this[0]);
                 int i = 1;
@@ -49,7 +49,7 @@ namespace Reportman.Drawing
         {
             Clear();
             int i = 0;
-            StringBuilder partial = new();
+            StringBuilder partial = new StringBuilder();
             while (i < astring.Length)
             {
                 // El separador canónico es CRLF (el que genera el getter de Text);
@@ -146,7 +146,7 @@ namespace Reportman.Drawing
         /// <returns></returns>
         public static Strings FromSeparator(char separator, string nstring)
         {
-            Strings aresult = new();
+            Strings aresult = new Strings();
             string partial = nstring;
             int index = partial.IndexOf(separator);
             while (index >= 0)
@@ -182,7 +182,7 @@ namespace Reportman.Drawing
             {
                 return "";
             }
-            StringBuilder sbuilder = new(this[0]);
+            StringBuilder sbuilder = new StringBuilder(this[0]);
             int i;
             for (i = 1; i < Count; i++)
             {
@@ -201,7 +201,7 @@ namespace Reportman.Drawing
             {
                 return "";
             }
-            StringBuilder sbuilder = new(this[0]);
+            StringBuilder sbuilder = new StringBuilder(this[0]);
             int i;
             for (i = 1; i < Count; i++)
             {
@@ -216,7 +216,7 @@ namespace Reportman.Drawing
         /// <param name="filename">The path to the text file to read.</param>
         public void LoadFromFile(string filename)
         {
-            using (FileStream nstream = new(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (FileStream nstream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 LoadFromStream(nstream);
             }
@@ -230,13 +230,13 @@ namespace Reportman.Drawing
             using (MemoryStream mems = StreamUtil.StreamToMemoryStream(nstream))
             {
                 mems.Seek(0, SeekOrigin.Begin);
-                StreamReader nreader = new(nstream, Encoding.UTF8);
+                StreamReader nreader = new StreamReader(nstream, Encoding.UTF8);
                 if (nreader.EndOfStream)
                 {
                     string nstring = StreamUtil.ByteArrayToString(mems.ToArray(), System.Convert.ToInt32(mems.Length), true);
                     nstring = nstring.Replace((char)65279 + "", "");
                     Clear();
-                    StringBuilder nline = new();
+                    StringBuilder nline = new StringBuilder();
                     foreach (char c in nstring)
                     {
                         if (c != (char)13)

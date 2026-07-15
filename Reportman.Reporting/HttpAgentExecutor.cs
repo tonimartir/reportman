@@ -1,11 +1,11 @@
-﻿using Reportman.Drawing;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {
@@ -50,8 +50,8 @@ namespace Reportman.Reporting
 #else
             _httpClient = new HttpClient();
 #endif
-            _jsonOptions = new JsonSerializerOptions
-            {
+            _jsonOptions = new JsonSerializerOptions 
+            { 
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
@@ -115,7 +115,7 @@ namespace Reportman.Reporting
             }
             else if (!string.IsNullOrEmpty(Token))
             {
-                _httpClient.DefaultRequestHeaders.Authorization =
+                _httpClient.DefaultRequestHeaders.Authorization = 
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Token);
             }
 
@@ -147,8 +147,8 @@ namespace Reportman.Reporting
                 // Check for error
                 if (root.TryGetProperty("success", out var successProp) && !successProp.GetBoolean())
                 {
-                    var errorMsg = root.TryGetProperty("error", out var errorProp)
-                        ? errorProp.GetString()
+                    var errorMsg = root.TryGetProperty("error", out var errorProp) 
+                        ? errorProp.GetString() 
                         : "Unknown error";
                     throw new Exception($"HttpAgent execution failed: {errorMsg}");
                 }
@@ -435,7 +435,7 @@ namespace Reportman.Reporting
     /// </summary>
     public class HttpAgentParameterCollection : IDataParameterCollection
     {
-        private readonly List<IDataParameter> _parameters = new();
+        private readonly List<IDataParameter> _parameters = new List<IDataParameter>();
 
         /// <summary>
         /// Gets or sets the parameter with the specified name.

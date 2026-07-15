@@ -1,10 +1,10 @@
-﻿using AngleSharp.Html.Parser;
-using Ganss.Xss;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using AngleSharp.Html.Parser;
+using Ganss.Xss;
 
 namespace Reportman.Drawing
 {
@@ -68,11 +68,11 @@ namespace Reportman.Drawing
     /// </summary>
     public static class HtmlTextParser
     {
-        private static readonly Regex TagRegex = new(@"<(/?)(\w+)([^>]*)>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly Regex StyleRegex = new(@"font-family\s*:\s*'?([^';]+)'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly Regex SizeRegex = new(@"font-size\s*:\s*'?(\d+)(pt|px)?'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly Regex ColorRegex = new(@"(?<![-\w])color\s*[:=]\s*['""]?([^;'""\s>]+)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly Regex MetaCharsetRegex = new(@"<meta\b[^>]*(charset\s*=|http-equiv\s*=\s*[""']?content-type[""']?)[^>]*>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex TagRegex = new Regex(@"<(/?)(\w+)([^>]*)>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex StyleRegex = new Regex(@"font-family\s*:\s*'?([^';]+)'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex SizeRegex = new Regex(@"font-size\s*:\s*'?(\d+)(pt|px)?'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex ColorRegex = new Regex(@"(?<![-\w])color\s*[:=]\s*['""]?([^;'""\s>]+)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex MetaCharsetRegex = new Regex(@"<meta\b[^>]*(charset\s*=|http-equiv\s*=\s*[""']?content-type[""']?)[^>]*>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         private sealed class HtmlCharsetEncodingProvider : EncodingProvider
         {
@@ -142,7 +142,7 @@ namespace Reportman.Drawing
 
             var fontFamilyStack = new Stack<string>();
             fontFamilyStack.Push(defaultFontFamily);
-
+            
             var fontSizeStack = new Stack<float>();
             fontSizeStack.Push(0);
 
@@ -488,10 +488,10 @@ namespace Reportman.Drawing
             color = 0;
             var match = ColorRegex.Match(attributes);
             if (!match.Success) return false;
-
+            
             string val = match.Groups[1].Value.Trim();
             if (string.IsNullOrEmpty(val)) return false;
-
+            
             // Parse #RRGGBB or #RGB
             if (val.StartsWith("#"))
             {
@@ -515,24 +515,24 @@ namespace Reportman.Drawing
                 }
                 return false;
             }
-
+            
             // Named colors
             switch (val.ToLowerInvariant())
             {
-                case "red": color = 0x0000FF; return true;
-                case "blue": color = 0xFF0000; return true;
-                case "green": color = 0x008000; return true;
-                case "black": color = 0x000000; return true;
-                case "white": color = 0xFFFFFF; return true;
+                case "red":    color = 0x0000FF; return true;
+                case "blue":   color = 0xFF0000; return true;
+                case "green":  color = 0x008000; return true;
+                case "black":  color = 0x000000; return true;
+                case "white":  color = 0xFFFFFF; return true;
                 case "yellow": color = 0x00FFFF; return true;
                 case "orange": color = 0x00A5FF; return true;
                 case "purple": color = 0x800080; return true;
-                case "gray": color = 0x808080; return true;
-                case "grey": color = 0x808080; return true;
+                case "gray":   color = 0x808080; return true;
+                case "grey":   color = 0x808080; return true;
                 default: return false;
             }
         }
-
+        
         private static float ExtractFontSize(string attributes)
         {
             var match = SizeRegex.Match(attributes);
@@ -565,7 +565,7 @@ namespace Reportman.Drawing
             }
             return string.Empty;
         }
-
+        
         private static float ExtractLegacyFontSize(string attributes)
         {
             var match = Regex.Match(attributes, @"size\s*=\s*""?(\d+)""?", RegexOptions.IgnoreCase);
@@ -631,9 +631,9 @@ namespace Reportman.Drawing
         /// <summary>The index in the source text at which this line's glyphs begin.</summary>
         public int TextOffset;
         /// <summary>The shaped glyph positions that make up this line.</summary>
-        public List<TGlyphPos> Glyphs = new();
+        public List<TGlyphPos> Glyphs = new List<TGlyphPos>();
         /// <summary>Maps each logical text cluster index to the list of glyph indices that render it.</summary>
-        public Dictionary<int, List<int>> ClusterMap = new();
+        public Dictionary<int, List<int>> ClusterMap = new Dictionary<int, List<int>>();
 
         /// <summary>Initializes a new instance for a line whose glyphs start at the given text offset.</summary>
         /// <param name="textOffset">The index in the source text where this line begins.</param>
@@ -749,21 +749,21 @@ namespace Reportman.Drawing
                 double acc = 0.0;
                 int lastBreakGlyphIdx = -1;
                 int j = startIdx;
-
+                
                 while (j < positions.Count)
                 {
                     acc += positions[j].XAdvance;
-                    int charIdx = positions[j].LineCluster;
-
+                    int charIdx = positions[j].LineCluster; 
+                    
                     bool hasBreak = possibleBreaks != null && possibleBreaks.Contains(charIdx);
                     if (!hasBreak && charIdx >= 0 && charIdx < line.Length)
                     {
                         hasBreak = (line[charIdx] == ' ' || line[charIdx] == '\n');
                     }
-
+                    
                     if (hasBreak)
                         lastBreakGlyphIdx = j;
-
+                        
                     if (acc > remaining)
                         break;
                     j++;
@@ -809,7 +809,7 @@ namespace Reportman.Drawing
                 var chunk = new List<TGlyphPos>(chunkEnd - startIdx + 1);
                 for (int k = startIdx; k <= chunkEnd; k++)
                     chunk.Add(positions[k]);
-
+                
                 chunks.Add(chunk);
                 remaining = lineWidthLimit;
                 firstChunk = false;
@@ -849,21 +849,21 @@ namespace Reportman.Drawing
                 double acc = 0.0;
                 int lastBreakGlyphIdx = -1;
                 int j = endIdx;
-
+                
                 while (j >= 0)
                 {
                     acc += positions[j].XAdvance;
-                    int charIdx = positions[j].LineCluster;
-
+                    int charIdx = positions[j].LineCluster; 
+                    
                     bool hasBreak = possibleBreaks != null && possibleBreaks.Contains(charIdx);
                     if (!hasBreak && charIdx >= 0 && charIdx < line.Length)
                     {
                         hasBreak = (line[charIdx] == ' ' || line[charIdx] == '\n');
                     }
-
+                    
                     if (hasBreak)
                         lastBreakGlyphIdx = j;
-
+                        
                     if (acc > remaining)
                         break;
                     j--;
@@ -903,7 +903,7 @@ namespace Reportman.Drawing
                 var chunk = new List<TGlyphPos>(endIdx - chunkStart + 1);
                 for (int k = chunkStart; k <= endIdx; k++)
                     chunk.Add(positions[k]);
-
+                
                 chunks.Add(chunk);
                 remaining = lineWidthLimit;
                 firstChunk = false;

@@ -314,7 +314,7 @@ namespace Reportman.Reporting
         {
             get
             {
-                Variant aresult = new();
+                Variant aresult = new Variant();
                 string aexpression;
                 int aoption;
                 if (!((ParamType == ParamType.List) ||
@@ -362,7 +362,7 @@ namespace Reportman.Reporting
         /// </summary>
         public object Clone()
         {
-            Param p = new();
+            Param p = new Param();
             p.Report = Report;
             p.AllowNulls = AllowNulls;
             p.Alias = Alias;

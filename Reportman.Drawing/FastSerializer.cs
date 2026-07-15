@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -202,9 +202,9 @@ namespace Reportman.Drawing
         /// </summary>
         /// <param name="ndata">The DataSet to serialize.</param>
         /// <param name="nstream">The output Stream.</param>
-        public static void SerializeDataSetToStream(DataSet ndata, Stream nstream)
+        public static void SerializeDataSetToStream(DataSet ndata,Stream nstream)
         {
-            BinaryWriter nwriter = new(nstream);
+            BinaryWriter nwriter = new BinaryWriter(nstream);
             nstream.Write(signature, 0, 4);
 
             WriteInteger(nstream, ndata.Tables.Count);
@@ -266,7 +266,7 @@ namespace Reportman.Drawing
         /// <returns>A MemoryStream containing the serialized binary representation.</returns>
         public static MemoryStream SerializeDataSet(DataSet ndata)
         {
-            MemoryStream nstream = new();
+            MemoryStream nstream = new MemoryStream();
             SerializeDataSetToStream(ndata, nstream);
             return nstream;
         }
@@ -358,9 +358,9 @@ namespace Reportman.Drawing
                         nres = new byte[4];
                     else
                         if (dvalue.Millisecond == 0)
-                            nres = new byte[7];
-                        else
-                            nres = new byte[9];
+                        nres = new byte[7];
+                    else
+                        nres = new byte[9];
                     byte[] ax = StreamUtil.ShortToByteArray((short)dvalue.Year);
                     nres[0] = ax[0];
                     nres[1] = ax[1];
@@ -519,7 +519,7 @@ namespace Reportman.Drawing
                         Millisecond = StreamUtil.ByteArrayToShort(nbytes, index + 7, 2);
                     else
                         if (nlen > 7)
-                            Millisecond = StreamUtil.ByteArrayToShort(nbytes, index + 7, 1);
+                        Millisecond = StreamUtil.ByteArrayToShort(nbytes, index + 7, 1);
                     byte seconds = 0;
                     if (nlen > 6)
                         seconds = nbytes[index + 6];
@@ -529,7 +529,7 @@ namespace Reportman.Drawing
                     byte hours = 0;
                     if (nlen > 4)
                         hours = nbytes[index + 4];
-                    DateTime dvalue = new(Year, nbytes[index + 2], nbytes[index + 3], hours,
+                    DateTime dvalue = new DateTime(Year, nbytes[index + 2], nbytes[index + 3], hours,
                       minutes, seconds, Millisecond);
                     index = index + nlen;
                     return dvalue;
@@ -630,8 +630,8 @@ namespace Reportman.Drawing
         /// <returns>The reconstructed DataSet.</returns>
         public static DataSet DeSerializeDataSet(byte[] nbytes)
         {
-            BinaryReader nreader = new(new MemoryStream(nbytes));
-            DataSet ndataset = new();
+            BinaryReader nreader = new BinaryReader(new MemoryStream(nbytes));
+            DataSet ndataset = new DataSet();
             int index = 0;
             if (nbytes.Length < 8)
                 throw new Exception("Incorrect header in DeserializeDataSet");
@@ -643,7 +643,7 @@ namespace Reportman.Drawing
             for (int indextable = 0; indextable < ndatatables; indextable++)
             {
                 string tablename = ReadString(nbytes, ref index);
-                DataTable newtable = new(tablename);
+                DataTable newtable = new DataTable(tablename);
                 newtable.CaseSensitive = true;
                 int colcount = StreamUtil.ByteArrayToInt(nbytes, index, 4);
                 index = index + 4;
@@ -789,12 +789,12 @@ namespace Reportman.Drawing
                     }
                     else
                         if (nlen > 7)
-                        {
-                            nbytes = nreader.ReadBytes(2);
-                            Millisecond = StreamUtil.ByteArrayToShort(nbytes, 0, 2);
-                        }
+                    {
+                        nbytes = nreader.ReadBytes(2);
+                        Millisecond = StreamUtil.ByteArrayToShort(nbytes, 0, 2);
+                    }
 
-                    DateTime dvalue = new(Year, month, day, hours,
+                    DateTime dvalue = new DateTime(Year, month, day, hours,
                         minutes, seconds, Millisecond);
                     return dvalue;
 
@@ -845,9 +845,9 @@ namespace Reportman.Drawing
         /// <returns>The reconstructed DataSet.</returns>
         public static DataSet DeSerializeDataSet(Stream nsource)
         {
-            BinaryReader nreader = new(nsource);
+            BinaryReader nreader = new BinaryReader(nsource);
             byte[] nbytes = nreader.ReadBytes(4);
-            DataSet ndataset = new();
+            DataSet ndataset = new DataSet();
             int versionformat = 0;
             if (nbytes.Length < 4)
                 throw new Exception("Incorrect header in DeserializeDataSet");
@@ -861,7 +861,7 @@ namespace Reportman.Drawing
             for (int indextable = 0; indextable < ndatatables; indextable++)
             {
                 string tablename = ReadString(nreader);
-                DataTable newtable = new(tablename);
+                DataTable newtable = new DataTable(tablename);
                 nbytes = nreader.ReadBytes(4);
                 int colcount = StreamUtil.ByteArrayToInt(nbytes, 0, 4);
                 TypeData[] coltypes = new TypeData[colcount];

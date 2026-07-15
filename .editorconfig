@@ -1,0 +1,11 @@
+root = true
+
+[*.cs]
+# Disable IDE0028: Collection initialization can be simplified (C# 12)
+dotnet_style_prefer_collection_expression = false:silent
+
+# Disable IDE0090: 'new' expression can be simplified (Target-typed new, C# 9.0)
+csharp_style_implicit_object_creation_when_type_is_apparent = false:silent
+
+# Disable IDE0017: Object initialization can be simplified (C# 3.0)
+dotnet_style_object_initializer = false:silent
