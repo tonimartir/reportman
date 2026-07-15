@@ -1,7 +1,4 @@
-using System;
-using System.Windows.Forms;
-
-namespace TestDesignerApp
+﻿namespace TestDesignerApp
 {
     internal static class Program
     {

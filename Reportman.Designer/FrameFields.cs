@@ -1,4 +1,4 @@
-using Reportman.Drawing;
+﻿using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.ComponentModel;
@@ -66,8 +66,7 @@ namespace Reportman.Designer
                     anew.Tag = FReport.Evaluator;
                     anew.Nodes.Add("");
                 }
-                if (RView.SelectedNode == null)
-                    RView.SelectedNode = RView.TopNode;
+                RView.SelectedNode ??= RView.TopNode;
             }
             finally
             {

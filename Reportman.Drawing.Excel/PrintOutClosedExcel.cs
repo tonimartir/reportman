@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Drawing;
 using System.IO;
@@ -206,16 +206,16 @@ namespace Reportman.Drawing
                         }
                         else
                             if (atext.Length > 0)
-                        {
-                            if (atext[0] == '=')
-                                atext = "'" + atext;
-                            /*param1[0] = atext;
-                            cell.GetType().InvokeMember("Value",
-                                System.Reflection.BindingFlags.SetProperty,
-                                null, cell, param1);*/
-                            cell.Value = atext;
-                            assigned = true;
-                        }
+                            {
+                                if (atext[0] == '=')
+                                    atext = "'" + atext;
+                                /*param1[0] = atext;
+                                cell.GetType().InvokeMember("Value",
+                                    System.Reflection.BindingFlags.SetProperty,
+                                    null, cell, param1);*/
+                                cell.Value = atext;
+                                assigned = true;
+                            }
                     }
                     if (assigned)
                     {
@@ -429,7 +429,7 @@ namespace Reportman.Drawing
                 }
                 else
                 {
-                    rowinit = rowinit + rows.Count;
+                    rowinit += rows.Count;
                 }
 
                 shcount++;

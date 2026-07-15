@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -133,7 +133,7 @@ namespace Reportman.Drawing
                     {
                         if (char.IsDigit(nresult[idx]))
                         {
-                            number = number + nresult[idx];
+                            number += nresult[idx];
                             idx++;
                         }
                         else
@@ -143,12 +143,12 @@ namespace Reportman.Drawing
                     {
                         int idxchar = Convert.ToInt32(number);
                         char xchar = (char)idxchar;
-                        newstring = newstring + xchar;
+                        newstring += xchar;
                     }
                 }
                 else
                 {
-                    newstring = newstring + nresult[idx];
+                    newstring += nresult[idx];
                     idx++;
                 }
             }

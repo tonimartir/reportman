@@ -70,7 +70,7 @@ namespace Reportman.Drawing
             if (feof)
                 return 0;
             int readed = FStream.Read(intbuf, 0, BLOCK_SIZE);
-            intreaded = intreaded + readed;
+            intreaded += readed;
             if (readed == 0)
                 feof = true;
             else
@@ -96,8 +96,8 @@ namespace Reportman.Drawing
             int readed = FBuf.Read(buf, index, count);
             while ((readed > 0) || (!feof))
             {
-                FPosition = FPosition + readed;
-                partial = partial + readed;
+                FPosition += readed;
+                partial += readed;
                 if (partial == count)
                     break;
                 ReadBlock();

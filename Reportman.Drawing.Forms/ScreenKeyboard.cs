@@ -137,14 +137,14 @@ namespace Reportman.Drawing.Forms
             }
             else
                 if (ncomp < 200)
-            {
-                nfontsize = 8;
-            }
-            else
+                {
+                    nfontsize = 8;
+                }
+                else
                     if (ncomp > 350)
-                nfontsize = 18;
-            else if (ncomp > 800)
-                nfontsize = 24;
+                        nfontsize = 18;
+                    else if (ncomp > 800)
+                        nfontsize = 24;
             if (windowFont == null)
                 recreatefont = true;
             else

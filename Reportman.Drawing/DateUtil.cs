@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 
 namespace Reportman.Drawing
@@ -67,9 +67,9 @@ namespace Reportman.Drawing
             double atime = avalue - (int)avalue;
             int seconds = (int)(atime * 86400);
             int hours = (int)(seconds / 3600);
-            seconds = seconds - hours * 3600;
+            seconds -= hours * 3600;
             int minutes = (int)(seconds / 60);
-            seconds = seconds - minutes * 60;
+            seconds -= minutes * 60;
             return new TimeSpan(days, hours, minutes, seconds);
         }
         /// <summary>

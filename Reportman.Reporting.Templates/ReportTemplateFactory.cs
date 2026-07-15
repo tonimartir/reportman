@@ -1,7 +1,6 @@
-using System;
-using Reportman.Drawing;
-using Reportman.Reporting;
+﻿using Reportman.Drawing;
 using Reportman.Reporting.Design;
+using System;
 
 namespace Reportman.Reporting.Templates
 {

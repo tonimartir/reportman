@@ -745,7 +745,7 @@ namespace Reportman.Drawing.Forms
                 int offset = 0;
                 while (nstrip.Items[nindex].Bounds.Left == 0)
                 {
-                    offset = offset + nstrip.Items[nindex].Width;
+                    offset += nstrip.Items[nindex].Width;
                     nindex--;
                     if (nindex == 0)
                         break;
@@ -781,7 +781,7 @@ namespace Reportman.Drawing.Forms
         private string GetIniFileName()
         {
             string exename = System.IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            exename = exename + "position";
+            exename += "position";
             string filename = System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             filename = System.IO.Path.Combine(filename, exename);
             filename = System.IO.Path.ChangeExtension(filename, ".ini");
@@ -906,7 +906,7 @@ namespace Reportman.Drawing.Forms
                 int x2 = ToolStripMouseDownOrigin.X;
                 int y2 = ToolStripMouseDownOrigin.Y;
                 double dist = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
-                dist = dist * Reportman.Drawing.Windows.GraphicUtils.DPIScale;
+                dist *= Reportman.Drawing.Windows.GraphicUtils.DPIScale;
                 if (dist > 5)
                 {
                     moving = false;

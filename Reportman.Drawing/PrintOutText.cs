@@ -89,7 +89,8 @@ namespace Reportman.Drawing
         /// <summary>
         /// Gets the rendered printer output decoded as a string using code page 437.
         /// </summary>
-        public string PrintResult {
+        public string PrintResult
+        {
             get
             {
                 byte[] nbytes = PrintResultStream.ToArray();
@@ -257,13 +258,13 @@ namespace Reportman.Drawing
                             lwidths.Add((-(arec.Right - arec.Left)).ToString());
                         else
                             lwidths.Add((arec.Right - arec.Left).ToString());
-                        alinesize = alinesize + (arec.Right - arec.Left);
+                        alinesize += (arec.Right - arec.Left);
                     }
                     alinedif = arect.Right - arect.Left - alinesize;
                     if (alinedif > 0)
                     {
                         if (lwords.Count > 1)
-                            alinedif = alinedif / (lwords.Count - 1);
+                            alinedif /= (lwords.Count - 1);
                         if (righttoleft)
                         {
                             currpos = arect.Right;
@@ -405,9 +406,9 @@ namespace Reportman.Drawing
                 else
                     nline.Value = oldvalue.Substring(0, columnnumber);
             }
-            nline.Value = nline.Value + astring.Substring(0, toposition);
+            nline.Value += astring.Substring(0, toposition);
             if (nline.Value.Length < oldvalue.Length)
-                nline.Value = nline.Value + oldvalue.Substring(nline.Value.Length, oldvalue.Length - nline.Value.Length);
+                nline.Value += oldvalue.Substring(nline.Value.Length, oldvalue.Length - nline.Value.Length);
             if (doinsert)
                 nline.texts.Add(atpos, npostext);
             else
@@ -439,7 +440,8 @@ namespace Reportman.Drawing
         /// Controls whether OEM character-set conversion is applied to output text: use the printer
         /// configuration default (<c>None</c>), or force it off (<c>False</c>) or on (<c>True</c>).
         /// </summary>
-        public enum OemConvertOverride {
+        public enum OemConvertOverride
+        {
             /// <summary>Use the OEM conversion setting from the printer configuration.</summary>
             None,
             /// <summary>Force OEM character-set conversion off.</summary>
@@ -470,10 +472,10 @@ namespace Reportman.Drawing
                     OEMConvert = true;
             }
             else
-            if (LoadOEMConvert)
-            {
-                OEMConvert = PrinterConfig.GetOEMConvert(FPrinterSelect);
-            }
+                if (LoadOEMConvert)
+                {
+                    OEMConvert = PrinterConfig.GetOEMConvert(FPrinterSelect);
+                }
 
             allowedsteps = new SortedList<PrintStepType, PrintStepType>
             {
@@ -837,9 +839,9 @@ namespace Reportman.Drawing
                             allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi15;
                         else
                             if (escapecodes[PrinterRawOperation.cpi12].Length > 0)
-                            allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi12;
-                        else
-                            allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi10;
+                                allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi12;
+                            else
+                                allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi10;
                     }
                 }
                 if (escapecodes[PrinterRawOperation.cpi20].Length == 0)
@@ -852,9 +854,9 @@ namespace Reportman.Drawing
                             allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi15;
                         else
                             if (escapecodes[PrinterRawOperation.cpi12].Length > 0)
-                            allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi12;
-                        else
-                            allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi10;
+                                allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi12;
+                            else
+                                allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi10;
                     }
                 }
             }
@@ -1069,7 +1071,7 @@ namespace Reportman.Drawing
                     changestep = true;
                 else
                     if (PreviousLine.FontStep != Line.FontStep)
-                    changestep = true;
+                        changestep = true;
                 if (changestep)
                 {
                     byte[] fstep = GetFontStepEscape(Line.FontStep);
@@ -1130,7 +1132,7 @@ namespace Reportman.Drawing
                         nbytes = oriencoding.GetBytes(newstring);
                     }
                     nline.Write(nbytes, 0, nbytes.Length);
-                    linepos = linepos + nbytes.Length;
+                    linepos += nbytes.Length;
                     if (!npos.regular && !plain)
                     {
                         byte[] newScape = GetEscape(PrinterRawOperation.Normal);
@@ -1268,8 +1270,8 @@ namespace Reportman.Drawing
                         if (FontSize < 8)
                             aresult = PrintStepType.cpi20;
                         else
-                        if (FontSize > 15)
-                            aresult = PrintStepType.cpi5;
+                            if (FontSize > 15)
+                                aresult = PrintStepType.cpi5;
                         break;
                 }
             }
@@ -1677,7 +1679,7 @@ namespace Reportman.Drawing
                         maxwidth = currentwidth;
                     linfo.TopPos = currenttoppos - leading;
                     linfo.Height = linespacing;
-                    currenttoppos = currenttoppos + linespacing;
+                    currenttoppos += linespacing;
                     bool doinsert = true;
                     if (doclip)
                     {
@@ -1726,7 +1728,7 @@ namespace Reportman.Drawing
                                 lastsize = currentwidth + newsize;
                             }
                         }
-                        currentwidth = currentwidth + newsize;
+                        currentwidth += newsize;
                     }
                     // When the character does not fit
                     else
@@ -1763,7 +1765,7 @@ namespace Reportman.Drawing
                                 maxwidth = currentwidth;
                             linfo.TopPos = currenttoppos - leading;
                             linfo.Height = linespacing;
-                            currenttoppos = currenttoppos + linespacing;
+                            currenttoppos += linespacing;
                             bool doinsert = true;
                             if (doclip)
                             {
@@ -1823,7 +1825,7 @@ namespace Reportman.Drawing
                     maxwidth = currentwidth;
                 linfo.TopPos = currenttoppos - leading;
                 linfo.Height = linespacing;
-                currenttoppos = currenttoppos + linespacing;
+                currenttoppos += linespacing;
                 bool doinsert = true;
                 if (doclip)
                 {
@@ -1927,15 +1929,15 @@ namespace Reportman.Drawing
                                     alastsize = asize + newsize;
                                 }
                             }
-                            asize = asize + newsize;
+                            asize += newsize;
                         }
                     }
                     else
-                        asize = asize + newsize;
+                        asize += newsize;
                 }
                 else
                 {
-                    asize = asize + newsize;
+                    asize += newsize;
                 }
                 if (!singleline)
                 {
@@ -1958,7 +1960,7 @@ namespace Reportman.Drawing
                     if (DescPos)
                     {
                         DescPos = false;
-                        info.Size = info.Size - 2;
+                        info.Size -= 2;
                     }
                     info.Width = (int)Math.Round(asize);
                     info.Height = (int)Math.Round((double)Twips.TWIPS_PER_INCH / ((double)FLinesPerInch / 100.0));

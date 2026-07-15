@@ -224,7 +224,7 @@ namespace Reportman.Reporting
                             PartialPos = 0;
                         FIsPartial = true;
                         PartialPrint = true;
-                        PartialPos = PartialPos + newposition;
+                        PartialPos += newposition;
                         TextObj.Text = TextObj.Text.Substring(0, newposition);
                     }
                     else
@@ -318,7 +318,7 @@ namespace Reportman.Reporting
                 IsPageCount = true;
             else
                 if (astring == "GROUPPAGECOUNT")
-                IsGroupPageCount = true;
+                    IsGroupPageCount = true;
         }
         /// <summary>
         /// Associates the item with a report and creates the evaluator identifier binding for it.
@@ -371,7 +371,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + (char)10 + Name  + " Prop:Expression", this, "Expression");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:Expression", this, "Expression");
             }
             FExportValue = new Variant();
             if (ExportExpression.Length > 0)
@@ -737,7 +737,7 @@ namespace Reportman.Reporting
                             {
                                 case AggregateType.Summary:
                                     if (eval.Result.VarType != VariantType.Null)
-                                        Value = Value + eval.Result;
+                                        Value += eval.Result;
                                     break;
                                 case AggregateType.Minimum:
                                     if (eval.Result.VarType != VariantType.Null)
@@ -760,7 +760,7 @@ namespace Reportman.Reporting
                                     }
                                     else
                                     {
-                                        FSumValue = FSumValue + eval.Result;
+                                        FSumValue += eval.Result;
                                         Value = FSumValue / FDataCount;
                                     }
                                     break;
@@ -807,7 +807,7 @@ namespace Reportman.Reporting
                             }
                             catch (Exception E)
                             {
-                                throw new ReportException(E.Message + (char)10  + Name + " Prop:AgIniValue", this, "AgIniValue");
+                                throw new ReportException(E.Message + (char)10 + Name + " Prop:AgIniValue", this, "AgIniValue");
                             }
                         }
                     }
@@ -862,7 +862,7 @@ namespace Reportman.Reporting
             aresult.CutText = CutText;
             aalign = PrintAlignment | VPrintAlignment;
             if (SingleLine)
-                aalign = aalign | MetaFile.AlignmentFlags_SingleLine;
+                aalign |= MetaFile.AlignmentFlags_SingleLine;
             aresult.Alignment = aalign;
             aresult.WordWrap = WordWrap;
             aresult.RightToLeft = RightToLeft;

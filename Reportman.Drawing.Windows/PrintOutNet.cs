@@ -1,12 +1,12 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
-using System.Text;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
 
 
 namespace Reportman.Drawing
@@ -155,8 +155,7 @@ namespace Reportman.Drawing
             // metrics seen on screen and on paper match the PDF preview byte-for-byte.
             if (UseExactPDFText || (!aobj.RightToLeft && ((CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3) || (((aobj.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (aobj.Type1Font == PDFFontType.Linked) || (aobj.Type1Font == PDFFontType.Embedded)))))
             {
-                if (npdfdriver == null)
-                    npdfdriver = new PrintOutPDF();
+                npdfdriver ??= new PrintOutPDF();
                 npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
                 // With UseExactPDFText, force the PDF canvas to go through the DirectWrite/HarfBuzz
                 // shaper (instead of TextExtentSimple) so measurements and the drawing path
@@ -200,8 +199,7 @@ namespace Reportman.Drawing
         /// <returns>A list of LineInfo objects describing each wrapped line's position and metrics.</returns>
         public override List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
         {
-            if (npdfdriver == null)
-                npdfdriver = new PrintOutPDF();
+            npdfdriver ??= new PrintOutPDF();
 
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
             // When UseExactPDFText is on, force the shaper so LineInfo.Glyphs is populated
@@ -261,7 +259,7 @@ namespace Reportman.Drawing
             const float MIN_FONT_SIZE = 2.3F;
             int intfontstyle = obj.FontStyle;
             float fontsize = obj.FontSize;
-            fontsize = fontsize * Scale;
+            fontsize *= Scale;
             if (fontsize < MIN_FONT_SIZE)
                 fontsize = MIN_FONT_SIZE;
             string fontname = page.GetWFontNameText(obj);
@@ -273,13 +271,13 @@ namespace Reportman.Drawing
             {
                 FontStyle astyle = new FontStyle();
                 if ((intfontstyle & 1) > 0)
-                    astyle = astyle | FontStyle.Bold;
+                    astyle |= FontStyle.Bold;
                 if ((intfontstyle & 2) > 0)
-                    astyle = astyle | FontStyle.Italic;
+                    astyle |= FontStyle.Italic;
                 if ((intfontstyle & 4) > 0)
-                    astyle = astyle | FontStyle.Underline;
+                    astyle |= FontStyle.Underline;
                 if ((intfontstyle & 8) > 0)
-                    astyle = astyle | FontStyle.Strikeout;
+                    astyle |= FontStyle.Strikeout;
                 float nfontsize = fontsize;
                 //                if (fontsize == 11)
                 //                    nfontsize = 12f;
@@ -301,13 +299,13 @@ namespace Reportman.Drawing
             FontStyle astyle = new FontStyle();
             int intfontstyle = objt.FontStyle;
             if ((intfontstyle & 1) > 0)
-                astyle = astyle | FontStyle.Bold;
+                astyle |= FontStyle.Bold;
             if ((intfontstyle & 2) > 0)
-                astyle = astyle | FontStyle.Italic;
+                astyle |= FontStyle.Italic;
             if ((intfontstyle & 4) > 0)
-                astyle = astyle | FontStyle.Underline;
+                astyle |= FontStyle.Underline;
             if ((intfontstyle & 8) > 0)
-                astyle = astyle | FontStyle.Strikeout;
+                astyle |= FontStyle.Strikeout;
             Font newfont = new Font(objt.WFontName, objt.FontSize, astyle);
             return newfont;
         }
@@ -329,13 +327,13 @@ namespace Reportman.Drawing
             fl.LineAlignment = StringAlignment.Near;
             if (!CutText)
             {
-                fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoClip;
+                fl.FormatFlags |= StringFormatFlags.NoClip;
                 fl.Trimming = StringTrimming.None;
             }
             if (!WordWrap)
-                fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoWrap;
+                fl.FormatFlags |= StringFormatFlags.NoWrap;
             if (RightToLeft)
-                fl.FormatFlags = fl.FormatFlags | StringFormatFlags.DirectionRightToLeft;
+                fl.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
             if ((Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
                 fl.Alignment = StringAlignment.Far;
             if ((Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
@@ -354,15 +352,14 @@ namespace Reportman.Drawing
         public StringFormat MetaObjectToStringFormat(MetaObjectText obj)
         {
             bool wordWrap = obj.WordWrap;
-            if ((obj.Alignment & MetaFile.AlignmentFlags_SingleLine)>0)
+            if ((obj.Alignment & MetaFile.AlignmentFlags_SingleLine) > 0)
             {
                 wordWrap = false;
             }
             if (fl == null || stock_WordWrap != wordWrap || stock_RightToLeft != obj.RightToLeft
                 || stock_Alignment != obj.Alignment || obj.CutText != stock_CutText)
             {
-                if (fl == null)
-                    fl = new StringFormat();
+                fl ??= new StringFormat();
                 fl.HotkeyPrefix = HotkeyPrefix.None;
 
                 fl.FormatFlags = (StringFormatFlags)0;
@@ -372,13 +369,13 @@ namespace Reportman.Drawing
 
                 if (!obj.CutText)
                 {
-                    fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoClip;
+                    fl.FormatFlags |= StringFormatFlags.NoClip;
                     fl.Trimming = StringTrimming.None;
                 }
                 if (!wordWrap)
-                    fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoWrap;
+                    fl.FormatFlags |= StringFormatFlags.NoWrap;
                 if (obj.RightToLeft)
-                    fl.FormatFlags = fl.FormatFlags | StringFormatFlags.DirectionRightToLeft;
+                    fl.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
                 if ((obj.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
                     fl.Alignment = StringAlignment.Far;
                 if ((obj.Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
@@ -408,13 +405,13 @@ namespace Reportman.Drawing
 
             if (!obj.CutText)
             {
-                fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoClip;
+                fl.FormatFlags |= StringFormatFlags.NoClip;
                 fl.Trimming = StringTrimming.None;
             }
             if (!obj.WordWrap)
-                fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoWrap;
+                fl.FormatFlags |= StringFormatFlags.NoWrap;
             if (obj.RightToLeft)
-                fl.FormatFlags = fl.FormatFlags | StringFormatFlags.DirectionRightToLeft;
+                fl.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
             if ((obj.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
                 fl.Alignment = StringAlignment.Far;
             if ((obj.Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
@@ -433,12 +430,12 @@ namespace Reportman.Drawing
             int Height = arec.Height;
             if (Width > Height)
             {
-                Left = Left + (Width - Height) / 2;
+                Left += (Width - Height) / 2;
                 Width = Height;
             }
             else
             {
-                Top = Top + (Height - Width) / 2;
+                Top += (Height - Width) / 2;
                 Height = Width;
             }
 
@@ -570,8 +567,7 @@ namespace Reportman.Drawing
                         Point extent;
                         if (UseExactPDFText || (!objt.RightToLeft && ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)))
                         {
-                            if (npdfdriver == null)
-                                npdfdriver = new PrintOutPDF();
+                            npdfdriver ??= new PrintOutPDF();
                             npdfdriver.ForceComplexShaping = UseExactPDFText;
                             // Override Type1Font only on the local struct: mutating the metafile
                             // object would alter how it renders in later draws (preview vs print).
@@ -586,16 +582,16 @@ namespace Reportman.Drawing
                             bleft = aleft + obj.Width / 2 - extent.X / 2;
                         else
                             if ((objt.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
-                            bleft = aleft + obj.Width - extent.X;
-                        else
-                            bleft = aleft;
+                                bleft = aleft + obj.Width - extent.X;
+                            else
+                                bleft = aleft;
                         if ((objt.Alignment & MetaFile.AlignmentFlags_AlignVCenter) > 0)
                             btop = atop + obj.Height / 2 - extent.Y / 2;
                         else
                             if ((objt.Alignment & MetaFile.AlignmentFlags_AlignBottom) > 0)
-                            btop = atop + obj.Height - extent.Y;
-                        else
-                            btop = atop;
+                                btop = atop + obj.Height - extent.Y;
+                            else
+                                btop = atop;
 
                         bwidth = extent.X;
                         bheight = extent.Y;
@@ -632,7 +628,7 @@ namespace Reportman.Drawing
                     }
                     else
                     {
-                        if ((objt.Alignment & MetaFile.AlignmentFlags_SingleLine)>0)
+                        if ((objt.Alignment & MetaFile.AlignmentFlags_SingleLine) > 0)
                         {
                             atext = atext.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", "");
                         }
@@ -906,8 +902,8 @@ namespace Reportman.Drawing
                     if (OptimizeWMF == WMFOptimization.Gdi)
                         wmftype = EmfType.EmfOnly;
                     else
-                    if (OptimizeWMF == WMFOptimization.Gdiplus)
-                        wmftype = EmfType.EmfPlusDual;
+                        if (OptimizeWMF == WMFOptimization.Gdiplus)
+                            wmftype = EmfType.EmfPlusDual;
 
                     int awidth = (int)Math.Round(bitmap.HorizontalResolution * meta.CustomX / 1440);
                     int aheight = (int)Math.Round(bitmap.VerticalResolution * meta.CustomY / 1440);
@@ -1065,10 +1061,7 @@ namespace Reportman.Drawing
             float intdpiy = gr.DpiY;
 
             // Use the PDF driver for line metrics (vertical alignment, line count)
-            if (npdfdriver == null)
-            {
-                npdfdriver = new PrintOutPDF();
-            }
+            npdfdriver ??= new PrintOutPDF();
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
             Point full_extent = new Point(arect.Width, arect.Height);
             var linfos = TextExtentLineInfo(atext, ref full_extent);
@@ -1165,7 +1158,7 @@ namespace Reportman.Drawing
                         totalTwips += linfo.Glyphs[k].XAdvance;
                     int totalPix = (int)Math.Round(totalTwips * intdpix / 1440 * Scale);
                     int rectPix = (int)Math.Round(arect.Right * intdpix / 1440 * Scale) - pixLeft;
-                    pixLeft = pixLeft + (rectPix - totalPix) / 2;
+                    pixLeft += (rectPix - totalPix) / 2;
                 }
                 int cumLeft = 0;
                 for (int k = 0; k < glyphCount; k++)
@@ -1358,10 +1351,7 @@ namespace Reportman.Drawing
             float intdpix = gr.DpiX;
             float intdpiy = gr.DpiY;
             // Calculates text extent and apply alignment
-            if (npdfdriver == null)
-            {
-                npdfdriver = new PrintOutPDF();
-            }
+            npdfdriver ??= new PrintOutPDF();
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
             // Stay coherent with the rest of the pipeline: if UseExactPDFText is on, all measuring
             // (TextExtentLineInfo + WordExtent calls below) goes through the same shaper.
@@ -1432,13 +1422,13 @@ namespace Reportman.Drawing
                             lwidths.Add(-extent.X);
                         else
                             lwidths.Add(extent.X);
-                        alinesize = alinesize + extent.X;
+                        alinesize += extent.X;
                     }
                     alinedif = arect.Width - alinesize;
                     if ((alinedif > 0) || ((alinedif == 0) && (lwords.Count == 1)))
                     {
                         if (lwords.Count > 1)
-                            alinedif = alinedif / (lwords.Count - 1);
+                            alinedif /= (lwords.Count - 1);
                         if (RightToLeft)
                         {
                             currpos = arect.Right;
@@ -1478,7 +1468,7 @@ namespace Reportman.Drawing
                 if (!dojustify)
                 {
                     sformat = IntAlignToStringFormat(atext.Alignment, atext.CutText, atext.WordWrap, atext.RightToLeft);
-                    sformat.FormatFlags = sformat.FormatFlags | StringFormatFlags.NoWrap;
+                    sformat.FormatFlags |= StringFormatFlags.NoWrap;
                     //StringFormat.GenericTypographic
                     posx = arect.Left;
                     nposx = posx;
@@ -1516,14 +1506,14 @@ namespace Reportman.Drawing
                             int overWidth = Convert.ToInt32(Math.Ceiling(textSize.Width));
                             int dif = overWidth - newWidth;
                             newWidth = overWidth;
-                            nposx = nposx - dif;
+                            nposx -= dif;
                         }
                         if (textSize.Height > newHeight && sformat.LineAlignment == StringAlignment.Far)
                         {
                             int overHeight = Convert.ToInt32(Math.Ceiling(textSize.Height));
                             int dif = overHeight - newWidth;
                             newHeight = overHeight;
-                            nposy = nposy - dif;
+                            nposy -= dif;
                         }
                     }
                     DrawString(gr, astring, nfont, sbrush, new Rectangle(nposx, nposy,
@@ -1623,14 +1613,14 @@ namespace Reportman.Drawing
                             // RTL words accumulate negative, exactly like PDFCanvas.TextRect
                             int nwidth = RightToLeft ? -extent.X : extent.X;
                             lwidths.Add(nwidth);
-                            alinesize = alinesize + nwidth;
+                            alinesize += nwidth;
                         }
                         // Same arithmetic as PDFCanvas.TextRect: double space distribution
                         double alinedif = arect.Width - alinesize;
                         if (alinedif > 0)
                         {
                             if (lwords.Count > 1)
-                                alinedif = alinedif / (lwords.Count - 1);
+                                alinedif /= (lwords.Count - 1);
                             double currpos = posx;
                             if (RightToLeft)
                             {

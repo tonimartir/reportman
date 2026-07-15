@@ -1440,10 +1440,7 @@ namespace Reportman.Reporting
             {
                 var page = MetaFile.Pages[pageIndex];
                 page.UpdatedPageSize = true;
-                if (page.PageDetail == null)
-                {
-                    page.PageDetail = new PageSizeDetail();
-                }
+                page.PageDetail ??= new PageSizeDetail();
                 PageSizeDetail PageDetail = page.PageDetail;
                 PageDetail.Duplex = Duplex;
 

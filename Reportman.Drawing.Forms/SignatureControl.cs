@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
@@ -15,12 +15,12 @@ namespace Reportman.Drawing.Forms
         /// <summary>
         /// Determines how captured signature points are drawn: as a smoothed curve or as connected straight lines.
         /// </summary>
-        public enum SignatureStyle 
-        { 
+        public enum SignatureStyle
+        {
             /// <summary>Draw signature using smooth bezier curves.</summary>
-            Curve, 
+            Curve,
             /// <summary>Draw signature using connected straight lines.</summary>
-            Line 
+            Line
         };
         Bitmap nbitmap;
         System.Timers.Timer ntimer;

@@ -195,8 +195,7 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public Graphics GetGraphics()
         {
-            if (grint == null)
-                grint = CreateGraphics();
+            grint ??= CreateGraphics();
             return grint;
         }
         private static string ExcelColumnToName(int idx)
@@ -438,11 +437,7 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public TreeGridAdvancedNode AddNode(TreeGridAdvancedNode parent, TreeGridRow xrow, bool addexpanded)
         {
-            if (parent == null)
-            {
-                parent = MainNode;
-                //throw new Exception("Node must have parent, use grid.MainNode instead");
-            }
+            parent ??= MainNode;
             rowid_generator++;
             TreeGridAdvancedNode newnode = new TreeGridAdvancedNode();
             newnode.RowId = rowid_generator;
@@ -1194,7 +1189,7 @@ namespace Reportman.Drawing.Forms
                                     graphics.DrawLine(linePen, horizontalStop, cellBounds.Top, horizontalStop, cellBounds.Bottom);
                                 }
                                 previousNode = previousNode.Parent;
-                                horizontalStop = horizontalStop - INDENT_WIDTH;
+                                horizontalStop -= INDENT_WIDTH;
                                 if (previousNode == null)
                                     break;
                             }

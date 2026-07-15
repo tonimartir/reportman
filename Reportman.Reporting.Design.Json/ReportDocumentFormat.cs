@@ -1,4 +1,4 @@
-namespace Reportman.Reporting.Design.Json
+﻿namespace Reportman.Reporting.Design.Json
 {
     /// <summary>
     /// Identifies the serialization format used to read or write a report document,

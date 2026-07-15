@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -393,8 +393,7 @@ namespace Reportman.Designer
         /// <summary>Pre-fill the agent fields (used when editing an existing agent connection).</summary>
         public void PopulateHttpAgent(string apiKey, string baseUrl, long hubDatabaseId, string databaseName)
         {
-            if (FAgentParams == null)
-                FAgentParams = new HttpAgentParams();
+            FAgentParams ??= new HttpAgentParams();
             FAgentParams.ApiKey = apiKey ?? "";
             FAgentParams.BaseUrl = baseUrl ?? "";
             string name = string.IsNullOrEmpty(databaseName)
@@ -418,8 +417,7 @@ namespace Reportman.Designer
             FAgentMode = true;
             FInvariant = "";
             FBuilder = null;
-            if (FAgentParams == null)
-                FAgentParams = new HttpAgentParams();
+            FAgentParams ??= new HttpAgentParams();
             grid.SelectedObject = FAgentParams;
             try { grid.ExpandAllGridItems(); }
             catch { }
@@ -499,8 +497,7 @@ namespace Reportman.Designer
                 try { b = factory.CreateConnectionStringBuilder(); }
                 catch { b = null; }
             }
-            if (b == null)
-                b = new DbConnectionStringBuilder();
+            b ??= new DbConnectionStringBuilder();
 
             if (!string.IsNullOrEmpty(connectionString))
             {
@@ -567,8 +564,7 @@ namespace Reportman.Designer
                 DbProviderFactory factory = null;
                 if (DatabaseInfo.CustomProviderFactories.IndexOfKey(FInvariant) >= 0)
                     factory = DatabaseInfo.CustomProviderFactories[FInvariant];
-                if (factory == null)
-                    factory = DbProviderFactories.GetFactory(FInvariant);
+                factory ??= DbProviderFactories.GetFactory(FInvariant);
                 if (factory == null)
                     throw new Exception("Provider factory not found: " + FInvariant);
 

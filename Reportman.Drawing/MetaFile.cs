@@ -1226,10 +1226,7 @@ namespace Reportman.Drawing
         /// <param name="deststream">Destination stream</param>
         public void WriteStringToStream(string astring, Stream deststream)
         {
-            if (astring == null)
-            {
-                astring = "";
-            }
+            astring ??= "";
             var bytes = Encoding.UTF8.GetBytes(astring);
             Int32 strLength = bytes.Length;
             deststream.Write(StreamUtil.IntToByteArray(strLength), 0, 4);
@@ -1450,18 +1447,18 @@ namespace Reportman.Drawing
                     FVersion = MetaFileVersion.MetaVersion2_2;
                 else
                     if (StreamUtil.CompareArrayContent(buf, sign2_4))
-                    FVersion = MetaFileVersion.MetaVersion2_4;
-                else
-                    if (StreamUtil.CompareArrayContent(buf, sign3_0))
-                    FVersion = MetaFileVersion.MetaVersion3_0;
-                else
-                    if (StreamUtil.CompareArrayContent(buf, sign4_0))
-                    FVersion = MetaFileVersion.MetaVersion4_0;
-                else
-                    if (StreamUtil.CompareArrayContent(buf, sign4_1))
-                    FVersion = MetaFileVersion.MetaVersion4_1;
-                else
-                    throw new Exception(Translator.TranslateStr(520));
+                        FVersion = MetaFileVersion.MetaVersion2_4;
+                    else
+                        if (StreamUtil.CompareArrayContent(buf, sign3_0))
+                            FVersion = MetaFileVersion.MetaVersion3_0;
+                        else
+                            if (StreamUtil.CompareArrayContent(buf, sign4_0))
+                                FVersion = MetaFileVersion.MetaVersion4_0;
+                            else
+                                if (StreamUtil.CompareArrayContent(buf, sign4_1))
+                                    FVersion = MetaFileVersion.MetaVersion4_1;
+                                else
+                                    throw new Exception(Translator.TranslateStr(520));
                 ReadBuf(astream, ref buf, 4);
                 MetaSeparator separator = MetaSeparator.FileHeader;
                 if (StreamUtil.ByteArrayToInt(buf, 4) != (int)separator)
@@ -1799,7 +1796,7 @@ namespace Reportman.Drawing
                         astring = Pages.CurrentCount.ToString();
                     oldtexts = 9;
                     objx.TextS = astring.Length;
-                    astring = astring + "                                      ";
+                    astring += "                                      ";
                     for (int j = 0; j < oldtexts; j++)
                     {
                         apage.Pool[index + j] = astring[j];
@@ -1860,7 +1857,7 @@ namespace Reportman.Drawing
                     oldtexts = 9;
                     objx.TextS = astring.Length;
                     //					apage.Objects[aobject.ObjectIndex] = objx;
-                    astring = astring + "                                      ";
+                    astring += "                                      ";
                     for (int j = 0; j < oldtexts; j++)
                     {
                         apage.Pool[index + j] = astring[j];
@@ -2171,8 +2168,8 @@ namespace Reportman.Drawing
                 int readed = mems.Read(buf, 0, count);
                 while ((readed > 0) || (!feof))
                 {
-                    partial = partial + readed;
-                    FPosition = FPosition + readed;
+                    partial += readed;
+                    FPosition += readed;
                     if (partial == count)
                         break;
                     int needed = count - partial;
@@ -2183,7 +2180,7 @@ namespace Reportman.Drawing
                         if (needed <= 0)
                             break;
                         readed = zstream.Read(bufuncomp, 0, UNCOMP_BUF_SIZE);
-                        needed = needed - readed;
+                        needed -= readed;
                     }
                     if (readed == 0)
                         feof = true;

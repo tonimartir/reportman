@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -277,8 +277,7 @@ namespace Reportman.Designer
             ed.Text = (FEdAlias != null) ? FEdAlias.Text : (FRoute == Route.Agent ? "AGENT" : "CONNECTION");
             FEdAlias = ed;
 
-            if (FParams == null)
-                FParams = new ConnectionParamsControl();
+            FParams ??= new ConnectionParamsControl();
             FParams.Dock = DockStyle.Fill;
             FParams.Margin = new Padding(0, 6, 0, 0);
 

@@ -387,25 +387,25 @@ namespace Reportman.Drawing
         public string GetPostcriptName(int offset)
         {
             int id = ByteArrayToInt(rfarray, Convert.ToInt32(offset), 4);
-            offset = offset + 4;
+            offset += 4;
             if (id != 0x00010000)
             {
                 throw new Exception("Font collection to font offset error");
             }
             int num_tables = ByteArrayToUShort(rfarray, offset, 2);
-            offset = offset + 2;
-            offset = offset + 6;
+            offset += 2;
+            offset += 6;
             TableData tdata = null;
             for (int k = 0; k < num_tables; ++k)
             {
                 string tag = StreamUtil.ByteArrayToString(rfarray, offset, 4);
-                offset = offset + 4;
+                offset += 4;
                 int checksum = ByteArrayToInt(rfarray, offset, 4);
-                offset = offset + 4;
+                offset += 4;
                 int location = ByteArrayToInt(rfarray, offset, 4);
-                offset = offset + 4;
+                offset += 4;
                 int length = ByteArrayToInt(rfarray, offset, 4);
-                offset = offset + 4;
+                offset += 4;
                 if (tag == "name")
                 {
                     tdata = new TableData(tag, location, length, checksum); ;
@@ -418,26 +418,26 @@ namespace Reportman.Drawing
             }
             offset = tdata.Location;
             ushort format = ByteArrayToUShort(rfarray, offset, 2);
-            offset = offset + 2;
+            offset += 2;
             ushort nameCount = ByteArrayToUShort(rfarray, offset, 2);
-            offset = offset + 2;
+            offset += 2;
             ushort stringOffset = ByteArrayToUShort(rfarray, offset, 2);
-            offset = offset + 2;
+            offset += 2;
             string postName = "";
             for (int i = 0; i < nameCount; i++)
             {
                 ushort platformId = ByteArrayToUShort(rfarray, offset, 2);
-                offset = offset + 2;
+                offset += 2;
                 ushort platformSpecificId = ByteArrayToUShort(rfarray, offset, 2);
-                offset = offset + 2;
+                offset += 2;
                 ushort languajeId = ByteArrayToUShort(rfarray, offset, 2);
-                offset = offset + 2;
+                offset += 2;
                 ushort nameId = ByteArrayToUShort(rfarray, offset, 2);
-                offset = offset + 2;
+                offset += 2;
                 ushort length = ByteArrayToUShort(rfarray, offset, 2);
-                offset = offset + 2;
+                offset += 2;
                 ushort offset2 = ByteArrayToUShort(rfarray, offset, 2);
-                offset = offset + 2;
+                offset += 2;
                 int newoffset = tdata.Location + stringOffset + offset2;
                 byte[] byteName = new byte[length];
                 Array.Copy(rfarray, newoffset, byteName, 0, length);
@@ -448,20 +448,20 @@ namespace Reportman.Drawing
                 }
                 else
                     if (platformId == 3)
-                {
-
-                    name = "";
-                    for (int cidx = 0; cidx < byteName.Length; cidx = cidx + 2)
                     {
-                        ushort charint = ByteArrayToUShort(rfarray, newoffset + cidx, 2);
-                        char nchar = (char)charint;
-                        name = name + nchar;
+
+                        name = "";
+                        for (int cidx = 0; cidx < byteName.Length; cidx += 2)
+                        {
+                            ushort charint = ByteArrayToUShort(rfarray, newoffset + cidx, 2);
+                            char nchar = (char)charint;
+                            name += nchar;
+                        }
                     }
-                }
-                else
-                {
-                    name = ASCIIEncoding.ASCII.GetString(byteName);
-                }
+                    else
+                    {
+                        name = ASCIIEncoding.ASCII.GetString(byteName);
+                    }
                 if (nameId == 6)
                 {
                     postName = name;
@@ -484,13 +484,13 @@ namespace Reportman.Drawing
                 string ttcfHeader = StreamUtil.ByteArrayToString(rfarray, 0, 4);
                 if (ttcfHeader == "ttcf")
                 {
-                    directoryOffset = directoryOffset + 4;
+                    directoryOffset += 4;
                     var marjorVersion = ByteArrayToUShort(rfarray, Convert.ToInt32(directoryOffset), 2);
-                    directoryOffset = directoryOffset + 2;
+                    directoryOffset += 2;
                     var minorVersion = ByteArrayToUShort(rfarray, Convert.ToInt32(directoryOffset), 2);
-                    directoryOffset = directoryOffset + 2;
+                    directoryOffset += 2;
                     var numFonts = ByteArrayToUInt(rfarray, Convert.ToInt32(directoryOffset), 4);
-                    directoryOffset = directoryOffset + 4;
+                    directoryOffset += 4;
                     if (numFonts > 1000)
                     {
                         numFonts = 1000;
@@ -522,19 +522,19 @@ namespace Reportman.Drawing
                     throw new Exception("The font is not a truetype font or truetype font collection");
             }
             int num_tables = ByteArrayToUShort(rfarray, nindex, 2);
-            nindex = nindex + 2;
-            nindex = nindex + 6;
+            nindex += 2;
+            nindex += 6;
 
             for (int k = 0; k < num_tables; ++k)
             {
                 string tag = StreamUtil.ByteArrayToString(rfarray, nindex, 4);
-                nindex = nindex + 4;
+                nindex += 4;
                 int checksum = ByteArrayToInt(rfarray, nindex, 4);
-                nindex = nindex + 4;
+                nindex += 4;
                 int location = ByteArrayToInt(rfarray, nindex, 4);
-                nindex = nindex + 4;
+                nindex += 4;
                 int length = ByteArrayToInt(rfarray, nindex, 4);
-                nindex = nindex + 4;
+                nindex += 4;
                 tables[tag] = new TableData(tag, location, length, checksum);
 
             }
@@ -555,14 +555,13 @@ namespace Reportman.Drawing
             int nindex = tdata.Location + HEAD_LOCA_FORMAT_OFFSET;
             //rf.Seek(nindex,SeekOrigin.Begin);
             locaShortTable = (ByteArrayToUShort(rfarray, nindex, 4) == 0);
-            nindex = nindex + 4;
+            nindex += 4;
 
             // Cached
             Monitor.Enter(tflag);
             try
             {
-                if (CachedlocaTables == null)
-                    CachedlocaTables = new SortedList<string, int[]>();
+                CachedlocaTables ??= new SortedList<string, int[]>();
                 if (CachedlocaTables.IndexOfKey(PostcriptName) >= 0)
                 {
                     locaTable = CachedlocaTables[PostcriptName];
@@ -580,7 +579,7 @@ namespace Reportman.Drawing
                         for (int k = 0; k < entries; ++k)
                         {
                             locaTable[k] = ByteArrayToUShort(rfarray, nindex, 2) * 2;
-                            nindex = nindex + 2;
+                            nindex += 2;
                         }
                     }
                     else
@@ -590,7 +589,7 @@ namespace Reportman.Drawing
                         for (int k = 0; k < entries; ++k)
                         {
                             locaTable[k] = ByteArrayToInt(rfarray, nindex, 4);
-                            nindex = nindex + 4;
+                            nindex += 4;
                         }
                     }
                     CachedlocaTables.Add(PostcriptName, locaTable);
@@ -735,16 +734,16 @@ namespace Reportman.Drawing
             }
             int nindex = tableGlyphOffset + start;
             int numContours = (int)ByteArrayToShort(rfarray, nindex, 2);
-            nindex = nindex + 2;
+            nindex += 2;
             if (numContours >= 0)
                 return;
-            nindex = nindex + 8;
+            nindex += 8;
             for (; ; )
             {
                 int flags = ByteArrayToUShort(rfarray, nindex, 2);
-                nindex = nindex + 2;
+                nindex += 2;
                 int cGlyph = ByteArrayToUShort(rfarray, nindex, 2);
-                nindex = nindex + 2;
+                nindex += 2;
                 if (!glyphsUsed.ContainsKey(cGlyph))
                 {
                     if (cGlyph < locaTable.Length)
@@ -766,7 +765,7 @@ namespace Reportman.Drawing
                     skip += 4;
                 if ((flags & WE_HAVE_A_TWO_BY_TWO) != 0)
                     skip += 8;
-                nindex = nindex + skip;
+                nindex += skip;
             }
         }
         /// <summary>

@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -164,8 +164,7 @@ namespace Reportman.Drawing
         {
             get
             {
-                if (localstorage == null)
-                    localstorage = new FastDataLocalStorage();
+                localstorage ??= new FastDataLocalStorage();
                 return localstorage.bytenull;
             }
         }
@@ -173,8 +172,7 @@ namespace Reportman.Drawing
         {
             get
             {
-                if (localstorage == null)
-                    localstorage = new FastDataLocalStorage();
+                localstorage ??= new FastDataLocalStorage();
                 return localstorage.bytenonull;
             }
         }
@@ -182,8 +180,7 @@ namespace Reportman.Drawing
         {
             get
             {
-                if (localstorage == null)
-                    localstorage = new FastDataLocalStorage();
+                localstorage ??= new FastDataLocalStorage();
                 return localstorage.signature;
             }
         }
@@ -191,8 +188,7 @@ namespace Reportman.Drawing
         {
             get
             {
-                if (localstorage == null)
-                    localstorage = new FastDataLocalStorage();
+                localstorage ??= new FastDataLocalStorage();
                 return localstorage.nencoder;
             }
         }
@@ -202,7 +198,7 @@ namespace Reportman.Drawing
         /// </summary>
         /// <param name="ndata">The DataSet to serialize.</param>
         /// <param name="nstream">The output Stream.</param>
-        public static void SerializeDataSetToStream(DataSet ndata,Stream nstream)
+        public static void SerializeDataSetToStream(DataSet ndata, Stream nstream)
         {
             BinaryWriter nwriter = new BinaryWriter(nstream);
             nstream.Write(signature, 0, 4);
@@ -358,9 +354,9 @@ namespace Reportman.Drawing
                         nres = new byte[4];
                     else
                         if (dvalue.Millisecond == 0)
-                        nres = new byte[7];
-                    else
-                        nres = new byte[9];
+                            nres = new byte[7];
+                        else
+                            nres = new byte[9];
                     byte[] ax = StreamUtil.ShortToByteArray((short)dvalue.Year);
                     nres[0] = ax[0];
                     nres[1] = ax[1];
@@ -450,7 +446,7 @@ namespace Reportman.Drawing
                 case TypeData.Int32:
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     int iresult = nreader.ReadInt32();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return iresult;
                 //int iresult = StreamUtil.ByteArrayToInt(nbytes, index, nlen);
                 //index = index + nlen;
@@ -461,7 +457,7 @@ namespace Reportman.Drawing
                     //              return i64result;
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     long i64result = nreader.ReadInt64();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return i64result;
 
                 case TypeData.Int16:
@@ -470,46 +466,46 @@ namespace Reportman.Drawing
                     //              return i16result;
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     short i16result = nreader.ReadInt16();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return i16result;
                 case TypeData.Char:
                     char nchar = (char)StreamUtil.ByteArrayToShort(nbytes, index, nlen);
-                    index = index + nlen;
+                    index += nlen;
                     return nchar;
                 case TypeData.Byte:
-                    index = index + 1;
+                    index++;
                     return nbytes[index - 1];
                 case TypeData.String:
                     return ReadString(nbytes, ref index);
                 case TypeData.Double:
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     Double doublevalue = nreader.ReadDouble();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return doublevalue;
                 case TypeData.Float:
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     float floatvalue = nreader.ReadSingle();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return floatvalue;
                 case TypeData.Single:
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     Single singlevalue = nreader.ReadSingle();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return singlevalue;
                 case TypeData.Boolean:
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     bool boolvalue = nreader.ReadBoolean();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return boolvalue;
                 case TypeData.Decimal:
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     decimal decimalvalue = nreader.ReadDecimal();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return decimalvalue;
                 case TypeData.TimeSpan:
                     nreader.BaseStream.Seek(index, SeekOrigin.Begin);
                     long itimeresult = nreader.ReadInt64();
-                    index = index + ((int)nreader.BaseStream.Position - index);
+                    index += ((int)nreader.BaseStream.Position - index);
                     return new TimeSpan(itimeresult);
                 case TypeData.DateTime:
                     //              nwriter.Write((DateTime)nvalue);
@@ -519,7 +515,7 @@ namespace Reportman.Drawing
                         Millisecond = StreamUtil.ByteArrayToShort(nbytes, index + 7, 2);
                     else
                         if (nlen > 7)
-                        Millisecond = StreamUtil.ByteArrayToShort(nbytes, index + 7, 1);
+                            Millisecond = StreamUtil.ByteArrayToShort(nbytes, index + 7, 1);
                     byte seconds = 0;
                     if (nlen > 6)
                         seconds = nbytes[index + 6];
@@ -531,16 +527,16 @@ namespace Reportman.Drawing
                         hours = nbytes[index + 4];
                     DateTime dvalue = new DateTime(Year, nbytes[index + 2], nbytes[index + 3], hours,
                       minutes, seconds, Millisecond);
-                    index = index + nlen;
+                    index += nlen;
                     return dvalue;
                 case TypeData.ByteArray:
                     int blength = StreamUtil.ByteArrayToInt(nbytes, index, 4);
-                    index = index + 4;
+                    index += 4;
                     byte[] bbvalue = new byte[blength];
                     if (blength > 0)
                     {
                         Array.Copy(nbytes, index, bbvalue, 0, blength);
-                        index = index + blength;
+                        index += blength;
                     }
                     return bbvalue;
                 case TypeData.Object:
@@ -585,11 +581,11 @@ namespace Reportman.Drawing
         public static string ReadString(byte[] nbytes, ref int index)
         {
             int alen = StreamUtil.ByteArrayToInt(nbytes, index, 4);
-            index = index + 4;
+            index += 4;
             if (alen > 0)
             {
                 string astring = nencoder.GetString(nbytes, index, alen);
-                index = index + alen;
+                index += alen;
                 return astring;
             }
             else
@@ -639,26 +635,26 @@ namespace Reportman.Drawing
                 throw new Exception("Incorrect header in DeserializeDataSet");
             index = 4;
             int ndatatables = StreamUtil.ByteArrayToInt(nbytes, index, 4);
-            index = index + 4;
+            index += 4;
             for (int indextable = 0; indextable < ndatatables; indextable++)
             {
                 string tablename = ReadString(nbytes, ref index);
                 DataTable newtable = new DataTable(tablename);
                 newtable.CaseSensitive = true;
                 int colcount = StreamUtil.ByteArrayToInt(nbytes, index, 4);
-                index = index + 4;
+                index += 4;
                 TypeData[] coltypes = new TypeData[colcount];
                 for (int indexcol = 0; indexcol < colcount; indexcol++)
                 {
                     TypeData ntype = (TypeData)StreamUtil.ByteArrayToInt(nbytes, index, 4);
                     coltypes[indexcol] = ntype;
-                    index = index + 4;
+                    index += 4;
                     string colname = ReadString(nbytes, ref index);
                     DataColumn newcol = newtable.Columns.Add(colname, TypeDataToType(ntype));
                 }
                 // Constraint
                 int colsprim = StreamUtil.ByteArrayToInt(nbytes, index, 4);
-                index = index + 4;
+                index += 4;
                 if (colsprim < 0)
                     throw new Exception("Incorrect format colsprim");
                 DataColumn[] colprim = new DataColumn[colsprim];
@@ -672,7 +668,7 @@ namespace Reportman.Drawing
                 }
                 // Read rows
                 int rowcount = StreamUtil.ByteArrayToInt(nbytes, index, 4);
-                index = index + 4;
+                index += 4;
                 if (rowcount > 0)
                 {
                     object[] rowvalues = new object[colcount];
@@ -789,10 +785,10 @@ namespace Reportman.Drawing
                     }
                     else
                         if (nlen > 7)
-                    {
-                        nbytes = nreader.ReadBytes(2);
-                        Millisecond = StreamUtil.ByteArrayToShort(nbytes, 0, 2);
-                    }
+                        {
+                            nbytes = nreader.ReadBytes(2);
+                            Millisecond = StreamUtil.ByteArrayToShort(nbytes, 0, 2);
+                        }
 
                     DateTime dvalue = new DateTime(Year, month, day, hours,
                         minutes, seconds, Millisecond);

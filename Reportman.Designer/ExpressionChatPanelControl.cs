@@ -1,3 +1,4 @@
+﻿using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +7,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Reportman.Reporting;
 
 namespace Reportman.Designer
 {

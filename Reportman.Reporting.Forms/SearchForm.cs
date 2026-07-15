@@ -289,9 +289,9 @@ namespace Reportman.Reporting.Forms
             {
                 CurrencyManager cmx = (CurrencyManager)dgrid.BindingContext[dgrid.DataSource];
                 if (e.KeyCode == Keys.Up)
-                    cmx.Position = cmx.Position - 1;
+                    cmx.Position--;
                 else
-                    cmx.Position = cmx.Position + 1;
+                    cmx.Position++;
                 e.Handled = true;
             }
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
@@ -320,11 +320,11 @@ namespace Reportman.Drawing
         {
             byte[] aresult = new byte[4];
             aresult[0] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[1] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[2] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[3] = (byte)avalue;
             return aresult;
         }
@@ -335,19 +335,19 @@ namespace Reportman.Drawing
         {
             byte[] aresult = new byte[8];
             aresult[0] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[1] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[2] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[3] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[4] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[5] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[6] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[7] = (byte)avalue;
             return aresult;
         }
@@ -358,9 +358,9 @@ namespace Reportman.Drawing
         {
             byte[] aresult = new byte[2];
             aresult[0] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             aresult[1] = (byte)avalue;
-            avalue = avalue >> 8;
+            avalue >>= 8;
             return aresult;
         }
         /// <summary>
@@ -619,7 +619,7 @@ namespace Reportman.Drawing
             for (int i = 0; i < 8; i++)
             {
                 aresult[i] = (byte)avalue;
-                avalue = avalue >> 8;
+                avalue >>= 8;
             }
             return aresult;
         }

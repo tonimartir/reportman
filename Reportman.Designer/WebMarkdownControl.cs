@@ -1,3 +1,5 @@
+﻿using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -5,8 +7,6 @@ using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.WinForms;
 
 namespace Reportman.Designer
 {
@@ -24,7 +24,7 @@ namespace Reportman.Designer
         private bool _isReady;
         private bool _initializationStarted;
         private List<string> _pendingScripts;
-        
+
         /// <summary>
         /// Gets a value indicating whether the embedded page has finished loading
         /// and is ready to receive script calls. Scripts issued before this becomes
@@ -45,15 +45,15 @@ namespace Reportman.Designer
         private void InitializeComponent()
         {
             this.Size = new Size(600, 400);
-            
+
             _webView = new WebView2
             {
                 Dock = DockStyle.Fill,
                 DefaultBackgroundColor = Color.Transparent
             };
-            
+
             _webView.NavigationCompleted += WebView_NavigationCompleted;
-            
+
             this.Controls.Add(_webView);
         }
 
@@ -100,11 +100,11 @@ namespace Reportman.Designer
                 var env = await GetSharedEnvironmentAsync(assetPath);
                 if (IsDisposed)
                     return;
-                
+
                 await _webView.EnsureCoreWebView2Async(env);
                 if (IsDisposed)
                     return;
-                
+
                 string url = "file:///" + assetPath.Replace('\\', '/') + "/index.html";
                 _webView.CoreWebView2.Navigate(url);
             }

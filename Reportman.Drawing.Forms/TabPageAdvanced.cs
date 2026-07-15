@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /* Code based on Magic Library tab control
  * Crownwood.Magic.Controls.TabControl
  *
@@ -205,8 +205,7 @@ namespace Reportman.Drawing.Forms
                             Alerting = false;
                         _processing = value;
                         oldIcon = Icon;
-                        if (localprogessimage == null)
-                            localprogessimage = (Image)Properties.Resources.progress_wheel.Clone();
+                        localprogessimage ??= (Image)Properties.Resources.progress_wheel.Clone();
                         _icon = localprogessimage;
                         OnPropertyChanged(Property.IconFrame, Icon);
                         ImageAnimator.Animate(localprogessimage, OnFrameChanged);
@@ -299,8 +298,7 @@ namespace Reportman.Drawing.Forms
                             Processing = false;
                         _alerting = value;
                         oldIcon = Icon;
-                        if (localalertingimage == null)
-                            localalertingimage = (Image)_AlertingIcon.Clone();
+                        localalertingimage ??= (Image)_AlertingIcon.Clone();
                         _icon = localalertingimage;
                         OnPropertyChanged(Property.IconFrame, Icon);
                         ImageAnimator.Animate(localalertingimage, OnFrameChangedFinish);

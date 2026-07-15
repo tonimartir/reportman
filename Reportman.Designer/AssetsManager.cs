@@ -60,11 +60,11 @@ namespace Reportman.Designer
         {
             if (File.Exists(Path.Combine(basePath, "index.html")) || File.Exists(Path.Combine(basePath, "Index.html")))
                 return basePath;
-            
+
             string nested = Path.Combine(basePath, "MonacoEditor");
             if (File.Exists(Path.Combine(nested, "index.html")) || File.Exists(Path.Combine(nested, "Index.html")))
                 return nested;
-            
+
             return string.Empty;
         }
 

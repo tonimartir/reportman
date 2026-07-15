@@ -89,8 +89,7 @@ namespace Reportman.Designer
                 {
                     lock (_lock)
                     {
-                        if (_instance == null)
-                            _instance = new RpAuthManager();
+                        _instance ??= new RpAuthManager();
                     }
                 }
                 return _instance;

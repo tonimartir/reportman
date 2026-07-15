@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -24,12 +24,8 @@ using Newtonsoft.Json.Serialization;
 using Reportman.Drawing;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Reportman.Reporting
 {
@@ -363,7 +359,7 @@ namespace Reportman.Reporting
                 }
                 catch (Exception E)
                 {
-                    throw new ReportException(E.Message + (char)10 + Name  + " Prop:AfterPrint" ,
+                    throw new ReportException(E.Message + (char)10 + Name + " Prop:AfterPrint",
                         this, "AfterPrint");
                 }
             }
@@ -562,11 +558,11 @@ namespace Reportman.Reporting
 
         }
     }
-    
+
     /// <summary>
     /// Base class for any report item containing text properties, ExpressionItem and LabelItem are examples
     /// </summary>
-	public class PrintItemText : PrintPosItem
+    public class PrintItemText : PrintPosItem
     {
         /// <summary>Font family name for Microsoft Windows operating system</summary>
         public string WFontName { get; set; }
@@ -628,7 +624,7 @@ namespace Reportman.Reporting
             : base()
         {
             Transparent = true;
-    IsHtml = false;
+            IsHtml = false;
             FontSize = 10;
             BackColor = 0xFFFFFF;
             WFontName = "Arial";
@@ -647,10 +643,10 @@ namespace Reportman.Reporting
                     aresult = MetaFile.AlignmentFlags_AlignRight;
                 else
                     if (Alignment == TextAlignType.Center)
-                    aresult = MetaFile.AlignmentFlags_AlignHCenter;
-                else
+                        aresult = MetaFile.AlignmentFlags_AlignHCenter;
+                    else
                         if (Alignment == TextAlignType.Justify)
-                    aresult = MetaFile.AlignmentFlags_AlignHJustify;
+                            aresult = MetaFile.AlignmentFlags_AlignHJustify;
                 return aresult;
             }
         }
@@ -669,10 +665,10 @@ namespace Reportman.Reporting
                     aresult = MetaFile.AlignmentFlags_AlignVCenter;
                 else
                     if (VAlignment == TextAlignVerticalType.Bottom)
-                    aresult = MetaFile.AlignmentFlags_AlignBottom;
+                        aresult = MetaFile.AlignmentFlags_AlignBottom;
                 return aresult;
             }
-        }        
+        }
         /// <summary>
         /// Replaces all {{expression}} placeholders in the given text 
         /// with evaluated results using the report's Evaluator.
@@ -902,8 +898,8 @@ namespace Reportman.Reporting
         /// <returns>A concrete PrintPosItem instance.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            JObject jo = JObject.Load(reader);           
-            
+            JObject jo = JObject.Load(reader);
+
             // Lee el discriminador
             string className = null;
             if (jo.TryGetValue("className", StringComparison.OrdinalIgnoreCase, out JToken classNameToken))
@@ -957,8 +953,8 @@ namespace Reportman.Reporting
                 }
                 else
                 {*/
-                    var value = token.ToObject(prop.PropertyType, serializer);
-                    prop.ValueProvider.SetValue(obj, value);
+                var value = token.ToObject(prop.PropertyType, serializer);
+                prop.ValueProvider.SetValue(obj, value);
                 //}
             }
 

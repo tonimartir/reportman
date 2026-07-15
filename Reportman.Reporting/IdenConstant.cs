@@ -1,4 +1,4 @@
-using Reportman.Drawing;
+﻿using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {

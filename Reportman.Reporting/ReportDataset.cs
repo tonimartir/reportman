@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -99,12 +99,12 @@ namespace Reportman.Reporting
                     ncount = Rows.Count;
                 else
                     if (FCurrentView != null)
-                {
-                    if (CurrentRowSet != null)
-                        ncount = CurrentRowSet.Length;
-                    else
-                        ncount = CurrentView.Count;
-                }
+                    {
+                        if (CurrentRowSet != null)
+                            ncount = CurrentRowSet.Length;
+                        else
+                            ncount = CurrentView.Count;
+                    }
                 return ncount;
             }
         }

@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -142,10 +142,7 @@ namespace Reportman.Drawing
         /// </summary>
 		override public void NewDocument(MetaFile meta)
         {
-            if (doc == null)
-            {
-                doc = new PrintDocument();
-            }
+            doc ??= new PrintDocument();
             if (!ShowPrintProgress)
             {
                 if (UseStandardPrintController)
@@ -171,8 +168,7 @@ namespace Reportman.Drawing
             OrientationType norientation = OrientationType.Portrait;
             if (PageOrientation != OrientationType.Default)
                 norientation = PageOrientation;
-            if (doc == null)
-                doc = new PrintDocument();
+            doc ??= new PrintDocument();
             doc.PrinterSettings.DefaultPageSettings.Landscape = (norientation == OrientationType.Landscape);
         }
         /// <summary>
@@ -182,8 +178,7 @@ namespace Reportman.Drawing
         /// <returns></returns>
 		override public Point GetPageSize(out int indexqt)
         {
-            if (doc == null)
-                doc = new PrintDocument();
+            doc ??= new PrintDocument();
             bool Landscape = false;
             PaperSize psize;
             if (PrinterSettings.InstalledPrinters.Count == 0)
@@ -286,9 +281,9 @@ namespace Reportman.Drawing
                             e.PageSettings.Landscape = doc.DefaultPageSettings.Landscape;
                         else
                             if (apage.Orientation == OrientationType.Landscape)
-                            e.PageSettings.Landscape = true;
-                        else
-                            e.PageSettings.Landscape = false;
+                                e.PageSettings.Landscape = true;
+                            else
+                                e.PageSettings.Landscape = false;
                     }
                     else
                         e.PageSettings = doc.DefaultPageSettings;
@@ -355,7 +350,7 @@ namespace Reportman.Drawing
                         EndPage(FMeta);
                         FPagesPrinted++;
                         if (doc.PrinterSettings.Copies != 1)
-                            FPagesPrinted = FPagesPrinted + doc.PrinterSettings.Copies;
+                            FPagesPrinted += doc.PrinterSettings.Copies;
                         else
                             FPagesPrinted++;
 
@@ -473,10 +468,7 @@ namespace Reportman.Drawing
                     return false;
             }
 
-            if (doc == null)
-            {
-                doc = new PrintDocument();
-            }
+            doc ??= new PrintDocument();
             InitPrinter(meta);
 
             if (!DisableForwardOnly)
@@ -714,8 +706,7 @@ namespace Reportman.Drawing
             Monitor.Enter(cachedpagesizes);
             try
             {
-                if (cachedpagesizes == null)
-                    cachedpagesizes = new SortedList<string, List<PaperSize>>();
+                cachedpagesizes ??= new SortedList<string, List<PaperSize>>();
                 int index = cachedpagesizes.IndexOfKey(printername);
                 if (index < 0)
                 {
@@ -981,8 +972,7 @@ namespace Reportman.Drawing
                         doc.Dispose();
                         doc = null;
                     }
-                    if (doc == null)
-                        doc = new PrintDocument();
+                    doc ??= new PrintDocument();
                     doc.PrinterSettings.PrinterName = printername;
                 }
 

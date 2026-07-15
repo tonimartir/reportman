@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -140,8 +140,7 @@ namespace Reportman.Designer
                     }
                 }
                 RView.ExpandAll();
-                if (RView.SelectedNode == null)
-                    RView.SelectedNode = RView.TopNode;
+                RView.SelectedNode ??= RView.TopNode;
             }
             finally
             {
@@ -209,8 +208,7 @@ namespace Reportman.Designer
         {
             if (RView.Nodes.Count == 0)
                 throw new Exception("No nodes in the report tree");
-            if (RView.SelectedNode == null)
-                RView.SelectedNode = RView.Nodes[0];
+            RView.SelectedNode ??= RView.Nodes[0];
             return RView.SelectedNode;
 
         }

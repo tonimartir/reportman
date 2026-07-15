@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -90,13 +90,13 @@ namespace Reportman.Drawing
         {
             string fontname = "";
             if (pdffont.Italic)
-                fontname = fontname + "I";
+                fontname += "I";
             else
-                fontname = fontname + "i";
+                fontname += "i";
             if (pdffont.Bold)
-                fontname = fontname + "B";
+                fontname += "B";
             else
-                fontname = fontname + "b";
+                fontname += "b";
             fontname = fontname + "_____" + pdffont.WFontName;
             if (currentfont == fontname)
                 return;
@@ -108,9 +108,9 @@ namespace Reportman.Drawing
             {
                 fontstyle = System.Drawing.FontStyle.Regular;
                 if (pdffont.Italic)
-                    fontstyle = fontstyle | System.Drawing.FontStyle.Italic;
+                    fontstyle |= System.Drawing.FontStyle.Italic;
                 if (pdffont.Bold)
-                    fontstyle = fontstyle | System.Drawing.FontStyle.Bold;
+                    fontstyle |= System.Drawing.FontStyle.Bold;
 
                 Font afont = new Font(pdffont.WFontName, TTF_PRECISION, fontstyle, System.Drawing.GraphicsUnit.Point);
                 family = afont.FontFamily;
@@ -134,11 +134,52 @@ namespace Reportman.Drawing
             {
                 string nfam = fontData.FontFamily.ToUpper();
                 if (fontData.IsBold)
-                    nfam = nfam + "__b__";
+                    nfam += "__b__";
                 if (fontData.IsItalic)
+
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Drawing.Windows (net6.0-windows)", Antes:
+
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Drawing.Windows (net6.0-windows)", Antes:
+
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Drawing.Windows (net6.0-windows)", Antes:
+
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Drawing.Windows (net6.0-windows)", Antes:
                     nfam = nfam + "__i__";
                 if (TTFontData.FontDatas == null)
                     TTFontData.FontDatas = new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+=======
+                    nfam += "__i__";
+                TTFontData.FontDatas ??= new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+>>>>>>> Después
+                    nfam += "__i__";
+                if (TTFontData.FontDatas == null)
+                    TTFontData.FontDatas = new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+=======
+                    nfam += "__i__";
+                TTFontData.FontDatas ??= new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+>>>>>>> Después
+                    nfam += "__i__";
+                TTFontData.FontDatas ??= new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+=======
+                    nfam += "__i__";
+                TTFontData.FontDatas ??= new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+>>>>>>> Después
+                    nfam += "__i__";
+                TTFontData.FontDatas ??= new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+=======
+                    nfam += "__i__";
+                TTFontData.FontDatas ??= new SortedList<string, AdvFontData>();
+                if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
+>>>>>>> Después
+                    nfam += "__i__";
+                TTFontData.FontDatas ??= new SortedList<string, AdvFontData>();
                 if (TTFontData.FontDatas.IndexOfKey(nfam) >= 0)
                 {
                     fontData.FontData = TTFontData.FontDatas[nfam];
@@ -190,11 +231,11 @@ namespace Reportman.Drawing
             {
                 if (pdfFont.Italic)
                 {
-                    fontData.PostcriptName = fontData.PostcriptName + ",BoldItalic";
+                    fontData.PostcriptName += ",BoldItalic";
                 }
                 else
                 {
-                    fontData.PostcriptName = fontData.PostcriptName + ",Bold";
+                    fontData.PostcriptName += ",Bold";
                 }
                 fontData.IsBold = true;
             }
@@ -202,7 +243,7 @@ namespace Reportman.Drawing
             {
                 if (pdfFont.Italic)
                 {
-                    fontData.PostcriptName = fontData.PostcriptName + ",Italic";
+                    fontData.PostcriptName += ",Italic";
                     fontData.IsItalic = true;
                 }
             }
@@ -238,8 +279,7 @@ namespace Reportman.Drawing
             Monitor.Enter(tflag);
             try
             {
-                if (WidthsCache == null)
-                    WidthsCache = new SortedList<string, SortedList<char, GlyphInfo>>();
+                WidthsCache ??= new SortedList<string, SortedList<char, GlyphInfo>>();
                 if (WidthsCache.IndexOfKey(fontData.PostcriptName) < 0)
                 {
                     SortedList<char, GlyphInfo> nlist = new SortedList<char, GlyphInfo>();
@@ -263,8 +303,7 @@ namespace Reportman.Drawing
                 Monitor.Enter(tflag);
                 try
                 {
-                    if (KerningsCache == null)
-                        KerningsCache = new SortedList<string, SortedList<ulong, int>>();
+                    KerningsCache ??= new SortedList<string, SortedList<ulong, int>>();
                     if (KerningsCache.IndexOfKey(fontData.PostcriptName) >= 0)
                         fontData.Kernings = KerningsCache[fontData.PostcriptName];
                     else
@@ -539,7 +578,7 @@ namespace Reportman.Drawing
             if (fontData.LastLoaded < aint)
                 fontData.LastLoaded = aint;
             // Guardarlo en caché si no existía
-            if (glyphindex!=0 && (!fontData.glyphsInfo.ContainsKey(glyphindex)))
+            if (glyphindex != 0 && (!fontData.glyphsInfo.ContainsKey(glyphindex)))
             {
                 GlyphInfo ginfo = new GlyphInfo
                 {
@@ -726,7 +765,7 @@ namespace Reportman.Drawing
                 }
             }
         }
-        
+
         /// <summary>
         /// Detect paragraph direction from the first strong directional character.
         /// Returns true if the text should be treated as RTL (Arabic, Hebrew, etc.)
@@ -747,7 +786,7 @@ namespace Reportman.Drawing
                 if (c == '&') { inEntity = true; continue; }
                 if (c == ';' && inEntity) { inEntity = false; continue; }
                 if (inEntity) continue;
-                
+
                 int cp = (int)c;
                 // Skip whitespace, control chars, digits, punctuation
                 if (cp <= 0x0040) continue;
@@ -823,29 +862,68 @@ namespace Reportman.Drawing
                 fontFace = new SharpDX.DirectWrite.FontFace(font);
                 // method.Invoke(font, new object[] { fontFace });
                 // fontFace = new SharpDX.DirectWrite.FontFace(font.NativePointer);
-            } else
+            }
+            else
             {
-               // Workaround, set default ont?
-                throw new Exception("Font face not found: " + familyName+ " Fallback: Arial + Segou UI");
+                // Workaround, set default ont?
+                throw new Exception("Font face not found: " + familyName + " Fallback: Arial + Segou UI");
             }
 
-                // --- Crear TextFormat ---
-                var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, SharpDX.DirectWrite.FontStretch.Normal, fontSizeInDips);
-                
-                // Detect paragraph direction from first strong directional character.
-                // This is a fundamental bidi requirement: visual run ordering depends on paragraph embedding level.
-                textFormat.ReadingDirection = DetectParagraphDirectionPublic(Text)
-                    ? SharpDX.DirectWrite.ReadingDirection.RightToLeft
-                    : SharpDX.DirectWrite.ReadingDirection.LeftToRight;
 
-                // Honour the WordWrap / SingleLine flags. DirectWrite's TextLayout defaults to
-                // WordWrapping.Wrap, which would break long lines at the box width even when the
-                // report object has WordWrap = false (only explicit line breaks should split lines).
-                // The legacy TextExtentSimple path already respects this (PDFCanvas: "|| !wordbreak"),
-                // so the shaper must too, otherwise GDI/metafile printing wraps where the PDF does not.
-                textFormat.WordWrapping = (wordwrap && !singleline)
-                    ? SharpDX.DirectWrite.WordWrapping.Wrap
-                    : SharpDX.DirectWrite.WordWrapping.NoWrap;
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Drawing.Windows (net6.0-windows)", Antes:
+            // --- Crear TextFormat ---
+            var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, SharpDX.DirectWrite.FontStretch.Normal, fontSizeInDips);
+
+            // Detect paragraph direction from first strong directional character.
+            // This is a fundamental bidi requirement: visual run ordering depends on paragraph embedding level.
+            textFormat.ReadingDirection = DetectParagraphDirectionPublic(Text)
+                ? SharpDX.DirectWrite.ReadingDirection.RightToLeft
+                : SharpDX.DirectWrite.ReadingDirection.LeftToRight;
+
+            // Honour the WordWrap / SingleLine flags. DirectWrite's TextLayout defaults to
+            // WordWrapping.Wrap, which would break long lines at the box width even when the
+            // report object has WordWrap = false (only explicit line breaks should split lines).
+            // The legacy TextExtentSimple path already respects this (PDFCanvas: "|| !wordbreak"),
+            // so the shaper must too, otherwise GDI/metafile printing wraps where the PDF does not.
+            textFormat.WordWrapping = (wordwrap && !singleline)
+                ? SharpDX.DirectWrite.WordWrapping.Wrap
+                : SharpDX.DirectWrite.WordWrapping.NoWrap;
+=======
+            // --- Crear TextFormat ---
+            var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, SharpDX.DirectWrite.FontStretch.Normal, fontSizeInDips);
+
+            // Detect paragraph direction from first strong directional character.
+            // This is a fundamental bidi requirement: visual run ordering depends on paragraph embedding level.
+            textFormat.ReadingDirection = DetectParagraphDirectionPublic(Text)
+                ? SharpDX.DirectWrite.ReadingDirection.RightToLeft
+                : SharpDX.DirectWrite.ReadingDirection.LeftToRight;
+
+            // Honour the WordWrap / SingleLine flags. DirectWrite's TextLayout defaults to
+            // WordWrapping.Wrap, which would break long lines at the box width even when the
+            // report object has WordWrap = false (only explicit line breaks should split lines).
+            // The legacy TextExtentSimple path already respects this (PDFCanvas: "|| !wordbreak"),
+            // so the shaper must too, otherwise GDI/metafile printing wraps where the PDF does not.
+            textFormat.WordWrapping = (wordwrap && !singleline)
+                ? SharpDX.DirectWrite.WordWrapping.Wrap
+                : SharpDX.DirectWrite.WordWrapping.NoWrap;
+>>>>>>> Después
+            // --- Crear TextFormat ---
+            var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, SharpDX.DirectWrite.FontStretch.Normal, fontSizeInDips);
+
+            // Detect paragraph direction from first strong directional character.
+            // This is a fundamental bidi requirement: visual run ordering depends on paragraph embedding level.
+            textFormat.ReadingDirection = DetectParagraphDirectionPublic(Text)
+                ? SharpDX.DirectWrite.ReadingDirection.RightToLeft
+                : SharpDX.DirectWrite.ReadingDirection.LeftToRight;
+
+            // Honour the WordWrap / SingleLine flags. DirectWrite's TextLayout defaults to
+            // WordWrapping.Wrap, which would break long lines at the box width even when the
+            // report object has WordWrap = false (only explicit line breaks should split lines).
+            // The legacy TextExtentSimple path already respects this (PDFCanvas: "|| !wordbreak"),
+            // so the shaper must too, otherwise GDI/metafile printing wraps where the PDF does not.
+            textFormat.WordWrapping = (wordwrap && !singleline)
+                ? SharpDX.DirectWrite.WordWrapping.Wrap
+                : SharpDX.DirectWrite.WordWrapping.NoWrap;
 
             string layoutText = Text;
             List<HtmlFormatRun> htmlRuns = null;
@@ -866,7 +944,7 @@ namespace Reportman.Drawing
 
             // --- Crear TextLayout ---
             var textLayout = new SharpDX.DirectWrite.TextLayout(factory, layoutText, textFormat, maxLineWidth / DIP_TO_TWIPS_FACTOR, 0);
-            
+
             if (isHtml && htmlRuns != null)
             {
                 int currentPos = 0;
@@ -888,7 +966,7 @@ namespace Reportman.Drawing
                             textLayout.SetFontFamilyName(run.FontFamily, textRange);
                         if (run.HasFontSize)
                             textLayout.SetFontSize((float)(run.FontSize * POINTS_TO_DIPS_FACTOR), textRange);
-                        
+
                         currentPos += runLength;
                     }
                 }
@@ -909,8 +987,8 @@ namespace Reportman.Drawing
 
                 float rectTopTwips = 0f;
                 int ascentSpacing = (int)Math.Round(fontMetrics.Ascent * scale * DIP_TO_TWIPS_FACTOR);
-                
-                if (!isHtml) 
+
+                if (!isHtml)
                 {
                     rectTopTwips += ascentSpacing;
                 }
@@ -981,8 +1059,8 @@ namespace Reportman.Drawing
                         lineInfo.LastLine = (i == renderer.Lines.Count - 1);
 
                         rectTopTwips += realHeight;
-                    } 
-                    else 
+                    }
+                    else
                     {
                         lineInfo.TopPos = (int)Math.Round(rectTopTwips);
                         lineInfo.LineHeight = (int)Math.Round((fontMetrics.Ascent + fontMetrics.Descent + fontMetrics.LineGap) * scale * DIP_TO_TWIPS_FACTOR);
