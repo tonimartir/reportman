@@ -20,11 +20,8 @@ namespace Reportman.Drawing
         /// </summary>
         public static void SendStringToHost(string hostname, string stringToSend, Encoding encoding = null, int port = 9100)
         {
-            if (encoding == null)
-            {
-                //encoding = Encoding.GetEncoding(1252);
-                encoding = Encoding.GetEncoding(850);
-            }
+            //encoding = Encoding.GetEncoding(1252);
+            encoding ??= Encoding.GetEncoding(850);
             byte[] bytes = encoding.GetBytes(stringToSend);
             SendBytesToHost(hostname, bytes, port);
         }
@@ -273,8 +270,7 @@ namespace Reportman.Drawing
             int hashSizeInBits, hashSizeInBytes;
 
             // Make sure that hashing algorithm name is specified.
-            if (hashAlgorithm == null)
-                hashAlgorithm = "";
+            hashAlgorithm ??= "";
 
             // Size of hash is based on the specified algorithm.
             switch (hashAlgorithm.ToUpper())
@@ -373,8 +369,7 @@ namespace Reportman.Drawing
             HashAlgorithm hash;
 
             // Make sure hashing algorithm name is specified.
-            if (hashAlgorithm == null)
-                hashAlgorithm = "";
+            hashAlgorithm ??= "";
 
             // Initialize appropriate hashing algorithm class.
             switch (hashAlgorithm.ToUpper())
@@ -434,18 +429,18 @@ namespace Reportman.Drawing
         {
             string nresult = "";
             if (source >= 0)
-                nresult = nresult + " ";
+                nresult += " ";
             else
             {
                 source = -source;
-                nresult = nresult + "N";
+                nresult += "N";
             }
             int intlen = totallength - 1 - decimals;
             long npart = System.Convert.ToInt64(Math.Truncate(source));
-            nresult = nresult + npart.ToString().PadLeft(intlen, '0');
+            nresult += npart.ToString().PadLeft(intlen, '0');
             decimal frac = (source - npart) * System.Convert.ToDecimal(Math.Pow(10, decimals));
             npart = System.Convert.ToInt64(Math.Truncate(frac));
-            nresult = nresult + npart.ToString().PadLeft(decimals, '0');
+            nresult += npart.ToString().PadLeft(decimals, '0');
 
 
             return nresult;
@@ -462,17 +457,17 @@ namespace Reportman.Drawing
             if (source < 0)
             {
                 negative = true;
-                totallength = totallength - 1;
+                totallength--;
                 source = Math.Abs(source);
             }
             //throw new Exception("Only positive numbers in PadDecimalLeftS");
 
             int intlen = totallength - decimals;
             long npart = System.Convert.ToInt64(Math.Truncate(source));
-            nresult = nresult + npart.ToString().PadLeft(intlen, '0');
+            nresult += npart.ToString().PadLeft(intlen, '0');
             decimal frac = (source - npart) * System.Convert.ToDecimal(Math.Pow(10, decimals));
             npart = System.Convert.ToInt64(Math.Truncate(frac));
-            nresult = nresult + npart.ToString().PadLeft(decimals, '0');
+            nresult += npart.ToString().PadLeft(decimals, '0');
             if (negative)
                 nresult = "N" + nresult;
             return nresult;
@@ -646,8 +641,8 @@ namespace Reportman.Drawing
                 {
                     result = result.Replace(breaks, "\r\r");
                     result = result.Replace(tabs, "\t\t\t\t");
-                    breaks = breaks + "\r";
-                    tabs = tabs + "\t";
+                    breaks += "\r";
+                    tabs += "\t";
                 }
 
                 // That's it.
@@ -824,14 +819,14 @@ namespace Reportman.Drawing
                 aresult = true;
             else
                 if ((achar >= 'A') && (achar <= 'Z'))
-                aresult = true;
-            else
+                    aresult = true;
+                else
                     if ((achar >= 'a') && (achar <= 'z'))
-                aresult = true;
-            else
+                        aresult = true;
+                    else
                         if ((achar == '_') || (achar == ' ') || (achar == '.') || (achar == '(') ||
                          (achar == ')') || (achar == '=') || (achar == ';') || (achar == ':'))
-                aresult = true;
+                            aresult = true;
             return aresult;
         }
         /// <summary>
@@ -948,7 +943,7 @@ namespace Reportman.Drawing
                 {
                     if (highnibble >= 0)
                     {
-                        aval = aval + (highnibble << 4);
+                        aval += (highnibble << 4);
                         highnibble = -1;
                         buf[binindex] = (byte)aval;
                         binindex++;
@@ -1116,7 +1111,7 @@ namespace Reportman.Drawing
                 else
                 {
                     // Si es una posición impar, se multiplican los dígitos por 2
-                    aux = aux * 2;
+                    aux *= 2;
 
                     // se suman los dígitos de la suma
                     sumaImpares += SumaDigitos(aux);
@@ -1205,7 +1200,7 @@ namespace Reportman.Drawing
             {
                 b = Convert.ToInt32((NIF / 24));
                 c = NIF - (24 * b);
-                a = a + c;
+                a += c;
                 NIF = b;
             } while (b != 0);
 

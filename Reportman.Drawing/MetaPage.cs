@@ -1,12 +1,10 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 #if NETSTANDARD2_0
 #else
-using System.Drawing;
 #endif
 
 namespace Reportman.Drawing
@@ -503,7 +501,7 @@ namespace Reportman.Drawing
             metaobj.PrintStep = PrintStep;
             int aalign = MetaObject.GetIntHorizAlignment(horzalign) | MetaObject.GetIntVertAlignment(vertalign);
             if (SingleLine)
-                aalign = aalign | MetaFile.AlignmentFlags_SingleLine;
+                aalign |= MetaFile.AlignmentFlags_SingleLine;
             metaobj.Alignment = aalign;
             Objects.Add(metaobj);
             return metaobj;

@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /* Code based on Magic Library tab control
  * Crownwood.Magic.Controls.TabControl 
  * 
@@ -2733,10 +2733,7 @@ namespace Reportman.Drawing.Forms
         {
             if (TabPages.Count == 0)
                 return;
-            if (dropmenu == null)
-            {
-                dropmenu = new ContextMenuStrip();
-            }
+            dropmenu ??= new ContextMenuStrip();
             dropmenu.Items.Clear();
             foreach (TabPageAdvanced ntab in TabPages)
             {
@@ -3516,7 +3513,7 @@ namespace Reportman.Drawing.Forms
                     for (int i = 0; i < _tabPages.Count; i++)
                     {
                         Rectangle tabrec = (Rectangle)_tabRects[i];
-                        totalWidth = totalWidth + tabrec.Width;
+                        totalWidth += tabrec.Width;
                     }
                     if (totalWidth > (originalWidth))
                     {
@@ -3526,8 +3523,8 @@ namespace Reportman.Drawing.Forms
                         int fixedWidth = availableWidth / totalpages;
                         if (!AllowLastTabReordering)
                         {
-                            totalpages = totalpages - 1;
-                            availableWidth = availableWidth - ((Rectangle)_tabRects[_tabPages.Count - 1]).Width * 2;
+                            totalpages--;
+                            availableWidth -= ((Rectangle)_tabRects[_tabPages.Count - 1]).Width * 2;
                             fixedWidth = availableWidth / totalpages;
                         }
                         if (fixedWidth > AutoShrinkMinimum)
@@ -4148,8 +4145,7 @@ namespace Reportman.Drawing.Forms
                     ImageList imageList = page.ImageList;
 
                     // If page does not have an ImageList...
-                    if (imageList == null)
-                        imageList = _imageList;   // ...then use the TabControlAdvanced one
+                    imageList ??= _imageList;   // ...then use the TabControlAdvanced one
 
                     // Do we have an ImageList to select from?
                     if (imageList != null)
@@ -4578,7 +4574,7 @@ namespace Reportman.Drawing.Forms
                     backbrushcolor = Color.White;
                 else
                     if (page.Alerting)
-                    backbrushcolor = AlertingColor;
+                        backbrushcolor = AlertingColor;
 
 
                 using (SolidBrush tabsAreaBrush = new SolidBrush(backbrushcolor), penbrush = new SolidBrush(Color.DarkGray))
@@ -6307,7 +6303,7 @@ namespace Reportman.Drawing.Forms
                     }
                     else
                         if (SelectedTab != null)
-                        DrawTab(this.SelectedTab, g, false, false);
+                            DrawTab(this.SelectedTab, g, false, false);
 
                     _hotTrackPage = newTrackPage;
 
@@ -7657,8 +7653,7 @@ namespace Reportman.Drawing.Forms
         {
             ContainerControl container = source.FindForm() as ContainerControl;
 
-            if (container == null)
-                container = source as ContainerControl;
+            container ??= source as ContainerControl;
 
             Button tempButton = new Button();
             tempButton.Visible = false;

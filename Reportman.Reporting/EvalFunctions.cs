@@ -186,11 +186,11 @@ namespace Reportman.Reporting
                 }
                 else
                     if (Params[0].VarType == VariantType.DateTime)
-                {
-                    aresult = GetMonthName(((DateTime)Params[0]).Month, EvalObject.Language);
-                }
-                else
-                    throw new NamedException(Translator.TranslateStr(438), "MONTHNAME");
+                    {
+                        aresult = GetMonthName(((DateTime)Params[0]).Month, EvalObject.Language);
+                    }
+                    else
+                        throw new NamedException(Translator.TranslateStr(438), "MONTHNAME");
             }
             return aresult;
         }

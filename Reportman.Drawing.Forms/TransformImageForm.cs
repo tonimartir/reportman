@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -52,15 +52,15 @@ namespace Reportman.Drawing.Forms
                 labelFormatoOriginal.Text = "JPEG";
             }
             else
-            if (System.Drawing.Imaging.ImageFormat.Gif.Equals(OriginalImage.RawFormat))
-            {
-                comboFormat.SelectedIndex = 2;
-                labelFormatoOriginal.Text = "GIF";
-            }
-            else
-            {
-                labelFormatoOriginal.Text = "PNG";
-            }
+                if (System.Drawing.Imaging.ImageFormat.Gif.Equals(OriginalImage.RawFormat))
+                {
+                    comboFormat.SelectedIndex = 2;
+                    labelFormatoOriginal.Text = "GIF";
+                }
+                else
+                {
+                    labelFormatoOriginal.Text = "PNG";
+                }
             picImage.Image = NewImage;
             labelSize.Text = "Tamaño: " + Reportman.Drawing.StringUtil.GetSizeAsString(OriginalImageStream.Length);
             labelOriginalSize.Text = labelSize.Text;
@@ -206,8 +206,7 @@ namespace Reportman.Drawing.Forms
 
         private void BAceptar_Click(object sender, EventArgs e)
         {
-            if (NewImageStream == null)
-                NewImageStream = OriginalImageStream;
+            NewImageStream ??= OriginalImageStream;
             DialogResult = DialogResult.OK;
         }
     }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Linq;
-using Reportman.Drawing;
+using System;
+using System.Collections;
 
 namespace Reportman.Reporting
 {

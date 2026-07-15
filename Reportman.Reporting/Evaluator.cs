@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -246,7 +246,7 @@ namespace Reportman.Reporting
                     }
                     else
                         if (avalue.VarType != VariantType.Null)
-                        iden = null;
+                            iden = null;
                 }
                 else
                     iden = null;
@@ -467,59 +467,59 @@ namespace Reportman.Reporting
             }
             else
                 if (FParser.Token == TokenType.Symbol)
-            {
-                iden = SearchIdentifier(FParser.TokenString());
-                if (iden == null)
-                    throw new EvalException(Translator.TranslateStr(440) + FParser.TokenString(),
-                        FParser.SourceLine, FParser.SourcePos, "");
-                // Process parameters
-                if (iden is IdenFunction)
                 {
-                    idenf = (IdenFunction)iden;
-                    int i;
+                    iden = SearchIdentifier(FParser.TokenString());
+                    if (iden == null)
+                        throw new EvalException(Translator.TranslateStr(440) + FParser.TokenString(),
+                            FParser.SourceLine, FParser.SourcePos, "");
+                    // Process parameters
+                    if (iden is IdenFunction)
+                    {
+                        idenf = (IdenFunction)iden;
+                        int i;
 
-                    if (idenf.ParamCount > 0)
-                    {
-                        FParser.NextToken();
-                        if (FParser.Token != TokenType.Operator)
-                            throw new EvalException(Translator.TranslateStr(441),
-                                FParser.SourceLine, FParser.SourcePos, "");
-                        if (FParser.TokenString() != "(")
-                            throw new EvalException(Translator.TranslateStr(441),
-                                FParser.SourceLine, FParser.SourcePos, "");
-                    }
-                    for (i = 0; i < idenf.ParamCount; i++)
-                    {
-                        FParser.NextToken();
-                        // Looks for the param
-                        separator(ref idenf.Params[i]);
-                        // Parameter separator
-                        if (idenf.ParamCount > i + 1)
+                        if (idenf.ParamCount > 0)
                         {
-                            aoperator = "";
-                            if (FParser.Token == TokenType.Operator)
-                                aoperator = FParser.TokenString();
-                            if (aoperator != ",")
-                                throw new EvalException(String.Format(Translator.TranslateStr(448), ","),
+                            FParser.NextToken();
+                            if (FParser.Token != TokenType.Operator)
+                                throw new EvalException(Translator.TranslateStr(441),
+                                    FParser.SourceLine, FParser.SourcePos, "");
+                            if (FParser.TokenString() != "(")
+                                throw new EvalException(Translator.TranslateStr(441),
                                     FParser.SourceLine, FParser.SourcePos, "");
                         }
-                    }
+                        for (i = 0; i < idenf.ParamCount; i++)
+                        {
+                            FParser.NextToken();
+                            // Looks for the param
+                            separator(ref idenf.Params[i]);
+                            // Parameter separator
+                            if (idenf.ParamCount > i + 1)
+                            {
+                                aoperator = "";
+                                if (FParser.Token == TokenType.Operator)
+                                    aoperator = FParser.TokenString();
+                                if (aoperator != ",")
+                                    throw new EvalException(String.Format(Translator.TranslateStr(448), ","),
+                                        FParser.SourceLine, FParser.SourcePos, "");
+                            }
+                        }
 
-                    if (idenf.ParamCount > 0)
-                    {
-                        if (FParser.Token != TokenType.Operator)
-                            throw new EvalException(Translator.TranslateStr(441),
-                                FParser.SourceLine, FParser.SourcePos, "");
-                        if (FParser.TokenString() != ")")
-                            throw new EvalException(Translator.TranslateStr(441),
-                                FParser.SourceLine, FParser.SourcePos, "");
-                        FParser.NextToken();
+                        if (idenf.ParamCount > 0)
+                        {
+                            if (FParser.Token != TokenType.Operator)
+                                throw new EvalException(Translator.TranslateStr(441),
+                                    FParser.SourceLine, FParser.SourcePos, "");
+                            if (FParser.TokenString() != ")")
+                                throw new EvalException(Translator.TranslateStr(441),
+                                    FParser.SourceLine, FParser.SourcePos, "");
+                            FParser.NextToken();
+                        }
                     }
+                    else
+                        iden = null;
+                    aoperator = "";
                 }
-                else
-                    iden = null;
-                aoperator = "";
-            }
             if (iden == null)
             {
                 if (aoperator == "IIF")
@@ -549,10 +549,10 @@ namespace Reportman.Reporting
                 }
                 else
                     if (aoperator == "NOT")
-                {
-                    if (!FChecking)
-                        FValue = !FValue;
-                }
+                    {
+                        if (!FChecking)
+                            FValue = !FValue;
+                    }
             }
         }
         private void mul_div(ref Variant FValue)
@@ -584,24 +584,24 @@ namespace Reportman.Reporting
                 }
                 else
                     if (aoperator == "/")
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    dosign(ref auxiliar);
-                    if (!FChecking)
                     {
-                        try
+                        FParser.NextToken();
+                        auxiliar2 = FValue;
+                        dosign(ref auxiliar);
+                        if (!FChecking)
                         {
-                            FValue = auxiliar2 / auxiliar;
-                        }
-                        catch
-                        {
-                            throw;
+                            try
+                            {
+                                FValue = auxiliar2 / auxiliar;
+                            }
+                            catch
+                            {
+                                throw;
+                            }
                         }
                     }
-                }
-                else
-                    break;
+                    else
+                        break;
             }
         }
         private void sum_diff(ref Variant FValue)
@@ -623,14 +623,14 @@ namespace Reportman.Reporting
                 }
                 else
                     if (aoperator == "-")
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    mul_div(ref auxiliar);
-                    FValue = auxiliar2 - auxiliar;
-                }
-                else
-                    break;
+                    {
+                        FParser.NextToken();
+                        auxiliar2 = FValue;
+                        mul_div(ref auxiliar);
+                        FValue = auxiliar2 - auxiliar;
+                    }
+                    else
+                        break;
             }
         }
         private void comparations(ref Variant FValue)
@@ -655,67 +655,67 @@ namespace Reportman.Reporting
                     }
                 }
                 else
-                        if ((aoperator == "==") || (aoperator == "="))
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    sum_diff(ref auxiliar);
-                    if (!FChecking)
+                    if ((aoperator == "==") || (aoperator == "="))
                     {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 == auxiliar);
+                        FParser.NextToken();
+                        auxiliar2 = FValue;
+                        sum_diff(ref auxiliar);
+                        if (!FChecking)
+                        {
+                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                            FValue = (auxiliar2 == auxiliar);
+                        }
                     }
-                }
-                else
-                            if (aoperator == "<")
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    sum_diff(ref auxiliar);
-                    if (!FChecking)
-                    {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 < auxiliar);
-                    }
-                }
-                else
-                                if (aoperator == "<=")
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    sum_diff(ref auxiliar);
-                    if (!FChecking)
-                    {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 <= auxiliar);
-                    }
-                }
-                else
-                                    if (aoperator == ">")
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    sum_diff(ref auxiliar);
-                    if (!FChecking)
-                    {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 > auxiliar);
-                    }
-                }
-                else
-                                        if (aoperator == ">=")
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    sum_diff(ref auxiliar);
-                    if (!FChecking)
-                    {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 >= auxiliar);
-                    }
-                }
-                else
-                    break;
+                    else
+                        if (aoperator == "<")
+                        {
+                            FParser.NextToken();
+                            auxiliar2 = FValue;
+                            sum_diff(ref auxiliar);
+                            if (!FChecking)
+                            {
+                                CoerceOperands(ref auxiliar2, ref auxiliar);
+                                FValue = (auxiliar2 < auxiliar);
+                            }
+                        }
+                        else
+                            if (aoperator == "<=")
+                            {
+                                FParser.NextToken();
+                                auxiliar2 = FValue;
+                                sum_diff(ref auxiliar);
+                                if (!FChecking)
+                                {
+                                    CoerceOperands(ref auxiliar2, ref auxiliar);
+                                    FValue = (auxiliar2 <= auxiliar);
+                                }
+                            }
+                            else
+                                if (aoperator == ">")
+                                {
+                                    FParser.NextToken();
+                                    auxiliar2 = FValue;
+                                    sum_diff(ref auxiliar);
+                                    if (!FChecking)
+                                    {
+                                        CoerceOperands(ref auxiliar2, ref auxiliar);
+                                        FValue = (auxiliar2 > auxiliar);
+                                    }
+                                }
+                                else
+                                    if (aoperator == ">=")
+                                    {
+                                        FParser.NextToken();
+                                        auxiliar2 = FValue;
+                                        sum_diff(ref auxiliar);
+                                        if (!FChecking)
+                                        {
+                                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                                            FValue = (auxiliar2 >= auxiliar);
+                                        }
+                                    }
+                                    else
+                                        break;
             }
         }
         private static void CoerceOperands(ref Variant value1, ref Variant value2)

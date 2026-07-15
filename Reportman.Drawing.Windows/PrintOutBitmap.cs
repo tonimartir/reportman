@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -71,8 +71,8 @@ namespace Reportman.Drawing
             }
             else
             {
-                frompage = frompage - 1;
-                topage = topage - 1;
+                frompage--;
+                topage--;
                 nmeta.RequestPage(topage);
                 if (topage > nmeta.Pages.CurrentCount - 1)
                     topage = nmeta.Pages.Count - 1;
@@ -101,7 +101,7 @@ namespace Reportman.Drawing
                 pagePos.XPosition = 0;
                 pagePos.YSize = pageHeight;
                 Pages.Add(i, pagePos);
-                pagePosition = pagePosition + pagePos.YSize; ;
+                pagePosition += pagePos.YSize; ;
                 if (pageWidth > maxWidth)
                 {
                     maxWidth = pageWidth;
@@ -124,7 +124,7 @@ namespace Reportman.Drawing
                         foreach (var pagePosValue in Pages.Values)
                         {
                             var apage = nmeta.Pages[pagePosValue.PageIndex];
-                            pagePosValue.XPosition = pagePosValue.XPosition + (maxWidth - pagePosValue.XSize) / 2;
+                            pagePosValue.XPosition += (maxWidth - pagePosValue.XSize) / 2;
                             using (Bitmap newBitmap = new Bitmap(pagePosValue.XSize, pagePosValue.YSize, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
                             {
                                 newBitmap.SetResolution(horzRes, vertRes);

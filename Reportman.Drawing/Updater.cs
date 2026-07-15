@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -169,7 +169,7 @@ namespace Reportman.Drawing
         /// <param name="olderHashes">Hashes of currently installed files.</param>
         /// <param name="updatedHashes">Hashes of candidate files.</param>
         /// <returns>A task representing the operation, returning the filtered DataTable.</returns>
-        public static async System.Threading.Tasks.Task<DataTable> GetModifiedFilesAsync(DataTable files, string filesdir, 
+        public static async System.Threading.Tasks.Task<DataTable> GetModifiedFilesAsync(DataTable files, string filesdir,
             bool copycontent, SortedList<string, FileHash> olderHashes, SortedList<string, FileHash> updatedHashes)
         {
             DataTable xtable = CreateFilesTable();
@@ -179,25 +179,28 @@ namespace Reportman.Drawing
                 {
                     bool doupdate = false;
                     string fullPath = newrow["FULLPATH"].ToString();
-                    if (olderHashes!= null && updatedHashes != null)
+                    if (olderHashes != null && updatedHashes != null)
                     {
                         if (!olderHashes.ContainsKey(fullPath))
                         {
                             doupdate = true;
-                        } else 
-                        if (!updatedHashes.ContainsKey(fullPath))
-                        {
-                            doupdate = true;
-                        } else
-                        {
-                            var oldHash = olderHashes[fullPath];
-                            var newHash = updatedHashes[fullPath];
-                            if (oldHash.Hash != newHash.Hash)
+                        }
+                        else
+                            if (!updatedHashes.ContainsKey(fullPath))
                             {
                                 doupdate = true;
                             }
-                        }
-                    } else
+                            else
+                            {
+                                var oldHash = olderHashes[fullPath];
+                                var newHash = updatedHashes[fullPath];
+                                if (oldHash.Hash != newHash.Hash)
+                                {
+                                    doupdate = true;
+                                }
+                            }
+                    }
+                    else
                     {
                         doupdate = true;
                     }
@@ -388,7 +391,7 @@ namespace Reportman.Drawing
                     }
                 }
             }
-            bool hasCreatedColumn = files.Columns.IndexOf("CREATED")>=0;
+            bool hasCreatedColumn = files.Columns.IndexOf("CREATED") >= 0;
             foreach (DataRow xrow in files.Rows)
             {
 
@@ -437,8 +440,8 @@ namespace Reportman.Drawing
                             if ((original.Length - index) < BUFSIZE)
                                 towrite = (original.Length - index);
                             fstream.Write(original, index, towrite);
-                            totalwritten = totalwritten + towrite;
-                            index = index + towrite;
+                            totalwritten += towrite;
+                            index += towrite;
                             if (OnProgress != null)
                             {
 

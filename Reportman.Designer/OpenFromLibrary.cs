@@ -1,4 +1,4 @@
-using Reportman.Drawing;
+﻿using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
@@ -231,19 +231,19 @@ namespace Reportman.Designer
             if (LibraryConfig.ReportGroupsTable.Length > 0)
             {
                 if (LibraryConfig.ReportGroupsTable == "GINFORME")
-                    sqltext = sqltext + ",GRUPO AS REPORT_GROUP ";
+                    sqltext += ",GRUPO AS REPORT_GROUP ";
                 else
-                    sqltext = sqltext + ",REPORT_GROUP";
+                    sqltext += ",REPORT_GROUP";
 
             }
             if (LibraryConfig.AllowSorting)
             {
-                sqltext = sqltext + ",SORT_ID ";
+                sqltext += ",SORT_ID ";
             }
             sqltext = sqltext + " FROM " + LibraryConfig.ReportTable;
             if (LibraryConfig.AllowSorting)
             {
-                sqltext = sqltext + " ORDER BY SORT_ID";
+                sqltext += " ORDER BY SORT_ID";
             }
             treports = Executer.OpenInmediate(null, sqltext, "REPORTS");
             treports.CaseSensitive = true;
@@ -257,12 +257,12 @@ namespace Reportman.Designer
                         " GRUPO AS PARENT_GROUP ";
                     if (LibraryConfig.AllowSorting)
                     {
-                        sqltext = sqltext + ",SORT_ID ";
+                        sqltext += ",SORT_ID ";
                     }
                     sqltext = sqltext + "FROM " + LibraryConfig.ReportGroupsTable;
                     if (LibraryConfig.AllowSorting)
                     {
-                        sqltext = sqltext + " ORDER BY SORT_ID";
+                        sqltext += " ORDER BY SORT_ID";
                     }
                 }
                 else
@@ -271,7 +271,7 @@ namespace Reportman.Designer
                         " PARENT_GROUP ";
                     if (LibraryConfig.AllowSorting)
                     {
-                        sqltext = sqltext + ",SORT_ID";
+                        sqltext += ",SORT_ID";
                     }
                     sqltext = sqltext + "FROM " + LibraryConfig.ReportGroupsTable;
                 }
@@ -292,11 +292,11 @@ namespace Reportman.Designer
                             lremove.Add(grow);
                         }
                         else
-                        if (tgroups.Rows.Find(grow["PARENT_GROUP"]) == null)
-                        {
+                            if (tgroups.Rows.Find(grow["PARENT_GROUP"]) == null)
+                            {
 
-                            grow["PARENT_GROUP"] = 0;
-                        }
+                                grow["PARENT_GROUP"] = 0;
+                            }
                     }
                 }
                 foreach (DataRow xrow in lremove)
@@ -543,9 +543,9 @@ namespace Reportman.Designer
                 }
                 sqltext = "INSERT INTO " + LibraryConfig.ReportGroupsTable;
                 if (LibraryConfig.ReportGroupsTable == "GINFORME")
-                    sqltext = sqltext + " (CODIGO,NOMBRE,GRUPO)  ";
+                    sqltext += " (CODIGO,NOMBRE,GRUPO)  ";
                 else
-                    sqltext = sqltext + " (GROUP_CODE,GROUP_NAME,PARENT_GROUP)  ";
+                    sqltext += " (GROUP_CODE,GROUP_NAME,PARENT_GROUP)  ";
                 sqltext = sqltext + " VALUES (" +
                     groupcode.ToString() + ",@GROUPNAME," + parent_group.ToString() + ")";
                 System.Data.Common.DbCommand ncommand = Executer.CreateCommand(sqltext);
@@ -613,10 +613,10 @@ namespace Reportman.Designer
                      LibraryConfig.ReportSearchField + ',' + LibraryConfig.ReportField;
 
                 if (LibraryConfig.ReportGroupsTable == "GINFORME")
-                    sqltext = sqltext + ",GRUPO,DEF_USUARIO";
+                    sqltext += ",GRUPO,DEF_USUARIO";
                 else
-                    sqltext = sqltext + ",REPORT_GROUP";
-                sqltext = sqltext + ") VALUES (@REPNAME,@REPORT";
+                    sqltext += ",REPORT_GROUP";
+                sqltext += ") VALUES (@REPNAME,@REPORT";
                 if (LibraryConfig.ReportGroupsTable.Length > 0)
                 {
                     sqltext = sqltext + ',' + groupcode.ToString() + ",0";
@@ -625,7 +625,7 @@ namespace Reportman.Designer
                 {
                     sqltext = sqltext + ',' + groupcode.ToString();
                 }
-                sqltext = sqltext + ")";
+                sqltext += ")";
                 System.Data.Common.DbCommand ncommand = Executer.CreateCommand(sqltext);
                 System.Data.Common.DbParameter param = ncommand.CreateParameter();
                 param.ParameterName = "REPNAME";
@@ -637,7 +637,7 @@ namespace Reportman.Designer
                 nreport.ConvertToDotNet();
 
                 System.IO.MemoryStream mstream = new System.IO.MemoryStream();
-                nreport.SaveToStream(mstream,StreamVersion.V2);
+                nreport.SaveToStream(mstream, StreamVersion.V2);
 
                 param = ncommand.CreateParameter();
                 param.ParameterName = "REPORT";
@@ -722,9 +722,9 @@ namespace Reportman.Designer
                     return;
                 string sqltext = "UPDATE " + LibraryConfig.ReportGroupsTable;
                 if (LibraryConfig.ReportGroupsTable == "GINFORME")
-                    sqltext = sqltext + " SET NOMBRE=@GROUPNAME WHERE CODIGO=@GROUPCODE  ";
+                    sqltext += " SET NOMBRE=@GROUPNAME WHERE CODIGO=@GROUPCODE  ";
                 else
-                    sqltext = sqltext + " SET GROUP_NAME=@GROUPNAME WHERE GROUP_CODE=@GROUPCODE";
+                    sqltext += " SET GROUP_NAME=@GROUPNAME WHERE GROUP_CODE=@GROUPCODE";
 
                 System.Data.Common.DbCommand ncommand = Executer.CreateCommand(sqltext);
                 System.Data.Common.DbParameter param = ncommand.CreateParameter();
@@ -880,11 +880,11 @@ namespace Reportman.Designer
                 {
                     if (report_list[index] != ReportTree.SelectedNode)
                     {
-                        index = index + 1;
+                        index++;
                     }
                     else
                     {
-                        index = index + 1;
+                        index++;
                         break;
                     }
                 }
@@ -1099,7 +1099,7 @@ namespace Reportman.Designer
                 }
                 foreach (TreeNode nnode in nodes_null)
                 {
-                    max_sort = max_sort + 10;
+                    max_sort += 10;
                     UpdateSortId(nnode, max_sort);
                     modified = true;
                 }
@@ -1113,7 +1113,7 @@ namespace Reportman.Designer
                 int sort_id = Convert.ToInt32(xrow["SORT_ID"]);
                 if (nodes_sorted.IndexOfKey(sort_id) >= 0)
                 {
-                    max_sort = max_sort + 10;
+                    max_sort += 10;
                     UpdateSortId(nnode, max_sort);
                     modified = true;
                     lnodes = new List<TreeNode>();
@@ -1323,7 +1323,7 @@ namespace Reportman.Designer
                     max_id_2 = NormalizeSortId(parent_node);
             }
             int max_id = Math.Max(max_id_1, max_id_2);
-            max_id = max_id + 10;
+            max_id += 10;
             UpdateSortId(nnode, max_id);
 
             DataRow xrow = (DataRow)nnode.Tag;
@@ -1530,10 +1530,10 @@ namespace Reportman.Designer
                      LibraryConfig.ReportSearchField + ',' + LibraryConfig.ReportField;
 
                 if (LibraryConfig.ReportGroupsTable == "GINFORME")
-                    sqltext = sqltext + ",GRUPO,DEF_USUARIO";
+                    sqltext += ",GRUPO,DEF_USUARIO";
                 else
-                    sqltext = sqltext + ",REPORT_GROUP";
-                sqltext = sqltext + ") VALUES (@REPNAME,@REPORT";
+                    sqltext += ",REPORT_GROUP";
+                sqltext += ") VALUES (@REPNAME,@REPORT";
                 if (LibraryConfig.ReportGroupsTable.Length > 0)
                 {
                     sqltext = sqltext + ',' + groupcode.ToString() + ",0";
@@ -1542,7 +1542,7 @@ namespace Reportman.Designer
                 {
                     sqltext = sqltext + ',' + groupcode.ToString();
                 }
-                sqltext = sqltext + ")";
+                sqltext += ")";
                 System.Data.Common.DbCommand ncommand = Executer.CreateCommand(sqltext);
                 System.Data.Common.DbParameter param = ncommand.CreateParameter();
                 param.ParameterName = "REPNAME";

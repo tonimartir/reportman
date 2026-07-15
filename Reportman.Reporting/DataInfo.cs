@@ -1,4 +1,4 @@
-using Reportman.Drawing;
+﻿using Reportman.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,10 +20,7 @@ namespace Reportman.Reporting
         private Evaluator internalevaluator;
         private Evaluator GetEvaluator()
         {
-            if (internalevaluator == null)
-            {
-                internalevaluator = new Evaluator();
-            }
+            internalevaluator ??= new Evaluator();
             return internalevaluator;
         }
         private string OldSQLUsed;
@@ -38,10 +35,56 @@ namespace Reportman.Reporting
             get { return sql; }
             set
             {
+
+
+
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Reporting (net48)", Antes:
+
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Reporting (net48)", Antes:
                     if (value == null)
                     {
                         value = string.Empty;
                     }
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+=======
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Reporting (net48)", Antes:
+                if (value == null)
+                {
+                    value = string.Empty;
+                }
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+>>>>>>> Después
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Reporting (net48)", Antes:
+                value ??= string.Empty;
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+=======
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Reporting (net48)", Antes:
+                if (value == null)
+                {
+                    value = string.Empty;
+                }
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+>>>>>>> Después
+<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Reporting (net48)", Antes:
+                    value ??= string.Empty;
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+=======
+                if (value == null)
+                {
+                    value = string.Empty;
+                }
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+>>>>>>> Después
+                    value ??= string.Empty;
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+=======
+                if (value == null)
+                {
+                    value = string.Empty;
+                }
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+>>>>>>> Después
+                    value ??= string.Empty;
                 if (string.Equals(sql, value, StringComparison.Ordinal))
                     return;
                 sql = value;
@@ -788,10 +831,10 @@ namespace Reportman.Reporting
                             }
                             else
                                 if (!master.CurrentRow[paramname].Equals(param.Value))
-                            {
-                                aresult = true;
-                                param.Value = master.CurrentRow[paramname];
-                            }
+                                {
+                                    aresult = true;
+                                    param.Value = master.CurrentRow[paramname];
+                                }
                         }
                     }
                 }

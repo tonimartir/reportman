@@ -72,7 +72,7 @@ namespace Reportman.Designer
             if (obj.ReportItemObject is Section)
             {
                 Section nsec = (Section)obj.ReportItemObject;
-                tablename = tablename + nsec.SectionType.ToString();
+                tablename += nsec.SectionType.ToString();
             }
             Reportman.Drawing.Strings pnames = new Strings();
             DataTable properties = data.Tables[tablename];
@@ -121,74 +121,74 @@ namespace Reportman.Designer
                         nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Expression);
                     }
                     else
-                    if (ptypes[i] == Translator.TranslateStr(1099))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.ConnectionString);
-                    }
-                    else
-                    if (ptypes[i] == "SQL")
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.SQL);
-                    }
-                    else
-                        if (ptypes[i] == Translator.TranslateStr(556))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
-                        nrow["TWIPS"] = true;
-                    }
-                    else
-                        if (ptypes[i] == Translator.TranslateStr(1171))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
-                        nrow["TWIPS"] = false;
-                    }
-                    else
-                            if (ptypes[i] == Translator.TranslateStr(569))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDownList);
-                        Strings alist = new Strings();
-                        obj.GetPropertyValues(pnames[i], alist);
-                        nrow["VALUELIST"] = alist;
-                    }
-                    else if (ptypes[i] == Translator.TranslateStr(961))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDown);
-                        Strings alist = new Strings();
-                        obj.GetPropertyValues(pnames[i], alist);
-                        nrow["VALUELIST"] = alist;
-                    }
-                    else
-                        if (ptypes[i] == Translator.TranslateStr(568))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Boolean);
-                    }
-                    else
-                            if (ptypes[i] == Translator.TranslateStr(558))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Color);
-                    }
-                    else
-                                if (ptypes[i] == Translator.TranslateStr(639))
-                    {
-                        isbinary = true;
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Image);
-                    }
-                    else
-                                if (ptypes[i] == Translator.TranslateStr(560))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontName);
-                    }
-                    else
-                            if (ptypes[i] == Translator.TranslateStr(566))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontStyle);
-                    }
-                    else
-                                // Font size
-                                if (ptypes[i] == Translator.TranslateStr(559))
-                    {
-                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Integer);
-                    }
+                        if (ptypes[i] == Translator.TranslateStr(1099))
+                        {
+                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.ConnectionString);
+                        }
+                        else
+                            if (ptypes[i] == "SQL")
+                            {
+                                nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.SQL);
+                            }
+                            else
+                                if (ptypes[i] == Translator.TranslateStr(556))
+                                {
+                                    nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
+                                    nrow["TWIPS"] = true;
+                                }
+                                else
+                                    if (ptypes[i] == Translator.TranslateStr(1171))
+                                    {
+                                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
+                                        nrow["TWIPS"] = false;
+                                    }
+                                    else
+                                        if (ptypes[i] == Translator.TranslateStr(569))
+                                        {
+                                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDownList);
+                                            Strings alist = new Strings();
+                                            obj.GetPropertyValues(pnames[i], alist);
+                                            nrow["VALUELIST"] = alist;
+                                        }
+                                        else if (ptypes[i] == Translator.TranslateStr(961))
+                                        {
+                                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDown);
+                                            Strings alist = new Strings();
+                                            obj.GetPropertyValues(pnames[i], alist);
+                                            nrow["VALUELIST"] = alist;
+                                        }
+                                        else
+                                            if (ptypes[i] == Translator.TranslateStr(568))
+                                            {
+                                                nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Boolean);
+                                            }
+                                            else
+                                                if (ptypes[i] == Translator.TranslateStr(558))
+                                                {
+                                                    nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Color);
+                                                }
+                                                else
+                                                    if (ptypes[i] == Translator.TranslateStr(639))
+                                                    {
+                                                        isbinary = true;
+                                                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Image);
+                                                    }
+                                                    else
+                                                        if (ptypes[i] == Translator.TranslateStr(560))
+                                                        {
+                                                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontName);
+                                                        }
+                                                        else
+                                                            if (ptypes[i] == Translator.TranslateStr(566))
+                                                            {
+                                                                nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontStyle);
+                                                            }
+                                                            else
+                                                                // Font size
+                                                                if (ptypes[i] == Translator.TranslateStr(559))
+                                                                {
+                                                                    nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Integer);
+                                                                }
 
                     if ((obj is DesignerInterfaceLabel) && (pnames[i] == Translator.TranslateStr(570)))
                     {
@@ -240,32 +240,32 @@ namespace Reportman.Designer
                             nrow["VALUE"] = (int)nvalue;
                     }
                     else
-                    if (nvalue.VarType == VariantType.Binary)
-                    {
-                        nrow["VALUEBIN"] = nvalue;
-                        nrow["VALUE"] = StringUtil.GetSizeAsString(nvalue.GetStream().Length);
-                    }
-                    else
-                    {
-
-                        if (nvalue.IsNull)
+                        if (nvalue.VarType == VariantType.Binary)
                         {
-                            nrow["VALUE"] = DBNull.Value;
+                            nrow["VALUEBIN"] = nvalue;
+                            nrow["VALUE"] = StringUtil.GetSizeAsString(nvalue.GetStream().Length);
                         }
                         else
                         {
-                            if ((bool)nrow["TWIPS"])
-                                nrow["VALUE"] = Twips.UnitsFromTwips(nvalue);
-                            else
-                                nrow["VALUE"] = nvalue;
-                            if (nrow["TYPE"].ToString() == Translator.TranslateStr(961))
+
+                            if (nvalue.IsNull)
                             {
-                                Strings alist = new Strings();
-                                obj.GetPropertyValues(nrow["NAME"].ToString(), alist);
-                                nrow["VALUELIST"] = alist;
+                                nrow["VALUE"] = DBNull.Value;
+                            }
+                            else
+                            {
+                                if ((bool)nrow["TWIPS"])
+                                    nrow["VALUE"] = Twips.UnitsFromTwips(nvalue);
+                                else
+                                    nrow["VALUE"] = nvalue;
+                                if (nrow["TYPE"].ToString() == Translator.TranslateStr(961))
+                                {
+                                    Strings alist = new Strings();
+                                    obj.GetPropertyValues(nrow["NAME"].ToString(), alist);
+                                    nrow["VALUELIST"] = alist;
+                                }
                             }
                         }
-                    }
                 }
                 properties.RowChanging += rowchangeevent;
             }
@@ -323,9 +323,9 @@ namespace Reportman.Designer
             AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             //            Font = new Font(Font.FontFamily, 6);
             int nheight = (int)Math.Round(Font.Size * 1.4 * (double)WinFormsGraphics.ScreenDPI() / (double)72);
-            nheight = nheight + 5;
+            nheight += 5;
             if (nheight < 10)
-                nheight = nheight + 2;
+                nheight += 2;
             RowTemplate.Height = nheight;
         }
         public void SetObject(DesignerInterface obj)
@@ -360,12 +360,12 @@ namespace Reportman.Designer
                 }
                 else
                     if (CurrentInterface is DesignerInterfaceSizePos)
-                {
-                    nitem = (PrintPosItem)CurrentInterface.SelectionList.Values[0];
-                    nsection = nitem.Section;
-                    if (CurrentInterface.SelectionList.Count != 1)
-                        nitem = null;
-                }
+                    {
+                        nitem = (PrintPosItem)CurrentInterface.SelectionList.Values[0];
+                        nsection = nitem.Section;
+                        if (CurrentInterface.SelectionList.Count != 1)
+                            nitem = null;
+                    }
                 ComboSelection.Items.Clear();
                 ComboSelection.SelectedIndex = -1;
                 int selindex = 1;
@@ -386,7 +386,7 @@ namespace Reportman.Designer
                         ComboSelection.SelectedIndex = 0;
                     else
                         if (CurrentInterface.SelectionList.Count == 1)
-                        ComboSelection.SelectedIndex = newindex;
+                            ComboSelection.SelectedIndex = newindex;
                     if (Structure != null)
                         Structure.SelectItem(nsection, true);
                 }
@@ -436,8 +436,7 @@ namespace Reportman.Designer
         /// </summary>
         internal string SelfTestUndoOnSelect(DesignerInterface obj, string translatedPropName, string changedValue)
         {
-            if (data == null)
-                data = new DataSet();
+            data ??= new DataSet();
             selectingobject = true;
             CurrentInterface = obj;
             DataTable props = FindDataTable(obj.SelectionClassName, obj);
@@ -601,7 +600,7 @@ namespace Reportman.Designer
                 {
                     int groupId = firstItem.Report.UndoCue.GetGroupId();
                     // Determine if this is a Variant property (e.g., Param.Value)
-                    bool isVariantProperty = (CurrentInterface is DesignerInterfaceParam) && 
+                    bool isVariantProperty = (CurrentInterface is DesignerInterfaceParam) &&
                                               (propName == Translator.TranslateStr(194)); // "Value" property
                     // Get the real property name for undo/redo (convert from translated name)
                     string realPropName = CurrentInterface.GetRealPropertyName(propName);

@@ -105,7 +105,7 @@ namespace Reportman.Drawing.Forms
                     
                 }
             }*/
-             onlygridkeys = new SortedList<Keys, Keys>
+            onlygridkeys = new SortedList<Keys, Keys>
             {
                 { Keys.F1, Keys.F1 },
                 { Keys.F2, Keys.F2 },
@@ -433,21 +433,21 @@ namespace Reportman.Drawing.Forms
             if (msg.Msg == 256)
             {
                 Keys nkey = (Keys)msg.WParam & Keys.KeyCode;
-                nkey = nkey | Control.ModifierKeys;
+                nkey |= Control.ModifierKeys;
                 return ProcessKey(nkey);
             }
             else
                 if ((msg.Msg == 258) || (msg.Msg == 257))
-            {
-                keydata = (Keys)msg.WParam & Keys.KeyCode;
-                keydata = keydata | Control.ModifierKeys;
-                if ((((((keydata & Keys.KeyCode) == Keys.Enter) || (keydata & Keys.KeyCode) == Keys.Return)) && FEnterAsTab)
-                     || ((keydata & Keys.KeyCode) == Keys.Tab))
                 {
-                    msg.Msg = 0;
-                    return true;
+                    keydata = (Keys)msg.WParam & Keys.KeyCode;
+                    keydata |= Control.ModifierKeys;
+                    if ((((((keydata & Keys.KeyCode) == Keys.Enter) || (keydata & Keys.KeyCode) == Keys.Return)) && FEnterAsTab)
+                         || ((keydata & Keys.KeyCode) == Keys.Tab))
+                    {
+                        msg.Msg = 0;
+                        return true;
+                    }
                 }
-            }
             return base.PreProcessMessage(ref msg);
         }
         /// <summary>
@@ -985,8 +985,7 @@ namespace Reportman.Drawing.Forms
                     DataGridViewColumn ncol = GetCurrentColumn();
                     if (ncol is DataGridViewImageColumn)
                     {
-                        if (ncol.ContextMenuStrip == null)
-                            ncol.ContextMenuStrip = CreateImagePopUp(ncol);
+                        ncol.ContextMenuStrip ??= CreateImagePopUp(ncol);
                         ncol.ContextMenuStrip.Show(this.PointToScreen(new Point(e.X, e.Y)));
                     }
                 }
@@ -1025,30 +1024,30 @@ namespace Reportman.Drawing.Forms
         protected override void OnFontChanged(EventArgs e)
         {
             // Adjust size of column if property enable
-           /* if (FAdjustColumnsFontChange)
-            {
-                using (Graphics gr = this.CreateGraphics())
-                {
-                    float newsize = gr.MeasureString("0000", Font).Width;
-                    if (zerosize != 0)
-                    {
-                        float relation = newsize / zerosize;
-                        if ((relation > 1.05f) || (relation < 0.95f))
-                        {
-                            if (Math.Abs(oldzerosize - newsize) > 2)
-                            {
-                                // Original widhts based on 8.25 size
-                                for (int i = 0; i < Columns.Count; i++)
-                                {
-                                    Columns[i].Width = System.Convert.ToInt32(Columns[i].Width * relation);
+            /* if (FAdjustColumnsFontChange)
+             {
+                 using (Graphics gr = this.CreateGraphics())
+                 {
+                     float newsize = gr.MeasureString("0000", Font).Width;
+                     if (zerosize != 0)
+                     {
+                         float relation = newsize / zerosize;
+                         if ((relation > 1.05f) || (relation < 0.95f))
+                         {
+                             if (Math.Abs(oldzerosize - newsize) > 2)
+                             {
+                                 // Original widhts based on 8.25 size
+                                 for (int i = 0; i < Columns.Count; i++)
+                                 {
+                                     Columns[i].Width = System.Convert.ToInt32(Columns[i].Width * relation);
 
-                                }
-                                oldzerosize = newsize;
-                            }
-                        }
-                    }
-                }
-            }*/
+                                 }
+                                 oldzerosize = newsize;
+                             }
+                         }
+                     }
+                 }
+             }*/
             try
             {
                 // Error index out of bounds when parent changes
@@ -1084,9 +1083,9 @@ namespace Reportman.Drawing.Forms
             }
             else
                 if (DataSource is DataTable)
-                tabla = (DataTable)DataSource;
-            else if (DataSource is BindingSource)
-                tabla = ((DataView)((BindingSource)DataSource).DataSource).Table;
+                    tabla = (DataTable)DataSource;
+                else if (DataSource is BindingSource)
+                    tabla = ((DataView)((BindingSource)DataSource).DataSource).Table;
 
 
             DataRow nrow = tabla.NewRow();
@@ -1190,105 +1189,105 @@ namespace Reportman.Drawing.Forms
                 DataSource = dsource;
             }
         }
-		private static string EncodeClipboardField(string value)
-		{
-			if (value == null)
-				return "";
-			bool needsQuote = value.IndexOfAny(new[] { '\t', '\r', '\n', '"' }) >= 0;
-			if (!needsQuote)
-				return value;
-			return "\"" + value.Replace("\"", "\"\"") + "\"";
-		}
-		private static List<List<string>> ParseClipboardTable(string text)
-		{
-			var rows = new List<List<string>>();
-			if (string.IsNullOrEmpty(text))
-				return rows;
+        private static string EncodeClipboardField(string value)
+        {
+            if (value == null)
+                return "";
+            bool needsQuote = value.IndexOfAny(new[] { '\t', '\r', '\n', '"' }) >= 0;
+            if (!needsQuote)
+                return value;
+            return "\"" + value.Replace("\"", "\"\"") + "\"";
+        }
+        private static List<List<string>> ParseClipboardTable(string text)
+        {
+            var rows = new List<List<string>>();
+            if (string.IsNullOrEmpty(text))
+                return rows;
 
-			var row = new List<string>();
-			var field = new StringBuilder();
-			bool inQuotes = false;
+            var row = new List<string>();
+            var field = new StringBuilder();
+            bool inQuotes = false;
 
-			for (int i = 0; i < text.Length; i++)
-			{
-				char c = text[i];
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
 
-				if (inQuotes)
-				{
-					if (c == '"')
-					{
-						// Escaped quote
-						if (i + 1 < text.Length && text[i + 1] == '"')
-						{
-							field.Append('"');
-							i++;
-						}
-						else
-						{
-							inQuotes = false;
-						}
-					}
-					else
-					{
-						field.Append(c);
-					}
-					continue;
-				}
+                if (inQuotes)
+                {
+                    if (c == '"')
+                    {
+                        // Escaped quote
+                        if (i + 1 < text.Length && text[i + 1] == '"')
+                        {
+                            field.Append('"');
+                            i++;
+                        }
+                        else
+                        {
+                            inQuotes = false;
+                        }
+                    }
+                    else
+                    {
+                        field.Append(c);
+                    }
+                    continue;
+                }
 
-				// Not in quotes
-				if (c == '"' && field.Length == 0)
-				{
-					inQuotes = true;
-					continue;
-				}
-				if (c == '\t')
-				{
-					row.Add(field.ToString());
-					field.Clear();
-					continue;
-				}
-				if (c == '\r')
-				{
-					if (i + 1 < text.Length && text[i + 1] == '\n')
-						i++;
-					row.Add(field.ToString());
-					field.Clear();
-					rows.Add(row);
-					row = new List<string>();
-					continue;
-				}
-				if (c == '\n')
-				{
-					row.Add(field.ToString());
-					field.Clear();
-					rows.Add(row);
-					row = new List<string>();
-					continue;
-				}
+                // Not in quotes
+                if (c == '"' && field.Length == 0)
+                {
+                    inQuotes = true;
+                    continue;
+                }
+                if (c == '\t')
+                {
+                    row.Add(field.ToString());
+                    field.Clear();
+                    continue;
+                }
+                if (c == '\r')
+                {
+                    if (i + 1 < text.Length && text[i + 1] == '\n')
+                        i++;
+                    row.Add(field.ToString());
+                    field.Clear();
+                    rows.Add(row);
+                    row = new List<string>();
+                    continue;
+                }
+                if (c == '\n')
+                {
+                    row.Add(field.ToString());
+                    field.Clear();
+                    rows.Add(row);
+                    row = new List<string>();
+                    continue;
+                }
 
-				field.Append(c);
-			}
+                field.Append(c);
+            }
 
-			// Flush last field/row
-			if (inQuotes)
-				inQuotes = false;
+            // Flush last field/row
+            if (inQuotes)
+                inQuotes = false;
 
-			if (field.Length > 0 || row.Count > 0)
-			{
-				row.Add(field.ToString());
-				rows.Add(row);
-			}
+            if (field.Length > 0 || row.Count > 0)
+            {
+                row.Add(field.ToString());
+                rows.Add(row);
+            }
 
-			// Remove trailing empty row if present
-			if (rows.Count > 0)
-			{
-				var last = rows[rows.Count - 1];
-				if (last.Count == 1 && last[0].Length == 0)
-					rows.RemoveAt(rows.Count - 1);
-			}
+            // Remove trailing empty row if present
+            if (rows.Count > 0)
+            {
+                var last = rows[rows.Count - 1];
+                if (last.Count == 1 && last[0].Length == 0)
+                    rows.RemoveAt(rows.Count - 1);
+            }
 
-			return rows;
-		}
+            return rows;
+        }
         /// <summary>
         /// Pastes clipboard tabular data into the bound table starting at the current cell, adding
         /// rows as needed; empty cells become null when assignnulls is true.
@@ -1304,27 +1303,27 @@ namespace Reportman.Drawing.Forms
                 ntable = ((DataView)DataSource).Table;
             else
                 if (DataSource is DataTable)
-                ntable = (DataTable)DataSource;
-            else
+                    ntable = (DataTable)DataSource;
+                else
                     if (DataSource is BindingSource)
-            {
-                BindingSource nbinding = (BindingSource)DataSource;
-                while (nbinding.DataSource is BindingSource)
-                {
-                    nbinding = (BindingSource)nbinding.DataSource;
-                }
-                if (nbinding.DataSource is DataView)
-                {
-                    ntable = ((DataView)nbinding.DataSource).Table;
-                }
-            }
-            else
-            if (DataSource is DataSet)
-            {
-                DataSet ndataset = (DataSet)DataSource;
-                if (ndataset.Tables.IndexOf(DataMember) >= 0)
-                    ntable = ndataset.Tables[DataMember];
-            }
+                    {
+                        BindingSource nbinding = (BindingSource)DataSource;
+                        while (nbinding.DataSource is BindingSource)
+                        {
+                            nbinding = (BindingSource)nbinding.DataSource;
+                        }
+                        if (nbinding.DataSource is DataView)
+                        {
+                            ntable = ((DataView)nbinding.DataSource).Table;
+                        }
+                    }
+                    else
+                        if (DataSource is DataSet)
+                        {
+                            DataSet ndataset = (DataSet)DataSource;
+                            if (ndataset.Tables.IndexOf(DataMember) >= 0)
+                                ntable = ndataset.Tables[DataMember];
+                        }
             if (ntable == null)
                 return;
             object olddsource = DataSource;
@@ -1340,8 +1339,8 @@ namespace Reportman.Drawing.Forms
                     int initialcolumn = CurrentCell.ColumnIndex;
                     int initialrow = CurrentCell.RowIndex;
                     string s = Clipboard.GetText();
-					List<List<string>> lines = ParseClipboardTable(s);
-					if (lines.Count > 1000)
+                    List<List<string>> lines = ParseClipboardTable(s);
+                    if (lines.Count > 1000)
                     {
                         if (Visible)
                         {
@@ -1349,9 +1348,9 @@ namespace Reportman.Drawing.Forms
                             Visible = false;
                         }
                     }
-					foreach (List<string> words in lines)
+                    foreach (List<string> words in lines)
                     {
-						if (words.Count > 0)
+                        if (words.Count > 0)
                         {
                             DataRow nrow;
                             bool added = false;
@@ -1379,9 +1378,9 @@ namespace Reportman.Drawing.Forms
                                     nrow = ((DataRowView)nvrow.DataBoundItem).Row;
                             }
                             int col = initialcolumn - 1;
-							for (int i = 0; i < words.Count; i++)
+                            for (int i = 0; i < words.Count; i++)
                             {
-								string word = words[i].Trim();
+                                string word = words[i].Trim();
                                 while (col < Columns.Count)
                                 {
                                     col++;
@@ -1404,7 +1403,7 @@ namespace Reportman.Drawing.Forms
                                             }
                                             else
                                             {
-                                                if(propname.Trim().Length>0)
+                                                if (propname.Trim().Length > 0)
                                                     nrow[propname] = DBNull.Value;
                                             }
                                         }
@@ -1498,7 +1497,7 @@ namespace Reportman.Drawing.Forms
                 ntable = ((DataView)source_origin).Table;
             else
                 if (source_origin is DataTable)
-                ntable = (DataTable)source_origin;
+                    ntable = (DataTable)source_origin;
             if (ntable == null)
                 return;
             object oldsource = DataSource;
@@ -1509,7 +1508,7 @@ namespace Reportman.Drawing.Forms
             try
             {
                 string s = Clipboard.GetText();
-				List<List<string>> lines = ParseClipboardTable(s);
+                List<List<string>> lines = ParseClipboardTable(s);
                 // Count visible, not readonly columns
                 SortedList<int, int> validcolumns = new SortedList<int, int>();
                 SortedList<int, int> validtablecolumns = new SortedList<int, int>();
@@ -1530,15 +1529,15 @@ namespace Reportman.Drawing.Forms
                 DataSource = null;
                 object[] nvalues = new object[validtablecolumns.Count];
                 int idxrow = 0;
-				foreach (List<string> words in lines)
+                foreach (List<string> words in lines)
                 {
-					if (words.Count > 0)
+                    if (words.Count > 0)
                     {
                         DataRow nrow = ntable.NewRow();
                         int col = 0;
-						if (words.Count != nvalues.Length)
-							nvalues = new object[words.Count];
-						for (int i = 0; i < words.Count; i++)
+                        if (words.Count != nvalues.Length)
+                            nvalues = new object[words.Count];
+                        for (int i = 0; i < words.Count; i++)
                         {
                             string word = words[i].Trim();
 
@@ -1632,7 +1631,7 @@ namespace Reportman.Drawing.Forms
                 ntable = ((DataView)DataSource).Table;
             else
                 if (DataSource is DataTable)
-                ntable = (DataTable)DataSource;
+                    ntable = (DataTable)DataSource;
             if (ntable == null)
                 return;
             object olddsource = DataSource;
@@ -1640,12 +1639,12 @@ namespace Reportman.Drawing.Forms
             try
             {
                 string s = Clipboard.GetText();
-				List<List<string>> lines = ParseClipboardTable(s);
-				foreach (List<string> words in lines)
+                List<List<string>> lines = ParseClipboardTable(s);
+                foreach (List<string> words in lines)
                 {
                     DataRow nrow = ntable.NewRow();
                     int col = -1;
-					for (int i = 0; i < words.Count; i++)
+                    for (int i = 0; i < words.Count; i++)
                     {
                         string word = words[i];
                         while (col < Columns.Count)
@@ -1700,7 +1699,7 @@ namespace Reportman.Drawing.Forms
             foreach (KeyValuePair<int, DataGridViewRow> npair in arows)
             {
                 if (i > 0)
-					nresult.Append("\r\n");
+                    nresult.Append("\r\n");
                 int j = 0;
                 foreach (KeyValuePair<int, DataGridViewColumn> colpari in acolumns)
                 {
@@ -1714,10 +1713,10 @@ namespace Reportman.Drawing.Forms
                         if (nvalor is byte[])
                         {
                             string nbase64 = Convert.ToBase64String((byte[])nvalor);
-							nresult.Append(EncodeClipboardField(nbase64));
+                            nresult.Append(EncodeClipboardField(nbase64));
                         }
                         else
-							nresult.Append(EncodeClipboardField(nvalor.ToString()));
+                            nresult.Append(EncodeClipboardField(nvalor.ToString()));
                     }
                     j++;
                 }
@@ -1787,7 +1786,7 @@ namespace Reportman.Drawing.Forms
 
             do
             {
-                ncol = ncol + 1;
+                ncol++;
                 if (ncol >= ngrid.Columns.Count)
                 {
                     ncol = 0;
@@ -2066,8 +2065,7 @@ namespace Reportman.Drawing.Forms
                     if (i > 0)
                         linebuilder.Append(listseparator);
                     object nvalue = grow.Cells[ColumnIndexes[i]].Value;
-                    if (nvalue == null)
-                        nvalue = DBNull.Value;
+                    nvalue ??= DBNull.Value;
                     if (nvalue != DBNull.Value)
                     {
                         string numberformat = "";
@@ -2388,7 +2386,7 @@ namespace Reportman.Drawing.Forms
 
         void TimerTick(object sender, EventArgs e)
         {
-            position = position + Speed;
+            position += Speed;
             Invalidate();
         }
         /// <summary>
@@ -2446,7 +2444,7 @@ namespace Reportman.Drawing.Forms
                 return;
 
             int labelposition = System.Convert.ToInt32(position);
-            position = position % (Width + labelwidth);
+            position %= (Width + labelwidth);
 
             PointF npoint = new PointF(Width - position, (Height - System.Convert.ToInt32(xsize.Height)) / 2);
 

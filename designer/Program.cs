@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Data.Common;
 using System.Threading;
 using System.Windows.Forms;
@@ -58,7 +57,7 @@ namespace designer
 
                 Application.Run(new Reportman.Designer.MainForm());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MyExceptionHandler.ShowThreadExceptionDialog(ex);
             }

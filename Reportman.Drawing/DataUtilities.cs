@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -72,7 +72,7 @@ namespace Reportman.Drawing
                                 RepeatedColumns[colName] = RepeatedColumns[colName] + 1;
                             }
                             int index = RepeatedColumns[colName];
-                            colName = colName + index.ToString();
+                            colName += index.ToString();
                         }
                         intdatatable.Columns.Add(colName, ntype);
                     }

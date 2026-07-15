@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -70,7 +70,7 @@ namespace Reportman.Reporting
                     foreach (PrintPosItem item in sec.Components)
                     {
                         item.Report = this;
-                        this.Components.Add(item.Name,item);
+                        this.Components.Add(item.Name, item);
                     }
                 }
             }
@@ -87,11 +87,12 @@ namespace Reportman.Reporting
         private void UpdateExecuteSubreportIndexes(List<int> subreportIndexes, int recCount)
         {
             recCount++;
-            if (recCount>100)
+            if (recCount > 100)
             {
                 throw new Exception("Circular childsubreport reference");
             }
-            foreach (int idx in subreportIndexes) {
+            foreach (int idx in subreportIndexes)
+            {
                 var subreport = this.SubReports[idx];
                 foreach (Section sec in subreport.Sections)
                 {
@@ -278,7 +279,8 @@ namespace Reportman.Reporting
                 PrepareParamsAfterOpen();
                 for (i = 0; i < SubReports.Count; i++)
                 {
-                    if (SubreportMustBeExecuted(SubReports[i])) {
+                    if (SubreportMustBeExecuted(SubReports[i]))
+                    {
                         SubReports[i].SubReportChanged(SubReportEvent.Start, "");
                     }
                 }
@@ -291,7 +293,7 @@ namespace Reportman.Reporting
                     {
                         CurrentSubReportIndex++;
                     }
-                    while (CurrentSubReportIndex< SubReports.Count && !SubreportMustBeExecuted(SubReports[CurrentSubReportIndex]));
+                    while (CurrentSubReportIndex < SubReports.Count && !SubreportMustBeExecuted(SubReports[CurrentSubReportIndex]));
                     if (CurrentSubReportIndex >= SubReports.Count)
                         break;
                     subrep = SubReports[CurrentSubReportIndex];
@@ -610,7 +612,7 @@ namespace Reportman.Reporting
                 }
                 else
                     if (subrep.CurrentGroupIndex == 0)
-                    break;
+                        break;
             }
             bool aresult = (section != null);
             // If there are still pending sections
@@ -646,7 +648,7 @@ namespace Reportman.Reporting
                     if (!TwoPass)
                         throw new UnNamedException("Two pass report required for skip to feature");
                     newpage = Convert.ToInt32((Evaluator.EvaluateText(asection.SkipToPageExpre)).AsDouble);
-                    newpage = newpage - 1;
+                    newpage--;
                     if (newpage < 0)
                         throw new UnNamedException("Can not combine skip to page");
                     while (newpage > MetaFile.Pages.CurrentCount)
@@ -696,14 +698,14 @@ namespace Reportman.Reporting
             if (moveh)
             {
                 if (asection.SkipRelativeH)
-                    pageposx = pageposx + newposx;
+                    pageposx += newposx;
                 else
                     pageposx = newposx;
             }
             if (movev)
             {
                 if (asection.SkipRelativeV)
-                    pageposy = pageposy + newposy;
+                    pageposy += newposy;
                 else
                     pageposy = newposy;
             }
@@ -780,8 +782,8 @@ namespace Reportman.Reporting
             if (!asection.AlignBottom)
             {
                 asection.Print(FDriver, pageposx, pageposy, -1, -1, MetaFile, MaxExtent, ref PartialPrint);
-                FreeSpace = FreeSpace - sectionext.Y;
-                pageposy = pageposy + sectionext.Y;
+                FreeSpace -= sectionext.Y;
+                pageposy += sectionext.Y;
             }
             else
             // Align to bottom
@@ -913,7 +915,7 @@ namespace Reportman.Reporting
                     asection = psection;
                     CheckSpace();
                     pagefooterpos = pageposy + FreeSpace - sectionext.Y;
-                    FreeSpace = FreeSpace - sectionext.Y;
+                    FreeSpace -= sectionext.Y;
                 }
                 pfooter = subreport.FirstPageFooter;
                 pfootercount = subreport.PageFooterCount;
@@ -927,7 +929,7 @@ namespace Reportman.Reporting
                         CheckSpace();
                         pagefooters.Add(psection);
                         pagefooterpos = pageposy + FreeSpace - sectionext.Y;
-                        FreeSpace = FreeSpace - sectionext.Y;
+                        FreeSpace -= sectionext.Y;
                     }
                 }
             }
@@ -1046,7 +1048,7 @@ namespace Reportman.Reporting
             }
             MetaFile.CurrentPage = PageNum;
             PageSizeDetail pageDetail = InitialPageDetail;
-            DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1],pageDetail);
+            DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1], pageDetail);
             FGroupHeaders.Clear();
             PrintedSomething = false;
             if (section == null)
@@ -1081,7 +1083,7 @@ namespace Reportman.Reporting
                     pageposy = TopMargin;
                     pageposx = LeftMargin;
                     // pageDetail = MetaFile.Pages[MetaFile.Pages.CurrentCount - 1].PageDetail;
-                    DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1],pageDetail);
+                    DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1], pageDetail);
                 }
                 else
                 {
@@ -1153,9 +1155,9 @@ namespace Reportman.Reporting
                                 sectionextevaluated = true;
                                 if ((pageposx + oldprintedsectionext.X + sectionext.X) <= pagespacex)
                                 {
-                                    pageposx = pageposx + oldprintedsectionext.X;
-                                    pageposy = pageposy - oldprintedsectionext.Y;
-                                    FreeSpace = FreeSpace + oldprintedsectionext.Y;
+                                    pageposx += oldprintedsectionext.X;
+                                    pageposy -= oldprintedsectionext.Y;
+                                    FreeSpace += oldprintedsectionext.Y;
                                 }
                                 else
                                     pageposx = LeftMargin;
@@ -1181,8 +1183,8 @@ namespace Reportman.Reporting
                             sectionextevaluated = true;
                             if ((pageposx + sectionext.X * 2) <= pagespacex)
                             {
-                                FreeSpace = FreeSpace + (pageposy - lastvertpos.Y);
-                                pageposx = pageposx + sectionext.X;
+                                FreeSpace += (pageposy - lastvertpos.Y);
+                                pageposx += sectionext.X;
                                 pageposy = lastvertpos.Y;
                             }
                             else

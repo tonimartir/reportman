@@ -222,84 +222,84 @@ namespace Reportman.Designer
                 FPrintItemExpression.Expression = newvalue;
             }
             else
-            // DataType
-            if (pname == Translator.TranslateStr(892))
-            {
-                FPrintItemExpression.DataType = IndexToDataType((int)newvalue);
-            }
-            else
-            // DisplayFormat
-            if (pname == Translator.TranslateStr(574))
-            {
-                FPrintItemExpression.DisplayFormat = newvalue;
-            }
-            else
-            // MultiPage
-            if (pname == Translator.TranslateStr(958))
-            {
-                FPrintItemExpression.MultiPage = newvalue;
-            }
-            else
-            // PrintNulls
-            if (pname == Translator.TranslateStr(941))
-            {
-                FPrintItemExpression.PrintNulls = newvalue;
-            }
-            else
-            // Identifier
-            if (pname == Translator.TranslateStr(304))
-            {
-                FPrintItemExpression.Identifier = newvalue;
-            }
-            else
-            // Aggregate
-            if (pname == Translator.TranslateStr(293))
-            {
-                FPrintItemExpression.Aggregate = (Aggregate)(int)newvalue;
-            }
-            else
-            // Group name
-            if (pname == Translator.TranslateStr(296))
-            {
-                if (newvalue.IsInteger())
+                // DataType
+                if (pname == Translator.TranslateStr(892))
                 {
-                    FPrintItemExpression.AgType = (AggregateType)(int)newvalue;
-                    Strings lpossiblevalues = new Strings
+                    FPrintItemExpression.DataType = IndexToDataType((int)newvalue);
+                }
+                else
+                    // DisplayFormat
+                    if (pname == Translator.TranslateStr(574))
+                    {
+                        FPrintItemExpression.DisplayFormat = newvalue;
+                    }
+                    else
+                        // MultiPage
+                        if (pname == Translator.TranslateStr(958))
+                        {
+                            FPrintItemExpression.MultiPage = newvalue;
+                        }
+                        else
+                            // PrintNulls
+                            if (pname == Translator.TranslateStr(941))
+                            {
+                                FPrintItemExpression.PrintNulls = newvalue;
+                            }
+                            else
+                                // Identifier
+                                if (pname == Translator.TranslateStr(304))
+                                {
+                                    FPrintItemExpression.Identifier = newvalue;
+                                }
+                                else
+                                    // Aggregate
+                                    if (pname == Translator.TranslateStr(293))
+                                    {
+                                        FPrintItemExpression.Aggregate = (Aggregate)(int)newvalue;
+                                    }
+                                    else
+                                        // Group name
+                                        if (pname == Translator.TranslateStr(296))
+                                        {
+                                            if (newvalue.IsInteger())
+                                            {
+                                                FPrintItemExpression.AgType = (AggregateType)(int)newvalue;
+                                                Strings lpossiblevalues = new Strings
                     {
                         "" // None
                     };
-                    foreach (Section nsection in FPrintItemExpression.Section.SubReport.Sections)
-                    {
-                        if (nsection.SectionType == SectionType.GroupHeader)
-                        {
-                            lpossiblevalues.Add(nsection.GroupName);
-                        }
-                    }
-                    FPrintItemExpression.GroupName = lpossiblevalues[(int)newvalue];
-                }
-                else
-                    FPrintItemExpression.GroupName = newvalue;
-            }
-            else
-            // Aggregate Type
-            if (pname == Translator.TranslateStr(297))
-            {
-                FPrintItemExpression.AgType = (AggregateType)(int)newvalue;
-            }
-            else
-            // Group Initial Expression
-            if (pname == Translator.TranslateStr(303))
-            {
-                FPrintItemExpression.AgIniValue = newvalue;
-            }
-            else
-            if (pname == Translator.TranslateStr(576))
-            {
-                FPrintItemExpression.PrintOnlyOne = newvalue;
-            }
-            else
-                // inherited
-                base.SetProperty(pname, newvalue);
+                                                foreach (Section nsection in FPrintItemExpression.Section.SubReport.Sections)
+                                                {
+                                                    if (nsection.SectionType == SectionType.GroupHeader)
+                                                    {
+                                                        lpossiblevalues.Add(nsection.GroupName);
+                                                    }
+                                                }
+                                                FPrintItemExpression.GroupName = lpossiblevalues[(int)newvalue];
+                                            }
+                                            else
+                                                FPrintItemExpression.GroupName = newvalue;
+                                        }
+                                        else
+                                            // Aggregate Type
+                                            if (pname == Translator.TranslateStr(297))
+                                            {
+                                                FPrintItemExpression.AgType = (AggregateType)(int)newvalue;
+                                            }
+                                            else
+                                                // Group Initial Expression
+                                                if (pname == Translator.TranslateStr(303))
+                                                {
+                                                    FPrintItemExpression.AgIniValue = newvalue;
+                                                }
+                                                else
+                                                    if (pname == Translator.TranslateStr(576))
+                                                    {
+                                                        FPrintItemExpression.PrintOnlyOne = newvalue;
+                                                    }
+                                                    else
+                                                        // inherited
+                                                        base.SetProperty(pname, newvalue);
         }
     }
 }

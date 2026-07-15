@@ -1,11 +1,9 @@
-using Reportman.Drawing;
-using SharpDX;
+﻿using SharpDX;
 using SharpDX.Direct2D1;
 using SharpDX.DirectWrite;
 using SharpDX.Mathematics.Interop;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace Reportman.Drawing.Windows
@@ -168,14 +166,14 @@ namespace Reportman.Drawing.Windows
             var glyphList = new List<TGlyphPos>();
             int glyphCount = glyphRun.Indices.Length;
             int clusterIndexCount = glyphRunDescription.Text.Length;
-            var clusterDic = new  SortedList<int, int>();
+            var clusterDic = new SortedList<int, int>();
 
             // Leer ClusterMap desde IntPtr
             ushort[] clusterMap = new ushort[clusterIndexCount];
             // if (glyphRunDescription.ClusterMap != IntPtr.Zero && count > 0)
-                Utilities.Read(glyphRunDescription.ClusterMap, clusterMap, 0, clusterIndexCount);
+            Utilities.Read(glyphRunDescription.ClusterMap, clusterMap, 0, clusterIndexCount);
             //Marshal.Copy(glyphRunDescription.ClusterMap, (short[])(object)clusterMap, 0, count);
-            for (int i = 0;i<clusterIndexCount;i++)
+            for (int i = 0; i < clusterIndexCount; i++)
             {
                 var firstGlyph = clusterMap[i];
                 if (!clusterDic.ContainsKey(firstGlyph))
@@ -197,7 +195,7 @@ namespace Reportman.Drawing.Windows
                     Cluster = currentCluster,
                     LineCluster = textIndex
                 };
-                if (pos.LineCluster>=TextLength)
+                if (pos.LineCluster >= TextLength)
                 {
                     throw new Exception("Cluster out of range");
                 }
@@ -206,7 +204,8 @@ namespace Reportman.Drawing.Windows
                     if (pos.LineCluster == TextLength)
                     {
                         pos.CharCode = (char)0;
-                    } else
+                    }
+                    else
                     {
                         pos.CharCode = _originalText[pos.LineCluster];
                     }

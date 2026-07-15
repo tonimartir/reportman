@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.IO;
-using System.Linq;
 #if NETSTANDARD2_0
 #else
 #endif
@@ -261,7 +260,7 @@ namespace Reportman.Drawing
                                 palette = palette + " " + acolor.ToString("X").PadLeft(6, '0');
                         }
                         if (usedcolors > 0)
-                            palette = palette + ">";
+                            palette += ">";
                     }
                     else
                     {
@@ -299,9 +298,9 @@ namespace Reportman.Drawing
                             }
                         }
                         if (usedcolors > 0)
-                            palette = palette + ">";
+                            palette += ">";
                         if (mask.Length > 0)
-                            mask = mask + " ]";
+                            mask += " ]";
                     }
                 }
                 // Go to position bits
@@ -326,12 +325,12 @@ namespace Reportman.Drawing
                     scanwidth = (int)width / divider;
                     indexed = true;
                     if ((width % divider) > 0)
-                        scanwidth = scanwidth + 1;
+                        scanwidth++;
                     // bitmap file format is aligned on double word
                     // the alignment must be removed from datafile
                     origwidth = scanwidth;
                     while ((scanwidth % 4) > 0)
-                        scanwidth = scanwidth + 1;
+                        scanwidth++;
                     buf = new byte[scanwidth];
                     byte[] bufMask = null;
                     if (createIndexedSMap)
@@ -368,26 +367,26 @@ namespace Reportman.Drawing
                     }
                     else
                         if ((bitsperpixel == 16) || (bitsperpixel == 15))
-                    {
-                        scanwidth = width * 2;
-                        toread = 0;
-                        // Align to 32 bit
-                        toread = 4 - (scanwidth % 4);
-                        if (toread == 4)
+                        {
+                            scanwidth = width * 2;
                             toread = 0;
-                        module = 2;
-                    }
-                    else
-                    {
-                        scanwidth = width * 3;
-                        // Align to 32 bit
-                        toread = 4 - (scanwidth % 4);
-                        if (toread == 4)
-                            toread = 0;
-                        module = 3;
-                    }
+                            // Align to 32 bit
+                            toread = 4 - (scanwidth % 4);
+                            if (toread == 4)
+                                toread = 0;
+                            module = 2;
+                        }
+                        else
+                        {
+                            scanwidth = width * 3;
+                            // Align to 32 bit
+                            toread = 4 - (scanwidth % 4);
+                            if (toread == 4)
+                                toread = 0;
+                            module = 3;
+                        }
                     MemBits.Seek(0, System.IO.SeekOrigin.Begin);
-                    scanwidth = scanwidth + toread;
+                    scanwidth += toread;
                     buf = new byte[scanwidth];
                     int linewidth = width * 3;
                     byte[] bufdest = new byte[linewidth];
@@ -574,7 +573,7 @@ namespace Reportman.Drawing
             // Length includes itself, so must be at least 2 }
             if (alength < 2)
                 throw new UnNamedException("Invalid JPEG");
-            alength = alength - 2;
+            alength -= 2;
             // Skip over the remaining bytes }
             byte[] abuf = new byte[alength];
             readed = ReadFull(astream, abuf, 0, alength);

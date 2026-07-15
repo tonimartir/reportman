@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -339,32 +339,32 @@ namespace Reportman.Drawing.Forms
                         gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
                     }
                     else
-                    if (value == 5)
-                    {
-                        // 0.5 units
-                        avaluex = (int)Math.Round(i);
-                        avaluey = cheight;
-                        avaluey2 = cheight - h2;
-                        avaluex = LogicalToDevice(originx, destinationx, avaluex);
-                        avaluex2 = avaluex;
-                        avaluey = LogicalToDevice(originy, destinationy, avaluey);
-                        avaluey2 = LogicalToDevice(originy, destinationy, avaluey2);
-                        gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
-                    }
-                    else
-                    {
-                        // 0.1 units
-                        avaluex = (int)Math.Round(i);
-                        avaluey = cheight;
-                        avaluey2 = cheight - h3;
-                        avaluex = LogicalToDevice(originx, destinationx, avaluex);
-                        avaluex2 = avaluex;
-                        avaluey = LogicalToDevice(originy, destinationy, avaluey);
-                        avaluey2 = LogicalToDevice(originy, destinationy, avaluey2);
-                        gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
-                    }
+                        if (value == 5)
+                        {
+                            // 0.5 units
+                            avaluex = (int)Math.Round(i);
+                            avaluey = cheight;
+                            avaluey2 = cheight - h2;
+                            avaluex = LogicalToDevice(originx, destinationx, avaluex);
+                            avaluex2 = avaluex;
+                            avaluey = LogicalToDevice(originy, destinationy, avaluey);
+                            avaluey2 = LogicalToDevice(originy, destinationy, avaluey2);
+                            gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
+                        }
+                        else
+                        {
+                            // 0.1 units
+                            avaluex = (int)Math.Round(i);
+                            avaluey = cheight;
+                            avaluey2 = cheight - h3;
+                            avaluex = LogicalToDevice(originx, destinationx, avaluex);
+                            avaluex2 = avaluex;
+                            avaluey = LogicalToDevice(originy, destinationy, avaluey);
+                            avaluey2 = LogicalToDevice(originy, destinationy, avaluey2);
+                            gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
+                        }
 
-                    i = i + onecent;
+                    i += onecent;
                     x++;
                 }
             }
@@ -395,31 +395,31 @@ namespace Reportman.Drawing.Forms
                     }
                     else
                         if (value == 5)
-                    {
-                        // 0.5 units
-                        avaluey = (int)Math.Round(i);
-                        avaluex2 = cheight;
-                        avaluex = cheight - h2;
-                        avaluey = LogicalToDevice(originy, destinationy, avaluey);
-                        avaluey2 = avaluey;
-                        avaluex = LogicalToDevice(originx, destinationx, avaluex);
-                        avaluex2 = LogicalToDevice(originx, destinationx, avaluex2);
-                        gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
-                    }
-                    else
-                    {
-                        // 0.1 units
-                        avaluey = (int)Math.Round(i);
-                        avaluex2 = cheight;
-                        avaluex = cheight - h3;
-                        avaluey = LogicalToDevice(originy, destinationy, avaluey);
-                        avaluey2 = avaluey;
-                        avaluex = LogicalToDevice(originx, destinationx, avaluex);
-                        avaluex2 = LogicalToDevice(originx, destinationx, avaluex2);
-                        gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
-                    }
+                        {
+                            // 0.5 units
+                            avaluey = (int)Math.Round(i);
+                            avaluex2 = cheight;
+                            avaluex = cheight - h2;
+                            avaluey = LogicalToDevice(originy, destinationy, avaluey);
+                            avaluey2 = avaluey;
+                            avaluex = LogicalToDevice(originx, destinationx, avaluex);
+                            avaluex2 = LogicalToDevice(originx, destinationx, avaluex2);
+                            gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
+                        }
+                        else
+                        {
+                            // 0.1 units
+                            avaluey = (int)Math.Round(i);
+                            avaluex2 = cheight;
+                            avaluex = cheight - h3;
+                            avaluey = LogicalToDevice(originy, destinationy, avaluey);
+                            avaluey2 = avaluey;
+                            avaluex = LogicalToDevice(originx, destinationx, avaluex);
+                            avaluex2 = LogicalToDevice(originx, destinationx, avaluex2);
+                            gr.DrawLine(pen, avaluex, avaluey, avaluex2, avaluey2);
+                        }
 
-                    i = i + onecent;
+                    i += onecent;
                     x++;
                 }
 

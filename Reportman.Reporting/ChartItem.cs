@@ -445,7 +445,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message +(char)10 + Name + " Prop:SerieCaption " + (char)10 + PrintCondition, this, "SerieCaption");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:SerieCaption " + (char)10 + PrintCondition, this, "SerieCaption");
             }
             return aresult;
         }

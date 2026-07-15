@@ -1,4 +1,4 @@
-namespace Reportman.Drawing.Forms
+﻿namespace Reportman.Drawing.Forms
 {
     partial class DateTimePickerAdvanced
     {
