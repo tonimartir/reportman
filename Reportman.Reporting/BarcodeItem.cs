@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -381,7 +381,6 @@ namespace Reportman.Reporting
             data = "";
             if (BarType == BarcodeType.CodePDF417)
             {
-                GenerateCodeWords();
                 return CurrentText;
             }
             // Calculate the with of lines
@@ -460,10 +459,7 @@ namespace Reportman.Reporting
             modules[2] = (modules[1] * 3) / 2;
             modules[3] = modules[1] * 2;
         }
-        private void GenerateCodeWords()
-        {
 
-        }
         private string GetEAN(string nr)
         {
             int i, fak, sum;
@@ -1385,7 +1381,7 @@ namespace Reportman.Reporting
             int BrushColor;
             if (BarType == BarcodeType.CodePDF417)
             {
-                //Draw2DBarcode(FLeft,FTop,meta);
+                PDF417Encoder.Draw2DBarcode(CurrentText, ECCLevel, NumRows, NumColumns, Truncated, Modul, Left, Top, Height, metafile, BColor, Rotation);
                 return;
             }
             xadd = 0;
