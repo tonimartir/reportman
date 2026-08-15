@@ -98,15 +98,20 @@ namespace Reportman.Drawing
         public FT_LibraryRec_* ftlibrary;
         /// <summary>Path of the associated kerning/AFM file, or an empty string when none.</summary>
         public string kerningfile;
-        /// <summary>Shared cache mapping a font key name to its FreeType face index.</summary>
-        public static SortedList<string,int> FontFaces = new SortedList<string,int>();
+        /// <summary>Shared cache of opened FreeType faces, keyed by font file and face index.</summary>
+        public static SortedList<string,IntPtr> FontFaces = new SortedList<string,IntPtr>();
         /// <summary>Index of the face within the font file.</summary>
         public int iface;
+        /// <summary>True when the font has scalable outlines; a bitmap-only face has nothing to embed in a PDF.</summary>
+        public bool scalable;
+        /// <summary>Index of the face to open inside the font file, as fontconfig reports it.</summary>
+        public int faceIndex;
         /// <summary>Initializes a new instance with an empty kerning file and a zero face index.</summary>
         public LogFontFt()
         {
             kerningfile = "";
             iface = 0;
+            faceIndex = 0;
         }
         /// <summary>Releases resources held by the font. Currently a no-op because faces are shared and cached.</summary>
         public void Dispose()
@@ -120,46 +125,58 @@ namespace Reportman.Drawing
             Monitor.Enter(FontInfoFt.flag);
             try
             {
-                if (FontFaces.IndexOfKey(keyname) >= 0)
+                if (faceinit)
+                    return;
+                // The cache is keyed by file and face index, not by family name. With fontconfig
+                // resolving every request on its own, two different files can perfectly well come
+                // back with the same family, bold and italic combination, and the loser used to
+                // end up marked as opened with no face behind it.
+                string facekey = filename + "|" + faceIndex.ToString(CultureInfo.InvariantCulture);
+                if (FontFaces.IndexOfKey(facekey) >= 0)
                 {
-                    iface = FontFaces[keyname];
+                    ftface = (FT_FaceRec_*)FontFaces[facekey];
+                    iface = ftface->face_index.ToInt32();
                     faceinit = true;
+                    return;
                 }
-                else
+                FT_FaceRec_* aface;
+                IntPtr namebuffer = Marshal.StringToHGlobalAnsi(filename);
+                try
                 {
-
-                    //FontInfoFt.CheckFreeType(FT.FT_New_Face(ftlibrary, filename, 0, out iface));
-                    FT_FaceRec_* aface;
                     FontInfoFt.CheckFreeType(
-                            FT.FT_New_Face(ftlibrary, (byte*)Marshal.StringToHGlobalAnsi(filename), (IntPtr)0, &aface)
-                            //FT.FT_New_Face(ftlibrary, FontInfoFt.StringToBytePtr(filename), new IntPtr(0), &aface)
+                            FT.FT_New_Face(ftlibrary, (byte*)namebuffer, (IntPtr)faceIndex, &aface)
                         );
-                    //SharpFont.Face aface = new SharpFont.Face(ftlibrary,filename);
-                    iface = aface->face_index.ToInt32();
-                    ftface = aface;
-                    //FontInfoFt.CheckFreeType(FT.FT_New_Face(ftlibrary, filename, 0, out iface));
-                    //aface = (FT_FaceRec)Marshal.PtrToStructure(iface, typeof(FT_FaceRec));
-                    faceinit = true;
-                    if (type1)
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(namebuffer);
+                }
+                iface = aface->face_index.ToInt32();
+                ftface = aface;
+                faceinit = true;
+                if (type1)
+                {
+                    kerningfile = System.IO.Path.ChangeExtension(filename, ".afm");
+                    if (File.Exists(kerningfile))
                     {
-                        kerningfile = System.IO.Path.ChangeExtension(filename, ".afm");
-                        if (File.Exists(kerningfile))
+                        IntPtr kerningbuffer = Marshal.StringToHGlobalAnsi(kerningfile);
+                        try
                         {
-                            // aface.AttachFile(kerningfile);
-                            FontInfoFt.CheckFreeType(FT.FT_Attach_File(aface, FontInfoFt.StringToBytePtr(kerningfile)));
+                            FontInfoFt.CheckFreeType(FT.FT_Attach_File(aface, (byte*)kerningbuffer));
+                        }
+                        finally
+                        {
+                            Marshal.FreeHGlobal(kerningbuffer);
                         }
                     }
-                    // Don't need scale, but this is a scale that returns
-                    // exact widht for pdf if you divide the result
-                    // of Get_Char_Width by 64
-                    //aface.SetCharSize(0, 64 * 100, 96, 96); // Tamaño en puntos y DPI
-                    int acharWidth = 0;
-                    var pointer = &acharWidth;
-                    int heightInt = 64 * 100;
-                    var heightPointer = &heightInt;
-                    FontInfoFt.CheckFreeType(FT.FT_Set_Char_Size(aface, (IntPtr)0, (IntPtr)(64*100),96,96));
-                    FontFaces.Add(keyname, iface);
                 }
+                // Don't need scale, but this is a scale that returns
+                // exact widht for pdf if you divide the result
+                // of Get_Char_Width by 64
+                // A bitmap-only face rejects a char size in points, so it is not asked for one.
+                if (scalable)
+                    FontInfoFt.CheckFreeType(FT.FT_Set_Char_Size(aface, (IntPtr)0, (IntPtr)(64*100),96,96));
+                FontFaces.Add(facekey, (IntPtr)aface);
             }
             finally
             {
@@ -189,6 +206,16 @@ namespace Reportman.Drawing
         static LogFontFt defaultfontbit;
         static FT_LibraryRec_* FreeTypeLib;
         static SortedList<string, SortedList<char, GlyphInfo>> WidthsCache = new SortedList<string, SortedList<char, GlyphInfo>>();
+        // Fonts already described, keyed by file and face index. This is what the fontconfig path
+        // feeds from: it hands back a path, not a family, and the same file must not be read twice.
+        static SortedList<string, LogFontFt> logfontsbyfile = new SortedList<string, LogFontFt>();
+        /// <summary>
+        /// Extra directories to scan for fonts, for platforms that keep no font database to ask.
+        /// Android is the reason this exists: it carries no fontconfig, so the application declares
+        /// here where its bundled fonts live. It has to be filled before the first report is printed,
+        /// because the scan happens once.
+        /// </summary>
+        public static Strings ExtraFontDirectories = new Strings();
         static string BytePtrToString(byte* ptr)
         {
             int length = 0;
@@ -297,172 +324,102 @@ namespace Reportman.Drawing
                     CheckFreeType(FT.FT_Init_FreeType(FreeTypeLibPointer));
                 }
                 libraryinitialized = true;
+                // FONTCONFIG FIRST, DIRECTORIES ONLY IF THERE IS NONE. The same order the Delphi
+                // engine follows (rpinfoprovft.pas InitLibrary): where the system keeps a font
+                // database, there is nothing to enumerate. Every request is resolved on demand and,
+                // more to the point, through the substitution rules, which is what turns a report
+                // asking for Arial into Liberation Sans instead of into whatever font happened to
+                // be first in a directory listing.
+                if ((System.Environment.OSVersion.Platform == PlatformID.Unix)
+                    || (System.Environment.OSVersion.Platform == PlatformID.MacOSX))
+                    FontConfig.Init();
+                if (FontConfig.Available)
+                    return;
                 
                 Strings npaths = GetFontDirectories();
                 foreach (string ndir in npaths)
                 {
-					if (Directory.Exists(ndir))
-					{
+                    if (!Directory.Exists(ndir))
+                        continue;
                     string[] nfiles = StreamUtil.GetFiles(ndir,"*.TTF|*.ttf|*.pf*",SearchOption.AllDirectories);
                     foreach (string nfile in nfiles)
                     {
-                            //FT_FaceRec aface = new FT_FaceRec();
-                            // var aface = new FT.Face .Face(FreeTypeLib, nfile);
-                            FT_FaceRec_* iface;
-                            int faceIndex = 0;
-                            var faceIndexPointer = &faceIndex;
-                        CheckFreeType(
-                            // FT.FT_New_Face(FreeTypeLib, StringToBytePtr(nfile), (IntPtr)faceIndexPointer, &iface)
-                            FT.FT_New_Face(FreeTypeLib, (byte*)Marshal.StringToHGlobalAnsi(nfile),(IntPtr) 0, &iface));
+                        LogFontFt aobj;
                         try
                         {
-                                //aface = (FT_FaceRec)Marshal.PtrToStructure(iface, typeof(FT_FaceRec));
-                                //if ((aface.face_flags & (int)FT_Face_Flags.FT_FACE_FLAG_SCALABLE)!=0)
-                                //string familyMame = BytePtrToString(iface->family_name);
-                                // if (aface.FaceFlags.HasFlag(SharpFont.FaceFlags.Scalable))
-                            if ((iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_SCALABLE)!=0)
+                            aobj = FillLogFont(nfile, 0);
+                        }
+                        catch (Exception)
+                        {
+                            // A file FreeType cannot parse is no reason to leave the process with
+                            // no fonts at all: it is skipped and the scan carries on.
+                            continue;
+                        }
+                        // Non scalable fonts are not supported, there are no outlines to embed
+                        if (aobj != null && aobj.scalable)
+                        {
+                            // Default font configuration, LUXI SANS is default
+                            if ((!aobj.italic) && (!aobj.bold))
                             {
-                                LogFontFt aobj = new LogFontFt();
-                                aobj.ftlibrary = FreeTypeLib;
-                                aobj.fullinfo = false;
-                                    // Fill font properties
-                                    //aobj.type1 = ((int)FT_Face_Flags.FT_FACE_FLAG_SFNT & aface.face_flags)==0;
-                                    //aobj.type1 = !aface.FaceFlags.HasFlag(SharpFont.FaceFlags.Sfnt);
-                                    aobj.type1 = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_SFNT) == 0;
-                                    if (aobj.type1)
+                                if (defaultfont == null)
+                                    defaultfont = aobj;
+                                else
                                 {
-                                        //       aobj.convfactor:=1000/aface.units_per_EM;
-                                        //aobj.widthmult = 1024.0/aface.UnitsPerEM;
-                                        //aobj.heightmult = 1024.0/aface.UnitsPerEM;
-                                        aobj.widthmult = 1;
-                                        aobj.heightmult = 1;
+                                    if (aobj.familyname.ToUpper() == "LUXI SANS")
+                                    {
+                                        defaultfont = aobj;
                                     }
                                     else
-                                {
-                                        //aobj.convfactor=1;
-                                        aobj.convfactor=1000.0/iface->units_per_EM;
-                                        aobj.widthmult = 1;
-                                        aobj.heightmult = 1;
-                                        //aobj.widthmult = 1024.0 / aface.UnitsPerEM;
-                                        //aobj.heightmult = 1024.0 / aface.UnitsPerEM;
-                                    }
-                                    aobj.filename=nfile;
-                                string family_name = BytePtrToString(iface->family_name);
-                                aobj.postcriptname=family_name.Replace(" ","");
-                                aobj.familyname=family_name;
-                                aobj.keyname = family_name + "____";
-                                    //aobj.fixedpitch=(aface.face_flags & (int)FT_Face_Flags.FT_FACE_FLAG_FIXED_WIDTH)!=0;
-                                    // aobj.fixedpitch = aface.FaceFlags.HasFlag(SharpFont.FaceFlags.FixedWidth);
-                                aobj.fixedpitch = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_FIXED_WIDTH)!=0;
-                                    //aobj.havekerning=(aface.face_flags & (int)FT_Face_Flags.FT_FACE_FLAG_KERNING)!=0;
-                                //aobj.havekerning = aface.FaceFlags.HasFlag(SharpFont.FaceFlags.Kerning);
-                                aobj.havekerning = (iface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_KERNING) != 0;
-                                int bboxleft = iface->bbox.xMin.ToInt32();
-                                int bboxright = iface->bbox.xMax.ToInt32();
-                                int bboxtop  = iface->bbox.yMin.ToInt32();
-                                int bboxbottom = iface->bbox.yMax.ToInt32();
-
-                                int nleft = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxleft));
-                                int nright = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxright));
-                                int ntop = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxtop));
-                                int nbottom = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxbottom));
-                                // BBox calcultions are incorrect
-                                // aobj.BBox = new Rectangle(nleft,ntop,nright-nleft,nbottom-ntop);
-                                aobj.ascent=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->ascender));
-                                aobj.descent=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->descender));
-                                aobj.height=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height));
-                                aobj.leading=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height)-(aobj.ascent-aobj.descent));
-                                aobj.MaxWidth=System.Convert.ToInt32(Math.Round(aobj.convfactor*(double)iface->max_advance_width));
-                                aobj.Capheight=System.Convert.ToInt32(Math.Round(aobj.convfactor*(double)iface->ascender));
-                                string style_name = BytePtrToString(iface->style_name);
-                                aobj.stylename=style_name;
-                                    //aobj.bold=(aface.style_flags & (int)FT_Style_Flags.FT_STYLE_FLAG_BOLD)!=0;
-                                aobj.bold = (iface->style_flags.ToInt32() &  (int)FT_STYLE_FLAG.FT_STYLE_FLAG_BOLD) != 0;
-                                    //aobj.italic=(aface.style_flags & (int)FT_Style_Flags.FT_STYLE_FLAG_ITALIC)!=0;
-                                    //aobj.italic = aface.StyleFlags.HasFlag(SharpFont.StyleFlags.Italic);
-                                 aobj.italic = (iface->style_flags.ToInt32() & (int)FT_STYLE_FLAG.FT_STYLE_FLAG_ITALIC) != 0;
-                                 if (aobj.bold)
-                                    aobj.keyname = aobj.keyname + "B1";
-                                else
-                                    aobj.keyname = aobj.keyname + "B0";
-
-                                if (aobj.italic)
-                                    aobj.keyname = aobj.keyname + "I1";
-                                else
-                                    aobj.keyname = aobj.keyname + "I0";
-                                // Default font configuration, LUXI SANS is default
-                                if ((!aobj.italic) && (!aobj.bold))
-                                {
-                                   if (defaultfont==null)
-                                    defaultfont=aobj;
-                                   else
-                                   {
-                                        if (aobj.familyname.ToUpper()=="LUXI SANS")
+                                        if (aobj.familyname.ToUpper() == "DEJAVU SANS")
                                         {
-                                             defaultfont=aobj;
-                                         }
-                                        else
-                                         if (aobj.familyname.ToUpper()=="DEJAVU SANS") {
-                                                defaultfont =aobj;
-                                            }
-                                   }
+                                            defaultfont = aobj;
+                                        }
+                                }
+                            }
+                            else
+                                if ((!aobj.italic) && (aobj.bold))
+                                {
+                                    if (defaultfontb == null)
+                                        defaultfontb = aobj;
+                                    else
+                                    {
+                                        if (aobj.familyname.ToUpper() == "LUXI SANS")
+                                        {
+                                            defaultfontb = aobj;
+                                        }
+                                    }
                                 }
                                 else
-                                    if ((!aobj.italic) && (aobj.bold))
+                                    if ((aobj.italic) && (!aobj.bold))
                                     {
-                                       if  (defaultfontb==null)
-                                        defaultfontb=aobj;
-                                       else
-                                       {
-                                            if (aobj.familyname.ToUpper()=="LUXI SANS")
+                                        if (defaultfontit == null)
+                                            defaultfontit = aobj;
+                                        else
+                                        {
+                                            if (aobj.familyname.ToUpper() == "LUXI SANS")
                                             {
-                                                defaultfontb=aobj;
+                                                defaultfontit = aobj;
                                             }
-                                       }
+                                        }
                                     }
                                     else
-                                        if ((aobj.italic) && (!aobj.bold))
-                                        {
-                                               if (defaultfontit==null)
-                                                    defaultfontit=aobj;
-                                               else
-                                               {
-                                                if (aobj.familyname.ToUpper()=="LUXI SANS")
-                                                {
-                                                    defaultfontit=aobj;
-                                                }
-                                               }
-                                        }
+                                    {
+                                        if (defaultfontbit == null)
+                                            defaultfontbit = aobj;
                                         else
-                                            if ((aobj.italic) && (aobj.bold))
+                                        {
+                                            if (aobj.familyname.ToUpper() == "LUXI SANS")
                                             {
-                                               if (defaultfontbit==null)
-                                                defaultfontbit=aobj;
-                                               else
-                                               {
-                                                if (aobj.familyname.ToUpper()=="LUXI SANS")
-                                                {
-                                                 defaultfontbit=aobj;
-                                                }
-                                               }
+                                                defaultfontbit = aobj;
                                             }
+                                        }
+                                    }
 
-                                aobj.keyname = aobj.keyname.ToUpper();
-                                if (fontlist.IndexOfKey(aobj.keyname)<0)
-                                    fontlist.Add(aobj.keyname.ToUpper(),aobj);
-
-                            }
-                                int nindex = fontfiles.IndexOfKey(nfile);
-                            if (nindex < 0)
-                                fontfiles.Add(nfile, nfile);
+                            if (fontlist.IndexOfKey(aobj.keyname) < 0)
+                                fontlist.Add(aobj.keyname, aobj);
                         }
-                        finally
-                        {
-                                //iface.Dispose();
-                            
-                            CheckFreeType(FT.FT_Done_Face(iface));
-                        }
-						}
+                        if (fontfiles.IndexOfKey(nfile) < 0)
+                            fontfiles.Add(nfile, nfile);
                     }
                 }
             }
@@ -480,8 +437,123 @@ namespace Reportman.Drawing
                 System.Console.WriteLine("Default font set to: " + defaultfont.familyname);
             }
         }
+        /// <summary>
+        /// Opens one face of a font file, reads everything the engine needs to know about it and
+        /// closes it again. This is the only place where a font file becomes a <see cref="LogFontFt"/>,
+        /// no matter whether it turned up in a directory scan or came back from fontconfig; the
+        /// Delphi engine keeps the same function under the same name (rpinfoprovft.pas).
+        /// </summary>
+        /// <param name="filename">Full path of the font file.</param>
+        /// <param name="nfaceindex">Index of the face inside the file.</param>
+        /// <returns>The described font.</returns>
+        static LogFontFt FillLogFont(string filename, int nfaceindex)
+        {
+            FT_FaceRec_* aface;
+            IntPtr namebuffer = Marshal.StringToHGlobalAnsi(filename);
+            try
+            {
+                CheckFreeType(FT.FT_New_Face(FreeTypeLib, (byte*)namebuffer, (IntPtr)nfaceindex, &aface));
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(namebuffer);
+            }
+            try
+            {
+                LogFontFt aobj = new LogFontFt();
+                aobj.ftlibrary = FreeTypeLib;
+                aobj.fullinfo = false;
+                aobj.filename = filename;
+                aobj.faceIndex = nfaceindex;
+                aobj.scalable = (aface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_SCALABLE) != 0;
+                aobj.type1 = (aface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_SFNT) == 0;
+                // units_per_EM is zero on a bitmap-only face, and dividing by it would poison every
+                // metric that comes after.
+                if (aface->units_per_EM == 0)
+                    aobj.convfactor = 1;
+                else
+                    aobj.convfactor = 1000.0 / aface->units_per_EM;
+                aobj.widthmult = 1;
+                aobj.heightmult = 1;
+                string family_name = aface->family_name == null ? "" : BytePtrToString(aface->family_name);
+                aobj.postcriptname = family_name.Replace(" ", "");
+                aobj.familyname = family_name;
+                aobj.fixedpitch = (aface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_FIXED_WIDTH) != 0;
+                aobj.havekerning = (aface->face_flags.ToInt32() & (int)FT_FACE_FLAG.FT_FACE_FLAG_KERNING) != 0;
+                // BBox calcultions are incorrect, it is left unset on purpose
+                aobj.ascent = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)aface->ascender));
+                aobj.descent = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)aface->descender));
+                aobj.height = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)aface->height));
+                aobj.leading = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)aface->height) - (aobj.ascent - aobj.descent));
+                aobj.MaxWidth = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)aface->max_advance_width));
+                aobj.Capheight = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)aface->ascender));
+                aobj.stylename = aface->style_name == null ? "" : BytePtrToString(aface->style_name);
+                aobj.bold = (aface->style_flags.ToInt32() & (int)FT_STYLE_FLAG.FT_STYLE_FLAG_BOLD) != 0;
+                aobj.italic = (aface->style_flags.ToInt32() & (int)FT_STYLE_FLAG.FT_STYLE_FLAG_ITALIC) != 0;
+                // The same reading of the name the Delphi engine does: a good number of files carry
+                // the style in the name and nowhere else.
+                if (!aobj.bold)
+                    aobj.bold = (aobj.stylename.ToUpper().IndexOf("BOLD") >= 0)
+                        || (aobj.postcriptname.ToUpper().IndexOf("BOLD") >= 0)
+                        || (aobj.filename.ToUpper().IndexOf("BOLD") >= 0);
+                if (!aobj.italic)
+                    aobj.italic = (aobj.stylename.ToUpper().IndexOf("ITALIC") >= 0)
+                        || (aobj.stylename.ToUpper().IndexOf("OBLIQUE") >= 0)
+                        || (aobj.postcriptname.ToUpper().IndexOf("ITALIC") >= 0)
+                        || (aobj.postcriptname.ToUpper().IndexOf("OBLIQUE") >= 0)
+                        || (aobj.filename.ToUpper().IndexOf("ITALIC") >= 0)
+                        || (aobj.filename.ToUpper().IndexOf("OBLIQUE") >= 0);
+                aobj.keyname = (family_name + "____"
+                    + (aobj.bold ? "B1" : "B0")
+                    + (aobj.italic ? "I1" : "I0")).ToUpper();
+                return aobj;
+            }
+            finally
+            {
+                CheckFreeType(FT.FT_Done_Face(aface));
+            }
+        }
+        /// <summary>
+        /// Returns the described font for a file and face index, reading the file only the first time.
+        /// </summary>
+        /// <param name="filename">Full path of the font file.</param>
+        /// <param name="nfaceindex">Index of the face inside the file.</param>
+        /// <returns>The described font.</returns>
+        static LogFontFt GetOrAddLogFont(string filename, int nfaceindex)
+        {
+            string nkey = filename + "|" + nfaceindex.ToString(CultureInfo.InvariantCulture);
+            Monitor.Enter(flag);
+            try
+            {
+                if (logfontsbyfile.IndexOfKey(nkey) >= 0)
+                    return logfontsbyfile[nkey];
+                LogFontFt nfont = FillLogFont(filename, nfaceindex);
+                logfontsbyfile.Add(nkey, nfont);
+                return nfont;
+            }
+            finally
+            {
+                Monitor.Exit(flag);
+            }
+        }
         private void SelectFont(PDFFont pdfFont)
         {
+            SelectFont(pdfFont, "", false);
+        }
+        /// <summary>
+        /// Picks the font for a request. When fontconfig answered, it decides; otherwise the
+        /// enumerated list is searched by family and style, exactly as before.
+        /// </summary>
+        /// <param name="pdfFont">The logical font whose family, bold and italic attributes drive the choice.</param>
+        /// <param name="content">Text the font has to be able to draw, empty when coverage does not matter.</param>
+        /// <param name="ignoreFamily">True to ask for any font that covers the text, whatever the family.</param>
+        private void SelectFont(PDFFont pdfFont, string content, bool ignoreFamily)
+        {
+            if (FontConfig.Available)
+            {
+                SelectFontFontConfig(pdfFont, content, ignoreFamily);
+                return;
+            }
             string fontname = "";
             if ((System.Environment.OSVersion.Platform == PlatformID.Unix) || (System.Environment.OSVersion.Platform == PlatformID.MacOSX))
             {
@@ -549,16 +621,84 @@ namespace Reportman.Drawing
                     }
             fontlist.Add(fontname, currentfont);
         }
+        /// <summary>
+        /// Asks fontconfig for the font, and asks a second time without a family when the answer is
+        /// no good: nothing matched, the file is not one this engine can embed, or what came back
+        /// has no outlines at all. Mirrors SelectFontFontConfig in rpinfoprovft.pas.
+        /// </summary>
+        private void SelectFontFontConfig(PDFFont pdfFont, string content, bool ignoreFamily)
+        {
+            bool matched = SelectFontFontConfigInt(pdfFont, content, ignoreFamily);
+            if (ignoreFamily)
+                return;
+            if ((!matched) || (currentfont == null) || (!currentfont.scalable))
+                SelectFontFontConfigInt(pdfFont, content, true);
+        }
+        /// <summary>Returns true when fontconfig answered with a font this engine can use, in which case it is now the current one.</summary>
+        private bool SelectFontFontConfigInt(PDFFont pdfFont, string content, bool ignoreFamily)
+        {
+            string familyname = pdfFont.LFontName;
+            if (familyname == null)
+                familyname = "";
+            // Helvetica is not a font that exists on a Unix box, it is a name a report carries from
+            // its PostScript past. The Delphi engine sends it to Cantarell and so does this one.
+            if (familyname == "Helvetica")
+                familyname = "Cantarell";
+            if (ignoreFamily)
+                familyname = "";
+            // Bold and italic are read from the flags and not from the Style bits, the way the
+            // Delphi engine reads them (rpinfoprovft.pas:1701). PDFFont keeps both and nothing
+            // guarantees they agree: the font built on the fly for the missing-glyph fallback sets
+            // the flags and leaves Style at zero, and reading Style there would ask fontconfig for
+            // a regular face while the text being measured is bold.
+            string nfile;
+            int nfaceindex;
+            if (!FontConfig.Match(familyname, pdfFont.Bold, pdfFont.Italic, content, out nfile, out nfaceindex))
+                return false;
+            if (!SePuedeIncrustar(nfile, nfaceindex))
+                return false;
+            currentfont = GetOrAddLogFont(nfile, nfaceindex);
+            return true;
+        }
+        /// <summary>
+        /// Says whether this engine can actually print with a font file. Fontconfig knows every font
+        /// on the machine; this engine knows plain TrueType and Type 1, which is what the directory
+        /// scan has always looked for ("*.TTF|*.ttf|*.pf*"). An OpenType with CFF outlines or a
+        /// collection would be measured with FreeType and then handed to a TrueType subsetter that
+        /// cannot read it, so it is turned down here and the caller asks again.
+        /// </summary>
+        private static bool SePuedeIncrustar(string nfile, int nfaceindex)
+        {
+            // A face index other than zero means a collection, and only FreeType would honour it:
+            // HarfBuzz shapes face 0 and the subsetter reads the first table directory.
+            if (nfaceindex != 0)
+                return false;
+            string next = Path.GetExtension(nfile);
+            if (string.IsNullOrEmpty(next))
+                return false;
+            next = next.ToLower();
+            return (next == ".ttf") || next.StartsWith(".pf");
+        }
 		/// <summary>Selects the font matching <paramref name="pdfFont"/> and populates <paramref name="data"/> with its metrics, embedded font stream and glyph-width cache, applying OS/2 table overrides to match GDI/DirectWrite line spacing.</summary>
 		/// <param name="pdfFont">The logical font whose family, bold and italic attributes drive font selection.</param>
 		/// <param name="data">The metric container to fill.</param>
 		public override void FillFontData(PDFFont pdfFont, TTFontData data)
         {
+            FillFontData(pdfFont, data, "");
+        }
+        /// <summary>Same as <see cref="FillFontData(PDFFont,TTFontData)"/>, but stating which text the font has to be able to draw, so the choice can fall back to a font that covers the script at hand.</summary>
+        /// <param name="pdfFont">The logical font whose family, bold and italic attributes drive font selection.</param>
+        /// <param name="data">The metric container to fill.</param>
+        /// <param name="content">The text the font has to cover, empty when coverage does not matter.</param>
+        public void FillFontData(PDFFont pdfFont, TTFontData data, string content)
+        {
             InitLibrary();
 
 
 
-            SelectFont(pdfFont);
+            SelectFont(pdfFont, content, false);
+            if (currentfont == null)
+                throw new Exception("No font available for " + pdfFont.GetFontFamily());
 
             data.IsUnicode = true;
             if (!currentfont.type1)
@@ -895,12 +1035,21 @@ namespace Reportman.Drawing
         }
 
 
-        /// <summary>Returns the list of font directories to scan for the current platform (macOS, Unix via fontconfig, or Windows system and user font folders).</summary>
-        /// <returns>The font directories to enumerate.</returns>
+        /// <summary>
+        /// Returns the directories to scan for fonts on this platform. This is the road taken when
+        /// there is no fontconfig to ask -Windows, Android, a stripped container-, so it never
+        /// throws: a machine with no font database still gets a list of the usual places, and the
+        /// application can add its own through <see cref="ExtraFontDirectories"/>.
+        /// </summary>
+        /// <returns>The font directories to enumerate, without repetitions.</returns>
         public static Strings GetFontDirectories()
         {
             Strings dirs = new Strings();
             Strings afile = null;
+            // What the application brought with it comes first: on Android that is the only place
+            // where a font with the right metrics is going to be.
+            foreach (string nextra in ExtraFontDirectories)
+                dirs.Add(nextra);
             switch (System.Environment.OSVersion.Platform)
             {
                 case PlatformID.MacOSX:
@@ -912,10 +1061,33 @@ namespace Reportman.Drawing
                     if (File.Exists("/etc/fonts/fonts.conf"))
                     {
                         afile = new Strings();
-                        afile.LoadFromFile("/etc/fonts/fonts.conf");
+                        try
+                        {
+                            afile.LoadFromFile("/etc/fonts/fonts.conf");
+                        }
+                        catch (Exception)
+                        {
+                            afile = null;
+                        }
                     }
-                    else
-                        throw new Exception("File not found: /etc/fonts/fonts.conf");
+                    if (afile == null)
+                    {
+                        // No fontconfig configuration to read the directories from. The Delphi engine
+                        // falls back to a fixed list and so does this one, plus the two places
+                        // Android keeps its fonts in. Missing directories are dropped by the scan.
+                        AddFontDirectory(dirs, "/usr/share/fonts");
+                        AddFontDirectory(dirs, "/usr/local/share/fonts");
+                        AddFontDirectory(dirs, "/system/fonts");
+                        AddFontDirectory(dirs, "/system/font");
+                        AddFontDirectory(dirs, "/data/fonts");
+                        string nhome = System.Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                        if (!string.IsNullOrEmpty(nhome))
+                        {
+                            AddFontDirectory(dirs, Path.Combine(nhome, ".fonts"));
+                            AddFontDirectory(dirs, Path.Combine(nhome, ".local", "share", "fonts"));
+                        }
+                        break;
+                    }
                     string nstring = afile.ToSemiColon();
          int index = nstring.IndexOf("<dir");
          if (index >= 0)
@@ -938,6 +1110,10 @@ namespace Reportman.Drawing
                nstring = nstring.Substring(index + 1, nstring.Length - (index + 1));
             index = nstring.IndexOf("</dir");
          }
+                    // fonts.conf was read but there is no fontconfig to interpret it, so the usual
+                    // places go in as well; the repeated ones are dropped below.
+                    AddFontDirectory(dirs, "/usr/share/fonts");
+                    AddFontDirectory(dirs, "/usr/local/share/fonts");
                     break;
                 default:
                     dirs.Add(GetFontPath());
@@ -951,7 +1127,24 @@ namespace Reportman.Drawing
                     }
                     break;
             }
-            return dirs;
+            Strings nresult = new Strings();
+            foreach (string ndir in dirs)
+            {
+                if (string.IsNullOrEmpty(ndir))
+                    continue;
+                if (nresult.IndexOf(ndir) < 0)
+                    nresult.Add(ndir);
+            }
+            return nresult;
+        }
+        // Adds a directory to the list unless it is already there. Whether it exists is checked by
+        // the scan, which has to do it anyway.
+        private static void AddFontDirectory(Strings dirs, string ndir)
+        {
+            if (string.IsNullOrEmpty(ndir))
+                return;
+            if (dirs.IndexOf(ndir) < 0)
+                dirs.Add(ndir);
         }
 
         /// <summary>Returns the advance width of a specific glyph index scaled to 1000 units per em, mapping newly discovered ligature or contextual glyphs to a Private Use Area character so they are subsetted.</summary>
@@ -1250,6 +1443,11 @@ namespace Reportman.Drawing
                                 TempFont.Bold = pdfFont.Bold || Seg.Bold;
                                 TempFont.Italic = pdfFont.Italic || Seg.Italic;
                                 TempFont.WFontName = !string.IsNullOrEmpty(Seg.FontFamily) ? Seg.FontFamily : pdfFont.WFontName;
+                                // The family of an HTML segment goes into BOTH names, as the Delphi
+                                // engine does (rpinfoprovft.pas:561-570). On Unix the font is looked
+                                // up by LFontName, so leaving it with the outer name measured the
+                                // paragraph font and drew the segment one.
+                                TempFont.LFontName = !string.IsNullOrEmpty(Seg.FontFamily) ? Seg.FontFamily : pdfFont.LFontName;
                                 double activeSize = Seg.HasFontSize ? Seg.FontSize : FontSize;
 
                                 TempFont.Style = 0;
@@ -1285,7 +1483,18 @@ namespace Reportman.Drawing
                                 }
                                 if (hasMissingGlyphs)
                                 {
-                                    // Try to find a font that supports these characters
+                                    // Try to find a font that supports these characters.
+                                    //
+                                    // THE TEXT IS DELIBERATELY NOT SENT with the request, even
+                                    // though fontconfig would take it and answer with a font that
+                                    // carries the script. The glyph positions below only record the
+                                    // family NAME, and the PDF writer picks the font resource from
+                                    // that name (PDFCanvas.WriteGlyphs): glyph indexes belonging to
+                                    // the font fontconfig found would be written out under the
+                                    // resource of the font that could not draw them, and would be
+                                    // added to that font's subset. For the fallback to work, the
+                                    // font that was chosen has to travel with the glyph, all the way
+                                    // to the writer -which is a change in the metafile, not here-.
                                     var fallbackFont = new PDFFont();
                                     fallbackFont.Name = pdfFont.Name;
                                     fallbackFont.Size = (short)Math.Round(activeSize);
@@ -1294,7 +1503,7 @@ namespace Reportman.Drawing
                                     fallbackFont.Italic = TempFont.Italic;
                                     fallbackFont.WFontName = TempFont.WFontName;
                                     fallbackFont.LFontName = TempFont.LFontName;
-                                    
+
                                     var fallbackData = new TTFontData();
                                     FillFontData(fallbackFont, fallbackData);
                                     lock (flag) { SelectFont(fallbackFont); }
