@@ -239,7 +239,21 @@ namespace Reportman.Reporting
                 using (DbCommand command = CurrentConnection.CreateCommand())
                 {
                     command.CommandText = sqltext;
+                    // The report bytes travel as a binary parameter. The statement names
+                    // @REPORT, so leaving it unbound made this method fail on every
+                    // provider ("parameter @REPORT was not supplied"): the library could
+                    // be read but never written through here. Same shape the designer
+                    // uses in OpenFromLibrary.SaveToLibrary.
+                    DbParameter param = command.CreateParameter();
+                    param.ParameterName = "REPORT";
+                    param.DbType = System.Data.DbType.Binary;
+                    param.Value = newStream.ToArray();
+                    command.Parameters.Add(param);
                     var transaction = CurrentConnection.BeginTransaction();
+                    // A command has to be enlisted in the connection's pending local
+                    // transaction: SqlClient throws when it is not, and relying on the
+                    // ones that tolerate it would keep this working only by luck.
+                    command.Transaction = transaction;
                     try
                     {
                         int rowsAffected = command.ExecuteNonQuery();
@@ -263,6 +277,9 @@ namespace Reportman.Reporting
                     connection.Close();
                 }
             }
+            // Rewound, like ReadReport returns it: callers keep this stream around and
+            // load the report back from it, and a stream sitting at its end reads empty.
+            newStream.Seek(0, System.IO.SeekOrigin.Begin);
             return newStream;
         }
     }
