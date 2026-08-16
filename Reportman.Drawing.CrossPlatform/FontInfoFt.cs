@@ -1416,9 +1416,21 @@ namespace Reportman.Drawing
             // motor Delphi (rpinfoprovft.pas GetFontStream). El de casa sabe de `glyf` y `loca`;
             // hb-subset sabe ademas de CFF, colecciones y variables.
             int caraSubset = data.LogFont is LogFontFt lfs ? lfs.faceIndex : 0;
-            byte[] porHarfBuzz = HbSubset.Subset(data.FontData.Data, caraSubset, data.Glyphs.Values);
+            // COMPACTO: los glifos se renumeran y el subset pesa lo que pesan sus glifos, no
+            // el hueco hasta el mayor (Arial con RETAIN_GIDS: 156 KB; compacto: ~35 KB). El
+            // contenido de la pagina ya lleva los indices viejos: el mapa viejo -> nuevo se
+            // deja en `data.GlyphMap` y el escritor de PDF lo vuelca en un /CIDToGIDMap. Si la
+            // biblioteca no trae la API de plan, `HbSubset` conserva los indices y el mapa
+            // vuelve null: mismo PDF que hasta ahora.
+            SortedList<int, int> mapa;
+            byte[] porHarfBuzz = HbSubset.Subset(data.FontData.Data, caraSubset, data.Glyphs.Values,
+                compacto: true, out mapa);
             if (porHarfBuzz != null)
+            {
+                data.GlyphMap = mapa;
                 return new MemoryStream(porHarfBuzz);
+            }
+            data.GlyphMap = null;
 
             Dictionary<int, int[]> glyps = new Dictionary<int, int[]>();
             foreach (char xchar in data.Glyphs.Keys)
