@@ -358,6 +358,13 @@ namespace Reportman.Reporting
 
                 else
                 {
+                    // The same door as the QR above: a driver that draws this symbology by
+                    // itself gets the barcode object; the rest get the bars.
+                    MetaBarcodeSymbology simbologia = NativeSymbology(BarType);
+                    if (simbologia != MetaBarcodeSymbology.Unknown && adriver != null
+                        && adriver.SupportsNativeBarcode(simbologia)
+                        && EmitNativeBarcode(metafile, aposx, aposy, simbologia))
+                        return;
                     data = CalculateBarcode();
                     // draw the barcode
                     DoLines(data, aposx, aposy, metafile);
@@ -442,6 +449,98 @@ namespace Reportman.Reporting
                 default: return MetaBarcodeEcc.L;
             }
         }
+        /// <summary>
+        /// The device symbology this item's type corresponds to, or Unknown for the ones no receipt
+        /// printer draws natively (MSI, PostNet, industrial and matrix 2 of 5).
+        /// </summary>
+        public static MetaBarcodeSymbology NativeSymbology(BarcodeType type)
+        {
+            switch (type)
+            {
+                case BarcodeType.CodeQR: return MetaBarcodeSymbology.QR;
+                case BarcodeType.CodePDF417: return MetaBarcodeSymbology.PDF417;
+                case BarcodeType.Code128:
+                case BarcodeType.Code128A:
+                case BarcodeType.Code128B:
+                case BarcodeType.Code128C: return MetaBarcodeSymbology.Code128;
+                case BarcodeType.CodeEAN13: return MetaBarcodeSymbology.EAN13;
+                case BarcodeType.CodeEAN8: return MetaBarcodeSymbology.EAN8;
+                case BarcodeType.Code39:
+                case BarcodeType.Code39Extended: return MetaBarcodeSymbology.Code39;
+                case BarcodeType.Code93:
+                case BarcodeType.Code93Extended: return MetaBarcodeSymbology.Code93;
+                case BarcodeType.Code_2_5_interleaved: return MetaBarcodeSymbology.ITF;
+                case BarcodeType.CodeCodabar: return MetaBarcodeSymbology.Codabar;
+                default: return MetaBarcodeSymbology.Unknown;
+            }
+        }
+#if OMIT_ZXING
+        private bool EmitNativeBarcode(MetaFile metafile, int aposx, int aposy, MetaBarcodeSymbology simbologia) { return false; }
+#else
+        /// <summary>
+        /// Emits the barcode as a native object for a linear symbology or PDF417 (the QR has its own
+        /// path). The module count comes from ZXing so the driver can size the module to the box; if
+        /// the data does not encode (an EAN with the wrong length, an ITF with an odd count) nothing
+        /// is emitted and the caller draws it as always — the printer would have rejected it too.
+        /// </summary>
+        private bool EmitNativeBarcode(MetaFile metafile, int aposx, int aposy, MetaBarcodeSymbology simbologia)
+        {
+            string text = CurrentText ?? "";
+            if (text.Length == 0) return false;
+            int modules, rows = 0, columns = 0, flags = 0;
+            try
+            {
+                var hints = new System.Collections.Generic.Dictionary<ZXing.EncodeHintType, object> { { ZXing.EncodeHintType.MARGIN, 0 } };
+                ZXing.BarcodeFormat format;
+                switch (simbologia)
+                {
+                    case MetaBarcodeSymbology.Code128: format = ZXing.BarcodeFormat.CODE_128; break;
+                    case MetaBarcodeSymbology.EAN13: format = ZXing.BarcodeFormat.EAN_13; break;
+                    case MetaBarcodeSymbology.EAN8: format = ZXing.BarcodeFormat.EAN_8; break;
+                    case MetaBarcodeSymbology.Code39: format = ZXing.BarcodeFormat.CODE_39; break;
+                    case MetaBarcodeSymbology.Code93: format = ZXing.BarcodeFormat.CODE_93; break;
+                    case MetaBarcodeSymbology.ITF: format = ZXing.BarcodeFormat.ITF; break;
+                    case MetaBarcodeSymbology.Codabar: format = ZXing.BarcodeFormat.CODABAR; break;
+                    case MetaBarcodeSymbology.PDF417: format = ZXing.BarcodeFormat.PDF_417; break;
+                    default: return false;
+                }
+                if (simbologia == MetaBarcodeSymbology.PDF417)
+                {
+                    if (NumColumns > 0) hints[ZXing.EncodeHintType.PDF417_DIMENSIONS] = new ZXing.PDF417.Internal.Dimensions(NumColumns, NumColumns, 3, 90);
+                    if (ECCLevel >= 0 && ECCLevel <= 8) hints[ZXing.EncodeHintType.ERROR_CORRECTION] = ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L0 + ECCLevel;
+                    if (Truncated) hints[ZXing.EncodeHintType.PDF417_COMPACT] = true;
+                    columns = NumColumns;
+                    rows = NumRows;
+                    flags = (Truncated ? 1 : 0) | ((ECCLevel >= 0 && ECCLevel <= 8 ? ECCLevel : 2) << 8);
+                }
+                if (simbologia == MetaBarcodeSymbology.Code128)
+                    columns = BarType == BarcodeType.Code128A ? 1 : BarType == BarcodeType.Code128B ? 2 : BarType == BarcodeType.Code128C ? 3 : 0;
+                ZXing.Common.BitMatrix m = new ZXing.MultiFormatWriter().encode(text, format, 0, 0, hints);
+                modules = m.Width;
+                if (simbologia == MetaBarcodeSymbology.PDF417 && rows == 0) rows = m.Height;
+            }
+            catch
+            {
+                return false;
+            }
+            MetaObjectBarcode nativo = new MetaObjectBarcode();
+            nativo.MetaType = MetaObjectType.Barcode;
+            nativo.Left = aposx;
+            nativo.Top = aposy;
+            nativo.Width = Width;
+            nativo.Height = Height;
+            nativo.TextP = metafile.Pages[metafile.CurrentPage].AddString(text);
+            nativo.TextS = text.Length;
+            nativo.Symbology = simbologia;
+            nativo.Ecc = MetaBarcodeEcc.L;
+            nativo.Modules = modules;
+            nativo.Rows = rows;
+            nativo.Columns = columns;
+            nativo.Flags = flags;
+            metafile.Pages[metafile.CurrentPage].Objects.Add(nativo);
+            return true;
+        }
+#endif
         /// <summary>Encodes <see cref="CurrentText"/> with the current <see cref="BarType"/> and returns the string of bar/space module codes to be drawn.</summary>
         public string CalculateBarcode()
         {

@@ -41,7 +41,8 @@ Con ReportmanFiscal: en `terminal.json`, `"Impresora": { "Modo": "directa", "Tra
 
 ## Qué interpreta
 
-- Texto con la página de códigos vigente (`ESC t n`: 437, 850, 858, 852, 866, 1252…), `LF`, `HT`,
+- Texto con la página de códigos vigente (`ESC t n`: 437, 850, 858, 852, 866, 1252…) o en **UTF-8**
+  tras `FS ( C` fn 48 m 2 (lo que envía el driver `EPSONTM88UTF8`; entonces `ESC t` se ignora), `LF`, `HT`,
   `CR` (ignorado, como la TM), `FF` (corte), `CAN`.
 - Estilos: `ESC !` (maestro: fuente A/B, negrita, doble alto/ancho, subrayado), `ESC E/F/G/H`,
   `ESC -`, `ESC 4/5`, `ESC r` (rojo), `SO/DC4` (doble ancho una línea), `SI/DC2` (condensada),
@@ -51,7 +52,8 @@ Con ReportmanFiscal: en `terminal.json`, `"Impresora": { "Modo": "directa", "Tra
 - Corte: `ESC m`, `ESC i`, `GS V m [n]`, `FF` → cierra la página y abre la siguiente con el
   primer contenido (la página tras el último corte, con solo reset y cajón, no se genera).
 - Cajón: `ESC p m t1 t2` → al diario, con conector y tiempos.
-- QR: `GS ( k` (modelo, módulo, ECC, almacenar, imprimir) → los módulos como rectángulos (ZXing,
+- QR: `GS ( k` cn 49 (modelo, módulo, ECC, almacenar, imprimir) y **PDF417** `GS ( k` cn 48 (columnas,
+  filas, módulo, alto de fila, ECC, truncado) → los módulos como rectángulos (ZXing,
   como `BarcodeItem`), con el tamaño en mm en el diario. 1D: `GS k` (UPC-A/E, EAN-13/8, CODE39,
   ITF, CODABAR, CODE93, CODE128) con `GS h`/`GS w`.
 - Imágenes: `GS v 0` (ráster), `ESC *`, `ESC K/L/Y/Z` (matricial por columnas), `GS *` + `GS /`
@@ -70,3 +72,13 @@ ancho el glifo no se estira —el metafile no sabe— sino que se **espacia** ca
 celda. La página mide lo que se imprimió: es un rollo. El resultado no es la térmica al píxel; es
 lo bastante fiel para ver que el tique dice lo que tiene que decir, que el QR mide lo que manda la
 norma, y que el corte y el cajón llegan donde deben.
+
+## Los drivers de texto de Reportman y el juego de caracteres
+
+`PrintOutText` tiene tres familias TM88: la clásica `EPSONTM88II(CUT)` no dice nada del juego
+de caracteres (convierte a cp850 y confía en que la impresora esté en PC850; de fábrica una
+Epson está en PC437 — para el español corriente coinciden en á é í ó ú ñ, no en Á É Í Ó Ú ç €);
+`EPSONTM88CP850(CUT)` envía `ESC t 2` y cp850; `EPSONTM88CP858(CUT)` envía `ESC t 19` y cp858
+(cp850 con el euro en 0xD5); `EPSONTM88UTF8(CUT)` envía `FS ( C 2 0 48 2` y texto UTF-8
+(Epson TM-T88IV/V/VI/VII, T20/T70/T82/T83, m30/m50, P20/P60/P80…). Con `--codepage 437` el
+emulador arranca como una impresora de fábrica y se ve la diferencia.

@@ -51,7 +51,7 @@ namespace EscPosReceiptTest
             SubReport subrep = report.SubReports[0];
             Section detail = subrep.Sections[subrep.FirstDetail];
             detail.Width = 4536;
-            detail.Height = 20 * Line;
+            detail.Height = 26 * Line;
 
             AddLabel(report, detail, 0, 0, 4536, Line, "QR tributario:", 9, TextAlignType.Center);
             // The QR box: 40 mm square, centred, from row 1 to row 10 (2268 twips = 9.45 rows)
@@ -70,6 +70,24 @@ namespace EscPosReceiptTest
             // 16 pt total: double width on the TM-88.
             AddLabel(report, detail, 0, 13 * Line, 1800, 2 * Line, "TOTAL", 16, TextAlignType.Left);
             AddLabel(report, detail, 1800, 13 * Line, 4536 - 1800, 2 * Line, "34,90", 16, TextAlignType.Right);
+            // An EAN-13 and a PDF417 further down: the linear and the stacked symbologies.
+            AddLabel(report, detail, 0, 15 * Line, 4536, Line, "Peluche pequeño ñ", 8, TextAlignType.Left);
+            BarcodeItem ean = new BarcodeItem
+            {
+                Report = report, Section = detail, BarType = BarcodeType.CodeEAN13,
+                Expression = "'8412345678905'", PosX = 500, PosY = 16 * Line, Width = 3000, Height = 3 * Line,
+                BackColor = 0xFFFFFF, BColor = 0
+            };
+            report.GenerateNewName(ean);
+            detail.Components.Add(ean);
+            BarcodeItem pdf = new BarcodeItem
+            {
+                Report = report, Section = detail, BarType = BarcodeType.CodePDF417,
+                Expression = "'FACTURA SIMPLIFICADA 34,90 EUR'", ECCLevel = 2, NumColumns = 4, PosX = 0, PosY = 20 * Line, Width = 4536, Height = 5 * Line,
+                BackColor = 0xFFFFFF, BColor = 0
+            };
+            report.GenerateNewName(pdf);
+            detail.Components.Add(pdf);
             report.ActionAfter = true;      // open the drawer after the receipt
             return report;
         }
@@ -127,9 +145,9 @@ namespace EscPosReceiptTest
                 MetaPage page = report.MetaFile.Pages[0];
                 int barcodes = page.Objects.Count(o => o.MetaType == MetaObjectType.Barcode);
                 int draws = page.Objects.Count(o => o.MetaType == MetaObjectType.Draw);
-                Check(barcodes == 1 && draws == 0, "ESC/POS metafile carries the QR as one Barcode object and no modules",
+                Check(barcodes == 3 && draws == 0, "ESC/POS metafile carries the barcodes as Barcode objects and no modules",
                     $"barcodes={barcodes} draws={draws}");
-                MetaObjectBarcode bar = (MetaObjectBarcode)page.Objects.First(o => o.MetaType == MetaObjectType.Barcode);
+                MetaObjectBarcode bar = page.Objects.OfType<MetaObjectBarcode>().First(o => o.Symbology == MetaBarcodeSymbology.QR);
                 Check(page.GetText(bar) == Url && bar.Symbology == MetaBarcodeSymbology.QR && bar.Ecc == MetaBarcodeEcc.M
                       && bar.Modules > 21 && bar.Rows == bar.Modules,
                     "Barcode object: data, symbology QR, ECC M and a square module count",
@@ -184,6 +202,30 @@ namespace EscPosReceiptTest
                 Check(page2.Objects.Count(o => o.MetaType == MetaObjectType.Barcode) == 0
                       && page2.Objects.Count(o => o.MetaType == MetaObjectType.Draw) > 100,
                     "A driver without native barcodes gets the drawn modules and no Barcode object");
+
+                // --- 8. Linear and stacked symbologies go native too ---
+                int iEan = IndexOf(escpos, new byte[] { 29, (byte)'k', 67, 13 });
+                int iEanData = iEan >= 0 ? IndexOf(escpos, Encoding.ASCII.GetBytes("8412345678905"), iEan) : -1;
+                Check(iEan >= 0 && iEanData == iEan + 4, "EAN-13 comes out as GS k 67 with its 13 digits");
+                int iH = IndexOf(escpos, new byte[] { 29, (byte)'h' }), iW = IndexOf(escpos, new byte[] { 29, (byte)'w' });
+                Check(iH >= 0 && iW >= 0 && iH < iEan && iW < iEan, "Bar height and module width precede the linear code");
+                int iPdf = IndexOf(escpos, new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 65, 4 });
+                int iPdfPrint = IndexOf(escpos, new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 81, 48 });
+                int iPdfData = IndexOf(escpos, Encoding.ASCII.GetBytes("FACTURA SIMPLIFICADA"));
+                Check(iPdf >= 0 && iPdfData > iPdf && iPdfPrint > iPdfData, "PDF417 comes out as GS ( k cn 48 with 4 columns, stored and printed");
+
+                // --- 9. The drivers that declare their character set ---
+                byte[] bytes850 = PrintText(report, "EPSONTM88CP850CUT");
+                Check(bytes850.Length > 5 && bytes850[0] == 27 && bytes850[1] == 64 && bytes850[2] == 27 && bytes850[3] == (byte)'t' && bytes850[4] == 2,
+                    "EPSONTM88CP850CUT starts with ESC @ ESC t 2");
+                Check(IndexOf(bytes850, new byte[] { (byte)'q', (byte)'u', (byte)'e', 0xA4, (byte)'o' }) >= 0, "...and the enye travels as cp850 0xA4");
+                byte[] utf8 = PrintText(report, "EPSONTM88UTF8CUT");
+                Check(utf8.Length > 9 && utf8[2] == 28 && utf8[3] == (byte)'(' && utf8[4] == (byte)'C' && utf8[7] == 48 && utf8[8] == 2,
+                    "EPSONTM88UTF8CUT starts with ESC @ FS ( C 2 0 48 2");
+                Check(IndexOf(utf8, new byte[] { (byte)'q', (byte)'u', (byte)'e', 0xC3, 0xB1, (byte)'o' }) >= 0, "...and the enye travels as UTF-8 C3 B1");
+                Check(IndexOf(utf8, new byte[] { 27, (byte)'m', 27, 64 }) > 0 && IndexOf(utf8, model) > 0, "The new drivers keep the cut and the native QR");
+                byte[] legacy = PrintText(report, "EPSONTM88IICUT");
+                Check(legacy[0] == 27 && legacy[1] == 64 && !(legacy[2] == 27 && legacy[3] == (byte)'t'), "The legacy driver still says nothing about the character set");
 
                 // --- 3. Round trip ---
                 PrintText(report, "EPSONTM88IICUT");
