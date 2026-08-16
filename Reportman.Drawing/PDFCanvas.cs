@@ -3381,6 +3381,39 @@ namespace Reportman.Drawing
                 adata = (TTFontData)Canvas.FontData.GetByIndex(i);
                 if (adata.IsUnicode)
                 {
+                    // THE CID -> GID MAP, when the embedded subset renumbered its glyphs. The
+                    // page content and the /W array carry the ORIGINAL glyph indices (they were
+                    // written while the report ran, long before the font was subsetted); the
+                    // compact subset has them at other positions. Rather than pay the hole up to
+                    // the highest glyph in the font stream (Arial: 156 KB instead of 35 KB), the
+                    // translation goes here: two bytes per CID up to the highest one used, mostly
+                    // zeros, flate-compressed with the rest. Written before the Type0 object,
+                    // which must be followed by its descendant.
+                    long cidToGidObject = 0;
+                    if (adata.Embedded && adata.GlyphMap != null && adata.GlyphMap.Count > 0)
+                    {
+                        int maxCid = 0;
+                        foreach (int cid in adata.GlyphMap.Keys)
+                            if (cid > maxCid) maxCid = cid;
+                        byte[] tabla = new byte[(maxCid + 1) * 2];
+                        foreach (KeyValuePair<int, int> par in adata.GlyphMap)
+                        {
+                            tabla[par.Key * 2] = (byte)(par.Value >> 8);
+                            tabla[par.Key * 2 + 1] = (byte)(par.Value & 0xFF);
+                        }
+                        FObjectCount = FObjectCount + 1;
+                        cidToGidObject = FObjectCount;
+                        FTempStream.SetLength(0);
+                        SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                        SWriteLine(FTempStream, "<<");
+                        using (MemoryStream mapa = new MemoryStream(tabla))
+                            WriteStream(mapa, FTempStream);
+                        SWriteLine(FTempStream, "endobj");
+                        AddToOffset(FTempStream.Length);
+                        FTempStream.Seek(0, SeekOrigin.Begin);
+                        FTempStream.WriteTo(FMainPDF);
+                    }
+
                     FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     adata.ObjectIndexParent = FObjectCount;
@@ -3447,7 +3480,10 @@ namespace Reportman.Drawing
                     }
                     SWriteLine(FTempStream, awidths);
                     SWriteLine(FTempStream, "]");
-                    SWriteLine(FTempStream, "/CIDToGIDMap /Identity");
+                    if (cidToGidObject > 0)
+                        SWriteLine(FTempStream, "/CIDToGIDMap " + cidToGidObject.ToString() + " 0 R");
+                    else
+                        SWriteLine(FTempStream, "/CIDToGIDMap /Identity");
 
                     SWriteLine(FTempStream, ">>");
                     SWriteLine(FTempStream, "endobj");

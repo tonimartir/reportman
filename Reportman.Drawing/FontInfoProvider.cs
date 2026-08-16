@@ -332,6 +332,15 @@ namespace Reportman.Drawing
         /// </summary>
         public SortedList<char, int> Glyphs;
         /// <summary>
+        /// When the embedded font stream was subsetted COMPACTLY (glyphs renumbered), the map from
+        /// the glyph index the page content and the /W array use (the original one) to the index
+        /// inside the embedded subset. Filled by <see cref="FontInfoProvider.GetFontStream"/>; null
+        /// means identity (the subset kept the original indices, or the font is not subsetted).
+        /// The PDF writer turns it into a /CIDToGIDMap stream for CID fonts; a simple TrueType font
+        /// needs nothing, its cmap was remapped by the subsetter.
+        /// </summary>
+        public SortedList<int, int> GlyphMap;
+        /// <summary>
         /// Maps characters to their advance widths.
         /// </summary>
         public SortedList<char, double> Widths;

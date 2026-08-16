@@ -57,8 +57,11 @@ namespace Reportman.Drawing
         // Conserva los numeros de glifo originales. El PDF escribe en el contenido los indices
         // que devolvio la conformacion sobre la fuente ENTERA, y por omision hb-subset los
         // renumera de forma compacta: cada <gid> Tj acaba apuntando a otro glifo y la pagina
-        // sale con letras que no son. El subsetter de casa siempre los conservo.
+        // sale con letras que no son. Es el RESPALDO: se usa solo cuando la biblioteca no trae
+        // la API de plan (abajo), que es la que permite el subset compacto Y saber a que
+        // numero fue a parar cada glifo — el escritor de PDF traduce con un /CIDToGIDMap.
         private const uint HB_SUBSET_FLAGS_RETAIN_GIDS = 2;
+        private const uint HB_MAP_VALUE_INVALID = 0xFFFFFFFF;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr BlobCreate(IntPtr data, uint length, uint mode, IntPtr userData, IntPtr destroy);
@@ -78,6 +81,18 @@ namespace Reportman.Drawing
         private delegate IntPtr SubsetOrFail(IntPtr face, IntPtr input);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr BlobGetData(IntPtr blob, out uint length);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr PlanCreate(IntPtr face, IntPtr input);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint MapGet(IntPtr map, uint key);
+
+        // La API de plan (HarfBuzz >= 4.0): el mismo subset en dos pasos, con el mapa de
+        // glifos viejo -> nuevo a la vista entre uno y otro.
+        private static PlanCreate hb_subset_plan_create_or_fail;
+        private static PtrToPtr hb_subset_plan_execute_or_fail;
+        private static PtrToPtr hb_subset_plan_old_to_new_glyph_mapping;
+        private static PtrVoid hb_subset_plan_destroy;
+        private static MapGet hb_map_get;
 
         private static BlobCreate hb_blob_create;
         private static PtrVoid hb_blob_destroy;
@@ -99,6 +114,13 @@ namespace Reportman.Drawing
         /// <summary>True when the HarfBuzz subsetter was found and bound.</summary>
         public static bool Available { get; private set; }
 
+        /// <summary>
+        /// Whether compact subsets (renumbered glyphs + /CIDToGIDMap in the PDF) are produced when
+        /// the library allows it. True by default; a diagnostic switch to compare against the
+        /// subset that keeps the original glyph indices.
+        /// </summary>
+        public static bool CompactSubsets = true;
+
         /// <summary>Name of the shared library that provided it, empty when none did.</summary>
         public static string LibraryName { get; private set; }
 
@@ -118,19 +140,40 @@ namespace Reportman.Drawing
 
         /// <summary>
         /// Devuelve la fuente reducida a los glifos que se usan, o null si no se puede (entonces
-        /// el llamador se queda con lo que ya tenia).
+        /// el llamador se queda con lo que ya tenia). Los indices de glifo se CONSERVAN.
         /// </summary>
         /// <param name="fuente">Los bytes de la fuente entera.</param>
         /// <param name="caraIndice">La cara dentro del fichero: importa en una coleccion.</param>
         /// <param name="glifos">Los indices de glifo que hay que conservar.</param>
         public static byte[] Subset(byte[] fuente, int caraIndice, IEnumerable<int> glifos)
         {
+            SortedList<int, int> mapa;
+            return Subset(fuente, caraIndice, glifos, false, out mapa);
+        }
+
+        /// <summary>
+        /// La fuente reducida a los glifos que se usan. Con <paramref name="compacto"/> los glifos
+        /// se RENUMERAN (el subset pesa lo que pesan sus glifos, no el hueco hasta el mayor) y
+        /// <paramref name="mapa"/> dice a que numero nuevo fue cada uno de los pedidos — para que
+        /// el escritor de PDF, que ya tiene el contenido con los numeros viejos, traduzca con un
+        /// /CIDToGIDMap. Si la biblioteca no trae la API de plan, se cae al subset que conserva
+        /// los indices y <paramref name="mapa"/> vuelve null (identidad): siempre correcto,
+        /// solo mas gordo. Null si no se puede subsetear.
+        /// </summary>
+        public static byte[] Subset(byte[] fuente, int caraIndice, IEnumerable<int> glifos,
+            bool compacto, out SortedList<int, int> mapa)
+        {
+            mapa = null;
             Init();
             if (!Available || fuente == null || fuente.Length == 0)
                 return null;
+            bool conPlan = compacto && CompactSubsets && hb_subset_plan_create_or_fail != null
+                && hb_subset_plan_execute_or_fail != null
+                && hb_subset_plan_old_to_new_glyph_mapping != null
+                && hb_subset_plan_destroy != null && hb_map_get != null;
 
             IntPtr datos = IntPtr.Zero, blob = IntPtr.Zero, face = IntPtr.Zero;
-            IntPtr input = IntPtr.Zero, subset = IntPtr.Zero;
+            IntPtr input = IntPtr.Zero, subset = IntPtr.Zero, plan = IntPtr.Zero;
             try
             {
                 datos = Marshal.AllocHGlobal(fuente.Length);
@@ -143,15 +186,42 @@ namespace Reportman.Drawing
                 input = hb_subset_input_create_or_fail();
                 if (input == IntPtr.Zero) return null;
 
-                if (hb_subset_input_set_flags != null)
+                if (!conPlan && hb_subset_input_set_flags != null)
                     hb_subset_input_set_flags(input, HB_SUBSET_FLAGS_RETAIN_GIDS);
                 IntPtr conjunto = hb_subset_input_glyph_set(input);
                 if (conjunto == IntPtr.Zero) return null;
+                List<int> pedidos = new List<int>();
                 foreach (int g in glifos)
+                {
                     hb_set_add(conjunto, (uint)g);
+                    pedidos.Add(g);
+                }
 
-                subset = hb_subset_or_fail(face, input);
-                if (subset == IntPtr.Zero) return null;
+                if (conPlan)
+                {
+                    plan = hb_subset_plan_create_or_fail(face, input);
+                    if (plan == IntPtr.Zero) return null;
+                    // El mapa se lee ANTES de ejecutar: es del plan, y el plan es lo que se
+                    // destruye al final. Solo los glifos pedidos: los que hb-subset anyade
+                    // por su cuenta (componentes de un compuesto) no los nombra ningun Tj.
+                    IntPtr hbmap = hb_subset_plan_old_to_new_glyph_mapping(plan);
+                    if (hbmap == IntPtr.Zero) return null;
+                    SortedList<int, int> traduccion = new SortedList<int, int>();
+                    foreach (int g in pedidos)
+                    {
+                        uint nuevo = hb_map_get(hbmap, (uint)g);
+                        if (nuevo == HB_MAP_VALUE_INVALID) return null;   // no deberia: se pidio
+                        traduccion[g] = (int)nuevo;
+                    }
+                    subset = hb_subset_plan_execute_or_fail(plan);
+                    if (subset == IntPtr.Zero) return null;
+                    mapa = traduccion;
+                }
+                else
+                {
+                    subset = hb_subset_or_fail(face, input);
+                    if (subset == IntPtr.Zero) return null;
+                }
 
                 IntPtr salida = hb_face_reference_blob(subset);
                 if (salida == IntPtr.Zero) return null;
@@ -168,11 +238,13 @@ namespace Reportman.Drawing
             }
             catch
             {
+                mapa = null;
                 return null;
             }
             finally
             {
                 if (subset != IntPtr.Zero) hb_face_destroy(subset);
+                if (plan != IntPtr.Zero) hb_subset_plan_destroy(plan);
                 if (input != IntPtr.Zero) hb_subset_input_destroy(input);
                 if (face != IntPtr.Zero) hb_face_destroy(face);
                 if (blob != IntPtr.Zero) hb_blob_destroy(blob);
@@ -216,6 +288,12 @@ namespace Reportman.Drawing
             hb_subset_input_glyph_set = Bind<PtrToPtr>("hb_subset_input_glyph_set");
             hb_subset_input_set_flags = Bind<InputSetFlags>("hb_subset_input_set_flags");
             hb_subset_or_fail = Bind<SubsetOrFail>("hb_subset_or_fail");
+            // La API de plan es opcional: sin ella, subset con los indices conservados.
+            hb_subset_plan_create_or_fail = Bind<PlanCreate>("hb_subset_plan_create_or_fail");
+            hb_subset_plan_execute_or_fail = Bind<PtrToPtr>("hb_subset_plan_execute_or_fail");
+            hb_subset_plan_old_to_new_glyph_mapping = Bind<PtrToPtr>("hb_subset_plan_old_to_new_glyph_mapping");
+            hb_subset_plan_destroy = Bind<PtrVoid>("hb_subset_plan_destroy");
+            hb_map_get = Bind<MapGet>("hb_map_get");
 
             // `set_flags` es opcional (no esta en las HarfBuzz mas viejas); el resto no.
             return hb_blob_create != null && hb_blob_destroy != null && hb_blob_get_data != null
