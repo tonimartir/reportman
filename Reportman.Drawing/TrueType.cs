@@ -168,7 +168,12 @@ namespace Reportman.Drawing
         /// <returns>The bytes of the subset TrueType font.</returns>
         public byte[] Execute()
         {
-            CreateTableDirectory();
+            // LO QUE NO SE PUEDE SUBSETEAR SE EMBEBE ENTERO, que es lo que hace el motor Delphi
+            // (rptruetype.pas: `if (not CreateTableDirectory) then begin Result:=FRFArray; exit;`).
+            // El port se dejo esa salida y lanzaba excepcion: un OpenType con contornos CFF
+            // ('OTTO') tumbaba la impresion en vez de ir a parar al PDF tal cual.
+            if (!CreateTableDirectory())
+                return rfarray;
             ReadLoca();
             FlatGlyphs();
             CreateNewGlyphTables();
@@ -474,7 +479,9 @@ namespace Reportman.Drawing
         /// Reads the font table directory into <see cref="tables"/>, resolving the requested font inside a
         /// TrueType collection (ttcf) by matching its PostScript name when necessary.
         /// </summary>
-        protected void CreateTableDirectory()
+        /// <returns>False when this is not a font this subsetter can take apart (CFF outlines or an
+        /// unknown format); the caller then embeds the font whole, as the Delphi engine does.</returns>
+        protected bool CreateTableDirectory()
         {
             tables = new SortedList<string, TableData>();
             int id = ByteArrayToInt(rfarray, Convert.ToInt32(directoryOffset), 4);
@@ -482,6 +489,9 @@ namespace Reportman.Drawing
             if (id != 0x00010000)
             {
                 string ttcfHeader = StreamUtil.ByteArrayToString(rfarray, 0, 4);
+                // 'OTTO': OpenType con contornos CFF. Esto sabe de `glyf` y `loca`, no de CFF.
+                if (ttcfHeader == "OTTO")
+                    return false;
                 if (ttcfHeader == "ttcf")
                 {
                     directoryOffset = directoryOffset + 4;
@@ -524,7 +534,7 @@ namespace Reportman.Drawing
                     }
                 }
                 else
-                    throw new Exception("The font is not a truetype font or truetype font collection");
+                    return false;
             }
             int num_tables = ByteArrayToUShort(rfarray, nindex, 2);
             nindex = nindex + 2;
@@ -543,6 +553,7 @@ namespace Reportman.Drawing
                 tables[tag] = new TableData(tag, location, length, checksum);
 
             }
+            return true;
         }
 
         /// <summary>

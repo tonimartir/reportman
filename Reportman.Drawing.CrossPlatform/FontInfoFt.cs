@@ -669,8 +669,14 @@ namespace Reportman.Drawing
         /// </summary>
         private static bool SePuedeIncrustar(string nfile, int nfaceindex)
         {
-            // A face index other than zero means a collection, and only FreeType would honour it:
-            // HarfBuzz shapes face 0 and the subsetter reads the first table directory.
+            // Con hb-subset delante no hay limite que poner: sabe de CFF, de colecciones y de
+            // fuentes variables, y la cara que se le pide es la que midio FreeType.
+            HbSubset.Init();
+            if (HbSubset.Available)
+                return true;
+            // Sin el, este motor solo sabe desmontar TrueType llano —`glyf` y `loca`—, que es lo
+            // que su escaneo de directorios busca ("*.TTF|*.ttf|*.pf*"). Un .otf o una coleccion
+            // se embeberian enteros, que funciona pero engorda el PDF sin necesidad.
             if (nfaceindex != 0)
                 return false;
             string next = Path.GetExtension(nfile);
@@ -998,6 +1004,14 @@ namespace Reportman.Drawing
         /// <returns>A memory stream with the subsetted font.</returns>
         public override MemoryStream GetFontStream(TTFontData data)
         {
+            // HB-SUBSET SI ESTA, EL DE CASA SI NO — la misma eleccion en ejecucion que hace el
+            // motor Delphi (rpinfoprovft.pas GetFontStream). El de casa sabe de `glyf` y `loca`;
+            // hb-subset sabe ademas de CFF, colecciones y variables.
+            int caraSubset = data.LogFont is LogFontFt lfs ? lfs.faceIndex : 0;
+            byte[] porHarfBuzz = HbSubset.Subset(data.FontData.Data, caraSubset, data.Glyphs.Values);
+            if (porHarfBuzz != null)
+                return new MemoryStream(porHarfBuzz);
+
             Dictionary<int, int[]> glyps = new Dictionary<int, int[]>();
             foreach (char xchar in data.Glyphs.Keys)
             {
