@@ -105,6 +105,8 @@ public sealed class Interprete
     private int qrModulo = 3; private int qrEcc = 48; private byte[] qrDatos = Array.Empty<byte>();
     // 1D (GS h/w)
     private int barAlto = 162, barModulo = 3;
+    // PDF417 (GS ( k cn=48)
+    private int pdfColumnas, pdfFilas, pdfModulo = 3, pdfAltoFila = 3, pdfEcc = 1; private bool pdfTruncado; private byte[] pdfDatos = Array.Empty<byte>();
     // Imagen descargada (GS *) por si luego piden GS /
     private SKBitmap? imagenDescargada;
 
@@ -402,6 +404,7 @@ public sealed class Interprete
             case (byte)'t':
             {
                 byte n = Byte(d, j);
+                if (codificacion.CodePage == 65001) { Anotar(i, "codigos", $"ESC t {n}: ignorado, la impresora esta en UTF-8 (FS ( C)"); return j + 1; }
                 int cp = n switch
                 {
                     0 => 437, 1 => 932, 2 => 850, 3 => 860, 4 => 863, 5 => 865, 11 => 851, 13 => 857, 14 => 737,
@@ -571,8 +574,21 @@ public sealed class Interprete
                     default: Anotar(i, "comando", $"GS ( k 49 fn {fn}: se ignora"); break;
                 }
             }
-            else if (cn == 48)
-                Anotar(i, "barras", $"GS ( k 48 fn {fn}: PDF417 (no se dibuja)");
+            else if (cn == 48)                // PDF417
+            {
+                switch (fn)
+                {
+                    case 65: pdfColumnas = Byte(d, datosDesde + 2); break;
+                    case 66: pdfFilas = Byte(d, datosDesde + 2); break;
+                    case 67: pdfModulo = Math.Clamp((int)Byte(d, datosDesde + 2), 2, 8); break;
+                    case 68: pdfAltoFila = Math.Clamp((int)Byte(d, datosDesde + 2), 2, 8); break;
+                    case 69: pdfEcc = Byte(d, datosDesde + 2) == 48 ? Math.Clamp(Byte(d, datosDesde + 3) - 48, 0, 8) : pdfEcc; break;
+                    case 70: pdfTruncado = (Byte(d, datosDesde + 2) & 1) != 0; break;
+                    case 80: pdfDatos = d[(datosDesde + 3)..fin]; break;
+                    case 81: PintarPdf417(i); break;
+                    default: Anotar(i, "comando", $"GS ( k 48 fn {fn}: se ignora"); break;
+                }
+            }
             else
                 Anotar(i, "comando", $"GS ( k cn {cn} fn {fn}: simbología 2D que el emulador no dibuja");
             return fin;
@@ -614,6 +630,30 @@ public sealed class Interprete
         PintarMatriz(m, x, y, qrModulo, qrModulo);
         Anotar(offset, "barras", $"QR modelo 2, módulo {qrModulo} puntos, ECC {(char)Math.Max(48, qrEcc)}, {m.Width}×{m.Width} módulos = {lado} puntos ({lado * 25.4 / cfg.Dpi:0.0} mm): {texto}");
         y += lado;
+    }
+
+    private void PintarPdf417(int offset)
+    {
+        CerrarLinea(avanzar: linea.Count > 0);
+        string texto = Encoding.Latin1.GetString(pdfDatos);
+        BitMatrix m;
+        try
+        {
+            var hints = new Dictionary<EncodeHintType, object>
+            {
+                [EncodeHintType.MARGIN] = 0,
+                [EncodeHintType.ERROR_CORRECTION] = ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L0 + pdfEcc,
+            };
+            if (pdfColumnas > 0) hints[EncodeHintType.PDF417_DIMENSIONS] = new ZXing.PDF417.Internal.Dimensions(pdfColumnas, pdfColumnas, 3, 90);
+            if (pdfTruncado) hints[EncodeHintType.PDF417_COMPACT] = true;
+            m = new ZXing.PDF417.PDF417Writer().encode(texto, BarcodeFormat.PDF_417, 0, 0, hints);
+        }
+        catch (Exception ex) { Anotar(offset, "barras", $"PDF417: no se pudo codificar «{texto}»: {ex.Message}"); return; }
+        int ancho = m.Width * pdfModulo, alto = m.Height * pdfAltoFila;
+        int x = margenIzq + alineacion switch { 1 => Math.Max(0, (anchoImpresion - ancho) / 2), 2 => Math.Max(0, anchoImpresion - ancho), _ => 0 };
+        PintarMatriz(m, x, y, pdfModulo, pdfAltoFila);
+        Anotar(offset, "barras", $"PDF417 {m.Width}×{m.Height} módulos, módulo {pdfModulo}, fila {pdfAltoFila}, ECC {pdfEcc}{(pdfTruncado ? ", truncado" : "")}: {texto}");
+        y += alto;
     }
 
     private int Barras1D(byte[] d, int i, int j)
@@ -817,8 +857,18 @@ public sealed class Interprete
             case (byte)'(':
             {
                 int largo = Byte(d, j + 1) + Byte(d, j + 2) * 256;
+                int fin = Math.Min(d.Length, j + 3 + largo);
+                // FS ( C fn 48: el sistema de codificacion (1/49 un byte por caracter con ESC t;
+                // 2/50 UTF-8, y entonces ESC t se ignora). Es lo que envia EPSONTM88UTF8.
+                if (Byte(d, j) == (byte)'C' && Byte(d, j + 3) == 48)
+                {
+                    byte m = Byte(d, j + 4);
+                    if (m is 2 or 50) { codificacion = Encoding.UTF8; Anotar(i, "codigos", "FS ( C 48 2: UTF-8"); }
+                    else if (m is 1 or 49) { codificacion = Encoding.GetEncoding(cfg.PaginaCodigosInicial); Anotar(i, "codigos", "FS ( C 48 1: un byte por caracter (vuelve la pagina de codigos)"); }
+                    return fin;
+                }
                 Anotar(i, "comando", $"FS ( {(char)Byte(d, j)} con {largo} bytes: se salta");
-                return Math.Min(d.Length, j + 3 + largo);
+                return fin;
             }
             default: Anotar(i, "comando", $"FS 0x{c:X2} desconocido: se ignora"); return j;
         }

@@ -27,7 +27,13 @@ namespace Reportman.Drawing
         /// <summary>Interleaved 2 of 5.</summary>
         ITF = 7,
         /// <summary>Code 93.</summary>
-        Code93 = 8
+        Code93 = 8,
+        /// <summary>Codabar (NW-7).</summary>
+        Codabar = 9,
+        /// <summary>UPC-A.</summary>
+        UPCA = 10,
+        /// <summary>UPC-E.</summary>
+        UPCE = 11
     }
 
     /// <summary>
@@ -77,6 +83,11 @@ namespace Reportman.Drawing
         public int Modules;
         /// <summary>Symbol height in modules (QR: symbol size; linear: 0 = as tall as the box)</summary>
         public int Rows;
+        /// <summary>Data columns asked for (PDF417: 0 = automatic); Code 128: the subset (0 auto, 1 A, 2 B, 3 C).</summary>
+        public int Columns;
+        /// <summary>Symbology options. PDF417: bit 0 = truncated. Two-dimensional error correction beyond
+        /// <see cref="Ecc"/> (PDF417 levels 0-8) travels here in bits 8-15.</summary>
+        public int Flags;
         /// <summary>
         /// Fill the values of a MetaObjectBarcode, loading it from a binary buffer
         /// </summary>
@@ -93,6 +104,8 @@ namespace Reportman.Drawing
             Ecc = (MetaBarcodeEcc)StreamUtil.ByteArrayToInt(buf, index + RECORD_OFFSET + 12, 4);
             Modules = StreamUtil.ByteArrayToInt(buf, index + RECORD_OFFSET + 16, 4);
             Rows = StreamUtil.ByteArrayToInt(buf, index + RECORD_OFFSET + 20, 4);
+            Columns = StreamUtil.ByteArrayToInt(buf, index + RECORD_OFFSET + 24, 4);
+            Flags = StreamUtil.ByteArrayToInt(buf, index + RECORD_OFFSET + 28, 4);
         }
         /// <summary>
         /// Save the information of the object into a stream
@@ -110,7 +123,9 @@ namespace Reportman.Drawing
             astream.Write(StreamUtil.IntToByteArray((int)Ecc), 0, 4);
             astream.Write(StreamUtil.IntToByteArray(Modules), 0, 4);
             astream.Write(StreamUtil.IntToByteArray(Rows), 0, 4);
-            astream.Write(emptybuf, 0, RECORD_SIZE - 24 - RECORD_OFFSET);
+            astream.Write(StreamUtil.IntToByteArray(Columns), 0, 4);
+            astream.Write(StreamUtil.IntToByteArray(Flags), 0, 4);
+            astream.Write(emptybuf, 0, RECORD_SIZE - 32 - RECORD_OFFSET);
         }
     }
 }

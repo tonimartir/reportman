@@ -207,7 +207,7 @@ namespace Reportman.Drawing
         /// </summary>
         private static bool IsEscPosReceiptDriver(string drivername)
         {
-            return drivername == "EPSONTM88II" || drivername == "EPSONTM88IICUT";
+            return IsTm88Driver(drivername);
         }
         /// <summary>
         /// The driver name that will be in force when the document prints. It is needed BEFORE
@@ -225,11 +225,12 @@ namespace Reportman.Drawing
         }
         /// <summary>
         /// A QR is drawn natively by the ESC/POS receipt drivers (see <see cref="IsEscPosReceiptDriver"/>);
-        /// nothing else is, yet.
+        /// and with it everything ESC/POS draws by itself: PDF417 (GS ( k cn 48) and the linear
+        /// symbologies of GS k (UPC-A/E, EAN-13/8, Code 39, ITF, Codabar, Code 93, Code 128).
         /// </summary>
         public override bool SupportsNativeBarcode(MetaBarcodeSymbology symbology)
         {
-            return symbology == MetaBarcodeSymbology.QR && IsEscPosReceiptDriver(EffectiveDriverName());
+            return symbology != MetaBarcodeSymbology.Unknown && IsEscPosReceiptDriver(EffectiveDriverName());
         }
         /// <summary>
         /// Dots per inch the ESC/POS receipt printers print at (TM-T88, TM-T20 and their clones:
@@ -267,13 +268,102 @@ namespace Reportman.Drawing
             else if (center > FPageWidth / 2)
                 align = 2;                                         // right
 
-            byte[] symbol = EncodeEscPosQr(data, bar, align);
+            byte[] symbol = bar.Symbology == MetaBarcodeSymbology.QR ? EncodeEscPosQr(data, bar, align)
+                : bar.Symbology == MetaBarcodeSymbology.PDF417 ? EncodeEscPosPdf417(data, bar, align)
+                : EncodeEscPos1D(data, bar, align);
             PrintLine line = Lines[first];
             if (line.RawBefore == null)
                 line.RawBefore = new List<byte[]>();
             line.RawBefore.Add(symbol);
             for (int i = first; i <= last; i++)
                 Lines[i].Consumed = true;
+        }
+        /// <summary>
+        /// A linear symbology through <c>GS k</c>: bar height from the box, module width from the box
+        /// over the modules the encoder counted (2..6, the range the command admits), no HRI text
+        /// (the report item draws none), and the data as ISO-8859-1. Code 128 goes with the subset
+        /// prefix the printer wants ({A/{B/{C); the automatic one is sent as B, which covers the
+        /// printable ASCII the item accepts.
+        /// </summary>
+        public static byte[] EncodeEscPos1D(string data, MetaObjectBarcode bar, byte align)
+        {
+            byte m;
+            switch (bar.Symbology)
+            {
+                case MetaBarcodeSymbology.UPCA: m = 65; break;
+                case MetaBarcodeSymbology.UPCE: m = 66; break;
+                case MetaBarcodeSymbology.EAN13: m = 67; break;
+                case MetaBarcodeSymbology.EAN8: m = 68; break;
+                case MetaBarcodeSymbology.Code39: m = 69; break;
+                case MetaBarcodeSymbology.ITF: m = 70; break;
+                case MetaBarcodeSymbology.Codabar: m = 71; break;
+                case MetaBarcodeSymbology.Code93: m = 72; break;
+                default: m = 73; break;                                 // Code 128
+            }
+            string payload = data ?? "";
+            if (m == 73)
+            {
+                string prefix = bar.Columns == 1 ? "{A" : bar.Columns == 3 ? "{C" : "{B";
+                if (!payload.StartsWith("{")) payload = prefix + payload;
+            }
+            byte[] bytes = Encoding.GetEncoding(28591).GetBytes(payload);
+            if (bytes.Length > 255) Array.Resize(ref bytes, 255);
+
+            int boxdots = (int)Math.Round((double)bar.Width * ESCPOS_DPI / Twips.TWIPS_PER_INCH);
+            int modules = bar.Modules > 0 ? bar.Modules : Math.Max(20, payload.Length * 11);
+            int module = boxdots / modules;
+            if (module < 2) module = 2;
+            if (module > 6) module = 6;
+            int height = (int)Math.Round((double)bar.Height * ESCPOS_DPI / Twips.TWIPS_PER_INCH);
+            if (height < 1) height = 1;
+            if (height > 255) height = 255;
+
+            using (System.IO.MemoryStream s = new System.IO.MemoryStream())
+            {
+                s.Write(new byte[] { 27, (byte)'a', align }, 0, 3);                       // ESC a n
+                s.Write(new byte[] { 29, (byte)'h', (byte)height }, 0, 3);                 // GS h n: bar height
+                s.Write(new byte[] { 29, (byte)'w', (byte)module }, 0, 3);                 // GS w n: module width
+                s.Write(new byte[] { 29, (byte)'H', 0 }, 0, 3);                            // GS H 0: no HRI
+                s.Write(new byte[] { 29, (byte)'k', m, (byte)bytes.Length }, 0, 4);        // GS k m n d1..dn
+                s.Write(bytes, 0, bytes.Length);
+                s.Write(new byte[] { 27, (byte)'a', 0 }, 0, 3);
+                return s.ToArray();
+            }
+        }
+        /// <summary>
+        /// PDF417 through <c>GS ( k</c> cn 48: columns and rows as the item asked (0 = automatic), the
+        /// module width from the box, the row height as three modules, the error correction level
+        /// (0-8, carried in Flags bits 8-15), truncated when asked, then store and print.
+        /// </summary>
+        public static byte[] EncodeEscPosPdf417(string data, MetaObjectBarcode bar, byte align)
+        {
+            byte[] payload = Encoding.GetEncoding(28591).GetBytes(data ?? "");
+            int boxdots = (int)Math.Round((double)bar.Width * ESCPOS_DPI / Twips.TWIPS_PER_INCH);
+            int modules = bar.Modules > 0 ? bar.Modules : 100;
+            int module = boxdots / modules;
+            if (module < 2) module = 2;
+            if (module > 8) module = 8;
+            int columns = bar.Columns < 0 ? 0 : Math.Min(30, bar.Columns);
+            int rows = bar.Rows < 3 ? 0 : Math.Min(90, bar.Rows);
+            int ecc = (bar.Flags >> 8) & 0xFF;
+            if (ecc > 8) ecc = 8;
+            byte options = (byte)((bar.Flags & 1) != 0 ? 1 : 0);
+            int k = payload.Length + 3;
+            using (System.IO.MemoryStream s = new System.IO.MemoryStream())
+            {
+                s.Write(new byte[] { 27, (byte)'a', align }, 0, 3);
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 65, (byte)columns }, 0, 8);          // fn 65: columns
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 66, (byte)rows }, 0, 8);             // fn 66: rows
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 67, (byte)module }, 0, 8);           // fn 67: module width
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 68, (byte)Math.Min(8, module * 3) }, 0, 8); // fn 68: row height
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 4, 0, 48, 69, 48, (byte)(48 + ecc) }, 0, 9);    // fn 69: error correction level
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 70, options }, 0, 8);                // fn 70: options
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', (byte)(k & 0xFF), (byte)(k >> 8), 48, 80, 48 }, 0, 8); // fn 80: store
+                s.Write(payload, 0, payload.Length);
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 48, 81, 48 }, 0, 8);                     // fn 81: print
+                s.Write(new byte[] { 27, (byte)'a', 0 }, 0, 3);
+                return s.ToArray();
+            }
         }
         /// <summary>
         /// The ESC/POS QR sequence: model 2, module size chosen so the symbol fills the box the
@@ -642,12 +732,47 @@ namespace Reportman.Drawing
         /// Rebuilds the escape-code table and the allowed font-step map for the active printer driver,
         /// defining the control sequences used to render text.
         /// </summary>
+        /// <summary>
+        /// The code page a driver FORCES for its text (0 = none: the OEMConvert setting decides,
+        /// which is what the legacy drivers do). Set by <see cref="FillEscapes"/> for the drivers
+        /// that declare their character set to the printer.
+        /// </summary>
+        public int DriverCodePage;
+        /// <summary>The TM88 receipt drivers share everything but the init and the cut.</summary>
+        private void FillTm88(bool cut, byte[] init, int codepage)
+        {
+            escapecodes[PrinterRawOperation.InitPrinter] = init;
+            escapecodes[PrinterRawOperation.LineSpace6] = new byte[] { 27, (byte)'2' };
+            escapecodes[PrinterRawOperation.Linespacen_60] = new byte[] { 27, 3 };
+            escapecodes[PrinterRawOperation.LineFeed] = new byte[] { 10 };
+            escapecodes[PrinterRawOperation.CR] = new byte[] { 13 };
+            masterselect = true;
+            limitedmaster = true;
+            condensedmaster = true;
+            escapecodes[PrinterRawOperation.EndPrint] = cut ? new byte[] { 27, (byte)'m', 27, 64 } : new byte[] { 27, 64 };
+            escapecodes[PrinterRawOperation.Pulse] = new byte[] { 27, 112, 0, 100, 100 };
+            DriverCodePage = codepage;
+        }
+        /// <summary>The Epson TM88 family (ESC/POS receipt printers), in all its variants.</summary>
+        public static bool IsTm88Driver(string drivername)
+        {
+            return drivername == "EPSONTM88II" || drivername == "EPSONTM88IICUT"
+                || drivername == "EPSONTM88CP850" || drivername == "EPSONTM88CP850CUT"
+                || drivername == "EPSONTM88CP858" || drivername == "EPSONTM88CP858CUT"
+                || drivername == "EPSONTM88UTF8" || drivername == "EPSONTM88UTF8CUT";
+        }
+        /// <summary>The receipt drivers whose pages are cut where the text ends (no padding to the page length).</summary>
+        public static bool IsReceiptDriver(string drivername)
+        {
+            return IsTm88Driver(drivername) || drivername == "EPSONTMU210" || drivername == "EPSONTMU210CUT";
+        }
         public void FillEscapes()
         {
             Type rtype = typeof(PrinterRawOperation);
 
 
             escapecodes.Clear();
+            DriverCodePage = 0;
             foreach (string s in Enum.GetNames(rtype))
             {
                 escapecodes.Add((PrinterRawOperation)Enum.Parse(rtype, s), emptyByteArray);
@@ -852,6 +977,32 @@ namespace Reportman.Drawing
                     escapecodes[PrinterRawOperation.EndPrint] = new byte[] { 27, (byte)'m', 27, 64 };
                     // Open drawer
                     escapecodes[PrinterRawOperation.Pulse] = new byte[] { 27, 112, 0, 100, 100 };
+                    break;
+                // THE TM88 FAMILY WITH THE CHARACTER SET SAID OUT LOUD. The two drivers above never
+                // tell the printer which code page the bytes are in: this driver has always converted
+                // to cp850 (OEMConvert), so a printer left at its factory table (an Epson: PC437)
+                // paints the accents wrong until someone configures it. These variants keep the
+                // legacy ones untouched and add the declaration to the init — ESC t 2 (PC850),
+                // ESC t 19 (PC858, cp850 plus the euro at 0xD5) or FS ( C fn 48 m 2 (UTF-8, Epson
+                // TM-T88IV+/T20/T70/T82/m30/m50/P20/P80…; with it ESC t is ignored) — and FORCE the
+                // matching text encoding regardless of the OEMConvert setting.
+                case "EPSONTM88CP850":
+                    FillTm88(false, new byte[] { 27, 64, 27, (byte)'t', 2 }, 850);
+                    break;
+                case "EPSONTM88CP850CUT":
+                    FillTm88(true, new byte[] { 27, 64, 27, (byte)'t', 2 }, 850);
+                    break;
+                case "EPSONTM88CP858":
+                    FillTm88(false, new byte[] { 27, 64, 27, (byte)'t', 19 }, 858);
+                    break;
+                case "EPSONTM88CP858CUT":
+                    FillTm88(true, new byte[] { 27, 64, 27, (byte)'t', 19 }, 858);
+                    break;
+                case "EPSONTM88UTF8":
+                    FillTm88(false, new byte[] { 27, 64, 28, (byte)'(', (byte)'C', 2, 0, 48, 2 }, 65001);
+                    break;
+                case "EPSONTM88UTF8CUT":
+                    FillTm88(true, new byte[] { 27, 64, 28, (byte)'(', (byte)'C', 2, 0, 48, 2 }, 65001);
                     break;
                 case "HP-PCL":
                     // Init printer + 6 lines per inch
@@ -1291,7 +1442,12 @@ namespace Reportman.Drawing
                     }
                     byte[] nbytes;
                     Encoding oriencoding = Encoding.UTF8;
-                    if (OEMConvert)
+                    if (DriverCodePage > 0)
+                    {
+                        // The driver declared its character set to the printer: the text goes in it.
+                        nbytes = Encoding.GetEncoding(DriverCodePage).GetBytes(newstring);
+                    }
+                    else if (OEMConvert)
                     {
                         Encoding nencode = Encoding.GetEncoding(850);
                         nbytes = Encoding.Convert(oriencoding, nencode, oriencoding.GetBytes(newstring));
@@ -1610,10 +1766,7 @@ namespace Reportman.Drawing
                 if ((FCurrentPage > (ToPage - 1)) || (FCurrentPage >= meta.Pages.CurrentCount))
                 {
                     bool cutclearlines = false;
-                    if ((FPrinterDriver == "EPSONTMU210") ||
-                       (FPrinterDriver == "EPSONTMU210CUT") ||
-                        (FPrinterDriver == "EPSONTM88II") ||
-                       (FPrinterDriver == "EPSONTM88IICUT"))
+                    if (IsReceiptDriver(FPrinterDriver))
                         cutclearlines = true;
 
                     WriteCurrentPage(cutclearlines);
