@@ -54,7 +54,11 @@ namespace Reportman.Drawing
         };
 
         private const uint HB_MEMORY_MODE_READONLY = 0;
-        private const uint HB_SUBSET_FLAGS_DEFAULT = 0;
+        // Conserva los numeros de glifo originales. El PDF escribe en el contenido los indices
+        // que devolvio la conformacion sobre la fuente ENTERA, y por omision hb-subset los
+        // renumera de forma compacta: cada <gid> Tj acaba apuntando a otro glifo y la pagina
+        // sale con letras que no son. El subsetter de casa siempre los conservo.
+        private const uint HB_SUBSET_FLAGS_RETAIN_GIDS = 2;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr BlobCreate(IntPtr data, uint length, uint mode, IntPtr userData, IntPtr destroy);
@@ -140,7 +144,7 @@ namespace Reportman.Drawing
                 if (input == IntPtr.Zero) return null;
 
                 if (hb_subset_input_set_flags != null)
-                    hb_subset_input_set_flags(input, HB_SUBSET_FLAGS_DEFAULT);
+                    hb_subset_input_set_flags(input, HB_SUBSET_FLAGS_RETAIN_GIDS);
                 IntPtr conjunto = hb_subset_input_glyph_set(input);
                 if (conjunto == IntPtr.Zero) return null;
                 foreach (int g in glifos)
