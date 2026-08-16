@@ -740,6 +740,23 @@ namespace Reportman.Drawing
         {
         }
         /// <summary>
+        /// Whether this driver draws the given barcode symbology BY ITSELF from its data (a receipt
+        /// printer with an ESC/POS QR command, for instance). When true, the report barcode item
+        /// emits a <see cref="MetaObjectBarcode"/> carrying the data instead of drawing the modules
+        /// as rectangles, and the driver renders it in <c>DrawPage</c>. The default is false: every
+        /// driver that paints receives the modules as drawings and needs no barcode knowledge.
+        ///
+        /// It is asked WHILE the report is being generated (from the item's DoPrint), so it must
+        /// not depend on state that <see cref="NewDocument"/> initialises: <c>PreparePrint</c>
+        /// runs the metafile's BeginPrint — which can already generate the first page — before
+        /// calling NewDocument.
+        /// </summary>
+        /// <param name="symbology">Symbology the item wants to print.</param>
+        public virtual bool SupportsNativeBarcode(MetaBarcodeSymbology symbology)
+        {
+            return false;
+        }
+        /// <summary>
         /// The driver should do cleanup here, a print driver should finish print document.
         /// </summary>
         public virtual void EndDocument(MetaFile meta)

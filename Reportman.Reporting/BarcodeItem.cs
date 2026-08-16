@@ -206,11 +206,39 @@ namespace Reportman.Reporting
                         case 5:
                             hints.Add(ZXing.EncodeHintType.ERROR_CORRECTION, ZXing.QrCode.Internal.ErrorCorrectionLevel.H);
                             break;
-                            // { EncodeHintType.MARGIN, 1 } 
+                            // { EncodeHintType.MARGIN, 1 }
                     }
                     ZXing.Common.BitMatrix qrResult = qrCode.encode(CurrentText, ZXing.BarcodeFormat.QR_CODE, widthPixels, heightPixels, hints);
                     int barcodeHeight = qrResult.Height;
                     int barcodeWidth = qrResult.Width;
+
+                    // THE DRIVER THAT DRAWS THE QR BY ITSELF gets the barcode, not its
+                    // modules: a receipt printer given the data and an ESC/POS QR command
+                    // paints a cleaner symbol than any raster we could send it, in a fraction
+                    // of the bytes, and the metafile stays honest about what the item is.
+                    // The object is emitted ONLY for such a driver (see
+                    // PrintOut.SupportsNativeBarcode), so a metafile bound for a PDF or a
+                    // preview never carries the new type. Modules counts what ZXing returned
+                    // — the symbol plus its default quiet zone — which is exactly the grid the
+                    // drawn version below spreads over the box, so both outputs pick the same
+                    // module size and leave the same white around the code.
+                    if (adriver != null && adriver.SupportsNativeBarcode(MetaBarcodeSymbology.QR))
+                    {
+                        MetaObjectBarcode nativo = new MetaObjectBarcode();
+                        nativo.MetaType = MetaObjectType.Barcode;
+                        nativo.Left = aposx;
+                        nativo.Top = aposy;
+                        nativo.Width = Width;      // the same box the drawn modules spread over
+                        nativo.Height = Height;
+                        nativo.TextP = metafile.Pages[metafile.CurrentPage].AddString(CurrentText);
+                        nativo.TextS = CurrentText.Length;
+                        nativo.Symbology = MetaBarcodeSymbology.QR;
+                        nativo.Ecc = EccToMeta(ECCLevel);
+                        nativo.Modules = barcodeWidth;
+                        nativo.Rows = barcodeHeight;
+                        metafile.Pages[metafile.CurrentPage].Objects.Add(nativo);
+                        return;
+                    }
                     int squareWidth = Width / barcodeWidth;
                     int squareHeight = Height / barcodeHeight;
                     // Center barcode in rectangle
@@ -398,6 +426,22 @@ namespace Reportman.Reporting
             }
         }*/
 #endif
+        /// <summary>
+        /// The item's error-correction level as the metafile vocabulary. The item keeps the numbering
+        /// the QR path always used (2 = L, 3 = M, 4 = Q, 5 = H; anything else, including the -1
+        /// "automatic" default, is what ZXing does without a hint: L).
+        /// </summary>
+        /// <param name="eccLevel">The item's <see cref="ECCLevel"/>.</param>
+        public static MetaBarcodeEcc EccToMeta(int eccLevel)
+        {
+            switch (eccLevel)
+            {
+                case 3: return MetaBarcodeEcc.M;
+                case 4: return MetaBarcodeEcc.Q;
+                case 5: return MetaBarcodeEcc.H;
+                default: return MetaBarcodeEcc.L;
+            }
+        }
         /// <summary>Encodes <see cref="CurrentText"/> with the current <see cref="BarType"/> and returns the string of bar/space module codes to be drawn.</summary>
         public string CalculateBarcode()
         {

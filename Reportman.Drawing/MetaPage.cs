@@ -174,6 +174,14 @@ namespace Reportman.Drawing
             return ares;
         }
         /// <summary>
+        /// Get the barcode data from the pool
+        /// </summary>
+        /// <returns>The data referenced in the TextP position of a barcode object</returns>
+        public string GetText(MetaObjectBarcode obj)
+        {
+            return new string(Pool, obj.TextP - 1, obj.TextS);
+        }
+        /// <summary>
         /// Get the Windows Font Name text value from the pool
         /// </summary>
         /// <returns>The text referenced in the WFontNameP position</returns>
@@ -425,6 +433,12 @@ namespace Reportman.Drawing
                         string Text = GetText(atext);
                         if (stringlist.IndexOfKey(Text) < 0)
                             stringlist.Add(Text, atext.TextP);
+                        break;
+                    case MetaObjectType.Barcode:
+                        MetaObjectBarcode abar = (MetaObjectBarcode)obj;
+                        string BarData = GetText(abar);
+                        if (stringlist.IndexOfKey(BarData) < 0)
+                            stringlist.Add(BarData, abar.TextP);
                         break;
 
                 }

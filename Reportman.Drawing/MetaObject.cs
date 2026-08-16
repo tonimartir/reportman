@@ -68,6 +68,9 @@ namespace Reportman.Drawing
                 case MetaObjectType.Export:
                     aresult = new MetaObjectExport();
                     break;
+                case MetaObjectType.Barcode:
+                    aresult = new MetaObjectBarcode();
+                    break;
                 default:
                     throw new System.Exception("Tipo de meta objeto desconocido: " + metatype.ToString());
             }
