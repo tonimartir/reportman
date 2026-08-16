@@ -1499,35 +1499,74 @@ namespace Reportman.Drawing
                                 {
                                     if (positions[k].GlyphIndex == 0) { hasMissingGlyphs = true; break; }
                                 }
+                                // Con qué NOMBRE se etiquetan estas posiciones. Normalmente el de
+                                // la fuente pedida; si hay que buscar reserva, el de la que se
+                                // encuentre — que es lo que hace que el escritor de PDF cambie de
+                                // recurso al llegar a ellas.
+                                string familiaDeLasPosiciones = TempFont.WFontName;
+
                                 if (hasMissingGlyphs)
                                 {
-                                    // Try to find a font that supports these characters.
+                                    // LA RESERVA POR CONTENIDO, con el viaje de vuelta comprobado.
                                     //
-                                    // THE TEXT IS DELIBERATELY NOT SENT with the request, even
-                                    // though fontconfig would take it and answer with a font that
-                                    // carries the script. The glyph positions below only record the
-                                    // family NAME, and the PDF writer picks the font resource from
-                                    // that name (PDFCanvas.WriteGlyphs): glyph indexes belonging to
-                                    // the font fontconfig found would be written out under the
-                                    // resource of the font that could not draw them, and would be
-                                    // added to that font's subset. For the fallback to work, the
-                                    // font that was chosen has to travel with the glyph, all the way
-                                    // to the writer -which is a change in the metafile, not here-.
+                                    // Se le manda el TEXTO a fontconfig: eso es lo que hace que
+                                    // conteste con una fuente que sí lleva el script. Pero el
+                                    // escritor de PDF no recibe ficheros, recibe NOMBRES: elige el
+                                    // recurso con `g.FontFamily` (PDFCanvas, WriteGlyphs) y vuelve a
+                                    // pedir esa familia. Así que antes de fiarse se COMPRUEBA que
+                                    // pedir ese nombre cae en el mismo fichero. Si no cae, no se usa
+                                    // la reserva: se dibuja como antes -con sus huecos- en vez de
+                                    // escribir los glifos de una fuente bajo el recurso de otra, que
+                                    // es basura silenciosa y peor que un hueco.
                                     var fallbackFont = new PDFFont();
                                     fallbackFont.Name = pdfFont.Name;
                                     fallbackFont.Size = (short)Math.Round(activeSize);
                                     fallbackFont.Color = pdfFont.Color;
                                     fallbackFont.Bold = TempFont.Bold;
                                     fallbackFont.Italic = TempFont.Italic;
+                                    // `Style` NO se heredaba, y el camino de fontconfig lee los
+                                    // FLAGS: sin esto la reserva de un texto en negrita se pedía
+                                    // redonda.
+                                    fallbackFont.Style = TempFont.Style;
                                     fallbackFont.WFontName = TempFont.WFontName;
                                     fallbackFont.LFontName = TempFont.LFontName;
 
-                                    var fallbackData = new TTFontData();
-                                    FillFontData(fallbackFont, fallbackData);
-                                    lock (flag) { SelectFont(fallbackFont); }
-                                    positions = CalcGlyphPositions(ChunkText, rToL, scriptStr, activeSize, fallbackData, fallbackFont);
+                                    LogFontFt encontrada = null;
+                                    lock (flag)
+                                    {
+                                        SelectFont(fallbackFont, ChunkText, false);
+                                        encontrada = currentfont;
+                                    }
+                                    if (encontrada != null && !string.IsNullOrEmpty(encontrada.familyname))
+                                    {
+                                        var porNombre = new PDFFont();
+                                        porNombre.Name = fallbackFont.Name;
+                                        porNombre.Size = fallbackFont.Size;
+                                        porNombre.Color = fallbackFont.Color;
+                                        porNombre.Bold = fallbackFont.Bold;
+                                        porNombre.Italic = fallbackFont.Italic;
+                                        porNombre.Style = fallbackFont.Style;
+                                        porNombre.WFontName = encontrada.familyname;
+                                        porNombre.LFontName = encontrada.familyname;
+
+                                        LogFontFt deVuelta = null;
+                                        lock (flag)
+                                        {
+                                            SelectFont(porNombre);
+                                            deVuelta = currentfont;
+                                        }
+                                        if (deVuelta != null && deVuelta.filename == encontrada.filename
+                                            && deVuelta.faceIndex == encontrada.faceIndex)
+                                        {
+                                            var fallbackData = new TTFontData();
+                                            FillFontData(porNombre, fallbackData);
+                                            positions = CalcGlyphPositions(ChunkText, rToL, scriptStr,
+                                                activeSize, fallbackData, porNombre);
+                                            familiaDeLasPosiciones = encontrada.familyname;
+                                        }
+                                    }
                                 }
-                                
+
                                 double runWidth = 0;
                                 for (int k = 0; k < positions.Length; k++)
                                 {
@@ -1537,7 +1576,7 @@ namespace Reportman.Drawing
                                     positions[k].Italic = TempFont.Italic;
                                     positions[k].Underline = Seg.Underline;
                                     positions[k].StrikeOut = Seg.StrikeOut;
-                                    positions[k].FontFamily = TempFont.WFontName;
+                                    positions[k].FontFamily = familiaDeLasPosiciones;
                                     positions[k].FontSize = (float)activeSize;
                                     positions[k].HasFontSize = Seg.HasFontSize;
                                     positions[k].Color = Seg.Color;

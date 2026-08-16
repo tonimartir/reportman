@@ -249,11 +249,16 @@ namespace Reportman.Drawing
                     FcPatternAddBool(pattern, ObjVariable, FcFalse);
                 }
                 AddString(pattern, ObjFontVariations, "");
-                // A preference, not a filter -fontconfig scores, it does not exclude-, and it sits
-                // far below the family in that scoring, so it only breaks ties: among the fonts
-                // that answer for this family, the plain TrueType one first. It is the only kind
-                // this engine can subset into a PDF; the caller checks the answer anyway.
-                AddString(pattern, ObjFontFormat, "TrueType");
+                // SOLO CUANDO NO HAY hb-subset. Pedir formato TrueType tenia sentido mientras el
+                // unico subsetter era el de casa, que solo sabe de `glyf` y `loca`. Pero deja
+                // fuera todo lo que lleva contornos CFF —y ahi estan las Noto CJK, que es
+                // justamente lo que se busca cuando falta un glifo japones o chino: MEDIDO, con
+                // esta linea puesta y las Noto instaladas, fontconfig contestaba Liberation
+                // incluso pidiendo el charset japones. Con hb-subset delante, CFF se incrusta sin
+                // problema y esta preferencia solo estorba.
+                HbSubset.Init();
+                if (!HbSubset.Available)
+                    AddString(pattern, ObjFontFormat, "TrueType");
                 if (!string.IsNullOrEmpty(family))
                     AddString(pattern, ObjFamily, family);
                 if (!string.IsNullOrEmpty(content) && FcCharSetCreate != null
