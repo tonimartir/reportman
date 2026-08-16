@@ -197,6 +197,8 @@ namespace Reportman.Drawing
         public static object flag = 12345;
         static bool libraryinitialized;
         static SortedList<string,LogFontFt> fontlist = new SortedList<string,LogFontFt>();
+        /// <summary>Fallback already resolved for a set of codepoints and a style, so the sweep over every enumerated font happens once.</summary>
+        static SortedList<string,LogFontFt> reservaporcobertura = new SortedList<string,LogFontFt>();
         static SortedList<string, MemoryStream> FontStreams = new SortedList<string, MemoryStream>();
         static Strings fontpaths = new Strings();
         static SortedList<string,string> fontfiles = new SortedList<string,string>();
@@ -341,13 +343,22 @@ namespace Reportman.Drawing
                 {
                     if (!Directory.Exists(ndir))
                         continue;
-                    string[] nfiles = StreamUtil.GetFiles(ndir,"*.TTF|*.ttf|*.pf*",SearchOption.AllDirectories);
+                    // COLECCIONES Y CFF TAMBIEN. El escaneo buscaba solo TrueType llano porque era
+                    // lo unico que este motor sabia desmontar; con hb-subset delante ya no. Y en una
+                    // maquina Windows eso no es un detalle: las japonesas vienen todas en .ttc
+                    // -YuGothR.ttc, msgothic.ttc-, de modo que un texto en japones acababa cayendo en
+                    // la unica CJK que viene en .ttf suelto, que es coreana. `SePuedeIncrustar` deja
+                    // fuera lo que no se pueda incrustar, asi que sin hb-subset el escaneo enumera
+                    // exactamente lo que enumeraba antes.
+                    string[] nfiles = StreamUtil.GetFiles(ndir,
+                        "*.TTF|*.ttf|*.pf*|*.TTC|*.ttc|*.OTF|*.otf", SearchOption.AllDirectories);
                     foreach (string nfile in nfiles)
+                    foreach (int ncara in CarasDeUnFichero(nfile))
                     {
                         LogFontFt aobj;
                         try
                         {
-                            aobj = FillLogFont(nfile, 0);
+                            aobj = FillLogFont(nfile, ncara);
                         }
                         catch (Exception)
                         {
@@ -446,6 +457,44 @@ namespace Reportman.Drawing
         /// <param name="filename">Full path of the font file.</param>
         /// <param name="nfaceindex">Index of the face inside the file.</param>
         /// <returns>The described font.</returns>
+        /// <summary>
+        /// Face indexes of a font file worth enumerating: one for a plain font, as many as it holds
+        /// for a collection, and none at all for a file this engine could not embed anyway.
+        /// </summary>
+        static IEnumerable<int> CarasDeUnFichero(string filename)
+        {
+            int ncaras = CuantasCaras(filename);
+            for (int i = 0; i < ncaras; i++)
+            {
+                if (SePuedeIncrustar(filename, i))
+                    yield return i;
+            }
+        }
+        /// <summary>How many faces a font file holds: one for a plain font, several for a collection.</summary>
+        static int CuantasCaras(string filename)
+        {
+            int ncaras = 1;
+            FT_FaceRec_* aface;
+            IntPtr namebuffer = Marshal.StringToHGlobalAnsi(filename);
+            try
+            {
+                // Con -1 FreeType no carga ninguna cara, solo cuenta cuantas hay.
+                if (FT.FT_New_Face(FreeTypeLib, (byte*)namebuffer, (IntPtr)(-1), &aface) == 0)
+                {
+                    ncaras = aface->num_faces.ToInt32();
+                    FT.FT_Done_Face(aface);
+                }
+            }
+            catch (Exception)
+            {
+                ncaras = 1;
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(namebuffer);
+            }
+            return ncaras < 1 ? 1 : ncaras;
+        }
         static LogFontFt FillLogFont(string filename, int nfaceindex)
         {
             FT_FaceRec_* aface;
@@ -554,6 +603,31 @@ namespace Reportman.Drawing
                 SelectFontFontConfig(pdfFont, content, ignoreFamily);
                 return;
             }
+            SelectFontPorNombre(pdfFont);
+            // LA MISMA RESERVA QUE HACE FONTCONFIG, PERO A MANO. Donde hay fontconfig se le manda
+            // el texto y contesta con una fuente que lo cubre; donde no lo hay -Windows- no existe
+            // base de datos de fuentes que sepa de scripts, y hasta aqui el `content` se tiraba a la
+            // basura: un informe con japones acababa pidiendo glifos que Arial no tiene y el PDF
+            // salia con huecos. Se busca a mano sobre la lista ya enumerada, que es barata de
+            // recorrer porque el escaneo inicial ya abrio todos los ficheros una vez.
+            if (content.Length > 0)
+            {
+                int[] faltan = CodigosSinGlifo(currentfont, content);
+                if (faltan.Length > 0)
+                {
+                    LogFontFt cubre = BuscaPorCobertura(faltan,
+                        (pdfFont.Style & 1) > 0, (pdfFont.Style & 2) > 0);
+                    if (cubre != null)
+                        currentfont = cubre;
+                }
+            }
+        }
+        /// <summary>
+        /// Picks the font for a request from the enumerated list, by family and style, exactly as
+        /// this engine has always done when there is no fontconfig to ask.
+        /// </summary>
+        private void SelectFontPorNombre(PDFFont pdfFont)
+        {
             string fontname = "";
             if ((System.Environment.OSVersion.Platform == PlatformID.Unix) || (System.Environment.OSVersion.Platform == PlatformID.MacOSX))
             {
@@ -620,6 +694,340 @@ namespace Reportman.Drawing
                         currentfont = defaultfont;
                     }
             fontlist.Add(fontname, currentfont);
+        }
+        /// <summary>
+        /// Walks the codepoints of a text, joining surrogate pairs and leaving out blanks and
+        /// control characters: a font is not to be replaced over a space it does draw anyway.
+        /// </summary>
+        private static IEnumerable<int> Codigos(string texto)
+        {
+            for (int i = 0; i < texto.Length; i++)
+            {
+                int cp;
+                if (char.IsHighSurrogate(texto[i]) && (i + 1) < texto.Length
+                    && char.IsLowSurrogate(texto[i + 1]))
+                {
+                    cp = char.ConvertToUtf32(texto[i], texto[i + 1]);
+                    i++;
+                }
+                else
+                    cp = texto[i];
+                if (cp <= 32 || cp == 0xA0)
+                    continue;
+                yield return cp;
+            }
+        }
+        /// <summary>
+        /// The distinct codepoints of a text this font has no glyph for.
+        /// </summary>
+        private static int[] CodigosSinGlifo(LogFontFt afont, string content)
+        {
+            if (afont == null || string.IsNullOrEmpty(content))
+                return new int[0];
+            var faltan = new List<int>();
+            Monitor.Enter(flag);
+            try
+            {
+                afont.OpenFont();
+                if (afont.ftface == null)
+                    return new int[0];
+                foreach (int cp in Codigos(content))
+                {
+                    if (faltan.Contains(cp))
+                        continue;
+                    if (FT.FT_Get_Char_Index(afont.ftface, (UIntPtr)(uint)cp) == 0)
+                        faltan.Add(cp);
+                }
+            }
+            catch (Exception)
+            {
+                // Una fuente que no se deja abrir no es motivo para dejar de dibujar: se sigue con
+                // la que se habia elegido, con sus huecos, que es lo que pasaba antes de esto.
+                return new int[0];
+            }
+            finally
+            {
+                Monitor.Exit(flag);
+            }
+            return faltan.ToArray();
+        }
+        /// <summary>A stretch of a chunk that is drawn with one font: either the requested one or a fallback.</summary>
+        private struct Tramo
+        {
+            public int Inicio;
+            public int Longitud;
+            public bool NecesitaReserva;
+        }
+        /// <summary>
+        /// Cuts a chunk into stretches by coverage, so a fallback replaces the font only where the
+        /// glyphs are actually missing and the text goes back to the requested font afterwards.
+        ///
+        /// Mixing Arabic with Spanish never needed this: they land in different bidi runs, so each
+        /// one already asked for its own font. Japanese and Spanish are both left to right and share
+        /// a run, and replacing the font for the whole run drew "Gracias" with a Japanese monospaced
+        /// font, every letter the same width.
+        ///
+        /// Blanks never break a stretch: they are drawn the same by either font, and breaking on
+        /// them would chop a sentence into pieces and shape each one apart for nothing.
+        /// </summary>
+        /// <param name="texto">The chunk.</param>
+        /// <param name="fuente">The font already chosen for it.</param>
+        /// <param name="rToL">True for a right to left run, which is never cut: the glyphs of a run come back in visual order and stitching stretches together in logical order would reverse them.</param>
+        private static List<Tramo> TroceaPorCobertura(string texto, LogFontFt fuente, bool rToL)
+        {
+            var lista = new List<Tramo>();
+            if (rToL || fuente == null || texto.Length == 0)
+            {
+                lista.Add(new Tramo { Inicio = 0, Longitud = texto.Length, NecesitaReserva = true });
+                return lista;
+            }
+            bool reservaactual = false;
+            bool empezado = false;
+            int inicio = 0;
+            int i = 0;
+            while (i < texto.Length)
+            {
+                int largo = 1;
+                int cp = texto[i];
+                if (char.IsHighSurrogate(texto[i]) && (i + 1) < texto.Length
+                    && char.IsLowSurrogate(texto[i + 1]))
+                {
+                    cp = char.ConvertToUtf32(texto[i], texto[i + 1]);
+                    largo = 2;
+                }
+                if (cp > 32 && cp != 0xA0)
+                {
+                    bool falta = CuantosCubre(fuente, new int[] { cp }) == 0;
+                    if (!empezado)
+                    {
+                        reservaactual = falta;
+                        empezado = true;
+                    }
+                    else if (falta != reservaactual)
+                    {
+                        lista.Add(new Tramo { Inicio = inicio, Longitud = i - inicio,
+                            NecesitaReserva = reservaactual });
+                        inicio = i;
+                        reservaactual = falta;
+                    }
+                }
+                i += largo;
+            }
+            lista.Add(new Tramo { Inicio = inicio, Longitud = texto.Length - inicio,
+                NecesitaReserva = reservaactual });
+            return lista;
+        }
+        /// <summary>
+        /// Bit of OS/2 ulCodePageRange1 that a font must claim to be the idiomatic choice for these
+        /// characters, or -1 when they say nothing about a language. Han is written the same way in
+        /// Japanese, Chinese and Korean, so a font covering it is not necessarily the right one:
+        /// what tells them apart is the company the Han keeps -kana means Japanese, hangul means
+        /// Korean- and the codepage the font file itself claims to serve.
+        /// </summary>
+        private static int PaginaDeCodigoQueTocaria(int[] cps)
+        {
+            bool han = false;
+            foreach (int cp in cps)
+            {
+                // Kana: solo el japones las usa.
+                if ((cp >= 0x3040 && cp <= 0x30FF) || (cp >= 0x31F0 && cp <= 0x31FF))
+                    return 17;  // 932, JIS/Japan
+                // Hangul, en cualquiera de sus tres bloques.
+                if ((cp >= 0x1100 && cp <= 0x11FF) || (cp >= 0xA960 && cp <= 0xA97F)
+                    || (cp >= 0xAC00 && cp <= 0xD7FF))
+                    return 19;  // 949, Wansung/Korea
+                if ((cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF)
+                    || (cp >= 0xF900 && cp <= 0xFAFF))
+                    han = true;
+            }
+            // Han a secas, sin nada que lo acompañe: chino.
+            if (han)
+                return 18;  // 936, chino simplificado
+            return -1;
+        }
+        /// <summary>
+        /// Reads ulCodePageRange1 straight out of the OS/2 table of a font file, opening it only to
+        /// take those four bytes. Collections are understood, so the face asked for is the face read.
+        /// </summary>
+        /// <returns>The codepage bits, or zero when the file has nothing to say.</returns>
+        private static uint LeePaginasDeCodigo(string filename, int nfaceindex)
+        {
+            try
+            {
+                using (var st = new FileStream(filename, FileMode.Open, FileAccess.Read,
+                    FileShare.ReadWrite))
+                {
+                    var cab = new byte[12];
+                    if (st.Read(cab, 0, 12) < 12)
+                        return 0;
+                    long inicio = 0;
+                    if (cab[0] == (byte)'t' && cab[1] == (byte)'t' && cab[2] == (byte)'c'
+                        && cab[3] == (byte)'f')
+                    {
+                        int ncaras = (cab[8] << 24) | (cab[9] << 16) | (cab[10] << 8) | cab[11];
+                        if (nfaceindex >= ncaras)
+                            return 0;
+                        st.Position = 12 + 4 * nfaceindex;
+                        var dir = new byte[4];
+                        if (st.Read(dir, 0, 4) < 4)
+                            return 0;
+                        inicio = (uint)((dir[0] << 24) | (dir[1] << 16) | (dir[2] << 8) | dir[3]);
+                        st.Position = inicio;
+                        if (st.Read(cab, 0, 12) < 12)
+                            return 0;
+                    }
+                    int ntablas = (cab[4] << 8) | cab[5];
+                    var reg = new byte[16];
+                    for (int i = 0; i < ntablas; i++)
+                    {
+                        st.Position = inicio + 12 + i * 16;
+                        if (st.Read(reg, 0, 16) < 16)
+                            return 0;
+                        if (reg[0] != (byte)'O' || reg[1] != (byte)'S' || reg[2] != (byte)'/'
+                            || reg[3] != (byte)'2')
+                            continue;
+                        long donde = (uint)((reg[8] << 24) | (reg[9] << 16) | (reg[10] << 8) | reg[11]);
+                        // ulCodePageRange1 esta en el byte 78 de la tabla, y solo existe a partir
+                        // de la version 1 de OS/2; la version son los dos primeros bytes.
+                        st.Position = donde;
+                        var ver = new byte[2];
+                        if (st.Read(ver, 0, 2) < 2)
+                            return 0;
+                        if (((ver[0] << 8) | ver[1]) < 1)
+                            return 0;
+                        st.Position = donde + 78;
+                        var cp1 = new byte[4];
+                        if (st.Read(cp1, 0, 4) < 4)
+                            return 0;
+                        return (uint)((cp1[0] << 24) | (cp1[1] << 16) | (cp1[2] << 8) | cp1[3]);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Un fichero que no se deja leer no decide nada; se queda sin voto.
+            }
+            return 0;
+        }
+        /// <summary>
+        /// How many of those codepoints the font has a glyph for. The face is opened on the side and
+        /// closed again when it was not already open: a sweep must not leave every font on the
+        /// machine resident just because one line of text carried an unusual script.
+        /// </summary>
+        private static int CuantosCubre(LogFontFt afont, int[] cps)
+        {
+            string facekey = afont.filename + "|"
+                + afont.faceIndex.ToString(CultureInfo.InvariantCulture);
+            FT_FaceRec_* aface;
+            bool prestada = LogFontFt.FontFaces.IndexOfKey(facekey) >= 0;
+            if (prestada)
+                aface = (FT_FaceRec_*)LogFontFt.FontFaces[facekey];
+            else
+            {
+                IntPtr namebuffer = Marshal.StringToHGlobalAnsi(afont.filename);
+                try
+                {
+                    if (FT.FT_New_Face(FreeTypeLib, (byte*)namebuffer,
+                            (IntPtr)afont.faceIndex, &aface) != 0)
+                        return 0;
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(namebuffer);
+                }
+            }
+            try
+            {
+                int cubre = 0;
+                foreach (int cp in cps)
+                {
+                    if (FT.FT_Get_Char_Index(aface, (UIntPtr)(uint)cp) != 0)
+                        cubre++;
+                }
+                return cubre;
+            }
+            finally
+            {
+                if (!prestada)
+                    FT.FT_Done_Face(aface);
+            }
+        }
+        /// <summary>
+        /// Looks in the enumerated list for a font that can draw the codepoints the chosen one is
+        /// missing, same style first. The answer is remembered by set of characters and style, so
+        /// the sweep happens once per script and not once per line of text.
+        /// </summary>
+        /// <returns>The font that covers most of them, or null when not one covers a single one.</returns>
+        private static LogFontFt BuscaPorCobertura(int[] faltan, bool bold, bool italic)
+        {
+            var ordenados = new List<int>(faltan);
+            ordenados.Sort();
+            var clave = new StringBuilder();
+            foreach (int cp in ordenados)
+            {
+                clave.Append(cp.ToString(CultureInfo.InvariantCulture));
+                clave.Append(',');
+            }
+            clave.Append(bold ? "B1" : "B0");
+            clave.Append(italic ? "I1" : "I0");
+            string nkey = clave.ToString();
+            Monitor.Enter(flag);
+            try
+            {
+                int idx = reservaporcobertura.IndexOfKey(nkey);
+                if (idx >= 0)
+                    return reservaporcobertura.Values[idx];
+                int bitquetoca = PaginaDeCodigoQueTocaria(faltan);
+                LogFontFt mejor = null;
+                int mejorcubre = 0;
+                bool mejoridiomatica = false;
+                // Dos vueltas: primero las del mismo estilo, para que un texto en negrita no acabe
+                // en redonda solo porque la redonda va antes en la lista.
+                for (int vuelta = 0; vuelta < 2; vuelta++)
+                {
+                    foreach (LogFontFt candidata in fontlist.Values)
+                    {
+                        bool mismoestilo = (candidata.bold == bold) && (candidata.italic == italic);
+                        if ((vuelta == 0) != mismoestilo)
+                            continue;
+                        if ((!candidata.scalable) || candidata.type1)
+                            continue;
+                        if (!SePuedeIncrustar(candidata.filename, candidata.faceIndex))
+                            continue;
+                        int cubre = CuantosCubre(candidata, faltan);
+                        if (cubre == 0)
+                            continue;
+                        // Solo se pregunta por el idioma a las que ya cubren todo: leer la OS/2 de
+                        // las que no sirven de nada seria pagar por una respuesta que no se usa.
+                        bool idiomatica = (bitquetoca >= 0) && (cubre == faltan.Length)
+                            && ((LeePaginasDeCodigo(candidata.filename, candidata.faceIndex)
+                                 & (1u << bitquetoca)) != 0);
+                        bool ganamejor;
+                        if (idiomatica != mejoridiomatica)
+                            ganamejor = idiomatica;
+                        else
+                            ganamejor = cubre > mejorcubre;
+                        if (ganamejor)
+                        {
+                            mejorcubre = cubre;
+                            mejor = candidata;
+                            mejoridiomatica = idiomatica;
+                            // Cubre todo y ademas dice servir a ese idioma: no hay nada mejor que
+                            // buscar. Si nadie lo dice, se sigue mirando por si aparece.
+                            if ((cubre == faltan.Length) && ((bitquetoca < 0) || idiomatica))
+                                break;
+                        }
+                    }
+                    if ((mejorcubre == faltan.Length) && ((bitquetoca < 0) || mejoridiomatica))
+                        break;
+                }
+                reservaporcobertura.Add(nkey, mejor);
+                return mejor;
+            }
+            finally
+            {
+                Monitor.Exit(flag);
+            }
         }
         /// <summary>
         /// Asks fontconfig for the font, and asks a second time without a family when the answer is
@@ -1480,11 +1888,13 @@ namespace Reportman.Drawing
                                     fontDataCache[tempKey] = tempAdata;
                                 }
 
+                                LogFontFt fuenteDelTramo;
                                 lock (flag)
                                 {
                                     SelectFont(TempFont);
+                                    fuenteDelTramo = currentfont;
                                 }
-                                
+
                                 bool rToL = logicalRun.IsRightToLeft;
                                 string ChunkText = PlainText.Substring(IntStart, IntEnd - IntStart);
                                 string scriptStr = DetectScript(ChunkText);
@@ -1509,36 +1919,48 @@ namespace Reportman.Drawing
                                 {
                                     // LA RESERVA POR CONTENIDO, con el viaje de vuelta comprobado.
                                     //
-                                    // Se le manda el TEXTO a fontconfig: eso es lo que hace que
-                                    // conteste con una fuente que sí lleva el script. Pero el
-                                    // escritor de PDF no recibe ficheros, recibe NOMBRES: elige el
-                                    // recurso con `g.FontFamily` (PDFCanvas, WriteGlyphs) y vuelve a
-                                    // pedir esa familia. Así que antes de fiarse se COMPRUEBA que
-                                    // pedir ese nombre cae en el mismo fichero. Si no cae, no se usa
-                                    // la reserva: se dibuja como antes -con sus huecos- en vez de
+                                    // Se le manda el TEXTO a fontconfig -o, donde no lo hay, se
+                                    // barre la lista enumerada-: eso es lo que hace que conteste con
+                                    // una fuente que sí lleva el script. Pero el escritor de PDF no
+                                    // recibe ficheros, recibe NOMBRES: elige el recurso con
+                                    // `g.FontFamily` (PDFCanvas, WriteGlyphs) y vuelve a pedir esa
+                                    // familia. Así que antes de fiarse se COMPRUEBA que pedir ese
+                                    // nombre cae en el mismo fichero. Si no cae, no se usa la
+                                    // reserva: se dibuja como antes -con sus huecos- en vez de
                                     // escribir los glifos de una fuente bajo el recurso de otra, que
                                     // es basura silenciosa y peor que un hueco.
-                                    var fallbackFont = new PDFFont();
-                                    fallbackFont.Name = pdfFont.Name;
-                                    fallbackFont.Size = (short)Math.Round(activeSize);
-                                    fallbackFont.Color = pdfFont.Color;
-                                    fallbackFont.Bold = TempFont.Bold;
-                                    fallbackFont.Italic = TempFont.Italic;
-                                    // `Style` NO se heredaba, y el camino de fontconfig lee los
-                                    // FLAGS: sin esto la reserva de un texto en negrita se pedía
-                                    // redonda.
-                                    fallbackFont.Style = TempFont.Style;
-                                    fallbackFont.WFontName = TempFont.WFontName;
-                                    fallbackFont.LFontName = TempFont.LFontName;
+                                    Func<string, Tuple<PDFFont, TTFontData, string>> reservaPara = texto =>
+                                    {
+                                        var fallbackFont = new PDFFont();
+                                        fallbackFont.Name = pdfFont.Name;
+                                        fallbackFont.Size = (short)Math.Round(activeSize);
+                                        fallbackFont.Color = pdfFont.Color;
+                                        fallbackFont.Bold = TempFont.Bold;
+                                        fallbackFont.Italic = TempFont.Italic;
+                                        // `Style` NO se heredaba, y el camino de fontconfig lee los
+                                        // FLAGS: sin esto la reserva de un texto en negrita se pedía
+                                        // redonda.
+                                        fallbackFont.Style = TempFont.Style;
+                                        fallbackFont.WFontName = TempFont.WFontName;
+                                        fallbackFont.LFontName = TempFont.LFontName;
 
-                                    LogFontFt encontrada = null;
-                                    lock (flag)
-                                    {
-                                        SelectFont(fallbackFont, ChunkText, false);
-                                        encontrada = currentfont;
-                                    }
-                                    if (encontrada != null && !string.IsNullOrEmpty(encontrada.familyname))
-                                    {
+                                        LogFontFt encontrada = null;
+                                        lock (flag)
+                                        {
+                                            SelectFont(fallbackFont, texto, false);
+                                            encontrada = currentfont;
+                                        }
+                                        if (encontrada == null || string.IsNullOrEmpty(encontrada.familyname))
+                                            return null;
+                                        // Si la reserva es el MISMO fichero que ya se tenía, no hay
+                                        // reserva ninguna: los glifos van a seguir faltando igual, y
+                                        // renombrarla mete en el PDF un segundo recurso con la misma
+                                        // fuente dentro. Pasa cuando en la máquina no hay ninguna que
+                                        // lleve ese script.
+                                        if (fuenteDelTramo != null
+                                            && encontrada.filename == fuenteDelTramo.filename
+                                            && encontrada.faceIndex == fuenteDelTramo.faceIndex)
+                                            return null;
                                         var porNombre = new PDFFont();
                                         porNombre.Name = fallbackFont.Name;
                                         porNombre.Size = fallbackFont.Size;
@@ -1555,16 +1977,49 @@ namespace Reportman.Drawing
                                             SelectFont(porNombre);
                                             deVuelta = currentfont;
                                         }
-                                        if (deVuelta != null && deVuelta.filename == encontrada.filename
-                                            && deVuelta.faceIndex == encontrada.faceIndex)
+                                        if (deVuelta == null || deVuelta.filename != encontrada.filename
+                                            || deVuelta.faceIndex != encontrada.faceIndex)
+                                            return null;
+                                        var fallbackData = new TTFontData();
+                                        FillFontData(porNombre, fallbackData);
+                                        return Tuple.Create(porNombre, fallbackData, encontrada.familyname);
+                                    };
+
+                                    // POR TRAMOS, no por trozo entero: la reserva entra donde faltan
+                                    // los glifos y el texto vuelve a la fuente pedida en cuanto
+                                    // vuelve a haberlos.
+                                    var acumuladas = new List<TGlyphPos>();
+                                    foreach (var tramo in TroceaPorCobertura(ChunkText, fuenteDelTramo, rToL))
+                                    {
+                                        if (tramo.Longitud <= 0)
+                                            continue;
+                                        string textoTramo = ChunkText.Substring(tramo.Inicio, tramo.Longitud);
+                                        var reserva = tramo.NecesitaReserva ? reservaPara(textoTramo) : null;
+                                        TGlyphPos[] pos;
+                                        string familia;
+                                        if (reserva != null)
                                         {
-                                            var fallbackData = new TTFontData();
-                                            FillFontData(porNombre, fallbackData);
-                                            positions = CalcGlyphPositions(ChunkText, rToL, scriptStr,
-                                                activeSize, fallbackData, porNombre);
-                                            familiaDeLasPosiciones = encontrada.familyname;
+                                            pos = CalcGlyphPositions(textoTramo, rToL, DetectScript(textoTramo),
+                                                activeSize, reserva.Item2, reserva.Item1);
+                                            familia = reserva.Item3;
                                         }
+                                        else
+                                        {
+                                            // Sin reserva que valga se dibuja con la pedida, con sus
+                                            // huecos, que es lo que pasaba antes de todo esto.
+                                            pos = CalcGlyphPositions(textoTramo, rToL, DetectScript(textoTramo),
+                                                activeSize, tempAdata, TempFont);
+                                            familia = TempFont.WFontName;
+                                        }
+                                        for (int k = 0; k < pos.Length; k++)
+                                        {
+                                            pos[k].Cluster += tramo.Inicio;
+                                            pos[k].FontFamily = familia;
+                                        }
+                                        acumuladas.AddRange(pos);
                                     }
+                                    if (acumuladas.Count > 0)
+                                        positions = acumuladas.ToArray();
                                 }
 
                                 double runWidth = 0;
@@ -1576,7 +2031,10 @@ namespace Reportman.Drawing
                                     positions[k].Italic = TempFont.Italic;
                                     positions[k].Underline = Seg.Underline;
                                     positions[k].StrikeOut = Seg.StrikeOut;
-                                    positions[k].FontFamily = familiaDeLasPosiciones;
+                                    // Cuando se ha troceado, cada posición ya trae la familia con la
+                                    // que se dibujó su tramo, y esa manda.
+                                    if (string.IsNullOrEmpty(positions[k].FontFamily))
+                                        positions[k].FontFamily = familiaDeLasPosiciones;
                                     positions[k].FontSize = (float)activeSize;
                                     positions[k].HasFontSize = Seg.HasFontSize;
                                     positions[k].Color = Seg.Color;
