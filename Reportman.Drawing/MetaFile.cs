@@ -571,7 +571,10 @@ namespace Reportman.Drawing
         /// <summary>Poligon object contain a series of drawing actions, this is for future use</summary>
         Polygon,
         /// <summary>Export object contain information for exporting the metafile to custom formats</summary>
-        Export
+        Export,
+        /// <summary>Barcode object: the data and symbology of a barcode, for drivers that draw it natively
+        /// (see MetaObjectBarcode). Only emitted when the active driver supports the symbology.</summary>
+        Barcode
     };
     /// <summary>
     /// Structure containing a reference to pagecount object, the number of pages is not known until the

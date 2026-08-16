@@ -192,6 +192,136 @@ namespace Reportman.Drawing
                     obj.WordWrap, obj.RightToLeft, fontstep, obj.FontStyle, red);
 
                     break;
+                case MetaObjectType.Barcode:
+                    MetaObjectBarcode bar = (MetaObjectBarcode)aobj;
+                    if (SupportsNativeBarcode(bar.Symbology))
+                        NativeBarcodeOut(bar, page.GetText(bar));
+                    break;
+            }
+        }
+        /// <summary>
+        /// The receipt drivers that speak ESC/POS: an Epson TM-T88 family printer, or any of the
+        /// many that emulate it, draws a QR by itself from <c>GS ( k</c>. The dot-matrix TM-U210
+        /// and the line printers do not, so they keep getting the modules as drawings — which the
+        /// text driver cannot paint anyway, so on those the barcode is simply absent, as it always was.
+        /// </summary>
+        private static bool IsEscPosReceiptDriver(string drivername)
+        {
+            return drivername == "EPSONTM88II" || drivername == "EPSONTM88IICUT";
+        }
+        /// <summary>
+        /// The driver name that will be in force when the document prints. It is needed BEFORE
+        /// <see cref="NewDocument"/> runs (the report asks while generating its first page), so it is
+        /// resolved the same way UpdatePrinterConfig will resolve it: the forced name if any, else the
+        /// printer configuration of the metafile's printer selection.
+        /// </summary>
+        private string EffectiveDriverName()
+        {
+            if (ForceDriverName.Length > 0)
+                return ForceDriverName;
+            if (CurrentMetafile != null)
+                return PrinterConfig.GetDriverName(CurrentMetafile.PrinterSelect);
+            return PrinterConfig.GetDriverName(FPrinterSelect);
+        }
+        /// <summary>
+        /// A QR is drawn natively by the ESC/POS receipt drivers (see <see cref="IsEscPosReceiptDriver"/>);
+        /// nothing else is, yet.
+        /// </summary>
+        public override bool SupportsNativeBarcode(MetaBarcodeSymbology symbology)
+        {
+            return symbology == MetaBarcodeSymbology.QR && IsEscPosReceiptDriver(EffectiveDriverName());
+        }
+        /// <summary>
+        /// Dots per inch the ESC/POS receipt printers print at (TM-T88, TM-T20 and their clones:
+        /// 180 or 203 dpi; 203 is the common one and the module size only moves by one dot between
+        /// the two for a 40 mm code).
+        /// </summary>
+        public const int ESCPOS_DPI = 203;
+        /// <summary>
+        /// Attaches a natively drawn barcode to the print line its top falls on, and marks the lines
+        /// its box covers as consumed so the paper the printer feeds while drawing the symbol is not
+        /// followed by the blank lines the layout reserved for it. Text on those lines still prints,
+        /// after the symbol.
+        /// </summary>
+        /// <param name="bar">Barcode object of the page.</param>
+        /// <param name="data">The data to encode.</param>
+        private void NativeBarcodeOut(MetaObjectBarcode bar, string data)
+        {
+            if (Lines.Count == 0)
+                return;
+            int first = GetLineIndex(bar.Top);
+            if (first >= Lines.Count)
+                first = Lines.Count - 1;
+            int last = GetLineIndex(bar.Top + bar.Height) - 1;
+            if (last >= Lines.Count)
+                last = Lines.Count - 1;
+            if (last < first)
+                last = first;
+
+            // Alignment: ESC/POS justifies whole lines, so the box tells which of the three it is.
+            // The centred case is the receipt case; the tolerance is one column at 12 cpi.
+            int center = bar.Left + bar.Width / 2;
+            byte align = 0;                                        // left
+            if (Math.Abs(center - FPageWidth / 2) <= 120)
+                align = 1;                                         // centre
+            else if (center > FPageWidth / 2)
+                align = 2;                                         // right
+
+            byte[] symbol = EncodeEscPosQr(data, bar, align);
+            PrintLine line = Lines[first];
+            if (line.RawBefore == null)
+                line.RawBefore = new List<byte[]>();
+            line.RawBefore.Add(symbol);
+            for (int i = first; i <= last; i++)
+                Lines[i].Consumed = true;
+        }
+        /// <summary>
+        /// The ESC/POS QR sequence: model 2, module size chosen so the symbol fills the box the
+        /// layout reserved (the same grid the drawn version spreads over: modules across the box,
+        /// quiet zone included), error correction as the item asked, data stored and printed. The
+        /// alignment is set before and restored to left after, because ESC/POS keeps it for the
+        /// following lines and the text lines are laid out from column 0.
+        /// </summary>
+        /// <param name="data">Data to encode.</param>
+        /// <param name="bar">Barcode object, for the box and the parameters.</param>
+        /// <param name="align">0 left, 1 centre, 2 right.</param>
+        public static byte[] EncodeEscPosQr(string data, MetaObjectBarcode bar, byte align)
+        {
+            // Module size in dots: the box width in dots over the modules the encoder said it
+            // needs. Clamped to what the command admits (1..16); 3 is the smallest a phone reads
+            // reliably on thermal paper, so it is the floor even for a box that would ask for less.
+            int boxdots = (int)Math.Round((double)bar.Width * ESCPOS_DPI / Twips.TWIPS_PER_INCH);
+            int modules = bar.Modules > 0 ? bar.Modules : 33;
+            int module = boxdots / modules;
+            if (module < 3)
+                module = 3;
+            if (module > 16)
+                module = 16;
+            byte ecc;
+            switch (bar.Ecc)
+            {
+                case MetaBarcodeEcc.M: ecc = 49; break;
+                case MetaBarcodeEcc.Q: ecc = 50; break;
+                case MetaBarcodeEcc.H: ecc = 51; break;
+                default: ecc = 48; break;
+            }
+            // The data goes as the bytes a reader will assume without an ECI: ISO-8859-1. A URL is
+            // ASCII anyway; anything outside Latin-1 becomes '?', which is what the printer would
+            // have done with a byte it cannot map.
+            byte[] payload = Encoding.GetEncoding(28591).GetBytes(data);
+            int k = payload.Length + 3;
+
+            using (System.IO.MemoryStream s = new System.IO.MemoryStream())
+            {
+                s.Write(new byte[] { 27, (byte)'a', align }, 0, 3);                              // ESC a n
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 4, 0, 49, 65, 50, 0 }, 0, 9);      // fn 65: model 2
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 49, 67, (byte)module }, 0, 8); // fn 67: module size
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 49, 69, ecc }, 0, 8);          // fn 69: error correction
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', (byte)(k & 0xFF), (byte)(k >> 8), 49, 80, 48 }, 0, 8); // fn 80: store
+                s.Write(payload, 0, payload.Length);
+                s.Write(new byte[] { 29, (byte)'(', (byte)'k', 3, 0, 49, 81, 48 }, 0, 8);           // fn 81: print
+                s.Write(new byte[] { 27, (byte)'a', 0 }, 0, 3);                                  // back to left
+                return s.ToArray();
             }
         }
         /// <summary>
@@ -223,6 +353,13 @@ namespace Reportman.Drawing
             singleline = (alignment & MetaFile.AlignmentFlags_SingleLine) > 0;
             if (singleline)
                 wordbreak = false;
+            // The step the printer will actually use. CalculateTextExtent already measures with
+            // it, but the lines were being STORED with the requested step: a 16 pt "TOTAL" asked
+            // for 5 cpi, was measured at the 6 cpi the TM-88 has, and then the line carried
+            // cpi5 — for which the receipt drivers have no escape (plain font A) — so the text
+            // was placed on a 15-column line and printed 12 columns wide, truncated. Resolving
+            // it once here keeps measure, columns and escape on the same step.
+            fontstep = NearestFontStep(fontstep);
             recsize = arect;
             CalculateTextExtent(text, ref recsize, wordbreak, singleline, fontstep, clipping);
             posy = arect.Top;
@@ -302,12 +439,20 @@ namespace Reportman.Drawing
             if (FPageHeight <= 0)
                 return nresult;
             amax = Lines.Count;
-            // Lines go on base 0 that is from 0 to 65 in a 66 line paper
-            nresult = (int)Math.Round(System.Convert.ToDouble(posy) / FPageHeight * (amax));
+            // Lines go on base 0 that is from 0 to 65 in a 66 line paper.
+            //
+            // The position is divided by the LINE PITCH (1440 twips over the lines per inch),
+            // not by page height over line count: the count is rounded, so on a page that is
+            // not a whole number of lines (a 40 cm roll at 6 lpi is 94.5 lines) the old
+            // quotient stretched every line by a fraction and rows laid out exactly one line
+            // apart drifted onto each other. And halves round AWAY from zero: with banker's
+            // rounding two rows sitting at k+.5 and k+1.5 both landed on the even line.
+            double pitch = (double)Twips.TWIPS_PER_INCH / ((double)FLinesPerInch / 100.0);
+            nresult = (int)Math.Round(System.Convert.ToDouble(posy) / pitch, MidpointRounding.AwayFromZero);
             if (nresult < 0)
                 nresult = 0;
-            if (nresult > amax)
-                nresult = amax;
+            if (nresult > amax - 1)
+                nresult = amax - 1;
             return nresult;
         }
         /// <summary>
@@ -389,9 +534,13 @@ namespace Reportman.Drawing
                 npostext = nline.texts[atpos];
             }
             toposition = astring.Length;
-            // Trunc strings
-            if (columnnumber + toposition >= nline.Value.Length)
-                toposition = nline.Value.Length - columnnumber - 1;
+            // Trunc strings. A fragment that ENDS at the last column fits: the old test used
+            // ">=" and "- 1", so an amount right-aligned to the page edge always lost its
+            // last digit ("34,9" for 34,90).
+            if (columnnumber + toposition > nline.Value.Length)
+                toposition = nline.Value.Length - columnnumber;
+            if (toposition < 0)
+                toposition = 0;
             npostext.nSize = toposition;
             string oldvalue = nline.Value;
             nline.Value = "";
@@ -868,6 +1017,18 @@ namespace Reportman.Drawing
         public override void EndDocument(MetaFile meta)
         {
             byte[] init;
+            // The driver's end-of-print escape and the tear-off, in this order and BEFORE the
+            // drawer, as the Delphi driver does (rptextdriver.pas, EndDocument): on the CUT
+            // receipt drivers EndPrint is the paper cut followed by a reset, so the ticket is cut
+            // and the printer clean before the drawer pulse. The port used to emit neither, and
+            // a receipt on an EPSONTM88IICUT was never cut unless the printer configuration
+            // said so on its own.
+            init = GetEscape(PrinterRawOperation.EndPrint);
+            if (init.Length > 0)
+                PrintResultStream.Write(init, 0, init.Length);
+            init = GetEscape(PrinterRawOperation.TearOff);
+            if (init.Length > 0)
+                PrintResultStream.Write(init, 0, init.Length);
             if (FDrawerAfter)
             {
                 init = GetEscape(PrinterRawOperation.Pulse);
@@ -910,7 +1071,8 @@ namespace Reportman.Drawing
             {
                 while (lastline > 0)
                 {
-                    if (Lines[lastline].texts.Count == 0)
+                    // A line with a native symbol attached is not blank, whatever its text says.
+                    if (Lines[lastline].texts.Count == 0 && Lines[lastline].RawBefore == null)
                     {
                         lastline--;
                     }
@@ -920,6 +1082,15 @@ namespace Reportman.Drawing
             }
             for (int i = 0; i <= lastline; i++)
             {
+                if (Lines[i].RawBefore != null)
+                {
+                    foreach (byte[] raw in Lines[i].RawBefore)
+                        currpageStream.Write(raw, 0, raw.Length);
+                }
+                // The paper under a native symbol was already fed by the printer while drawing it:
+                // an empty line in that span is not emitted (see PrintLine.Consumed).
+                if (Lines[i].Consumed && Lines[i].texts.Count == 0)
+                    continue;
                 byte[] codedstring = EncodeLine(Lines[i], i, FullPlain);
                 if (Lines[i].texts.Count == 0)
                 {
@@ -1316,19 +1487,24 @@ namespace Reportman.Drawing
             return extent;
         }
         /// <summary>
-        /// Placeholder for printer initialization at the start of a document; currently emits nothing.
+        /// Printer initialization at the start of a document: the driver's InitPrinter escape
+        /// (<c>ESC @</c> on the Epson family) and, when the metafile asks for it, the drawer pulse
+        /// before printing. This is what the Delphi driver has always emitted (rptextdriver.pas,
+        /// NewDocument); the port had it commented out and callers were prepending <c>ESC @</c> by
+        /// hand — a receipt printer left mid-state by the previous job (double width, a code page,
+        /// an alignment) would otherwise print the next ticket that way.
         /// </summary>
         public void WriteInit()
         {
-            //string init = GetEscape(PrinterRawOperation.InitPrinter);
-            //f (init.Length>0)
-            //currpage.Append(init);
-            /*if (FDrawerBefore)
+            byte[] init = GetEscape(PrinterRawOperation.InitPrinter);
+            if (init.Length > 0)
+                currpageStream.Write(init, 0, init.Length);
+            if (FDrawerBefore)
             {
                 init = GetEscape(PrinterRawOperation.Pulse);
-                if (init.Length>0)
-                    currpage.Append(init);
-            }*/
+                if (init.Length > 0)
+                    currpageStream.Write(init, 0, init.Length);
+            }
         }
         /// <summary>
         /// Emits the line-spacing escape sequence that matches the current lines-per-inch setting,
@@ -1607,6 +1783,24 @@ namespace Reportman.Drawing
             return ((c == ',') || (c == '.') || (c == '-') || (c == ' ') || (c == ':') || (c == ';'));
         }
         /// <summary>
+        /// Whether one more laid-out line of a clipped text object is kept. Lines past the object's
+        /// height are dropped — except the FIRST one, which always prints. A text driver has no
+        /// partial rows: dropping the only line of an object that is a hair shorter than a print
+        /// line (a 230-twip row at 6 lpi, which is 240) does not clip it, it deletes it, and a
+        /// receipt loses its amounts without a word. Every object designed taller than a line is
+        /// unaffected; the ones that used to vanish now show their first line, which is what any
+        /// designer meant.
+        /// </summary>
+        /// <param name="already">Lines already kept for this object.</param>
+        /// <param name="lineheight">Height of one print line in twips.</param>
+        /// <param name="rectheight">Height of the object in twips.</param>
+        private static bool LineFits(int already, int lineheight, int rectheight)
+        {
+            if (already == 0)
+                return true;
+            return (lineheight * already + lineheight) <= rectheight;
+        }
+        /// <summary>
         /// Computes the extent of a text block and fills the internal line-info list used for layout,
         /// applying word wrapping, single-line collapsing and clipping to the rectangle height.
         /// </summary>
@@ -1680,10 +1874,7 @@ namespace Reportman.Drawing
                     currenttoppos = currenttoppos + linespacing;
                     bool doinsert = true;
                     if (doclip)
-                    {
-                        if ((linfo.Height * linfos.Count + linfo.Height) > rect.Height)
-                            doinsert = false;
-                    }
+                        doinsert = LineFits(linfos.Count, linfo.Height, rect.Height);
                     if (doinsert)
                     {
                         linfos.Add(linfo);
@@ -1766,10 +1957,7 @@ namespace Reportman.Drawing
                             currenttoppos = currenttoppos + linespacing;
                             bool doinsert = true;
                             if (doclip)
-                            {
-                                if ((linfo.Height * linfos.Count + linfo.Height) > rect.Height)
-                                    doinsert = false;
-                            }
+                                doinsert = LineFits(linfos.Count, linfo.Height, rect.Height);
                             if (doinsert)
                             {
                                 linfos.Add(linfo);
@@ -1826,10 +2014,7 @@ namespace Reportman.Drawing
                 currenttoppos = currenttoppos + linespacing;
                 bool doinsert = true;
                 if (doclip)
-                {
-                    if ((linfo.Height * linfos.Count + linfo.Height) > rect.Height)
-                        doinsert = false;
-                }
+                    doinsert = LineFits(linfos.Count, linfo.Height, rect.Height);
                 if (doinsert)
                 {
                     linfos.Add(linfo);
@@ -2012,6 +2197,19 @@ namespace Reportman.Drawing
         /// The full character content of the line, padded with spaces to the page width.
         /// </summary>
         public string Value;
+        /// <summary>
+        /// Raw device commands emitted BEFORE the text of this line — a barcode the printer draws
+        /// natively (see <see cref="PrintOutText.DrawObject"/> for <see cref="MetaObjectBarcode"/>).
+        /// Null until something is attached; the common case pays nothing.
+        /// </summary>
+        public List<byte[]> RawBefore;
+        /// <summary>
+        /// True when a native symbol printed on this line (or above it) already consumed the vertical
+        /// space the line represents: the printer fed the paper while drawing the barcode, so an
+        /// empty consumed line is not emitted, or the symbol would be followed by the blank rows the
+        /// layout had reserved for it. A consumed line that does carry text still prints its text.
+        /// </summary>
+        public bool Consumed;
         /// <summary>
         /// Initializes an empty print line with the default 10 cpi step.
         /// </summary>
