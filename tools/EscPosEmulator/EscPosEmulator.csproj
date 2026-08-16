@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    EL EMULADOR DE IMPRESORA DE TIQUES: escucha en el puerto 9100 (o lee un fichero), interpreta
+    ESC/POS y el ESC/P que emiten los drivers de texto de Reportman, y PINTA el resultado con
+    el propio motor: los bytes se traducen a un MetaFile y de ahi salen el PDF (PrintOutPDFFreeType),
+    el PNG (PrintOutBitmapSkia) y el .rpmf, que abre la vista previa. Sirve para probar el TPV
+    sin una termica delante, en Windows y en Linux.
+
+      dotnet run - -help
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Reportman.EscPosEmulator</RootNamespace>
+    <AssemblyName>escpos-emulator</AssemblyName>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Reportman.Drawing\Reportman.Drawing.csproj" />
+    <ProjectReference Include="..\..\Reportman.Drawing.CrossPlatform\Reportman.Drawing.CrossPlatform.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Los codigos de barras (QR, Code128, EAN...) se dibujan con el mismo codificador que usa el motor. -->
+    <PackageReference Include="ZXing.Net" Version="0.16.11" />
+    <!-- Las paginas de codigos de la impresora (437, 850, 858, 1252...). -->
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.0" />
+    <!-- ICU nativo para el driver PDF en Windows (en Linux lo pone el sistema). -->
+    <PackageReference Include="Icu4c.Win.Min" Version="59.1.7" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.119.0" />
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" Version="8.3.1.2" />
+  </ItemGroup>
+
+</Project>
