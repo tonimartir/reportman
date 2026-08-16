@@ -500,6 +500,11 @@ namespace Reportman.Drawing
                     for (int i = 0; i < numFonts; i++)
                     {
                         UInt32 offset = ByteArrayToUInt(rfarray, Convert.ToInt32(directoryOffset) + i * 4, 4);
+                        // El array se rellena AQUI. Estaba declarado y nunca escrito, asi que el
+                        // rescate de mas abajo hacia `offsets[0] + 4` = 4 y leia el directorio de
+                        // tablas DENTRO de la cabecera 'ttcf': num_tables salia de dos bytes que no
+                        // lo son, y el subconjunto salia corrupto o reventaba por indice.
+                        offsets[i] = offset;
                         string psName = GetPostcriptName(Convert.ToInt32(offset));
                         string psNameNorm = psName.ToUpper().Replace(',', '-');
                         string postNorm = PostcriptName.ToUpper().Replace(',', '-');

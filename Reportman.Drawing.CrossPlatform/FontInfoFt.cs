@@ -1274,10 +1274,14 @@ namespace Reportman.Drawing
             }
             
             byte[] bytes = adata.FontData.Data;
+            // LA MISMA CARA QUE MIDIO FREETYPE. En un fichero normal es la 0 y da igual; en una
+            // coleccion (.ttc) no: FreeType abrio la cara que dijo fontconfig y HarfBuzz tiene que
+            // conformar ESA, o los indices de glifo que salgan no seran los que se midieron.
+            int caraHb = adata.LogFont is LogFontFt lft ? lft.faceIndex : 0;
             fixed (byte* pData = bytes)
             {
                 using (var blob = new HarfBuzzSharp.Blob((IntPtr)pData, bytes.Length, HarfBuzzSharp.MemoryMode.ReadOnly))
-                using (var hbFace = new HarfBuzzSharp.Face(blob, 0))
+                using (var hbFace = new HarfBuzzSharp.Face(blob, caraHb))
                 using (var font = new HarfBuzzSharp.Font(hbFace))
                 using (var buffer = new HarfBuzzSharp.Buffer())
                 {
