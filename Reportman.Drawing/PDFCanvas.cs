@@ -567,6 +567,21 @@ namespace Reportman.Drawing
             return UpdateFonts();
         }
         /// <summary>
+        /// A PDF standard font (Helvetica, Courier, Times) only has WinAnsi glyphs; when the text
+        /// carries characters outside that set (Greek, Cyrillic, CJK...) the current font is promoted
+        /// to an embedded TrueType font, so the text is written with glyph ids instead of turning
+        /// into '?'. Linked and Embedded fonts, and canvases without a font provider, are left as is.
+        /// </summary>
+        private void PromoteToUnicodeFontIfNeeded(string text)
+        {
+            if ((FFont.Name == PDFFontType.Linked) || (FFont.Name == PDFFontType.Embedded))
+                return;
+            if (InfoProvider == null)
+                return;
+            if (StringUtil.NeedsUnicodeFont(text))
+                FFont.Name = PDFFontType.Embedded;
+        }
+        /// <summary>
         /// Ensures the current font's TrueType data is present in the font cache, creating and filling it on first use.
         /// </summary>
         /// <returns>The cached font data for the current font, or null when the font does not require embedding.</returns>
@@ -1658,6 +1673,9 @@ namespace Reportman.Drawing
                 Font.Name = PDFFontType.Embedded;
                 Text = Reportman.Drawing.StringUtil.NormalizeToNFC(Text);
             }
+            // Text outside WinAnsi (Greek, Cyrillic, CJK...) can not be written with a PDF standard
+            // font: it would come out as '?'. Promote it to an embedded TrueType font, as RTL does.
+            PromoteToUnicodeFontIfNeeded(Text);
             TTFontData adata = GetTTFontData();
             if (!(adata == null))
             {
@@ -2324,6 +2342,7 @@ namespace Reportman.Drawing
         public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft, bool isHtml = false)
         {
             List<LineInfo> result;
+            PromoteToUnicodeFontIfNeeded(Text);
             bool useShaper = RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt";
             if (useShaper || ForceComplexShaping)
             {

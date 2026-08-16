@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Reportman.Drawing\Reportman.Drawing.csproj" />
+    <ProjectReference Include="..\..\Reportman.Drawing.Windows\Reportman.Drawing.Windows.csproj" />
+    <ProjectReference Include="..\..\Reportman.Reporting\Reportman.Reporting.csproj" />
+    <ProjectReference Include="..\..\Reportman.Drawing.CrossPlatform\Reportman.Drawing.CrossPlatform.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Icu4c.Win.Min" Version="59.1.7" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+</Project>

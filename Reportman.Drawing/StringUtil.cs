@@ -1310,6 +1310,35 @@ namespace Reportman.Drawing
             return s.Normalize(System.Text.NormalizationForm.FormC);
         }
         /// <summary>
+        /// Returns true when the text has at least one character that WinAnsiEncoding (Windows-1252)
+        /// cannot represent, so a PDF standard font (Helvetica, Courier, Times) would print it as '?'.
+        /// Used to promote such text to an embedded TrueType font, the same way right-to-left text is.
+        /// </summary>
+        public static bool NeedsUnicodeFont(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return false;
+            foreach (char c in s)
+            {
+                if (c < 0x100)
+                    continue;
+                switch (c)
+                {
+                    // The 27 characters Windows-1252 places at 0x80-0x9F.
+                    case '€': case '‚': case 'ƒ': case '„': case '…':
+                    case '†': case '‡': case 'ˆ': case '‰': case 'Š':
+                    case '‹': case 'Œ': case 'Ž': case '‘': case '’':
+                    case '“': case '”': case '•': case '–': case '—':
+                    case '˜': case '™': case 'š': case '›': case 'œ':
+                    case 'ž': case 'Ÿ':
+                        continue;
+                    default:
+                        return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
         /// Returns the string with all line breaks (CR, LF or CR/LF) normalized to CR/LF pairs.
         /// </summary>
         public static string NormalizeLineBreaks(string input)
