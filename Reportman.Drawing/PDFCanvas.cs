@@ -574,12 +574,27 @@ namespace Reportman.Drawing
         /// </summary>
         private void PromoteToUnicodeFontIfNeeded(string text)
         {
+            NormalizeFontForProvider();
             if ((FFont.Name == PDFFontType.Linked) || (FFont.Name == PDFFontType.Embedded))
                 return;
             if (InfoProvider == null)
                 return;
             if (StringUtil.NeedsUnicodeFont(text))
                 FFont.Name = PDFFontType.Embedded;
+        }
+        /// <summary>
+        /// A canvas without a font provider can only write the PDF standard fonts (the way the
+        /// Delphi engine works on Android): a Linked or Embedded request falls back to Helvetica,
+        /// with its built-in metrics, instead of asking a provider that is not there.
+        /// </summary>
+        private void NormalizeFontForProvider()
+        {
+            if (InfoProvider != null)
+                return;
+            if (PDFConformance == PDFConformanceType.PDF_A_3)
+                return;     // GetTTFontData reports the missing provider for PDF/A-3
+            if ((FFont.Name == PDFFontType.Linked) || (FFont.Name == PDFFontType.Embedded))
+                FFont.Name = PDFFontType.Helvetica;
         }
         /// <summary>
         /// Ensures the current font's TrueType data is present in the font cache, creating and filling it on first use.
@@ -869,6 +884,7 @@ namespace Reportman.Drawing
             int leading, linespacing;
 
             //bool havekerning = false;
+            NormalizeFontForProvider();
             adata = GetTTFontData();
             if (adata != null)
             {
@@ -889,7 +905,7 @@ namespace Reportman.Drawing
             // text through ForceComplexShaping so the PDF and the glyph-indexed GDI redraw
             // (ExtTextOutW) place every glyph at the same advance. The opt-in route requires
             // shaped glyph data in lInfo, which TextExtent provides when the flag is active.
-            bool shapedOutput = RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt"
+            bool shapedOutput = RightToLeft || isHtml || this.InfoProvider?.GetType().Name == "FontInfoFt"
                 || (ForceComplexShaping && lInfo.Glyphs != null && lInfo.Glyphs.Count > 0);
 
             File.CheckPrinting();
@@ -1550,6 +1566,7 @@ namespace Reportman.Drawing
             {
                 return 0.0;
             }
+            NormalizeFontForProvider();
             if (FFont.Name == PDFFontType.Linked || FFont.Name == PDFFontType.Embedded || PDFConformance == PDFConformanceType.PDF_A_3)
             {
                 // Ask for font size
@@ -2343,7 +2360,7 @@ namespace Reportman.Drawing
         {
             List<LineInfo> result;
             PromoteToUnicodeFontIfNeeded(Text);
-            bool useShaper = RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt";
+            bool useShaper = RightToLeft || isHtml || this.InfoProvider?.GetType().Name == "FontInfoFt";
             if (useShaper || ForceComplexShaping)
             {
                 if (useShaper)
