@@ -135,9 +135,16 @@ namespace PdfFontsParityTest
             }
             try
             {
+                // Everything this bench writes goes to a folder of its own under the temp
+                // directory (like PdfUnicodePromotionTest), never to the working directory:
+                // run from the repo root it used to leave parity_*.pdf/png next to the .sln.
+                string outDir = Path.Combine(Path.GetTempPath(), "PdfFontsParityTest");
+                Directory.CreateDirectory(outDir);
+                Console.WriteLine("Output folder: " + outDir);
+
                 // --- 1. Exact mode: per-glyph PDF for plain text ---
                 Report exactReport = BuildReport(PrinterFontsType.Recalculate);
-                string exactPdf = GeneratePdf(exactReport, Path.GetFullPath("parity_exact.pdf"));
+                string exactPdf = GeneratePdf(exactReport, Path.Combine(outDir, "parity_exact.pdf"));
                 int exactTm = CountOccurrences(exactPdf, " Tm <");
                 int exactActualText = CountOccurrences(exactPdf, "/ActualText");
                 Console.WriteLine($"Exact PDF: {exactTm} per-glyph Tm ops, {exactActualText} ActualText spans");
@@ -146,7 +153,7 @@ namespace PdfFontsParityTest
 
                 // --- 2. Legacy mode: LTR plain text stays as string Tj (RTL always shapes) ---
                 Report legacyReport = BuildReport(PrinterFontsType.Default);
-                string legacyPdf = GeneratePdf(legacyReport, Path.GetFullPath("parity_legacy.pdf"));
+                string legacyPdf = GeneratePdf(legacyReport, Path.Combine(outDir, "parity_legacy.pdf"));
                 int legacyTm = CountOccurrences(legacyPdf, " Tm <");
                 int legacyTj = CountOccurrences(legacyPdf, ") Tj") + CountOccurrences(legacyPdf, "] TJ");
                 Console.WriteLine($"Legacy PDF: {legacyTm} per-glyph Tm ops (RTL only), {legacyTj} string Tj/TJ");
@@ -234,7 +241,7 @@ namespace PdfFontsParityTest
                             if (output.GetPixel(x, y).GetBrightness() < 0.5f)
                                 hasInk = true;
                     Check(hasInk, "GDI exact render produces visible output");
-                    output.Save("parity_gdi.png");
+                    output.Save(Path.Combine(outDir, "parity_gdi.png"));
                 }
 
                 // --- 6. Numeric glyph-position parity: GDI EMF ExtTextOutW vs PDF Tm ---
