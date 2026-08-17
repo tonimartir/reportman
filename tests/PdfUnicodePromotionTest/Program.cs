@@ -77,6 +77,21 @@ namespace PdfUnicodePromotionTest
             }
         }
 
+        // The driver with no font provider (Delphi-Android parity): standard fonts, nothing embedded.
+        static string PdfStandard()
+        {
+            Report r = Build();
+            r.AsyncExecution = false;
+            using (PrintOutPDFStandard d = new PrintOutPDFStandard { FileName = "", Compressed = false })
+            {
+                d.Print(r.MetaFile);
+                MemoryStream ms = new MemoryStream();
+                d.PDFStream.Position = 0;
+                d.PDFStream.CopyTo(ms);
+                return Encoding.Latin1.GetString(ms.ToArray());
+            }
+        }
+
         static string PdfGdi(string path)
         {
             Report r = Build();
@@ -136,6 +151,16 @@ namespace PdfUnicodePromotionTest
                 }
                 else
                     Console.WriteLine("[SKIP] GDI PDF driver: not Windows");
+
+                // --- The standard-font driver (no provider): it must not crash, must write the Latin
+                // label with Helvetica and embed nothing; non-WinAnsi text degrades to '?' (documented).
+                string std = PdfStandard();
+                File.WriteAllBytes(Path.Combine(outDir, "standard.pdf"), Encoding.Latin1.GetBytes(std));
+                Check(std.Contains("/BaseFont /Helvetica") && !std.Contains("/FontFile2"),
+                    "Standard: Helvetica, nothing embedded");
+                Check(Regex.IsMatch(std, @"\(Factura simplificada[^)]*\)\s*Tj"), "Standard: the Latin label is written as a plain string");
+                Check(Regex.IsMatch(std, @"\(\?+[^)]*\)\s*Tj") || std.Contains("(???"), "Standard: non-WinAnsi text degrades to '?' (no provider to promote to)");
+                Console.WriteLine("  Standard: " + std.Length + " B uncompressed");
 
                 Console.WriteLine("PDFs in " + outDir);
                 Console.WriteLine(failures == 0 ? "ALL PASSED" : failures + " FAILED");
