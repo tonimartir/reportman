@@ -36,4 +36,24 @@
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
   </ItemGroup>
 
+  <!--
+    FreeType for Android. FreeTypeSharp brings the managed binding and (in its .aar) old,
+    unstripped, 4 KB-page native libraries; and its linux-x64 (glibc) build leaks into the
+    Android APK through the RID graph. These two are ours: FreeType 2.13.3 built with the
+    NDK (tools/android-native/build-freetype.sh), stripped, 16 KB pages, no zlib/png/
+    harfbuzz/brotli. NuGet consumers get them as runtimes/android-*/native; an Android app that
+    references this PROJECT declares them as AndroidNativeLibrary (project outputs are not
+    RID-resolved) and excludes the package natives (see ReportmanFiscal Terminal.Droid.csproj).
+  -->
+  <ItemGroup>
+    <Content Include="native\android\arm64-v8a\libfreetype.so"
+             Link="runtimes\android-arm64\native\libfreetype.so"
+             CopyToOutputDirectory="PreserveNewest" Pack="true"
+             PackagePath="runtimes\android-arm64\native\libfreetype.so" />
+    <Content Include="native\android\x86_64\libfreetype.so"
+             Link="runtimes\android-x64\native\libfreetype.so"
+             CopyToOutputDirectory="PreserveNewest" Pack="true"
+             PackagePath="runtimes\android-x64\native\libfreetype.so" />
+  </ItemGroup>
+
 </Project>

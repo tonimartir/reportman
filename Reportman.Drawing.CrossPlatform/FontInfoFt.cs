@@ -350,8 +350,7 @@ namespace Reportman.Drawing
                     // la unica CJK que viene en .ttf suelto, que es coreana. `SePuedeIncrustar` deja
                     // fuera lo que no se pueda incrustar, asi que sin hb-subset el escaneo enumera
                     // exactamente lo que enumeraba antes.
-                    string[] nfiles = StreamUtil.GetFiles(ndir,
-                        "*.TTF|*.ttf|*.pf*|*.TTC|*.ttc|*.OTF|*.otf", SearchOption.AllDirectories);
+                    string[] nfiles = FicherosDeFuentes(ndir);
                     foreach (string nfile in nfiles)
                     foreach (int ncara in CarasDeUnFichero(nfile))
                     {
@@ -438,12 +437,34 @@ namespace Reportman.Drawing
             {
                 Monitor.Exit(flag);
             }
+            // THE DEFAULT IS A SANS SOMEONE CHOSE, not the first file of a directory listing: on
+            // Android that first file is AndroidClock (digits only) and every letter then falls to
+            // a per-glyph fallback picked at random among the Noto scripts. Preference order: what
+            // the scan already elected (Luxi Sans / DejaVu Sans), then Liberation Sans, Roboto,
+            // Noto Sans, Arial; the bold/italic defaults follow the family when it has them.
+            if (fontlist.Count == 0)
+                throw new Exception("No fonts detected");
+            foreach (string preferida in new[] { "LUXI SANS", "DEJAVU SANS", "LIBERATION SANS", "ROBOTO", "NOTO SANS", "ARIAL" })
+            {
+                int idx = fontlist.IndexOfKey(preferida + "____B0I0");
+                if (idx < 0)
+                    continue;
+                if (defaultfont == null || defaultfont.familyname.ToUpper() != preferida)
+                {
+                    bool yaElegida = defaultfont != null &&
+                        (defaultfont.familyname.ToUpper() == "LUXI SANS" || defaultfont.familyname.ToUpper() == "DEJAVU SANS");
+                    if (!yaElegida)
+                    {
+                        defaultfont = fontlist[preferida + "____B0I0"];
+                        int ib = fontlist.IndexOfKey(preferida + "____B1I0"); if (ib >= 0) defaultfontb = fontlist[preferida + "____B1I0"];
+                        int ii = fontlist.IndexOfKey(preferida + "____B0I1"); if (ii >= 0) defaultfontit = fontlist[preferida + "____B0I1"];
+                        int ibi = fontlist.IndexOfKey(preferida + "____B1I1"); if (ibi >= 0) defaultfontbit = fontlist[preferida + "____B1I1"];
+                    }
+                }
+                break;
+            }
             if (defaultfont == null)
             {
-                if (fontlist.Count == 0)
-                {
-                    throw new Exception("No fonts detected");
-                }
                 defaultfont = fontlist[fontlist.Keys[0]];
                 System.Console.WriteLine("Default font set to: " + defaultfont.familyname);
             }
@@ -623,6 +644,46 @@ namespace Reportman.Drawing
             }
         }
         /// <summary>
+        /// Families that stand in for each other, in order of preference (upper case, as the keys
+        /// of the enumerated list are). Liberation and Croscore (Arimo/Tinos/Cousine) are metric
+        /// compatible with the Microsoft trio; after them, the sans/serif/mono the platform ships.
+        /// </summary>
+        private static readonly string[][] AliasesDeFamilia =
+        {
+            new[] { "ARIAL", "HELVETICA", "LIBERATION SANS", "ARIMO", "ROBOTO", "DEJAVU SANS", "NOTO SANS", "OPEN SANS", "CANTARELL" },
+            new[] { "TIMES NEW ROMAN", "TIMES", "LIBERATION SERIF", "TINOS", "NOTO SERIF", "DEJAVU SERIF", "ROBOTO SERIF" },
+            new[] { "COURIER NEW", "COURIER", "LIBERATION MONO", "COUSINE", "ROBOTO MONO", "DROID SANS MONO", "DEJAVU SANS MONO", "NOTO SANS MONO", "CUTIVE MONO" },
+        };
+
+        /// <summary>The first alias of <paramref name="familia"/> the enumerated list has, same style first, any style after.</summary>
+        private LogFontFt BuscarPorAlias(string familia, string sufijo)
+        {
+            foreach (string[] grupo in AliasesDeFamilia)
+            {
+                if (Array.IndexOf(grupo, familia) < 0)
+                    continue;
+                foreach (string alias in grupo)
+                {
+                    if (alias == familia)
+                        continue;
+                    int idx = fontlist.IndexOfKey(alias + sufijo);
+                    if (idx >= 0)
+                        return fontlist[alias + sufijo];
+                }
+                foreach (string alias in grupo)
+                {
+                    if (alias == familia)
+                        continue;
+                    foreach (string key in fontlist.Keys)
+                        if (key.StartsWith(alias + "____", StringComparison.Ordinal))
+                            return fontlist[key];
+                }
+                return null;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Picks the font for a request from the enumerated list, by family and style, exactly as
         /// this engine has always done when there is no fontconfig to ask.
         /// </summary>
@@ -657,7 +718,7 @@ namespace Reportman.Drawing
             }
             // Search similar font
             string familyonly = "";
-            
+
             foreach (string fname in fontlist.Keys)
             {
                 int idx = fname.IndexOf(familyname);
@@ -675,6 +736,17 @@ namespace Reportman.Drawing
             if (familyonly.Length>0)
             {
                 currentfont = fontlist[familyonly];
+                return;
+            }
+            // METRIC ALIASES, the way fontconfig would answer: a report asking for Arial on a
+            // machine without it gets Liberation Sans (same metrics), then Arimo, then the sans
+            // the platform ships (Roboto on Android, DejaVu on Linux) — never "whatever font
+            // happened to be first in a directory listing" (on Android that was AndroidClock).
+            LogFontFt porAlias = BuscarPorAlias(familyname, suffix);
+            if (porAlias != null)
+            {
+                currentfont = porAlias;
+                fontlist.Add(fontname, currentfont);
                 return;
             }
             if (isbold && isitalic)
@@ -1476,6 +1548,48 @@ namespace Reportman.Drawing
         /// application can add its own through <see cref="ExtraFontDirectories"/>.
         /// </summary>
         /// <returns>The font directories to enumerate, without repetitions.</returns>
+        /// <summary>
+        /// The font files under a directory, recursively, skipping whatever cannot be read: on
+        /// Android /data/fonts exists but is not readable by an app, and a single denied
+        /// directory must not leave the process with no fonts at all.
+        /// </summary>
+        private static string[] FicherosDeFuentes(string ndir)
+        {
+            const string patrones = "*.TTF|*.ttf|*.pf*|*.TTC|*.ttc|*.OTF|*.otf";
+#if NETFRAMEWORK
+            try
+            {
+                return StreamUtil.GetFiles(ndir, patrones, SearchOption.AllDirectories);
+            }
+            catch (Exception)
+            {
+                return new string[0];
+            }
+#else
+            var opciones = new EnumerationOptions
+            {
+                IgnoreInaccessible = true,
+                RecurseSubdirectories = true,
+                MatchCasing = MatchCasing.CaseInsensitive,
+            };
+            var resultado = new System.Collections.Generic.List<string>();
+            var vistos = new System.Collections.Generic.HashSet<string>();
+            try
+            {
+                // Case-insensitive matching: the upper/lower-case pairs of the pattern list collapse.
+                foreach (string patron in new[] { "*.ttf", "*.pf*", "*.ttc", "*.otf" })
+                    foreach (string f in Directory.EnumerateFiles(ndir, patron, opciones))
+                        if (vistos.Add(f))
+                            resultado.Add(f);
+            }
+            catch (Exception)
+            {
+                // The root itself is not readable: nothing from here.
+            }
+            return resultado.ToArray();
+#endif
+        }
+
         public static Strings GetFontDirectories()
         {
             Strings dirs = new Strings();
@@ -1791,7 +1905,6 @@ namespace Reportman.Drawing
             bool isHtml = true)
         {
             var Result = new List<LineInfo>();
-            Wrapper.Init(); // initialize ICU
 
             lock (flag)
             {
@@ -1836,7 +1949,7 @@ namespace Reportman.Drawing
 
             var fontDataCache = new Dictionary<string, TTFontData>();
 
-            using (var bidi = new BiDi())
+            using (var bidi = BidiFactory.Create())
             {
                 foreach (var lineSubText in lineSubTexts)
                 {
@@ -1844,7 +1957,7 @@ namespace Reportman.Drawing
                     var possibleBreaksCharIdx = HtmlLayoutUtils.FillPossibleLineBreaksString(line);
                     var calculatedLines = new List<LineGlyphs>();
 
-                    bidi.SetPara(line, 255, null);
+                    bidi.SetPara(line, 255);
 
                     double remaining = lineWidthLimit;
                     int textOffset = lineSubText.Position;
@@ -2109,8 +2222,7 @@ namespace Reportman.Drawing
                         int vCount = bidi.CountRuns();
                         for (int i=0; i < vCount; i++)
                         {
-                            var vDir = bidi.GetVisualRun(i, out int vStart, out int vLength);
-                            bool vRtL = vDir.ToString().Contains("RTL");
+                            bool vRtL = bidi.GetVisualRun(i, out int vStart, out int vLength);
                             
                             var runGlyphs = new List<TGlyphPos>();
                             if (vRtL)
