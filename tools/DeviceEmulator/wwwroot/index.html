@@ -58,6 +58,16 @@
   button.gris { background: #334155; color: var(--texto); font-weight: 500; }
   .fila { display: flex; gap: 8px; align-items: flex-end; }
   .fila > * { flex: 1; } .fila > button { flex: 0 0 auto; }
+  /* La pantalla de un visor: verde sobre negro y monoespaciada, como el VFD que emula
+     (nt2 pinta la segunda pantalla en Courier verde sobre negro). Se ve de un vistazo
+     que eso NO es un formulario, es lo que el aparato tiene puesto ahora mismo. */
+  .pantalla {
+    background: #000; border: 1px solid #14532d; border-radius: 8px; padding: 8px 10px;
+    font-family: ui-monospace, "Courier New", monospace; color: var(--emite);
+  }
+  .pantalla .renglon { display: flex; gap: 8px; align-items: baseline; }
+  .pantalla .rotulo { color: #166534; font-size: 11px; min-width: 92px; }
+  .pantalla .valor { white-space: pre; overflow: hidden; text-overflow: ellipsis; }
   .ajustes { border-top: 1px dashed var(--borde); padding-top: 10px; display: none; }
   .ajustes.abierto { display: block; }
   .ayuda { font-size: 11px; color: #64748b; margin-top: 2px; }
@@ -120,7 +130,19 @@ function tarjeta(d) {
       </div>
     </div>`).join('');
 
-  const ajustes = d.ajustes.map((s) => `
+  // Lo que se MIRA va arriba y siempre visible (las lineas que el TPV ha escrito en un visor);
+  // lo que se CONFIGURA va dentro del panel de la rueda dentada. Meter el estado ahi dentro
+  // seria esconder justo lo que se quiere ver.
+  const estado = d.ajustes.filter((s) => s.soloLectura);
+  const configurables = d.ajustes.filter((s) => !s.soloLectura);
+
+  const pantalla = estado.length === 0 ? '' : `
+    <div class="pantalla">
+      ${estado.map((s) => `<div class="renglon"><span class="rotulo">${esc(s.etiqueta)}</span>
+        <span class="valor" id="${d.id}-est-${s.id}">${esc(s.valor) || '&nbsp;'}</span></div>`).join('')}
+    </div>`;
+
+  const ajustes = configurables.map((s) => `
     <label for="${d.id}-aj-${s.id}">${esc(s.etiqueta)}</label>
     ${s.tipo === 'interruptor'
       ? `<div class="fila"><button class="gris" id="${d.id}-aj-${s.id}" data-valor="${s.valor}"
@@ -141,6 +163,7 @@ function tarjeta(d) {
           <span class="punto ${d.clientes > 0 ? 'conectado' : 'solo'}"></span>${esc(d.transporte)}
           · ${d.clientes} conectado${d.clientes === 1 ? '' : 's'}
         </div>
+        ${pantalla}
         ${acciones}
         <div class="aviso" id="aviso-${d.id}"></div>
         <div class="ajustes">${ajustes}</div>
@@ -192,9 +215,16 @@ function pinta(a) {
 async function refrescarCables() {
   for (const d of await (await fetch('/api/dispositivos')).json()) {
     const cable = document.querySelector(`#cable-${d.id}`);
-    if (!cable) continue;
-    cable.innerHTML = `<span class="punto ${d.clientes > 0 ? 'conectado' : 'solo'}"></span>` +
-      `${esc(d.transporte)} · ${d.clientes} conectado${d.clientes === 1 ? '' : 's'}`;
+    if (cable) {
+      cable.innerHTML = `<span class="punto ${d.clientes > 0 ? 'conectado' : 'solo'}"></span>` +
+        `${esc(d.transporte)} · ${d.clientes} conectado${d.clientes === 1 ? '' : 's'}`;
+    }
+    // Y lo que el TPV haya escrito en un visor: es lo que hace util la tarjeta de un aparato
+    // que casi no emite. Se actualiza el TEXTO, no la tarjeta, por lo mismo de siempre.
+    for (const s of d.ajustes.filter((x) => x.soloLectura)) {
+      const celda = document.querySelector(`#${d.id}-est-${s.id}`);
+      if (celda) celda.textContent = s.valor || ' ';
+    }
   }
 }
 

@@ -24,4 +24,11 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Para el transporte por COM, que es opcional: sin nombre de puerto no se abre nada y el
+         emulador sigue funcionando entero por TCP. Misma version que el proyecto hermano
+         ReportmanFiscal (Reportman.Fiscal.Terminal.Host.csproj:39). -->
+    <PackageReference Include="System.IO.Ports" Version="10.0.0" />
+  </ItemGroup>
+
 </Project>

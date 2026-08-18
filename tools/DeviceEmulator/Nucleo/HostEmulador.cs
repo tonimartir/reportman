@@ -61,8 +61,8 @@ public sealed class HostEmulador(Emulador emulador)
             id = p.Dispositivo.Id,
             nombre = p.Dispositivo.Nombre,
             tipo = p.Dispositivo.Tipo,
-            transporte = p.Transporte.Descripcion,
-            clientes = p.Transporte.Clientes,
+            transporte = string.Join("  ·  ", p.Transportes.Select(t => t.Descripcion)),
+            clientes = p.Clientes,
             acciones = p.Dispositivo.Acciones,
             ajustes = p.Dispositivo.Ajustes,
         })));

@@ -51,8 +51,16 @@ public sealed record AccionDef(string Id, string Etiqueta, IReadOnlyList<CampoDe
 public sealed record CampoDef(string Id, string Etiqueta, string Tipo = "texto", string Valor = "",
                               string? Ayuda = null);
 
-/// <summary>Un ajuste vivo del aparato: se cambia y afecta a la siguiente trama.</summary>
-public sealed record AjusteDef(string Id, string Etiqueta, string Tipo, string Valor, string? Ayuda = null);
+/// <summary>
+/// Un ajuste vivo del aparato: se cambia y afecta a la siguiente trama.
+///
+/// `SoloLectura` es para lo que NO se configura sino que se MIRA: las dos líneas que el TPV ha
+/// escrito en el visor, el estado de la segunda pantalla. Un visor casi no emite —recibe— y sin
+/// esto no habría forma de ver en la ficha lo que le han pintado. Se cuela por aquí a propósito
+/// en vez de ensanchar <see cref="IDispositivo"/> con un «estado» que sólo usarían dos aparatos.
+/// </summary>
+public sealed record AjusteDef(string Id, string Etiqueta, string Tipo, string Valor,
+                               string? Ayuda = null, bool SoloLectura = false);
 
 /// <summary>
 /// POR DÓNDE VIAJAN LOS BYTES. Una escucha TCP hoy; un puerto COM en la fase 4.
