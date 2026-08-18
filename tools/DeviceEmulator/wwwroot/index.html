@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emulador de dispositivos del TPV</title>
+<!--
+  LA REJILLA. Una tarjeta por aparato, todas a la vez, cada una con sus acciones, su boton de
+  configuracion y el estado del cable. Debajo, el diario de bytes en vivo.
+
+  HTML y JavaScript planos a proposito: esto es una herramienta y tiene que arrancar con un
+  `dotnet run` en cualquier maquina, sin npm ni paso de compilacion. Y la pantalla no conoce a
+  ningun aparato en concreto: pinta lo que cada uno DECLARA en /api/dispositivos, asi que anadir
+  el Magellan sera anadir un fichero en C# y nada aqui.
+-->
+<style>
+  :root {
+    --fondo: #0f172a; --tarjeta: #1e293b; --borde: #334155;
+    --texto: #e2e8f0; --tenue: #94a3b8; --acento: #38bdf8;
+    --emite: #4ade80; --recibe: #fbbf24; --error: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto); font: 14px/1.5 system-ui, sans-serif;
+  }
+  header {
+    padding: 12px 20px; background: #020617; border-bottom: 1px solid var(--borde);
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  header h1 { font-size: 16px; margin: 0; letter-spacing: .04em; }
+  header .sub { color: var(--tenue); font-size: 12px; }
+  main { padding: 20px; }
+  .rejilla { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .tarjeta { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 12px; overflow: hidden; }
+  .tarjeta > .cab {
+    display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+    border-bottom: 1px solid var(--borde); background: #172033;
+  }
+  .cab .nombre { font-weight: 600; flex: 1; }
+  .cab .tipo {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--tenue);
+    border: 1px solid var(--borde); border-radius: 999px; padding: 1px 8px;
+  }
+  .cuerpo { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .cable { font-size: 12px; color: var(--tenue); font-family: ui-monospace, monospace; }
+  .cable .punto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .conectado { background: var(--emite); } .solo { background: var(--borde); }
+  label { display: block; font-size: 12px; color: var(--tenue); margin-bottom: 3px; }
+  input[type=text], input[type=number] {
+    width: 100%; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--borde);
+    background: #0b1220; color: var(--texto); font-family: ui-monospace, monospace;
+  }
+  button {
+    border: 0; border-radius: 8px; padding: 9px 14px; font-weight: 600; cursor: pointer;
+    background: var(--acento); color: #04283b;
+  }
+  button:hover { filter: brightness(1.1); }
+  button.gris { background: #334155; color: var(--texto); font-weight: 500; }
+  .fila { display: flex; gap: 8px; align-items: flex-end; }
+  .fila > * { flex: 1; } .fila > button { flex: 0 0 auto; }
+  .ajustes { border-top: 1px dashed var(--borde); padding-top: 10px; display: none; }
+  .ajustes.abierto { display: block; }
+  .ayuda { font-size: 11px; color: #64748b; margin-top: 2px; }
+  .aviso { color: var(--error); font-size: 12px; min-height: 16px; }
+  table { width: 100%; border-collapse: collapse; font-family: ui-monospace, monospace; font-size: 12px; }
+  th { text-align: left; color: var(--tenue); font-weight: 500; padding: 4px 8px; }
+  td { padding: 3px 8px; border-top: 1px solid #1e293b; vertical-align: top; }
+  .emite { color: var(--emite); } .recibe { color: var(--recibe); } .error { color: var(--error); }
+  .diario { margin-top: 22px; background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 12px; }
+  .diario .cab { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--borde); }
+  .diario .cab h2 { font-size: 14px; margin: 0; flex: 1; }
+  .caja { max-height: 320px; overflow-y: auto; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>EMULADOR DE DISPOSITIVOS</h1>
+    <span class="sub">los aparatos que el TPV espera encontrar, sin tenerlos delante</span>
+  </header>
+
+  <main>
+    <div class="rejilla" id="rejilla"></div>
+
+    <section class="diario">
+      <div class="cab">
+        <h2>Diario de bytes</h2>
+        <span class="sub" id="estadoVivo" style="color:var(--tenue);font-size:12px">conectando…</span>
+        <button class="gris" onclick="vaciar()">Vaciar</button>
+      </div>
+      <div class="caja">
+        <table>
+          <thead><tr><th>#</th><th>hora</th><th>aparato</th><th></th><th>hex</th><th>texto</th></tr></thead>
+          <tbody id="apuntes"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+async function cargar() {
+  const disp = await (await fetch('/api/dispositivos')).json();
+  $('#rejilla').innerHTML = disp.map(tarjeta).join('');
+}
+
+function tarjeta(d) {
+  const acciones = d.acciones.map((a) => `
+    <div>
+      ${a.campos.map((c) => `
+        <label for="${d.id}-${a.id}-${c.id}">${esc(c.etiqueta)}</label>
+        <input id="${d.id}-${a.id}-${c.id}" type="${c.tipo === 'numero' ? 'number' : 'text'}"
+               value="${esc(c.valor)}" placeholder="${esc(c.etiqueta)}"
+               onkeydown="if(event.key==='Enter')ejecutar('${d.id}','${a.id}')">
+        ${c.ayuda ? `<div class="ayuda">${esc(c.ayuda)}</div>` : ''}`).join('')}
+      <div class="fila" style="margin-top:8px">
+        <button onclick="ejecutar('${d.id}','${a.id}')">${esc(a.etiqueta)}</button>
+      </div>
+    </div>`).join('');
+
+  const ajustes = d.ajustes.map((s) => `
+    <label for="${d.id}-aj-${s.id}">${esc(s.etiqueta)}</label>
+    ${s.tipo === 'interruptor'
+      ? `<div class="fila"><button class="gris" id="${d.id}-aj-${s.id}" data-valor="${s.valor}"
+             onclick="alternar('${d.id}','${s.id}',this)">${s.valor === '1' ? 'Sí' : 'No'}</button></div>`
+      : `<input id="${d.id}-aj-${s.id}" type="${s.tipo === 'numero' ? 'number' : 'text'}"
+             value="${esc(s.valor)}" onchange="ajustar('${d.id}','${s.id}',this.value)">`}
+    ${s.ayuda ? `<div class="ayuda">${esc(s.ayuda)}</div>` : ''}`).join('');
+
+  return `
+    <article class="tarjeta">
+      <div class="cab">
+        <span class="nombre">${esc(d.nombre)}</span>
+        <span class="tipo">${esc(d.tipo)}</span>
+        <button class="gris" onclick="this.closest('.tarjeta').querySelector('.ajustes').classList.toggle('abierto')">⚙</button>
+      </div>
+      <div class="cuerpo">
+        <div class="cable" id="cable-${d.id}">
+          <span class="punto ${d.clientes > 0 ? 'conectado' : 'solo'}"></span>${esc(d.transporte)}
+          · ${d.clientes} conectado${d.clientes === 1 ? '' : 's'}
+        </div>
+        ${acciones}
+        <div class="aviso" id="aviso-${d.id}"></div>
+        <div class="ajustes">${ajustes}</div>
+      </div>
+    </article>`;
+}
+
+async function ejecutar(id, accion) {
+  const campos = {};
+  document.querySelectorAll(`[id^="${id}-${accion}-"]`).forEach((el) => {
+    campos[el.id.substring(`${id}-${accion}-`.length)] = el.value;
+  });
+  const r = await fetch(`/api/dispositivos/${id}/accion`, {
+    method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ accion, parametros: campos }),
+  });
+  const cuerpo = await r.json();
+  $(`#aviso-${id}`).textContent = r.ok ? '' : (cuerpo.error ?? 'no se pudo');
+}
+
+async function ajustar(id, clave, valor) {
+  const r = await fetch(`/api/dispositivos/${id}/ajuste`, {
+    method: 'PUT', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ clave, valor }),
+  });
+  if (!r.ok) $(`#aviso-${id}`).textContent = (await r.json()).error ?? 'no se pudo';
+}
+
+function alternar(id, clave, boton) {
+  const nuevo = boton.dataset.valor === '1' ? '0' : '1';
+  boton.dataset.valor = nuevo;
+  boton.textContent = nuevo === '1' ? 'Sí' : 'No';
+  ajustar(id, clave, nuevo);
+}
+
+function pinta(a) {
+  const fila = document.createElement('tr');
+  fila.innerHTML = `<td>${a.numero}</td><td>${esc(a.momento)}</td><td>${esc(a.dispositivo)}</td>
+    <td class="${a.sentido}">${a.sentido === 'emite' ? '→' : a.sentido === 'recibe' ? '←' : '!'}</td>
+    <td>${esc(a.hex)}</td><td>${esc(a.texto)}</td>`;
+  const cuerpo = $('#apuntes');
+  cuerpo.insertBefore(fila, cuerpo.firstChild);
+  while (cuerpo.rows.length > 200) cuerpo.deleteRow(200);
+}
+
+// EL ESTADO DEL CABLE se refresca solo, y SIN volver a pintar las tarjetas: repintarlas con cada
+// apunte borraba lo que el usuario estuviera tecleando en ese momento — escribes un código, entra
+// una trama de otro aparato y el campo se te queda vacío.
+async function refrescarCables() {
+  for (const d of await (await fetch('/api/dispositivos')).json()) {
+    const cable = document.querySelector(`#cable-${d.id}`);
+    if (!cable) continue;
+    cable.innerHTML = `<span class="punto ${d.clientes > 0 ? 'conectado' : 'solo'}"></span>` +
+      `${esc(d.transporte)} · ${d.clientes} conectado${d.clientes === 1 ? '' : 's'}`;
+  }
+}
+
+async function vaciar() {
+  await fetch('/api/diario', { method: 'DELETE' });
+  $('#apuntes').innerHTML = '';
+}
+
+(async function arrancar() {
+  await cargar();
+  (await (await fetch('/api/diario')).json()).forEach(pinta);
+  const flujo = new EventSource('/api/diario/vivo');
+  flujo.onopen = () => { $('#estadoVivo').textContent = 'en vivo'; };
+  flujo.onerror = () => { $('#estadoVivo').textContent = 'reconectando…'; };
+  flujo.onmessage = (e) => pinta(JSON.parse(e.data));
+  setInterval(refrescarCables, 2000);
+})();
+</script>
+</body>
+</html>

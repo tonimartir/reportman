@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "device-emulator",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "tools/DeviceEmulator", "--", "--puerto", "8099", "--sin-navegador"],
+      "port": 8099,
+      "autoPort": false
+    }
+  ]
+}
