@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!--
+    EL EMULADOR DE DISPOSITIVOS DEL TPV: lector de codigos (y, por fases, Magellan, balanza y
+    visor), cada uno escuchando en su puerto, con una rejilla web donde estan todos a la vez.
+
+    Es un Sdk.Web y no una consola PORQUE TIENE QUE CORRER SIN PANTALLA: el objetivo no es mirar
+    tramas, es que una prueba de integracion pueda decir «escanea este codigo» y comprobar el
+    ticket que sale al otro lado. La pantalla es HTML plano servido de wwwroot, sin npm: esto es
+    una herramienta y tiene que arrancar con un `dotnet run` en cualquier maquina.
+
+    Sin dependencias del motor: aqui no se dibuja nada. El hermano que si lo usa es
+    `escpos-emulator`, que interpreta ESC/POS con el motor delante.
+
+      dotnet run (en tools/DeviceEmulator); la ayuda, con la bandera help
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Reportman.DeviceEmulator</RootNamespace>
+    <AssemblyName>device-emulator</AssemblyName>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+</Project>

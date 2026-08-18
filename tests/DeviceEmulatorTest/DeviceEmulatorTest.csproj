@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    La prueba del armazon del emulador de dispositivos: levanta el emulador EN PROCESO, se conecta
+    a el con un TcpClient (el TPV de mentira) y le manda las ordenes por su API, la misma que usa
+    la rejilla. Sin pantalla y sin hardware, que es la razon de que el emulador sea un host .NET.
+
+      dotnet run (en tests/DeviceEmulatorTest)
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>DeviceEmulatorTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\tools\DeviceEmulator\DeviceEmulator.csproj" />
+  </ItemGroup>
+
+</Project>
