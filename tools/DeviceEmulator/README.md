@@ -12,6 +12,7 @@ dotnet run --project tools/DeviceEmulator
 | Aparato | Puerto | Qué habla |
 |---|---|---|
 | Lector de códigos | 9201 | prefijo + datos + sufijo, con identificador AIM opcional |
+| Lector de teclado (HID) | — | **sin cable**: teclea en el Chrome del TPV por CDP (`--remote-debugging-port=9222`) |
 | Magellan 9800i | 9202 | `S08`+simbología+código · `S11`+peso · `S00`→`S01` · `E`/`D` |
 | Balanza | 9203 | pregunta `$` (Baxtran P71) o `W` (Toledo 9550); STX … peso … CR, `!` si es inestable |
 | Visor de cliente | 9204 | `ESC [ 2 J`, `ESC [ Py ; Px H`, texto cp1252; y `US $ columna fila` en el modelo 3 (Epson DM‑D) |
@@ -64,5 +65,9 @@ funciona por red. El driver de kernel no se exige porque no vale para CI.
 dotnet run --project tests/DeviceEmulatorTest
 ```
 
-41 comprobaciones: levanta el emulador en proceso, se conecta con un `TcpClient` haciendo de TPV y
+45 comprobaciones: levanta el emulador en proceso, se conecta con un `TcpClient` haciendo de TPV y
 manda las órdenes por la misma API que usa la rejilla.
+
+Del **lector de teclado** sólo se comprueba aquí el armazón y el fallo dicho en voz alta (un puesto
+sin cable, y el motivo cuando no hay Chrome de depuración): teclear de verdad necesita un navegador,
+y eso se hace a mano. Ver su clase.
