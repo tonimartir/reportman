@@ -67,7 +67,7 @@ void Montar(string bandera, int puertoPorDefecto, IDispositivo dispositivo)
 
 Montar("--lector", 9201, new LectorSimple());
 Montar("--magellan", 9202, new Magellan());
-Montar("--balanza", 9203, new BalanzaBaxtran());
+Montar("--balanza", 9203, new Balanza());
 Montar("--visor", 9204, new VisorPuerto());
 // Con su identificador explicito: los dos visores nacen llamandose «visor» y el id es la clave
 // de la API y del diario — dos aparatos con el mismo id serian el mismo aparato.

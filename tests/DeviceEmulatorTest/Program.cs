@@ -43,7 +43,7 @@ internal static class Program
             await using var emulador = new Emulador();
             var puesto = emulador.Montar(new LectorSimple(), 0);   // 0 = puerto libre: dos pruebas a la vez no chocan
             var pMagellan = emulador.Montar(new Magellan(), 0);
-            var pBalanza = emulador.Montar(new BalanzaBaxtran(), 0);
+            var pBalanza = emulador.Montar(new Balanza(), 0);
             var pVisor = emulador.Montar(new VisorPuerto(), 0);
             var pSegunda = emulador.Montar(new VisorSegundaPantalla("segunda", "Segunda pantalla"), 0);
             var pImpresora = emulador.Montar(new ImpresoraEscPos(), 0);
@@ -245,6 +245,34 @@ internal static class Program
                 "llego «" + trama + "»");
             await Ajuste(api, "balanza", "inestable", "0");
 
+            // ---- EL OTRO MODELO: la Toledo 9550, que se pregunta con «W» y trama distinto ----
+            // Aqui lo que importa no es que conteste sino QUE CONTESTA A SU PREGUNTA Y NO A LA OTRA:
+            // el sintoma de tener el modelo mal puesto en el TPV es la balanza muda, y sin las dos
+            // mitades no se puede demostrar.
+            await Ajuste(api, "balanza", "modelo", "2");
+            // La P71 pone el ETX DESPUES del caracter de fin, asi que de la trama anterior queda un
+            // byte sin leer que encabezaria la siguiente. Se vacia el cable antes de cambiar de
+            // aparato, que es lo que hace el terminal al reconectar.
+            await Task.Delay(100);
+            while (fB.DataAvailable) fB.ReadByte();
+
+            await fB.WriteAsync(new byte[] { (byte)'$' });    // la pregunta de la P71: no va con esta
+            await fB.WriteAsync(new byte[] { (byte)'W' });
+            trama = Encoding.Latin1.GetString(await LeerHasta(fB, (byte)'\r'));
+            Check(trama == (char)0x02 + "+2.500\r",
+                "la 9550 contesta al «W» con STX + peso + CR, sin unidad",
+                "llego «" + Visible(Encoding.Latin1.GetBytes(trama)) + "»");
+            await Task.Delay(150);
+            Check(!fB.DataAvailable,
+                "y al «$» de la otra balanza no contesta: el modelo mal puesto se ve como silencio");
+
+            // LO QUE nt2 LEE en la 9550: parte por el PRIMER CARACTER de la trama y se queda con el
+            // ultimo trozo (Dispositivos.cs:621-622). Sin el STX de cabecera, «12.345» se partiria
+            // por el «1» y el peso saldria «2.345»: menor, creible y equivocado.
+            Check(trama.TrimEnd('\r').Split(trama[0])[^1] == "+2.500",
+                "y el peso es lo que queda tras partir por el primer caracter, que es como lee nt2");
+            await Ajuste(api, "balanza", "modelo", "1");
+
             // ==========================================================================
             //  EL VISOR DE PUERTO: casi no emite, RECIBE. Lo que se prueba es la pantalla.
             // ==========================================================================
@@ -279,6 +307,34 @@ internal static class Program
                 new { clave = "linea1", valor = "a mano" });
             Check((int)noSeEscribe.StatusCode == 400,
                 "las lineas del visor no se escriben desde la ficha: las escribe el TPV");
+
+            // ---- EL MODELO 3, EL EPSON DM-D: borra con ESC @ y FF, y POSICIONA con US $ ----
+            // Es el juego de comandos que manda el VISOR_EPSON del terminal, y el unico que nt2 no
+            // usa: nt2 borra y escribe seguido, fiandose de que el aparato rompa en la columna 20.
+            await Ajuste(api, "visor", "modelo", "3");
+            await fV.WriteAsync(new byte[] { 0x1B, 0x40, 0x0C });        // ESC @ + FF = borra
+            await fV.WriteAsync(new byte[] { 0x1F, 0x24, 1, 1 });        // US $ columna 1 fila 1
+            await fV.WriteAsync(Encoding.Latin1.GetBytes("Fanta naranja"));
+            await fV.WriteAsync(new byte[] { 0x1F, 0x24, 1, 2 });        // US $ columna 1 fila 2
+            await fV.WriteAsync(Encoding.Latin1.GetBytes("TOTAL 19,98"));
+            await EsperarAjuste(api, "visor", "linea2", "TOTAL 19,98");
+            Check(await Ajustes(api, "visor", "linea1") == "Fanta naranja"
+               && await Ajustes(api, "visor", "linea2") == "TOTAL 19,98",
+                "el Epson obedece el US $ COLUMNA FILA (al reves que el ESC [ fila ; columna H)",
+                "pone «" + await Ajustes(api, "visor", "linea1") + "» / «"
+                         + await Ajustes(api, "visor", "linea2") + "»");
+
+            // Y EN EL MODELO EQUIVOCADO SE VE, que es para lo que sirve tener modelos: un visor que
+            // no conoce el US se come el 0x1F como control suelto, PINTA EL «$» y sigue escribiendo
+            // donde estuviera. Es el sintoma que hay que saber reconocer delante del mostrador.
+            await Ajuste(api, "visor", "modelo", "1");
+            await fV.WriteAsync(new byte[] { 0x1B, 0x5B, 0x32, 0x4A });  // ESC [ 2 J = borra
+            await fV.WriteAsync(new byte[] { 0x1F, 0x24, 1, 1 });
+            await fV.WriteAsync(Encoding.Latin1.GetBytes("Fanta"));
+            await EsperarAjuste(api, "visor", "linea1", "$Fanta");
+            Check(await Ajustes(api, "visor", "linea1") == "$Fanta",
+                "y con el modelo mal puesto el «$» del comando acaba pintado en la pantalla",
+                "pone «" + await Ajustes(api, "visor", "linea1") + "»");
 
             // ==========================================================================
             //  EL VISOR DE SEGUNDA PANTALLA: protocolo inventado (decision del propietario),

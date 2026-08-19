@@ -17,6 +17,12 @@ namespace Reportman.DeviceEmulator;
 ///   * el modelo 4 NO es este aparato: es la segunda pantalla de la aplicación, se pinta por la
 ///     interfaz y no viaja un solo byte  (Dispositivos.cs:270-276)
 ///
+/// Y UNA COSA QUE nt2 NO MANDA: el `US $ n m` del modelo 3. nt2 borra y escribe seguido, fiándose
+/// de que el aparato rompa la línea en la columna 20; los visores Epson DM‑D —que son los del
+/// modelo 3, los que borran con `ESC @` y `FF`— posicionan de verdad, y es lo que les manda el
+/// `VISOR_EPSON` del terminal. Está aquí porque un visor que se comiera ese comando pintaría un
+/// `$` en medio del nombre del artículo, que es un fallo que se ve pero no se entiende.
+///
 /// EL ESTADO SE CONSULTA COMO AJUSTES DE SÓLO LECTURA, `linea1` y `linea2`. Es un apaño consciente:
 /// `IDispositivo` no tiene hueco para «estado» y ensanchar el contrato de los cuatro aparatos por
 /// el único que tiene algo que enseñar sale más caro que esta rareza, que además se ve gratis en la
@@ -62,9 +68,10 @@ public sealed class VisorPuerto(string id = "visor", string nombre = "Visor de c
     public IReadOnlyList<AjusteDef> Ajustes =>
     [
         new("modelo", "Modelo", "numero", modelo.ToString(),
-            "1 = borra con ESC [ 2 J · 2 = borra con ESC @ y FS (0x1C) · 3 = borra con ESC @ y FF " +
-            "(0x0C). Cada modelo entiende SU trama de borrado y no la de los otros: por eso nt2 " +
-            "tiene el switch. El modelo 4 de nt2 no es un aparato de puerto, es la segunda pantalla."),
+            "1 = borra con ESC [ 2 J · 2 = borra con ESC @ y FS (0x1C) · 3 = Epson DM-D: borra con " +
+            "ESC @ y FF (0x0C), y ADEMÁS posiciona con US $ columna fila. Cada modelo entiende SU " +
+            "trama y no la de los otros: por eso nt2 tiene el switch. El modelo 4 de nt2 no es un " +
+            "aparato de puerto, es la segunda pantalla."),
         new("columnas", "Columnas", "numero", columnas.ToString(),
             "Dónde parte el texto. 20 en el visor de dos líneas: el TPV manda las dos líneas " +
             "pegadas, 40 caracteres sin separador, y cuenta con que el visor rompa en la 20."),
@@ -137,9 +144,12 @@ public sealed class VisorPuerto(string id = "visor", string nombre = "Visor de c
         while (i < flujo.Count)
         {
             var b = flujo[i];
-            if (b == 0x1B)
+            // Dos bytes abren secuencia: el ESC de siempre y el US del modelo 3. En los demás
+            // modelos el US no abre nada, y eso NO es un descuido: es el aparato equivocado
+            // enseñando su síntoma (ver <see cref="Unidad"/>).
+            if (b == 0x1B || (b == 0x1F && modelo == 3))
             {
-                var consumidos = Escape(flujo, i);
+                var consumidos = b == 0x1B ? Escape(flujo, i) : Unidad(flujo, i);
                 if (consumidos == 0)
                 {
                     var resto = flujo.Count - i;
@@ -257,6 +267,34 @@ public sealed class VisorPuerto(string id = "visor", string nombre = "Visor de c
             // Cualquier otro comando se ignora entero y la pantalla sigue viva.
         }
         return consumidos;
+    }
+
+    /// <summary>
+    /// `US $ n m` = ponte en la COLUMNA n, FILA m. Es el posicionado de los Epson DM-D110/D210 y lo
+    /// que manda el `VISOR_EPSON` del terminal; nt2 no lo usa nunca porque borra y escribe seguido.
+    ///
+    /// OJO AL ORDEN, que es al revés que el de ANSI: aquí va columna y luego fila, y en
+    /// `ESC [ Py ; Px H` va fila y luego columna. Los dos en base 1.
+    ///
+    /// Y OJO A LO QUE PASA EN EL MODELO EQUIVOCADO, que es justo lo que esto sirve para enseñar: un
+    /// visor que no conozca el US se come el 0x1F como control suelto, PINTA EL `$` y sigue
+    /// escribiendo donde estuviera — «$Fanta naranja$TOTAL 9,99» en una línea sola. Por eso el
+    /// modelo importa y por eso no se acepta el US en el 1 y el 2.
+    ///
+    /// Devuelve cuántos bytes se ha comido, o 0 si la secuencia está partida y hay que esperar.
+    /// </summary>
+    private int Unidad(List<byte> flujo, int inicio)
+    {
+        if (inicio + 1 >= flujo.Count)
+            return 0;
+        // Otro comando US (US T la hora, US C el cursor…): se traga de dos bytes, como el ESC
+        // desconocido, para no dejar el byte siguiente pintado en la pantalla.
+        if (flujo[inicio + 1] != 0x24)
+            return 2;
+        if (inicio + 3 >= flujo.Count)
+            return 0;
+        Posicionar(flujo[inicio + 3], flujo[inicio + 2]);
+        return 4;
     }
 
     private static int Parametro(List<int> parametros, int indice) =>
