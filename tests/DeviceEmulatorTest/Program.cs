@@ -46,6 +46,10 @@ internal static class Program
             var pBalanza = emulador.Montar(new Balanza(), 0);
             var pVisor = emulador.Montar(new VisorPuerto(), 0);
             var pSegunda = emulador.Montar(new VisorSegundaPantalla("segunda", "Segunda pantalla"), 0);
+            // SIN CABLE, y es lo que se prueba de el aqui: teclea en el navegador por CDP, asi que
+            // no tiene puerto ni lo puede tener. Lo que SI se puede afirmar sin Chrome delante es
+            // que se queja con un motivo legible, que es la mitad que de verdad se depura.
+            var pTeclado = emulador.MontarSinCable(new LectorTeclado());
             var pImpresora = emulador.Montar(new ImpresoraEscPos(), 0);
             await emulador.IniciarAsync();
             var host = new HostEmulador(emulador);
@@ -335,6 +339,29 @@ internal static class Program
             Check(await Ajustes(api, "visor", "linea1") == "$Fanta",
                 "y con el modelo mal puesto el «$» del comando acaba pintado en la pantalla",
                 "pone «" + await Ajustes(api, "visor", "linea1") + "»");
+
+            // ==========================================================================
+            //  EL LECTOR DE TECLADO: el aparato SIN CABLE. Aqui no hay Chrome, asi que lo que
+            //  se afirma es el armazon (un puesto sin transporte) y el fallo dicho en voz alta.
+            // ==========================================================================
+            Check(pTeclado.Transportes.Count == 0 && pTeclado.Clientes == 0,
+                "el lector de teclado se monta SIN cable: no hay puerto que ofrecer",
+                "tiene " + pTeclado.Transportes.Count + " transporte(s)");
+
+            var sinChrome = await api.PutAsJsonAsync("/api/dispositivos/teclado/ajuste",
+                new { clave = "depuracion", valor = "http://127.0.0.1:9" });   // puerto muerto
+            Check((int)sinChrome.StatusCode == 200, "el destino de depuracion se puede cambiar en vivo");
+
+            var noTeclea = await api.PostAsJsonAsync("/api/dispositivos/teclado/accion",
+                new { accion = "escanear", parametros = new Dictionary<string, string> { ["codigo"] = "8412345678905" } });
+            var porQue = await noTeclea.Content.ReadAsStringAsync();
+            Check((int)noTeclea.StatusCode == 400 && porQue.Contains("no contesta el Chrome"),
+                "sin Chrome en modo depuracion lo dice con su motivo, no se queda callado",
+                "devolvio " + (int)noTeclea.StatusCode + ": " + porQue);
+            // Y EL MOTIVO SE QUEDA EN LA FICHA, que es donde se mira cuando algo no va.
+            Check((await Ajustes(api, "teclado", "ultimo") ?? "").Contains("no se pudo teclear"),
+                "y el motivo se queda escrito en la ficha del aparato",
+                "pone «" + await Ajustes(api, "teclado", "ultimo") + "»");
 
             // ==========================================================================
             //  EL VISOR DE SEGUNDA PANTALLA: protocolo inventado (decision del propietario),

@@ -90,6 +90,24 @@ public sealed class Emulador : IAsyncDisposable
         return puesto;
     }
 
+    /// <summary>
+    /// UN APARATO SIN CABLE. Existe por el lector de teclado, que no manda bytes a ningún sitio:
+    /// escribe en el navegador como si alguien teclease. No es un caso raro que se cuela — es el
+    /// lector MÁS COMÚN del mostrador, y montarlo con una escucha TCP sería mentir dos veces: la
+    /// ficha enseñaría un puerto que no significa nada, y un cliente conectado a él recibiría unos
+    /// bytes que en el aparato de verdad no salen por ningún lado.
+    ///
+    /// Lo que sí conserva es EL DIARIO: `Ejecutar` devuelve lo tecleado y el puesto lo anota igual
+    /// que una emisión, porque «tecleé y no llegó» y «tecleé y no salió» siguen siendo dos averías
+    /// distintas aunque no haya cable.
+    /// </summary>
+    public Puesto MontarSinCable(IDispositivo dispositivo)
+    {
+        var puesto = new Puesto(dispositivo, Diario);
+        puestos.Add(puesto);
+        return puesto;
+    }
+
     /// <summary>Otro cable para el mismo aparato (un COM, además del TCP).</summary>
     public void Anadir(Puesto puesto, ITransporte transporte) => puesto.Anadir(transporte);
 

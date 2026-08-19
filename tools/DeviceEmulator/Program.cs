@@ -33,6 +33,8 @@ if (args.Contains("--help") || args.Contains("-h"))
 
           --puerto <n>          puerto de la rejilla web (8080)
           --lector <n>          puerto del lector de codigos (9201)
+                                (el lector de TECLADO no lleva puerto: teclea en el
+                                 navegador por CDP, ver --solo teclado)
           --magellan <n>        puerto del Magellan, lector y balanza (9202)
           --balanza <n>         puerto de la balanza Baxtran (9203)
           --visor <n>           puerto del visor de cliente (9204)
@@ -66,6 +68,11 @@ void Montar(string bandera, int puertoPorDefecto, IDispositivo dispositivo)
 }
 
 Montar("--lector", 9201, new LectorSimple());
+// EL LECTOR DE TECLADO NO LLEVA PUERTO, y no es un descuido: no manda bytes a ningun sitio,
+// teclea en el navegador del TPV (ver LectorTeclado.cs). Por eso se monta sin cable y por eso
+// no tiene bandera de puerto — lo unico que necesita es que el Chrome del TPV este abierto con
+// --remote-debugging-port=9222.
+if (Levantar("teclado")) emulador.MontarSinCable(new LectorTeclado());
 Montar("--magellan", 9202, new Magellan());
 Montar("--balanza", 9203, new Balanza());
 Montar("--visor", 9204, new VisorPuerto());

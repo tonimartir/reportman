@@ -61,7 +61,11 @@ public sealed class HostEmulador(Emulador emulador)
             id = p.Dispositivo.Id,
             nombre = p.Dispositivo.Nombre,
             tipo = p.Dispositivo.Tipo,
-            transporte = string.Join("  ·  ", p.Transportes.Select(t => t.Descripcion)),
+            // «Sin cable» y no una cadena vacía: un hueco en la tarjeta se lee como un fallo de la
+            // rejilla, y el lector de teclado no tiene puerto A PROPÓSITO — teclea en el navegador.
+            transporte = p.Transportes.Count == 0
+                ? "sin cable"
+                : string.Join("  ·  ", p.Transportes.Select(t => t.Descripcion)),
             clientes = p.Clientes,
             acciones = p.Dispositivo.Acciones,
             ajustes = p.Dispositivo.Ajustes,
