@@ -13,8 +13,8 @@ dotnet run --project tools/DeviceEmulator
 |---|---|---|
 | Lector de códigos | 9201 | prefijo + datos + sufijo, con identificador AIM opcional |
 | Magellan 9800i | 9202 | `S08`+simbología+código · `S11`+peso · `S00`→`S01` · `E`/`D` |
-| Balanza Baxtran P71 | 9203 | STX … peso … CR, `!` si es inestable |
-| Visor de cliente | 9204 | `ESC [ 2 J`, `ESC [ Py ; Px H`, texto cp1252 |
+| Balanza | 9203 | pregunta `$` (Baxtran P71) o `W` (Toledo 9550); STX … peso … CR, `!` si es inestable |
+| Visor de cliente | 9204 | `ESC [ 2 J`, `ESC [ Py ; Px H`, texto cp1252; y `US $ columna fila` en el modelo 3 (Epson DM‑D) |
 | Visor de segunda pantalla | 9205 | protocolo propio, en texto claro (ver la clase) |
 | Impresora de tiques | 9206 | ESC/POS: cuenta y traduce; **el papel lo pinta `escpos-emulator`** |
 
@@ -64,5 +64,5 @@ funciona por red. El driver de kernel no se exige porque no vale para CI.
 dotnet run --project tests/DeviceEmulatorTest
 ```
 
-33 comprobaciones: levanta el emulador en proceso, se conecta con un `TcpClient` haciendo de TPV y
+41 comprobaciones: levanta el emulador en proceso, se conecta con un `TcpClient` haciendo de TPV y
 manda las órdenes por la misma API que usa la rejilla.

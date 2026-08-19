@@ -4,7 +4,7 @@ using System.Text;
 namespace Reportman.DeviceEmulator;
 
 /// <summary>
-/// LA BALANZA BAXTRAN P71 (Giropes), la del mostrador: pesa, y sobre todo DUDA.
+/// LA BALANZA DEL MOSTRADOR: pesa, y sobre todo DUDA.
 ///
 /// Lo que hay que emular de este aparato no es el número —eso lo hace cualquiera— sino el rato en
 /// que el número todavía no vale. Una balanza real pasa la mayor parte del tiempo INESTABLE
@@ -15,30 +15,39 @@ namespace Reportman.DeviceEmulator;
 /// preguntar en vez de tragarse medio kilo de aire.
 ///
 /// Y CONTESTA CUANDO LE PREGUNTAN, que es la otra mitad. El TPV no escucha a la balanza: le manda
-/// un solo byte `$` y espera una trama (Dispositivos.cs:1037-1042, AskWeight; la lectura síncrona
-/// con su timeout está en 1353-1391, y el mismo `$` en clientent/nt/Base/Datos.cs:5544-5546).
+/// un solo byte y espera una trama (Dispositivos.cs:1037-1042, AskWeight; la lectura síncrona con
+/// su timeout está en 1353-1391, y el mismo `$` en clientent/nt/Base/Datos.cs:5544-5546).
 ///
-/// El formato de la trama va explicado en <see cref="Tramar"/>: sale de lo que nt2 sabe leer, no de
-/// un catálogo, y hay una parte SUPUESTA que está marcada allí.
+/// DOS MODELOS, QUE ES UN APARATO Y NO DOS FICHEROS: la Baxtran P71 (Giropes) y la Toledo 9550 se
+/// diferencian en el byte con el que se les pregunta y en la forma de la trama, no en lo que hacen.
+/// nt2 las distingue con el mismo `modelo` que el resto (`AskWeight` manda `W` en la 9550 y `$` en
+/// las demás, Dispositivos.cs:1031-1041; al leer, la 9550 entra por el mismo camino pero PARTE LA
+/// TRAMA POR SU PRIMER CARÁCTER en vez de por espacios, Dispositivos.cs:611-628). Cambiar el modelo
+/// en la ficha es lo que permite ver el síntoma de tenerlo mal: se pregunta y no contesta nadie.
+///
+/// El formato de las dos tramas va explicado en <see cref="Tramar"/>: sale de lo que nt2 sabe leer,
+/// no de un catálogo, y hay una parte SUPUESTA que está marcada allí.
 /// </summary>
-public sealed class BalanzaBaxtran(string id = "balanza", string nombre = "Balanza Baxtran P71")
-    : IDispositivo
+public sealed class Balanza(string id = "balanza", string? nombre = null) : IDispositivo
 {
     private const byte Stx = 0x02;
     private const byte Etx = 0x03;
 
-    /// <summary>El byte con el que el TPV PIDE el peso (Dispositivos.cs:1039-1041). El `W` de esa
-    /// misma función es la pregunta del modelo 9550, que es otra balanza y otro formato
-    /// (Dispositivos.cs:1031-1036, 621-622).</summary>
-    private const byte Pregunta = (byte)'$';
+    /// <summary>Baxtran P71 (Giropes): se le pregunta con `$`.</summary>
+    private const int P71 = 1;
+    /// <summary>Toledo 9550: se le pregunta con `W` (Dispositivos.cs:1031-1036).</summary>
+    private const int Toledo = 2;
 
+    private int modelo = P71;
     private decimal peso;
     private int letraFin = 13;
     private bool inestable;
     private string unidad = "kg";
 
     public string Id => id;
-    public string Nombre => nombre;
+    /// <summary>El nombre SIGUE AL MODELO cuando nadie lo ha fijado: en la rejilla se ve una tarjeta
+    /// por aparato, y una «Baxtran P71» que contestara al `W` sería un aparato mintiendo.</summary>
+    public string Nombre => nombre ?? (modelo == Toledo ? "Balanza Toledo 9550" : "Balanza Baxtran P71");
     public string Tipo => "balanza";
 
     public IReadOnlyList<AccionDef> Acciones =>
@@ -54,19 +63,31 @@ public sealed class BalanzaBaxtran(string id = "balanza", string nombre = "Balan
 
     public IReadOnlyList<AjusteDef> Ajustes =>
     [
+        new("modelo", "Modelo", "numero", modelo.ToString(),
+            "1 = Baxtran P71 (Giropes): pregunta `$`, trama con la unidad delante del número · " +
+            "2 = Toledo 9550: pregunta `W` y la trama va SIN unidad. Cada modelo contesta a SU " +
+            "pregunta y calla ante la del otro, que es como se ve que el TPV lo tiene mal puesto."),
         new("letra_fin", "Carácter de fin", "numero", letraFin.ToString(),
             "Código decimal. 13 = CR, que es lo que nt2 trae por defecto (Dispositivos.cs:81) y " +
             "donde corta la trama (545)."),
         new("inestable", "Peso inestable", "interruptor", inestable ? "1" : "0",
             "Mientras esté puesto, TODA trama sale con el «!» de peso moviéndose. nt2 lo busca en " +
-            "la trama entera y devuelve 0 (Dispositivos.cs:616-617)."),
-        new("unidad", "Unidad", "texto", unidad, "kg · g · lb. Va DELANTE del número, ver Tramar."),
+            "la trama entera y devuelve 0 (Dispositivos.cs:616-617), en los DOS modelos."),
+        new("unidad", "Unidad", "texto", unidad,
+            "kg · g · lb. Va DELANTE del número, ver Tramar. SÓLO en la P71: en la 9550 nt2 parte " +
+            "la trama por su primer carácter y se queda con el resto entero, así que una unidad " +
+            "ahí dentro le reventaría la conversión."),
     ];
 
     public void Ajustar(string clave, string valor)
     {
         switch (clave)
         {
+            case "modelo":
+                if (!int.TryParse(valor, out var m) || m is < P71 or > Toledo)
+                    throw new ArgumentException("El modelo es 1 (Baxtran P71) o 2 (Toledo 9550).");
+                modelo = m;
+                break;
             case "letra_fin":
                 if (!int.TryParse(valor, out var fin) || fin is < 1 or > 255)
                     throw new ArgumentException("El carácter de fin es un código de 1 a 255; 13 es CR.");
@@ -109,16 +130,17 @@ public sealed class BalanzaBaxtran(string id = "balanza", string nombre = "Balan
     }
 
     /// <summary>
-    /// La balanza sólo abre la boca cuando le preguntan con `$` (Dispositivos.cs:1039-1041). Lo
-    /// que no sea eso —el `W` del 9550, ruido del cable— se deja sin respuesta a propósito: en el
-    /// diario se ve la pregunta y el silencio, que es el síntoma de tener mal el modelo.
+    /// La balanza sólo abre la boca cuando le preguntan: `$` la P71 (Dispositivos.cs:1039-1041),
+    /// `W` la 9550 (1031-1036). La pregunta DEL OTRO MODELO se deja sin respuesta a propósito: en
+    /// el diario se ve la pregunta y el silencio, que es el síntoma de tener mal el modelo.
     /// </summary>
     public byte[]? Recibir(ReadOnlySpan<byte> bytes) =>
-        bytes.IndexOf(Pregunta) >= 0 ? Tramar(peso) : null;
+        bytes.IndexOf(modelo == Toledo ? (byte)'W' : (byte)'$') >= 0 ? Tramar(peso) : null;
 
     /// <summary>
-    /// LA TRAMA. El orden de los campos SALE DE LO QUE nt2 SABE LEER, no de un catálogo:
+    /// LA TRAMA. El orden de los campos SALE DE LO QUE nt2 SABE LEER, no de un catálogo.
     ///
+    /// LA P71 (modelo 1):
     ///   * empieza por STX porque nt2 sólo entra en el camino de esta balanza si el primer
     ///     carácter es STX o ETX (Dispositivos.cs:611), y `letra_inicio` viene a -1, o sea que no
     ///     se descarta ningún carácter de cabecera (Dispositivos.cs:80, 681-687);
@@ -134,20 +156,31 @@ public sealed class BalanzaBaxtran(string id = "balanza", string nombre = "Balan
     ///     que el Trim de la 608 deja limpio de CR/LF sobrantes. Si alguien pone `letra_fin`=3, el
     ///     propio fin ya es el ETX y no se añade otro.
     ///
+    /// LA 9550 (modelo 2) es MÁS CORTA Y POR UNA RAZÓN MEDIDA: nt2 la parte por su PROPIO PRIMER
+    /// CARÁCTER —`nlectura.Split(nlectura[0])`, Dispositivos.cs:621-622— y se queda con el último
+    /// trozo. Eso obliga a dos cosas y prohíbe una tercera:
+    ///   * el STX de cabecera SIGUE HACIENDO FALTA, y aquí no por el `if` de la 611 sino por el
+    ///     propio Split: sin él, una trama «12.345» se partiría por el «1» y el último trozo sería
+    ///     «2.345» — un peso menor, creíble y equivocado;
+    ///   * el peso va SOLO detrás del STX, sin unidad y sin más campos: lo que quede después del
+    ///     último separador entra tal cual en el `Convert.ToDecimal` de la 628;
+    ///   * y no se añade ETX, que sería un carácter más pegado al número de la trama siguiente.
+    ///
     /// El número va con PUNTO decimal porque nt2 lo cambia por coma antes de convertir (628) — y
     /// de paso queda dicho que esa conversión da por hecha una máquina en español.
     ///
     /// SUPUESTO (nt2 no permite deducirlo): que el peso lleve SIGNO, que la unidad viaje en la
-    /// trama y que sean tres decimales. Es la forma corriente de la P71 en kg; si el aparato de
-    /// verdad manda otra cosa, cambia aquí y nt2 seguirá leyéndolo mientras el número sea el
-    /// último campo y el `!` marque la inestabilidad.
+    /// trama de la P71 y que sean tres decimales. Es la forma corriente de la P71 en kg; si el
+    /// aparato de verdad manda otra cosa, cambia aquí y nt2 seguirá leyéndolo mientras el número
+    /// sea el último campo y el `!` marque la inestabilidad.
     /// </summary>
     private byte[] Tramar(decimal kilos)
     {
         var texto = new StringBuilder();
         texto.Append((char)Stx);
         if (inestable) texto.Append('!');
-        texto.Append(' ').Append(unidad).Append(' ');
+        if (modelo != Toledo)
+            texto.Append(' ').Append(unidad).Append(' ');
         texto.Append(kilos < 0 ? '-' : '+');
         // Tres decimales SIEMPRE, también para el cero. Además de ser lo que enseña el visor,
         // mantiene la trama por encima de los 5 caracteres que nt2 exige para mirarla siquiera
@@ -158,7 +191,7 @@ public sealed class BalanzaBaxtran(string id = "balanza", string nombre = "Balan
         // Latin1 y no UTF-8: por el cable van BYTES, y una unidad con acento o un símbolo de más
         // allá del ASCII tiene que ocupar uno, como en el aparato.
         var bytes = new List<byte>(Encoding.Latin1.GetBytes(texto.ToString())) { (byte)letraFin };
-        if (letraFin != Etx) bytes.Add(Etx);
+        if (modelo != Toledo && letraFin != Etx) bytes.Add(Etx);
         return [.. bytes];
     }
 
