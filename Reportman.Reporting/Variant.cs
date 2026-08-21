@@ -1970,6 +1970,26 @@ namespace Reportman.Reporting
                     FDateTime = (DateTime)obj;
                     FVarType = VariantType.DateTime;
                     break;
+#if NET6_0_OR_GREATER
+                // Los tipos de calendario modernos: sin estos tres, un campo de fecha
+                // llegado de un proveedor que los usa (Npgsql devuelve DateOnly para
+                // `date` y DateTimeOffset para `timetz`) caía en el `default` de abajo y
+                // se quedaba en Null EN SILENCIO — el informe salía con la columna vacía
+                // y sin un solo error que lo explicara.
+                case "System.DateOnly":
+                    FDateTime = ((DateOnly)obj).ToDateTime(TimeOnly.MinValue);
+                    FVarType = VariantType.DateTime;
+                    break;
+                case "System.TimeOnly":
+                    FDateTime = DateTime.MinValue.Add(((TimeOnly)obj).ToTimeSpan());
+                    FVarType = VariantType.DateTime;
+                    break;
+#endif
+                case "System.DateTimeOffset":
+                    // La hora tal como la ve quien imprime, que es la que el informe muestra.
+                    FDateTime = ((DateTimeOffset)obj).LocalDateTime;
+                    FVarType = VariantType.DateTime;
+                    break;
                 case "System.Byte":
                     FByte = (Byte)obj;
                     FVarType = VariantType.Byte;
