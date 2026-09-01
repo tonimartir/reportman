@@ -489,9 +489,15 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public const int MAX_SERIECOLORS = 21;
         static int[] SeriesColors =
-            {0xFF0000,0xFF22FF,0x00FF00,0x0000FF,0xFFFF00,0xFF033F,0x00FFFF,
-            0xAAAAAA,0xBB0000,0x00BB00,0x0000BB,0xBBBB00,0xBB00BB,0x00BBBB,
-            0x777777,0x773333,0x337733,0x333377,0x777700,0x770077,0x007777};
+        {
+    0xFF0000, 0xFF22FF, 0x00FF00, 0x0000FF, // 0-3: Originales
+    0xFF9800, 0x00BCD4, 0x9C27B0, 0xFFC107, // 4-7
+    0x4CAF50, 0x795548, 0x03A9F4, 0xE91E63, // 8-11
+    0x607D8B, 0x009688, 0xFF5722, 0x8BC34A, // 12-15
+    0x3F51B5, 0xCDDC39, 0x9E9E9E, 0x673AB7, // 16-19
+    0xA1887F                                // 20
+};
+
 
         /// <summary>
         /// Adds a statistical or financial function representation to a chart series.
