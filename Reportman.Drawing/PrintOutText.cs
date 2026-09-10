@@ -197,7 +197,32 @@ namespace Reportman.Drawing
                     if (SupportsNativeBarcode(bar.Symbology))
                         NativeBarcodeOut(bar, page.GetText(bar));
                     break;
+                case MetaObjectType.Image:
+                    MetaObjectImage img = (MetaObjectImage)aobj;
+                    if (SupportsNativeImage)
+                        NativeImageOut(img, page.GetStream(img));
+                    break;
             }
+        }
+        /// <summary>
+        /// Decodes images for <see cref="SupportsNativeImage"/>. Null by default, and then this
+        /// driver behaves exactly as it always did: an image object is skipped and a receipt is text
+        /// plus native barcodes. The host sets it when it wants logos on the thermal paper.
+        ///
+        /// It is a property and not a hard reference because this assembly decodes nothing by
+        /// itself, and should not start: <c>SkiaBitmapInfoProvider</c> lives in
+        /// Reportman.Drawing.CrossPlatform, and a host with another imaging stack can supply its
+        /// own. Any <see cref="IBitmapInfoProvider"/> will do — the PDF drivers already are one.
+        /// </summary>
+        public IBitmapInfoProvider BitmapInfoProvider { get; set; }
+        /// <summary>
+        /// Whether images are printed as raster graphics. True when the driver speaks ESC/POS —the
+        /// same family that draws barcodes by itself— and a decoder has been supplied. The
+        /// dot-matrix and the line printers keep skipping images, as they always did.
+        /// </summary>
+        public bool SupportsNativeImage
+        {
+            get { return BitmapInfoProvider != null && IsEscPosReceiptDriver(EffectiveDriverName()); }
         }
         /// <summary>
         /// The receipt drivers that speak ESC/POS: an Epson TM-T88 family printer, or any of the
@@ -277,6 +302,232 @@ namespace Reportman.Drawing
             line.RawBefore.Add(symbol);
             for (int i = first; i <= last; i++)
                 Lines[i].Consumed = true;
+        }
+        /// <summary>
+        /// An image as raster graphics, placed the same way a native barcode is: the bytes ride on
+        /// the first line the box covers (<c>RawBefore</c>) and every line the box covers is consumed,
+        /// so the text that follows starts below the picture instead of on top of it.
+        ///
+        /// The box says how wide to print. The source pixels are irrelevant to the size: a 600x600
+        /// logo and a 60x60 one both come out the width the designer drew, because that is what the
+        /// designer asked for and because a receipt head is 576 dots wide and nothing else fits.
+        /// </summary>
+        private void NativeImageOut(MetaObjectImage image, System.IO.MemoryStream stream)
+        {
+            if (Lines.Count == 0 || stream == null || stream.Length == 0)
+                return;
+            int first = GetLineIndex(image.Top);
+            if (first >= Lines.Count)
+                first = Lines.Count - 1;
+            int last = GetLineIndex(image.Top + image.Height) - 1;
+            if (last >= Lines.Count)
+                last = Lines.Count - 1;
+            if (last < first)
+                last = first;
+
+            // Same three-way alignment as the barcode: ESC/POS justifies whole lines, so the box
+            // tells which of the three it is, with a tolerance of one column at 12 cpi.
+            int center = image.Left + image.Width / 2;
+            byte align = 0;                                        // left
+            if (Math.Abs(center - FPageWidth / 2) <= 120)
+                align = 1;                                         // centre
+            else if (center > FPageWidth / 2)
+                align = 2;                                         // right
+
+            byte[] raster = EncodeEscPosRaster(stream, image.Width, image.Height, align,
+                BitmapInfoProvider, FPageWidth);
+            if (raster == null)
+                return;
+            PrintLine line = Lines[first];
+            if (line.RawBefore == null)
+                line.RawBefore = new List<byte[]>();
+            line.RawBefore.Add(raster);
+            for (int i = first; i <= last; i++)
+                Lines[i].Consumed = true;
+        }
+        /// <summary>
+        /// An image as <c>GS v 0</c>: the raster bit-image command that every TM-T88 and clone
+        /// understands. Returns null when the image cannot be decoded — an unreadable logo must not
+        /// cost the customer the receipt.
+        ///
+        /// THREE STEPS, and the middle one is the one that makes a logo legible on a thermal head:
+        ///
+        ///   1. DECODE. The provider hands back a BMP, which is a format this assembly can read
+        ///      without any imaging library: a header, and rows of pixels bottom-up.
+        ///   2. DOWNSCALE BY AVERAGING. The target is the box in printer dots (203 dpi), which for a
+        ///      20 mm logo is ~160 dots against 600 source pixels. Picking one pixel out of every
+        ///      fourteen (nearest neighbour) shreds thin strokes and turns smooth curves into
+        ///      staircases; averaging the whole source block gives a grey that survives the next step.
+        ///   3. THRESHOLD WITH DIFFUSION. A thermal head prints one bit: ink or no ink. A plain
+        ///      cut at mid-grey flattens every gradient to a silhouette, so the error of each pixel
+        ///      is carried to its neighbours (Floyd-Steinberg). It is eight lines of arithmetic and
+        ///      it is the difference between a logo and a blot.
+        /// </summary>
+        /// <param name="pagewidth">The printable width in twips. The head is 576 dots on 80 mm paper
+        /// and 384 on 58 mm, and a raster wider than the head is not clipped by the printer: it wraps
+        /// and shreds the picture across two bands. Zero means no bound.</param>
+        public static byte[] EncodeEscPosRaster(System.IO.MemoryStream source, int boxwidth,
+            int boxheight, byte align, IBitmapInfoProvider provider, int pagewidth)
+        {
+            if (source == null || provider == null)
+                return null;
+            byte[] gray;
+            int srcw, srch;
+            try
+            {
+                source.Seek(0, System.IO.SeekOrigin.Begin);
+                using (System.IO.MemoryStream bmp = provider.EncodeImageStreamAsBitmapStream(source))
+                {
+                    if (!DecodeBmpToGray(bmp, out gray, out srcw, out srch))
+                        return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;                                       // see the summary: no logo, but a receipt
+            }
+            if (srcw <= 0 || srch <= 0)
+                return null;
+
+            int width = (int)Math.Round((double)boxwidth * ESCPOS_DPI / Twips.TWIPS_PER_INCH);
+            int height = (int)Math.Round((double)boxheight * ESCPOS_DPI / Twips.TWIPS_PER_INCH);
+            if (width < 1) width = 1;
+            if (height < 1) height = 1;
+            int maxdots = (int)Math.Round((double)pagewidth * ESCPOS_DPI / Twips.TWIPS_PER_INCH);
+            if (maxdots > 0 && width > maxdots) width = maxdots;
+            // GS v 0 counts rows in a 16-bit field; nothing on a receipt comes near, but the guard
+            // costs one line and a truncated image is better than a printer eating the rest.
+            if (height > 65535) height = 65535;
+
+            double[] scaled = Downscale(gray, srcw, srch, width, height);
+            byte[] bits = Threshold(scaled, width, height);
+
+            int rowbytes = (width + 7) / 8;
+            using (System.IO.MemoryStream s = new System.IO.MemoryStream())
+            {
+                s.Write(new byte[] { 27, (byte)'a', align }, 0, 3);                        // ESC a n
+                s.Write(new byte[] {
+                    29, (byte)'v', (byte)'0', 0,                                           // GS v 0 m=0
+                    (byte)(rowbytes & 0xFF), (byte)((rowbytes >> 8) & 0xFF),               // xL xH
+                    (byte)(height & 0xFF), (byte)((height >> 8) & 0xFF) }, 0, 8);          // yL yH
+                s.Write(bits, 0, bits.Length);
+                s.Write(new byte[] { 27, (byte)'a', 0 }, 0, 3);
+                return s.ToArray();
+            }
+        }
+        /// <summary>
+        /// Reads an uncompressed BMP (24 or 32 bits per pixel, which is what every encoder produces
+        /// for an opaque image) into one luminance byte per pixel, top row first. Anything else
+        /// —RLE, palettes, 16 bpp— returns false and the image is skipped rather than printed wrong.
+        ///
+        /// TRANSPARENCY BECOMES WHITE, not black: a logo is normally a dark drawing on a transparent
+        /// background, and compositing it over black would print a full square of ink.
+        /// </summary>
+        private static bool DecodeBmpToGray(System.IO.MemoryStream bmp, out byte[] gray, out int width, out int height)
+        {
+            gray = null; width = 0; height = 0;
+            byte[] d = bmp.ToArray();
+            if (d.Length < 54 || d[0] != 'B' || d[1] != 'M')
+                return false;
+            int offset = StreamUtil.ByteArrayToInt(d, 10, 4);
+            int headersize = StreamUtil.ByteArrayToInt(d, 14, 4);
+            if (headersize < 40)
+                return false;
+            int w = StreamUtil.ByteArrayToInt(d, 18, 4);
+            int h = StreamUtil.ByteArrayToInt(d, 22, 4);
+            int bpp = StreamUtil.ByteArrayToShort(d, 28, 2);
+            int compression = StreamUtil.ByteArrayToInt(d, 30, 4);
+            // 0 = BI_RGB, 3 = BI_BITFIELDS, which for 32 bpp is still BGRA in practice.
+            if (w <= 0 || (bpp != 24 && bpp != 32) || (compression != 0 && compression != 3))
+                return false;
+            bool bottomup = h > 0;                                 // a negative height means top-down
+            int rows = Math.Abs(h);
+            if (rows == 0)
+                return false;
+            int pixelbytes = bpp / 8;
+            int stride = ((w * pixelbytes + 3) / 4) * 4;           // rows are padded to four bytes
+            if (offset + (long)stride * rows > d.Length)
+                return false;
+
+            gray = new byte[w * rows];
+            for (int y = 0; y < rows; y++)
+            {
+                int srcrow = bottomup ? rows - 1 - y : y;
+                int p = offset + srcrow * stride;
+                for (int x = 0; x < w; x++)
+                {
+                    int b = d[p], g = d[p + 1], r = d[p + 2];
+                    if (pixelbytes == 4)
+                    {
+                        int a = d[p + 3];
+                        if (a != 255)                              // see the summary: over white
+                        {
+                            b = (b * a + 255 * (255 - a)) / 255;
+                            g = (g * a + 255 * (255 - a)) / 255;
+                            r = (r * a + 255 * (255 - a)) / 255;
+                        }
+                    }
+                    // Rec. 601 luma, in integers: what the eye calls brightness.
+                    gray[y * w + x] = (byte)((r * 299 + g * 587 + b * 114) / 1000);
+                    p += pixelbytes;
+                }
+            }
+            width = w; height = rows;
+            return true;
+        }
+        /// <summary>Box-average downscale (and plain sampling when scaling up, which a logo never
+        /// does). See step 2 of <see cref="EncodeEscPosRaster"/>.</summary>
+        private static double[] Downscale(byte[] gray, int srcw, int srch, int dstw, int dsth)
+        {
+            double[] outp = new double[dstw * dsth];
+            for (int y = 0; y < dsth; y++)
+            {
+                int y0 = (int)((long)y * srch / dsth);
+                int y1 = (int)((long)(y + 1) * srch / dsth);
+                if (y1 <= y0) y1 = y0 + 1;
+                if (y1 > srch) y1 = srch;
+                for (int x = 0; x < dstw; x++)
+                {
+                    int x0 = (int)((long)x * srcw / dstw);
+                    int x1 = (int)((long)(x + 1) * srcw / dstw);
+                    if (x1 <= x0) x1 = x0 + 1;
+                    if (x1 > srcw) x1 = srcw;
+                    long sum = 0; int n = 0;
+                    for (int sy = y0; sy < y1; sy++)
+                        for (int sx = x0; sx < x1; sx++)
+                        { sum += gray[sy * srcw + sx]; n++; }
+                    outp[y * dstw + x] = n > 0 ? (double)sum / n : 255.0;
+                }
+            }
+            return outp;
+        }
+        /// <summary>Floyd-Steinberg to one bit, packed MSB-first, 1 = ink. See step 3 of
+        /// <see cref="EncodeEscPosRaster"/>.</summary>
+        private static byte[] Threshold(double[] gray, int width, int height)
+        {
+            int rowbytes = (width + 7) / 8;
+            byte[] bits = new byte[rowbytes * height];
+            double[] buf = (double[])gray.Clone();
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int i = y * width + x;
+                    double old = buf[i];
+                    double now = old < 128.0 ? 0.0 : 255.0;
+                    if (now == 0.0)
+                        bits[y * rowbytes + (x >> 3)] |= (byte)(0x80 >> (x & 7));
+                    double err = old - now;
+                    if (x + 1 < width) buf[i + 1] += err * 7.0 / 16.0;
+                    if (y + 1 < height)
+                    {
+                        if (x > 0) buf[i + width - 1] += err * 3.0 / 16.0;
+                        buf[i + width] += err * 5.0 / 16.0;
+                        if (x + 1 < width) buf[i + width + 1] += err * 1.0 / 16.0;
+                    }
+                }
+            }
+            return bits;
         }
         /// <summary>
         /// A linear symbology through <c>GS k</c>: bar height from the box, module width from the box
