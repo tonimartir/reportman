@@ -57,13 +57,21 @@ namespace Reportman.Drawing.CrossPlatform
             /// </summary>
             /// <param name="stream">A <see cref="System.IO.MemoryStream"/> containing the source image data.</param>
             /// <returns>A new <see cref="MemoryStream"/> containing the BMP-encoded image.</returns>
+            /// <remarks>
+            /// IT DELEGATES, and that is the fix: this used to call
+            /// <c>SKBitmap.Encode(..., SKEncodedImageFormat.Bmp, ...)</c>, and Skia dropped its BMP
+            /// ENCODER years ago (it still decodes them). The call returns false and leaves an EMPTY
+            /// stream, in silence. Measured on a 600x600 PNG: zero bytes.
+            ///
+            /// It is not a latent bug: <see cref="Reportman.Drawing.PDFCanvas"/> only comes through
+            /// here for what PDF cannot embed as it is —a JPEG goes in verbatim as DCTDecode and a
+            /// BMP is read directly— which leaves PNG and GIF. So every PNG placed in a report was
+            /// silently missing from the PDF: an image XObject with no pixels, which even counts as
+            /// an image to a PDF reader, so a test that counts images passes while the page is blank.
+            /// </remarks>
             public System.IO.MemoryStream EncodeImageStreamAsBitmapStream(System.IO.MemoryStream stream)
             {
-                var newimage = SkiaSharp.SKBitmap.Decode(stream);
-                MemoryStream newbitmapstream = new MemoryStream();
-                newimage.Encode(newbitmapstream, SkiaSharp.SKEncodedImageFormat.Bmp, 100);
-                newbitmapstream.Seek(0, System.IO.SeekOrigin.Begin);
-                return newbitmapstream;
+                return new SkiaBitmapInfoProvider().EncodeImageStreamAsBitmapStream(stream);
             }
 
         }
