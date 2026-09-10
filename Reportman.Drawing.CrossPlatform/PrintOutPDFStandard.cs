@@ -37,14 +37,11 @@ namespace Reportman.Drawing.CrossPlatform
             return null;
         }
 
-        /// <summary>Re-encodes an image stream as BMP with SkiaSharp.</summary>
+        /// <summary>Re-encodes an image stream as BMP. See <see cref="SkiaBitmapInfoProvider"/>:
+        /// Skia has no BMP encoder any more, so the header is written by hand there.</summary>
         public MemoryStream EncodeImageStreamAsBitmapStream(MemoryStream stream)
         {
-            var newimage = SkiaSharp.SKBitmap.Decode(stream);
-            MemoryStream newbitmapstream = new MemoryStream();
-            newimage.Encode(newbitmapstream, SkiaSharp.SKEncodedImageFormat.Bmp, 100);
-            newbitmapstream.Seek(0, SeekOrigin.Begin);
-            return newbitmapstream;
+            return new SkiaBitmapInfoProvider().EncodeImageStreamAsBitmapStream(stream);
         }
     }
 }
