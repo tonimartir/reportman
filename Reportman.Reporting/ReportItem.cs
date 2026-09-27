@@ -84,6 +84,21 @@ namespace Reportman.Reporting
         AllClient
     };
     /// <summary>
+    /// Bidirectional (right to left) mode of the text of a <see cref="PrintItemText"/> in one report
+    /// language, stored in <see cref="PrintItemText.BidiModes"/> as "BidiNo", "BidiPartial" or "BidiFull"
+    /// (the Delphi TRpBidiMode).
+    /// </summary>
+    public enum BidiModeType
+    {
+        /// <summary>Left to right text</summary>
+        No,
+        /// <summary>Right to left text, the horizontal alignment keeps its meaning</summary>
+        Partial,
+        /// <summary>Right to left text with the horizontal alignment mirrored: left prints at the right
+        /// and right prints at the left</summary>
+        Full
+    };
+    /// <summary>
     /// Base classs for Report items providing common base functionality, and a relation to the owner (Report).
     /// <see cref="Report"/>
     /// <see cref="Section"/>
@@ -617,10 +632,77 @@ namespace Reportman.Reporting
         public bool MultiPage { get; set; }
         /// <summary>Font used when printing to Pos devices</summary>
         public PrintStepType PrintStep { get; set; }
+        private Strings FBidiModes = new Strings();
         /// <summary>
-        /// RightToLeft for arabic texts
+        /// Right to left text (arabic, hebrew...) in the current report language: true when its
+        /// <see cref="BidiMode"/> is Partial or Full. Assigning it sets the mode of the current language
+        /// to Partial (true) or No (false), as the Delphi engine does.
         /// </summary>
-        public bool RightToLeft { get; set; }
+        public bool RightToLeft
+        {
+            get { return BidiMode != BidiModeType.No; }
+            set { BidiMode = value ? BidiModeType.Partial : BidiModeType.No; }
+        }
+        /// <summary>
+        /// Bidirectional mode of the text in the current report language, kept in <see cref="BidiModes"/>.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public BidiModeType BidiMode
+        {
+            get
+            {
+                int langindex = GetBidiLanguageIndex();
+                if (FBidiModes.Count > langindex)
+                {
+                    if (FBidiModes[langindex] == BidiModeToString(BidiModeType.Partial))
+                        return BidiModeType.Partial;
+                    if (FBidiModes[langindex] == BidiModeToString(BidiModeType.Full))
+                        return BidiModeType.Full;
+                }
+                return BidiModeType.No;
+            }
+            set
+            {
+                int langindex = GetBidiLanguageIndex();
+                while (FBidiModes.Count <= langindex)
+                    FBidiModes.Add(BidiModeToString(BidiModeType.No));
+                FBidiModes[langindex] = BidiModeToString(value);
+            }
+        }
+        // Declared after RightToLeft and BidiMode, and ordered last in json, so it is restored after them
+        // (they only know the current language, RightToLeft not even BidiFull)
+        /// <summary>
+        /// Bidirectional mode of the text in every report language, one line per language with "BidiNo",
+        /// "BidiPartial" or "BidiFull": line 0 is the default language and line n + 1 the language n.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(Order = 1)]
+        public Strings BidiModes
+        {
+            get { return FBidiModes; }
+            set { FBidiModes = value ?? new Strings(); }
+        }
+        // Index of the current report language in BidiModes, computed as Delphi does: Language + 1,
+        // 0 when it is out of range or the item has no report yet
+        internal int GetBidiLanguageIndex()
+        {
+            int langindex = Report == null ? 0 : Report.Language + 1;
+            if (langindex < 0 || langindex > 256)
+                langindex = 0;
+            return langindex;
+        }
+        internal static string BidiModeToString(BidiModeType mode)
+        {
+            switch (mode)
+            {
+                case BidiModeType.Partial:
+                    return "BidiPartial";
+                case BidiModeType.Full:
+                    return "BidiFull";
+                default:
+                    return "BidiNo";
+            }
+        }
         /// <summary>
         /// Constructor
         /// </summary>
@@ -635,13 +717,13 @@ namespace Reportman.Reporting
             LFontName = "Helvetica";
         }
         /// <summary>
-        /// Returns the horizontal alignment converted to an integer value
+        /// Returns the horizontal alignment converted to an integer value, mirrored (left and right
+        /// swapped) when the <see cref="BidiMode"/> of the current language is Full
         /// </summary>
 		public int PrintAlignment
         {
             get
             {
-                // Inverse the alignment for BidiMode Full
                 int aresult = 0;
                 if (Alignment == TextAlignType.Right)
                     aresult = MetaFile.AlignmentFlags_AlignRight;
@@ -651,6 +733,15 @@ namespace Reportman.Reporting
                 else
                         if (Alignment == TextAlignType.Justify)
                     aresult = MetaFile.AlignmentFlags_AlignHJustify;
+                // Inverse the alignment for BidiMode Full
+                if (BidiMode == BidiModeType.Full)
+                {
+                    if (Alignment == TextAlignType.Left)
+                        aresult = MetaFile.AlignmentFlags_AlignRight;
+                    else
+                        if (Alignment == TextAlignType.Right)
+                        aresult = MetaFile.AlignmentFlags_AlignLeft;
+                }
                 return aresult;
             }
         }
