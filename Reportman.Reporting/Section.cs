@@ -355,8 +355,8 @@ namespace Reportman.Reporting
         [Newtonsoft.Json.JsonIgnore]
         public SubReport ChildSubReport;
         /// <summary>
-        /// This expression is evaluated before printing, if result is true the group 
-        /// will begin a page
+        /// Begin page flag saved by Delphi reports, kept only to preserve them: neither the Delphi engine nor
+        /// this one uses it, a section begins a page when <see cref="BeginPageExpression"/> evaluates to true
         /// </summary>
         public bool BeginPage;
         /// <summary>
