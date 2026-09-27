@@ -467,8 +467,12 @@
         <xs:element name="SINGLELINE" type="PropertyElement"/>
         <xs:element name="WORDBREAK" type="PropertyElement"/>
         <xs:element name="INTERLINE" type="PropertyElement"/>
-        <xs:element name="BIDIMODES" type="PropertyElement"/>
-        <xs:element name="BIDIMODE" type="PropertyElement"/>
+        <xs:element name="BIDIMODES" type="PropertyElement">
+          <xs:annotation><xs:documentation>Bidi mode of every language, one line per language: BidiNo, BidiPartial or BidiFull (String, lines ended by CR LF). Written only when BIDIMODE does not express it; it overrides BIDIMODE</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="BIDIMODE" type="PropertyElement">
+          <xs:annotation><xs:documentation>Bidi mode of the current language: 0 BidiNo, 1 BidiPartial, 2 BidiFull (Integer, written as 0 or 1)</xs:documentation></xs:annotation>
+        </xs:element>
         <xs:element name="MULTIPAGE" type="PropertyElement"/>
         <xs:element name="PRINTSTEP" type="PropertyElement"/>
 
@@ -561,6 +565,9 @@
         <xs:element name="AUTORANGE" type="PropertyElement"/>
         <xs:element name="YMIN" type="PropertyElement"/>
         <xs:element name="YMAX" type="PropertyElement"/>
+        <xs:element name="SERIESCOLORS" type="PropertyElement">
+          <xs:annotation><xs:documentation>Colors of the Delphi Series collection, comma separated integers (String, V2 only, written when not empty)</xs:documentation></xs:annotation>
+        </xs:element>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
@@ -579,6 +586,9 @@
         <!-- Section properties -->
         <xs:element name="CHANGEEXPRESSION" type="PropertyElement"/>
         <xs:element name="BEGINPAGEEXPRESSION" type="PropertyElement"/>
+        <xs:element name="BEGINPAGE" type="PropertyElement">
+          <xs:annotation><xs:documentation>Delphi BeginPage flag, not used by the engines (Boolean, V2 only, written when True)</xs:documentation></xs:annotation>
+        </xs:element>
         <xs:element name="SKIPEXPREV" type="PropertyElement"/>
         <xs:element name="SKIPEXPREH" type="PropertyElement"/>
         <xs:element name="SKIPTOPAGEEXPRE" type="PropertyElement"/>

@@ -1064,6 +1064,9 @@ namespace Reportman.Reporting
                     case "BEGINPAGEEXPRESSION":
                         sec.BeginPageExpression = GetAsString();
                         break;
+                    case "BEGINPAGE":
+                        sec.BeginPage = GetAsBool();
+                        break;
                     case "SKIPEXPREV":
                         sec.SkipExpreV = GetAsString();
                         break;
@@ -1620,7 +1623,7 @@ namespace Reportman.Reporting
                         assigned = true;
                         break;
                     case "WORDBREAK":
-                        compt.SingleLine = GetAsBool();
+                        compt.WordBreak = GetAsBool();
                         assigned = true;
                         break;
                     case "INTERLINE":
@@ -1628,11 +1631,24 @@ namespace Reportman.Reporting
                         assigned = true;
                         break;
                     case "BIDIMODES":
+                        // Every language, as Delphi reads it (BidiModes.Text): written after BIDIMODE, so it wins
+                        compt.BidiModes = DelphiTextToStrings(GetAsString());
                         assigned = true;
                         break;
                     case "BIDIMODE":
-                        int nbidi = GetAsInteger();
-                        compt.RightToLeft = nbidi != 0;
+                        // Mode of the current language (Delphi TRpBidiMode: 0 No, 1 Partial, 2 Full)
+                        switch (GetAsInteger())
+                        {
+                            case 1:
+                                compt.BidiMode = BidiModeType.Partial;
+                                break;
+                            case 2:
+                                compt.BidiMode = BidiModeType.Full;
+                                break;
+                            default:
+                                compt.BidiMode = BidiModeType.No;
+                                break;
+                        }
                         assigned = true;
                         break;
                     case "MULTIPAGE":
@@ -2024,12 +2040,39 @@ namespace Reportman.Reporting
                         compc.AxisYFinal = GetAsDouble();
                         assigned = true;
                         break;
+                    case "SERIESCOLORS":
+                        compc.SeriesColorsText = GetAsString();
+                        assigned = true;
+                        break;
                 }
             }
             if (assigned)
                 return;
             if (propname[0] != '/')
                 throw new UnNamedException("Property not suported in " + compclass + ":" + propname);
+        }
+        // Delphi TStrings.Text: one item per line (CR LF, CR or LF), the line break that ends the last
+        // line does not add an empty item
+        private static Strings DelphiTextToStrings(string text)
+        {
+            Strings list = new Strings();
+            int start = 0;
+            int i = 0;
+            while (i < text.Length)
+            {
+                char c = text[i];
+                if (c == (char)13 || c == (char)10)
+                {
+                    list.Add(text.Substring(start, i - start));
+                    if (c == (char)13 && i + 1 < text.Length && text[i + 1] == (char)10)
+                        i++;
+                    start = i + 1;
+                }
+                i++;
+            }
+            if (start < text.Length)
+                list.Add(text.Substring(start));
+            return list;
         }
     }
     /// <summary>
@@ -2293,7 +2336,33 @@ namespace Reportman.Reporting
             if (areport.DocXMPContent != null && areport.DocXMPContent.Length > 0)
                 WritePropertyS("DOCXMPCONTENT", areport.DocXMPContent, astream);
         }
-        private static void WriteComponentXML(PrintPosItem comp, Stream astream)
+        // Delphi TStrings.Text: every item followed by CR LF
+        private static string StringsToDelphiText(Strings list)
+        {
+            StringBuilder text = new StringBuilder();
+            foreach (string line in list)
+            {
+                text.Append(line);
+                text.Append((char)13);
+                text.Append((char)10);
+            }
+            return text.ToString();
+        }
+        // BIDIMODE only says whether the current language is right to left (as Delphi writes it): BIDIMODES,
+        // that Delphi reads too, is written when it holds more than that (BidiFull, other languages)
+        private static bool NeedsBidiModes(PrintItemText compt)
+        {
+            int current = compt.GetBidiLanguageIndex();
+            bool rightToLeft = compt.RightToLeft;
+            for (int i = 0; i < compt.BidiModes.Count; i++)
+            {
+                BidiModeType implied = (i == current && rightToLeft) ? BidiModeType.Partial : BidiModeType.No;
+                if (!string.Equals(compt.BidiModes[i], PrintItemText.BidiModeToString(implied), StringComparison.Ordinal))
+                    return true;
+            }
+            return false;
+        }
+        private static void WriteComponentXML(PrintPosItem comp, Stream astream, StreamVersion version)
         {
             StreamUtil.SWriteLine(astream, "<COMPONENT>");
 
@@ -2320,6 +2389,7 @@ namespace Reportman.Reporting
                 PrintItemText compt = (PrintItemText)comp;
                 WritePropertyS("WFONTNAME", compt.WFontName, astream);
                 WritePropertyS("LFONTNAME", compt.LFontName, astream);
+                // As the Delphi xml writer: Partial when right to left (also BidiFull, kept by BIDIMODES)
                 int bidi = 0;
                 if (compt.RightToLeft)
                     bidi = 1;
@@ -2364,11 +2434,8 @@ namespace Reportman.Reporting
                     WritePropertyBool("ISHTML", compt.IsHtml, astream);
                 WritePropertyBool("WORDBREAK", compt.WordBreak, astream);
                 WritePropertyBool("SINGLELINE", compt.SingleLine, astream);
-                int intbidi = 0;
-                if (compt.RightToLeft)
-                    intbidi = 1;
-                WritePropertyI("BIDIMODE", intbidi, astream);
-                //                WritePropertyBool("RIGHTTOLEFT",compt.RightToLeft,astream);
+                if (NeedsBidiModes(compt))
+                    WritePropertyS("BIDIMODES", StringsToDelphiText(compt.BidiModes), astream);
                 WritePropertyBool("MULTIPAGE", compt.MultiPage, astream);
                 WritePropertyI("PRINTSTEP", (int)compt.PrintStep, astream);
             }
@@ -2452,7 +2519,11 @@ namespace Reportman.Reporting
                 WritePropertyS("SERIECOLOREXPRESSION", compc.SerieColorExpression, astream);
                 WritePropertyS("SERIECAPTION", compc.SerieCaption, astream);
                 WritePropertyS("CLEAREXPRESSION", compc.ClearExpression, astream);
-                //  WritePropertyI('SERIES',Integer(compc.Series),Stream);
+                // The colors of the Delphi Series collection, not written by the Delphi xml writer (its
+                // reader ignores this property)
+                string seriesColors = compc.SeriesColorsText;
+                if ((version > StreamVersion.V1) && (seriesColors.Length > 0))
+                    WritePropertyS("SERIESCOLORS", seriesColors, astream);
                 WritePropertyBool("CHANGESERIEBOOL", compc.ChangeSerieBool, astream);
                 WritePropertyI("CHARTTYPE", (int)compc.ChartStyle, astream);
                 WritePropertyS("IDENTIFIER", compc.Identifier, astream);
@@ -2679,6 +2750,9 @@ namespace Reportman.Reporting
             WritePropertyS("GROUPNAME", asection.GroupName, astream);
             WritePropertyS("CHANGEEXPRESSION", asection.ChangeExpression, astream);
             WritePropertyS("BEGINPAGEEXPRESSION", asection.BeginPageExpression, astream);
+            // Saved by Delphi in its own format but not by its xml writer (its reader ignores this property)
+            if ((version > StreamVersion.V1) && asection.BeginPage)
+                WritePropertyBool("BEGINPAGE", asection.BeginPage, astream);
             WritePropertyS("SKIPEXPREV", asection.SkipExpreV, astream);
             WritePropertyS("SKIPEXPREH", asection.SkipExpreH, astream);
             WritePropertyS("SKIPTOPAGEEXPRE", asection.SkipToPageExpre, astream);
@@ -2727,7 +2801,7 @@ namespace Reportman.Reporting
             }
             foreach (PrintPosItem aitem in asection.Components)
             {
-                WriteComponentXML(aitem, astream);
+                WriteComponentXML(aitem, astream, version);
             }
             StreamUtil.SWriteLine(astream, "</SECTION>");
 
@@ -2746,7 +2820,7 @@ namespace Reportman.Reporting
                 StreamUtil.SWriteLine(astream, "<SECTION>");
                 foreach (PrintPosItem aitem in nitems)
                 {
-                    WriteComponentXML(aitem, astream);
+                    WriteComponentXML(aitem, astream, StreamVersion.V2);
                 }
                 StreamUtil.SWriteLine(astream, "</SECTION>");
                 byte[] acontent = astream.ToArray();

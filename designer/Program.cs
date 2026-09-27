@@ -52,7 +52,8 @@ namespace designer
                     string outFile = GetArgValue(args, "/out");
                     if (string.IsNullOrEmpty(outFile))
                         outFile = "C:\\desarrollo\\_rmwizbuild\\undotest.txt";
-                    System.IO.File.WriteAllText(outFile, Reportman.Designer.DesignerSelfTest.RunUndoSelectTest(repFile));
+                    System.IO.File.WriteAllText(outFile, Reportman.Designer.DesignerSelfTest.RunUndoSelectTest(repFile) +
+                        Reportman.Designer.DesignerSelfTestFormat.RunFormatTests());
                     return;
                 }
 

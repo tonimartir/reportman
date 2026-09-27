@@ -20,7 +20,10 @@
 
 using Reportman.Drawing;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Text;
 
 namespace Reportman.Reporting
 {
@@ -193,6 +196,39 @@ namespace Reportman.Reporting
         /// Gets or sets the upper bound of the Y axis used when automatic range is disabled.
         /// </summary>
         public double AxisYFinal { get; set; } = 0;
+        private readonly List<int> FSeriesColors = new List<int>();
+        /// <summary>
+        /// Gets or sets the colors of the series saved with the report, as a comma separated list of integers
+        /// (Delphi keeps them in its Series collection: Series = &lt; item Color = n end &gt;). They are only
+        /// preserved: the series are built again each time the report runs, so they do not change the chart.
+        /// </summary>
+        public string SeriesColorsText
+        {
+            get
+            {
+                StringBuilder colors = new StringBuilder();
+                foreach (int color in FSeriesColors)
+                {
+                    if (colors.Length > 0)
+                        colors.Append(',');
+                    colors.Append(color.ToString(CultureInfo.InvariantCulture));
+                }
+                return colors.ToString();
+            }
+            set
+            {
+                FSeriesColors.Clear();
+                if (string.IsNullOrEmpty(value))
+                    return;
+                // Separators of a Delphi CommaText: commas and blanks
+                foreach (string token in value.Split(new char[] { ',', ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    int color;
+                    if (int.TryParse(token.Trim('"'), NumberStyles.Integer, CultureInfo.InvariantCulture, out color))
+                        FSeriesColors.Add(color);
+                }
+            }
+        }
 
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
