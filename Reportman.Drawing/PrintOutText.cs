@@ -363,6 +363,11 @@ namespace Reportman.Drawing
         ///      is carried to its neighbours (Floyd-Steinberg). It is eight lines of arithmetic and
         ///      it is the difference between a logo and a blot.
         /// </summary>
+        /// <param name="source">The image stream as stored in the metafile, in any format the provider decodes.</param>
+        /// <param name="boxwidth">Width of the image box in twips; converted to printer dots.</param>
+        /// <param name="boxheight">Height of the image box in twips; converted to printer dots.</param>
+        /// <param name="align">ESC a alignment: 0 left, 1 centre, 2 right.</param>
+        /// <param name="provider">Decodes the image into a BMP stream.</param>
         /// <param name="pagewidth">The printable width in twips. The head is 576 dots on 80 mm paper
         /// and 384 on 58 mm, and a raster wider than the head is not clipped by the printer: it wraps
         /// and shreds the picture across two bands. Zero means no bound.</param>
@@ -1017,6 +1022,8 @@ namespace Reportman.Drawing
         {
             return IsTm88Driver(drivername) || drivername == "EPSONTMU210" || drivername == "EPSONTMU210CUT";
         }
+        /// <summary>Loads the escape sequences (and code page) of the current printer driver,
+        /// clearing any sequence the driver does not define.</summary>
         public void FillEscapes()
         {
             Type rtype = typeof(PrinterRawOperation);

@@ -470,15 +470,6 @@ namespace Reportman.Drawing
             }
         }
         /// <summary>
-        /// Opens one face of a font file, reads everything the engine needs to know about it and
-        /// closes it again. This is the only place where a font file becomes a <see cref="LogFontFt"/>,
-        /// no matter whether it turned up in a directory scan or came back from fontconfig; the
-        /// Delphi engine keeps the same function under the same name (rpinfoprovft.pas).
-        /// </summary>
-        /// <param name="filename">Full path of the font file.</param>
-        /// <param name="nfaceindex">Index of the face inside the file.</param>
-        /// <returns>The described font.</returns>
-        /// <summary>
         /// Face indexes of a font file worth enumerating: one for a plain font, as many as it holds
         /// for a collection, and none at all for a file this engine could not embed anyway.
         /// </summary>
@@ -516,6 +507,15 @@ namespace Reportman.Drawing
             }
             return ncaras < 1 ? 1 : ncaras;
         }
+        /// <summary>
+        /// Opens one face of a font file, reads everything the engine needs to know about it and
+        /// closes it again. This is the only place where a font file becomes a <see cref="LogFontFt"/>,
+        /// no matter whether it turned up in a directory scan or came back from fontconfig; the
+        /// Delphi engine keeps the same function under the same name (rpinfoprovft.pas).
+        /// </summary>
+        /// <param name="filename">Full path of the font file.</param>
+        /// <param name="nfaceindex">Index of the face inside the file.</param>
+        /// <returns>The described font.</returns>
         static LogFontFt FillLogFont(string filename, int nfaceindex)
         {
             FT_FaceRec_* aface;
@@ -1542,21 +1542,14 @@ namespace Reportman.Drawing
 
 
         /// <summary>
-        /// Returns the directories to scan for fonts on this platform. This is the road taken when
-        /// there is no fontconfig to ask -Windows, Android, a stripped container-, so it never
-        /// throws: a machine with no font database still gets a list of the usual places, and the
-        /// application can add its own through <see cref="ExtraFontDirectories"/>.
-        /// </summary>
-        /// <returns>The font directories to enumerate, without repetitions.</returns>
-        /// <summary>
         /// The font files under a directory, recursively, skipping whatever cannot be read: on
         /// Android /data/fonts exists but is not readable by an app, and a single denied
         /// directory must not leave the process with no fonts at all.
         /// </summary>
         private static string[] FicherosDeFuentes(string ndir)
         {
-            const string patrones = "*.TTF|*.ttf|*.pf*|*.TTC|*.ttc|*.OTF|*.otf";
 #if NETFRAMEWORK
+            const string patrones = "*.TTF|*.ttf|*.pf*|*.TTC|*.ttc|*.OTF|*.otf";
             try
             {
                 return StreamUtil.GetFiles(ndir, patrones, SearchOption.AllDirectories);
@@ -1590,6 +1583,13 @@ namespace Reportman.Drawing
 #endif
         }
 
+        /// <summary>
+        /// Returns the directories to scan for fonts on this platform. This is the road taken when
+        /// there is no fontconfig to ask -Windows, Android, a stripped container-, so it never
+        /// throws: a machine with no font database still gets a list of the usual places, and the
+        /// application can add its own through <see cref="ExtraFontDirectories"/>.
+        /// </summary>
+        /// <returns>The font directories to enumerate, without repetitions.</returns>
         public static Strings GetFontDirectories()
         {
             Strings dirs = new Strings();
