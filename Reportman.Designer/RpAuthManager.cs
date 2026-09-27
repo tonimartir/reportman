@@ -191,9 +191,7 @@ namespace Reportman.Designer
                 "&state=" + state;
 
             Log("Google OAuth: port=" + port);
-            Process.Start(new ProcessStartInfo { FileName = authUrl, UseShellExecute = true });
-
-            string code = await WaitForOAuthCallbackAsync(port, state);
+            string code = await WaitForOAuthCallbackAsync(port, state, authUrl);
             if (string.IsNullOrEmpty(code)) return false;
 
             return await ExchangeGoogleCodeAsync(code, redirectUri);
@@ -247,9 +245,7 @@ namespace Reportman.Designer
                 "&state=" + state;
 
             Log("Microsoft OAuth: port=" + port);
-            Process.Start(new ProcessStartInfo { FileName = authUrl, UseShellExecute = true });
-
-            string code = await WaitForOAuthCallbackAsync(port, state);
+            string code = await WaitForOAuthCallbackAsync(port, state, authUrl);
             if (string.IsNullOrEmpty(code)) return false;
 
             return await ExchangeMicrosoftCodeAsync(code, redirectUri);
@@ -344,8 +340,10 @@ namespace Reportman.Designer
         /// Waits for the identity provider to redirect the browser to the loopback listener and returns
         /// the authorization code, or null on error, timeout or when the returned state is not
         /// <paramref name="expectedState"/> (a redirect that does not belong to this login request).
+        /// The browser is opened with <paramref name="authUrl"/> once the listener is started, so
+        /// that a fast redirect can not arrive before it exists.
         /// </summary>
-        private async Task<string> WaitForOAuthCallbackAsync(int port, string expectedState)
+        private async Task<string> WaitForOAuthCallbackAsync(int port, string expectedState, string authUrl)
         {
             var listener = new HttpListener();
             listener.Prefixes.Add("http://localhost:" + port + "/");
@@ -353,6 +351,7 @@ namespace Reportman.Designer
             {
                 listener.Start();
                 Log("OAuth listener started on port " + port);
+                Process.Start(new ProcessStartInfo { FileName = authUrl, UseShellExecute = true });
 
                 using (var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5)))
                 {
