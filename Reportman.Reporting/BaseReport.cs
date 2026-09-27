@@ -3548,6 +3548,7 @@ end;
             op.AddProperty("backExpression", PropertyType.String, null, sec.BackExpression);
             op.AddProperty("backStyle", PropertyType.Integer, null, sec.BackStyle);
             op.AddProperty("beginPageExpression", PropertyType.String, null, sec.BeginPageExpression);
+            op.AddProperty("beginPage", PropertyType.Boolean, null, sec.BeginPage);
             op.AddProperty("childSubreportName", PropertyType.String, null, sec.ChildSubReportName);
             op.AddProperty("doAfterPrint", PropertyType.String, null, sec.DoAfterPrint);
             op.AddProperty("doBeforePrint", PropertyType.String, null, sec.DoBeforePrint);
@@ -3602,6 +3603,8 @@ end;
             op.AddProperty("alignment", PropertyType.Integer, null, item.Alignment);
             op.AddProperty("vAlignment", PropertyType.Integer, null, item.VAlignment);
             op.AddProperty("rightToLeft", PropertyType.Boolean, null, item.RightToLeft);
+            // After rightToLeft, so it wins: every language and BidiFull, that rightToLeft can not express
+            op.AddProperty("bidiModes", PropertyType.StringArray, null, CopyStrings(item.BidiModes));
             op.AddProperty("backColor", PropertyType.Integer, null, item.BackColor);
             op.AddProperty("cutText", PropertyType.Boolean, null, item.CutText);
             op.AddProperty("fontColor", PropertyType.Integer, null, item.FontColor);
@@ -3709,6 +3712,8 @@ end;
             op.AddProperty("view3d", PropertyType.Boolean, null, item.View3d);
             op.AddProperty("view3dWalls", PropertyType.Boolean, null, item.View3dWalls);
             op.AddProperty("zoom", PropertyType.Integer, null, item.Zoom);
+            // The only series data saved with the report
+            op.AddProperty("seriesColorsText", PropertyType.String, null, item.SeriesColorsText);
         }
 
         private void AddBarcodeProperties(BarcodeItem item, ChangeObjectOperation op)

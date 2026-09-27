@@ -1316,6 +1316,7 @@ namespace Reportman.Reporting.Design
             operation.AddProperty("backExpression", PropertyType.String, null, section.BackExpression);
             operation.AddProperty("backStyle", PropertyType.Integer, null, section.BackStyle);
             operation.AddProperty("beginPageExpression", PropertyType.String, null, section.BeginPageExpression);
+            operation.AddProperty("beginPage", PropertyType.Boolean, null, section.BeginPage);
             operation.AddProperty("childSubreportName", PropertyType.String, null, section.ChildSubReportName);
             operation.AddProperty("doAfterPrint", PropertyType.String, null, section.DoAfterPrint);
             operation.AddProperty("doBeforePrint", PropertyType.String, null, section.DoBeforePrint);
