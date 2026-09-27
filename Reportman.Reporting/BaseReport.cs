@@ -3212,12 +3212,13 @@ end;
         {
             if (groupId != 0)
             {
+                // The real index: undo inserts the component back at its position (z-order)
                 var op = new ChangeObjectOperation(OperationType.Remove, groupId)
                 {
                     ParentName = section.Name,
                     ComponentClass = compo.ClassName,
                     ComponentName = compo.Name,
-                    OldItemIndex = 0
+                    OldItemIndex = index
                 };
 
                 AddPrintPosItemProperties(compo, op);
@@ -3471,29 +3472,37 @@ end;
             op.AddProperty("reportSearchField", PropertyType.String, null, item.ReportSearchField);
             op.AddProperty("reportTable", PropertyType.String, null, item.ReportTable);
             op.AddProperty("transIsolation", PropertyType.Integer, null, item.TransIsolation);
+            op.AddProperty("configFile", PropertyType.String, null, item.ConfigFile);
+            op.AddProperty("loadParams", PropertyType.Boolean, null, item.LoadParams);
         }
 
         private void AddParamProperties(Param item, ChangeObjectOperation op)
         {
+            // Lists are copied: the live references would let later edits change the recorded values
             op.AddProperty("alias", PropertyType.String, null, item.Alias);
             op.AddProperty("allowNulls", PropertyType.String, null, item.AllowNulls);
-            op.AddProperty("datasets", PropertyType.StringArray, null, item.Datasets);
+            op.AddProperty("datasets", PropertyType.StringArray, null, CopyStrings(item.Datasets));
             op.AddProperty("descriptions", PropertyType.StringArray, null, item.Descriptions);
             op.AddProperty("errorMessages", PropertyType.StringArray, null, item.ErrorMessages);
             op.AddProperty("hints", PropertyType.StringArray, null, item.Hints);
             op.AddProperty("isReadOnly", PropertyType.Boolean, null, item.IsReadOnly);
-            op.AddProperty("items", PropertyType.StringArray, null, item.Items);
+            op.AddProperty("items", PropertyType.StringArray, null, CopyStrings(item.Items));
             op.AddProperty("lookupDataset", PropertyType.String, null, item.LookupDataset);
             op.AddProperty("neverVisible", PropertyType.Boolean, null, item.NeverVisible);
             op.AddProperty("paramType", PropertyType.Integer, null, item.ParamType);
             op.AddProperty("search", PropertyType.String, null, item.Search);
             op.AddProperty("searchDataset", PropertyType.String, null, item.SearchDataset);
             op.AddProperty("searchParam", PropertyType.String, null, item.SearchParam);
-            op.AddProperty("selected", PropertyType.StringArray, null, item.Selected);
+            op.AddProperty("selected", PropertyType.StringArray, null, CopyStrings(item.Selected));
             op.AddProperty("validation", PropertyType.String, null, item.Validation);
             op.AddProperty("value", PropertyType.Variant, null, item.Value);
-            op.AddProperty("values", PropertyType.StringArray, null, item.Values);
+            op.AddProperty("values", PropertyType.StringArray, null, CopyStrings(item.Values));
             op.AddProperty("visible", PropertyType.Boolean, null, item.Visible);
+        }
+
+        private static Strings CopyStrings(Strings value)
+        {
+            return value == null ? null : (Strings)value.Clone();
         }
 
         private void AddDataInfoProperties(DataInfo item, ChangeObjectOperation op)
@@ -3508,7 +3517,7 @@ end;
             op.AddProperty("bDETable", PropertyType.String, null, item.BDETable);
             op.AddProperty("bDEType", PropertyType.Integer, null, item.BDEType);
             op.AddProperty("dataSource", PropertyType.String, null, item.DataSource);
-            op.AddProperty("dataUnions", PropertyType.StringArray, null, item.DataUnions);
+            op.AddProperty("dataUnions", PropertyType.StringArray, null, CopyStrings(item.DataUnions));
             op.AddProperty("databaseAlias", PropertyType.String, null, item.DatabaseAlias);
             op.AddProperty("groupUnion", PropertyType.Boolean, null, item.GroupUnion);
             op.AddProperty("myBaseFields", PropertyType.String, null, item.MyBaseFields);
@@ -3518,12 +3527,16 @@ end;
             op.AddProperty("openOnStart", PropertyType.Boolean, null, item.OpenOnStart);
             op.AddProperty("parallelUnion", PropertyType.Boolean, null, item.ParallelUnion);
             op.AddProperty("sql", PropertyType.String, null, item.SQL);
+            op.AddProperty("sqlExplanation", PropertyType.String, null, item.SQLExplanation);
+            op.AddProperty("sqlExplanationError", PropertyType.String, null, item.SQLExplanationError);
+            op.AddProperty("hubSchemaId", PropertyType.Integer, null, item.HubSchemaId);
         }
 
         private void AddSubreportProperties(SubReport item, ChangeObjectOperation op)
         {
             op.AddProperty("alias", PropertyType.String, null, item.Alias);
             op.AddProperty("printOnlyIfDataAvailable", PropertyType.Boolean, null, item.PrintOnlyIfDataAvailable);
+            op.AddProperty("reOpenOnPrint", PropertyType.Boolean, null, item.ReOpenOnPrint);
         }
 
         private void AddCommonSectionProperties(Section sec, ChangeObjectOperation op)
@@ -3563,6 +3576,12 @@ end;
             op.AddProperty("groupName", PropertyType.String, null, sec.GroupName);
             op.AddProperty("changeExpression", PropertyType.String, null, sec.ChangeExpression);
             op.AddProperty("changeBool", PropertyType.Boolean, null, sec.ChangeBool);
+            op.AddProperty("externalFilename", PropertyType.String, null, sec.ExternalFilename);
+            op.AddProperty("externalConnection", PropertyType.String, null, sec.ExternalConnection);
+            op.AddProperty("externalTable", PropertyType.String, null, sec.ExternalTable);
+            op.AddProperty("externalField", PropertyType.String, null, sec.ExternalField);
+            op.AddProperty("externalSearchField", PropertyType.String, null, sec.ExternalSearchField);
+            op.AddProperty("externalSearchValue", PropertyType.String, null, sec.ExternalSearchValue);
         }
 
         private void AddPrintPosItemProperties(PrintPosItem item, ChangeObjectOperation op)
@@ -3581,6 +3600,7 @@ end;
         private void AddPrintItemTextProperties(PrintItemText item, ChangeObjectOperation op)
         {
             op.AddProperty("alignment", PropertyType.Integer, null, item.Alignment);
+            op.AddProperty("vAlignment", PropertyType.Integer, null, item.VAlignment);
             op.AddProperty("rightToLeft", PropertyType.Boolean, null, item.RightToLeft);
             op.AddProperty("backColor", PropertyType.Integer, null, item.BackColor);
             op.AddProperty("cutText", PropertyType.Boolean, null, item.CutText);
@@ -3620,6 +3640,14 @@ end;
             op.AddProperty("identifier", PropertyType.String, null, item.Identifier);
             op.AddProperty("printOnlyOne", PropertyType.Boolean, null, item.PrintOnlyOne);
             op.AddProperty("printNulls", PropertyType.Boolean, null, item.PrintNulls);
+            op.AddProperty("autoExpand", PropertyType.Boolean, null, item.AutoExpand);
+            op.AddProperty("autoContract", PropertyType.Boolean, null, item.AutoContract);
+            op.AddProperty("exportExpression", PropertyType.String, null, item.ExportExpression);
+            op.AddProperty("exportDisplayFormat", PropertyType.String, null, item.ExportDisplayFormat);
+            op.AddProperty("exportLine", PropertyType.Integer, null, item.ExportLine);
+            op.AddProperty("exportPosition", PropertyType.Integer, null, item.ExportPosition);
+            op.AddProperty("exportSize", PropertyType.Integer, null, item.ExportSize);
+            op.AddProperty("exportDoNewLine", PropertyType.Boolean, null, item.ExportDoNewLine);
         }
 
         private void AddShapeProperties(ShapeItem item, ChangeObjectOperation op)
@@ -3695,6 +3723,10 @@ end;
             op.AddProperty("numRows", PropertyType.Integer, null, item.NumRows);
             op.AddProperty("ratio", PropertyType.Number, null, item.Ratio);
             op.AddProperty("truncated", PropertyType.Boolean, null, item.Truncated);
+            op.AddProperty("displayFormat", PropertyType.String, null, item.DisplayFormat);
+            op.AddProperty("rotation", PropertyType.Integer, null, item.Rotation);
+            op.AddProperty("backColor", PropertyType.Integer, null, item.BackColor);
+            op.AddProperty("transparent", PropertyType.Boolean, null, item.Transparent);
         }
         /// <summary>
         /// Removes duplicate datasets and connections and rebinds every section to its parent

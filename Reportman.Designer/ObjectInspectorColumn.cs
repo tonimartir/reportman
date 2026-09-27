@@ -371,23 +371,35 @@ namespace Reportman.Designer
         }
         private void SetNewFont(string fontname, int fontsize, int fstyle)
         {
-            for (int i = 0; i < DataGridView.Rows.Count; i++)
+            // Font name, size and style set by the dialog are a single undo step
+            ObjectInspector inspector = DataGridView as ObjectInspector;
+            if (inspector != null)
+                inspector.BeginUndoGroup();
+            try
             {
-                string pname = GetColumnValue("NAME", i).ToString();
-                if (pname == Translator.TranslateStr(560))
+                for (int i = 0; i < DataGridView.Rows.Count; i++)
                 {
-                    SetValue(i, fontname);
+                    string pname = GetColumnValue("NAME", i).ToString();
+                    if (pname == Translator.TranslateStr(560))
+                    {
+                        SetValue(i, fontname);
+                    }
+                    else
+                        if (pname == Translator.TranslateStr(563))
+                    {
+                        SetValue(i, fontsize);
+                    }
+                    else
+                            if (pname == Translator.TranslateStr(566))
+                    {
+                        SetValue(i, fstyle);
+                    }
                 }
-                else
-                    if (pname == Translator.TranslateStr(563))
-                {
-                    SetValue(i, fontsize);
-                }
-                else
-                        if (pname == Translator.TranslateStr(566))
-                {
-                    SetValue(i, fstyle);
-                }
+            }
+            finally
+            {
+                if (inspector != null)
+                    inspector.EndUndoGroup();
             }
         }
         private bool ClickExpression(EllipsisEditingControl sender, ref string expression)
