@@ -1772,7 +1772,12 @@ namespace Reportman.Drawing
                         posx = arect.Left + (int)(((arect.Width) - Lines[i].Width) / 2);
                     }
                     astring = Text.Substring(Lines[i].Position, Lines[i].Size);
-                    bool dojustify = ((Alignment & AlignmentFlags_AlignHJustify) > 0) && (!Lines[i].LastLine) && !isHtml;
+                    // Right-to-left lines are not justified, as in the Delphi engine
+                    // (rppdffile.pas): each one is drawn whole at its aligned position.
+                    // The word distribution below started RTL lines at arect.Width (no
+                    // arect.Left) and summed negative word widths into the free space,
+                    // so every line but the last one was placed outside the box.
+                    bool dojustify = ((Alignment & AlignmentFlags_AlignHJustify) > 0) && (!Lines[i].LastLine) && !isHtml && !RightToLeft;
                     if (dojustify)
                     {
                         // Calculate the sizes of the words, then
