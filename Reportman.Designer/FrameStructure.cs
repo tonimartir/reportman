@@ -324,100 +324,79 @@ namespace Reportman.Designer
 
         private void bup_Click(object sender, EventArgs e)
         {
-            int index;
-            // Change the section or subreport up
+            MoveSelected(false);
+        }
+
+        // Moves the selected section or subreport up or down and selects it again
+        private void MoveSelected(bool down)
+        {
             TreeNode nnode = FindSelectedNode();
-            if (nnode.Tag is SubReport)
-            {
-                SubReport subrep = (SubReport)nnode.Tag;
-                index = FReport.SubReports.IndexOf(subrep);
-                if (index > 0)
-                {
-                    FReport.SubReports.Remove(subrep);
-                    FReport.SubReports.Insert(index - 1, subrep);
-                    RefreshInterface();
-                    SelectItem(null, false);
-                    SelectItem(subrep, false);
-                }
+            ReportItem item = nnode.Tag as ReportItem;
+            bool moved;
+            if (item is SubReport)
+                moved = MoveSubReport(FReport, (SubReport)item, down);
+            else if (item is Section)
+                moved = MoveSection(FReport, (Section)item, down);
+            else
                 return;
-            }
-            if (nnode.Tag is Section)
+            if (!moved)
+                return;
+            RefreshInterface();
+            SelectItem(null, false);
+            SelectItem(item, false);
+        }
+
+        /// <summary>
+        /// Moves a subreport one position up or down in the report, recording the move in the undo
+        /// history as one step. Returns false, changing nothing, when it is already at that end.
+        /// </summary>
+        internal static bool MoveSubReport(Report report, SubReport subrep, bool down)
+        {
+            int groupId = 0;
+            return UndoCue.SwapItem(report, subrep, down, ref groupId);
+        }
+
+        /// <summary>
+        /// Moves a section one position up or down among the sections of its kind in its subreport,
+        /// recording the move in the undo history as one step. A group header or footer moves its whole
+        /// group (the header and the footer) outwards or inwards. Returns false, changing nothing, when
+        /// the section can not move that way.
+        /// </summary>
+        internal static bool MoveSection(Report report, Section sec, bool down)
+        {
+            SubReport sub = sec.SubReport;
+            int index = sub.Sections.IndexOf(sec);
+            int groupId = 0;
+            bool canMove;
+            switch (sec.SectionType)
             {
-                int groupindex;
-                Section sec = (Section)nnode.Tag;
-                SubReport sub = sec.SubReport;
-                switch (sec.SectionType)
-                {
-                    case SectionType.Detail:
-                        index = sub.Sections.IndexOf(sec);
-                        if (index > sub.FirstDetail)
-                        {
-                            sub.Sections.Remove(sec);
-                            sub.Sections.Insert(index - 1, sec);
-                        }
-                        break;
-                    case SectionType.PageHeader:
-                        index = sub.Sections.IndexOf(sec);
-                        if (index > 0)
-                        {
-                            sub.Sections.Remove(sec);
-                            sub.Sections.Insert(index - 1, sec);
-                        }
-                        break;
-                    case SectionType.PageFooter:
-                        index = sub.Sections.IndexOf(sec);
-                        if (index > sub.LastDetail + sub.GroupCount + 1)
-                        {
-                            sub.Sections.Remove(sec);
-                            sub.Sections.Insert(index - 1, sec);
-                        }
-                        break;
-                    case SectionType.GroupHeader:
-                    case SectionType.GroupFooter:
-                        Section oldsec = sec;
-                        index = sub.Sections.IndexOf(sec);
-                        bool doexchange = false;
-                        bool exchangeup = false;
-                        if (index < sub.FirstDetail)
-                        {
-                            groupindex = sub.FirstDetail - index;
-                            if (groupindex < sub.GroupCount)
-                                doexchange = true;
-                        }
-                        else
-                        {
-                            groupindex = index - sub.LastDetail;
-                            if ((groupindex > 1) && (sub.GroupCount > 1))
-                                doexchange = true;
-                            exchangeup = true;
-                        }
-                        sec = sub.Sections[sub.FirstDetail - groupindex];
-                        index = sub.Sections.IndexOf(sec);
-                        if (doexchange)
-                        {
-                            Section footer = sub.Sections[sub.LastDetail + groupindex];
-                            sub.Sections.Remove(sec);
-                            if (exchangeup)
-                            {
-                                sub.Sections.Insert(index + 1, sec);
-                                index = sub.Sections.IndexOf(footer);
-                                sub.Sections.Remove(footer);
-                                sub.Sections.Insert(index - 1, footer);
-                            }
-                            else
-                            {
-                                sub.Sections.Insert(index - 1, sec);
-                                index = sub.Sections.IndexOf(footer);
-                                sub.Sections.Remove(footer);
-                                sub.Sections.Insert(index + 1, footer);
-                            }
-                        }
-                        sec = oldsec;
-                        break;
-                }
-                RefreshInterface();
-                SelectItem(null, false);
-                SelectItem(sec, false);
+                case SectionType.Detail:
+                    canMove = down ? index < sub.LastDetail : index > sub.FirstDetail;
+                    return canMove && UndoCue.SwapItem(report, sec, down, ref groupId);
+                case SectionType.PageHeader:
+                    canMove = down ? index < sub.LastPageHeader : index > 0;
+                    return canMove && UndoCue.SwapItem(report, sec, down, ref groupId);
+                case SectionType.PageFooter:
+                    canMove = down ? index < sub.LastPageFooter : index > sub.LastDetail + sub.GroupCount + 1;
+                    return canMove && UndoCue.SwapItem(report, sec, down, ref groupId);
+                case SectionType.GroupHeader:
+                case SectionType.GroupFooter:
+                    // Position of the group from the details (1 = innermost group)
+                    bool isHeader = index < sub.FirstDetail;
+                    int groupindex = isHeader ? sub.FirstDetail - index : index - sub.LastDetail;
+                    // A group moves outwards (header up, footer down) or inwards (header down, footer up)
+                    bool outwards = isHeader ? !down : down;
+                    canMove = outwards ? groupindex < sub.GroupCount : (groupindex > 1) && (sub.GroupCount > 1);
+                    if (!canMove)
+                        return false;
+                    Section header = sub.Sections[sub.FirstDetail - groupindex];
+                    Section footer = sub.Sections[sub.LastDetail + groupindex];
+                    // Both swaps share the undo group: one undo step
+                    UndoCue.SwapItem(report, header, !outwards, ref groupId);
+                    UndoCue.SwapItem(report, footer, outwards, ref groupId);
+                    return true;
+                default:
+                    return false;
             }
         }
         /// <summary>
@@ -515,102 +494,7 @@ namespace Reportman.Designer
 
         private void bdown_Click(object sender, EventArgs e)
         {
-            int index;
-            // Change the section or subreport up
-            TreeNode nnode = FindSelectedNode();
-            if (nnode.Tag is SubReport)
-            {
-                SubReport subrep = (SubReport)nnode.Tag;
-                index = FReport.SubReports.IndexOf(subrep);
-                if (index < (FReport.SubReports.Count - 1))
-                {
-                    FReport.SubReports.Remove(subrep);
-                    FReport.SubReports.Insert(index + 1, subrep);
-                    RefreshInterface();
-                    SelectItem(null, false);
-                    SelectItem(subrep, false);
-                }
-                return;
-            }
-            if (nnode.Tag is Section)
-            {
-                Section sec = (Section)nnode.Tag;
-                SubReport sub = sec.SubReport;
-                switch (sec.SectionType)
-                {
-                    case SectionType.Detail:
-                        index = sub.Sections.IndexOf(sec);
-                        if (index < sub.LastDetail)
-                        {
-                            sub.Sections.Remove(sec);
-                            sub.Sections.Insert(index + 1, sec);
-                        }
-                        break;
-                    case SectionType.PageHeader:
-                        index = sub.Sections.IndexOf(sec);
-                        if (index < sub.LastPageHeader)
-                        {
-                            sub.Sections.Remove(sec);
-                            sub.Sections.Insert(index + 1, sec);
-                        }
-                        break;
-                    case SectionType.PageFooter:
-                        index = sub.Sections.IndexOf(sec);
-                        if (index < sub.LastPageFooter)
-                        {
-                            sub.Sections.Remove(sec);
-                            sub.Sections.Insert(index + 1, sec);
-                        }
-                        break;
-                    case SectionType.GroupHeader:
-                    case SectionType.GroupFooter:
-                        int groupindex;
-                        Section oldsec = sec;
-                        index = sub.Sections.IndexOf(sec);
-                        bool doexchange = false;
-                        bool exchangeup = false;
-                        if (index < sub.FirstDetail)
-                        {
-                            groupindex = sub.FirstDetail - index;
-                            if ((groupindex > 1) && (sub.GroupCount > 1))
-                                doexchange = true;
-                        }
-                        else
-                        {
-                            groupindex = index - sub.LastDetail;
-                            if (groupindex < sub.GroupCount)
-                                doexchange = true;
-                            exchangeup = true;
-                        }
-                        sec = sub.Sections[sub.FirstDetail - groupindex];
-                        index = sub.Sections.IndexOf(sec);
-                        if (doexchange)
-                        {
-                            Section footer = sub.Sections[sub.LastDetail + groupindex];
-                            sub.Sections.Remove(sec);
-                            if (exchangeup)
-                            {
-                                sub.Sections.Insert(index - 1, sec);
-                                index = sub.Sections.IndexOf(footer);
-                                sub.Sections.Remove(footer);
-                                sub.Sections.Insert(index + 1, footer);
-                            }
-                            else
-                            {
-                                sub.Sections.Insert(index + 1, sec);
-                                index = sub.Sections.IndexOf(footer);
-                                sub.Sections.Remove(footer);
-                                sub.Sections.Insert(index - 1, footer);
-                            }
-                        }
-                        sec = oldsec;
-                        break;
-                }
-                RefreshInterface();
-                SelectItem(null, false);
-                SelectItem(sec, false);
-            }
-
+            MoveSelected(true);
         }
 
         private void RView_DragEnter(object sender, DragEventArgs e)
