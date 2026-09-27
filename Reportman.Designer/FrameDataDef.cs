@@ -265,119 +265,46 @@ namespace Reportman.Designer
 
         private void bup_Click(object sender, EventArgs e)
         {
-            if (RView.SelectedNode == null)
-                return;
-            TreeNode nnode = RView.SelectedNode;
-            if (nnode.Index == 0)
-                return;
-            if (nnode.Parent == null)
-                return;
-            int index;
-            index = nnode.Parent.Nodes.IndexOf(nnode);
-            if (index == 0)
-                return;
-            TreeNode segnode = nnode.Parent.Nodes[index - 1];
-            ReportItem pitem = (ReportItem)RView.SelectedNode.Tag;
-            if (pitem is DatabaseInfo)
-            {
-                DatabaseInfo dbinfo = (DatabaseInfo)pitem;
-                index = FReport.DatabaseInfo.IndexOf(dbinfo);
-                if (index > 0)
-                {
-                    DatabaseInfo buf = FReport.DatabaseInfo[index - 1];
-                    FReport.DatabaseInfo[index - 1] = dbinfo;
-                    FReport.DatabaseInfo[index] = buf;
-                }
-            }
-            else
-                if (pitem is DataInfo)
-            {
-                DataInfo dinfo = (DataInfo)pitem;
-                index = FReport.DataInfo.IndexOf(dinfo);
-                if (index > 0)
-                {
-                    DataInfo buf2 = FReport.DataInfo[index - 1];
-                    FReport.DataInfo[index - 1] = dinfo;
-                    FReport.DataInfo[index] = buf2;
-                }
-
-            }
-            else
-                    if (pitem is Param)
-            {
-                Param nparam = (Param)pitem;
-                index = FReport.Params.IndexOf(nparam);
-                if (index > 0)
-                {
-                    FReport.Params.Switch(index, index - 1);
-                }
-            }
-            else
-                pitem = null;
-            if (pitem != null)
-            {
-                index = nnode.Parent.Nodes.IndexOf(nnode);
-                nnode.Parent.Nodes.Remove(segnode);
-                nnode.Parent.Nodes.Insert(index, segnode);
-            }
+            MoveSelected(false);
         }
 
         private void bdown_Click(object sender, EventArgs e)
         {
-            if (RView.SelectedNode == null)
-                return;
-            TreeNode nnode = RView.SelectedNode;
-            if (nnode.Parent == null)
-                return;
-            if (nnode.Index >= (nnode.Parent.Nodes.Count - 1))
-                return;
-            if (nnode.Parent.Nodes.Count < 1)
-                return;
-            int index = nnode.Parent.Nodes.IndexOf(nnode); ;
-            TreeNode segnode = nnode.Parent.Nodes[index + 1];
-            ReportItem pitem = (ReportItem)RView.SelectedNode.Tag;
-            if (pitem is DatabaseInfo)
-            {
-                DatabaseInfo dbinfo = (DatabaseInfo)pitem;
-                index = FReport.DatabaseInfo.IndexOf(dbinfo);
-                if (index > 0)
-                {
-                    DatabaseInfo buf = FReport.DatabaseInfo[index + 1];
-                    FReport.DatabaseInfo[index + 1] = dbinfo;
-                    FReport.DatabaseInfo[index] = buf;
-                }
-            }
-            else
-                if (pitem is DataInfo)
-            {
-                DataInfo dinfo = (DataInfo)pitem;
-                index = FReport.DataInfo.IndexOf(dinfo);
-                if (index > 0)
-                {
-                    DataInfo buf2 = FReport.DataInfo[index + 1];
-                    FReport.DataInfo[index + 1] = dinfo;
-                    FReport.DataInfo[index] = buf2;
-                }
+            MoveSelected(true);
+        }
 
-            }
-            else
-                    if (pitem is Param)
-            {
-                Param nparam = (Param)pitem;
-                index = FReport.Params.IndexOf(nparam);
-                if (index > 0)
-                {
-                    FReport.Params.Switch(index, index + 1);
-                }
-            }
-            else
-                pitem = null;
-            if (pitem != null)
-            {
-                index = nnode.Parent.Nodes.IndexOf(nnode);
-                nnode.Parent.Nodes.Remove(segnode);
-                nnode.Parent.Nodes.Insert(index, segnode);
-            }
+        // Moves the selected connection, dataset or parameter up or down, in the report and in the tree
+        private void MoveSelected(bool down)
+        {
+            TreeNode nnode = RView.SelectedNode;
+            if (nnode == null || nnode.Parent == null)
+                return;
+            int index = nnode.Index;
+            int newIndex = down ? index + 1 : index - 1;
+            if (newIndex < 0 || newIndex >= nnode.Parent.Nodes.Count)
+                return;
+            ReportItem pitem = nnode.Tag as ReportItem;
+            if (pitem == null || !MoveDataItem(FReport, pitem, down))
+                return;
+            // The same move in the tree, keeping the selection
+            TreeNode segnode = nnode.Parent.Nodes[newIndex];
+            nnode.Parent.Nodes.Remove(segnode);
+            nnode.Parent.Nodes.Insert(index, segnode);
+            if (OnReportChange != null)
+                OnReportChange(FReport, new EventArgs());
+        }
+
+        /// <summary>
+        /// Moves a connection, a dataset or a parameter one position up or down in its collection,
+        /// recording the move in the undo history as one step. Returns false, changing nothing, for any
+        /// other item or when it is already at that end.
+        /// </summary>
+        internal static bool MoveDataItem(Report report, ReportItem item, bool down)
+        {
+            if (!(item is DatabaseInfo) && !(item is DataInfo) && !(item is Param))
+                return false;
+            int groupId = 0;
+            return UndoCue.SwapItem(report, item, down, ref groupId);
         }
 
         private void bconnect_Click(object sender, EventArgs e)

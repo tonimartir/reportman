@@ -64,9 +64,10 @@ namespace Reportman.Designer
         /// Regression checks of the undo engine and of the designer undo recording: the inspector
         /// records model values (also in a multiple selection and as one group for a font change),
         /// deleted items come back complete and in place (also from a saved history), histories with
-        /// the removed values in the old values or bring to front without positions still undo, and a
-        /// failing operation stays in its list. Returns one line per failed check and a summary line
-        /// ("UNDO REGRESSION: n passed, m failed").
+        /// the removed values in the old values or bring to front without positions still undo, a
+        /// failing operation stays in its list, and moving sections, subreports, connections, datasets
+        /// and parameters up or down is one undo step (also from a saved history). Returns one line per
+        /// failed check and a summary line ("UNDO REGRESSION: n passed, m failed").
         /// </summary>
         public static string RunUndoRegressionTests()
         {
@@ -79,6 +80,9 @@ namespace Reportman.Designer
             RunCheck(log, "failing operation stays in its list", TestFailingOperation);
             RunCheck(log, "delete restores every saved property", TestDeleteRestoresProperties);
             RunCheck(log, "expression PAGECOUNT flag after undo", TestExpressionPageCount);
+            RunCheck(log, "move sections and subreports in the structure", TestStructureMoves);
+            RunCheck(log, "move connections, datasets and parameters", TestDataDefMoves);
+            RunCheck(log, "move to a position of every collection", TestMoveToIndex);
             return log.ToString();
         }
 
@@ -565,6 +569,257 @@ namespace Reportman.Designer
             log.Check(restored.IsPageCount, "PAGECOUNT flag lost undoing an expression change");
             rep.UndoCue.Redo(rep);
             log.Check(!restored.IsPageCount, "PAGECOUNT flag kept redoing an expression change");
+        }
+
+        // Report with every kind of item that moves up and down, with known names: the sections
+        // PHA,PHB,OUTERH,INNERH,DA,DB,INNERF,OUTERF,PFA,PFB in SUBA, the subreports SUBA,SUBB,SUBC and
+        // the connections, datasets and parameters CONNA..C, DATAA..C and PARAMA..C
+        private static Report BuildMoveReport()
+        {
+            Report rep = NewUndoReport();
+            SubReport sub = rep.SubReports[0];
+            sub.Name = "SUBA";
+            sub.Sections[0].Name = "DB";
+            sub.AddDetail().Name = "DA";
+            sub.AddPageHeader().Name = "PHB";
+            sub.AddPageHeader().Name = "PHA";
+            sub.AddGroup("OUTER").Name = "OUTERH";
+            sub.Sections[sub.LastDetail + 1].Name = "OUTERF";
+            sub.AddGroup("INNER").Name = "INNERH";
+            sub.Sections[sub.LastDetail + 1].Name = "INNERF";
+            sub.AddPageFooter().Name = "PFA";
+            sub.AddPageFooter().Name = "PFB";
+            rep.AddSubReport().Name = "SUBB";
+            rep.AddSubReport().Name = "SUBC";
+            foreach (string suffix in new string[] { "A", "B", "C" })
+            {
+                DatabaseInfo dbinfo = new DatabaseInfo();
+                dbinfo.Report = rep;
+                rep.GenerateNewName(dbinfo);
+                dbinfo.Alias = "CONN" + suffix;
+                rep.DatabaseInfo.Add(dbinfo);
+                DataInfo dinfo = new DataInfo();
+                dinfo.Report = rep;
+                rep.GenerateNewName(dinfo);
+                dinfo.Alias = "DATA" + suffix;
+                dinfo.DatabaseAlias = dbinfo.Alias;
+                rep.DataInfo.Add(dinfo);
+                AddParam(rep, "PARAM" + suffix, ParamType.Integer, 1);
+            }
+            rep.UndoCue.UndoOperations.Clear();
+            rep.Modified = false;
+            return rep;
+        }
+
+        private static string Join(System.Collections.IEnumerable items, Func<ReportItem, string> text)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (ReportItem item in items)
+            {
+                if (sb.Length > 0)
+                    sb.Append(',');
+                sb.Append(text(item));
+            }
+            return sb.ToString();
+        }
+
+        private static string SectionOrder(Report rep)
+        {
+            return Join(rep.SubReports[0].Sections, item => item.Name);
+        }
+
+        private static string SubReportOrder(Report rep)
+        {
+            return Join(rep.SubReports, item => item.Name);
+        }
+
+        private static string ConnectionOrder(Report rep)
+        {
+            return Join(rep.DatabaseInfo, item => ((DatabaseInfo)item).Alias);
+        }
+
+        private static string DatasetOrder(Report rep)
+        {
+            return Join(rep.DataInfo, item => ((DataInfo)item).Alias);
+        }
+
+        private static string ParamOrder(Report rep)
+        {
+            return Join(rep.Params, item => ((Param)item).Alias);
+        }
+
+        private static Section FindSection(Report rep, string name)
+        {
+            return (Section)rep.Components[name];
+        }
+
+        // A move done as the designer does it: checks the new order, the report marked as modified,
+        // one undo step, undo to the old order, redo to the new one and undo from the history saved in
+        // the report. The report is left in the old order.
+        private static void CheckMove(SelfTestLog log, Report rep, string what, Func<bool> move,
+            Func<Report, string> order, string expected)
+        {
+            string before = order(rep);
+            int undoCount = rep.UndoCue.UndoOperations.Count;
+            rep.Modified = false;
+            log.Check(move(), what + ": not moved");
+            log.Check(order(rep) == expected, what + ": the move gives " + order(rep) + ", expected " + expected);
+            log.Check(rep.Modified, what + ": the move must mark the report as modified");
+            int added = rep.UndoCue.UndoOperations.Count - undoCount;
+            log.Check(added > 0 && LastGroup(rep.UndoCue).Count == added, what + ": the move must be one undo step");
+            Report saved = ReloadWithHistory(rep);
+            rep.Modified = false;
+            rep.UndoCue.Undo(rep);
+            log.Check(order(rep) == before, what + ": undo gives " + order(rep) + ", expected " + before);
+            log.Check(rep.Modified && rep.UndoCue.UndoOperations.Count == undoCount,
+                what + ": undo must be one step and mark the report as modified");
+            rep.Modified = false;
+            rep.UndoCue.Redo(rep);
+            log.Check(order(rep) == expected, what + ": redo gives " + order(rep) + ", expected " + expected);
+            log.Check(rep.Modified, what + ": redo must mark the report as modified");
+            rep.UndoCue.Undo(rep);
+            log.Check(order(rep) == before, what + ": undo after redo gives " + order(rep) + ", expected " + before);
+            log.Check(order(saved) == expected, what + ": the saved report must have the new order");
+            saved.UndoCue.Undo(saved);
+            log.Check(order(saved) == before, what + ": undo from a saved history gives " + order(saved) +
+                ", expected " + before);
+        }
+
+        // A move that can not be done changes nothing and records nothing
+        private static void CheckNoMove(SelfTestLog log, Report rep, string what, Func<bool> move,
+            Func<Report, string> order)
+        {
+            string before = order(rep);
+            int undoCount = rep.UndoCue.UndoOperations.Count;
+            rep.Modified = false;
+            log.Check(!move(), what + ": must not move");
+            log.Check(order(rep) == before && !rep.Modified && rep.UndoCue.UndoOperations.Count == undoCount,
+                what + ": a move that can not be done must change nothing");
+        }
+
+        private static void TestStructureMoves(SelfTestLog log)
+        {
+            Report rep = BuildMoveReport();
+            log.Check(SectionOrder(rep) == "PHA,PHB,OUTERH,INNERH,DA,DB,INNERF,OUTERF,PFA,PFB",
+                "unexpected test sections " + SectionOrder(rep));
+            // Recorded as the Delphi designer does: an adjacent swap with the subreport as the parent
+            FrameStructure.MoveSection(rep, FindSection(rep, "DB"), false);
+            List<ChangeObjectOperation> ops = LastGroup(rep.UndoCue);
+            log.Check(ops.Count == 1 && ops[0].Operation == OperationType.SwapUp && ops[0].ComponentName == "DB" &&
+                ops[0].ComponentClass == "TRPSECTION" && ops[0].ParentName == "SUBA" && ops[0].OldItemIndex == 5 &&
+                ops[0].Properties.Count == 0, "a section move must be recorded as an adjacent swap");
+            rep.UndoCue.Undo(rep);
+
+            string groupMoved = "PHA,PHB,INNERH,OUTERH,DA,DB,OUTERF,INNERF,PFA,PFB";
+            CheckMove(log, rep, "page header up", () => FrameStructure.MoveSection(rep, FindSection(rep, "PHB"), false),
+                SectionOrder, "PHB,PHA,OUTERH,INNERH,DA,DB,INNERF,OUTERF,PFA,PFB");
+            CheckMove(log, rep, "page header down", () => FrameStructure.MoveSection(rep, FindSection(rep, "PHA"), true),
+                SectionOrder, "PHB,PHA,OUTERH,INNERH,DA,DB,INNERF,OUTERF,PFA,PFB");
+            CheckMove(log, rep, "detail up", () => FrameStructure.MoveSection(rep, FindSection(rep, "DB"), false),
+                SectionOrder, "PHA,PHB,OUTERH,INNERH,DB,DA,INNERF,OUTERF,PFA,PFB");
+            CheckMove(log, rep, "detail down", () => FrameStructure.MoveSection(rep, FindSection(rep, "DA"), true),
+                SectionOrder, "PHA,PHB,OUTERH,INNERH,DB,DA,INNERF,OUTERF,PFA,PFB");
+            CheckMove(log, rep, "page footer up", () => FrameStructure.MoveSection(rep, FindSection(rep, "PFB"), false),
+                SectionOrder, "PHA,PHB,OUTERH,INNERH,DA,DB,INNERF,OUTERF,PFB,PFA");
+            CheckMove(log, rep, "page footer down", () => FrameStructure.MoveSection(rep, FindSection(rep, "PFA"), true),
+                SectionOrder, "PHA,PHB,OUTERH,INNERH,DA,DB,INNERF,OUTERF,PFB,PFA");
+            // A group header or footer moves the whole group (two swaps, one undo step)
+            CheckMove(log, rep, "group header up", () => FrameStructure.MoveSection(rep, FindSection(rep, "INNERH"), false),
+                SectionOrder, groupMoved);
+            CheckMove(log, rep, "group footer down", () => FrameStructure.MoveSection(rep, FindSection(rep, "INNERF"), true),
+                SectionOrder, groupMoved);
+            CheckMove(log, rep, "group header down", () => FrameStructure.MoveSection(rep, FindSection(rep, "OUTERH"), true),
+                SectionOrder, groupMoved);
+            CheckMove(log, rep, "group footer up", () => FrameStructure.MoveSection(rep, FindSection(rep, "OUTERF"), false),
+                SectionOrder, groupMoved);
+            CheckNoMove(log, rep, "first page header up", () => FrameStructure.MoveSection(rep, FindSection(rep, "PHA"), false), SectionOrder);
+            CheckNoMove(log, rep, "last page header down", () => FrameStructure.MoveSection(rep, FindSection(rep, "PHB"), true), SectionOrder);
+            CheckNoMove(log, rep, "first detail up", () => FrameStructure.MoveSection(rep, FindSection(rep, "DA"), false), SectionOrder);
+            CheckNoMove(log, rep, "last detail down", () => FrameStructure.MoveSection(rep, FindSection(rep, "DB"), true), SectionOrder);
+            CheckNoMove(log, rep, "first page footer up", () => FrameStructure.MoveSection(rep, FindSection(rep, "PFA"), false), SectionOrder);
+            CheckNoMove(log, rep, "last page footer down", () => FrameStructure.MoveSection(rep, FindSection(rep, "PFB"), true), SectionOrder);
+            CheckNoMove(log, rep, "outer group header up", () => FrameStructure.MoveSection(rep, FindSection(rep, "OUTERH"), false), SectionOrder);
+            CheckNoMove(log, rep, "outer group footer down", () => FrameStructure.MoveSection(rep, FindSection(rep, "OUTERF"), true), SectionOrder);
+            CheckNoMove(log, rep, "inner group header down", () => FrameStructure.MoveSection(rep, FindSection(rep, "INNERH"), true), SectionOrder);
+            CheckNoMove(log, rep, "inner group footer up", () => FrameStructure.MoveSection(rep, FindSection(rep, "INNERF"), false), SectionOrder);
+
+            SubReport suba = rep.SubReports[0];
+            SubReport subc = rep.SubReports[2];
+            CheckMove(log, rep, "subreport down", () => FrameStructure.MoveSubReport(rep, suba, true),
+                SubReportOrder, "SUBB,SUBA,SUBC");
+            CheckMove(log, rep, "subreport up", () => FrameStructure.MoveSubReport(rep, subc, false),
+                SubReportOrder, "SUBA,SUBC,SUBB");
+            CheckNoMove(log, rep, "first subreport up", () => FrameStructure.MoveSubReport(rep, suba, false), SubReportOrder);
+            CheckNoMove(log, rep, "last subreport down", () => FrameStructure.MoveSubReport(rep, subc, true), SubReportOrder);
+        }
+
+        private static void TestDataDefMoves(SelfTestLog log)
+        {
+            Report rep = BuildMoveReport();
+            // Moving the first item down did nothing in the report before (only in the tree)
+            CheckMove(log, rep, "connection down", () => FrameDataDef.MoveDataItem(rep, rep.DatabaseInfo[0], true),
+                ConnectionOrder, "CONNB,CONNA,CONNC");
+            CheckMove(log, rep, "connection up", () => FrameDataDef.MoveDataItem(rep, rep.DatabaseInfo[2], false),
+                ConnectionOrder, "CONNA,CONNC,CONNB");
+            CheckMove(log, rep, "dataset down", () => FrameDataDef.MoveDataItem(rep, rep.DataInfo[0], true),
+                DatasetOrder, "DATAB,DATAA,DATAC");
+            CheckMove(log, rep, "dataset up", () => FrameDataDef.MoveDataItem(rep, rep.DataInfo[2], false),
+                DatasetOrder, "DATAA,DATAC,DATAB");
+            CheckMove(log, rep, "parameter down", () => FrameDataDef.MoveDataItem(rep, rep.Params[0], true),
+                ParamOrder, "PARAMB,PARAMA,PARAMC");
+            CheckMove(log, rep, "parameter up", () => FrameDataDef.MoveDataItem(rep, rep.Params[2], false),
+                ParamOrder, "PARAMA,PARAMC,PARAMB");
+            CheckNoMove(log, rep, "first connection up", () => FrameDataDef.MoveDataItem(rep, rep.DatabaseInfo[0], false), ConnectionOrder);
+            CheckNoMove(log, rep, "last dataset down", () => FrameDataDef.MoveDataItem(rep, rep.DataInfo[2], true), DatasetOrder);
+            CheckNoMove(log, rep, "last parameter down", () => FrameDataDef.MoveDataItem(rep, rep.Params[2], true), ParamOrder);
+            // Without an undo history the move is done and marks the report as modified
+            UndoCue cue = rep.UndoCue;
+            rep.UndoCue = null;
+            rep.Modified = false;
+            bool moved = FrameDataDef.MoveDataItem(rep, rep.Params[0], true);
+            log.Check(moved && ParamOrder(rep) == "PARAMB,PARAMA,PARAMC" && rep.Modified,
+                "a move without undo history must be done and mark the report as modified");
+            rep.UndoCue = cue;
+        }
+
+        // A move to a position recorded with its positions (itemIndex): redo moves the item there,
+        // undo moves it back, also from the history saved in the report
+        private static void CheckMoveToIndex(SelfTestLog log, Report rep, string what, ReportItem item, string parentName,
+            int oldIndex, int newIndex, Func<Report, string> order, string expected)
+        {
+            string before = order(rep);
+            ChangeObjectOperation op = new ChangeObjectOperation(OperationType.SwapDown, rep.UndoCue.GetGroupId());
+            op.ComponentName = item.Name;
+            op.ComponentClass = item.ClassName;
+            op.ParentName = parentName;
+            op.OldItemIndex = oldIndex;
+            op.AddProperty(UndoCue.ItemIndexProperty, PropertyType.Integer, oldIndex, newIndex);
+            rep.UndoCue.RedoOperations.Clear();
+            rep.UndoCue.RedoOperations.Add(op);
+            rep.UndoCue.Redo(rep);
+            log.Check(order(rep) == expected, what + ": redo of a move to a position gives " + order(rep) +
+                ", expected " + expected);
+            Report saved = ReloadWithHistory(rep);
+            rep.UndoCue.Undo(rep);
+            log.Check(order(rep) == before, what + ": undo of a move to a position gives " + order(rep) +
+                ", expected " + before);
+            saved.UndoCue.Undo(saved);
+            log.Check(order(saved) == before, what + ": undo of a move to a position from a saved history gives " +
+                order(saved) + ", expected " + before);
+        }
+
+        private static void TestMoveToIndex(SelfTestLog log)
+        {
+            Report rep = BuildMoveReport();
+            CheckMoveToIndex(log, rep, "section", FindSection(rep, "DA"), "SUBA", 4, 5, SectionOrder,
+                "PHA,PHB,OUTERH,INNERH,DB,DA,INNERF,OUTERF,PFA,PFB");
+            // Without a parent: the subreport that contains the section
+            CheckMoveToIndex(log, rep, "section without parent", FindSection(rep, "PFB"), null, 9, 8, SectionOrder,
+                "PHA,PHB,OUTERH,INNERH,DA,DB,INNERF,OUTERF,PFB,PFA");
+            CheckMoveToIndex(log, rep, "subreport", rep.SubReports[0], null, 0, 2, SubReportOrder, "SUBB,SUBC,SUBA");
+            CheckMoveToIndex(log, rep, "connection", rep.DatabaseInfo[2], null, 2, 0, ConnectionOrder, "CONNC,CONNA,CONNB");
+            CheckMoveToIndex(log, rep, "dataset", rep.DataInfo[0], null, 0, 2, DatasetOrder, "DATAB,DATAC,DATAA");
+            CheckMoveToIndex(log, rep, "parameter", rep.Params[2], null, 2, 0, ParamOrder, "PARAMC,PARAMA,PARAMB");
         }
 
         private static PrintPosItem FindFirstPrintItem(Report rep)
