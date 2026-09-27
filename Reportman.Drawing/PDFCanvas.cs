@@ -1252,8 +1252,10 @@ namespace Reportman.Drawing
                 string gidHex = IntToHex(g.GlyphIndex);
 
                 string newFontFamily = string.IsNullOrEmpty(g.FontFamily) ? originalFontFamily : g.FontFamily;
-                bool newBold = g.Bold;
-                bool newItalic = g.Italic;
+                // g.Bold/g.Italic pueden traer solo el estilo del tramo HTML (DirectWrite);
+                // los glifos se conformaron con el de la fuente base sumado
+                bool newBold = originalBold || g.Bold;
+                bool newItalic = originalItalic || g.Italic;
                 float newFontSize = g.HasFontSize ? g.FontSize : originalFontSize;
 
                 if (actualFontFamily != newFontFamily || actualBold != newBold || actualItalic != newItalic || actualFontSize != newFontSize)
