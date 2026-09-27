@@ -1397,8 +1397,9 @@ namespace Reportman.Drawing
             {
                 LineInfo linfo = linfos[i];
                 astring = Text.Substring(linfo.Position, linfo.Size);
+                // Right-to-left lines are not justified, same as PDFCanvas.TextRect
                 dojustify = (((Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) &&
-                     (!linfo.LastLine));
+                     (!linfo.LastLine) && !RightToLeft);
                 lwords = new Strings();
                 posx = arect.Left;
                 if (dojustify)
@@ -1586,7 +1587,9 @@ namespace Reportman.Drawing
                         posx = arect.Left + arect.Width - linfo.Width;
                     if ((Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
                         posx = arect.Left + (int)((arect.Width - linfo.Width) / 2);
-                    bool dojustify = ((Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) && !linfo.LastLine;
+                    // Right-to-left lines are not justified, same as PDFCanvas.TextRect: the
+                    // line is drawn whole at its aligned position, so print matches the PDF.
+                    bool dojustify = ((Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) && !linfo.LastLine && !RightToLeft;
                     if (dojustify)
                     {
                         // Word splitting, same criteria the PDF canvas uses (ASCII space)
