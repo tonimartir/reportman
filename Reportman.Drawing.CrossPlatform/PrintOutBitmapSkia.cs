@@ -57,12 +57,14 @@ namespace Reportman.Drawing.CrossPlatform
         /// <summary>Twips → pixels at the driver resolution.</summary>
         private float Px(int twips) { return twips * scale; }
 
+        /// <inheritdoc/>
         public override void NewDocument(MetaFile meta)
         {
             Pages.Clear();
             scale = (float)Dpi / Twips.TWIPS_PER_INCH;
         }
 
+        /// <inheritdoc/>
         public override void NewPage(MetaFile meta, MetaPage page)
         {
             int w = page.PageDetail.PhysicWidth > 0 ? page.PageDetail.PhysicWidth : meta.CustomX;
@@ -75,6 +77,7 @@ namespace Reportman.Drawing.CrossPlatform
             canvas.Clear(Background);
         }
 
+        /// <inheritdoc/>
         public override void EndPage(MetaFile meta)
         {
             if (bitmap == null) return;
@@ -86,6 +89,7 @@ namespace Reportman.Drawing.CrossPlatform
             bitmap.Dispose(); bitmap = null;
         }
 
+        /// <inheritdoc/>
         public override void EndDocument(MetaFile meta)
         {
             if (FileName.Length == 0) return;
@@ -96,6 +100,7 @@ namespace Reportman.Drawing.CrossPlatform
                     File.WriteAllBytes(Path.ChangeExtension(FileName, null) + "-" + (i + 1).ToString() + Path.GetExtension(FileName), Pages[i]);
         }
 
+        /// <inheritdoc/>
         public override bool Print(MetaFile meta)
         {
             if (!base.Print(meta)) return false;
@@ -114,6 +119,7 @@ namespace Reportman.Drawing.CrossPlatform
             return true;
         }
 
+        /// <inheritdoc/>
         public override void DrawPage(MetaFile meta, MetaPage page)
         {
             for (int i = 0; i < page.Objects.Count; i++)
@@ -299,12 +305,14 @@ namespace Reportman.Drawing.CrossPlatform
             }
         }
 
+        /// <inheritdoc/>
         public override Point GetPageSize(out int indexqt)
         {
             indexqt = 0;
             return new Point(12047, 17039);
         }
 
+        /// <inheritdoc/>
         public override Point GraphicExtent(MemoryStream astream, Point extent, int dpi)
         {
             astream.Position = 0;
@@ -318,12 +326,14 @@ namespace Reportman.Drawing.CrossPlatform
         }
 
 
+        /// <inheritdoc/>
         public override Point SetPageSize(PageSizeDetail psize)
         {
             if (psize.Custom) return new Point(psize.CustomWidth, psize.CustomHeight);
             return new Point(psize.PhysicWidth > 0 ? psize.PhysicWidth : 12047, psize.PhysicHeight > 0 ? psize.PhysicHeight : 17039);
         }
 
+        /// <inheritdoc/>
         public override Point TextExtent(TextObjectStruct aobj, Point extent)
         {
             using (SKTypeface face = SKTypeface.FromFamilyName(aobj.WFontName) ?? SKTypeface.Default)
@@ -336,6 +346,7 @@ namespace Reportman.Drawing.CrossPlatform
                 return new Point((int)Math.Round(w / s), (int)Math.Round((m.Descent - m.Ascent) / s));
             }
         }
+        /// <inheritdoc/>
         public override void Dispose()
         {
             canvas?.Dispose(); canvas = null;
