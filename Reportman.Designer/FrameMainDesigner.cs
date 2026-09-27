@@ -1504,18 +1504,28 @@ namespace Reportman.Designer
         private void PerformUndo()
         {
             if (FReport?.UndoCue == null) return;
-            var result = FReport.UndoCue.Undo(FReport);
-            if (result != null)
+            if (FReport.UndoCue.UndoOperations.Count == 0) return;
+            try
             {
+                FReport.UndoCue.Undo(FReport);
+            }
+            finally
+            {
+                // Also after a failure: the operations already undone changed the report
                 RefreshAfterUndoRedo();
             }
         }
         private void PerformRedo()
         {
             if (FReport?.UndoCue == null) return;
-            var result = FReport.UndoCue.Redo(FReport);
-            if (result != null)
+            if (FReport.UndoCue.RedoOperations.Count == 0) return;
+            try
             {
+                FReport.UndoCue.Redo(FReport);
+            }
+            finally
+            {
+                // Also after a failure: the operations already redone changed the report
                 RefreshAfterUndoRedo();
             }
         }
@@ -1893,41 +1903,190 @@ namespace Reportman.Designer
         /// </summary>
         internal static void AddAllPropertiesToOperation(ReportItem item, ChangeObjectOperation op)
         {
-            var type = item.GetType();
+            foreach (UndoMember member in GetUndoMembers(item.GetType()))
+            {
+                object val;
+                // Skip members that can't be read
+                if (member.TryRead(item, out val))
+                    op.AddProperty(member.Name, GetPropertyTypeForType(member.MemberType), val, val);
+            }
+        }
+
+        /// <summary>
+        /// A public read/write property or public field of a report item recorded by undo operations.
+        /// </summary>
+        private sealed class UndoMember
+        {
+            internal string Name;
+            internal System.Type MemberType;
+            internal System.Reflection.PropertyInfo Property;
+            internal System.Reflection.FieldInfo Field;
+
+            /// <summary>
+            /// Reads the member of an item. Lists of strings are copied, so later edits of the
+            /// item do not change the value read. Returns false if it can not be read.
+            /// </summary>
+            internal bool TryRead(ReportItem item, out object value)
+            {
+                try
+                {
+                    value = Property != null ? Property.GetValue(item) : Field.GetValue(item);
+                }
+                catch
+                {
+                    value = null;
+                    return false;
+                }
+                Strings strings = value as Strings;
+                if (strings != null)
+                    value = strings.Clone();
+                return true;
+            }
+        }
+
+        private static List<UndoMember> GetUndoMembers(System.Type type)
+        {
+            var members = new List<UndoMember>();
             foreach (var pi in type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
             {
                 if (!pi.CanRead || !pi.CanWrite) continue;
                 if (pi.GetIndexParameters().Length > 0) continue;
                 if (!IsSerializableType(pi.PropertyType)) continue;
-                var propType = GetPropertyTypeForType(pi.PropertyType);
-                try
-                {
-                    var val = pi.GetValue(item);
-                    op.AddProperty(pi.Name, propType, val, val);
-                }
-                catch
-                {
-                    // Skip properties that can't be read
-                }
+                members.Add(new UndoMember() { Name = pi.Name, MemberType = pi.PropertyType, Property = pi });
             }
             foreach (var fi in type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
             {
                 if (!IsSerializableType(fi.FieldType)) continue;
-                var propType = GetPropertyTypeForType(fi.FieldType);
+                members.Add(new UndoMember() { Name = fi.Name, MemberType = fi.FieldType, Field = fi });
+            }
+            return members;
+        }
+
+        /// <summary>
+        /// Model state of a report item captured before an edit (see <see cref="CaptureUndoState"/>).
+        /// </summary>
+        internal sealed class UndoItemState
+        {
+            /// <summary>The captured item.</summary>
+            internal ReportItem Item;
+            /// <summary>Name of the item when it was captured.</summary>
+            internal string Name;
+            /// <summary>Value of every member recorded by undo operations, by member name.</summary>
+            internal Dictionary<string, object> Values;
+        }
+
+        /// <summary>
+        /// Captures the model values of every member of an item that undo operations record, to
+        /// record later (<see cref="AddUndoChanges"/>) the ones an edit changed.
+        /// </summary>
+        internal static UndoItemState CaptureUndoState(ReportItem item)
+        {
+            var state = new UndoItemState()
+            {
+                Item = item,
+                Name = item.Name,
+                Values = new Dictionary<string, object>(StringComparer.Ordinal)
+            };
+            foreach (UndoMember member in GetUndoMembers(item.GetType()))
+            {
+                object value;
+                if (member.TryRead(item, out value))
+                    state.Values[member.Name] = value;
+            }
+            return state;
+        }
+
+        /// <summary>
+        /// Records in the undo cue of the report the members of the item changed since
+        /// <paramref name="state"/> was captured, with their model values (and types) before and
+        /// after the change, never the text or units shown by the inspector. A changed name is
+        /// recorded as a rename. The operations go to group <paramref name="groupId"/>, a new group
+        /// (returned in it) when it is zero or less. Returns true if something was recorded.
+        /// </summary>
+        internal static bool AddUndoChanges(BaseReport report, UndoItemState state, ref int groupId)
+        {
+            if (report == null || report.UndoCue == null || state == null)
+                return false;
+            ReportItem item = state.Item;
+            bool recorded = false;
+            if (!string.Equals(item.Name, state.Name, StringComparison.Ordinal))
+            {
+                if (groupId <= 0)
+                    groupId = report.UndoCue.GetGroupId();
+                var rename = new ChangeObjectOperation(OperationType.Rename, groupId);
+                rename.ComponentName = item.Name;
+                rename.ComponentClass = item.ClassName;
+                rename.OldParentName = state.Name;
+                report.UndoCue.AddOperation(rename, report);
+                recorded = true;
+            }
+            ChangeObjectOperation op = null;
+            foreach (UndoMember member in GetUndoMembers(item.GetType()))
+            {
+                // A new name is a rename, recorded above
+                if (member.Name == "Name")
+                    continue;
+                object oldValue;
+                object newValue;
+                if (!state.Values.TryGetValue(member.Name, out oldValue))
+                    continue;
+                if (!member.TryRead(item, out newValue))
+                    continue;
+                if (SameUndoValue(oldValue, newValue))
+                    continue;
+                if (op == null)
+                {
+                    if (groupId <= 0)
+                        groupId = report.UndoCue.GetGroupId();
+                    op = new ChangeObjectOperation(OperationType.Modify, groupId);
+                    op.ComponentName = item.Name;
+                    op.ComponentClass = item.ClassName;
+                }
+                op.AddProperty(member.Name, GetPropertyTypeForType(member.MemberType), oldValue, newValue);
+            }
+            if (op != null)
+            {
+                report.UndoCue.AddOperation(op, report);
+                recorded = true;
+            }
+            return recorded;
+        }
+
+        private static bool SameUndoValue(object a, object b)
+        {
+            if (a == null || b == null)
+                return a == null && b == null;
+            Strings stringsA = a as Strings;
+            Strings stringsB = b as Strings;
+            if (stringsA != null || stringsB != null)
+                return stringsA != null && stringsB != null && string.Equals(stringsA.Text, stringsB.Text, StringComparison.Ordinal);
+            byte[] bytesA = a as byte[];
+            byte[] bytesB = b as byte[];
+            if (bytesA != null || bytesB != null)
+                return bytesA != null && bytesB != null && System.Linq.Enumerable.SequenceEqual(bytesA, bytesB);
+            if (a is Variant && b is Variant)
+            {
+                Variant variantA = (Variant)a;
+                Variant variantB = (Variant)b;
+                if (variantA.VarType != variantB.VarType)
+                    return false;
                 try
                 {
-                    var val = fi.GetValue(item);
-                    op.AddProperty(fi.Name, propType, val, val);
+                    return variantA.Equals(variantB);
                 }
                 catch
                 {
-                    // Skip fields that can't be read
+                    return string.Equals(variantA.ToString(), variantB.ToString(), StringComparison.Ordinal);
                 }
             }
+            return a.Equals(b);
         }
 
         internal static bool IsSerializableType(System.Type t)
         {
+            // Lists of strings (label texts in every language, parameter lists...)
+            if (t == typeof(Strings))
+                return true;
             if (t == typeof(int) || t == typeof(long) || t == typeof(short) || t == typeof(byte))
                 return true;
             if (t == typeof(double) || t == typeof(float) || t == typeof(decimal))
@@ -1949,6 +2108,8 @@ namespace Reportman.Designer
 
         internal static PropertyType GetPropertyTypeForType(System.Type t)
         {
+            if (t == typeof(Strings))
+                return PropertyType.StringArray;
             if (t == typeof(int) || t == typeof(long) || t == typeof(short) || t == typeof(byte))
                 return PropertyType.Integer;
             if (t == typeof(double) || t == typeof(float) || t == typeof(decimal))

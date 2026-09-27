@@ -1304,6 +1304,7 @@ namespace Reportman.Reporting.Design
         {
             operation.AddProperty("alias", PropertyType.String, null, item.Alias);
             operation.AddProperty("printOnlyIfDataAvailable", PropertyType.Boolean, null, item.PrintOnlyIfDataAvailable);
+            operation.AddProperty("reOpenOnPrint", PropertyType.Boolean, null, item.ReOpenOnPrint);
         }
 
         private static void AddCommonSectionProperties(Section section, ChangeObjectOperation operation)
@@ -1343,6 +1344,12 @@ namespace Reportman.Reporting.Design
             operation.AddProperty("groupName", PropertyType.String, null, section.GroupName);
             operation.AddProperty("changeExpression", PropertyType.String, null, section.ChangeExpression);
             operation.AddProperty("changeBool", PropertyType.Boolean, null, section.ChangeBool);
+            operation.AddProperty("externalFilename", PropertyType.String, null, section.ExternalFilename);
+            operation.AddProperty("externalConnection", PropertyType.String, null, section.ExternalConnection);
+            operation.AddProperty("externalTable", PropertyType.String, null, section.ExternalTable);
+            operation.AddProperty("externalField", PropertyType.String, null, section.ExternalField);
+            operation.AddProperty("externalSearchField", PropertyType.String, null, section.ExternalSearchField);
+            operation.AddProperty("externalSearchValue", PropertyType.String, null, section.ExternalSearchValue);
         }
 
         private static void ApplyProperties(ReportItem target, IList<ReportBatchProperty> properties, ChangeObjectOperation undoOperation, bool recordUndo)

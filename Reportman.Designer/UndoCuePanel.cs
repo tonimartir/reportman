@@ -350,27 +350,39 @@ namespace Reportman.Designer
         private void BtnUndo_Click(object sender, EventArgs e)
         {
             if (FReport?.UndoCue == null) return;
-            var result = FReport.UndoCue.Undo(FReport);
-            if (result != null)
+            if (FReport.UndoCue.UndoOperations.Count == 0) return;
+            try
             {
-                expandedStates.Clear();
-                UpdateScrollBar();
-                panelList.Invalidate();
-                OnUndoRedo?.Invoke(this, EventArgs.Empty);
+                FReport.UndoCue.Undo(FReport);
+            }
+            finally
+            {
+                // Also after a failure: the operations already undone changed the report
+                RefreshAfterUndoRedo();
             }
         }
 
         private void BtnRedo_Click(object sender, EventArgs e)
         {
             if (FReport?.UndoCue == null) return;
-            var result = FReport.UndoCue.Redo(FReport);
-            if (result != null)
+            if (FReport.UndoCue.RedoOperations.Count == 0) return;
+            try
             {
-                expandedStates.Clear();
-                UpdateScrollBar();
-                panelList.Invalidate();
-                OnUndoRedo?.Invoke(this, EventArgs.Empty);
+                FReport.UndoCue.Redo(FReport);
             }
+            finally
+            {
+                // Also after a failure: the operations already redone changed the report
+                RefreshAfterUndoRedo();
+            }
+        }
+
+        private void RefreshAfterUndoRedo()
+        {
+            expandedStates.Clear();
+            UpdateScrollBar();
+            panelList.Invalidate();
+            OnUndoRedo?.Invoke(this, EventArgs.Empty);
         }
 
         private void BtnClear_Click(object sender, EventArgs e)

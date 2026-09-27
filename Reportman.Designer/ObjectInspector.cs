@@ -468,6 +468,40 @@ namespace Reportman.Designer
                 afterNoop - before, afterChange - afterNoop);
         }
 
+        /// <summary>
+        /// Headless self-test helper: loads the rows of <paramref name="obj"/> and commits
+        /// <paramref name="value"/> (as the inspector cell holds it, e.g. units for a twips
+        /// property) to the row <paramref name="translatedPropName"/>, as editing it does.
+        /// Returns false if there is no such row.
+        /// </summary>
+        internal bool SelfTestSetProperty(DesignerInterface obj, string translatedPropName, object value)
+        {
+            if (data == null)
+                data = new DataSet();
+            selectingobject = true;
+            CurrentInterface = obj;
+            DataTable props = FindDataTable(obj.SelectionClassName, obj);
+            DataSource = props;
+            selectingobject = false;
+            foreach (DataRow row in props.Rows)
+            {
+                if (row["NAME"].ToString() != translatedPropName)
+                    continue;
+                props.RowChanging -= rowchangeevent;
+                try
+                {
+                    row["VALUE"] = value;
+                }
+                finally
+                {
+                    props.RowChanging += rowchangeevent;
+                }
+                RowChange(this, new DataRowChangeEventArgs(row, DataRowAction.Change));
+                return true;
+            }
+            return false;
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             // TODO: Agregar código de dibujo personalizado aquí
@@ -493,6 +527,79 @@ namespace Reportman.Designer
             catch
             {
                 return false; // on any uncertainty treat as changed (apply)
+            }
+        }
+
+        // Depth of BeginUndoGroup calls, and the undo group used meanwhile (0: not created yet)
+        private int FUndoGroupDepth;
+        private int FUndoGroupId;
+
+        /// <summary>
+        /// Starts recording the property changes committed until <see cref="EndUndoGroup"/> as a
+        /// single undo step (e.g. the font name, size and style set by a font dialog).
+        /// </summary>
+        internal void BeginUndoGroup()
+        {
+            if (FUndoGroupDepth == 0)
+                FUndoGroupId = 0;
+            FUndoGroupDepth++;
+        }
+
+        /// <summary>
+        /// Ends the undo step started by <see cref="BeginUndoGroup"/>.
+        /// </summary>
+        internal void EndUndoGroup()
+        {
+            if (FUndoGroupDepth > 0)
+                FUndoGroupDepth--;
+            if (FUndoGroupDepth == 0)
+                FUndoGroupId = 0;
+        }
+
+        // Model state of the selected items before a change, or null if the report records no undo
+        private List<FrameMainDesigner.UndoItemState> CaptureUndoStates()
+        {
+            if (CurrentInterface == null || CurrentInterface.SelectionList.Count == 0)
+                return null;
+            ReportItem firstItem = CurrentInterface.SelectionList.Values[0];
+            if (firstItem.Report == null || firstItem.Report.UndoCue == null)
+                return null;
+            var states = new List<FrameMainDesigner.UndoItemState>();
+            foreach (ReportItem ritem in CurrentInterface.SelectionList.Values)
+                states.Add(FrameMainDesigner.CaptureUndoState(ritem));
+            return states;
+        }
+
+        // Records, as one undo group, what the change modified in every selected item: the MODEL
+        // values with their real types (twips, enum values, booleans...) read before and after it,
+        // never the text or units shown by the inspector ("2.540" cm, "Left"), which undo can not
+        // restore. Each item keeps its own old value in a multiple selection.
+        private void RecordUndoChanges(List<FrameMainDesigner.UndoItemState> states)
+        {
+            if (states == null || states.Count == 0)
+                return;
+            BaseReport report = states[0].Item.Report;
+            if (report == null || report.UndoCue == null)
+                return;
+            int groupId = FUndoGroupDepth > 0 ? FUndoGroupId : 0;
+            foreach (FrameMainDesigner.UndoItemState state in states)
+                FrameMainDesigner.AddUndoChanges(report, state, ref groupId);
+            if (FUndoGroupDepth > 0)
+                FUndoGroupId = groupId;
+        }
+
+        // Sets the property in every selected item recording its undo operations
+        private void SetPropertyWithUndo(string propName, Variant newvalue)
+        {
+            List<FrameMainDesigner.UndoItemState> undoStates = CaptureUndoStates();
+            try
+            {
+                CurrentInterface.SetPropertyMulti(propName, newvalue);
+            }
+            finally
+            {
+                // Also after a failure: the items already changed can be undone
+                RecordUndoChanges(undoStates);
             }
         }
 
@@ -530,7 +637,7 @@ namespace Reportman.Designer
                         // must not create a spurious undo entry.
                         if (!haveOld || !SameVariantValue(oldValue, newvar))
                         {
-                            CurrentInterface.SetPropertyMulti(propName, newvar);
+                            SetPropertyWithUndo(propName, newvar);
                             executeonpropchange = true;
                         }
                     }
@@ -568,7 +675,7 @@ namespace Reportman.Designer
                             // Only apply/record on a real change (see note above).
                             if (!haveOld || !SameVariantValue(oldValue, newvar))
                             {
-                                CurrentInterface.SetPropertyMulti(propName, newvar);
+                                SetPropertyWithUndo(propName, newvar);
                                 executeonpropchange = true;
                             }
                         }
@@ -586,64 +693,17 @@ namespace Reportman.Designer
                         isbinary = true;
                     if (isbinary)
                     {
-                        CurrentInterface.SetPropertyMulti(propName, Variant.VariantFromObject(args.Row["VALUEBIN"]));
+                        SetPropertyWithUndo(propName, Variant.VariantFromObject(args.Row["VALUEBIN"]));
                         executeonpropchange = true;
                     }
                 }
                 newValue = args.Row["VALUEBIN"];
             }
 
-            // Generate undo operation for property change
-            if (executeonpropchange && CurrentInterface != null && CurrentInterface.SelectionList.Count > 0)
-            {
-                var firstItem = CurrentInterface.SelectionList.Values[0];
-                if (firstItem.Report?.UndoCue != null)
-                {
-                    int groupId = firstItem.Report.UndoCue.GetGroupId();
-                    // Determine if this is a Variant property (e.g., Param.Value)
-                    bool isVariantProperty = (CurrentInterface is DesignerInterfaceParam) && 
-                                              (propName == Translator.TranslateStr(194)); // "Value" property
-                    // Get the real property name for undo/redo (convert from translated name)
-                    string realPropName = CurrentInterface.GetRealPropertyName(propName);
-                    foreach (ReportItem ritem in CurrentInterface.SelectionList.Values)
-                    {
-                        var op = new ChangeObjectOperation(OperationType.Modify, groupId);
-                        op.ComponentName = ritem.Name;
-                        op.ComponentClass = ritem.ClassName;
-                        var propType = GetPropertyTypeForValue(oldValue, newValue, isVariantProperty);
-                        // For Variant properties, store the Variant itself, not AsObject()
-                        object oldVal = isVariantProperty ? (object)oldValue : oldValue.AsObject();
-                        object newVal = isVariantProperty ? Variant.VariantFromObject(newValue) : newValue;
-                        op.AddProperty(realPropName, propType, oldVal, newVal);
-                        firstItem.Report.UndoCue.AddOperation(op, (Report)firstItem.Report);
-                    }
-                }
-            }
-
             if ((executeonpropchange) && (OnPropertyChange != null))
             {
                 OnPropertyChange(propName, newValue);
             }
-        }
-
-        private static PropertyType GetPropertyTypeForValue(Variant oldValue, object newValue, bool isVariantProperty)
-        {
-            // If explicitly marked as Variant property (e.g., Param.Value), use Variant type
-            if (isVariantProperty)
-                return PropertyType.Variant;
-            if (oldValue.VarType == VariantType.Integer || newValue is int || newValue is long)
-                return PropertyType.Integer;
-            if (oldValue.VarType == VariantType.Double || newValue is double || newValue is float || newValue is decimal)
-                return PropertyType.Number;
-            if (oldValue.VarType == VariantType.String || newValue is string)
-                return PropertyType.String;
-            if (oldValue.VarType == VariantType.Boolean || newValue is bool)
-                return PropertyType.Boolean;
-            if (oldValue.VarType == VariantType.DateTime || newValue is DateTime)
-                return PropertyType.Date;
-            if (oldValue.VarType == VariantType.Binary)
-                return PropertyType.Binary;
-            return PropertyType.String;
         }
     }
 }

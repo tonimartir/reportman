@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Reportman.Drawing;
@@ -12,6 +13,14 @@ namespace Reportman.Reporting
     /// </summary>
     public class UndoCue
     {
+        /// <summary>
+        /// Name of the property of a <see cref="OperationType.SwapUp"/>/<see cref="OperationType.SwapDown"/>
+        /// operation that moves a component to an arbitrary position of its section (bring to front /
+        /// send to back): its old and new values are the positions before and after the move. Swap
+        /// operations without it are adjacent swaps at <see cref="ChangeObjectOperation.OldItemIndex"/>.
+        /// </summary>
+        public const string ItemIndexProperty = "itemIndex";
+
         /// <summary>
         /// Gets the identifier of the most recently used operation group. Related change
         /// operations share a group id so they are undone and redone together as one step.
@@ -97,7 +106,9 @@ namespace Reportman.Reporting
 
         /// <summary>
         /// Undoes the most recent group of operations, reverting them on the report and moving them
-        /// to the redo stack.
+        /// to the redo stack. An operation is moved only after it has been applied: if one fails, the
+        /// exception propagates, that operation stays the next one to undo and the ones of the group
+        /// already undone are in the redo stack, so both stacks still match the report.
         /// </summary>
         /// <param name="report">The report to revert the operations on.</param>
         /// <returns>The list of operations that were undone, or <c>null</c> if there was nothing to undo.</returns>
@@ -106,26 +117,30 @@ namespace Reportman.Reporting
             if (UndoOperations.Count == 0) return null;
 
             var operations = new List<ChangeObjectOperation>();
-            var gId = UndoOperations[UndoOperations.Count - 1].GroupId;
-            int newGroupId = gId;
-
-            while (newGroupId == gId)
+            try
             {
-                var op = UndoOperations.LastOrDefault();
-                if (op == null) break;
-                // pop
-                UndoOperations.RemoveAt(UndoOperations.Count - 1);
-
-                operations.Add(op);
-                ApplyOperation(op, true, report);
-                RedoOperations.Add(op);
-
-                if (UndoOperations.Count == 0) break;
-                newGroupId = UndoOperations[UndoOperations.Count - 1].GroupId;
+                int gId = UndoOperations[UndoOperations.Count - 1].GroupId;
+                while (UndoOperations.Count > 0 && UndoOperations[UndoOperations.Count - 1].GroupId == gId)
+                {
+                    var op = UndoOperations[UndoOperations.Count - 1];
+                    try
+                    {
+                        ApplyOperation(op, true, report);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new InvalidOperationException("UndoCue: undo of " + OperationDescription(op) +
+                            " failed: " + ex.Message, ex);
+                    }
+                    // Undone: move it to the redo stack
+                    UndoOperations.RemoveAt(UndoOperations.Count - 1);
+                    RedoOperations.Add(op);
+                    operations.Add(op);
+                }
             }
-
-            if (operations.Count > 0)
+            finally
             {
+                // Also after a failure: the operations already undone changed the report
                 report.Modified = true;
             }
 
@@ -134,7 +149,8 @@ namespace Reportman.Reporting
 
         /// <summary>
         /// Reapplies the most recent group of undone operations, restoring them on the report and
-        /// moving them back to the undo stack.
+        /// moving them back to the undo stack. An operation is moved only after it has been applied:
+        /// if one fails, the exception propagates and that operation stays the next one to redo.
         /// </summary>
         /// <param name="report">The report to reapply the operations on.</param>
         /// <returns>The list of operations that were redone, or <c>null</c> if there was nothing to redo.</returns>
@@ -143,29 +159,39 @@ namespace Reportman.Reporting
             if (RedoOperations.Count == 0) return null;
 
             var operations = new List<ChangeObjectOperation>();
-            var gId = RedoOperations[RedoOperations.Count - 1].GroupId;
-            int newGroupId = gId;
-
-            while (newGroupId == gId)
+            try
             {
-                var op = RedoOperations.LastOrDefault();
-                if (op == null) break;
-                RedoOperations.RemoveAt(RedoOperations.Count - 1);
-
-                operations.Add(op);
-                ApplyOperation(op, false, report);
-                UndoOperations.Add(op);
-
-                if (RedoOperations.Count == 0) break;
-                newGroupId = RedoOperations[RedoOperations.Count - 1].GroupId;
+                int gId = RedoOperations[RedoOperations.Count - 1].GroupId;
+                while (RedoOperations.Count > 0 && RedoOperations[RedoOperations.Count - 1].GroupId == gId)
+                {
+                    var op = RedoOperations[RedoOperations.Count - 1];
+                    try
+                    {
+                        ApplyOperation(op, false, report);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new InvalidOperationException("UndoCue: redo of " + OperationDescription(op) +
+                            " failed: " + ex.Message, ex);
+                    }
+                    // Redone: move it back to the undo stack
+                    RedoOperations.RemoveAt(RedoOperations.Count - 1);
+                    UndoOperations.Add(op);
+                    operations.Add(op);
+                }
             }
-
-            if (operations.Count > 0)
+            finally
             {
+                // Also after a failure: the operations already redone changed the report
                 report.Modified = true;
             }
 
             return operations;
+        }
+
+        private static string OperationDescription(ChangeObjectOperation operation)
+        {
+            return operation.Operation.ToString() + " " + operation.ComponentClass + " " + operation.ComponentName;
         }
 
         private ReportItem GetComponentByName(string name, Report report)
@@ -187,6 +213,25 @@ namespace Reportman.Reporting
             }
         }
 
+        private Section GetParentSection(string parentName, Report report)
+        {
+            if (string.IsNullOrEmpty(parentName))
+                throw new InvalidOperationException("UndoCue: parent section name required");
+            var section = GetComponentByName(parentName, report) as Section;
+            if (section == null)
+                throw new InvalidOperationException("UndoCue: parent is not a section: " + parentName);
+            return section;
+        }
+
+        private static void CheckSwapRange(string className, int oldIndex, int increment, int count)
+        {
+            if (oldIndex < 0 || oldIndex >= count || oldIndex + increment < 0 || oldIndex + increment >= count)
+                throw new InvalidOperationException("UndoCue: swap of " + className + " from " +
+                    oldIndex.ToString(CultureInfo.InvariantCulture) + " to " +
+                    (oldIndex + increment).ToString(CultureInfo.InvariantCulture) + " out of range (count " +
+                    count.ToString(CultureInfo.InvariantCulture) + ")");
+        }
+
         private void ApplySwapOperation(string className, bool down, int oldIndex, Report report, string parentName = null)
         {
             int increment = down ? 1 : -1;
@@ -194,6 +239,7 @@ namespace Reportman.Reporting
             switch (className)
             {
                 case "TRPSUBREPORT":
+                    CheckSwapRange(className, oldIndex, increment, report.SubReports.Count);
                     report.SubReports.Swap(oldIndex, oldIndex + increment);
                     break;
                 case "TRPSECTION":
@@ -203,16 +249,33 @@ namespace Reportman.Reporting
                         var subreport = GetComponentByName(parentName, report) as SubReport;
                         if (subreport == null)
                             throw new Exception("Parent subreport not found for swap: " + parentName);
+                        CheckSwapRange(className, oldIndex, increment, subreport.Sections.Count);
                         subreport.Sections.Swap(oldIndex, oldIndex + increment);
                     }
                     break;
+                case "TRPLABEL":
+                case "TRPEXPRESSION":
+                case "TRPSHAPE":
+                case "TRPIMAGE":
+                case "TRPBARCODE":
+                case "TRPCHART":
+                    {
+                        // Component reordered inside its section (z-order)
+                        var section = GetParentSection(parentName, report);
+                        CheckSwapRange(className, oldIndex, increment, section.Components.Count);
+                        section.Components.Swap(oldIndex, oldIndex + increment);
+                    }
+                    break;
                 case "TRPPARAM":
+                    CheckSwapRange(className, oldIndex, increment, report.Params.Count);
                     report.Params.Swap(oldIndex, oldIndex + increment);
                     break;
                 case "TRPDATAINFOITEM":
+                    CheckSwapRange(className, oldIndex, increment, report.DataInfo.Count);
                     report.DataInfo.Swap(oldIndex, oldIndex + increment);
                     break;
                 case "TRPDATABASEINFOITEM":
+                    CheckSwapRange(className, oldIndex, increment, report.DatabaseInfo.Count);
                     report.DatabaseInfo.Swap(oldIndex, oldIndex + increment);
                     break;
                 default:
@@ -220,7 +283,126 @@ namespace Reportman.Reporting
             }
         }
 
+        private static ChangeOperationItem FindOperationProperty(ChangeObjectOperation operation, string propName)
+        {
+            foreach (var prop in operation.Properties)
+            {
+                if (string.Equals(prop.PropertyName, propName, StringComparison.OrdinalIgnoreCase))
+                    return prop;
+            }
+            return null;
+        }
+
+        private void ApplySwap(ChangeObjectOperation operation, bool isUndo, Report report)
+        {
+            var indexProp = FindOperationProperty(operation, ItemIndexProperty);
+            if (indexProp != null)
+            {
+                // Bring to front / send to back: the component goes back to (undo) or again to
+                // (redo) its recorded position
+                MoveComponentToIndex(operation, isUndo ? indexProp.OldValue : indexProp.NewValue, report);
+                return;
+            }
+            // Bring to front / send to back recorded without positions (histories saved by older
+            // versions, old item index -1): nothing can be restored
+            if (!operation.OldItemIndex.HasValue || operation.OldItemIndex.Value < 0)
+                return;
+            // Adjacent swap: exchanging the item at OldItemIndex with its neighbour is its own
+            // inverse, undo and redo do the same
+            ApplySwapOperation(operation.ComponentClass, operation.Operation == OperationType.SwapDown,
+                operation.OldItemIndex.Value, report, operation.ParentName);
+        }
+
+        private void MoveComponentToIndex(ChangeObjectOperation operation, object newIndex, Report report)
+        {
+            if (newIndex == null)
+                throw new InvalidOperationException("UndoCue: no position recorded for " + OperationDescription(operation));
+            int targetIndex = Convert.ToInt32(newIndex, CultureInfo.InvariantCulture);
+            var section = GetParentSection(operation.ParentName, report);
+            var target = GetComponentByName(operation.ComponentName, report) as PrintPosItem;
+            if (target == null)
+                throw new InvalidOperationException("UndoCue: " + operation.ComponentName + " is not a section component");
+            int currentIndex = section.Components.IndexOf(target);
+            if (currentIndex < 0)
+                throw new InvalidOperationException("UndoCue: " + operation.ComponentName + " not found in section " +
+                    operation.ParentName);
+            if (targetIndex < 0 || targetIndex >= section.Components.Count)
+                throw new InvalidOperationException("UndoCue: position " + targetIndex.ToString(CultureInfo.InvariantCulture) +
+                    " out of range for " + operation.ComponentName + " (count " +
+                    section.Components.Count.ToString(CultureInfo.InvariantCulture) + ")");
+            section.Components.RemoveAt(currentIndex);
+            section.Components.Insert(targetIndex, target);
+        }
+
+        // Index where an undo/redo inserts a recreated item: an index out of range appends it
+        private static int ResolveInsertIndex(int? index, int count)
+        {
+            int value = index ?? 0;
+            if (value < 0 || value > count)
+                return count;
+            return value;
+        }
+
+        // Removes an item recreated by an operation that failed afterwards, so the report is left as
+        // it was before the operation and it can be retried (no duplicated or renamed item)
+        private static void DiscardItem(ReportItem target, Report report)
+        {
+            var printPosItem = target as PrintPosItem;
+            var section = target as Section;
+            if (printPosItem != null || section != null)
+            {
+                foreach (SubReport subreport in report.SubReports)
+                {
+                    if (section != null)
+                        subreport.Sections.RemoveAll(candidate => candidate == section);
+                    if (printPosItem != null)
+                    {
+                        foreach (Section candidateSection in subreport.Sections)
+                            candidateSection.Components.RemoveAll(candidate => candidate == printPosItem);
+                    }
+                }
+            }
+            var subReport = target as SubReport;
+            if (subReport != null)
+                report.SubReports.Remove(subReport);
+            var dataInfo = target as DataInfo;
+            if (dataInfo != null)
+                report.DataInfo.Remove(dataInfo);
+            var databaseInfo = target as DatabaseInfo;
+            if (databaseInfo != null)
+                report.DatabaseInfo.Remove(databaseInfo);
+            var param = target as Param;
+            if (param != null)
+            {
+                int index = report.Params.IndexOf(param);
+                if (index >= 0)
+                    report.Params.RemoveAt(index);
+            }
+            for (int i = report.Components.Count - 1; i >= 0; i--)
+            {
+                if (report.Components.Values[i] == target)
+                    report.Components.RemoveAt(i);
+            }
+        }
+
         private void ApplyOperation(ChangeObjectOperation operation, bool isUndo, Report report)
+        {
+            ReportItem created = null;
+            try
+            {
+                ApplyOperationItems(operation, isUndo, report, ref created);
+            }
+            catch
+            {
+                // Leave the report as it was before this operation: an item recreated by it is
+                // discarded, so the operation can be retried
+                if (created != null)
+                    DiscardItem(created, report);
+                throw;
+            }
+        }
+
+        private void ApplyOperationItems(ChangeObjectOperation operation, bool isUndo, Report report, ref ReportItem created)
         {
             ReportItem target = null;
             bool loadTarget = true;
@@ -236,17 +418,7 @@ namespace Reportman.Reporting
 
                 case OperationType.SwapDown:
                 case OperationType.SwapUp:
-                    if (operation.OldItemIndex == null)
-                    {
-                        throw new Exception("OldItemIndex required for swap");
-                    }
-                    ApplySwapOperation(
-                        operation.ComponentClass,
-                        operation.Operation == OperationType.SwapDown,
-                        Convert.ToInt32(operation.OldItemIndex),
-                        report,
-                        operation.ParentName
-                    );
+                    ApplySwap(operation, isUndo, report);
                     return;
 
                 case OperationType.Rename:
@@ -264,32 +436,42 @@ namespace Reportman.Reporting
                     if (isUndo)
                     {
                         loadTarget = false;
-                        // Undo remove must create the new element
-                        target = BaseReport.NewComponentByClassName(operation.ComponentClass);
-                        target.Report = report;
-                        target.Name = operation.ComponentName;
+                        // Undo remove must create the new element. It is assigned to created as
+                        // soon as it exists: ApplyOperation discards it if anything fails. An index
+                        // out of range appends it
+                        ReportItem parentCompo = null;
                         if (!string.IsNullOrEmpty(operation.ParentName))
                         {
-                            var parentCompo = GetComponentByName(operation.ParentName, report) as ReportItem;
-                            if (parentCompo == null)
-                                throw new Exception("Parent section name not found: " + operation.ParentName);
-                            if (parentCompo.ClassName == "TRPSECTION")
+                            parentCompo = GetComponentByName(operation.ParentName, report);
+                            if (!(parentCompo is Section) && !(parentCompo is SubReport))
+                                throw new InvalidOperationException("UndoCue: parent " + operation.ParentName +
+                                    " is not a section or a subreport");
+                        }
+                        target = BaseReport.NewComponentByClassName(operation.ComponentClass);
+                        created = target;
+                        target.Report = report;
+                        target.Name = operation.ComponentName;
+                        if (parentCompo != null)
+                        {
+                            if (parentCompo is Section)
                             {
-                                var parentSec = parentCompo as Section;
-                                var printPosItem = (PrintPosItem)target;
+                                var parentSec = (Section)parentCompo;
+                                var printPosItem = target as PrintPosItem;
+                                if (printPosItem == null)
+                                    throw new InvalidOperationException("UndoCue: " + operation.ComponentClass +
+                                        " can not be placed in section " + operation.ParentName);
                                 printPosItem.Section = parentSec;
-                                parentSec.Components.Insert(operation.OldItemIndex ?? 0, printPosItem);
+                                parentSec.Components.Insert(ResolveInsertIndex(operation.OldItemIndex, parentSec.Components.Count), printPosItem);
                             }
                             else
                             {
-                                var parentSub = GetComponentByName(operation.ParentName, report) as SubReport;
-                                if (parentSub == null)
-                                    throw new Exception("Parent section name not found: " + operation.ParentName);
-                                if (target.ClassName == "TRPSECTION")
-                                {
-                                    ((Section)target).SubReport = parentSub;
-                                }
-                                parentSub.Sections.Insert(operation.OldItemIndex ?? 0, (Section)target);
+                                var parentSub = (SubReport)parentCompo;
+                                var targetSection = target as Section;
+                                if (targetSection == null)
+                                    throw new InvalidOperationException("UndoCue: " + operation.ComponentClass +
+                                        " can not be placed in subreport " + operation.ParentName);
+                                targetSection.SubReport = parentSub;
+                                parentSub.Sections.Insert(ResolveInsertIndex(operation.OldItemIndex, parentSub.Sections.Count), targetSection);
                             }
                         }
                         else
@@ -298,16 +480,16 @@ namespace Reportman.Reporting
                             switch (target.ClassName)
                             {
                                 case "TRPDATAINFOITEM":
-                                    report.DataInfo.Insert(operation.OldItemIndex ?? 0, (DataInfo)target);
+                                    report.DataInfo.Insert(ResolveInsertIndex(operation.OldItemIndex, report.DataInfo.Count), (DataInfo)target);
                                     break;
                                 case "TRPDATABASEINFOITEM":
-                                    report.DatabaseInfo.Insert(operation.OldItemIndex ?? 0, (DatabaseInfo)target);
+                                    report.DatabaseInfo.Insert(ResolveInsertIndex(operation.OldItemIndex, report.DatabaseInfo.Count), (DatabaseInfo)target);
                                     break;
                                 case "TRPPARAM":
-                                    report.Params.Insert(operation.OldItemIndex ?? 0, (Param)target);
+                                    report.Params.Insert(ResolveInsertIndex(operation.OldItemIndex, report.Params.Count), (Param)target);
                                     break;
                                 case "TRPSUBREPORT":
-                                    report.SubReports.Insert(operation.OldItemIndex ?? 0, (SubReport)target);
+                                    report.SubReports.Insert(ResolveInsertIndex(operation.OldItemIndex, report.SubReports.Count), (SubReport)target);
                                     break;
                             }
                         }
@@ -444,36 +626,46 @@ namespace Reportman.Reporting
                 }
                 else
                 {
+                    // Redo add = re-create (assigned to created as soon as it exists, see the undo
+                    // of Remove)
                     target = BaseReport.NewComponentByClassName(operation.ComponentClass);
+                    created = target;
                     target.Report = report;
                     target.Name = operation.ComponentName;
                     report.Components[target.Name] = target;
                     if (parentSection != null)
                     {
-                        var targetPrintPosItem = (PrintPosItem)target;
-                        parentSection.Components.Insert(operation.OldItemIndex ?? 0, targetPrintPosItem);
+                        var targetPrintPosItem = target as PrintPosItem;
+                        if (targetPrintPosItem == null)
+                            throw new InvalidOperationException("UndoCue: " + operation.ComponentClass +
+                                " can not be placed in section " + operation.ParentName);
+                        parentSection.Components.Insert(ResolveInsertIndex(operation.OldItemIndex, parentSection.Components.Count), targetPrintPosItem);
                     }
                     else
                     {
                         if (parentSubreport != null)
                         {
-                            parentSubreport.Sections.Insert(operation.OldItemIndex ?? 0, (Section)target);
+                            var targetSection = target as Section;
+                            if (targetSection == null)
+                                throw new InvalidOperationException("UndoCue: " + operation.ComponentClass +
+                                    " can not be placed in subreport " + operation.ParentName);
+                            parentSubreport.Sections.Insert(ResolveInsertIndex(operation.OldItemIndex, parentSubreport.Sections.Count), targetSection);
                         }
                         else
                         {
                             switch (target.ClassName)
                             {
                                 case "TRPPARAM":
-                                    report.Params.Insert(operation.OldItemIndex ?? 0, (Param)target);
+                                    report.Params.Insert(ResolveInsertIndex(operation.OldItemIndex, report.Params.Count), (Param)target);
                                     break;
                                 case "TRPDATAINFOITEM":
-                                    report.DataInfo.Insert(operation.OldItemIndex ?? 0, (DataInfo)target);
+                                    report.DataInfo.Insert(ResolveInsertIndex(operation.OldItemIndex, report.DataInfo.Count), (DataInfo)target);
                                     break;
                                 case "TRPDATABASEINFOITEM":
-                                    report.DatabaseInfo.Insert(operation.OldItemIndex ?? 0, (DatabaseInfo)target);
+                                    report.DatabaseInfo.Insert(ResolveInsertIndex(operation.OldItemIndex, report.DatabaseInfo.Count), (DatabaseInfo)target);
                                     break;
                                 case "TRPSUBREPORT":
-                                    report.SubReports.Insert(operation.OldItemIndex ?? 0, (SubReport)target);
+                                    report.SubReports.Insert(ResolveInsertIndex(operation.OldItemIndex, report.SubReports.Count), (SubReport)target);
                                     break;
                                 default:
                                     throw new Exception("Class not found: " + target.ClassName);
@@ -483,17 +675,23 @@ namespace Reportman.Reporting
                 }
             }
 
-            if (!string.IsNullOrEmpty(operation.ParentName) && !string.IsNullOrEmpty(operation.OldParentName))
+            // Parent change (move between sections). Deletes recorded by older versions set the old
+            // parent equal to the parent: that is not a move, and moving the recreated component
+            // would append it at the end of its section (reversed order)
+            if (!string.IsNullOrEmpty(operation.ParentName) && !string.IsNullOrEmpty(operation.OldParentName) &&
+                !string.Equals(operation.ParentName, operation.OldParentName, StringComparison.OrdinalIgnoreCase))
             {
                 var newParentName = isUndo ? operation.OldParentName : operation.ParentName;
                 var oldParentName = isUndo ? operation.ParentName : operation.OldParentName;
                 var oldParentSection = GetComponentByName(oldParentName, report) as Section;
                 var newParentSection = GetComponentByName(newParentName, report) as Section;
                 if (oldParentSection == null || newParentSection == null) throw new Exception("Can not undo/redo");
-                var indexOld = oldParentSection.Components.IndexOf((PrintPosItem)target);
+                var movedItem = target as PrintPosItem;
+                var indexOld = movedItem == null ? -1 : oldParentSection.Components.IndexOf(movedItem);
                 if (indexOld < 0) throw new Exception("Component not found");
                 oldParentSection.Components.RemoveAt(indexOld);
-                newParentSection.Components.Add((PrintPosItem)target);
+                newParentSection.Components.Add(movedItem);
+                movedItem.Section = newParentSection;
             }
 
             ApplyPropertiesToObject(operation, (ReportItem)target, isUndo);
@@ -502,46 +700,147 @@ namespace Reportman.Reporting
         /// <summary>
         /// Applies the recorded property changes of an operation to the given report item, using the
         /// old values when undoing and the new values when redoing, by reflection over properties and fields.
+        /// A value that can not be converted to the type of its member is skipped: histories saved by
+        /// older designers may hold the text or units shown by the inspector instead of the model value.
         /// </summary>
         /// <param name="operation">The operation whose property changes are applied.</param>
         /// <param name="item">The report item to modify.</param>
         /// <param name="isUndo"><c>true</c> to apply the old values (undo); <c>false</c> to apply the new values (redo).</param>
         public void ApplyPropertiesToObject(ChangeObjectOperation operation, ReportItem item, bool isUndo)
         {
+            var itemType = item.GetType();
             foreach (var prop in operation.Properties)
             {
-                object value = (isUndo && operation.Operation != OperationType.Remove) ? prop.OldValue : prop.NewValue;
-                var propName = prop.PropertyName;
-                // Try to set as property first
-                var pi = item.GetType().GetProperty(propName, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
-                if (pi != null && pi.CanWrite)
+                object value;
+                if (isUndo && operation.Operation != OperationType.Remove)
                 {
-                    // Attempt conversion if necessary (basic conversion)
+                    value = prop.OldValue;
+                }
+                else
+                {
+                    value = prop.NewValue;
+                    // Remove keeps the removed values in NewValue, but some recorders (and the
+                    // histories they saved in .rep files) put them in OldValue: without this
+                    // fallback the item would be recreated empty
+                    if (operation.Operation == OperationType.Remove && value == null)
+                        value = prop.OldValue;
+                }
+                var propName = prop.PropertyName;
+                if (string.IsNullOrEmpty(propName))
+                    continue;
+                object converted;
+                // Try to set as property first
+                var pi = FindUndoProperty(itemType, propName);
+                if (pi != null && pi.CanWrite && TryConvertUndoValue(value, pi.PropertyType, out converted))
+                {
                     try
                     {
-                        var converted = ChangeTypeSafely(value, pi.PropertyType);
                         pi.SetValue(item, converted);
                         continue;
                     }
                     catch
                     {
-                        // ignore conversion error and try field
+                        // ignore the error and try field
                     }
                 }
 
-                // Try to set as field
-                var fi = item.GetType().GetField(propName, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
-                if (fi != null)
+                // Try to set as field. A property or field that is not found is ignored
+                var fi = FindUndoField(itemType, propName);
+                if (fi != null && !fi.IsInitOnly && TryConvertUndoValue(value, fi.FieldType, out converted))
                 {
-                    var converted = ChangeTypeSafely(value, fi.FieldType);
-                    fi.SetValue(item, converted);
-                }
-                else
-                {
-                    // If property/field not found, ignore or throw depending on your policy
-                    // throw new Exception($"Property or field '{propName}' not found on {item.GetType().FullName}");
+                    try
+                    {
+                        fi.SetValue(item, converted);
+                    }
+                    catch
+                    {
+                        // ignore the value, as for properties
+                    }
                 }
             }
+        }
+
+        // Public instance property by name, ignoring case: an exact match first, then the one
+        // declared by the most derived type (a property hidden with "new" is not ambiguous)
+        private static PropertyInfo FindUndoProperty(Type type, string name)
+        {
+            PropertyInfo found = null;
+            foreach (var candidate in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                if (candidate.GetIndexParameters().Length > 0)
+                    continue;
+                if (!string.Equals(candidate.Name, name, StringComparison.OrdinalIgnoreCase))
+                    continue;
+                if (found == null)
+                {
+                    found = candidate;
+                    continue;
+                }
+                bool candidateExact = string.Equals(candidate.Name, name, StringComparison.Ordinal);
+                bool foundExact = string.Equals(found.Name, name, StringComparison.Ordinal);
+                if ((candidateExact && !foundExact) ||
+                    (candidateExact == foundExact && found.DeclaringType.IsAssignableFrom(candidate.DeclaringType)))
+                    found = candidate;
+            }
+            return found;
+        }
+
+        private static FieldInfo FindUndoField(Type type, string name)
+        {
+            FieldInfo found = null;
+            foreach (var candidate in type.GetFields(BindingFlags.Public | BindingFlags.Instance))
+            {
+                if (!string.Equals(candidate.Name, name, StringComparison.OrdinalIgnoreCase))
+                    continue;
+                if (found == null || string.Equals(candidate.Name, name, StringComparison.Ordinal))
+                    found = candidate;
+            }
+            return found;
+        }
+
+        private static bool IsIntegralType(Type type)
+        {
+            return type.IsEnum || type == typeof(int) || type == typeof(long) || type == typeof(short) ||
+                type == typeof(byte) || type == typeof(sbyte) || type == typeof(uint) || type == typeof(ulong) ||
+                type == typeof(ushort);
+        }
+
+        private static bool IsFractionalNumber(object value)
+        {
+            if (value is double)
+            {
+                double d = (double)value;
+                return !double.IsNaN(d) && !double.IsInfinity(d) && Math.Floor(d) != d;
+            }
+            if (value is float)
+            {
+                float f = (float)value;
+                return !float.IsNaN(f) && !float.IsInfinity(f) && Math.Floor(f) != f;
+            }
+            if (value is decimal)
+            {
+                decimal m = (decimal)value;
+                return decimal.Truncate(m) != m;
+            }
+            return false;
+        }
+
+        // Converts an undo value to the type of the member that receives it. Returns false when it
+        // can not be converted, so the value is skipped instead of storing a wrong one: a null for a
+        // value type (older inspectors recorded null when a multiple selection had different values),
+        // a fractional number for an integer (units shown by the inspector, e.g. 2.54 cm for a width
+        // in twips) or a text that does not parse ("Left", "2.540").
+        private static bool TryConvertUndoValue(object value, Type targetType, out object converted)
+        {
+            converted = null;
+            if (value == null)
+                return !targetType.IsValueType || Nullable.GetUnderlyingType(targetType) != null;
+            if (IsIntegralType(targetType) && IsFractionalNumber(value))
+                return false;
+            converted = ChangeTypeSafely(value, targetType);
+            if (converted == null)
+                return !targetType.IsValueType || Nullable.GetUnderlyingType(targetType) != null;
+            return targetType.IsInstanceOfType(converted);
         }
 
         private static object ChangeTypeSafely(object value, Type targetType)
@@ -549,6 +848,25 @@ namespace Reportman.Reporting
             if (value == null) return null;
 
             var valueType = value.GetType();
+
+            // A copy: sharing the recorded list with the item would let later edits of the item
+            // change the value recorded in the operation
+            if (targetType == typeof(Strings) && value is Strings)
+                return ((Strings)value).Clone();
+
+            // A Variant saved in the report history (json) is read back as an object with its
+            // type and value
+            if (targetType == typeof(Variant) && value is Newtonsoft.Json.Linq.JObject)
+            {
+                try
+                {
+                    return ((Newtonsoft.Json.Linq.JObject)value).ToObject<Variant>();
+                }
+                catch
+                {
+                    // fall back to the generic conversion
+                }
+            }
 
             if (targetType.IsAssignableFrom(valueType)) return value;
 

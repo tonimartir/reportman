@@ -2570,6 +2570,7 @@ namespace Reportman.Designer
         private void msendtoback_Click(object sender, EventArgs e)
         {
             //
+            int groupId = 0;
             foreach (BandInfo binfo in SelectedItemsBands.Values)
             {
                 List<PrintPosItem> toremove = new List<PrintPosItem>();
@@ -2584,8 +2585,7 @@ namespace Reportman.Designer
                 }
                 foreach (PrintPosItem nitem in toremove)
                 {
-                    binfo.Section.Components.Remove(nitem);
-                    binfo.Section.Components.Add(nitem);
+                    MoveComponentToEnd(binfo.Section, nitem, OperationType.SwapDown, ref groupId);
                 }
                 ReDrawBand(binfo);
             }
@@ -2595,6 +2595,7 @@ namespace Reportman.Designer
         private void mbringtofront_Click(object sender, EventArgs e)
         {
             //
+            int groupId = 0;
             foreach (BandInfo binfo in SelectedItemsBands.Values)
             {
                 List<PrintPosItem> toremove = new List<PrintPosItem>();
@@ -2606,12 +2607,37 @@ namespace Reportman.Designer
                 }
                 foreach (PrintPosItem nitem in toremove)
                 {
-                    binfo.Section.Components.Remove(nitem);
-                    binfo.Section.Components.Add(nitem);
+                    MoveComponentToEnd(binfo.Section, nitem, OperationType.SwapUp, ref groupId);
                 }
                 ReDrawBand(binfo);
             }
             parentcontrol.Invalidate();
+        }
+
+        /// <summary>
+        /// Moves a component to the end of its section (drawn last) recording the undo operation
+        /// with its real positions before and after the move (<see cref="UndoCue.ItemIndexProperty"/>),
+        /// so undo puts it back where it was. All the moves of a command share one undo group.
+        /// </summary>
+        private void MoveComponentToEnd(Section section, PrintPosItem item, OperationType operationType, ref int groupId)
+        {
+            int oldIndex = section.Components.IndexOf(item);
+            if (oldIndex < 0 || oldIndex == section.Components.Count - 1)
+                return;
+            section.Components.RemoveAt(oldIndex);
+            section.Components.Add(item);
+            if (FReport?.UndoCue != null)
+            {
+                if (groupId <= 0)
+                    groupId = FReport.UndoCue.GetGroupId();
+                var op = new ChangeObjectOperation(operationType, groupId);
+                op.ComponentName = item.Name;
+                op.ComponentClass = item.ClassName;
+                op.ParentName = section.Name;
+                op.OldItemIndex = oldIndex;
+                op.AddProperty(UndoCue.ItemIndexProperty, PropertyType.Integer, oldIndex, section.Components.Count - 1);
+                FReport.UndoCue.AddOperation(op, FReport);
+            }
         }
 
         private void mhide_Click(object sender, EventArgs e)
