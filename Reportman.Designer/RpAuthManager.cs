@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -178,9 +179,9 @@ namespace Reportman.Designer
         /// </summary>
         public async Task<bool> LoginGoogleAsync()
         {
-            int port = 49152 + new Random().Next(16384);
+            int port = PickLoopbackPort();
             string redirectUri = "http://localhost:" + port + "/";
-            string state = Guid.NewGuid().ToString("N").Substring(0, 8);
+            string state = Guid.NewGuid().ToString("N");
             string authUrl =
                 "https://accounts.google.com/o/oauth2/v2/auth" +
                 "?response_type=code" +
@@ -192,7 +193,7 @@ namespace Reportman.Designer
             Log("Google OAuth: port=" + port);
             Process.Start(new ProcessStartInfo { FileName = authUrl, UseShellExecute = true });
 
-            string code = await WaitForOAuthCallbackAsync(port);
+            string code = await WaitForOAuthCallbackAsync(port, state);
             if (string.IsNullOrEmpty(code)) return false;
 
             return await ExchangeGoogleCodeAsync(code, redirectUri);
@@ -234,9 +235,9 @@ namespace Reportman.Designer
         /// </summary>
         public async Task<bool> LoginMicrosoftAsync()
         {
-            int port = 49152 + new Random().Next(16384);
+            int port = PickLoopbackPort();
             string redirectUri = "http://localhost:" + port + "/";
-            string state = Guid.NewGuid().ToString("N").Substring(0, 8);
+            string state = Guid.NewGuid().ToString("N");
             string authUrl =
                 "https://login.microsoftonline.com/common/oauth2/v2.0/authorize" +
                 "?response_type=code" +
@@ -248,7 +249,7 @@ namespace Reportman.Designer
             Log("Microsoft OAuth: port=" + port);
             Process.Start(new ProcessStartInfo { FileName = authUrl, UseShellExecute = true });
 
-            string code = await WaitForOAuthCallbackAsync(port);
+            string code = await WaitForOAuthCallbackAsync(port, state);
             if (string.IsNullOrEmpty(code)) return false;
 
             return await ExchangeMicrosoftCodeAsync(code, redirectUri);
@@ -310,7 +311,41 @@ namespace Reportman.Designer
 
         // ===== OAuth Loopback Callback Listener =====
 
-        private async Task<string> WaitForOAuthCallbackAsync(int port)
+        /// <summary>
+        /// Returns a random port of the dynamic range (49152-65535) that can really be opened on the
+        /// loopback: Windows reserves ranges of it for Hyper-V, WSL or Docker, and the login failed
+        /// when the listener landed on one of them.
+        /// </summary>
+        private static int PickLoopbackPort()
+        {
+            var random = new Random();
+            int port = 49152 + random.Next(16384);
+            for (int i = 0; i < 32; i++)
+            {
+                port = 49152 + random.Next(16384);
+                var probe = new TcpListener(IPAddress.Loopback, port);
+                try
+                {
+                    probe.Start();
+                    return port;
+                }
+                catch (SocketException)
+                {
+                }
+                finally
+                {
+                    probe.Stop();
+                }
+            }
+            return port;
+        }
+
+        /// <summary>
+        /// Waits for the identity provider to redirect the browser to the loopback listener and returns
+        /// the authorization code, or null on error, timeout or when the returned state is not
+        /// <paramref name="expectedState"/> (a redirect that does not belong to this login request).
+        /// </summary>
+        private async Task<string> WaitForOAuthCallbackAsync(int port, string expectedState)
         {
             var listener = new HttpListener();
             listener.Prefixes.Add("http://localhost:" + port + "/");
@@ -333,12 +368,15 @@ namespace Reportman.Designer
                     var context = await contextTask;
                     string code = context.Request.QueryString["code"];
                     string error = context.Request.QueryString["error"];
+                    string state = context.Request.QueryString["state"];
+                    if (string.IsNullOrEmpty(error) && !string.IsNullOrEmpty(code) && state != expectedState)
+                        error = "The response does not belong to this login request (state)";
 
                     // Send response to browser
                     string html;
                     if (!string.IsNullOrEmpty(error))
                     {
-                        html = "<html><body><h1>Login failed</h1><p>" + error + "</p></body></html>";
+                        html = "<html><body><h1>Login failed</h1><p>" + WebUtility.HtmlEncode(error) + "</p></body></html>";
                     }
                     else
                     {
