@@ -15,9 +15,10 @@ namespace Reportman.Reporting
     {
         /// <summary>
         /// Name of the property of a <see cref="OperationType.SwapUp"/>/<see cref="OperationType.SwapDown"/>
-        /// operation that moves a component to an arbitrary position of its section (bring to front /
-        /// send to back): its old and new values are the positions before and after the move. Swap
-        /// operations without it are adjacent swaps at <see cref="ChangeObjectOperation.OldItemIndex"/>.
+        /// operation that moves an item to an arbitrary position of its collection (a component in its
+        /// section, as bring to front / send to back do, a section in its subreport, a subreport, a
+        /// connection, a dataset or a parameter): its old and new values are the positions before and after
+        /// the move. Swap operations without it are adjacent swaps at <see cref="ChangeObjectOperation.OldItemIndex"/>.
         /// </summary>
         public const string ItemIndexProperty = "itemIndex";
 
@@ -51,6 +52,106 @@ namespace Reportman.Reporting
             UndoOperations.Add(op);
             // se pierde el redo al hacer una nueva operación
             RedoOperations.Clear();
+        }
+
+        /// <summary>
+        /// Moves a subreport, a section (inside its subreport), a connection, a dataset or a parameter one
+        /// position up or down in its collection. When the report has an undo history the move is recorded
+        /// as an adjacent swap, the format the Delphi designer records: a <see cref="OperationType.SwapUp"/> or
+        /// <see cref="OperationType.SwapDown"/> operation with the position before the move in
+        /// <see cref="ChangeObjectOperation.OldItemIndex"/> and, for a section, its subreport in
+        /// <see cref="ChangeObjectOperation.ParentName"/>. Without an undo history the report is only marked
+        /// as modified.
+        /// </summary>
+        /// <param name="report">The report that owns the item.</param>
+        /// <param name="item">The item to move.</param>
+        /// <param name="down"><c>true</c> to move the item one position down (towards the end of its
+        /// collection), <c>false</c> to move it one position up.</param>
+        /// <param name="groupId">The undo group of the move. When it is zero or negative a new group is
+        /// allocated and returned here, so the moves of one user action can share it.</param>
+        /// <returns><c>false</c>, changing nothing, when the item is not in its collection or is already at
+        /// that end of it.</returns>
+        public static bool SwapItem(BaseReport report, ReportItem item, bool down, ref int groupId)
+        {
+            if (report == null)
+                throw new ArgumentNullException(nameof(report));
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+            int increment = down ? 1 : -1;
+            int index;
+            string parentName = null;
+            if (item is SubReport subReport)
+            {
+                index = report.SubReports.IndexOf(subReport);
+                if (!CanSwap(index, increment, report.SubReports.Count))
+                    return false;
+                report.SubReports.Swap(index, index + increment);
+            }
+            else if (item is Section section)
+            {
+                SubReport owner = FindOwnerSubReport(report, section);
+                if (owner == null)
+                    return false;
+                index = owner.Sections.IndexOf(section);
+                if (!CanSwap(index, increment, owner.Sections.Count))
+                    return false;
+                owner.Sections.Swap(index, index + increment);
+                parentName = owner.Name;
+            }
+            else if (item is Param param)
+            {
+                index = report.Params.IndexOf(param);
+                if (!CanSwap(index, increment, report.Params.Count))
+                    return false;
+                report.Params.Swap(index, index + increment);
+            }
+            else if (item is DataInfo dataInfo)
+            {
+                index = report.DataInfo.IndexOf(dataInfo);
+                if (!CanSwap(index, increment, report.DataInfo.Count))
+                    return false;
+                report.DataInfo.Swap(index, index + increment);
+            }
+            else if (item is DatabaseInfo databaseInfo)
+            {
+                index = report.DatabaseInfo.IndexOf(databaseInfo);
+                if (!CanSwap(index, increment, report.DatabaseInfo.Count))
+                    return false;
+                report.DatabaseInfo.Swap(index, index + increment);
+            }
+            else
+                throw new ArgumentException("UndoCue: " + item.ClassName + " can not be moved up or down", nameof(item));
+
+            if (report.UndoCue == null)
+            {
+                report.Modified = true;
+                return true;
+            }
+            if (groupId <= 0)
+                groupId = report.UndoCue.GetGroupId();
+            var op = new ChangeObjectOperation(down ? OperationType.SwapDown : OperationType.SwapUp, groupId);
+            op.ComponentName = item.Name;
+            op.ComponentClass = item.ClassName;
+            op.ParentName = parentName;
+            op.OldItemIndex = index;
+            report.UndoCue.AddOperation(op, report);
+            return true;
+        }
+
+        private static bool CanSwap(int index, int increment, int count)
+        {
+            return index >= 0 && index < count && index + increment >= 0 && index + increment < count;
+        }
+
+        // Subreport whose sections contain the given section
+        private static SubReport FindOwnerSubReport(BaseReport report, Section section)
+        {
+            foreach (SubReport subreport in report.SubReports)
+            {
+                if (subreport.Sections.IndexOf(section) >= 0)
+                    return subreport;
+            }
+            return null;
         }
 
         /// <summary>
@@ -298,8 +399,8 @@ namespace Reportman.Reporting
             var indexProp = FindOperationProperty(operation, ItemIndexProperty);
             if (indexProp != null)
             {
-                // Bring to front / send to back: the component goes back to (undo) or again to
-                // (redo) its recorded position
+                // Move to a position (bring to front / send to back...): the item goes back to (undo)
+                // or again to (redo) its recorded position
                 MoveComponentToIndex(operation, isUndo ? indexProp.OldValue : indexProp.NewValue, report);
                 return;
             }
@@ -313,25 +414,66 @@ namespace Reportman.Reporting
                 operation.OldItemIndex.Value, report, operation.ParentName);
         }
 
+        // Moves the item of an operation to a position of its collection: a component in its section
+        // (the parent), a section in its subreport (the parent, or the subreport that contains it), a
+        // subreport, a connection, a dataset or a parameter in the report
         private void MoveComponentToIndex(ChangeObjectOperation operation, object newIndex, Report report)
         {
             if (newIndex == null)
                 throw new InvalidOperationException("UndoCue: no position recorded for " + OperationDescription(operation));
             int targetIndex = Convert.ToInt32(newIndex, CultureInfo.InvariantCulture);
-            var section = GetParentSection(operation.ParentName, report);
-            var target = GetComponentByName(operation.ComponentName, report) as PrintPosItem;
-            if (target == null)
-                throw new InvalidOperationException("UndoCue: " + operation.ComponentName + " is not a section component");
-            int currentIndex = section.Components.IndexOf(target);
+            var target = GetComponentByName(operation.ComponentName, report);
+            if (target is PrintPosItem printPosItem)
+            {
+                var parentSection = GetParentSection(operation.ParentName, report);
+                MoveInList(parentSection.Components, printPosItem, targetIndex, operation.ComponentName,
+                    "section " + operation.ParentName);
+            }
+            else if (target is Section section)
+            {
+                SubReport owner;
+                if (string.IsNullOrEmpty(operation.ParentName))
+                    owner = FindOwnerSubReport(report, section);
+                else
+                    owner = GetComponentByName(operation.ParentName, report) as SubReport;
+                if (owner == null)
+                    throw new InvalidOperationException("UndoCue: no parent subreport for the move of section " +
+                        operation.ComponentName + ": " + operation.ParentName);
+                MoveInList(owner.Sections, section, targetIndex, operation.ComponentName, "subreport " + owner.Name);
+            }
+            else if (target is SubReport subReport)
+                MoveInList(report.SubReports, subReport, targetIndex, operation.ComponentName, "the subreports");
+            else if (target is DataInfo dataInfo)
+                MoveInList(report.DataInfo, dataInfo, targetIndex, operation.ComponentName, "the datasets");
+            else if (target is DatabaseInfo databaseInfo)
+                MoveInList(report.DatabaseInfo, databaseInfo, targetIndex, operation.ComponentName, "the connections");
+            else if (target is Param param)
+            {
+                int currentIndex = report.Params.IndexOf(param);
+                CheckMoveRange(currentIndex, targetIndex, report.Params.Count, operation.ComponentName, "the parameters");
+                report.Params.RemoveAt(currentIndex);
+                report.Params.Insert(targetIndex, param);
+            }
+            else
+                throw new InvalidOperationException("UndoCue: " + operation.ComponentName + " (" + target.ClassName +
+                    ") can not be moved to a position");
+        }
+
+        private static void MoveInList<T>(List<T> list, T item, int targetIndex, string itemName, string collection)
+        {
+            int currentIndex = list.IndexOf(item);
+            CheckMoveRange(currentIndex, targetIndex, list.Count, itemName, collection);
+            list.RemoveAt(currentIndex);
+            list.Insert(targetIndex, item);
+        }
+
+        private static void CheckMoveRange(int currentIndex, int targetIndex, int count, string itemName, string collection)
+        {
             if (currentIndex < 0)
-                throw new InvalidOperationException("UndoCue: " + operation.ComponentName + " not found in section " +
-                    operation.ParentName);
-            if (targetIndex < 0 || targetIndex >= section.Components.Count)
+                throw new InvalidOperationException("UndoCue: " + itemName + " not found in " + collection);
+            if (targetIndex < 0 || targetIndex >= count)
                 throw new InvalidOperationException("UndoCue: position " + targetIndex.ToString(CultureInfo.InvariantCulture) +
-                    " out of range for " + operation.ComponentName + " (count " +
-                    section.Components.Count.ToString(CultureInfo.InvariantCulture) + ")");
-            section.Components.RemoveAt(currentIndex);
-            section.Components.Insert(targetIndex, target);
+                    " out of range for " + itemName + " (count " + count.ToString(CultureInfo.InvariantCulture) + ")");
         }
 
         // Index where an undo/redo inserts a recreated item: an index out of range appends it

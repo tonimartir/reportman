@@ -310,6 +310,7 @@ namespace Reportman.Designer
             fstructure.OnSelectionChange += new EventHandler(StructureSelectionChange);
 
             fdatadef.OnSelectionChange += new EventHandler(DataSelectionChange);
+            fdatadef.OnReportChange += new EventHandler(DataDefChange);
 
             subreportedit.AfterInsert += new EventHandler(AfterInsertDesign);
             subreportedit.AfterSelect += new EventHandler(AfterSelectDesign);
@@ -1041,6 +1042,13 @@ namespace Reportman.Designer
                 CurrentSubReport = FReport.SubReports[0];
             }
             subreportedit.SetSubReport(FReport, CurrentSubReport);
+            // Sections and subreports moved or deleted in the structure are undo steps
+            fundocue.RefreshList();
+        }
+        private void DataDefChange(object sender, EventArgs args)
+        {
+            // Connections, datasets and parameters moved or deleted are undo steps
+            fundocue.RefreshList();
         }
         private void StructureSelectionChange(object sender, EventArgs args)
         {
