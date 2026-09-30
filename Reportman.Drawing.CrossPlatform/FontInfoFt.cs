@@ -314,6 +314,16 @@ namespace Reportman.Drawing
             return result;
         }
 
+        /// <summary>
+        /// LA IDENTIDAD DE UNA CARA: fichero e índice, que es lo único que la identifica de verdad.
+        ///
+        /// El nombre de familia NO sirve: fontconfig puede contestar la misma familia con un fichero
+        /// distinto —lo dice el propio comentario de `OpenFont`— y de ahí salía que se midiera un
+        /// glifo de una cara contra otra. Ver `TGlyphPos.FaceKey`.
+        /// </summary>
+        internal static string ClaveDeCara(LogFontFt f) =>
+            f == null ? null : f.filename + "|" + f.faceIndex.ToString(CultureInfo.InvariantCulture);
+
         private static void InitLibrary()
         {
             Monitor.Enter(flag);
@@ -1212,6 +1222,9 @@ namespace Reportman.Drawing
                 }
             }
             data.PostcriptName = currentfont.postcriptname;
+            // LA CARA DE LA QUE SALEN ESTAS MÉTRICAS, para que quien tenga glifos pueda saber si son
+            // de ÉSTA o de otra que responde al mismo nombre de familia (ver TGlyphPos.FaceKey).
+            data.FaceKey = ClaveDeCara(currentfont);
             data.FontFamily = currentfont.familyname;
             data.FaceName = currentfont.familyname;
             data.Ascent = currentfont.ascent;
@@ -1695,13 +1708,20 @@ namespace Reportman.Drawing
                 dirs.Add(ndir);
         }
 
+        /// <summary>El de siempre, sin cara: se conserva porque hay llamadas que no la tienen.</summary>
+        public override double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC)
+            => GetGlyphWidth(pdfFont, fontData, glyph, charC, null);
+
         /// <summary>Returns the advance width of a specific glyph index scaled to 1000 units per em, mapping newly discovered ligature or contextual glyphs to a Private Use Area character so they are subsetted.</summary>
         /// <param name="pdfFont">The logical font the glyph belongs to.</param>
         /// <param name="fontData">The metric container that caches glyph widths.</param>
         /// <param name="glyph">The glyph index to measure.</param>
         /// <param name="charC">The base character associated with the glyph.</param>
+        /// <param name="faceKey">La cara con la que el conformado produjo el glifo (ver
+        /// <see cref="TGlyphPos.FaceKey"/>), o null si quien llama no la sabe. Sólo se usa para poder
+        /// DECIR quién emparejó mal cuando el índice no es de esta cara.</param>
         /// <returns>The advance width of the glyph.</returns>
-        public override double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC)
+        public override double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC, string faceKey)
         {
             double baseWidth = GetCharWidth(pdfFont, fontData, charC);
             if (fontData.glyphsInfo.IndexOfKey(glyph) >= 0)
@@ -1721,13 +1741,50 @@ namespace Reportman.Drawing
             char puaChar = (char)(0xE000 + fontData.glyphsInfo.Count);
             
             InitLibrary();
+            // LA CARA LA MANDA EL GLIFO, NO EL NOMBRE (30-09-2026). Un índice de glifo sólo tiene
+            // sentido en la cara que lo produjo. `fontData` se resolvió por NOMBRE de familia, y un
+            // nombre no basta para volver al mismo fichero: fontconfig puede contestar la misma
+            // familia con otro —lo dice el comentario de `OpenFont`—. Cuando el conformado nos dice
+            // con qué cara conformó, se usa ÉSA.
+            //
+            // Sin esto, un glifo de una fuente pedido a otra daba `FT_Err_Invalid_Argument` y la
+            // factura no se imprimía: pasó imprimiendo una de TicketBAI de Gipuzkoa, con el índice
+            // 5043 pedido a LiberationSans-Regular, que sólo tiene 2620 glifos.
             LogFontFt cfont = (LogFontFt)fontData.LogFont;
+            if (!string.IsNullOrEmpty(faceKey) && faceKey != ClaveDeCara(cfont))
+            {
+                int corte = faceKey.LastIndexOf('|');
+                if (corte > 0 && int.TryParse(faceKey.Substring(corte + 1), NumberStyles.Integer,
+                                              CultureInfo.InvariantCulture, out int indiceCara))
+                {
+                    LogFontFt suya = GetOrAddLogFont(faceKey.Substring(0, corte), indiceCara);
+                    // Si no se puede abrir la suya se sigue con la de antes: el guardián de abajo
+                    // dirá lo que pasa, que es mejor que cambiar un fallo por otro.
+                    if (suya != null) cfont = suya;
+                }
+            }
             cfont.OpenFont();
 
             Monitor.Enter(flag);
             double awidth;
             try
             {
+                // EL GLIFO TIENE QUE SER DE ESTA CARA (30-09-2026). Si no lo es, FreeType contesta
+                // `FT_Err_Invalid_Argument` a secas y esa excepción no lleva a ningún sitio: costó una
+                // noche averiguar que era un índice 5043 pedido a LiberationSans-Regular, que sólo
+                // tiene 2620 glifos, imprimiendo una factura de TicketBAI de Gipuzkoa. Aquí se dice
+                // TODO lo que hace falta para saber quién emparejó mal, a la primera.
+                if (glyph < 0 || glyph >= cfont.ftface->num_glyphs.ToInt64())
+                    throw new Exception(
+                        "El glifo " + glyph.ToString(CultureInfo.InvariantCulture) + " no es de esta cara: «"
+                        + cfont.filename + "» (cara " + cfont.iface.ToString(CultureInfo.InvariantCulture)
+                        + ", familia «" + cfont.familyname + "») sólo tiene "
+                        + cfont.ftface->num_glyphs.ToInt64().ToString(CultureInfo.InvariantCulture) + " glifos. Viene del caracter U+"
+                        + ((int)charC).ToString("X4") + ". Cara pedida por el conformado: «"
+                        + (faceKey ?? "(ninguna)") + "»; cara de las métricas: «"
+                        + (fontData.FaceKey ?? "(ninguna)") + "». "
+                        + "Un índice de glifo sólo vale para la cara que lo produjo, y un NOMBRE de "
+                        + "familia no basta para volver a ella: ver TGlyphPos.FaceKey.");
                 CheckFreeType(FT.FT_Load_Glyph(cfont.ftface, (uint)glyph, FT_LOAD.FT_LOAD_NO_SCALE));
                 var aglyph = cfont.ftface->glyph;
                 long advanceWidth = aglyph->metrics.horiAdvance.ToInt64();
@@ -2140,6 +2197,9 @@ namespace Reportman.Drawing
                                         {
                                             pos[k].Cluster += tramo.Inicio;
                                             pos[k].FontFamily = familia;
+                                            // Y LA CARA, que es lo que de verdad la identifica: el nombre
+                                            // puede no volver al mismo fichero (ver TGlyphPos.FaceKey).
+                                            pos[k].FaceKey = reserva != null ? reserva.Item2.FaceKey : tempAdata.FaceKey;
                                         }
                                         acumuladas.AddRange(pos);
                                     }
@@ -2160,6 +2220,8 @@ namespace Reportman.Drawing
                                     // que se dibujó su tramo, y esa manda.
                                     if (string.IsNullOrEmpty(positions[k].FontFamily))
                                         positions[k].FontFamily = familiaDeLasPosiciones;
+                                    if (string.IsNullOrEmpty(positions[k].FaceKey))
+                                        positions[k].FaceKey = tempAdata.FaceKey;
                                     positions[k].FontSize = (float)activeSize;
                                     positions[k].HasFontSize = Seg.HasFontSize;
                                     positions[k].Color = Seg.Color;
