@@ -1316,11 +1316,21 @@ namespace Reportman.Drawing
                 int pos = limites.BinarySearch(c);
                 int fin = (pos >= 0 && pos + 1 < limites.Count) ? limites[pos + 1] : texto.Length;
                 int largo = fin - c;
-                // DOS CAUTELAS, porque una atribución equivocada saldría en el texto del PDF: de uno
-                // a cuatro caracteres —«ffi» es la ligadura más larga que se ve— y sin espacios en
-                // medio, que una sustitución nunca los cruza. Lo que no pase por las dos se queda
-                // como estaba, que es el comportamiento de siempre.
-                if (largo < 1 || largo > 4)
+                // TRES CAUTELAS, porque una atribución equivocada saldría en el texto del PDF, y eso
+                // es PEOR que no atribuir nada. Lo que no pase las tres se queda como estaba, que es
+                // el comportamiento de siempre.
+                //
+                // 1. De uno a cuatro caracteres: «ffi» es la ligadura más larga que se ve.
+                // 2. Sin espacios en medio, que una sustitución nunca los cruza.
+                // 3. Y LA QUE DE VERDAD IMPORTA: que el primer carácter del tramo sea el que el
+                //    conformador dice. `CharCode` es su propia palabra —el `text[cluster]` de SU
+                //    texto—, así que si al indexar `lInfo.Text` no sale lo mismo, el cluster no
+                //    apunta donde creemos y no hay nada que atribuir. Pasa con el texto que llega en
+                //    varios tramos (HTML), donde el cluster se corrige con el inicio del tramo: sin
+                //    esta comprobación el PDF declaraba letras cambiadas, y el texto extraído de un
+                //    listado de contabilidad dejaba de poder buscarse. Se vio en tres pruebas del
+                //    papel —`SumasSaldos` y `ExtractoCuentas`— y en las DOS plataformas.
+                if (largo < 1 || largo > 4 || texto[c] != glifos[i].CharCode)
                     continue;
                 bool limpio = true;
                 for (int k = c; k < fin; k++)
