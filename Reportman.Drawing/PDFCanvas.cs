@@ -1290,7 +1290,10 @@ namespace Reportman.Drawing
 
                 // Llamadas auxiliares para compatibilidad
                 InfoProvider.GetCharWidth(pdffont, adata, g.CharCode);
-                InfoProvider.GetGlyphWidth(pdffont, adata, g.GlyphIndex, g.CharCode);
+                // CON LA CARA con la que se conformó: si el índice no es de la cara que el nombre de
+                // familia acaba resolviendo, el proveedor lo dice en claro en vez de dejar que FreeType
+                // conteste `FT_Err_Invalid_Argument` (ver TGlyphPos.FaceKey).
+                InfoProvider.GetGlyphWidth(pdffont, adata, g.GlyphIndex, g.CharCode, g.FaceKey);
 
                 // Calcular posiciones PDF
                 double absY = posY - g.YOffset;

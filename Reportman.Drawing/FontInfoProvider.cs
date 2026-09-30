@@ -85,6 +85,23 @@ namespace Reportman.Drawing
         /// </summary>
         public string FontFamily;
         /// <summary>
+        /// THE FACE THIS GLYPH WAS ACTUALLY SHAPED WITH: "file|faceIndex", or null/empty when the
+        /// shaper does not report it (the Windows/DirectWrite path leaves it empty today).
+        ///
+        /// Why it exists (30-09-2026). <see cref="FontFamily"/> is a NAME, and a name is not enough
+        /// to get back to the same file: fontconfig can answer the same family with a different
+        /// file, and the cross-platform fallback already refuses a substitute whose name does not
+        /// round-trip (see the "viaje de vuelta" check in FontInfoFt). Anywhere the round-trip is
+        /// not guaranteed, the writer could ask for a glyph index produced by one face against a
+        /// different face, and FreeType answers FT_Err_Invalid_Argument for an index out of range —
+        /// which is how a Gipuzkoa TicketBAI invoice failed to print: glyph 5043 asked of
+        /// LiberationSans-Regular, which only has 2620.
+        ///
+        /// Carrying the face makes that pairing impossible by construction instead of relying on a
+        /// name surviving a round-trip. Consumers that do not understand it just ignore it.
+        /// </summary>
+        public string FaceKey;
+        /// <summary>
         /// Whether the glyph is rendered bold.
         /// </summary>
         public bool Bold;
@@ -243,6 +260,13 @@ namespace Reportman.Drawing
         /// Character encoding used by the font.
         /// </summary>
         public string Encoding;
+        /// <summary>
+        /// THE FACE THESE METRICS CAME FROM: "file|faceIndex", or null when the provider does not
+        /// report it. Same reason as <see cref="TGlyphPos.FaceKey"/>: it lets a caller tell whether
+        /// the glyphs it is holding were shaped with THIS face or with another one that happens to
+        /// answer to the same family name.
+        /// </summary>
+        public string FaceKey;
         /// <summary>
         /// Core font metrics: ascent, descent, leading, cap height, flags, weight and height.
         /// </summary>
@@ -423,6 +447,20 @@ namespace Reportman.Drawing
         /// <param name="charC">The source character the glyph corresponds to.</param>
         /// <returns>The advance width of the glyph.</returns>
         public abstract double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC);
+        /// <summary>
+        /// THE SAME, BUT SAYING WHICH FACE THE GLYPH CAME FROM (30-09-2026).
+        ///
+        /// <paramref name="faceKey"/> is <see cref="TGlyphPos.FaceKey"/>: the face the shaper
+        /// actually used, as "file|faceIndex". A provider that can honour it must measure the glyph
+        /// against THAT face instead of against whatever <paramref name="fontData"/> resolves to by
+        /// name — see the comment on <see cref="TGlyphPos.FaceKey"/> for why a name is not enough.
+        ///
+        /// It is VIRTUAL and falls back to the old overload on purpose: a provider that does not
+        /// know about faces keeps working exactly as before, and so does a caller that has no face
+        /// to report.
+        /// </summary>
+        public virtual double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC, string faceKey)
+            => GetGlyphWidth(pdfFont, fontData, glyph, charC);
         /// <summary>
         /// Measures the given text with the specified font and layout options, updating
         /// <paramref name="Rect"/> with the required bounds.
