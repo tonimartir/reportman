@@ -390,10 +390,22 @@ namespace Reportman.Reporting.Design.Json
             };
         }
 
+        /// <summary>
+        /// The Newtonsoft settings every JSON form of a <see cref="Report"/> is written and read with:
+        /// camelCase names (the shape the web designer and the ERP API exchange), nulls omitted,
+        /// unknown members ignored and reference loops cut. Shared so that every host that moves
+        /// a report as JSON (the AI API, Reportman.Server) produces the same document.
+        /// </summary>
+        public static JsonSerializerSettings ReportJsonSettings => ReportSerializerSettings;
+
         private static JsonSerializerSettings CreateReportSerializerSettings()
         {
             return new JsonSerializerSettings
             {
+                // camelCase on output: the TypeScript model reads `subReports`, `dataInfo`, `undoCue`…
+                // Newtonsoft matches names case-insensitively on input, so PascalCase documents
+                // written before this change still load.
+                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
