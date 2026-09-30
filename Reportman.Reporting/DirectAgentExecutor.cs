@@ -41,6 +41,8 @@ namespace Reportman.Reporting
 
         /// <summary>Bearer JWT for logged-in user calls.</summary>
         public string Token { get; set; }
+        /// <summary>Install id the Bearer token is bound to; forwarded to the HTTP fallback.</summary>
+        public string InstallId { get; set; }
 
         /// <summary>Identifier of the database on the Hub side.</summary>
         public long HubDatabaseId { get; set; }
@@ -331,6 +333,7 @@ namespace Reportman.Reporting
             _inner.BaseUrl = BaseUrl;
             _inner.ApiKey = ApiKey;
             _inner.Token = Token;
+            _inner.InstallId = InstallId;
             _inner.HubDatabaseId = HubDatabaseId;
         }
 

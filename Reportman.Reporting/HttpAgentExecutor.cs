@@ -32,6 +32,12 @@ namespace Reportman.Reporting
         /// Bearer token for authentication (alternative to ApiKey)
         /// </summary>
         public string Token { get; set; }
+        /// <summary>
+        /// Install id of the caller (the browser fingerprint or the machine id), sent as
+        /// <c>X-Reportman-WebInstallId</c>: the API binds a Bearer token to it, so a Token without
+        /// it does not identify anyone.
+        /// </summary>
+        public string InstallId { get; set; }
 
         /// <summary>
         /// Hub Database Id - identifies the database on the remote agent
@@ -117,6 +123,10 @@ namespace Reportman.Reporting
             {
                 _httpClient.DefaultRequestHeaders.Authorization = 
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Token);
+            }
+            if (!string.IsNullOrEmpty(InstallId))
+            {
+                _httpClient.DefaultRequestHeaders.Add("X-Reportman-WebInstallId", InstallId);
             }
 
             var url = BaseUrl.TrimEnd('/') + "/api/agent/execute";
