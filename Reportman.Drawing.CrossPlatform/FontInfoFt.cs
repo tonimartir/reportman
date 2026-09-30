@@ -1189,31 +1189,80 @@ namespace Reportman.Drawing
         public void FillFontData(PDFFont pdfFont, TTFontData data, string content)
         {
             InitLibrary();
-
-
-
             SelectFont(pdfFont, content, false);
             if (currentfont == null)
                 throw new Exception("No font available for " + pdfFont.GetFontFamily());
-
+            RellenarLasMetricas(pdfFont, data, currentfont);
+        }
+        /// <summary>
+        /// LAS MÉTRICAS DE LA CARA QUE SE PIDE, SIN PASAR POR EL NOMBRE (30-09-2026).
+        ///
+        /// Aquí no se elige fuente: la cara viene dada. Existe porque un índice de glifo sólo vale
+        /// en la cara que lo produjo, y el conformado dibuja cada tramo con la que lo cubre: esos
+        /// glifos necesitan su propio contenedor —su fichero y su índice de cara— o acaban en el
+        /// subconjunto de la fuente equivocada. Ver `TGlyphPos.FaceKey`.
+        /// </summary>
+        /// <param name="pdfFont">La fuente lógica de la que viene el tramo.</param>
+        /// <param name="data">El contenedor de métricas a llenar.</param>
+        /// <param name="faceKey">La cara, como `TGlyphPos.FaceKey`: «fichero|índice».</param>
+        /// <returns>true si la ha llenado; false si la clave no nombra una cara que se pueda abrir,
+        /// y entonces quien llama sigue con la fuente que resolvió el nombre.</returns>
+        public override bool FillFontDataForFace(PDFFont pdfFont, TTFontData data, string faceKey)
+        {
+            InitLibrary();
+            LogFontFt cara = CaraDeLaClave(faceKey);
+            if (cara == null)
+                return false;
+            RellenarLasMetricas(pdfFont, data, cara);
+            return true;
+        }
+        /// <summary>
+        /// La cara que nombra una clave «fichero|índice» (ver `TGlyphPos.FaceKey`), o null si la
+        /// clave no dice nada. Una sola vez porque la piden dos sitios: medir un glifo contra su
+        /// cara, y darle a esa cara su propio contenedor de métricas.
+        /// </summary>
+        /// <param name="faceKey">La clave de la cara, o null/vacía si no se sabe.</param>
+        /// <returns>La cara, o null.</returns>
+        private static LogFontFt CaraDeLaClave(string faceKey)
+        {
+            if (string.IsNullOrEmpty(faceKey))
+                return null;
+            int corte = faceKey.LastIndexOf('|');
+            if (corte <= 0)
+                return null;
+            if (!int.TryParse(faceKey.Substring(corte + 1), NumberStyles.Integer,
+                              CultureInfo.InvariantCulture, out int indiceCara))
+                return null;
+            return GetOrAddLogFont(faceKey.Substring(0, corte), indiceCara);
+        }
+        /// <summary>
+        /// Las métricas de una cara ya elegida. Es el cuerpo de <see cref="FillFontData(PDFFont,TTFontData,string)"/> desde que
+        /// la cara está decidida, aparte para que también pueda llenarse la de un tramo que se
+        /// conformó con otra.
+        /// </summary>
+        /// <param name="pdfFont">La fuente lógica pedida, que decide el sufijo del nombre PostScript.</param>
+        /// <param name="data">El contenedor de métricas a llenar.</param>
+        /// <param name="cara">La cara de la que salen las métricas.</param>
+        private void RellenarLasMetricas(PDFFont pdfFont, TTFontData data, LogFontFt cara)
+        {
             data.IsUnicode = true;
-            if (!currentfont.type1)
+            if (!cara.type1)
             {
                 Monitor.Enter(flag);
                 try
                 {
                     if (data.FontData == null)
                     {
-                        //if (FontStreams.IndexOfKey(currentfont.keyname) >= 0)
+                        //if (FontStreams.IndexOfKey(cara.keyname) >= 0)
                         //{
                         //    data.FontData = new AdvFontData();
-                        //    data.FontData.Data = FontStreams[currentfont.keyname].ToArray();
+                        //    data.FontData.Data = FontStreams[cara.keyname].ToArray();
                         //}
-                        MemoryStream nstream = StreamUtil.FileToMemoryStream(currentfont.filename);
+                        MemoryStream nstream = StreamUtil.FileToMemoryStream(cara.filename);
                         data.FontData = new AdvFontData();
                         data.FontData.Data = nstream.ToArray();
-                        if(!FontStreams.ContainsKey(currentfont.keyname))
-                            FontStreams.Add(currentfont.keyname, nstream);
+                        if(!FontStreams.ContainsKey(cara.keyname))
+                            FontStreams.Add(cara.keyname, nstream);
                     }
                 }
                 finally
@@ -1221,16 +1270,16 @@ namespace Reportman.Drawing
                     Monitor.Exit(flag);
                 }
             }
-            data.PostcriptName = currentfont.postcriptname;
+            data.PostcriptName = cara.postcriptname;
             // LA CARA DE LA QUE SALEN ESTAS MÉTRICAS, para que quien tenga glifos pueda saber si son
             // de ÉSTA o de otra que responde al mismo nombre de familia (ver TGlyphPos.FaceKey).
-            data.FaceKey = ClaveDeCara(currentfont);
-            data.FontFamily = currentfont.familyname;
-            data.FaceName = currentfont.familyname;
-            data.Ascent = currentfont.ascent;
-            data.Descent = currentfont.descent;
-            data.Leading = currentfont.leading;
-            data.Height = currentfont.height > 0 ? currentfont.height : currentfont.ascent - currentfont.descent + currentfont.leading;
+            data.FaceKey = ClaveDeCara(cara);
+            data.FontFamily = cara.familyname;
+            data.FaceName = cara.familyname;
+            data.Ascent = cara.ascent;
+            data.Descent = cara.descent;
+            data.Leading = cara.leading;
+            data.Height = cara.height > 0 ? cara.height : cara.ascent - cara.descent + cara.leading;
 
             // Override with OS/2 table metrics to match DirectWrite/GDI
             if (data.FontData != null && data.FontData.Data != null)
@@ -1239,7 +1288,7 @@ namespace Reportman.Drawing
                 if (os2.Found)
                 {
                     // Use same scaling as InitLibrary: value * convfactor (where convfactor = 1000/unitsPerEM)
-                    double cf = currentfont.convfactor;
+                    double cf = cara.convfactor;
 
                     // DirectWrite checks fsSelection bit 7 (USE_TYPO_METRICS):
                     //   When set: uses sTypoAscender/sTypoDescender/sTypoLineGap for everything
@@ -1265,33 +1314,33 @@ namespace Reportman.Drawing
                         //   Height from hhea table (matches GDI GetLineSpacing), keep original FreeType value
                         data.Ascent = (int)Math.Round(cf * os2.usWinAscent);
                         data.Descent = -(int)Math.Round(cf * os2.usWinDescent);
-                        // data.Height stays as currentfont.height (hhea-based, already set above)
+                        // data.Height stays as cara.height (hhea-based, already set above)
                         data.Leading = data.Height - data.Ascent + data.Descent;
                     }
-                    Console.WriteLine($"[FT-FillFontData-OS2] Font={currentfont.familyname}, UseTypo={os2.UseTypoMetrics}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
+                    Console.WriteLine($"[FT-FillFontData-OS2] Font={cara.familyname}, UseTypo={os2.UseTypoMetrics}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
                 }
                 else
                 {
-                    Console.WriteLine($"[FT-FillFontData-hhea] Font={currentfont.familyname}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
+                    Console.WriteLine($"[FT-FillFontData-hhea] Font={cara.familyname}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
                 }
             }
-            data.CapHeight = currentfont.Capheight;
+            data.CapHeight = cara.Capheight;
             data.Encoding = "WinAnsiEncoding";
             data.FontWeight = 0;
-            data.MaxWidth = currentfont.MaxWidth;
-            data.AvgWidth = currentfont.avCharWidth;
-            data.HaveKerning = currentfont.havekerning;
+            data.MaxWidth = cara.MaxWidth;
+            data.AvgWidth = cara.avCharWidth;
+            data.HaveKerning = cara.havekerning;
             data.StemV = 0;
             data.FontStretch = "/Normal";
-            data.FontBBox = currentfont.BBox;
-            data.LogFont = currentfont;
-            if (currentfont.italic)
+            data.FontBBox = cara.BBox;
+            data.LogFont = cara;
+            if (cara.italic)
                 data.ItalicAngle = -15;
             else
                 data.ItalicAngle = 0;
-            data.StyleName = currentfont.stylename;
+            data.StyleName = cara.stylename;
             data.Flags = 32;
-            if (currentfont.fixedpitch)
+            if (cara.fixedpitch)
                 data.Flags = data.Flags + 1;
             if (pdfFont.Bold)
                 data.PostcriptName = data.PostcriptName + ",Bold";
@@ -1302,7 +1351,7 @@ namespace Reportman.Drawing
                 else
                     data.PostcriptName = data.PostcriptName + ",Italic";
             }
-            data.Type1 = currentfont.type1;
+            data.Type1 = cara.type1;
             // Assign widths list
             Monitor.Enter(WidthsCache);
             try
@@ -1750,18 +1799,18 @@ namespace Reportman.Drawing
             // Sin esto, un glifo de una fuente pedido a otra daba `FT_Err_Invalid_Argument` y la
             // factura no se imprimía: pasó imprimiendo una de TicketBAI de Gipuzkoa, con el índice
             // 5043 pedido a LiberationSans-Regular, que sólo tiene 2620 glifos.
+            //
+            // Con `PDFCanvas` pidiendo el contenedor de la cara (ver `DataForFace`) esto ya no
+            // debería hacer nada: el emisor llega con las métricas de la cara buena. Se queda porque
+            // hay más caminos hasta aquí y porque medir contra la cara equivocada es un fallo
+            // silencioso —un ancho malo— cuando no revienta.
             LogFontFt cfont = (LogFontFt)fontData.LogFont;
             if (!string.IsNullOrEmpty(faceKey) && faceKey != ClaveDeCara(cfont))
             {
-                int corte = faceKey.LastIndexOf('|');
-                if (corte > 0 && int.TryParse(faceKey.Substring(corte + 1), NumberStyles.Integer,
-                                              CultureInfo.InvariantCulture, out int indiceCara))
-                {
-                    LogFontFt suya = GetOrAddLogFont(faceKey.Substring(0, corte), indiceCara);
-                    // Si no se puede abrir la suya se sigue con la de antes: el guardián de abajo
-                    // dirá lo que pasa, que es mejor que cambiar un fallo por otro.
-                    if (suya != null) cfont = suya;
-                }
+                // Si no se puede abrir la suya se sigue con la de antes: el guardián de abajo dirá
+                // lo que pasa, que es mejor que cambiar un fallo por otro.
+                LogFontFt suya = CaraDeLaClave(faceKey);
+                if (suya != null) cfont = suya;
             }
             cfont.OpenFont();
 
