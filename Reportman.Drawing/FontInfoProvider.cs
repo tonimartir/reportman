@@ -365,6 +365,19 @@ namespace Reportman.Drawing
         /// </summary>
         public SortedList<int, int> GlyphMap;
         /// <summary>
+        /// THE TEXT A GLYPH CAME FROM, for the glyphs that stand for more than one character
+        /// (30-09-2026) — a ligature such as "fi" is ONE glyph with TWO characters behind it.
+        ///
+        /// It exists for the /ToUnicode CMap, which is what makes a PDF readable, searchable and
+        /// copyable. Without it a ligature glyph has no character to point at: the provider invents
+        /// a private-use code point for it so it gets subsetted, and the CMap then claims the glyph
+        /// IS that code point, so the text comes back out with a U+E0xx where the "fi" was.
+        ///
+        /// Only the clear case is recorded — one glyph, several characters. Empty for everything
+        /// else, and the CMap falls back to the character the glyph is catalogued under.
+        /// </summary>
+        public Dictionary<int, string> GlyphText = new Dictionary<int, string>();
+        /// <summary>
         /// Maps characters to their advance widths.
         /// </summary>
         public SortedList<char, double> Widths;

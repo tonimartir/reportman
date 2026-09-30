@@ -1258,6 +1258,75 @@ namespace Reportman.Drawing
             return aresult;
         }
         /// <summary>
+        /// EL TEXTO DEL QUE SALE CADA GLIFO, cuando no es un solo carácter (30-09-2026).
+        ///
+        /// Una ligadura —«fi», «fl», «ffi»— es UN glifo con DOS o más caracteres detrás, y el
+        /// conformador sólo sabe decir uno: <see cref="TGlyphPos.CharCode"/> es el primero del
+        /// cluster. Al glifo de la ligadura no le corresponde ningún carácter, así que el proveedor
+        /// le inventa uno de uso privado para que entre en el subconjunto, y el CMap de ToUnicode
+        /// acaba declarando que el glifo ES ese U+E0xx: el texto extraído del PDF se queda sin la
+        /// «fi». En una factura eso significa que el identificativo de TicketBAI no se puede leer
+        /// del papel, y como lleva letras al azar, falla una vez de cada tantas —las que toca una
+        /// pareja que liga—.
+        ///
+        /// El cluster de HarfBuzz (y el de DirectWrite) dice de qué parte del texto viene cada
+        /// glifo. Aquí se resuelve SÓLO el caso claro: un glifo con varios caracteres. Si un
+        /// carácter se ha partido en varios glifos no hay una cadena que atribuirle a cada uno, y se
+        /// deja como estaba.
+        /// </summary>
+        /// <param name="lInfo">La línea conformada.</param>
+        /// <returns>Por cada glifo, el texto del que sale, o null cuando es un solo carácter y el
+        /// camino de siempre ya acierta.</returns>
+        private static string[] TextoDeCadaGlifo(LineInfo lInfo)
+        {
+            List<TGlyphPos> glifos = lInfo.Glyphs;
+            string texto = lInfo.Text;
+            string[] salida = new string[glifos.Count];
+            if (string.IsNullOrEmpty(texto))
+                return salida;
+            // LOS LÍMITES SE SACAN DE LOS VALORES, NO DEL ORDEN DE LOS GLIFOS: así da igual que la
+            // escritura vaya de derecha a izquierda, donde los clusters van decreciendo. El final de
+            // un cluster es el principio del siguiente.
+            List<int> limites = new List<int>();
+            Dictionary<int, int> cuantos = new Dictionary<int, int>();
+            for (int i = 0; i < glifos.Count; i++)
+            {
+                int c = glifos[i].LineCluster;
+                if (c < 0 || c >= texto.Length)
+                    continue;
+                if (cuantos.ContainsKey(c))
+                    cuantos[c] = cuantos[c] + 1;
+                else
+                {
+                    cuantos[c] = 1;
+                    limites.Add(c);
+                }
+            }
+            limites.Sort();
+            for (int i = 0; i < glifos.Count; i++)
+            {
+                int c = glifos[i].LineCluster;
+                if (c < 0 || c >= texto.Length || cuantos[c] != 1)
+                    continue;
+                int pos = limites.BinarySearch(c);
+                int fin = (pos >= 0 && pos + 1 < limites.Count) ? limites[pos + 1] : texto.Length;
+                int largo = fin - c;
+                // DOS CAUTELAS, porque una atribución equivocada saldría en el texto del PDF: una
+                // ligadura son dos, tres o cuatro caracteres —«ffi» es la más larga que se ve—, y
+                // nunca se salta un espacio. Lo que no pase por las dos se queda como estaba, que es
+                // el comportamiento de siempre.
+                if (largo < 2 || largo > 4)
+                    continue;
+                bool limpio = true;
+                for (int k = c; k < fin; k++)
+                    if (char.IsWhiteSpace(texto[k]))
+                        limpio = false;
+                if (limpio)
+                    salida[i] = texto.Substring(c, largo);
+            }
+            return salida;
+        }
+        /// <summary>
         /// Emits per-glyph PDF text operators from shaped glyph data, positioning each glyph with its own
         /// text matrix and switching font and color as inline styling changes, then restoring the original font.
         /// </summary>
@@ -1299,6 +1368,8 @@ namespace Reportman.Drawing
             string recursoEmitido = Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold,
                 Font.GetFontFamilyKey(), Font.Style, File.PDFConformance);
             int tamanoEmitido = Font.Size;
+            // De qué texto sale cada glifo cuando no es un solo carácter, para el CMap de ToUnicode.
+            string[] textoDelGlifo = TextoDeCadaGlifo(lInfo);
 
             for (int i = 0; i < lInfo.Glyphs.Count; i++)
             {
@@ -1373,6 +1444,11 @@ namespace Reportman.Drawing
                 // Y con la cara con la que se conformó: si el índice no fuera de ella, el proveedor
                 // lo dice en claro en vez de dejar que FreeType conteste `FT_Err_Invalid_Argument`.
                 InfoProvider.GetGlyphWidth(pdffont, datosDelGlifo, g.GlyphIndex, g.CharCode, g.FaceKey);
+                // Y SI ESTE GLIFO VALE POR VARIOS CARACTERES —una ligadura—, de cuáles sale: el CMap
+                // de ToUnicode lo necesita para que el texto se pueda extraer, buscar y copiar. Sin
+                // esto el glifo apunta a un carácter de uso privado y la «fi» desaparece del texto.
+                if (textoDelGlifo[i] != null && datosDelGlifo != null)
+                    datosDelGlifo.GlyphText[g.GlyphIndex] = textoDelGlifo[i];
 
                 // Calcular posiciones PDF
                 double absY = posY - g.YOffset;
@@ -3301,6 +3377,32 @@ namespace Reportman.Drawing
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
         }
+        /// <summary>
+        /// A QUÉ TEXTO SE TRADUCE UN GLIFO en el CMap de ToUnicode, que es lo que hace que un PDF se
+        /// pueda leer, buscar y copiar: el texto del que salió si vale por varios caracteres —una
+        /// ligadura— y, si no, el carácter con el que está catalogado, que es lo de siempre.
+        ///
+        /// Un destino de varios caracteres es lo que la norma pide para una ligadura: el glifo de
+        /// «fi» se declara como «fi», no como una f ni como el carácter de uso privado que se le
+        /// inventó para poder subconjuntarlo. Ver <see cref="TTFontData.GlyphText"/>.
+        /// </summary>
+        /// <param name="adata">La fuente cuyo CMap se está escribiendo.</param>
+        /// <param name="glyph">El índice de glifo que se está declarando.</param>
+        /// <param name="catalogado">El carácter con el que el glifo está en la tabla de anchuras.</param>
+        /// <returns>Los caracteres en hexadecimal, uno detrás de otro, sin los ángulos.</returns>
+        static string DestinoUnicode(TTFontData adata, int glyph, char catalogado)
+        {
+            if (adata.GlyphText != null
+                && adata.GlyphText.TryGetValue(glyph, out string texto)
+                && !string.IsNullOrEmpty(texto))
+            {
+                StringBuilder nresult = new StringBuilder();
+                for (int i = 0; i < texto.Length; i++)
+                    nresult.Append(PDFCanvas.IntToHex((int)texto[i]));
+                return nresult.ToString();
+            }
+            return PDFCanvas.IntToHex((int)catalogado);
+        }
         void SetFontType()
         {
             int i;
@@ -3441,7 +3543,7 @@ namespace Reportman.Drawing
                             int nvalue = adata.CacheWidths[nkey].Glyph;
 
                             string fromTo = "<" + PDFCanvas.IntToHex(nvalue) + "> ";
-                            cmaphead.Append(fromTo + " <" + PDFCanvas.IntToHex((int)nkey) + ">" + LINE_FEED);
+                            cmaphead.Append(fromTo + " <" + DestinoUnicode(adata, nvalue, nkey) + ">" + LINE_FEED);
                         }
                         cmaphead.Append("endbfchar" + LINE_FEED);
                         currentindex = currentindex + nsize;
