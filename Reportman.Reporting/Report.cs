@@ -66,6 +66,7 @@ namespace Reportman.Reporting
                 subrep.Report = this;
                 foreach (Section sec in subrep.Sections)
                 {
+                    sec.Report = this;
                     this.Components.Add(sec.Name, sec);
                     foreach (PrintPosItem item in sec.Components)
                     {
