@@ -1258,25 +1258,30 @@ namespace Reportman.Drawing
             return aresult;
         }
         /// <summary>
-        /// EL TEXTO DEL QUE SALE CADA GLIFO, cuando no es un solo carácter (30-09-2026).
+        /// EL TEXTO DEL QUE SALE CADA GLIFO (30-09-2026).
         ///
-        /// Una ligadura —«fi», «fl», «ffi»— es UN glifo con DOS o más caracteres detrás, y el
-        /// conformador sólo sabe decir uno: <see cref="TGlyphPos.CharCode"/> es el primero del
-        /// cluster. Al glifo de la ligadura no le corresponde ningún carácter, así que el proveedor
-        /// le inventa uno de uso privado para que entre en el subconjunto, y el CMap de ToUnicode
-        /// acaba declarando que el glifo ES ese U+E0xx: el texto extraído del PDF se queda sin la
-        /// «fi». En una factura eso significa que el identificativo de TicketBAI no se puede leer
-        /// del papel, y como lleva letras al azar, falla una vez de cada tantas —las que toca una
-        /// pareja que liga—.
+        /// El conformado no dibuja siempre el glifo «nominal» de un carácter: una ligadura junta
+        /// «fi» en UNO, y una alternativa contextual cambia la «f» por otra forma delante de la
+        /// «i». En los dos casos el glifo que se emite no es el que el `cmap` de la fuente da para
+        /// ese carácter, así que no le corresponde ninguno: el proveedor le inventa uno de USO
+        /// PRIVADO para que entre en el subconjunto, y el CMap de ToUnicode acaba declarando que el
+        /// glifo ES ese U+E0xx. El PDF se ve perfecto y el texto que se extrae de él pierde letras:
+        ///
+        ///   «ocina ecaz, inar»   con la ligadura de DejaVu (se van las dos letras)
+        ///   «oicina eicaz, inlar»   con la alternativa de Cambria (se va la «f»)
+        ///
+        /// En una factura eso significa que el identificativo de TicketBAI no se puede leer del
+        /// papel — y como lleva letras al azar, fallaba una vez de cada tantas, las que le tocaba
+        /// una pareja de ésas.
         ///
         /// El cluster de HarfBuzz (y el de DirectWrite) dice de qué parte del texto viene cada
-        /// glifo. Aquí se resuelve SÓLO el caso claro: un glifo con varios caracteres. Si un
-        /// carácter se ha partido en varios glifos no hay una cadena que atribuirle a cada uno, y se
-        /// deja como estaba.
+        /// glifo, así que se le puede devolver. Se resuelve el caso claro —UN glifo por cluster—; si
+        /// un carácter se ha partido en varios glifos no hay una cadena que atribuirle a cada uno, y
+        /// se deja como estaba.
         /// </summary>
         /// <param name="lInfo">La línea conformada.</param>
-        /// <returns>Por cada glifo, el texto del que sale, o null cuando es un solo carácter y el
-        /// camino de siempre ya acierta.</returns>
+        /// <returns>Por cada glifo, el texto del que sale, o null cuando no se puede saber y hay que
+        /// dejar el camino de siempre.</returns>
         private static string[] TextoDeCadaGlifo(LineInfo lInfo)
         {
             List<TGlyphPos> glifos = lInfo.Glyphs;
@@ -1311,11 +1316,11 @@ namespace Reportman.Drawing
                 int pos = limites.BinarySearch(c);
                 int fin = (pos >= 0 && pos + 1 < limites.Count) ? limites[pos + 1] : texto.Length;
                 int largo = fin - c;
-                // DOS CAUTELAS, porque una atribución equivocada saldría en el texto del PDF: una
-                // ligadura son dos, tres o cuatro caracteres —«ffi» es la más larga que se ve—, y
-                // nunca se salta un espacio. Lo que no pase por las dos se queda como estaba, que es
-                // el comportamiento de siempre.
-                if (largo < 2 || largo > 4)
+                // DOS CAUTELAS, porque una atribución equivocada saldría en el texto del PDF: de uno
+                // a cuatro caracteres —«ffi» es la ligadura más larga que se ve— y sin espacios en
+                // medio, que una sustitución nunca los cruza. Lo que no pase por las dos se queda
+                // como estaba, que es el comportamiento de siempre.
+                if (largo < 1 || largo > 4)
                     continue;
                 bool limpio = true;
                 for (int k = c; k < fin; k++)

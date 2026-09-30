@@ -365,16 +365,19 @@ namespace Reportman.Drawing
         /// </summary>
         public SortedList<int, int> GlyphMap;
         /// <summary>
-        /// THE TEXT A GLYPH CAME FROM, for the glyphs that stand for more than one character
-        /// (30-09-2026) — a ligature such as "fi" is ONE glyph with TWO characters behind it.
+        /// THE TEXT A GLYPH CAME FROM, for the glyphs the shaper did not take from the font's cmap
+        /// (30-09-2026): a ligature joins "fi" into ONE glyph, and a contextual alternate swaps the
+        /// "f" for another shape before the "i". Either way the emitted glyph is not the nominal one
+        /// for that character, so no character points at it.
         ///
         /// It exists for the /ToUnicode CMap, which is what makes a PDF readable, searchable and
-        /// copyable. Without it a ligature glyph has no character to point at: the provider invents
-        /// a private-use code point for it so it gets subsetted, and the CMap then claims the glyph
-        /// IS that code point, so the text comes back out with a U+E0xx where the "fi" was.
+        /// copyable. Without it the provider invents a private-use code point so the glyph gets
+        /// subsetted, and the CMap then claims the glyph IS that code point: the text comes back out
+        /// missing letters — "ocina" for "oficina" with a ligature, "oicina" with an alternate.
         ///
-        /// Only the clear case is recorded — one glyph, several characters. Empty for everything
-        /// else, and the CMap falls back to the character the glyph is catalogued under.
+        /// Only what the shaper's clusters state clearly is recorded — one glyph per cluster. Empty
+        /// for everything else, and the CMap falls back to the character the glyph is catalogued
+        /// under.
         /// </summary>
         public Dictionary<int, string> GlyphText = new Dictionary<int, string>();
         /// <summary>
