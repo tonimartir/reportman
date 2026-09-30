@@ -298,6 +298,10 @@ namespace Reportman.Reporting
         /// </summary>
         public string HttpAgentToken { get; set; }
         /// <summary>
+        /// Install id the HttpAgent token is bound to (the API validates Bearer + install id together).
+        /// </summary>
+        public string HttpAgentInstallId { get; set; }
+        /// <summary>
         /// Hub Database Id for HttpAgent - identifies the database on the remote agent
         /// </summary>
         public long HttpAgentHubDatabaseId { get; set; }
@@ -487,6 +491,7 @@ namespace Reportman.Reporting
                     BaseUrl = HttpAgentBaseUrl,
                     ApiKey = HttpAgentApiKey,
                     Token = HttpAgentToken,
+                    InstallId = HttpAgentInstallId,
                     HubDatabaseId = HttpAgentHubDatabaseId
                 };
 #else
@@ -495,6 +500,7 @@ namespace Reportman.Reporting
                     BaseUrl = HttpAgentBaseUrl,
                     ApiKey = HttpAgentApiKey,
                     Token = HttpAgentToken,
+                    InstallId = HttpAgentInstallId,
                     HubDatabaseId = HttpAgentHubDatabaseId
                 };
 #endif
