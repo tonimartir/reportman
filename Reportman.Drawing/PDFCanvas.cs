@@ -291,6 +291,11 @@ namespace Reportman.Drawing
         private List<LineInfo> Lines;
         private SortedList FFontData;
         /// <summary>
+        /// Cuántas caras han necesitado recurso propio en este documento, para numerarlas: el nombre
+        /// de un recurso PDF no puede llevar la ruta del fichero. Ver <see cref="DataForFace"/>.
+        /// </summary>
+        private int FCarasConRecurso;
+        /// <summary>
         /// Device resolution in twips per inch used to convert layout units to PDF points.
         /// </summary>
         public int Resolution;
@@ -627,6 +632,52 @@ namespace Reportman.Drawing
                 }
                 InfoProvider.FillFontData(FFont, adata);
             }
+            return adata;
+        }
+        /// <summary>
+        /// EL RECURSO PDF DE UNA CARA, APARTE DEL DE SU FAMILIA (30-09-2026).
+        ///
+        /// <see cref="UpdateFonts"/> guarda un <see cref="TTFontData"/> por familia y estilo, y ése
+        /// es a la vez el nombre del recurso PDF y el dueño del subconjunto que se incrusta. Dos
+        /// FICHEROS distintos que responden a la misma familia y el mismo estilo caían en el mismo
+        /// contenedor: los glifos de uno se registraban en el subconjunto del otro y, al incrustar,
+        /// el subconjunto buscaba un índice que ese fichero no tiene y se salía del array —una
+        /// IndexOutOfRangeException en EndDoc, lejos de donde estaba la causa—. Ver
+        /// <see cref="TGlyphPos.FaceKey"/>.
+        ///
+        /// Aquí cada cara tiene el suyo, con su fichero y su índice de cara, y por tanto su propio
+        /// recurso en el PDF: el documento lo escribe solo, porque tanto la tabla de recursos como
+        /// los subconjuntos recorren esta misma lista.
+        /// </summary>
+        /// <param name="faceKey">La cara, como <see cref="TGlyphPos.FaceKey"/>: «fichero|índice».</param>
+        /// <returns>Los datos de esa cara, o null si el proveedor no sabe de caras —DirectWrite, que
+        /// ni las reporta— y entonces quien llama sigue con los de la familia, que es lo de
+        /// siempre.</returns>
+        public TTFontData DataForFace(string faceKey)
+        {
+            if (string.IsNullOrEmpty(faceKey) || InfoProvider == null)
+                return null;
+            // Con «cara:» delante para no chocar nunca con la clave de familia+estilo, que es la que
+            // usa UpdateFonts en esta misma lista.
+            string searchname = "cara:" + faceKey;
+            TTFontData adata = FFontData[searchname] as TTFontData;
+            if (adata != null)
+                return adata;
+            adata = new TTFontData();
+            adata.Embedded = (FFont.Name == PDFFontType.Embedded) || (PDFConformance == PDFConformanceType.PDF_A_3);
+            if (adata.Embedded)
+            {
+                adata.IsUnicode = true;
+            }
+            // Se mete en la lista SÓLO si se ha podido llenar: una entrada a medias se escribiría en
+            // el PDF igual que las demás, y eso sería cambiar un fallo por otro.
+            if (!InfoProvider.FillFontDataForFace(FFont, adata, faceKey))
+                return null;
+            // EL NOMBRE DEL RECURSO NO PUEDE LLEVAR LA RUTA: un nombre PDF no admite barras ni
+            // espacios, así que las caras se numeran por orden de aparición.
+            FCarasConRecurso++;
+            adata.ObjectName = "Cara" + FCarasConRecurso.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            FFontData.Add(searchname, adata);
             return adata;
         }
         /// <summary>
@@ -1243,6 +1294,11 @@ namespace Reportman.Drawing
             float originalFontSize = FontSize;
             int actualColor = Font.Color;
             int originalColor = Font.Color;
+            // EL RECURSO QUE HAY PUESTO EN EL FLUJO AHORA MISMO. Arranca con el que TextOut acaba de
+            // escribir antes de llamar aquí, para no repetir su `Tf` en el primer glifo.
+            string recursoEmitido = Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold,
+                Font.GetFontFamilyKey(), Font.Style, File.PDFConformance);
+            int tamanoEmitido = Font.Size;
 
             for (int i = 0; i < lInfo.Glyphs.Count; i++)
             {
@@ -1270,14 +1326,36 @@ namespace Reportman.Drawing
                     UpdateFonts();
                     adata = GetTTFontData();
 
-                    result += "/F" +
-                        Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style,File.PDFConformance) + " " +
-                        Font.Size.ToString(System.Globalization.CultureInfo.InvariantCulture) + " Tf" + eol;
-
                     actualFontFamily = newFontFamily;
                     actualBold = newBold;
                     actualItalic = newItalic;
                     actualFontSize = newFontSize;
+                }
+
+                // LA CARA TAMBIÉN CAMBIA DE FUENTE, NO SÓLO LA FAMILIA (30-09-2026). El interruptor
+                // de arriba compara familia, negrita, cursiva y tamaño, y NINGUNO DE LOS CUATRO
+                // DISTINGUE DOS FICHEROS. Cuando el conformado dibujó este tramo con otra cara que
+                // responde al mismo nombre de familia, su índice de glifo no es de `adata`: hay que
+                // ATRIBUIRLO a la suya, no sólo medirlo contra ella. Si se emite bajo el recurso de
+                // la familia, el glifo se registra en el subconjunto equivocado y al incrustar la
+                // fuente ese subconjunto se sale del array de glifos. Ver TGlyphPos.FaceKey.
+                TTFontData datosDeLaCara = null;
+                if (adata != null && !string.IsNullOrEmpty(g.FaceKey) && g.FaceKey != adata.FaceKey)
+                    datosDeLaCara = DataForFace(g.FaceKey);
+                TTFontData datosDelGlifo = datosDeLaCara ?? adata;
+
+                // UN SOLO SITIO DECIDE EL RECURSO: el de la cara mientras el glifo venga de otra, y
+                // el de la familia en cuanto se vuelve a ella. Se escribe sólo cuando cambia de
+                // verdad, para no repetir un `Tf` por glifo.
+                string recursoDelGlifo = datosDeLaCara != null
+                    ? datosDeLaCara.ObjectName
+                    : Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style, File.PDFConformance);
+                if (recursoDelGlifo != recursoEmitido || Font.Size != tamanoEmitido)
+                {
+                    result += "/F" + recursoDelGlifo + " " +
+                        Font.Size.ToString(System.Globalization.CultureInfo.InvariantCulture) + " Tf" + eol;
+                    recursoEmitido = recursoDelGlifo;
+                    tamanoEmitido = Font.Size;
                 }
 
                 // Color change via rg operator (valid inside BT/ET)
@@ -1288,12 +1366,13 @@ namespace Reportman.Drawing
                     actualColor = newColor;
                 }
 
-                // Llamadas auxiliares para compatibilidad
-                InfoProvider.GetCharWidth(pdffont, adata, g.CharCode);
-                // CON LA CARA con la que se conformó: si el índice no es de la cara que el nombre de
-                // familia acaba resolviendo, el proveedor lo dice en claro en vez de dejar que FreeType
-                // conteste `FT_Err_Invalid_Argument` (ver TGlyphPos.FaceKey).
-                InfoProvider.GetGlyphWidth(pdffont, adata, g.GlyphIndex, g.CharCode, g.FaceKey);
+                // Llamadas auxiliares para compatibilidad. NO SON SÓLO UNA MEDIDA: es aquí donde el
+                // glifo queda registrado en el subconjunto que se incrustará, así que van con los
+                // datos de SU cara.
+                InfoProvider.GetCharWidth(pdffont, datosDelGlifo, g.CharCode);
+                // Y con la cara con la que se conformó: si el índice no fuera de ella, el proveedor
+                // lo dice en claro en vez de dejar que FreeType conteste `FT_Err_Invalid_Argument`.
+                InfoProvider.GetGlyphWidth(pdffont, datosDelGlifo, g.GlyphIndex, g.CharCode, g.FaceKey);
 
                 // Calcular posiciones PDF
                 double absY = posY - g.YOffset;

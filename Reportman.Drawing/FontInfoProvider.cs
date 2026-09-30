@@ -462,6 +462,24 @@ namespace Reportman.Drawing
         public virtual double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC, string faceKey)
             => GetGlyphWidth(pdfFont, fontData, glyph, charC);
         /// <summary>
+        /// THE METRICS OF ONE NAMED FACE, NOT OF WHATEVER THE NAME RESOLVES TO (30-09-2026).
+        ///
+        /// <see cref="FillFontData"/> picks the font by family NAME, and a name is not enough to get
+        /// back to the same file — see <see cref="TGlyphPos.FaceKey"/>. When the shaper drew a run
+        /// with a different face, its glyph indices only mean something there: that face needs a
+        /// <see cref="TTFontData"/> of its own, with ITS file and ITS face index, or its glyphs end
+        /// up in the wrong font's subset and the font cannot be embedded at all.
+        ///
+        /// It is VIRTUAL and says no by default: a provider that does not tell faces apart —
+        /// DirectWrite, which does not even report them — keeps working exactly as before.
+        /// </summary>
+        /// <param name="pdfFont">The logical font the run belongs to.</param>
+        /// <param name="fontData">The metric container to fill.</param>
+        /// <param name="faceKey">The face, as <see cref="TGlyphPos.FaceKey"/>: "file|faceIndex".</param>
+        /// <returns>True when it filled it; false when this provider knows nothing about faces, and
+        /// then the caller carries on with the font the name resolved to, as it always did.</returns>
+        public virtual bool FillFontDataForFace(PDFFont pdfFont, TTFontData fontData, string faceKey) => false;
+        /// <summary>
         /// Measures the given text with the specified font and layout options, updating
         /// <paramref name="Rect"/> with the required bounds.
         /// </summary>
