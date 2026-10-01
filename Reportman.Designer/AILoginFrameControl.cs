@@ -124,7 +124,7 @@ namespace Reportman.Designer
             // Username label
             _lblUser = new Label
             {
-                Text = "Guest (Login available)",
+                Text = GuestCaption(),
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleLeft,
                 Font = new Font("Segoe UI", 9f, FontStyle.Regular),
@@ -276,7 +276,7 @@ namespace Reportman.Designer
             {
                 _lblTier.Visible = false;
                 _imgAvatar.Visible = false;
-                _lblUser.Text = "Guest (Login available)";
+                _lblUser.Text = GuestCaption();
                 _lblUser.Visible = true;
                 _lblArrow.Visible = true;
 
@@ -322,6 +322,16 @@ namespace Reportman.Designer
                 _lblUser.Location = new Point(margin, 0);
                 _lblUser.Size = new Size(Math.Max(0, _lblArrow.Left - margin - 4), containerH);
             }
+        }
+
+        /// <summary>
+        /// What a guest reads in the card: the reason to sign in, with the login gift the Hub
+        /// advertises in its tiers (credits that never expire).
+        /// </summary>
+        private static string GuestCaption()
+        {
+            return string.Format("Sign in and get {0:N0} free credits that never expire",
+                RpAuthManager.Instance.LoginGiftCredits);
         }
 
         private string GetTierName(int tierId)

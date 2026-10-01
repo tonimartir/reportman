@@ -51,6 +51,11 @@ namespace Reportman.Designer
         /// </summary>
         public RpProfile Profile { get; private set; } = new RpProfile();
         /// <summary>
+        /// Credits the Free tier gives on the first sign-in (the login gift), read from the tiers the
+        /// Hub sends along with the profile; 2000 until they arrive.
+        /// </summary>
+        public long LoginGiftCredits { get; private set; } = 2000;
+        /// <summary>
         /// Gets a value indicating whether a valid session token is present.
         /// </summary>
         public bool IsLoggedIn { get; private set; }
@@ -435,6 +440,7 @@ namespace Reportman.Designer
                             {
                                 ParseProfileJson(profileEl);
                             }
+                            ParseTiersJson(doc.RootElement);
                         }
                         SaveConfig();
                         AuthChanged?.Invoke(true);
@@ -526,6 +532,7 @@ namespace Reportman.Designer
                     if (doc.RootElement.TryGetProperty("profile", out var profileEl) ||
                         doc.RootElement.TryGetProperty("Profile", out profileEl))
                         ParseProfileJson(profileEl);
+                    ParseTiersJson(doc.RootElement);
 
                     if (!string.IsNullOrEmpty(token))
                     {
@@ -542,6 +549,32 @@ namespace Reportman.Designer
                 Log("ParseLoginResponse Error: " + ex.Message);
             }
             return false;
+        }
+
+        /// <summary>
+        /// Reads the login gift from the "tiers" array the Hub returns with the profile: the
+        /// MaxFreeCredits of the Free tier (id 2). Leaves the default when the array is missing.
+        /// </summary>
+        private void ParseTiersJson(JsonElement root)
+        {
+            JsonElement tiers;
+            if (!root.TryGetProperty("tiers", out tiers) && !root.TryGetProperty("Tiers", out tiers))
+                return;
+            if (tiers.ValueKind != JsonValueKind.Array)
+                return;
+            foreach (var tier in tiers.EnumerateArray())
+            {
+                string id = "", name = "", maxFree = "";
+                TryGetString(tier, "id", out id);
+                TryGetString(tier, "name", out name);
+                TryGetString(tier, "maxFreeCredits", out maxFree);
+                if (id == "2" || string.Equals(name, "Free", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (long.TryParse(maxFree, out var credits) && credits > 0)
+                        LoginGiftCredits = credits;
+                    return;
+                }
+            }
         }
 
         private void ParseProfileJson(JsonElement profileEl)
