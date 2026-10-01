@@ -21,6 +21,7 @@ namespace Reportman.Designer
         private Panel _panelGauge;
         private ColumnStyle _gaugeColumnStyle;
         private int _creditPercent = 0;
+        private ToolTip _gaugeTooltip;
 
         // Inference progress mode controls
         private Panel _panelInference;
@@ -141,8 +142,8 @@ namespace Reportman.Designer
                 Cursor = Cursors.Hand
             };
             _panelGauge.Paint += PanelGauge_Paint;
-            var gaugeTooltip = new ToolTip();
-            gaugeTooltip.SetToolTip(_panelGauge, "Credits");
+            _gaugeTooltip = new ToolTip();
+            _gaugeTooltip.SetToolTip(_panelGauge, "Credits");
 
             gridAI.Controls.Add(_lblProvider, 0, 0);
             gridAI.Controls.Add(_comboProvider, 0, 1);
@@ -596,6 +597,25 @@ namespace Reportman.Designer
             var auth = RpAuthManager.Instance;
             int pct = (int)(auth.GetCreditsRatio() * 100);
             SetCreditPercent(pct);
+            if (_gaugeTooltip != null)
+                _gaugeTooltip.SetToolTip(_panelGauge, BuildGaugeTooltip(auth));
+        }
+
+        /// <summary>
+        /// The gauge tooltip: which credits are being counted and how many are left; a guest also
+        /// reads what signing in gives (the login gift, credits that never expire).
+        /// </summary>
+        private static string BuildGaugeTooltip(RpAuthManager auth)
+        {
+            var profile = auth.Profile;
+            string text;
+            if (auth.UsesFreeCredits)
+                text = string.Format("Free credits: {0:N0} of {1:N0} left", profile.FreeRemaining, profile.FreeInitial);
+            else
+                text = string.Format("Daily credits: {0:N0} of {1:N0} used", profile.DailyConsumed, profile.DailyMax);
+            if (!auth.IsLoggedIn)
+                text += Environment.NewLine + string.Format("Sign in and get {0:N0} free credits that never expire", auth.LoginGiftCredits);
+            return text;
         }
 
         /// <summary>
