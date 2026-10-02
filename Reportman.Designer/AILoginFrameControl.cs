@@ -7,7 +7,7 @@ namespace Reportman.Designer
 {
     /// <summary>
     /// Replicates Delphi's TFRpLoginFrameVCL: a compact login banner that shows
-    /// "Guest (Login available)" when logged out, or [Tier][Avatar][Username][▼] when logged in.
+    /// "Guest: sign in and get more credits" when logged out (the login gift is in the menu), or [Tier][Avatar][Username][▼] when logged in.
     /// Connected to RpAuthManager for real auth state and persistence.
     /// </summary>
     public class AILoginFrameControl : UserControl
@@ -280,7 +280,8 @@ namespace Reportman.Designer
                 _lblUser.Visible = true;
                 _lblArrow.Visible = true;
 
-                // Popup menu state
+                // Popup menu state: the login item says the gift
+                _menuLogin.Text = LoginGiftCaption();
                 _menuLogin.Visible = true;
                 _menuSepLogout.Visible = false;
                 _menuLogout.Visible = false;
@@ -325,10 +326,20 @@ namespace Reportman.Designer
         }
 
         /// <summary>
-        /// What a guest reads in the card: the reason to sign in, with the login gift the Hub
-        /// advertises in its tiers (credits that never expire).
+        /// What a guest reads in the card, in one line: a guest who can get more credits by signing
+        /// in. The gift is in the login item of the menu, and the credits left in the gauge of the
+        /// AI panel.
         /// </summary>
         private static string GuestCaption()
+        {
+            return "Guest: sign in and get more credits";
+        }
+
+        /// <summary>
+        /// The login item of the account menu for a guest: the login gift the Hub advertises in its
+        /// tiers (credits that never expire).
+        /// </summary>
+        private static string LoginGiftCaption()
         {
             return string.Format("Sign in and get {0:N0} free credits that never expire",
                 RpAuthManager.Instance.LoginGiftCredits);
