@@ -2139,6 +2139,82 @@ namespace Reportman.Reporting
                 return nvalue;
             }
         }
+        /// <summary>
+        /// Report masks follow Delphi's FormatDateTime, the designer's reference: lower case <c>m</c>
+        /// is the month (minutes only right after an hour), <c>n</c> the minutes, <c>z</c> the
+        /// milliseconds, <c>h</c> the 24 hour clock unless <c>am/pm</c> is present. .NET reads the
+        /// same letters differently (<c>mm</c> is always minutes, <c>hh</c> the 12 hour clock), so a
+        /// report with <c>dd/mm/yyyy</c> printed <c>03/00/2026</c>. Upper case tokens and quoted
+        /// literals pass through, so masks written for .NET keep working.
+        /// </summary>
+        public static string DateFormatMask(string mask)
+        {
+            if (string.IsNullOrEmpty(mask))
+                return mask;
+            bool twelveHours = mask.IndexOf("am/pm", StringComparison.OrdinalIgnoreCase) >= 0
+                || mask.IndexOf("a/p", StringComparison.OrdinalIgnoreCase) >= 0
+                || mask.IndexOf("ampm", StringComparison.OrdinalIgnoreCase) >= 0;
+            var sb = new System.Text.StringBuilder(mask.Length + 4);
+            char lastToken = '\0';
+            int i = 0;
+            while (i < mask.Length)
+            {
+                char c = mask[i];
+                if (c == '\'' || c == '"')
+                {
+                    int end = mask.IndexOf(c, i + 1);
+                    if (end < 0) end = mask.Length - 1;
+                    sb.Append(mask, i, end - i + 1);
+                    i = end + 1;
+                    continue;
+                }
+                if (string.Compare(mask, i, "am/pm", 0, 5, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    sb.Append("tt"); i += 5; lastToken = 't'; continue;
+                }
+                if (string.Compare(mask, i, "ampm", 0, 4, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    sb.Append("tt"); i += 4; lastToken = 't'; continue;
+                }
+                if (string.Compare(mask, i, "a/p", 0, 3, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    sb.Append("t"); i += 3; lastToken = 't'; continue;
+                }
+                int run = 1;
+                while (i + run < mask.Length && mask[i + run] == c) run++;
+                switch (c)
+                {
+                    case 'm':
+                        // Minutes only when the previous token was an hour, as Delphi does.
+                        sb.Append(lastToken == 'h' ? 'm' : 'M', run);
+                        lastToken = lastToken == 'h' ? 'm' : 'M';
+                        break;
+                    case 'n':
+                        sb.Append('m', run); lastToken = 'm';
+                        break;
+                    case 'h':
+                        sb.Append(twelveHours ? 'h' : 'H', run); lastToken = 'h';
+                        break;
+                    case 'z':
+                        sb.Append('f', run); lastToken = 'f';
+                        break;
+                    case 'c':
+                        if (run == 1) { sb.Append('g'); lastToken = 'g'; break; }
+                        sb.Append(c, run); lastToken = c;
+                        break;
+                    case 'd': case 'y': case 's': case 'H': case 'M': case 'f': case 'F': case 't': case 'g':
+                        sb.Append(c, run); lastToken = c == 'H' ? 'h' : c;
+                        break;
+                    default:
+                        sb.Append(c, run);
+                        if (!char.IsWhiteSpace(c) && c != '/' && c != ':' && c != '.' && c != '-' && c != ',')
+                            lastToken = c;
+                        break;
+                }
+                i += run;
+            }
+            return sb.ToString();
+        }
         private string DefaultDateTimeFormat(ParamType paramtype)
         {
             if (paramtype == ParamType.Date)
@@ -2222,7 +2298,7 @@ namespace Reportman.Reporting
                                 (atype == VariantType.Double))
                             {
                                 DateTime adate = Value;
-                                return adate.ToString(displayformat);
+                                return adate.ToString(DateFormatMask(displayformat));
                             }
                             else
                                 return Value.ToString();
@@ -2259,7 +2335,7 @@ namespace Reportman.Reporting
                                 if (displayformat.Length == 0)
                                     displayformat = DefaultDateTimeFormat(paramtype);
                                 DateTime adate = Value;
-                                aresult = adate.ToString(displayformat);
+                                aresult = adate.ToString(DateFormatMask(displayformat));
                             }
                             else
                             {
@@ -2279,7 +2355,7 @@ namespace Reportman.Reporting
                     if (displayformat.Length == 0)
                         displayformat = DefaultDateTimeFormat(paramtype);
                     DateTime dvalue = Value;
-                    aresult = dvalue.ToString(displayformat);
+                    aresult = dvalue.ToString(DateFormatMask(displayformat));
                     break;
                 case VariantType.String:
                     string astring = Value;

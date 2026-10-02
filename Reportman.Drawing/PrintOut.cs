@@ -820,7 +820,10 @@ namespace Reportman.Drawing
         /// <param name="achart">Driver-specific chart rendering object.</param>
         virtual public void DrawChart(Series nseries, MetaFile ametafile, int posx, int posy, object achart)
         {
-
+            // Drivers without a bitmap back end (PDF, text, metafile on Linux) draw the chart with the
+            // metafile's own primitives, as the Delphi PDF driver does: lines, rectangles and texts that
+            // every output device already knows how to render.
+            VectorChart.Draw(nseries, ametafile, posx, posy, achart);
         }
         /// <summary>
         /// The driver must set a new page size
