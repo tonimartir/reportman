@@ -2008,12 +2008,22 @@ namespace Reportman.Reporting
                 case "Reportman.Reporting.Variant":
                     this = (Variant)obj;
                     break;
+                case "System.UInt16":
+                case "System.UInt32":
+                case "System.SByte":
+                    FVarType = VariantType.Long;
+                    FLong = Convert.ToInt64(obj);
+                    break;
+                case "System.UInt64":
+                    FVarType = VariantType.Decimal;
+                    FDecimal = Convert.ToDecimal(obj);
+                    break;
                 default:
-                    // TODO: Probably better to lauch an exception once the 
-                    // testing is done
-                    FVarType = VariantType.Null;
-                    //System.Console.WriteLine(Translator.TranslateStr(1417) + ": " + 
-                    //	obj.GetType().ToString());
+                    // A value of a type the engine has no slot for (a PostgreSQL uuid, a TimeSpan, an
+                    // enum, a network address...) used to become Null and print as an empty cell. Its
+                    // text is what the user expects to see, so it travels as a string.
+                    FVarType = VariantType.String;
+                    FString = Convert.ToString(obj, System.Globalization.CultureInfo.CurrentCulture) ?? "";
                     break;
             }
         }
