@@ -212,7 +212,7 @@ namespace Reportman.Reporting
             if (index >= 0)
                 return infos[index];
             else
-                throw new NamedException("Dabase Alias not found: " + DatabaseAlias, DatabaseAlias);
+                throw new NamedException("Database alias not found: " + DatabaseAlias, DatabaseAlias);
         }
         /// <summary>
         /// Obtain field information from the dataset, useful for the designer
