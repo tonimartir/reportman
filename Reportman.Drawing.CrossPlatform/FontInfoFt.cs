@@ -212,10 +212,10 @@ namespace Reportman.Drawing
         // feeds from: it hands back a path, not a family, and the same file must not be read twice.
         static SortedList<string, LogFontFt> logfontsbyfile = new SortedList<string, LogFontFt>();
         /// <summary>
-        /// Extra directories to scan for fonts, for platforms that keep no font database to ask.
-        /// Android is the reason this exists: it carries no fontconfig, so the application declares
-        /// here where its bundled fonts live. It has to be filled before the first report is printed,
-        /// because the scan happens once.
+        /// The application's own font directories. Where there is no font database to ask (Android,
+        /// Windows, a stripped container) they are scanned first; where there is fontconfig they are
+        /// added to it (<see cref="FontConfig.AddApplicationFontDirectory"/>). Either way it has to
+        /// be filled before the first report is printed, because both happen once.
         /// </summary>
         public static Strings ExtraFontDirectories = new Strings();
         static string BytePtrToString(byte* ptr)
@@ -346,8 +346,17 @@ namespace Reportman.Drawing
                     || (System.Environment.OSVersion.Platform == PlatformID.MacOSX))
                     FontConfig.Init();
                 if (FontConfig.Available)
+                {
+                    // THE APPLICATION'S OWN FONTS GO TO FONTCONFIG TOO. ExtraFontDirectories was
+                    // read only by the scan below, which never runs where there is fontconfig: a
+                    // server's fonts folder was invisible in exactly the place it is used (a Linux
+                    // container). Added to fontconfig, its fonts match by name and by coverage
+                    // like any installed one.
+                    foreach (string nextra in ExtraFontDirectories)
+                        FontConfig.AddApplicationFontDirectory(nextra);
                     return;
-                
+                }
+
                 Strings npaths = GetFontDirectories();
                 foreach (string ndir in npaths)
                 {

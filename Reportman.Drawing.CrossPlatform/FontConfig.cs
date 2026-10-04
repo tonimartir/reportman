@@ -19,6 +19,8 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -104,6 +106,20 @@ namespace Reportman.Drawing
         private delegate int FcCharSetAddCharDelegate(IntPtr charset, uint ucs4);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int FcPatternAddCharSetDelegate(IntPtr pattern, IntPtr objectName, IntPtr charset);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int FcConfigAppFontAddDirDelegate(IntPtr config, IntPtr dir);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr FcConfigGetFontsDelegate(IntPtr config, int set);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr FcObjectSetCreateDelegate();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int FcObjectSetAddDelegate(IntPtr objectSet, IntPtr objectName);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void FcObjectSetDestroyDelegate(IntPtr objectSet);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr FcFontListDelegate(IntPtr config, IntPtr pattern, IntPtr objectSet);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void FcFontSetDestroyDelegate(IntPtr fontSet);
 
         private static FcInitDelegate FcInit;
         private static FcConfigGetCurrentDelegate FcConfigGetCurrent;
@@ -121,6 +137,17 @@ namespace Reportman.Drawing
         private static FcCharSetDestroyDelegate FcCharSetDestroy;
         private static FcCharSetAddCharDelegate FcCharSetAddChar;
         private static FcPatternAddCharSetDelegate FcPatternAddCharSet;
+        private static FcConfigAppFontAddDirDelegate FcConfigAppFontAddDir;
+        private static FcConfigGetFontsDelegate FcConfigGetFonts;
+        private static FcObjectSetCreateDelegate FcObjectSetCreate;
+        private static FcObjectSetAddDelegate FcObjectSetAdd;
+        private static FcObjectSetDestroyDelegate FcObjectSetDestroy;
+        private static FcFontListDelegate FcFontList;
+        private static FcFontSetDestroyDelegate FcFontSetDestroy;
+
+        // FcSetName of the fonts the application added (FcSetSystem, 0, is the configuration's own).
+        private const int FcSetApplication = 1;
+        private static readonly HashSet<string> applicationDirectories = new HashSet<string>(StringComparer.Ordinal);
 
         // Property names are passed as const char* on every call. They are allocated once and
         // never released: there is a handful of them and they live as long as the process.
@@ -301,6 +328,109 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Adds a directory of the application's own fonts to fontconfig, so that matching sees
+        /// them next to the system ones, with the same substitution rules. Without this a font the
+        /// application brings (a server's fonts folder, say) is only found by the directory scan,
+        /// and that scan never runs where fontconfig is available. The directory is read when it
+        /// is added: fonts copied into it later are seen after a restart.
+        /// </summary>
+        /// <param name="directory">Folder with font files; subfolders are read too.</param>
+        /// <returns>True when fontconfig took the folder (or already had it).</returns>
+        public static bool AddApplicationFontDirectory(string directory)
+        {
+            if (!Available || FcConfigAppFontAddDir == null || string.IsNullOrEmpty(directory)
+                || !Directory.Exists(directory))
+                return false;
+            lock (InitLock)
+            {
+                if (applicationDirectories.Contains(directory))
+                    return true;
+                IntPtr native = Utf8ToNative(directory);
+                try
+                {
+                    if (FcConfigAppFontAddDir(FcConfigGetCurrent(), native) == 0)
+                        return false;
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(native);
+                }
+                applicationDirectories.Add(directory);
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// The font families fontconfig can match, sorted and without repetitions: the whole
+        /// configuration, or only the fonts added with <see cref="AddApplicationFontDirectory"/>.
+        /// Empty when fontconfig is not available.
+        /// </summary>
+        /// <param name="applicationOnly">True to list only the application's own fonts.</param>
+        public static string[] ListFamilies(bool applicationOnly)
+        {
+            if (!Available)
+                return new string[0];
+            SortedSet<string> families = new SortedSet<string>(StringComparer.OrdinalIgnoreCase);
+            IntPtr config = FcConfigGetCurrent();
+            if (applicationOnly)
+            {
+                // The set belongs to the configuration: it is read, never destroyed.
+                if (FcConfigGetFonts != null)
+                    AddFamilies(FcConfigGetFonts(config, FcSetApplication), families);
+            }
+            else if (FcObjectSetCreate != null && FcObjectSetAdd != null && FcObjectSetDestroy != null
+                && FcFontList != null && FcFontSetDestroy != null)
+            {
+                IntPtr pattern = FcPatternCreate();
+                IntPtr objectSet = FcObjectSetCreate();
+                try
+                {
+                    FcObjectSetAdd(objectSet, ObjFamily);
+                    IntPtr fontSet = FcFontList(config, pattern, objectSet);
+                    if (fontSet != IntPtr.Zero)
+                    {
+                        try
+                        {
+                            AddFamilies(fontSet, families);
+                        }
+                        finally
+                        {
+                            FcFontSetDestroy(fontSet);
+                        }
+                    }
+                }
+                finally
+                {
+                    FcObjectSetDestroy(objectSet);
+                    FcPatternDestroy(pattern);
+                }
+            }
+            string[] result = new string[families.Count];
+            families.CopyTo(result);
+            return result;
+        }
+
+        // FcFontSet is { int nfont; int sfont; FcPattern **fonts; }: two ints, then the pointer,
+        // which lands at offset 8 both on 32 and on 64 bits.
+        private static void AddFamilies(IntPtr fontSet, SortedSet<string> families)
+        {
+            if (fontSet == IntPtr.Zero)
+                return;
+            int count = Marshal.ReadInt32(fontSet);
+            IntPtr fonts = Marshal.ReadIntPtr(fontSet, 8);
+            if (fonts == IntPtr.Zero)
+                return;
+            for (int i = 0; i < count; i++)
+            {
+                IntPtr font = Marshal.ReadIntPtr(fonts, i * IntPtr.Size);
+                IntPtr value;
+                if (font != IntPtr.Zero && FcPatternGetString(font, ObjFamily, 0, out value) == FcResultMatch
+                    && value != IntPtr.Zero)
+                    families.Add(Utf8ToString(value));
+            }
+        }
+
         private static void AddString(IntPtr pattern, IntPtr objectName, string value)
         {
             if (FcPatternAddString == null)
@@ -350,6 +480,13 @@ namespace Reportman.Drawing
             FcCharSetDestroy = Bind<FcCharSetDestroyDelegate>("FcCharSetDestroy");
             FcCharSetAddChar = Bind<FcCharSetAddCharDelegate>("FcCharSetAddChar");
             FcPatternAddCharSet = Bind<FcPatternAddCharSetDelegate>("FcPatternAddCharSet");
+            FcConfigAppFontAddDir = Bind<FcConfigAppFontAddDirDelegate>("FcConfigAppFontAddDir");
+            FcConfigGetFonts = Bind<FcConfigGetFontsDelegate>("FcConfigGetFonts");
+            FcObjectSetCreate = Bind<FcObjectSetCreateDelegate>("FcObjectSetCreate");
+            FcObjectSetAdd = Bind<FcObjectSetAddDelegate>("FcObjectSetAdd");
+            FcObjectSetDestroy = Bind<FcObjectSetDestroyDelegate>("FcObjectSetDestroy");
+            FcFontList = Bind<FcFontListDelegate>("FcFontList");
+            FcFontSetDestroy = Bind<FcFontSetDestroyDelegate>("FcFontSetDestroy");
 
             // Everything the matching path calls unconditionally has to be there; the rest
             // degrades gracefully.
