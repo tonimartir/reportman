@@ -236,55 +236,68 @@ namespace Reportman.Drawing
             string extens2 = extens3.Substring(0, 2);
             string resname = "";
             int maxlength = nfilename.Length + 4;
-            foreach (string s in ResourceNamesExec)
+            // A culture with no translation (the invariant one of a container, "IVL") falls back to
+            // English, as FindLocalFilename does with files, instead of reporting no resource at all.
+            for (int attempt = 0; attempt < 2 && !resourcefound; attempt++)
             {
-                if (s.Length >= maxlength)
+                if (attempt == 1)
                 {
-                    string toSearch = s.Substring(s.Length - maxlength, maxlength).ToUpper();
-                    if (toSearch == nfilename.ToUpper() + "." + extens3)
-                    {
-                        resname = s;
-                        resourcefound = true;
+                    if (extens2 == "EN")
                         break;
-                    }
-                    toSearch = s.Substring(s.Length - maxlength + 1, maxlength - 1).ToUpper();
-                    if (toSearch == nfilename.ToUpper() + "." + extens2)
-                    {
-                        resname = s;
-                        resourcefound = true;
-                        break;
-                    }
+                    extens3 = "ENU";
+                    extens2 = "EN";
                 }
-            }
-            if ((!resourcefound) && (nfilename == "reportmanres"))
-            {
-                atreportman = true;
-                Monitor.Enter(flag);
-                try
-                {
-
-                    ReportmanAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-                    ResourceNames = ReportmanAssembly.GetManifestResourceNames();
-                }
-                finally
-                {
-                    Monitor.Exit(flag);
-                }
-                foreach (string s in ResourceNames)
+                atreportman = false;
+                foreach (string s in ResourceNamesExec)
                 {
                     if (s.Length >= maxlength)
                     {
-                        if (s.Substring(s.Length - maxlength, maxlength).ToUpper() == nfilename.ToUpper() + "." + extens3)
+                        string toSearch = s.Substring(s.Length - maxlength, maxlength).ToUpper();
+                        if (toSearch == nfilename.ToUpper() + "." + extens3)
                         {
                             resname = s;
                             resourcefound = true;
                             break;
                         }
-                        if (s.Substring(s.Length - maxlength + 1, maxlength - 1).ToUpper() == nfilename.ToUpper() + "." + extens2)
+                        toSearch = s.Substring(s.Length - maxlength + 1, maxlength - 1).ToUpper();
+                        if (toSearch == nfilename.ToUpper() + "." + extens2)
                         {
                             resname = s;
                             resourcefound = true;
                             break;
+                        }
+                    }
+                }
+                if ((!resourcefound) && (nfilename == "reportmanres"))
+                {
+                    atreportman = true;
+                    Monitor.Enter(flag);
+                    try
+                    {
+
+                        ReportmanAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+                        ResourceNames = ReportmanAssembly.GetManifestResourceNames();
+                    }
+                    finally
+                    {
+                        Monitor.Exit(flag);
+                    }
+                    foreach (string s in ResourceNames)
+                    {
+                        if (s.Length >= maxlength)
+                        {
+                            if (s.Substring(s.Length - maxlength, maxlength).ToUpper() == nfilename.ToUpper() + "." + extens3)
+                            {
+                                resname = s;
+                                resourcefound = true;
+                                break;
+                            }
+                            if (s.Substring(s.Length - maxlength + 1, maxlength - 1).ToUpper() == nfilename.ToUpper() + "." + extens2)
+                            {
+                                resname = s;
+                                resourcefound = true;
+                                break;
+                            }
                         }
                     }
                 }
