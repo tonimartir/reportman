@@ -1879,14 +1879,43 @@ namespace Reportman.Drawing
         /// <returns>The laid-out lines with their glyphs and positions.</returns>
         public override List<LineInfo> TextExtent(string Text, ref System.Drawing.Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize, bool isHtml)
         {
-            if (!isHtml)
+            return TextExtent(Text, ref Rect, pdfFont, fontData, wordwrap, singleline, FontSize, isHtml, false);
+        }
+        /// <inheritdoc/>
+        public override List<LineInfo> TextExtent(string Text, ref System.Drawing.Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize, bool isHtml, bool rightToLeft)
+        {
+            // In Delphi, TextExtent just calls TextExtentHtml: a plain text is laid out as a single
+            // HTML segment, so it goes through the exact same HarfBuzz/BiDi pipeline as HTML text.
+            return TextExtentHtml(Text, ref Rect, fontData, pdfFont, wordwrap, singleline, FontSize, isHtml, rightToLeft);
+        }
+
+        /// <summary>
+        /// Whether every visible character of the text is an emoji, the joiners and selectors that
+        /// build them included (ZWJ, variation selectors, the keycap mark, regional indicators).
+        /// Blocks: Misc Symbols and Dingbats (U+2600-27BF), Misc Symbols and Arrows (U+2B00-2BFF,
+        /// ⭐) and the supplementary planes' pictographs (U+1F000-1FAFF).
+        /// </summary>
+        private static bool EsSoloEmoji(string text)
+        {
+            bool alguno = false;
+            for (int i = 0; i < text.Length; i++)
             {
-                // In Delphi, TextExtent just calls TextExtentHtml.
-                // We fake a single HTML segment for the entire text so it goes through
-                // the exact same Harfbuzz/BiDi layout pipeline as HTML text does.
-                return TextExtentHtml(Text, ref Rect, fontData, pdfFont, wordwrap, singleline, FontSize, false /* isHtml */);
+                int cp = text[i];
+                if (char.IsHighSurrogate(text[i]) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1]))
+                {
+                    cp = char.ConvertToUtf32(text[i], text[i + 1]);
+                    i++;
+                }
+                if (cp <= ' ' || cp == 0x200D || cp == 0x20E3 || (cp >= 0xFE00 && cp <= 0xFE0F))
+                    continue;
+                if ((cp >= 0x2600 && cp <= 0x27BF) || (cp >= 0x2B00 && cp <= 0x2BFF) || (cp >= 0x1F000 && cp <= 0x1FAFF))
+                {
+                    alguno = true;
+                    continue;
+                }
+                return false;
             }
-            return TextExtentHtml(Text, ref Rect, fontData, pdfFont, wordwrap, singleline, FontSize, true /* isHtml */);
+            return alguno;
         }
 
         /// <summary>
@@ -2008,6 +2037,8 @@ namespace Reportman.Drawing
         /// <param name="singleline">True to lay the text out on a single line.</param>
         /// <param name="FontSize">The font size in points.</param>
         /// <param name="isHtml">True when <paramref name="Text"/> contains HTML markup.</param>
+        /// <param name="rightToLeft">True when the object is right to left: a line with no letter of
+        /// its own direction then reads right to left; otherwise left to right.</param>
         /// <returns>The laid-out lines with their visually ordered glyphs and positions.</returns>
         public List<LineInfo> TextExtentHtml(
             string Text,
@@ -2017,7 +2048,8 @@ namespace Reportman.Drawing
             bool wordwrap,
             bool singleline,
             double FontSize,
-            bool isHtml = true)
+            bool isHtml = true,
+            bool rightToLeft = false)
         {
             var Result = new List<LineInfo>();
 
@@ -2072,7 +2104,13 @@ namespace Reportman.Drawing
                     var possibleBreaksCharIdx = HtmlLayoutUtils.FillPossibleLineBreaksString(line);
                     var calculatedLines = new List<LineGlyphs>();
 
-                    bidi.SetPara(line, 255);
+                    // THE PARAGRAPH LEVEL WHEN THE LINE HAS NO LETTER OF ITS OWN DIRECTION. 255 is
+                    // UBIDI_DEFAULT_RTL: digits, symbols or emoji alone read right to left, which
+                    // is right in an Arabic object ("100 200" as an Arabic reader expects) and wrong
+                    // anywhere else: a line of emoji came out backwards. 254, UBIDI_DEFAULT_LTR, is
+                    // the Unicode default and what the DirectWrite provider does. A line with a
+                    // strong letter decides by itself either way.
+                    bidi.SetPara(line, rightToLeft ? (byte)255 : (byte)254);
 
                     double remaining = lineWidthLimit;
                     int textOffset = lineSubText.Position;
@@ -2183,6 +2221,15 @@ namespace Reportman.Drawing
                                         fallbackFont.Style = TempFont.Style;
                                         fallbackFont.WFontName = TempFont.WFontName;
                                         fallbackFont.LFontName = TempFont.LFontName;
+                                        // UN TRAMO DE SOLO EMOJI SE PIDE A LA FAMILIA «emoji». Pedido con
+                                        // la familia del texto (Arial, Cantarell), fontconfig elige entre
+                                        // las que lo cubren por la lista genérica sans-serif, que empieza
+                                        // por DejaVu Sans: tiene unos pocos emoji de dibujo propio, así
+                                        // que una misma línea mezclaba su 😀 con el 📦 de Noto Emoji. La
+                                        // familia genérica «emoji» es la que usan los navegadores para
+                                        // esto, y fontconfig la resuelve a la fuente de emoji que haya.
+                                        if (FontConfig.Available && EsSoloEmoji(texto))
+                                            fallbackFont.LFontName = "emoji";
 
                                         LogFontFt encontrada = null;
                                         lock (flag)

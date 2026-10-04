@@ -1868,6 +1868,13 @@ namespace Reportman.Drawing
             // Text outside WinAnsi (Greek, Cyrillic, CJK...) can not be written with a PDF standard
             // font: it would come out as '?'. Promote it to an embedded TrueType font, as RTL does.
             PromoteToUnicodeFontIfNeeded(Text);
+            // THE SHAPED PATH DECIDED HERE, BEFORE THE WINANSI CONVERSION BELOW. TextExtent sends the
+            // text to the shaper with an embedded font whenever UsesShaper says so (always with the
+            // FreeType provider), but it did that after this method had already turned the text into
+            // Windows-1252 bytes: the 27 characters that code page keeps at 0x80-0x9F (€ — – “ ” …)
+            // reached the shaper as C1 control characters, with no glyph, and vanished from the PDF.
+            if (UsesShaper(RightToLeft, isHtml))
+                Font.Name = PDFFontType.Embedded;
             TTFontData adata = GetTTFontData();
             if (!(adata == null))
             {
@@ -2525,6 +2532,15 @@ namespace Reportman.Drawing
             }
         }
         /// <summary>
+        /// Whether a text goes through the provider's shaper with an embedded font: right-to-left and
+        /// HTML text always, and every text with the FreeType provider, which lays out everything
+        /// that way (as the Delphi engine does).
+        /// </summary>
+        private bool UsesShaper(bool rightToLeft, bool isHtml)
+        {
+            return rightToLeft || isHtml || this.InfoProvider?.GetType().Name == "FontInfoFt";
+        }
+        /// <summary>
         /// Measures text within a rectangle and returns per-line information, routing to the complex shaper
         /// (for RTL, HTML, FreeType, or when forced) or to the fast simple pass otherwise.
         /// </summary>
@@ -2540,7 +2556,7 @@ namespace Reportman.Drawing
         {
             List<LineInfo> result;
             PromoteToUnicodeFontIfNeeded(Text);
-            bool useShaper = RightToLeft || isHtml || this.InfoProvider?.GetType().Name == "FontInfoFt";
+            bool useShaper = UsesShaper(RightToLeft, isHtml);
             if (useShaper || ForceComplexShaping)
             {
                 if (useShaper)
@@ -2550,7 +2566,7 @@ namespace Reportman.Drawing
                 // else (ForceComplexShaping path): preserve Font.Name as the caller set it
                 // (typically PDFFontType.Linked). GetTTFontData accepts Linked or Embedded.
                 var data = GetTTFontData();
-                result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size, isHtml);
+                result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size, isHtml, RightToLeft);
             }
             else
             {

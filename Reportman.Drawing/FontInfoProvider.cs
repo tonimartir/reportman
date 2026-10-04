@@ -511,6 +511,28 @@ namespace Reportman.Drawing
         public abstract List<LineInfo>  TextExtent(string Text,
            ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData,
             bool wordwrap,bool singleline,double FontSize, bool isHtml = false);
+        /// <summary>
+        /// The same measurement, knowing the direction of the object the text belongs to. It only
+        /// matters for a text with no letter of its own direction (digits, symbols, emoji): it reads
+        /// right to left in a right-to-left object and left to right otherwise. A provider that does
+        /// not care keeps the other overload, which is what this one calls by default.
+        /// </summary>
+        /// <param name="Text">The text to measure.</param>
+        /// <param name="Rect">On input, the available area; on output, the bounds required by the text.</param>
+        /// <param name="pdfFont">The font used to render the text.</param>
+        /// <param name="fontData">Metrics of the font used to render the text.</param>
+        /// <param name="wordwrap">Whether text wraps to additional lines when it exceeds the width.</param>
+        /// <param name="singleline">Whether the text is constrained to a single line.</param>
+        /// <param name="FontSize">The font size, in points, used to measure the text.</param>
+        /// <param name="isHtml">Whether the text contains HTML markup that affects layout.</param>
+        /// <param name="rightToLeft">Whether the object is right to left (its BidiMode is on).</param>
+        /// <returns>The per-line layout information for the measured text.</returns>
+        public virtual List<LineInfo> TextExtent(string Text,
+           ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData,
+            bool wordwrap, bool singleline, double FontSize, bool isHtml, bool rightToLeft)
+        {
+            return TextExtent(Text, ref Rect, pdfFont, fontData, wordwrap, singleline, FontSize, isHtml);
+        }
 
         /// <summary>
         /// Returns the kerning adjustment applied between two adjacent characters in the font.

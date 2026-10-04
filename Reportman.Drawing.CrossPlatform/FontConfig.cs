@@ -55,6 +55,7 @@ namespace Reportman.Drawing
         private const string FC_FONTVARIATIONS = "fontvariations";
         private const string FC_CHARSET = "charset";
         private const string FC_FONTFORMAT = "fontformat";
+        private const string FC_COLOR = "color";
 
         private const int FC_WEIGHT_NORMAL = 80;
         private const int FC_WEIGHT_BOLD = 200;
@@ -152,7 +153,7 @@ namespace Reportman.Drawing
         // Property names are passed as const char* on every call. They are allocated once and
         // never released: there is a handful of them and they live as long as the process.
         private static IntPtr ObjFamily, ObjFile, ObjIndex, ObjWeight, ObjSlant, ObjScalable,
-            ObjEmbeddedBitmap, ObjVariable, ObjFontVariations, ObjCharSet, ObjFontFormat;
+            ObjEmbeddedBitmap, ObjVariable, ObjFontVariations, ObjCharSet, ObjFontFormat, ObjColor;
 
         private static readonly object InitLock = new object();
         private static bool initialized;
@@ -271,9 +272,14 @@ namespace Reportman.Drawing
                 {
                     // Bitmap fonts have no outlines to embed in a PDF, and variable fonts would
                     // hand back a file whose default instance is not the weight that was asked for.
+                    // Colour fonts neither: their glyphs are bitmaps (CBDT, the usual colour
+                    // emoji) or layers, and fontconfig's own emoji rules ask for colour, so a
+                    // monochrome emoji font installed next to a colour one would lose to it and
+                    // the emoji would print blank.
                     FcPatternAddBool(pattern, ObjScalable, FcTrue);
                     FcPatternAddBool(pattern, ObjEmbeddedBitmap, FcFalse);
                     FcPatternAddBool(pattern, ObjVariable, FcFalse);
+                    FcPatternAddBool(pattern, ObjColor, FcFalse);
                 }
                 AddString(pattern, ObjFontVariations, "");
                 // SOLO CUANDO NO HAY hb-subset. Pedir formato TrueType tenia sentido mientras el
@@ -507,6 +513,7 @@ namespace Reportman.Drawing
             ObjFontVariations = Utf8ToNative(FC_FONTVARIATIONS);
             ObjCharSet = Utf8ToNative(FC_CHARSET);
             ObjFontFormat = Utf8ToNative(FC_FONTFORMAT);
+            ObjColor = Utf8ToNative(FC_COLOR);
 
             return FcInit() != 0;
         }
