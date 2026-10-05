@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Reportman.Reporting
 {
     /// <summary>
-    /// HTTP client for the Reportman AI agent service (api.reportman.es) that streams AI authoring
+    /// HTTP client for the Reportman AI agent service (aiapi.reportman.es) that streams AI authoring
     /// requests — SQL suggestion/translation, expression suggestion, and report modification — over
     /// server-sent events, reporting incremental progress and returning the final JSON result.
     /// </summary>
@@ -29,7 +29,7 @@ namespace Reportman.Reporting
         /// Default base URL of the Reportman AI agent service, chosen at compile time (a debug
         /// endpoint in debug builds, the production endpoint otherwise).
         /// </summary>
-        public const string DefaultBaseUrl = "https://api.reportman.es:44568";
+        public const string DefaultBaseUrl = "https://aiapi.reportman.es";
     #endif
 
         private static readonly HttpClient _httpClient;

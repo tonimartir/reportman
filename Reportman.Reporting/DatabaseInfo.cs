@@ -282,12 +282,12 @@ namespace Reportman.Reporting
         /// <summary>DotNet driver type</summary>
         public DotNetDriverType DotNetDriver { get; set; }
         /// <summary>
-        /// Base URL for HttpAgent API (e.g., "https://api.reportman.es")
+        /// Base URL for HttpAgent API (e.g., "https://aiapi.reportman.es")
         /// </summary>
 #if DEBUG
         public string HttpAgentBaseUrl { get; set; } = "https://api.reportman.es:7006";
 #else
-    public string HttpAgentBaseUrl { get; set; } = "https://api.reportman.es:44568";
+    public string HttpAgentBaseUrl { get; set; } = "https://aiapi.reportman.es";
 #endif
         /// <summary>
         /// API Key for HttpAgent authentication (alternative to Token)

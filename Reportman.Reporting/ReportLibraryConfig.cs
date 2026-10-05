@@ -87,7 +87,7 @@ namespace Reportman.Reporting
         /// </summary>
         public string ProviderName { get; set; } = "";
         /// <summary>
-        /// Base URL for HttpAgent API (e.g., "https://api.reportman.es")
+        /// Base URL for HttpAgent API (e.g., "https://aiapi.reportman.es")
         /// </summary>
         public string HttpAgentBaseUrl { get; set; } = "";
         /// <summary>

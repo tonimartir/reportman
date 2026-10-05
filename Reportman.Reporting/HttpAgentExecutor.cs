@@ -19,7 +19,7 @@ namespace Reportman.Reporting
         private readonly JsonSerializerOptions _jsonOptions;
 
         /// <summary>
-        /// Base URL for the API (e.g., "https://api.reportman.es")
+        /// Base URL for the API (e.g., "https://aiapi.reportman.es")
         /// </summary>
         public string BaseUrl { get; set; }
 

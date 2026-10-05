@@ -27,7 +27,7 @@ namespace Reportman.Designer
 #if DEBUG
         public const string HUB_API_URL = "https://api.reportman.es:7006";
 #else
-        public const string HUB_API_URL = "https://api.reportman.es:44568";
+        public const string HUB_API_URL = "https://aiapi.reportman.es";
 #endif
         // OAuth client IDs (same as Delphi)
         private const string GOOGLE_CLIENT_ID = "446365228848-pn415lkvsetqa7v7fi7ftg96m61ccl5p.apps.googleusercontent.com";
