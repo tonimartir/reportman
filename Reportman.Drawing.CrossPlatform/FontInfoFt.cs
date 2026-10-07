@@ -1326,11 +1326,11 @@ namespace Reportman.Drawing
                         // data.Height stays as cara.height (hhea-based, already set above)
                         data.Leading = data.Height - data.Ascent + data.Descent;
                     }
-                    Console.WriteLine($"[FT-FillFontData-OS2] Font={cara.familyname}, UseTypo={os2.UseTypoMetrics}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
+                    Debug.WriteLine($"[FT-FillFontData-OS2] Font={cara.familyname}, UseTypo={os2.UseTypoMetrics}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
                 }
                 else
                 {
-                    Console.WriteLine($"[FT-FillFontData-hhea] Font={cara.familyname}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
+                    Debug.WriteLine($"[FT-FillFontData-hhea] Font={cara.familyname}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
                 }
             }
             data.CapHeight = cara.Capheight;
@@ -1956,6 +1956,42 @@ namespace Reportman.Drawing
             return "Latn";
         }
 
+        /// <summary>
+        /// La fuente de HarfBuzz de una cara, construida la primera vez que da forma y guardada:
+        /// construirla analiza las tablas OpenType de la cara (cmap, GSUB, GPOS), y hacerlo para cada
+        /// texto que mide un informe era casi todo su tiempo (49 páginas, 7.500 textos cortos: 5 de
+        /// 5,4 s). Una por cara usada, como <see cref="FontStreams"/>; sus bytes quedan fijados en
+        /// memoria mientras viva el proceso. Se configura dentro del cerrojo y no se vuelve a tocar: dar
+        /// forma con ella desde varios hilos a la vez es lo que HarfBuzz permite.
+        /// </summary>
+        private sealed class FuenteHarfBuzz
+        {
+            public GCHandle Fijados;
+            public HarfBuzzSharp.Blob Blob;
+            public HarfBuzzSharp.Face Cara;
+            public HarfBuzzSharp.Font Fuente;
+        }
+        private static readonly Dictionary<string, FuenteHarfBuzz> fuentesHarfBuzz = new Dictionary<string, FuenteHarfBuzz>();
+
+        private static HarfBuzzSharp.Font FuenteHarfBuzzDe(TTFontData adata, LogFontFt cara)
+        {
+            string clave = ClaveDeCara(cara);
+            lock (fuentesHarfBuzz)
+            {
+                if (fuentesHarfBuzz.TryGetValue(clave, out var guardada))
+                    return guardada.Fuente;
+                byte[] bytes = adata.FontData.Data;
+                var nueva = new FuenteHarfBuzz { Fijados = GCHandle.Alloc(bytes, GCHandleType.Pinned) };
+                nueva.Blob = new HarfBuzzSharp.Blob(nueva.Fijados.AddrOfPinnedObject(), bytes.Length, HarfBuzzSharp.MemoryMode.ReadOnly);
+                nueva.Cara = new HarfBuzzSharp.Face(nueva.Blob, cara.faceIndex);
+                nueva.Fuente = new HarfBuzzSharp.Font(nueva.Cara);
+                nueva.Fuente.SetScale((int)adata.UnitsPerEM, (int)adata.UnitsPerEM);
+                nueva.Fuente.SetFunctionsOpenType();
+                fuentesHarfBuzz[clave] = nueva;
+                return nueva.Fuente;
+            }
+        }
+
         private TGlyphPos[] CalcGlyphPositions(string text, bool rightToLeft, string script, double FontSize, TTFontData adata, PDFFont pdfFont)
         {
             if (string.IsNullOrEmpty(text)) return new TGlyphPos[0];
@@ -1964,59 +2000,66 @@ namespace Reportman.Drawing
             {
                 FillFontData(pdfFont, adata);
             }
-            
-            byte[] bytes = adata.FontData.Data;
+
             // LA MISMA CARA QUE MIDIO FREETYPE. En un fichero normal es la 0 y da igual; en una
             // coleccion (.ttc) no: FreeType abrio la cara que dijo fontconfig y HarfBuzz tiene que
             // conformar ESA, o los indices de glifo que salgan no seran los que se midieron.
-            int caraHb = adata.LogFont is LogFontFt lft ? lft.faceIndex : 0;
+            if (adata.LogFont is LogFontFt lft)
+                return DarForma(FuenteHarfBuzzDe(adata, lft), text, rightToLeft, script, FontSize, adata);
+
+            byte[] bytes = adata.FontData.Data;
             fixed (byte* pData = bytes)
             {
                 using (var blob = new HarfBuzzSharp.Blob((IntPtr)pData, bytes.Length, HarfBuzzSharp.MemoryMode.ReadOnly))
-                using (var hbFace = new HarfBuzzSharp.Face(blob, caraHb))
+                using (var hbFace = new HarfBuzzSharp.Face(blob, 0))
                 using (var font = new HarfBuzzSharp.Font(hbFace))
-                using (var buffer = new HarfBuzzSharp.Buffer())
                 {
                     font.SetScale((int)adata.UnitsPerEM, (int)adata.UnitsPerEM);
                     font.SetFunctionsOpenType();
-                    buffer.Direction = rightToLeft ? HarfBuzzSharp.Direction.RightToLeft : HarfBuzzSharp.Direction.LeftToRight;
-                    if (!string.IsNullOrEmpty(script))
-                    {
-                        buffer.Script = HarfBuzzSharp.Script.Parse(script);
-                        if (script == "Arab")
-                        {
-                            buffer.Language = new HarfBuzzSharp.Language("ar");
-                        }
-                    }
-                    buffer.AddUtf16(text);
-                    font.Shape(buffer);
-                    
-                    var glyphInfos = buffer.GlyphInfos;
-                    var glyphPositions = buffer.GlyphPositions;
+                    return DarForma(font, text, rightToLeft, script, FontSize, adata);
+                }
+            }
+        }
 
+        private static TGlyphPos[] DarForma(HarfBuzzSharp.Font font, string text, bool rightToLeft, string script, double FontSize, TTFontData adata)
+        {
+            using (var buffer = new HarfBuzzSharp.Buffer())
+            {
+                buffer.Direction = rightToLeft ? HarfBuzzSharp.Direction.RightToLeft : HarfBuzzSharp.Direction.LeftToRight;
+                if (!string.IsNullOrEmpty(script))
+                {
+                    buffer.Script = HarfBuzzSharp.Script.Parse(script);
                     if (script == "Arab")
                     {
-                        Console.Write($"[HB] Shaped '{text}' -> ");
-                        foreach (var gi in glyphInfos) Console.Write(gi.Codepoint + " ");
-                        Console.WriteLine();
+                        buffer.Language = new HarfBuzzSharp.Language("ar");
                     }
-                    
-                    var result = new TGlyphPos[glyphInfos.Length];
-                    
-                    double scaleFactor = FontSize * 20.0 / adata.UnitsPerEM;
-                    for(int i = 0; i < glyphInfos.Length; i++)
-                    {
-                        result[i] = new TGlyphPos();
-                        result[i].GlyphIndex = (ushort)glyphInfos[i].Codepoint;
-                        result[i].XAdvance = (int)Math.Round(glyphPositions[i].XAdvance * scaleFactor);
-                        result[i].XOffset = (int)Math.Round(glyphPositions[i].XOffset * scaleFactor);
-                        result[i].YOffset = (int)Math.Round(glyphPositions[i].YOffset * scaleFactor);
-                        result[i].Cluster = (int)glyphInfos[i].Cluster;
-                        if (result[i].Cluster < text.Length)
-                            result[i].CharCode = text[result[i].Cluster];
-                    }
-                    return result;
                 }
+                buffer.AddUtf16(text);
+                font.Shape(buffer);
+
+                var glyphInfos = buffer.GlyphInfos;
+                var glyphPositions = buffer.GlyphPositions;
+
+                if (script == "Arab")
+                {
+                    Debug.WriteLine($"[HB] Shaped '{text}' -> " + string.Join(" ", Array.ConvertAll(glyphInfos, gi => gi.Codepoint.ToString())));
+                }
+
+                var result = new TGlyphPos[glyphInfos.Length];
+
+                double scaleFactor = FontSize * 20.0 / adata.UnitsPerEM;
+                for(int i = 0; i < glyphInfos.Length; i++)
+                {
+                    result[i] = new TGlyphPos();
+                    result[i].GlyphIndex = (ushort)glyphInfos[i].Codepoint;
+                    result[i].XAdvance = (int)Math.Round(glyphPositions[i].XAdvance * scaleFactor);
+                    result[i].XOffset = (int)Math.Round(glyphPositions[i].XOffset * scaleFactor);
+                    result[i].YOffset = (int)Math.Round(glyphPositions[i].YOffset * scaleFactor);
+                    result[i].Cluster = (int)glyphInfos[i].Cluster;
+                    if (result[i].Cluster < text.Length)
+                        result[i].CharCode = text[result[i].Cluster];
+                }
+                return result;
             }
         }
 
@@ -2027,6 +2070,14 @@ namespace Reportman.Drawing
             public byte Level;
             public bool IsRightToLeft;
         }
+
+        /// <summary>
+        /// Las métricas de cada variante de fuente (familia + estilo) con las que ha medido este
+        /// proveedor. Cada llamada a <see cref="TextExtentHtml"/> rellenaba las suyas, y rellenarlas lee
+        /// el fichero de la fuente del disco: una lectura de un fichero de 1 MB por cada texto de un
+        /// informe. El proveedor vive lo que una impresión, y esto con él.
+        /// </summary>
+        private readonly Dictionary<string, TTFontData> fontDataCache = new Dictionary<string, TTFontData>();
 
         /// <summary>Performs BiDi- and script-aware text layout using HarfBuzz shaping and ICU bidirectional analysis, supporting HTML formatting runs, per-segment fonts, word wrapping and font fallback, and updates <paramref name="Rect"/> with the measured extent.</summary>
         /// <param name="Text">The text to lay out, optionally containing HTML markup.</param>
@@ -2063,7 +2114,7 @@ namespace Reportman.Drawing
             double linespacingEM = (double)adata.Height / 1000.0;
             int linespacing = (int)Math.Round(linespacingEM * FontSize * 20.0);
             int ascentSpacing = (int)Math.Round(((double)adata.Ascent / 1000.0) * FontSize * 20.0);
-            Console.WriteLine($"[FreeType] Font: {pdfFont.WFontName}, Size: {FontSize}, adata.Height={adata.Height}, -> linespacing={linespacing}, ascentSpacing={ascentSpacing}");
+            Debug.WriteLine($"[FreeType] Font: {pdfFont.WFontName}, Size: {FontSize}, adata.Height={adata.Height}, -> linespacing={linespacing}, ascentSpacing={ascentSpacing}");
             
             // rectTop tracks the top of the current line (not the baseline)
             // This matches GDI's: lineInfo.TopPos = rectTopTwips + realBaseline
@@ -2094,7 +2145,9 @@ namespace Reportman.Drawing
             TempFont.WFontName = pdfFont.WFontName;
             TempFont.LFontName = pdfFont.LFontName;
 
-            var fontDataCache = new Dictionary<string, TTFontData>();
+            // Las variantes que usa ESTE texto, en el orden en que aparecen: el alto de línea mira solo
+            // éstas, no todas las que ha visto la impresión.
+            var fontDataUsadas = new List<KeyValuePair<string, TTFontData>>();
 
             using (var bidi = BidiFactory.Create())
             {
@@ -2159,12 +2212,18 @@ namespace Reportman.Drawing
                                 if (TempFont.Italic) TempFont.Style |= 2;
 
                                 string tempKey = TempFont.GetFontFamilyKey() + TempFont.Style.ToString();
-                                if (!fontDataCache.TryGetValue(tempKey, out var tempAdata))
+                                TTFontData tempAdata;
+                                lock (fontDataCache)
                                 {
-                                    tempAdata = new TTFontData();
-                                    FillFontData(TempFont, tempAdata);
-                                    fontDataCache[tempKey] = tempAdata;
+                                    if (!fontDataCache.TryGetValue(tempKey, out tempAdata))
+                                    {
+                                        tempAdata = new TTFontData();
+                                        FillFontData(TempFont, tempAdata);
+                                        fontDataCache[tempKey] = tempAdata;
+                                    }
                                 }
+                                if (!fontDataUsadas.Exists(u => u.Key == tempKey))
+                                    fontDataUsadas.Add(new KeyValuePair<string, TTFontData>(tempKey, tempAdata));
 
                                 LogFontFt fuenteDelTramo;
                                 lock (flag)
@@ -2519,7 +2578,7 @@ namespace Reportman.Drawing
                             
                             // Find the font data for this glyph
                             TTFontData gFontData = null;
-                            foreach (var kvp in fontDataCache)
+                            foreach (var kvp in fontDataUsadas)
                             {
                                 if (kvp.Key.ToUpper().Contains(gFontFamily.ToUpper()))
                                 {
