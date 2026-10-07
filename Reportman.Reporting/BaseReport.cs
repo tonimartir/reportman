@@ -1079,6 +1079,9 @@ namespace Reportman.Reporting
         /// <param name="version">Stream format version to write.</param>
         public void SaveToStream(Stream astream, StreamVersion version = StreamVersion.V2)
         {
+            // An initial expression evaluated to show or print the report is saved as the expression,
+            // not as the value it gave today (as the Delphi engine does).
+            RestoreInitialValues();
             ReportWriter areader = new ReportWriter(this);
             areader.SaveToStream(astream, version);
         }
@@ -1089,6 +1092,7 @@ namespace Reportman.Reporting
         /// <param name="version">Stream format version to write.</param>
         public void SaveToFile(string filename, StreamVersion version = StreamVersion.V2)
         {
+            RestoreInitialValues();
             ReportWriter areader = new ReportWriter(this);
             areader.SaveToFile(filename, version);
 
@@ -1298,6 +1302,9 @@ namespace Reportman.Reporting
 
             for (int i = 0; i < Params.Count; i++)
             {
+                // An initial expression not evaluated yet (no parameters form was shown): its value
+                // is the expression's result, as in the Delphi engine at BeginPrint.
+                Params[i].UpdateInitialValue();
                 if (Params[i].ParamType == ParamType.ExpreB)
                 {
                     string paramname = Params[i].Alias;
@@ -2868,6 +2875,29 @@ end;
 
         }
         /// <summary>
+        /// Evaluates every initial-expression parameter, turning it into a parameter of its
+        /// result's type that holds the result: what a parameters form shows as the default. Call it
+        /// before showing the parameters; <see cref="RestoreInitialValues"/> undoes it before saving.
+        /// </summary>
+        public void UpdateInitialValues()
+        {
+            InitEvaluator();
+            AddReportItemsToEvaluator(Evaluator);
+            foreach (Param p in Params)
+                p.UpdateInitialValue();
+        }
+
+        /// <summary>
+        /// Puts back the expression of every parameter that <see cref="UpdateInitialValues"/> evaluated,
+        /// so a saved report keeps its initial expressions and not the values they gave.
+        /// </summary>
+        public void RestoreInitialValues()
+        {
+            foreach (Param p in Params)
+                p.RestoreInitialValue();
+        }
+
+        /// <summary>
         /// Evaluates the validation expression of every parameter and returns the alias of the
         /// first parameter that fails validation, or an empty string when all are valid.
         /// </summary>
@@ -2877,6 +2907,16 @@ end;
             string aresult = "";
             InitEvaluator();
             AddReportItemsToEvaluator(Evaluator);
+            // A validation reads the parameter as M.NAME, which is its LastValue. The values the user
+            // just entered are in Value: copy them over first, as InitializeParams will before
+            // printing, or the validation checks the previous run's values and never the new ones.
+            // Expressions evaluated before opening (ExpreB) keep their last result, as in Delphi.
+            foreach (Param p in Params)
+            {
+                p.UpdateInitialValue();
+                if (p.ParamType != ParamType.ExpreB)
+                    p.LastValue = p.ListValue;
+            }
             foreach (Param p in Params)
             {
                 string validation = p.Validation.Trim();

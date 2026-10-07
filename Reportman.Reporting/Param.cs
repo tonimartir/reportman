@@ -386,8 +386,93 @@ namespace Reportman.Reporting
             p.Validation = Validation;
             p.Values = (Strings)Values.Clone();
             p.Visible = Visible;
+            p.EvaluatedInitialExpression = EvaluatedInitialExpression;
             return p;
         }
+        /// <summary>
+        /// The expression an initial-expression parameter had before <see cref="UpdateInitialValue"/>
+        /// replaced it with its result; null when it was never evaluated. Not serialized:
+        /// <see cref="RestoreInitialValue"/> puts it back before a report is saved.
+        /// </summary>
+        [JsonIgnore]
+        public string EvaluatedInitialExpression { get; private set; }
+
+        /// <summary>
+        /// For an <see cref="ParamType.InitialValue"/> parameter, evaluates the expression in
+        /// <see cref="Value"/> and turns the parameter into one of the result's type holding the
+        /// result, as the Delphi engine does before showing the parameters form and before printing:
+        /// a whole date becomes a date parameter, a date with a time of day a date-time one, an
+        /// integer an integer one and so on. Does nothing for any other parameter type.
+        /// </summary>
+        /// <returns>True when the parameter was evaluated.</returns>
+        public bool UpdateInitialValue()
+        {
+            if (ParamType != ParamType.InitialValue)
+                return false;
+            string expression = Value.IsNull ? "" : Value.AsString;
+            Variant result;
+            try
+            {
+                result = Report.Evaluator.EvaluateText(expression);
+            }
+            catch (Exception E)
+            {
+                throw new ReportException(E.Message + " - Parameter:" + Alias, this, "Value");
+            }
+            EvaluatedInitialExpression = expression;
+            ParamType = ParamTypeOf(result);
+            Value = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Undoes <see cref="UpdateInitialValue"/>: the parameter becomes an initial-expression one
+        /// again with its original expression, so saving the report keeps the expression and not
+        /// the value it gave today.
+        /// </summary>
+        public void RestoreInitialValue()
+        {
+            if (EvaluatedInitialExpression == null)
+                return;
+            ParamType = ParamType.InitialValue;
+            Value = EvaluatedInitialExpression;
+            EvaluatedInitialExpression = null;
+        }
+
+        /// <summary>
+        /// The parameter type that holds a value of this kind: the one an initial expression turns
+        /// into. A date whose time of day is not zero is a date-time; a date-time before the first
+        /// day of the calendar (only a time of day) is a time.
+        /// </summary>
+        public static ParamType ParamTypeOf(Variant value)
+        {
+            switch (value.VarType)
+            {
+                case VariantType.Null:
+                    return ParamType.Unknown;
+                case VariantType.Byte:
+                case VariantType.Integer:
+                case VariantType.Long:
+                    return ParamType.Integer;
+                case VariantType.Double:
+                    return ParamType.Double;
+                case VariantType.Decimal:
+                    return ParamType.Currency;
+                case VariantType.Boolean:
+                    return ParamType.Bool;
+                case VariantType.String:
+                case VariantType.Char:
+                    return ParamType.String;
+                case VariantType.DateTime:
+                    DateTime date = (DateTime)value;
+                    if (date.Date <= new DateTime(1899, 12, 30))
+                        return ParamType.Time;
+                    return date.TimeOfDay.Ticks != 0 ? ParamType.DateTime : ParamType.Date;
+                default:
+                    return ParamType.Unknown;
+            }
+        }
+
         /// <summary>
         /// Marks every available value as selected for a multiple-selection parameter.
         /// </summary>
