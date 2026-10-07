@@ -90,6 +90,14 @@ namespace Reportman.Reporting
         public long HubSchemaId { get; set; }
 
         /// <summary>
+        /// Gets or sets the schema of a direct connection sent inline as the request configuration
+        /// (see <see cref="LocalSchemaStore.BuildInlineConfig"/>): <c>{ name, dialect, schemaTables,
+        /// hubDatabaseId: 0, hubSchemaId: 0 }</c>. Used only while no Hub database or schema is set
+        /// (<see cref="HubDatabaseId"/> and <see cref="HubSchemaId"/> are 0); null to send the Hub ids.
+        /// </summary>
+        public IDictionary<string, object> InlineConfig { get; set; }
+
+        /// <summary>
         /// Gets or sets the runtime database name sent with each request when specified.
         /// </summary>
         public string RuntimeDb { get; set; }
@@ -368,10 +376,15 @@ namespace Reportman.Reporting
 
         private object BuildBaseRequest(object customFields = null)
         {
+            object config;
+            if (InlineConfig != null && HubDatabaseId == 0 && HubSchemaId == 0)
+                config = InlineConfig;
+            else
+                config = new { hubDatabaseId = HubDatabaseId, hubSchemaId = HubSchemaId };
             var dict = new Dictionary<string, object>
             {
                 { "aiTier", AITier },
-                { "config", new { hubDatabaseId = HubDatabaseId, hubSchemaId = HubSchemaId } }
+                { "config", config }
             };
 
             if (!string.IsNullOrEmpty(AgentSecret)) dict["agentSecret"] = AgentSecret;
@@ -379,7 +392,12 @@ namespace Reportman.Reporting
             if (!string.IsNullOrEmpty(ApiKey)) dict["apiKey"] = ApiKey;
             if (!string.IsNullOrEmpty(RuntimeDb)) dict["runtime"] = RuntimeDb;
 
-            if (customFields != null)
+            if (customFields is IDictionary<string, object> fields)
+            {
+                foreach (var pair in fields)
+                    dict[pair.Key] = pair.Value;
+            }
+            else if (customFields != null)
             {
                 foreach (var prop in customFields.GetType().GetProperties())
                 {
@@ -465,6 +483,50 @@ namespace Reportman.Reporting
                 existingContextJson = existingContextJson ?? "",
                 returnModifiedDocument = true
             });
+
+            return await StreamJsonRequestAsync("ReportDesigner/ModifyReportStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// One call of a report modification in which the client runs the SQL of the databases the cloud
+        /// cannot reach (<c>clientExecutesSql: true</c>). When the answer's status is
+        /// <c>NeedsClientSqlResults</c> the caller runs its <c>clientSqlRequests</c> and calls again with the
+        /// same instructions, the returned document and working context, the continuation and the results;
+        /// <see cref="CopilotModifyReportLoop"/> does all of it.
+        /// </summary>
+        /// <param name="userPrompt">The modification instruction from the user (the same in every call).</param>
+        /// <param name="reportDocument">The XML report document: the designer's on the first call, the returned one afterwards.</param>
+        /// <param name="mode">The designer assistant mode.</param>
+        /// <param name="userLanguage">The language of the user prompt.</param>
+        /// <param name="existingContextJson">The context: the designer's on the first call, the returned working context afterwards.</param>
+        /// <param name="continuation">Empty on the first call; afterwards the continuation of the answer being answered.</param>
+        /// <param name="clientSqlResults">Null on the first call; afterwards what running each requested SQL gave.</param>
+        /// <param name="sender">The object raising the request.</param>
+        /// <param name="onProgress">Progress notification callback handler.</param>
+        /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        /// <returns>The final JSON answer of the call.</returns>
+        public async Task<JsonDocument> ModifyReportTurnAsync(string userPrompt, string reportDocument, string mode, string userLanguage,
+            string existingContextJson, string continuation, IList<CopilotClientSqlResult> clientSqlResults,
+            object sender, ProgressEventHandler onProgress, CancellationToken cancellationToken)
+        {
+            var fields = new Dictionary<string, object>
+            {
+                { "mode", mode },
+                { "simplifiedPrompt", false },
+                { "reportDocument", reportDocument ?? "" },
+                { "reportFormat", "Xml" },
+                { "userInstructions", new[] { userPrompt } },
+                { "userLanguage", userLanguage },
+                { "existingOperationsJson", "" },
+                { "existingContextJson", existingContextJson ?? "" },
+                { "returnModifiedDocument", true },
+                { "clientExecutesSql", true }
+            };
+            if (!string.IsNullOrEmpty(continuation))
+                fields["continuation"] = continuation;
+            if (clientSqlResults != null)
+                fields["clientSqlResults"] = clientSqlResults;
+            var requestBody = BuildBaseRequest(fields);
 
             return await StreamJsonRequestAsync("ReportDesigner/ModifyReportStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }

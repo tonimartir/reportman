@@ -110,6 +110,15 @@ namespace Reportman.Reporting
         /// </summary>
         public DataView DataViewOverride;
         /// <summary>
+        /// How <see cref="Connect"/> executes the query on a direct connection. Default reads the rows;
+        /// <see cref="System.Data.CommandBehavior.SchemaOnly"/> only describes the columns (the dataset
+        /// opens empty), which is how the AI copilot learns the columns of a SQL it wrote. Not saved
+        /// with the report.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public CommandBehavior OpenBehavior { get; set; } = CommandBehavior.Default;
+        /// <summary>
         /// Free resources
         /// </summary>
 		override public void Dispose()
@@ -693,7 +702,10 @@ namespace Reportman.Reporting
                     }
                     else
                     {
-                        areader = Command.ExecuteReader();
+                        if (OpenBehavior == CommandBehavior.Default)
+                            areader = Command.ExecuteReader();
+                        else
+                            areader = Command.ExecuteReader(OpenBehavior);
                         DataReader = areader;
                         Data.CurrentReader = DataReader;
                     }

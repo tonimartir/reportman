@@ -487,6 +487,47 @@ namespace Reportman.Reporting
         /// </summary>
         public static SortedList<string, DbProviderFactory> CustomProviderFactories = new SortedList<string, DbProviderFactory>();
         /// <summary>
+        /// Creates a new connection, not opened, with the provider factory and connection string
+        /// <see cref="Connect"/> uses (including the report's ADOCONNECTIONSTRING parameters). It is
+        /// owned by the caller, so it can read the database outside the report's own transaction,
+        /// for example its catalog. Not available for HttpAgent or Mybase connections.
+        /// </summary>
+        /// <returns>A closed connection with its connection string assigned.</returns>
+        public DbConnection CreateDbConnection()
+        {
+            if (Driver == DriverType.HttpAgent || Driver == DriverType.Mybase)
+                throw new NamedException("The connection " + Alias + " has no database provider", Alias);
+            string UsedConnectionString = ConnectionString;
+            if (Report != null)
+            {
+                int index = Report.Params.IndexOf("ADOCONNECTIONSTRING");
+                if (index > 0)
+                    UsedConnectionString = Report.Params[index].Value.ToString();
+                index = Report.Params.IndexOf(Alias + "_ADOCONNECTIONSTRING");
+                if (index > 0)
+                    UsedConnectionString = Report.Params[index].Value.ToString();
+            }
+
+            if (Driver == DriverType.IBX)
+                ProviderFactory = FIREBIRD_PROVIDER2;
+            if (this.ProviderFactory.Length == 0)
+                throw new UnNamedException("Provider factory not supplied");
+            DbProviderFactory afactory = null;
+            if (CustomProviderFactories.IndexOfKey(ProviderFactory) >= 0)
+                afactory = CustomProviderFactories[ProviderFactory];
+            if (afactory == null)
+#if NETSTANDARD2_0
+                throw new Exception("You must provide in .netstandard a DatabaseInfo.CustomProviderFactory for the name: " + ProviderFactory);
+#else
+                afactory = DbProviderFactories.GetFactory(this.ProviderFactory);
+#endif
+            if (afactory == null)
+                throw new NamedException("System.Data.Common.DbProviderFactories Factory not found:" + this.ProviderFactory.ToString(), DotNetDriver.ToString());
+            DbConnection aconnection = afactory.CreateConnection();
+            aconnection.ConnectionString = UsedConnectionString;
+            return aconnection;
+        }
+        /// <summary>
         /// Connect to the database
         /// </summary>
         public void Connect()
@@ -537,32 +578,7 @@ namespace Reportman.Reporting
                         IntTransaction = Connection.BeginTransaction(TransIsolation);
                 return;
             }
-            string UsedConnectionString = ConnectionString;
-            int index = Report.Params.IndexOf("ADOCONNECTIONSTRING");
-            if (index > 0)
-                UsedConnectionString = Report.Params[index].Value.ToString();
-            index = Report.Params.IndexOf(Alias + "_ADOCONNECTIONSTRING");
-            if (index > 0)
-                UsedConnectionString = Report.Params[index].Value.ToString();
-
-            if (Driver == DriverType.IBX)
-                ProviderFactory = FIREBIRD_PROVIDER2;
-            if (this.ProviderFactory.Length == 0)
-                throw new UnNamedException("Provider factory not supplied");
-            DbProviderFactory afactory = null;
-            if (CustomProviderFactories.IndexOfKey(ProviderFactory) >= 0)
-                afactory = CustomProviderFactories[ProviderFactory];
-            if (afactory == null)
-#if NETSTANDARD2_0
-                throw new Exception("You must provide in .netstandard a DatabaseInfo.CustomProviderFactory for the name: " + ProviderFactory);
-#else
-                afactory = DbProviderFactories.GetFactory(this.ProviderFactory);
-#endif
-            if (afactory == null)
-                throw new NamedException("System.Data.Common.DbProviderFactories Factory not found:" + this.ProviderFactory.ToString(), DotNetDriver.ToString());
-            DbConnection aconnection = null;
-            aconnection = afactory.CreateConnection();
-            aconnection.ConnectionString = UsedConnectionString;
+            DbConnection aconnection = CreateDbConnection();
             aconnection.Open();
             FConnection = aconnection;
             if (Transaction == null)

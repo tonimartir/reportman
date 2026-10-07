@@ -641,7 +641,43 @@ namespace Reportman.Designer
 
             ResolveInitialAIChatSchemaContext(out long hubDatabaseId,
                 out long hubSchemaId, out string schemaApiKey);
+            // The report's direct connections: the copilot can work with their local schema and run
+            // the SQL it writes with them. Without a Hub schema of the report, that is the default.
+            List<string> directAliases = ResolveDirectConnectionAliases(out string preferredDirectAlias);
+            FAIChatControl.SetDirectConnections(directAliases, preferredDirectAlias,
+                hubDatabaseId == 0 && hubSchemaId == 0);
             FAIChatControl.SetHubContext(hubDatabaseId, hubSchemaId, schemaApiKey);
+        }
+
+        /// <summary>
+        /// The aliases of the report's connections that are not HTTP Agent (nor in-memory) ones, and the
+        /// one of the first dataset when it uses one of them (else the first of them).
+        /// </summary>
+        private List<string> ResolveDirectConnectionAliases(out string preferredAlias)
+        {
+            var aliases = new List<string>();
+            preferredAlias = "";
+            if (FReport == null)
+                return aliases;
+            for (int index = 0; index < FReport.DatabaseInfo.Count; index++)
+            {
+                DatabaseInfo databaseInfo = FReport.DatabaseInfo[index];
+                if (databaseInfo == null || string.IsNullOrWhiteSpace(databaseInfo.Alias))
+                    continue;
+                databaseInfo.ResolveHttpAgentConnectionParamsFromConfig();
+                if (databaseInfo.Driver == DriverType.HttpAgent || databaseInfo.Driver == DriverType.Mybase)
+                    continue;
+                aliases.Add(databaseInfo.Alias);
+            }
+            if (FReport.DataInfo.Count > 0)
+            {
+                string used = FReport.DataInfo[0].DatabaseAlias ?? "";
+                if (aliases.Exists(a => string.Equals(a, used, StringComparison.OrdinalIgnoreCase)))
+                    preferredAlias = used;
+            }
+            if (preferredAlias.Length == 0 && aliases.Count > 0)
+                preferredAlias = aliases[0];
+            return aliases;
         }
         private static void FixReport(Report xreport)
         {

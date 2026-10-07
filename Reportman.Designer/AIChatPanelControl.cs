@@ -77,6 +77,44 @@ namespace Reportman.Designer
         public Action<string> ApplyModifiedReportDocument { get; set; }
 
         /// <summary>
+        /// Gets or sets an optional hook that binds the connections of a report loaded from the document
+        /// before the copilot runs a SQL on it (a host that supplies its own connections). By default the
+        /// connections of the document are used as they are.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Action<Report> PrepareReportConnections { get; set; }
+
+        private string _localSchemaFolder;
+
+        /// <summary>
+        /// Gets or sets the folder of the local schema files of direct connections. By default the
+        /// dbxschemas folder next to the dbxconnections.ini the designer uses.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string LocalSchemaFolder
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_localSchemaFolder))
+                {
+                    string ini = DbxConnections.ResolveWritePath();
+                    if (string.IsNullOrEmpty(ini))
+                        ini = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dbxconnections.ini");
+                    return LocalSchemaStore.FolderFor(ini);
+                }
+                return _localSchemaFolder;
+            }
+            set
+            {
+                _localSchemaFolder = value;
+                if (_aiSchemaSelectorControl != null)
+                    _aiSchemaSelectorControl.LocalSchemaFolder = LocalSchemaFolder;
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the AIChatPanelControl control.
         /// </summary>
         public AIChatPanelControl()
@@ -173,6 +211,61 @@ namespace Reportman.Designer
             LoadSchemasAsync();
         }
 
+        /// <summary>
+        /// Sets the direct (not Agent) connections of the report: the schema selector offers the local
+        /// schema of each one (all its tables and its subschemas), and with one selected the copilot
+        /// sends that schema inline and runs the SQL it writes with the report's connection. Call it
+        /// before <see cref="SetHubContext"/>.
+        /// </summary>
+        /// <param name="aliases">Aliases of the report's direct connections.</param>
+        /// <param name="preferredAlias">The connection to select by default.</param>
+        /// <param name="preferLocal">True when the report has no Hub schema: the local schema is selected by default.</param>
+        public void SetDirectConnections(System.Collections.Generic.IList<string> aliases, string preferredAlias, bool preferLocal)
+        {
+            if (InvokeRequired)
+            {
+                try { Invoke(new Action(() => SetDirectConnections(aliases, preferredAlias, preferLocal))); } catch { }
+                return;
+            }
+            _aiSchemaSelectorControl.LocalSchemaFolder = LocalSchemaFolder;
+            _aiSchemaSelectorControl.SetDirectConnections(aliases, preferredAlias, preferLocal);
+        }
+
+        /// <summary>A connection to the database of <paramref name="alias"/> as the report document defines it.</summary>
+        private static Func<System.Data.Common.DbConnection> ConnectionFactory(string reportDocument, string alias, Action<Report> prepare)
+        {
+            return () =>
+            {
+                Report report = CopilotSqlProbe.LoadReport(reportDocument);
+                if (prepare != null)
+                    prepare(report);
+                DatabaseInfo db = CopilotSqlProbe.FindDatabase(report, alias);
+                if (db == null)
+                    throw new InvalidOperationException("The report has no connection " + alias);
+                return db.CreateDbConnection();
+            };
+        }
+
+        private void OnLocalSchemaEditRequested(object sender, EventArgs e)
+        {
+            string alias = _aiSchemaSelectorControl.LocalAlias;
+            if (alias.Length == 0)
+                return;
+            try
+            {
+                string reportDocument = ReportDocumentProvider != null ? ReportDocumentProvider() : "";
+                if (string.IsNullOrWhiteSpace(reportDocument))
+                    throw new InvalidOperationException("Unable to serialize the current report to XML.");
+                if (LocalSchemaEditorForm.Edit(FindForm(), LocalSchemaFolder, alias,
+                    ConnectionFactory(reportDocument, alias, PrepareReportConnections)))
+                    _aiSchemaSelectorControl.ReloadLocalSchemas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(FindForm(), ex.Message, "Local schema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void LoadSchemasAsync()
         {
             if (IsDisposed)
@@ -255,6 +348,7 @@ namespace Reportman.Designer
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
+            _aiSchemaSelectorControl.LocalSchemaEditRequested += OnLocalSchemaEditRequested;
 
             // Top panel with GridPanel stacking (like Delphi's GridTop)
             TableLayoutPanel topGrid = new TableLayoutPanel
@@ -585,6 +679,15 @@ namespace Reportman.Designer
                 }
                 _agentClient.HubDatabaseId = _aiSchemaSelectorControl.HubDatabaseId;
                 _agentClient.HubSchemaId = _aiSchemaSelectorControl.HubSchemaId;
+                _agentClient.InlineConfig = null;
+
+                // A direct connection's local schema: its file (generated from the catalog the first
+                // time) travels inline, and the SQL the copilot writes is run here with that connection.
+                string localAlias = _aiSchemaSelectorControl.LocalAlias;
+                string localSubschema = _aiSchemaSelectorControl.LocalSubschema;
+                string schemaFolder = LocalSchemaFolder;
+                Action<Report> prepare = PrepareReportConnections;
+                var connectionFactory = localAlias.Length > 0 ? ConnectionFactory(reportDocument, localAlias, prepare) : null;
 
                 AICopilotManager.Instance.OnCancelRequested = () =>
                 {
@@ -593,8 +696,23 @@ namespace Reportman.Designer
                 };
                 AICopilotManager.Instance.BeginInference();
 
-                var resultDoc = await System.Threading.Tasks.Task.Run(async () =>
-                    await _agentClient.ModifyReportAsync(
+                var loop = new CopilotModifyReportLoop(_agentClient) { PrepareReport = prepare };
+                loop.StatusChanged += AppendLog;
+                var outcome = await System.Threading.Tasks.Task.Run(async () =>
+                {
+                    if (localAlias.Length > 0)
+                    {
+                        string path = LocalSchemaStore.PathFor(schemaFolder, localAlias);
+                        if (!System.IO.File.Exists(path))
+                            AppendLog("Reading the tables of " + localAlias + " into " + path + "...");
+                        LocalSchemaFile schema = LocalSchemaStore.LoadOrGenerate(schemaFolder, localAlias, connectionFactory, false);
+                        if (LocalSchemaStore.FindSubschema(schema, localSubschema) == null && localSubschema.Length > 0)
+                            AppendLog("The subschema " + localSubschema + " is not in the file: all the tables are sent.");
+                        _agentClient.InlineConfig = LocalSchemaStore.BuildInlineConfig(schema, localSubschema);
+                        AppendLog("Schema " + localAlias + (localSubschema.Length > 0 ? " / " + localSubschema : "") + ": " +
+                            LocalSchemaStore.TablesOf(schema, localSubschema).Count + " tables sent inline.");
+                    }
+                    return await loop.RunAsync(
                         prompt,
                         reportDocument,
                         mode,
@@ -606,10 +724,11 @@ namespace Reportman.Designer
                             PostToUi(() => UpdateStreamingProgress(actor, stage, chunkType, chunk,
                                 inTokens, outTokens, progId, prefill));
                         },
-                        _cts.Token).ConfigureAwait(false), _cts.Token);
+                        _cts.Token).ConfigureAwait(false);
+                }, _cts.Token);
 
                 _markdownControl.FinishStreaming();
-                HandleModifyReportResult(resultDoc);
+                HandleModifyReportResult(outcome);
             }
             catch (OperationCanceledException)
             {
@@ -688,7 +807,20 @@ namespace Reportman.Designer
                 string.Equals(chunkType, "Full", StringComparison.OrdinalIgnoreCase);
         }
 
-        private void HandleModifyReportResult(JsonDocument resultDoc)
+        private void HandleModifyReportResult(CopilotModifyReportOutcome outcome)
+        {
+            using (JsonDocument resultDoc = outcome.Result)
+            {
+                if (outcome.TooManyTurns)
+                {
+                    SafeAppendMessage("system", "Error: the copilot asked to run SQL too many times; the request was stopped.");
+                    return;
+                }
+                HandleModifyReportResult(resultDoc, outcome.DocumentToApply);
+            }
+        }
+
+        private void HandleModifyReportResult(JsonDocument resultDoc, string documentToApply)
         {
             if (resultDoc == null)
             {
@@ -721,7 +853,10 @@ namespace Reportman.Designer
             if (!string.IsNullOrWhiteSpace(contextJson) && !string.Equals(contextJson.Trim(), "null", StringComparison.OrdinalIgnoreCase))
                 _existingContextJson = contextJson;
 
+            // After SQL turns an empty document means the last one sent, which carries the datasets made on the way.
             string modifiedReportDocument = GetJsonString(resultElement, "modifiedReportDocument");
+            if (string.IsNullOrWhiteSpace(modifiedReportDocument))
+                modifiedReportDocument = documentToApply ?? "";
             if (!string.IsNullOrWhiteSpace(modifiedReportDocument))
                 ApplyModifiedReportDocumentSafely(modifiedReportDocument);
 
