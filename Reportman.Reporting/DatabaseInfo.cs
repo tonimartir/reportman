@@ -460,6 +460,29 @@ namespace Reportman.Reporting
             }
         }
         /// <summary>
+        /// Disconnects undoing what was done since <see cref="Connect"/>: the default transaction is rolled back,
+        /// not committed as <see cref="DisConnect"/> does. For statements nobody should be able to keep, such as
+        /// the SQL an AI wrote that is only run to learn its columns.
+        /// </summary>
+        public void DisConnectRollingBack()
+        {
+            if (DriverType.Mybase == Driver)
+                return;
+            if (IntTransaction != null)
+            {
+                try
+                {
+                    IntTransaction.Rollback();
+                }
+                finally
+                {
+                    IntTransaction.Dispose();
+                    IntTransaction = null;
+                }
+            }
+            DisConnect();
+        }
+        /// <summary>
         /// The list of registered custom ADO.NET DbProviderFactory provider factories.
         /// </summary>
         public static SortedList<string, DbProviderFactory> CustomProviderFactories = new SortedList<string, DbProviderFactory>();
