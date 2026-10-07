@@ -2225,6 +2225,23 @@ namespace Reportman.Reporting
             }
             return sb.ToString();
         }
+        /// <summary>
+        /// A value printed with no display format, as Delphi writes it (VarToStr, the designer's
+        /// reference): a date at midnight without its time, a decimal without the trailing zeros
+        /// its scale keeps (a sum of 380.5 and 5802 is 6182.5, but 17669.0 prints 17669).
+        /// </summary>
+        private string DisplayText()
+        {
+            switch (VarType)
+            {
+                case VariantType.DateTime:
+                    return FDateTime.TimeOfDay == TimeSpan.Zero ? FDateTime.ToShortDateString() : FDateTime.ToString();
+                case VariantType.Decimal:
+                    return FDecimal.ToString("G29");
+                default:
+                    return ToString();
+            }
+        }
         private string DefaultDateTimeFormat(ParamType paramtype)
         {
             if (paramtype == ParamType.Date)
@@ -2311,10 +2328,10 @@ namespace Reportman.Reporting
                                 return adate.ToString(DateFormatMask(displayformat));
                             }
                             else
-                                return Value.ToString();
+                                return Value.DisplayText();
                         }
                         else
-                            return Value.ToString();
+                            return Value.DisplayText();
                     }
                 }
             }
@@ -2334,7 +2351,7 @@ namespace Reportman.Reporting
                     {
                         if (displayformat.Length == 0)
                         {
-                            aresult = Value.ToString();
+                            aresult = Value.DisplayText();
                         }
                         else
                         {

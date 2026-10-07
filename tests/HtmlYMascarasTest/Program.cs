@@ -48,6 +48,21 @@ namespace HtmlYMascarasTest
                 var fecha = new DateTime(2026, 10, 3, 14, 5, 9);
                 Comprueba(fecha.ToString(Variant.DateFormatMask("dd/mm/yyyy hh:nn:ss")) == "03/10/2026 14:05:09", "fecha formateada con la máscara Delphi");
 
+                // Sin máscara, como VarToStr de Delphi (07-10-2026): una fecha a medianoche sale sin
+                // «0:00:00» y un decimal sin los ceros que guarda su escala (la suma 380.5 + 17288.5
+                // es 17669.0 y se imprimía «17669,0»).
+                Variant medianoche = new DateTime(2024, 4, 25);
+                string textoMedianoche = medianoche.ToString("", ParamType.Unknown, true);
+                Comprueba(textoMedianoche == new DateTime(2024, 4, 25).ToShortDateString(), "fecha a medianoche sin máscara: sin la hora", textoMedianoche);
+                Variant conHora = new DateTime(2024, 4, 25, 13, 5, 0);
+                Comprueba(conHora.ToString("", ParamType.Unknown, true) == new DateTime(2024, 4, 25, 13, 5, 0).ToString(), "fecha con hora sin máscara: con la hora");
+                Variant suma = 380.5m + 17288.5m;
+                string textoSuma = suma.ToString("", ParamType.Unknown, true);
+                Comprueba(textoSuma == 17669.ToString(), "decimal sin máscara: sin ceros sobrantes", textoSuma);
+                Comprueba(suma.ToString("", ParamType.Unknown, false) == 17669.ToString(), "decimal sin máscara ni nulos: sin ceros sobrantes");
+                Variant precio = 1450.50m;
+                Comprueba(precio.ToString("", ParamType.Unknown, true) == 1450.5.ToString(), "decimal 1450.50 sin máscara: 1450,5");
+
                 // Y por el evaluador, como lo escribe un informe.
                 var r = Informe();
                 var s = Detalle(r);
