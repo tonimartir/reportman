@@ -111,6 +111,29 @@ namespace ParamsTest
                 Check(validated.CheckParameters() == "KIND", "list value 'B' fails KIND='S'");
                 kind.Value = "'S'";
                 Check(validated.CheckParameters() == "", "list value 'S' passes KIND='S'");
+
+                // 3. A report with a list parameter goes to JSON (the web designer's form) without
+                // evaluating its option: there is no evaluator then, and ListValue is a value of a run.
+                var designed = new Report();
+                Param choice = AddParam(designed, "CHOICE", ParamType.List, "2");
+                choice.Items.Add("One"); choice.Values.Add("1");
+                choice.Items.Add("Two"); choice.Values.Add("2");
+                string json = "";
+                try
+                {
+                    json = Newtonsoft.Json.JsonConvert.SerializeObject(designed, new Newtonsoft.Json.JsonSerializerSettings
+                    {
+                        ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+                        NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
+                        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Check(false, "a list parameter serializes to JSON", ex.Message);
+                }
+                Check(json.Contains("\"CHOICE\"") && !json.Contains("listValue"),
+                    "a list parameter serializes without its run-time list value");
             }
             catch (Exception ex)
             {

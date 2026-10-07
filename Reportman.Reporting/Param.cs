@@ -309,7 +309,10 @@ namespace Reportman.Reporting
         /// <summary>
         /// Gets the effective value of the parameter, resolving the selected option of a
         /// list, multiple or substitution-expression-list parameter into its evaluated value.
+        /// Not serialized: it is a value of a run (a list option is evaluated with the report's
+        /// evaluator), and a report going to JSON for the web designer has no run to evaluate it in.
         /// </summary>
+        [JsonIgnore]
         public Variant ListValue
         {
             get
