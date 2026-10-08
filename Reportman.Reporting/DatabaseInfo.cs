@@ -734,7 +734,7 @@ namespace Reportman.Reporting
                         System.Data.IDataParameter dbparam = Command.CreateParameter();
                         dbparam.ParameterName = "@" + aparam.Alias;
                         dbparam.Direction = ParameterDirection.Input;
-                        dbparam.DbType = aparam.Value.GetDbType();
+                        dbparam.DbType = ParameterDbType.For(Command, aparam.Value.GetDbType(), aparam.Value.AsObject());
                         dbparam.Value = aparam.Value;
                         Command.Parameters.Add(dbparam);
                     }

@@ -685,8 +685,9 @@ namespace Reportman.Reporting
                                 // SQL Server does not like "@" prefix
                                 dbparam.ParameterName = aparam.Alias;
                                 dbparam.Direction = ParameterDirection.Input;
-                                dbparam.DbType = aparam.Value.GetDbType();
-                                dbparam.Value = aparam.LastValue.AsObject();
+                                object pvalue = aparam.LastValue.AsObject();
+                                dbparam.DbType = ParameterDbType.For(Command, aparam.Value.GetDbType(), pvalue);
+                                dbparam.Value = pvalue;
                                 Command.Parameters.Add(dbparam);
                             }
                         }
