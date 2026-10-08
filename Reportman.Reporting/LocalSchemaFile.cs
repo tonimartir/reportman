@@ -20,6 +20,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Reportman.Reporting
 {
@@ -27,14 +28,19 @@ namespace Reportman.Reporting
     /// The schema of a direct connection kept in a local file, <c>dbxschemas/&lt;ALIAS&gt;.json</c> in the
     /// folder of <c>dbxconnections.ini</c>, shared by the Delphi and .Net designers and Reportman Server.
     /// It holds every table of the database catalog (the default "all tables" schema, which is not stored
-    /// as a named schema) and the subschemas the user defines (a name and a selection of tables). The
-    /// table shape is the one of the Reportman AI schemas (SchemaTable), so the tables can be sent to the
-    /// AI inline without conversion.
+    /// as a named schema) and the subschemas the user defines (a name, a selection of tables and, from
+    /// version 2, of their columns). The table shape is the one of the Reportman AI schemas (SchemaTable),
+    /// so the tables can be sent to the AI inline without conversion.
+    /// <para>
+    /// Version 2 adds the allowed values of a column and the columns of a subschema, and every reader keeps
+    /// what it does not know: the properties a newer designer wrote stay in <c>Extra</c> and are written
+    /// back, so saving with an older designer never loses them.
+    /// </para>
     /// </summary>
     public class LocalSchemaFile
     {
-        /// <summary>Format version, currently 1.</summary>
-        public int Version { get; set; } = 1;
+        /// <summary>Format version: 2 (allowed values, columns of a subschema); version 1 files are read too.</summary>
+        public int Version { get; set; } = LocalSchemaStore.CurrentVersion;
         /// <summary>Connection alias, in upper case.</summary>
         public string Alias { get; set; } = "";
         /// <summary>A Reportman AI dialect name (Firebird5, PostgreSQL, SQLite, SQLServer...), Default when unknown.</summary>
@@ -45,6 +51,9 @@ namespace Reportman.Reporting
         public List<LocalSchemaTable> Tables { get; set; } = new List<LocalSchemaTable>();
         /// <summary>The subschemas defined by the user.</summary>
         public List<LocalSubschema> Schemas { get; set; } = new List<LocalSubschema>();
+        /// <summary>Properties this version does not know, kept as they are.</summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Extra { get; set; }
     }
 
     /// <summary>A table of a <see cref="LocalSchemaFile"/>.</summary>
@@ -58,6 +67,9 @@ namespace Reportman.Reporting
         public List<LocalSchemaColumn> Columns { get; set; } = new List<LocalSchemaColumn>();
         /// <summary>The foreign keys of the table, when the provider exposes them.</summary>
         public List<LocalSchemaForeignKey> ForeignKeys { get; set; } = new List<LocalSchemaForeignKey>();
+        /// <summary>Properties this version does not know, kept as they are.</summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Extra { get; set; }
     }
 
     /// <summary>A column of a <see cref="LocalSchemaTable"/>.</summary>
@@ -73,6 +85,27 @@ namespace Reportman.Reporting
         public bool IsPrimaryKey { get; set; }
         /// <summary>The type the database reports (declared type or .NET type name).</summary>
         public string DetectedType { get; set; } = "";
+        /// <summary>
+        /// The values the column takes and what each one means (version 2), as in the cloud's schemas:
+        /// the AI writes <c>STATE = 'A'</c> knowing that A is "active". Null when there are none.
+        /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<LocalAllowedValue> AllowedValues { get; set; }
+        /// <summary>Properties this version does not know, kept as they are.</summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Extra { get; set; }
+    }
+
+    /// <summary>A value a column takes, and what it means.</summary>
+    public class LocalAllowedValue
+    {
+        /// <summary>The value as it is in the database ("A", "1").</summary>
+        public string Value { get; set; } = "";
+        /// <summary>What it means ("Active").</summary>
+        public string Label { get; set; } = "";
+        /// <summary>Properties this version does not know, kept as they are.</summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Extra { get; set; }
     }
 
     /// <summary>A foreign key of a <see cref="LocalSchemaTable"/>.</summary>
@@ -88,9 +121,12 @@ namespace Reportman.Reporting
         public List<string> TargetColumns { get; set; } = new List<string>();
         /// <summary>What the relationship means, written by the user (kept when refreshing).</summary>
         public string RelationshipContext { get; set; } = "";
+        /// <summary>Properties this version does not know, kept as they are.</summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Extra { get; set; }
     }
 
-    /// <summary>A subschema of a <see cref="LocalSchemaFile"/>: a name and a selection of its tables.</summary>
+    /// <summary>A subschema of a <see cref="LocalSchemaFile"/>: a name and a selection of its tables and columns.</summary>
     public class LocalSubschema
     {
         /// <summary>Subschema name.</summary>
@@ -99,6 +135,15 @@ namespace Reportman.Reporting
         public string Description { get; set; } = "";
         /// <summary>Names of tables of <see cref="LocalSchemaFile.Tables"/>.</summary>
         public List<string> Tables { get; set; } = new List<string>();
+        /// <summary>
+        /// The columns of some of its tables (version 2): table name to column names. A table that is not here
+        /// goes with all its columns, so a version 1 file means the same. Null when every table goes whole.
+        /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Dictionary<string, List<string>> Columns { get; set; }
+        /// <summary>Properties this version does not know, kept as they are.</summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Extra { get; set; }
     }
 
     /// <summary>
@@ -109,6 +154,9 @@ namespace Reportman.Reporting
     {
         /// <summary>Name of the folder, next to dbxconnections.ini, that holds the files.</summary>
         public const string FolderName = "dbxschemas";
+
+        /// <summary>The format version this code writes (a newer file keeps its own number).</summary>
+        public const int CurrentVersion = 2;
 
         private static readonly string[] CloudColumnTypes =
             { "None", "Integer", "Numeric", "Currency", "String", "TextLong", "Date", "TimeStamp", "Boolean" };
@@ -167,6 +215,8 @@ namespace Reportman.Reporting
             if (file == null)
                 throw new ArgumentNullException("file");
             Normalize(file);
+            if (file.Version < CurrentVersion)
+                file.Version = CurrentVersion;
             string dir = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
@@ -216,9 +266,10 @@ namespace Reportman.Reporting
         }
 
         /// <summary>
-        /// The refreshed file: the tables of <paramref name="fresh"/> (just read from the catalog) with the
-        /// context written in <paramref name="previous"/> for the tables, columns and foreign keys that
-        /// still exist, and the subschemas of <paramref name="previous"/> without the tables that are gone.
+        /// The refreshed file: the tables of <paramref name="fresh"/> (just read from the catalog) with what
+        /// <paramref name="previous"/> had that the catalog cannot know, for the tables, columns and foreign keys
+        /// that still exist: the context written, the allowed values and the properties of a newer version; and
+        /// the subschemas of <paramref name="previous"/> without the tables and columns that are gone.
         /// </summary>
         public static LocalSchemaFile Merge(LocalSchemaFile previous, LocalSchemaFile fresh)
         {
@@ -242,34 +293,68 @@ namespace Reportman.Reporting
                     continue;
                 if (!string.IsNullOrEmpty(old.Context))
                     table.Context = old.Context;
+                table.Extra = old.Extra;
                 foreach (LocalSchemaColumn column in table.Columns)
                 {
                     LocalSchemaColumn oldColumn = old.Columns.Find(c => string.Equals(c.Name, column.Name, StringComparison.OrdinalIgnoreCase));
-                    if (oldColumn != null && !string.IsNullOrEmpty(oldColumn.Context))
+                    if (oldColumn == null)
+                        continue;
+                    if (!string.IsNullOrEmpty(oldColumn.Context))
                         column.Context = oldColumn.Context;
+                    column.AllowedValues = oldColumn.AllowedValues;
+                    column.Extra = oldColumn.Extra;
                 }
                 foreach (LocalSchemaForeignKey fk in table.ForeignKeys)
                 {
                     LocalSchemaForeignKey oldFk = old.ForeignKeys.Find(f => f.ConstraintName.Length > 0 &&
                         string.Equals(f.ConstraintName, fk.ConstraintName, StringComparison.OrdinalIgnoreCase));
-                    if (oldFk != null && !string.IsNullOrEmpty(oldFk.RelationshipContext))
+                    if (oldFk == null)
+                        continue;
+                    if (!string.IsNullOrEmpty(oldFk.RelationshipContext))
                         fk.RelationshipContext = oldFk.RelationshipContext;
+                    fk.Extra = oldFk.Extra;
                 }
             }
             fresh.Schemas = new List<LocalSubschema>();
             foreach (LocalSubschema schema in previous.Schemas)
             {
-                var kept = new LocalSubschema { Name = schema.Name, Description = schema.Description };
+                var kept = new LocalSubschema { Name = schema.Name, Description = schema.Description, Extra = schema.Extra };
                 foreach (string name in schema.Tables)
                 {
                     string current;
                     if (freshNames.TryGetValue(name, out current) && !kept.Tables.Contains(current))
                         kept.Tables.Add(current);
                 }
+                // The columns chosen of each table that is still there, as the catalog spells them now.
+                if (schema.Columns != null)
+                {
+                    foreach (KeyValuePair<string, List<string>> entry in schema.Columns)
+                    {
+                        LocalSchemaTable table = fresh.Tables.Find(t => string.Equals(t.Name, entry.Key, StringComparison.OrdinalIgnoreCase));
+                        if (table == null || !kept.Tables.Contains(table.Name))
+                            continue;
+                        var columns = new List<string>();
+                        foreach (string name in entry.Value)
+                        {
+                            LocalSchemaColumn column = table.Columns.Find(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase));
+                            if (column != null && !columns.Contains(column.Name))
+                                columns.Add(column.Name);
+                        }
+                        if (columns.Count > 0)
+                        {
+                            if (kept.Columns == null)
+                                kept.Columns = new Dictionary<string, List<string>>();
+                            kept.Columns[table.Name] = columns;
+                        }
+                    }
+                }
                 fresh.Schemas.Add(kept);
             }
             if (string.IsNullOrEmpty(fresh.Alias))
                 fresh.Alias = previous.Alias;
+            fresh.Extra = previous.Extra;
+            if (previous.Version > fresh.Version)
+                fresh.Version = previous.Version;
             return fresh;
         }
 
@@ -318,6 +403,32 @@ namespace Reportman.Reporting
             return result;
         }
 
+        /// <summary>
+        /// The columns of a table in a subschema: the ones it chose, or all of them when it chose none for that
+        /// table (or there is no subschema), in the order of the catalog.
+        /// </summary>
+        public static List<LocalSchemaColumn> ColumnsOf(LocalSubschema subschema, LocalSchemaTable table)
+        {
+            var result = new List<LocalSchemaColumn>();
+            if (table == null)
+                return result;
+            List<string> chosen = ChosenColumns(subschema, table.Name);
+            foreach (LocalSchemaColumn column in table.Columns)
+                if (chosen == null || chosen.Exists(n => string.Equals(n, column.Name, StringComparison.OrdinalIgnoreCase)))
+                    result.Add(column);
+            return result;
+        }
+
+        private static List<string> ChosenColumns(LocalSubschema subschema, string table)
+        {
+            if (subschema == null || subschema.Columns == null)
+                return null;
+            foreach (KeyValuePair<string, List<string>> entry in subschema.Columns)
+                if (string.Equals(entry.Key, table, StringComparison.OrdinalIgnoreCase) && entry.Value != null && entry.Value.Count > 0)
+                    return entry.Value;
+            return null;
+        }
+
         /// <summary>The subschema with that name (ignoring case), or null.</summary>
         public static LocalSubschema FindSubschema(LocalSchemaFile file, string subschema)
         {
@@ -329,31 +440,48 @@ namespace Reportman.Reporting
         /// <summary>
         /// The database configuration the copilot sends inline for a direct connection:
         /// <c>{ name: ALIAS, dialect, schemaTables, hubDatabaseId: 0, hubSchemaId: 0 }</c>, with the tables of
-        /// the chosen subschema (all of them when empty). The name is the connection alias: the AI puts a
-        /// new dataset on the connection with that name.
+        /// the chosen subschema (all of them when empty) and, of each one, the columns it chose, their allowed
+        /// values, and the relations whose two ends are in what travels. The name is the connection alias: the
+        /// AI puts a new dataset on the connection with that name.
         /// </summary>
         public static Dictionary<string, object> BuildInlineConfig(LocalSchemaFile file, string subschema)
         {
             if (file == null)
                 throw new ArgumentNullException("file");
+            LocalSubschema selected = FindSubschema(file, subschema);
+            List<LocalSchemaTable> chosenTables = TablesOf(file, subschema);
+            var travels = new Dictionary<string, List<LocalSchemaColumn>>(StringComparer.OrdinalIgnoreCase);
+            foreach (LocalSchemaTable t in chosenTables)
+                travels[t.Name] = ColumnsOf(selected, t);
             var tables = new List<object>();
-            foreach (LocalSchemaTable t in TablesOf(file, subschema))
+            foreach (LocalSchemaTable t in chosenTables)
             {
                 var columns = new List<object>();
-                foreach (LocalSchemaColumn c in t.Columns)
+                foreach (LocalSchemaColumn c in travels[t.Name])
                 {
-                    columns.Add(new Dictionary<string, object>
+                    var column = new Dictionary<string, object>
                     {
                         { "name", c.Name },
                         { "dataType", CloudColumnType(c.DataType, c.DetectedType) },
                         { "context", c.Context ?? "" },
                         { "isPrimaryKey", c.IsPrimaryKey },
                         { "detectedType", c.DetectedType ?? "" }
-                    });
+                    };
+                    if (c.AllowedValues != null && c.AllowedValues.Count > 0)
+                    {
+                        var values = new List<object>();
+                        foreach (LocalAllowedValue v in c.AllowedValues)
+                            values.Add(new Dictionary<string, object> { { "value", v.Value ?? "" }, { "label", v.Label ?? "" } });
+                        column.Add("allowedValues", values);
+                    }
+                    columns.Add(column);
                 }
                 var foreignKeys = new List<object>();
                 foreach (LocalSchemaForeignKey fk in t.ForeignKeys)
                 {
+                    // A relation travels when its two ends do: a column the AI does not see is no use to it.
+                    if (selected != null && (!Travels(travels, t.Name, fk.SourceColumns) || !Travels(travels, fk.TargetTable, fk.TargetColumns)))
+                        continue;
                     foreignKeys.Add(new Dictionary<string, object>
                     {
                         { "constraintName", fk.ConstraintName ?? "" },
@@ -379,6 +507,17 @@ namespace Reportman.Reporting
                 { "hubSchemaId", 0 },
                 { "schemaTables", tables }
             };
+        }
+
+        private static bool Travels(Dictionary<string, List<LocalSchemaColumn>> travels, string table, List<string> columns)
+        {
+            List<LocalSchemaColumn> kept;
+            if (string.IsNullOrEmpty(table) || !travels.TryGetValue(table, out kept))
+                return false;
+            foreach (string name in columns ?? new List<string>())
+                if (!kept.Exists(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase)))
+                    return false;
+            return true;
         }
 
         /// <summary>
@@ -440,6 +579,13 @@ namespace Reportman.Reporting
                     if (c.DataType == null) c.DataType = "String";
                     if (c.Context == null) c.Context = "";
                     if (c.DetectedType == null) c.DetectedType = "";
+                    if (c.AllowedValues != null)
+                    {
+                        c.AllowedValues.RemoveAll(v => v == null || string.IsNullOrEmpty(v.Value));
+                        foreach (LocalAllowedValue v in c.AllowedValues)
+                            if (v.Label == null) v.Label = "";
+                        if (c.AllowedValues.Count == 0) c.AllowedValues = null;
+                    }
                 }
                 t.ForeignKeys.RemoveAll(f => f == null);
                 foreach (LocalSchemaForeignKey f in t.ForeignKeys)
@@ -457,6 +603,21 @@ namespace Reportman.Reporting
                 if (s.Description == null) s.Description = "";
                 if (s.Tables == null) s.Tables = new List<string>();
                 s.Tables.RemoveAll(n => string.IsNullOrEmpty(n));
+                if (s.Columns != null)
+                {
+                    // Only tables of the subschema, and only tables with columns chosen (none chosen is all).
+                    var columns = new Dictionary<string, List<string>>();
+                    foreach (KeyValuePair<string, List<string>> entry in s.Columns)
+                    {
+                        if (string.IsNullOrEmpty(entry.Key) || entry.Value == null)
+                            continue;
+                        string table = s.Tables.Find(n => string.Equals(n, entry.Key, StringComparison.OrdinalIgnoreCase));
+                        var names = entry.Value.FindAll(n => !string.IsNullOrEmpty(n));
+                        if (table != null && names.Count > 0 && !columns.ContainsKey(table))
+                            columns.Add(table, names);
+                    }
+                    s.Columns = columns.Count > 0 ? columns : null;
+                }
             }
         }
     }

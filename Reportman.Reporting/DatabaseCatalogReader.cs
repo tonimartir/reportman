@@ -188,6 +188,107 @@ namespace Reportman.Reporting
                 }
                 result.Add(table);
             }
+            ReadComments(connection, family, result);
+            return result;
+        }
+
+        /// <summary>
+        /// The comments the database keeps on its tables and columns, as the starting context of each one that
+        /// has none yet: Firebird (RDB$DESCRIPTION), PostgreSQL (COMMENT ON), SQL Server (MS_Description), MySQL
+        /// (COMMENT) and Oracle (COMMENT ON). Best effort: a catalog that cannot be read leaves them empty.
+        /// </summary>
+        private static void ReadComments(DbConnection connection, Family family, List<LocalSchemaTable> tables)
+        {
+            string tableSql, columnSql;
+            switch (family)
+            {
+                case Family.Firebird:
+                    tableSql = "SELECT TRIM(RDB$RELATION_NAME), RDB$DESCRIPTION FROM RDB$RELATIONS " +
+                        "WHERE RDB$DESCRIPTION IS NOT NULL AND COALESCE(RDB$SYSTEM_FLAG, 0) = 0";
+                    columnSql = "SELECT TRIM(RDB$RELATION_NAME), TRIM(RDB$FIELD_NAME), RDB$DESCRIPTION " +
+                        "FROM RDB$RELATION_FIELDS WHERE RDB$DESCRIPTION IS NOT NULL";
+                    break;
+                case Family.PostgreSQL:
+                    tableSql = "SELECT c.relname, obj_description(c.oid, 'pg_class') FROM pg_class c " +
+                        "JOIN pg_namespace n ON n.oid = c.relnamespace " +
+                        "WHERE c.relkind IN ('r', 'v', 'm', 'p', 'f') AND n.nspname NOT IN ('pg_catalog', 'information_schema') " +
+                        "AND obj_description(c.oid, 'pg_class') IS NOT NULL";
+                    columnSql = "SELECT c.relname, a.attname, col_description(c.oid, a.attnum) FROM pg_class c " +
+                        "JOIN pg_namespace n ON n.oid = c.relnamespace JOIN pg_attribute a ON a.attrelid = c.oid " +
+                        "WHERE a.attnum > 0 AND NOT a.attisdropped AND n.nspname NOT IN ('pg_catalog', 'information_schema') " +
+                        "AND col_description(c.oid, a.attnum) IS NOT NULL";
+                    break;
+                case Family.SQLServer:
+                    tableSql = "SELECT o.name, CAST(ep.value AS nvarchar(max)) FROM sys.extended_properties ep " +
+                        "JOIN sys.objects o ON o.object_id = ep.major_id " +
+                        "WHERE ep.class = 1 AND ep.minor_id = 0 AND ep.name = 'MS_Description'";
+                    columnSql = "SELECT o.name, c.name, CAST(ep.value AS nvarchar(max)) FROM sys.extended_properties ep " +
+                        "JOIN sys.objects o ON o.object_id = ep.major_id " +
+                        "JOIN sys.columns c ON c.object_id = ep.major_id AND c.column_id = ep.minor_id " +
+                        "WHERE ep.class = 1 AND ep.minor_id > 0 AND ep.name = 'MS_Description'";
+                    break;
+                case Family.MySQL:
+                    // A view's comment is the word VIEW, not a description.
+                    tableSql = "SELECT TABLE_NAME, TABLE_COMMENT FROM INFORMATION_SCHEMA.TABLES " +
+                        "WHERE TABLE_SCHEMA = DATABASE() AND TABLE_COMMENT <> '' AND TABLE_COMMENT <> 'VIEW'";
+                    columnSql = "SELECT TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT FROM INFORMATION_SCHEMA.COLUMNS " +
+                        "WHERE TABLE_SCHEMA = DATABASE() AND COLUMN_COMMENT <> ''";
+                    break;
+                case Family.Oracle:
+                    tableSql = "SELECT TABLE_NAME, COMMENTS FROM USER_TAB_COMMENTS WHERE COMMENTS IS NOT NULL";
+                    columnSql = "SELECT TABLE_NAME, COLUMN_NAME, COMMENTS FROM USER_COL_COMMENTS WHERE COMMENTS IS NOT NULL";
+                    break;
+                default:
+                    return;
+            }
+            var byName = new Dictionary<string, LocalSchemaTable>(StringComparer.OrdinalIgnoreCase);
+            foreach (LocalSchemaTable t in tables)
+                if (!byName.ContainsKey(t.Name))
+                    byName.Add(t.Name, t);
+            foreach (string[] row in Rows(connection, tableSql, 2))
+            {
+                LocalSchemaTable table;
+                if (byName.TryGetValue(row[0], out table) && string.IsNullOrEmpty(table.Context))
+                    table.Context = row[1];
+            }
+            foreach (string[] row in Rows(connection, columnSql, 3))
+            {
+                LocalSchemaTable table;
+                if (!byName.TryGetValue(row[0], out table))
+                    continue;
+                LocalSchemaColumn column = table.Columns.Find(c => string.Equals(c.Name, row[1], StringComparison.OrdinalIgnoreCase));
+                if (column != null && string.IsNullOrEmpty(column.Context))
+                    column.Context = row[2];
+            }
+        }
+
+        /// <summary>The rows of a catalog query, trimmed text, without the ones with an empty value; none when it fails.</summary>
+        private static List<string[]> Rows(DbConnection connection, string sql, int fieldCount)
+        {
+            var result = new List<string[]>();
+            try
+            {
+                using (DbCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = sql;
+                    cmd.CommandTimeout = 20;
+                    using (DbDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var row = new string[fieldCount];
+                            for (int i = 0; i < fieldCount; i++)
+                                row[i] = reader.IsDBNull(i) ? "" : (Convert.ToString(reader.GetValue(i)) ?? "").Trim();
+                            if (Array.TrueForAll(row, v => v.Length > 0))
+                                result.Add(row);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // A catalog that cannot be read (permissions, an older server): no comments.
+            }
             return result;
         }
 
