@@ -315,6 +315,28 @@ namespace Reportman.Reporting
                     fk.Extra = oldFk.Extra;
                 }
             }
+            // The relations people added (no constraint name): the catalog does not know them, so they are kept
+            // while both ends are still there, as the catalog spells them now. One the database declares now is
+            // the database's, with what people wrote of it.
+            foreach (LocalSchemaTable table in fresh.Tables)
+            {
+                LocalSchemaTable old;
+                if (!oldTables.TryGetValue(table.Name, out old))
+                    continue;
+                foreach (LocalSchemaForeignKey oldFk in old.ForeignKeys)
+                {
+                    if (oldFk.ConstraintName.Length > 0)
+                        continue;
+                    LocalSchemaForeignKey manual = ManualRelation(fresh, table, oldFk);
+                    if (manual == null)
+                        continue;
+                    LocalSchemaForeignKey same = table.ForeignKeys.Find(fk => SameRelation(fk, manual));
+                    if (same == null)
+                        table.ForeignKeys.Add(manual);
+                    else if (string.IsNullOrEmpty(same.RelationshipContext))
+                        same.RelationshipContext = manual.RelationshipContext;
+                }
+            }
             fresh.Schemas = new List<LocalSubschema>();
             foreach (LocalSubschema schema in previous.Schemas)
             {
@@ -356,6 +378,62 @@ namespace Reportman.Reporting
             if (previous.Version > fresh.Version)
                 fresh.Version = previous.Version;
             return fresh;
+        }
+
+        /// <summary>
+        /// A relation added by hand to <paramref name="table"/>, as the fresh catalog spells its ends; null when an end
+        /// is gone.
+        /// </summary>
+        private static LocalSchemaForeignKey ManualRelation(LocalSchemaFile fresh, LocalSchemaTable table, LocalSchemaForeignKey old)
+        {
+            LocalSchemaTable target = fresh.Tables.Find(t => string.Equals(t.Name, old.TargetTable, StringComparison.OrdinalIgnoreCase));
+            if (target == null || old.SourceColumns == null || old.TargetColumns == null || old.SourceColumns.Count == 0
+                || old.SourceColumns.Count != old.TargetColumns.Count)
+                return null;
+            List<string> source = Spelled(table, old.SourceColumns);
+            List<string> targetColumns = Spelled(target, old.TargetColumns);
+            if (source == null || targetColumns == null)
+                return null;
+            return new LocalSchemaForeignKey
+            {
+                ConstraintName = "",
+                TargetTable = target.Name,
+                SourceColumns = source,
+                TargetColumns = targetColumns,
+                RelationshipContext = old.RelationshipContext,
+                Extra = old.Extra
+            };
+        }
+
+        /// <summary>The names as the table spells them; null when one is not a column of it.</summary>
+        private static List<string> Spelled(LocalSchemaTable table, List<string> names)
+        {
+            var result = new List<string>();
+            foreach (string name in names)
+            {
+                LocalSchemaColumn column = table.Columns.Find(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase));
+                if (column == null)
+                    return null;
+                result.Add(column.Name);
+            }
+            return result;
+        }
+
+        /// <summary>The same relation: the same target table over the same columns, whatever its name.</summary>
+        public static bool SameRelation(LocalSchemaForeignKey a, LocalSchemaForeignKey b)
+        {
+            return string.Equals(a.TargetTable, b.TargetTable, StringComparison.OrdinalIgnoreCase)
+                && SameNames(a.SourceColumns, b.SourceColumns) && SameNames(a.TargetColumns, b.TargetColumns);
+        }
+
+        private static bool SameNames(List<string> a, List<string> b)
+        {
+            if (a == null || b == null || a.Count != b.Count)
+                return false;
+            for (int i = 0; i < a.Count; i++)
+                if (!string.Equals(a[i], b[i], StringComparison.OrdinalIgnoreCase))
+                    return false;
+            return true;
         }
 
         /// <summary>
@@ -404,8 +482,9 @@ namespace Reportman.Reporting
         }
 
         /// <summary>
-        /// The columns of a table in a subschema: the ones it chose, or all of them when it chose none for that
-        /// table (or there is no subschema), in the order of the catalog.
+        /// The columns of a table, in the order of the catalog: without a subschema («all the tables»), every one;
+        /// in a subschema, the ones it chose, and only the primary key when it chose none for that table (people
+        /// choose the columns and describe them: a column like CODPRIN without a word misleads the AI).
         /// </summary>
         public static List<LocalSchemaColumn> ColumnsOf(LocalSubschema subschema, LocalSchemaTable table)
         {
@@ -414,7 +493,8 @@ namespace Reportman.Reporting
                 return result;
             List<string> chosen = ChosenColumns(subschema, table.Name);
             foreach (LocalSchemaColumn column in table.Columns)
-                if (chosen == null || chosen.Exists(n => string.Equals(n, column.Name, StringComparison.OrdinalIgnoreCase)))
+                if (subschema == null
+                    || (chosen == null ? column.IsPrimaryKey : chosen.Exists(n => string.Equals(n, column.Name, StringComparison.OrdinalIgnoreCase))))
                     result.Add(column);
             return result;
         }
