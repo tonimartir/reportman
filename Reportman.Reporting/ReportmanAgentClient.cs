@@ -603,6 +603,32 @@ namespace Reportman.Reporting
             return await StreamJsonRequestAsync("ReportmanExpression/SuggestExpressionStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Asks the AI to review the schema of the request configuration (<see cref="InlineConfig"/> for a local
+        /// schema, else the Hub ids): what it understands of each table and column and what it does not. The
+        /// final answer carries <c>result.explanation</c>, a Markdown report with 🟢/🟡/🔴 per table and column,
+        /// or <c>errorMessage</c> (and <c>errorCode</c>, see <see cref="SchemaTooLargeForTierCode"/>).
+        /// </summary>
+        /// <param name="mode">The AI mode (Fast or Reasoning).</param>
+        /// <param name="languageCodeIso">The two-letter code of the language of the report ("es"); empty for English.</param>
+        /// <param name="sender">The object raising the request.</param>
+        /// <param name="onProgress">Progress notification callback handler.</param>
+        /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        /// <returns>The final JSON answer.</returns>
+        public async Task<JsonDocument> AnalyzeSchemaAsync(string mode, string languageCodeIso, object sender,
+            ProgressEventHandler onProgress, CancellationToken cancellationToken)
+        {
+            var requestBody = BuildBaseRequest(new Dictionary<string, object>
+            {
+                { "mode", string.IsNullOrWhiteSpace(mode) ? "Fast" : mode },
+                { "languageCodeIso", languageCodeIso ?? "" },
+                // Auto: the language of the report is the one of the code
+                { "transcribeLanguage", "Auto" }
+            });
+
+            return await StreamJsonRequestAsync("NlToSql/AnalyzeSchemaStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
+        }
+
         // Additional endpoints (ExplainSql, ModifyReport, etc.) can be similarly implemented...
     }
 }

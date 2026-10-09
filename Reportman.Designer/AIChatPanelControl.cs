@@ -280,9 +280,18 @@ namespace Reportman.Designer
                 string reportDocument = ReportDocumentProvider != null ? ReportDocumentProvider() : "";
                 if (string.IsNullOrWhiteSpace(reportDocument))
                     throw new InvalidOperationException("Unable to serialize the current report to XML.");
+                // «Analyze with AI» uses the provider and mode selected here
+                string tier = _aiSelectionControl.SelectedTier;
+                var analysis = new LocalSchemaAnalysisSettings
+                {
+                    Tier = tier,
+                    Mode = _aiSelectionControl.SelectedMode,
+                    AgentSecret = string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase) ? _aiSelectionControl.AgentSecret : "",
+                    AgentAiId = string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase) ? _aiSelectionControl.AgentAiId : 0
+                };
                 string added;
                 if (LocalSchemaEditorForm.Edit(FindForm(), LocalSchemaFolder, alias,
-                    ConnectionFactory(reportDocument, alias, PrepareReportConnections), e.AddSubschema, out added))
+                    ConnectionFactory(reportDocument, alias, PrepareReportConnections), e.AddSubschema, analysis, out added))
                     e.AddedSubschema = e.AddSubschema ? added : "";
             }
             catch (Exception ex)
