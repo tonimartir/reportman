@@ -68,6 +68,39 @@ namespace Reportman.Designer
         /// </summary>
         public string AILanguage { get; set; } = "English";
 
+        /// <summary>
+        /// Gets the two-letter code of <see cref="AILanguage"/> (for example "es"), sent as
+        /// Accept-Language so the cloud writes its messages in that language.
+        /// </summary>
+        public string AILanguageCode
+        {
+            get { return LanguageCode(AILanguage); }
+        }
+
+        /// <summary>
+        /// The two-letter code of a language of the AI language menu ("Spanish" gives "es"); a code is
+        /// returned as it is, and anything else gives the language of the user interface.
+        /// </summary>
+        /// <param name="language">The English name of the language, or its code.</param>
+        public static string LanguageCode(string language)
+        {
+            string name = (language ?? "").Trim().ToLowerInvariant();
+            switch (name)
+            {
+                case "english": return "en";
+                case "spanish": return "es";
+                case "italian": return "it";
+                case "french": return "fr";
+                case "german": return "de";
+                case "portuguese": return "pt";
+                case "chinese": return "zh";
+                case "catalan": return "ca";
+            }
+            if (name.Length == 2)
+                return name;
+            return System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        }
+
         // Events
         /// <summary>
         /// Raised when the authentication state changes; the argument is true when logged in, false when logged out.
@@ -552,8 +585,10 @@ namespace Reportman.Designer
         }
 
         /// <summary>
-        /// Reads the login gift from the "tiers" array the Hub returns with the profile: the
-        /// MaxFreeCredits of the Free tier (id 2). Leaves the default when the array is missing.
+        /// Reads from the "tiers" array the Hub returns with the profile the login gift (the
+        /// MaxFreeCredits of the Free tier, id 2) and the schema limits of the account's own tier
+        /// (<see cref="RpProfile.MaxTables"/>, <see cref="RpProfile.MaxColumnsPerTable"/>). Leaves the
+        /// defaults when the array is missing.
         /// </summary>
         private void ParseTiersJson(JsonElement root)
         {
@@ -562,17 +597,25 @@ namespace Reportman.Designer
                 return;
             if (tiers.ValueKind != JsonValueKind.Array)
                 return;
+            RpProfile profile = Profile;
+            string currentTierId = profile.TierId.ToString(System.Globalization.CultureInfo.InvariantCulture);
             foreach (var tier in tiers.EnumerateArray())
             {
-                string id = "", name = "", maxFree = "";
+                if (tier.ValueKind != JsonValueKind.Object)
+                    continue;
+                string id = "", name = "", value = "";
                 TryGetString(tier, "id", out id);
                 TryGetString(tier, "name", out name);
-                TryGetString(tier, "maxFreeCredits", out maxFree);
                 if (id == "2" || string.Equals(name, "Free", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (long.TryParse(maxFree, out var credits) && credits > 0)
+                    if (TryGetString(tier, "maxFreeCredits", out value) && long.TryParse(value, out var credits) && credits > 0)
                         LoginGiftCredits = credits;
-                    return;
+                }
+                // The limits of the schema the cloud AI reads in the account's plan (0 or less: none)
+                if (id == currentTierId)
+                {
+                    profile.MaxTables = TryGetString(tier, "maxTables", out value) && int.TryParse(value, out var maxTables) ? maxTables : 0;
+                    profile.MaxColumnsPerTable = TryGetString(tier, "maxColumnsPerTable", out value) && int.TryParse(value, out var maxColumns) ? maxColumns : 0;
                 }
             }
         }
@@ -762,7 +805,9 @@ namespace Reportman.Designer
 
         /// <summary>
         /// GET /api/agent/databases → { databases: [...], aiEndpoints: [...] }
-        /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId"
+        /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId||tables|widestColumns":
+        /// the third field (an API key) is empty here; tables is the number of tables of the schema
+        /// (empty when the Hub does not say) and widestColumns the columns of its widest table.
         /// </summary>
         public Task<List<string>> GetUserSchemasAsync()
         {
@@ -771,7 +816,8 @@ namespace Reportman.Designer
 
         /// <summary>
         /// GET /api/agent/databases using a Reportman Agent ApiKey.
-        /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId"
+        /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId||tables|widestColumns"
+        /// (see <see cref="GetUserSchemasAsync"/>).
         /// </summary>
         public Task<List<string>> GetApiKeySchemasAsync(string apiKey)
         {
@@ -810,7 +856,10 @@ namespace Reportman.Designer
                                     if (item.TryGetProperty("hubDatabaseId", out var hdb)) hubDbId = hdb.GetRawText().Trim('"');
                                     if (item.TryGetProperty("hubSchemaId", out var hs)) hubSchemaId = hs.GetRawText().Trim('"');
                                     displayName = displayName.Replace(" - ", " / ");
-                                    result.Add(displayName + "=" + hubDbId + "|" + hubSchemaId);
+                                    CountSchemaTables(item, out int tables, out int widestColumns);
+                                    result.Add(displayName + "=" + hubDbId + "|" + hubSchemaId + "||" +
+                                        (tables >= 0 ? tables.ToString(System.Globalization.CultureInfo.InvariantCulture) : "") + "|" +
+                                        widestColumns.ToString(System.Globalization.CultureInfo.InvariantCulture));
                                 }
                             }
                         }
@@ -822,6 +871,30 @@ namespace Reportman.Designer
                 Log((string.IsNullOrWhiteSpace(apiKey) ? "GetUserSchemas" : "GetApiKeySchemas") + " Error: " + ex.Message);
             }
             return result;
+        }
+
+        /// <summary>
+        /// The tables of a schema of GET api/agent/databases ("schemaTables") and the columns of the
+        /// widest one: what the plan limits are checked against. Tables is -1 when it is not there.
+        /// </summary>
+        private static void CountSchemaTables(JsonElement schema, out int tables, out int widestColumns)
+        {
+            tables = -1;
+            widestColumns = 0;
+            JsonElement list;
+            if ((!schema.TryGetProperty("schemaTables", out list) && !schema.TryGetProperty("SchemaTables", out list)) ||
+                list.ValueKind != JsonValueKind.Array)
+                return;
+            tables = 0;
+            foreach (JsonElement table in list.EnumerateArray())
+            {
+                tables++;
+                JsonElement columns;
+                if (table.ValueKind == JsonValueKind.Object &&
+                    (table.TryGetProperty("columns", out columns) || table.TryGetProperty("Columns", out columns)) &&
+                    columns.ValueKind == JsonValueKind.Array)
+                    widestColumns = Math.Max(widestColumns, columns.GetArrayLength());
+            }
         }
 
         /// <summary>
@@ -950,5 +1023,15 @@ namespace Reportman.Designer
         /// Gets or sets the user's remaining purchased credit balance.
         /// </summary>
         public long Credits { get; set; }
+        /// <summary>
+        /// Gets or sets the most tables a schema can have for the cloud AI in the user's tier (read from
+        /// the tiers the Hub sends with the profile); 0 or less is no limit, or not known yet.
+        /// </summary>
+        public int MaxTables { get; set; }
+        /// <summary>
+        /// Gets or sets the most columns the widest table of a schema can have for the cloud AI in the
+        /// user's tier; 0 or less is no limit, or not known yet.
+        /// </summary>
+        public int MaxColumnsPerTable { get; set; }
     }
 }

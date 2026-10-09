@@ -118,6 +118,44 @@ namespace Reportman.Reporting
         public long AgentAiId { get; set; }
 
         /// <summary>
+        /// Gets or sets the language sent in the <c>Accept-Language</c> header (for example <c>"es"</c>):
+        /// the cloud writes its messages, errors included, in it. Empty to send none (English).
+        /// </summary>
+        public string AcceptLanguage { get; set; }
+
+        /// <summary>
+        /// The <c>errorCode</c> of an answer whose schema does not fit the plan of whoever pays with the
+        /// cloud AI. Its <c>errorMessage</c>, in the requested language, already says the numbers and
+        /// the way out (a smaller schema, a higher plan or the AI on the user's Agent).
+        /// </summary>
+        public const string SchemaTooLargeForTierCode = "SchemaTooLargeForTier";
+
+        /// <summary>
+        /// The <c>errorCode</c> of a final answer (a stable code for the errors a client handles on its
+        /// own), or an empty string.
+        /// </summary>
+        /// <param name="answer">The final JSON answer of a request.</param>
+        public static string GetErrorCode(JsonDocument answer)
+        {
+            if (answer == null)
+                return "";
+            JsonElement root = answer.RootElement;
+            string code = GetJsonString(root, "errorCode");
+            if (code.Length == 0 && TryGetJsonProperty(root, "result", out var result))
+                code = GetJsonString(result, "errorCode");
+            return code.Trim();
+        }
+
+        /// <summary>
+        /// True when a final answer is the plan's schema limit (<see cref="SchemaTooLargeForTierCode"/>).
+        /// </summary>
+        /// <param name="answer">The final JSON answer of a request.</param>
+        public static bool IsSchemaTooLargeForTier(JsonDocument answer)
+        {
+            return string.Equals(GetErrorCode(answer), SchemaTooLargeForTierCode, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
         /// Raised with a diagnostic message for each logged operation performed by the client.
         /// </summary>
         public event Action<string> LogMessage;
@@ -156,6 +194,9 @@ namespace Reportman.Reporting
 
             if (!string.IsNullOrEmpty(InstallId))
                 request.Headers.Add("X-Reportman-WebInstallId", InstallId);
+
+            if (!string.IsNullOrWhiteSpace(AcceptLanguage))
+                request.Headers.AcceptLanguage.TryParseAdd(AcceptLanguage.Trim());
 
             Log("HTTP Request: POST " + url);
 

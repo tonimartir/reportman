@@ -124,6 +124,8 @@ namespace Reportman.Designer
         private List<ToolStripItem> TwoSelectedButtons;
         private List<ToolStripItem> ThreeSelectedButtons;
         private AIChatPanelControl FAIChatControl;
+        // The report whose datasets last chose the copilot's schema
+        private Report FAIChatSchemaReport;
         private Splitter FAIChatSplitter;
         private int FAIChatPanelWidth = DefaultAIChatPanelWidth;
         /// <summary>
@@ -644,9 +646,43 @@ namespace Reportman.Designer
             // The report's direct connections: the copilot can work with their local schema and run
             // the SQL it writes with them. Without a Hub schema of the report, that is the default.
             List<string> directAliases = ResolveDirectConnectionAliases(out string preferredDirectAlias);
-            FAIChatControl.SetDirectConnections(directAliases, preferredDirectAlias,
-                hubDatabaseId == 0 && hubSchemaId == 0);
+            bool preferLocal = hubDatabaseId == 0 && hubSchemaId == 0;
+            // A report just opened selects the subschema its datasets were made with (DataInfo.SchemaName);
+            // the same report assigned again (the copilot changed it) keeps the current choice.
+            string reportSubschema = null;
+            if (!ReferenceEquals(FReport, FAIChatSchemaReport))
+            {
+                FAIChatSchemaReport = FReport;
+                reportSubschema = ResolveDatasetSchemaName(preferredDirectAlias, out bool fromFirstDataset);
+                // The first dataset was made with a local subschema: that is the report's schema
+                if (fromFirstDataset)
+                    preferLocal = true;
+            }
+            FAIChatControl.SetDirectConnections(directAliases, preferredDirectAlias, preferLocal, reportSubschema);
             FAIChatControl.SetHubContext(hubDatabaseId, hubSchemaId, schemaApiKey);
+        }
+
+        /// <summary>
+        /// The subschema of the first dataset of the direct connection <paramref name="alias"/> that says
+        /// with which one it was made (<see cref="DataInfo.SchemaName"/>), or "" when none does.
+        /// </summary>
+        /// <param name="alias">The direct connection.</param>
+        /// <param name="fromFirstDataset">True when it is the report's first dataset that says it.</param>
+        private string ResolveDatasetSchemaName(string alias, out bool fromFirstDataset)
+        {
+            fromFirstDataset = false;
+            if (FReport == null || string.IsNullOrEmpty(alias))
+                return "";
+            for (int index = 0; index < FReport.DataInfo.Count; index++)
+            {
+                DataInfo dataInfo = FReport.DataInfo[index];
+                if (dataInfo == null || string.IsNullOrWhiteSpace(dataInfo.SchemaName) ||
+                    !string.Equals(dataInfo.DatabaseAlias, alias, StringComparison.OrdinalIgnoreCase))
+                    continue;
+                fromFirstDataset = index == 0;
+                return dataInfo.SchemaName.Trim();
+            }
+            return "";
         }
 
         /// <summary>

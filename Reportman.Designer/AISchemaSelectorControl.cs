@@ -2,32 +2,85 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Reportman.Drawing;
+using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
     /// <summary>
+    /// The data of <see cref="AISchemaSelectorControl.LocalSchemaEditRequested"/>: the direct connection
+    /// whose local schema file is to be edited, and whether the editor starts adding a subschema.
+    /// </summary>
+    public class LocalSchemaEditEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Initializes the data of a request to edit the local schema of <paramref name="alias"/>.
+        /// </summary>
+        /// <param name="alias">The direct connection.</param>
+        /// <param name="addSubschema">True when the editor starts adding a subschema.</param>
+        public LocalSchemaEditEventArgs(string alias, bool addSubschema)
+        {
+            Alias = alias ?? "";
+            AddSubschema = addSubschema;
+            AddedSubschema = "";
+        }
+
+        /// <summary>Gets the direct connection whose local schema file is edited.</summary>
+        public string Alias { get; private set; }
+
+        /// <summary>Gets a value indicating whether the editor starts adding a subschema.</summary>
+        public bool AddSubschema { get; private set; }
+
+        /// <summary>
+        /// Gets or sets, set by the handler, the subschema added and saved in the editor: the selector
+        /// selects it. Empty to keep the selection.
+        /// </summary>
+        public string AddedSubschema { get; set; }
+    }
+
+    /// <summary>
     /// Replicates Delphi's PSchemaHost layout:
     /// Row 0: "SCHEMA" label spanning full width (like PROVIDER/MODE labels)
-    /// Row 1: [ComboBox (fill)] [Config ⚙ button] [Refresh button] [Tables button]
-    /// Besides the Hub schemas it can list the local schemas of the report's direct connections
-    /// (<see cref="SetDirectConnections"/>): "all tables" and each subschema of the connection's
-    /// dbxschemas file. The Tables button (only shown when there are direct connections) asks the
-    /// host to edit that file.
+    /// Row 1: [ComboBox (fill)] [Config ⚙ ▾ button] [Refresh button]
+    /// The list groups the local schemas of the report's direct connections
+    /// (<see cref="SetDirectConnections(IList{string}, string, bool)"/>: "all the tables" and each
+    /// subschema of the connection's dbxschemas file) and the Hub schemas, each with the number of
+    /// tables that would travel and a warning when it does not fit the plan with the cloud AI, and ends
+    /// with "New local schema..." and "New cloud schema...". The config button drops down "Local
+    /// schemas..." and "Cloud schemas..." (docs/esquemas-locales-pantalla-plan.md, §5.4.1).
     /// </summary>
     public class AISchemaSelectorControl : UserControl
     {
+        private const string CloudSchemasUrl = "https://app.reportman.es/database-config";
+        private const string WarningSign = "⚠ ";
+        private const int ItemIndent = 14;
+
+        // The choice made for each connection in this session: direct alias → subschema ("" all the
+        // tables), Hub database → schema.
+        private static readonly Dictionary<string, string> RememberedSubschemas =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private static readonly Dictionary<long, long> RememberedHubSchemas = new Dictionary<long, long>();
+
         private Label _lblSchema;
         private ComboBox _comboSchema;
         private Button _btnConfig;
+        private ContextMenuStrip _menuConfig;
+        private ToolStripMenuItem _menuLocalSchemas;
+        private ToolStripMenuItem _menuCloudSchemas;
         private Button _btnRefresh;
-        private Button _btnLocalSchema;
+        private ToolTip _toolTip;
+        private readonly ActionItem _newLocalAction = new ActionItem(ActionKind.NewLocalSchema);
+        private readonly ActionItem _newCloudAction = new ActionItem(ActionKind.NewCloudSchema);
         private bool _suppressSchemaChanged;
+        private bool _ignorePlanLimits;
+        private int _lastSchemaIndex = -1;
         private long _preferredHubDatabaseId;
         private long _preferredHubSchemaId;
         private string _preferredApiKey = "";
         private long _preferredConnectionHubDatabaseId;
         private string _preferredConnectionApiKey = "";
         private List<string> _directAliases = new List<string>();
+        private string _defaultDirectAlias = "";
         private string _preferredLocalAlias = "";
         private string _preferredLocalSubschema = "";
 
@@ -37,10 +90,12 @@ namespace Reportman.Designer
         public event EventHandler SchemaChanged;
 
         /// <summary>
-        /// Occurs when the user asks to refresh or edit the local schema file of the selected direct
-        /// connection (<see cref="LocalAlias"/>).
+        /// Occurs when the user asks to edit the local schema file of a direct connection ("Local
+        /// schemas..." of the config button) or to add a subschema to it ("New local schema..."). The
+        /// handler opens the editor (it has the connection) and, after adding one, sets
+        /// <see cref="LocalSchemaEditEventArgs.AddedSubschema"/>; the list is read again afterwards.
         /// </summary>
-        public event EventHandler LocalSchemaEditRequested;
+        public event EventHandler<LocalSchemaEditEventArgs> LocalSchemaEditRequested;
 
         /// <summary>
         /// Gets or sets the folder of the local schema files (dbxschemas). The subschemas offered for a
@@ -77,11 +132,48 @@ namespace Reportman.Designer
         public string SchemaApiKey { get; private set; } = "";
 
         /// <summary>
+        /// Gets or sets a value indicating whether the plan limits are ignored: true while the AI runs
+        /// on the user's Agent (the LocalAgent provider), which has none, so no schema is marked.
+        /// </summary>
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public bool IgnorePlanLimits
+        {
+            get { return _ignorePlanLimits; }
+            set
+            {
+                if (_ignorePlanLimits == value)
+                    return;
+                _ignorePlanLimits = value;
+                UpdatePlanWarnings();
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the AISchemaSelectorControl class.
         /// </summary>
         public AISchemaSelectorControl()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Cleans up any resources being used.
+        /// </summary>
+        /// <param name="disposing">True if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _toolTip?.Dispose();
+                _menuConfig?.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private static string Tr(int index)
+        {
+            return Translator.TranslateStr(index);
         }
 
         private void InitializeComponent()
@@ -92,14 +184,13 @@ namespace Reportman.Designer
             TableLayoutPanel table = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
-                ColumnCount = 4,
+                ColumnCount = 3,
                 RowCount = 2,
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 Padding = new Padding(2)
             };
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
-            table.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             table.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             table.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -112,28 +203,51 @@ namespace Reportman.Designer
                 Font = new Font("Segoe UI", 8f)
             };
             table.Controls.Add(_lblSchema, 0, 0);
-            table.SetColumnSpan(_lblSchema, 4);
+            table.SetColumnSpan(_lblSchema, 3);
 
+            _toolTip = new ToolTip();
+
+            // Owner drawn: group headers that cannot be selected, indented schemas, and the actions
+            // at the end below a line.
             _comboSchema = new ComboBox
             {
                 DropDownStyle = ComboBoxStyle.DropDownList,
+                DrawMode = DrawMode.OwnerDrawFixed,
                 Dock = DockStyle.Fill,
                 Anchor = AnchorStyles.Left | AnchorStyles.Right
             };
-            _comboSchema.Items.Add("Default / None");
-            _comboSchema.SelectedIndex = 0;
+            _comboSchema.DrawItem += ComboSchema_DrawItem;
+            _comboSchema.DropDown += ComboSchema_DropDown;
+            _comboSchema.DropDownClosed += ComboSchema_DropDownClosed;
             _comboSchema.SelectedIndexChanged += ComboSchema_SelectedIndexChanged;
+            _comboSchema.SelectionChangeCommitted += ComboSchema_SelectionChangeCommitted;
+            _comboSchema.KeyDown += ComboSchema_KeyDown;
+            _comboSchema.KeyPress += ComboSchema_KeyPress;
+            _comboSchema.MouseWheel += ComboSchema_MouseWheel;
+            _newLocalAction.Text = Tr(1838);
+            _newLocalAction.First = true;
+            _newCloudAction.Text = Tr(1839);
+            _comboSchema.Items.Add(_newLocalAction);
+            _comboSchema.Items.Add(_newCloudAction);
+
+            _menuLocalSchemas = new ToolStripMenuItem(Tr(1840));
+            _menuLocalSchemas.Click += (s, e) => RequestLocalSchemaEdit(TargetDirectAlias, false);
+            _menuCloudSchemas = new ToolStripMenuItem(Tr(1841));
+            _menuCloudSchemas.Click += (s, e) => OpenUrl(CloudSchemasUrl);
+            _menuConfig = new ContextMenuStrip();
+            _menuConfig.Items.Add(_menuLocalSchemas);
+            _menuConfig.Items.Add(_menuCloudSchemas);
+            _menuConfig.Opening += (s, e) => _menuLocalSchemas.Enabled = CanEditLocalSchema;
 
             _btnConfig = new Button
             {
-                Text = "⚙",
-                MinimumSize = new Size(30, 23),
-                MaximumSize = new Size(35, 25),
+                Text = "⚙ ▾",
+                MinimumSize = new Size(38, 23),
+                MaximumSize = new Size(46, 25),
                 Dock = DockStyle.Fill
             };
             _btnConfig.Click += BtnConfig_Click;
-            var configTooltip = new ToolTip();
-            configTooltip.SetToolTip(_btnConfig, "Configure DB Schemas");
+            _toolTip.SetToolTip(_btnConfig, "Configure DB Schemas");
 
             _btnRefresh = new Button
             {
@@ -144,42 +258,42 @@ namespace Reportman.Designer
             };
             _btnRefresh.Click += BtnRefresh_Click;
 
-            _btnLocalSchema = new Button
-            {
-                Text = "Tables...",
-                MinimumSize = new Size(60, 23),
-                MaximumSize = new Size(80, 25),
-                Dock = DockStyle.Fill,
-                Visible = false,
-                Enabled = false
-            };
-            _btnLocalSchema.Click += BtnLocalSchema_Click;
-            configTooltip.SetToolTip(_btnLocalSchema, "Refresh the local schema of the connection and define subschemas");
-
             table.Controls.Add(_comboSchema, 0, 1);
             table.Controls.Add(_btnConfig, 1, 1);
             table.Controls.Add(_btnRefresh, 2, 1);
-            table.Controls.Add(_btnLocalSchema, 3, 1);
 
             this.Controls.Add(table);
-        }
-
-        private void BtnLocalSchema_Click(object sender, EventArgs e)
-        {
-            if (IsLocalSchemaSelected)
-                LocalSchemaEditRequested?.Invoke(this, EventArgs.Empty);
+            UpdateActions();
         }
 
         /// <summary>
         /// Sets the direct (not Agent) connections of the report, whose local schemas are offered
         /// before the Hub schemas. When the list changes and <paramref name="preferLocal"/> is true
-        /// (the report gives no Hub schema), the "all tables" schema of <paramref name="preferredAlias"/>
-        /// becomes the preferred selection; while the list stays the same the current choice is kept.
+        /// (the report gives no Hub schema), the schema chosen last in this session for
+        /// <paramref name="preferredAlias"/> (else all its tables) becomes the preferred selection;
+        /// while the list stays the same the current choice is kept.
         /// </summary>
         /// <param name="aliases">Aliases of the report's direct connections.</param>
         /// <param name="preferredAlias">The connection the copilot should work with by default.</param>
         /// <param name="preferLocal">True when the report has no Hub schema of its own.</param>
         public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal)
+        {
+            SetDirectConnections(aliases, preferredAlias, preferLocal, null);
+        }
+
+        /// <summary>
+        /// Sets the direct connections of the report, as <see cref="SetDirectConnections(IList{string}, string, bool)"/>,
+        /// for a report just opened when <paramref name="reportSubschema"/> is not null: with
+        /// <paramref name="preferLocal"/>, its subschema of <paramref name="preferredAlias"/> is selected
+        /// (all the tables when it is not in the file any more), or, when it is empty, the one chosen
+        /// last in this session for that connection.
+        /// </summary>
+        /// <param name="aliases">Aliases of the report's direct connections.</param>
+        /// <param name="preferredAlias">The connection the copilot should work with by default.</param>
+        /// <param name="preferLocal">True when the local schema should be selected rather than a Hub schema.</param>
+        /// <param name="reportSubschema">Null to keep the current choice; otherwise the subschema the
+        /// report's datasets of <paramref name="preferredAlias"/> were made with ("" when they say none).</param>
+        public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal, string reportSubschema)
         {
             var list = new List<string>();
             if (aliases != null)
@@ -196,21 +310,34 @@ namespace Reportman.Designer
                 same = string.Equals(list[i], _directAliases[i], StringComparison.OrdinalIgnoreCase);
             _directAliases = list;
 
-            if (!same)
+            string preferred = (preferredAlias ?? "").Trim();
+            if (!list.Exists(x => string.Equals(x, preferred, StringComparison.OrdinalIgnoreCase)))
+                preferred = list.Count > 0 ? list[0] : "";
+            _defaultDirectAlias = preferred;
+
+            if (reportSubschema != null && preferLocal && preferred.Length > 0)
             {
-                string preferred = (preferredAlias ?? "").Trim();
-                if (!list.Exists(x => string.Equals(x, preferred, StringComparison.OrdinalIgnoreCase)))
-                    preferred = list.Count > 0 ? list[0] : "";
+                // A report just opened: the subschema its datasets were made with, else the last one chosen
+                _preferredLocalAlias = preferred;
+                _preferredLocalSubschema = reportSubschema.Trim().Length > 0 ? reportSubschema.Trim() : RememberedSubschema(preferred);
+            }
+            else if (!same)
+            {
                 bool keepCurrent = _preferredLocalAlias.Length > 0 &&
                     list.Exists(x => string.Equals(x, _preferredLocalAlias, StringComparison.OrdinalIgnoreCase));
                 if (!keepCurrent)
                 {
                     _preferredLocalAlias = preferLocal ? preferred : "";
-                    _preferredLocalSubschema = "";
+                    _preferredLocalSubschema = preferLocal ? RememberedSubschema(preferred) : "";
                 }
             }
-            _btnLocalSchema.Visible = list.Count > 0;
             ReloadLocalSchemas();
+        }
+
+        private static string RememberedSubschema(string alias)
+        {
+            string subschema;
+            return alias.Length > 0 && RememberedSubschemas.TryGetValue(alias, out subschema) ? subschema : "";
         }
 
         /// <summary>
@@ -225,16 +352,148 @@ namespace Reportman.Designer
                 if (item is SchemaItem si)
                     hubItems.Add(si);
             }
+            RebuildList(hubItems);
+        }
+
+        /// <summary>
+        /// Reads the local schemas again and selects <paramref name="subschema"/> of the direct
+        /// connection <paramref name="alias"/> ("" for all its tables), as if the user had chosen it.
+        /// </summary>
+        /// <param name="alias">The direct connection.</param>
+        /// <param name="subschema">The subschema, or "" for all the tables.</param>
+        public void SelectLocalSchema(string alias, string subschema)
+        {
+            _preferredLocalAlias = (alias ?? "").Trim();
+            _preferredLocalSubschema = (subschema ?? "").Trim();
+            ReloadLocalSchemas();
+            SchemaChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Marks again the schemas that do not fit the plan, after the profile (and so the plan)
+        /// changed.
+        /// </summary>
+        public void RefreshPlanWarnings()
+        {
+            UpdatePlanWarnings();
+        }
+
+        /// <summary>
+        /// Triggers a refresh of the schema list from the registry config.
+        /// </summary>
+        public void RefreshSchemas()
+        {
+            UpdatePlanWarnings();
+            LoadSchemasAsync();
+        }
+
+        /// <summary>
+        /// Populates the schema list combo box with a list of schema names.
+        /// Format of elements: "DisplayName=hubDatabaseId|hubSchemaId", "DisplayName=hubDatabaseId|hubSchemaId|apiKey"
+        /// or "DisplayName=hubDatabaseId|hubSchemaId|apiKey|tables|widestColumns" (the number of tables of the
+        /// schema, empty when not known, and the columns of its widest table).
+        /// </summary>
+        /// <param name="schemas">The list of schema name strings to apply.</param>
+        public void ApplySchemas(List<string> schemas)
+        {
+            if (_preferredHubDatabaseId == 0 && _preferredHubSchemaId == 0)
+            {
+                _preferredHubDatabaseId = HubDatabaseId;
+                _preferredHubSchemaId = HubSchemaId;
+                _preferredApiKey = SchemaApiKey;
+            }
+
+            var hubItems = new List<SchemaItem>();
+            if (schemas != null)
+            {
+                var otherItems = new List<SchemaItem>();
+                foreach (var entry in schemas)
+                {
+                    if (!TryParseSchemaEntry(entry, out var item))
+                        continue;
+                    // The schemas of the report's own Hub database first
+                    if (_preferredConnectionHubDatabaseId != 0 && item.HubDatabaseId == _preferredConnectionHubDatabaseId)
+                        hubItems.Add(item);
+                    else
+                        otherItems.Add(item);
+                }
+                hubItems.AddRange(otherItems);
+            }
+            RebuildList(hubItems);
+        }
+
+        /// <summary>
+        /// Sets preferred connection parameters to auto-select schema context.
+        /// </summary>
+        /// <param name="hubDatabaseId">The preferred database identifier.</param>
+        /// <param name="apiKey">The API key of the connection.</param>
+        public void SetPreferredConnection(long hubDatabaseId, string apiKey = "")
+        {
+            _preferredConnectionHubDatabaseId = hubDatabaseId;
+            _preferredConnectionApiKey = (apiKey ?? "").Trim();
+            UpdateActions();
+        }
+
+        /// <summary>
+        /// Configures the active database and schema identifiers.
+        /// </summary>
+        /// <param name="hubDatabaseId">The active database identifier.</param>
+        /// <param name="hubSchemaId">The active schema identifier.</param>
+        /// <param name="apiKey">The active connection API key.</param>
+        public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey = "")
+        {
+            _preferredHubDatabaseId = hubDatabaseId;
+            _preferredHubSchemaId = hubSchemaId;
+            _preferredApiKey = apiKey ?? "";
+
             _suppressSchemaChanged = true;
             try
             {
-                _comboSchema.Items.Clear();
-                _comboSchema.Items.Add("Default / None");
-                AddLocalSchemaItems();
-                foreach (SchemaItem si in hubItems)
-                    _comboSchema.Items.Add(si);
-                if (!SelectPreferredSchema())
-                    _comboSchema.SelectedIndex = 0;
+                int index = FindPreferredIndex();
+                if (index >= 0)
+                    _comboSchema.SelectedIndex = index;
+            }
+            finally
+            {
+                _suppressSchemaChanged = false;
+            }
+
+            ApplySelectedSchema();
+        }
+
+        // ===== The list =====
+
+        private void RebuildList(List<SchemaItem> hubItems)
+        {
+            List<LocalSchemaItem> localItems = BuildLocalItems();
+            _suppressSchemaChanged = true;
+            try
+            {
+                _comboSchema.BeginUpdate();
+                try
+                {
+                    _comboSchema.Items.Clear();
+                    if (localItems.Count > 0)
+                    {
+                        _comboSchema.Items.Add(new GroupHeaderItem(Tr(1836)));
+                        foreach (LocalSchemaItem item in localItems)
+                            _comboSchema.Items.Add(item);
+                    }
+                    if (hubItems.Count > 0)
+                    {
+                        _comboSchema.Items.Add(new GroupHeaderItem(Tr(1837)));
+                        foreach (SchemaItem item in hubItems)
+                            _comboSchema.Items.Add(item);
+                    }
+                    _comboSchema.Items.Add(_newLocalAction);
+                    _comboSchema.Items.Add(_newCloudAction);
+                    UpdatePlanWarningsOfItems();
+                }
+                finally
+                {
+                    _comboSchema.EndUpdate();
+                }
+                _comboSchema.SelectedIndex = FindPreferredIndex();
             }
             finally
             {
@@ -243,54 +502,106 @@ namespace Reportman.Designer
             ApplySelectedSchema();
         }
 
-        private void AddLocalSchemaItems()
+        /// <summary>
+        /// The local schemas of the direct connections: all the tables and each subschema, with the
+        /// tables that would travel. A file that does not exist yet is not generated just to list it:
+        /// then only "all the tables" is offered, without a number.
+        /// </summary>
+        private List<LocalSchemaItem> BuildLocalItems()
         {
+            var result = new List<LocalSchemaItem>();
             foreach (string alias in _directAliases)
             {
-                _comboSchema.Items.Add(new LocalSchemaItem { Alias = alias, Subschema = "" });
-                foreach (string subschema in ReadSubschemaNames(alias))
-                    _comboSchema.Items.Add(new LocalSchemaItem { Alias = alias, Subschema = subschema });
+                LocalSchemaFile file = LoadLocalSchemaFile(alias);
+                var all = new LocalSchemaItem(alias, "");
+                if (file != null)
+                    CountTables(file, "", all);
+                result.Add(all);
+                if (file == null)
+                    continue;
+                foreach (LocalSubschema s in file.Schemas)
+                {
+                    if (string.IsNullOrWhiteSpace(s.Name))
+                        continue;
+                    var item = new LocalSchemaItem(alias, s.Name);
+                    CountTables(file, s.Name, item);
+                    result.Add(item);
+                }
             }
+            return result;
         }
 
-        private List<string> ReadSubschemaNames(string alias)
+        private LocalSchemaFile LoadLocalSchemaFile(string alias)
         {
-            var names = new List<string>();
             if (string.IsNullOrWhiteSpace(LocalSchemaFolder))
-                return names;
+                return null;
             try
             {
-                Reportman.Reporting.LocalSchemaFile file = Reportman.Reporting.LocalSchemaStore.Load(
-                    Reportman.Reporting.LocalSchemaStore.PathFor(LocalSchemaFolder, alias));
-                if (file != null)
-                {
-                    foreach (Reportman.Reporting.LocalSubschema s in file.Schemas)
-                        names.Add(s.Name);
-                }
+                return LocalSchemaStore.Load(LocalSchemaStore.PathFor(LocalSchemaFolder, alias));
             }
             catch (Exception ex)
             {
                 RpAuthManager.Instance.Log("Local schema of " + alias + ": " + ex.Message);
+                return null;
             }
-            return names;
         }
 
-        private void BtnConfig_Click(object sender, EventArgs e)
+        /// <summary>The tables of a subschema (all of them for "") and the columns of the widest one, as they travel inline.</summary>
+        private static void CountTables(LocalSchemaFile file, string subschema, SchemaEntry entry)
         {
-            try
+            LocalSubschema selected = LocalSchemaStore.FindSubschema(file, subschema);
+            List<LocalSchemaTable> tables = LocalSchemaStore.TablesOf(file, subschema);
+            int widest = 0;
+            foreach (LocalSchemaTable table in tables)
+                widest = Math.Max(widest, LocalSchemaStore.ColumnsOf(selected, table).Count);
+            entry.Tables = tables.Count;
+            entry.WidestColumns = widest;
+        }
+
+        private static void AddMergedSchemas(IEnumerable<string> source, List<string> destination,
+            HashSet<string> seenSchemaKeys, string defaultApiKey)
+        {
+            if (source == null)
+                return;
+
+            foreach (var entry in source)
             {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = "https://app.reportman.es/database-config",
-                    UseShellExecute = true
-                });
+                if (!TryParseSchemaEntry(entry, out var item))
+                    continue;
+
+                string schemaKey = item.HubDatabaseId.ToString() + "|" + item.HubSchemaId.ToString();
+                if (!seenSchemaKeys.Add(schemaKey))
+                    continue;
+
+                string apiKey = string.IsNullOrWhiteSpace(item.ApiKey) ? defaultApiKey : item.ApiKey;
+                destination.Add(item.DisplayName + "=" + item.HubDatabaseId + "|" + item.HubSchemaId + "|" + apiKey + "|" +
+                    (item.Tables >= 0 ? item.Tables.ToString() : "") + "|" + item.WidestColumns);
             }
-            catch { }
         }
 
-        private void BtnRefresh_Click(object sender, EventArgs e)
+        private static bool TryParseSchemaEntry(string entry, out SchemaItem item)
         {
-            RefreshSchemas();
+            item = null;
+
+            if (string.IsNullOrWhiteSpace(entry))
+                return false;
+
+            int eq = entry.IndexOf('=');
+            if (eq <= 0)
+                return false;
+
+            string displayName = entry.Substring(0, eq);
+            string value = entry.Substring(eq + 1);
+            string[] parts = value.Split('|');
+
+            item = new SchemaItem();
+            item.DisplayName = displayName;
+            if (parts.Length >= 1) item.HubDatabaseId = long.TryParse(parts[0], out var dbId) ? dbId : 0;
+            if (parts.Length >= 2) item.HubSchemaId = long.TryParse(parts[1], out var scId) ? scId : 0;
+            if (parts.Length >= 3) item.ApiKey = parts[2];
+            if (parts.Length >= 4) item.Tables = int.TryParse(parts[3], out var tables) ? tables : -1;
+            if (parts.Length >= 5) item.WidestColumns = int.TryParse(parts[4], out var columns) ? columns : 0;
+            return true;
         }
 
         private async void LoadSchemasAsync()
@@ -323,177 +634,76 @@ namespace Reportman.Designer
             }
         }
 
-        /// <summary>
-        /// Triggers a refresh of the schema list from the registry config.
-        /// </summary>
-        public void RefreshSchemas()
-        {
-            LoadSchemasAsync();
-        }
-
-        /// <summary>
-        /// Populates the schema list combo box with a list of schema names.
-        /// Format of elements: "DisplayName=hubDatabaseId|hubSchemaId" or "DisplayName=hubDatabaseId|hubSchemaId|apiKey"
-        /// </summary>
-        /// <param name="schemas">The list of schema name strings to apply.</param>
-        public void ApplySchemas(List<string> schemas)
-        {
-            long previousHubDatabaseId = HubDatabaseId;
-            long previousHubSchemaId = HubSchemaId;
-            string previousApiKey = SchemaApiKey;
-            if (_preferredHubDatabaseId == 0 && _preferredHubSchemaId == 0)
-            {
-                _preferredHubDatabaseId = previousHubDatabaseId;
-                _preferredHubSchemaId = previousHubSchemaId;
-                _preferredApiKey = previousApiKey;
-            }
-
-            // Clear and add default
-            _suppressSchemaChanged = true;
-            try
-            {
-                ClearSchemaItems();
-                _comboSchema.Items.Add("Default / None");
-                // The local schemas of the report's own direct connections come first.
-                AddLocalSchemaItems();
-
-                if (schemas != null)
-                {
-                    var preferredItems = new List<SchemaItem>();
-                    var otherItems = new List<SchemaItem>();
-
-                    foreach (var entry in schemas)
-                    {
-                        if (!TryParseSchemaEntry(entry, out var item))
-                            continue;
-
-                        if (_preferredConnectionHubDatabaseId != 0 && item.HubDatabaseId == _preferredConnectionHubDatabaseId)
-                            preferredItems.Add(item);
-                        else
-                            otherItems.Add(item);
-                    }
-
-                    AddSchemaItems(preferredItems);
-                    AddSchemaItems(otherItems);
-                }
-
-                if (!SelectPreferredSchema())
-                    _comboSchema.SelectedIndex = 0;
-            }
-            finally
-            {
-                _suppressSchemaChanged = false;
-            }
-
-            ApplySelectedSchema();
-        }
-
-        /// <summary>
-        /// Sets preferred connection parameters to auto-select schema context.
-        /// </summary>
-        /// <param name="hubDatabaseId">The preferred database identifier.</param>
-        /// <param name="apiKey">The API key of the connection.</param>
-        public void SetPreferredConnection(long hubDatabaseId, string apiKey = "")
-        {
-            _preferredConnectionHubDatabaseId = hubDatabaseId;
-            _preferredConnectionApiKey = (apiKey ?? "").Trim();
-        }
-
-        /// <summary>
-        /// Configures the active database and schema identifiers.
-        /// </summary>
-        /// <param name="hubDatabaseId">The active database identifier.</param>
-        /// <param name="hubSchemaId">The active schema identifier.</param>
-        /// <param name="apiKey">The active connection API key.</param>
-        public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey = "")
-        {
-            _preferredHubDatabaseId = hubDatabaseId;
-            _preferredHubSchemaId = hubSchemaId;
-            _preferredApiKey = apiKey ?? "";
-
-            _suppressSchemaChanged = true;
-            try
-            {
-                if (!SelectPreferredSchema() && _comboSchema.Items.Count > 0)
-                    _comboSchema.SelectedIndex = 0;
-            }
-            finally
-            {
-                _suppressSchemaChanged = false;
-            }
-
-            ApplySelectedSchema();
-        }
-
-        private static void AddMergedSchemas(IEnumerable<string> source, List<string> destination,
-            HashSet<string> seenSchemaKeys, string defaultApiKey)
-        {
-            if (source == null)
-                return;
-
-            foreach (var entry in source)
-            {
-                if (!TryParseSchemaEntry(entry, out var item))
-                    continue;
-
-                string schemaKey = item.HubDatabaseId.ToString() + "|" + item.HubSchemaId.ToString();
-                if (!seenSchemaKeys.Add(schemaKey))
-                    continue;
-
-                string apiKey = string.IsNullOrWhiteSpace(item.ApiKey) ? defaultApiKey : item.ApiKey;
-                destination.Add(item.DisplayName + "=" + item.HubDatabaseId + "|" + item.HubSchemaId + "|" + apiKey);
-            }
-        }
-
-        private void AddSchemaItems(IEnumerable<SchemaItem> items)
-        {
-            foreach (var item in items)
-                _comboSchema.Items.Add(item);
-        }
-
-        private static bool TryParseSchemaEntry(string entry, out SchemaItem item)
-        {
-            item = null;
-
-            if (string.IsNullOrWhiteSpace(entry))
-                return false;
-
-            int eq = entry.IndexOf('=');
-            if (eq <= 0)
-                return false;
-
-            string displayName = entry.Substring(0, eq);
-            string value = entry.Substring(eq + 1);
-            string[] parts = value.Split('|');
-
-            item = new SchemaItem();
-            item.DisplayName = displayName;
-            if (parts.Length >= 1) item.HubDatabaseId = long.TryParse(parts[0], out var dbId) ? dbId : 0;
-            if (parts.Length >= 2) item.HubSchemaId = long.TryParse(parts[1], out var scId) ? scId : 0;
-            if (parts.Length >= 3) item.ApiKey = parts[2];
-            return true;
-        }
-
-        private void ClearSchemaItems()
-        {
-            _comboSchema.Items.Clear();
-            HubDatabaseId = 0;
-            HubSchemaId = 0;
-            SchemaApiKey = "";
-            LocalAlias = "";
-            LocalSubschema = "";
-        }
+        // ===== Selection =====
 
         private void ComboSchema_SelectedIndexChanged(object sender, EventArgs e)
         {
+            object item = _comboSchema.SelectedItem;
+            if (item is GroupHeaderItem)
+            {
+                // A header is skipped in the direction the selection moved (a click takes its first schema)
+                int index = _comboSchema.SelectedIndex;
+                int direction = index >= _lastSchemaIndex ? 1 : -1;
+                int target = NextSelectableIndex(index, direction);
+                if (target < 0)
+                    target = NextSelectableIndex(index, -direction);
+                _comboSchema.SelectedIndex = target;
+                return;
+            }
+            // An action is only highlighted while the list is open: it runs when it is committed.
+            if (item is ActionItem)
+                return;
             ApplySelectedSchema();
             if (!_suppressSchemaChanged)
                 SchemaChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        private void ComboSchema_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ActionItem action = _comboSchema.SelectedItem as ActionItem;
+            if (action == null)
+                return;
+            // Deferred: the combo is still processing the selection; the previous schema comes back first.
+            BeginInvoke(new Action(() =>
+            {
+                RestoreLastSchema();
+                RunAction(action);
+            }));
+        }
+
+        private void ComboSchema_DropDownClosed(object sender, EventArgs e)
+        {
+            // Closed on an action or a header without committing it: the schema comes back.
+            BeginInvoke(new Action(() =>
+            {
+                object item = _comboSchema.SelectedItem;
+                if (item is ActionItem || item is GroupHeaderItem)
+                    RestoreLastSchema();
+            }));
+        }
+
+        private void RestoreLastSchema()
+        {
+            int index = _lastSchemaIndex >= 0 && _lastSchemaIndex < _comboSchema.Items.Count &&
+                _comboSchema.Items[_lastSchemaIndex] is SchemaEntry ? _lastSchemaIndex : -1;
+            _suppressSchemaChanged = true;
+            try
+            {
+                _comboSchema.SelectedIndex = index;
+            }
+            finally
+            {
+                _suppressSchemaChanged = false;
+            }
+            ApplySelectedSchema();
+        }
+
         private void ApplySelectedSchema()
         {
-            if (_comboSchema.SelectedItem is SchemaItem si)
+            object selected = _comboSchema.SelectedItem;
+            if (selected is ActionItem || selected is GroupHeaderItem)
+                return;
+            if (selected is SchemaItem si)
             {
                 HubDatabaseId = si.HubDatabaseId;
                 HubSchemaId = si.HubSchemaId;
@@ -505,8 +715,10 @@ namespace Reportman.Designer
                 LocalSubschema = "";
                 _preferredLocalAlias = "";
                 _preferredLocalSubschema = "";
+                if (si.HubDatabaseId != 0)
+                    RememberedHubSchemas[si.HubDatabaseId] = si.HubSchemaId;
             }
-            else if (_comboSchema.SelectedItem is LocalSchemaItem local)
+            else if (selected is LocalSchemaItem local)
             {
                 // A direct connection's local schema: no Hub ids, the schema travels inline.
                 HubDatabaseId = 0;
@@ -519,145 +731,475 @@ namespace Reportman.Designer
                 LocalSubschema = local.Subschema;
                 _preferredLocalAlias = local.Alias;
                 _preferredLocalSubschema = local.Subschema;
+                RememberedSubschemas[local.Alias] = local.Subschema;
             }
             else
             {
+                // Nothing to select (yet): the preferences stay for when the list arrives.
                 HubDatabaseId = 0;
                 HubSchemaId = 0;
                 SchemaApiKey = "";
-                _preferredHubDatabaseId = 0;
-                _preferredHubSchemaId = 0;
-                _preferredApiKey = "";
                 LocalAlias = "";
                 LocalSubschema = "";
-                _preferredLocalAlias = "";
-                _preferredLocalSubschema = "";
             }
-            if (_btnLocalSchema != null)
-                _btnLocalSchema.Enabled = IsLocalSchemaSelected;
+            _lastSchemaIndex = selected is SchemaEntry ? _comboSchema.SelectedIndex : -1;
+            UpdateActions();
+            UpdateSelectionTooltip();
         }
 
-        private bool SelectPreferredLocalSchema()
+        private int FindPreferredIndex()
+        {
+            int index = FindPreferredLocalIndex();
+            if (index >= 0)
+                return index;
+
+            if (_preferredHubSchemaId != 0)
+            {
+                index = FindHubIndex(item => item.HubSchemaId == _preferredHubSchemaId);
+                if (index >= 0)
+                    return index;
+            }
+
+            if (_preferredHubDatabaseId != 0)
+            {
+                index = FindHubDatabaseIndex(_preferredHubDatabaseId);
+                if (index >= 0)
+                    return index;
+            }
+
+            if (_preferredConnectionHubDatabaseId != 0)
+            {
+                index = FindHubDatabaseIndex(_preferredConnectionHubDatabaseId);
+                if (index >= 0)
+                    return index;
+            }
+
+            // As before the local schemas existed: the first Hub schema.
+            return FindHubIndex(item => true);
+        }
+
+        private int FindPreferredLocalIndex()
         {
             if (_preferredLocalAlias.Length == 0)
-                return false;
+                return -1;
             int allIndex = -1;
-            for (int i = 1; i < _comboSchema.Items.Count; i++)
+            for (int i = 0; i < _comboSchema.Items.Count; i++)
             {
                 LocalSchemaItem item = _comboSchema.Items[i] as LocalSchemaItem;
                 if (item == null || !string.Equals(item.Alias, _preferredLocalAlias, StringComparison.OrdinalIgnoreCase))
                     continue;
                 if (string.Equals(item.Subschema, _preferredLocalSubschema, StringComparison.OrdinalIgnoreCase))
-                {
-                    _comboSchema.SelectedIndex = i;
-                    return true;
-                }
+                    return i;
                 if (item.Subschema.Length == 0 && allIndex < 0)
                     allIndex = i;
             }
             // A subschema that was deleted or renamed falls back to all the tables of the connection.
-            if (allIndex >= 0)
-            {
-                _comboSchema.SelectedIndex = allIndex;
-                return true;
-            }
-            return false;
+            return allIndex;
         }
 
-        private bool SelectPreferredSchema()
+        /// <summary>The schema chosen last in this session for a Hub database, else its first one.</summary>
+        private int FindHubDatabaseIndex(long hubDatabaseId)
         {
-            if (_comboSchema.Items.Count == 0)
+            long remembered;
+            if (RememberedHubSchemas.TryGetValue(hubDatabaseId, out remembered))
+            {
+                int index = FindHubIndex(item => item.HubDatabaseId == hubDatabaseId && item.HubSchemaId == remembered);
+                if (index >= 0)
+                    return index;
+            }
+            return FindHubIndex(item => item.HubDatabaseId == hubDatabaseId);
+        }
+
+        private int FindHubIndex(Predicate<SchemaItem> match)
+        {
+            for (int i = 0; i < _comboSchema.Items.Count; i++)
+            {
+                SchemaItem item = _comboSchema.Items[i] as SchemaItem;
+                if (item != null && match(item))
+                    return i;
+            }
+            return -1;
+        }
+
+        /// <summary>The next item after <paramref name="from"/> that is not a header (a schema or an action), or -1.</summary>
+        private int NextSelectableIndex(int from, int direction)
+        {
+            for (int i = from + direction; i >= 0 && i < _comboSchema.Items.Count; i += direction)
+            {
+                if (!(_comboSchema.Items[i] is GroupHeaderItem))
+                    return i;
+            }
+            return -1;
+        }
+
+        /// <summary>The next schema after <paramref name="from"/> (no header, no action), or -1.</summary>
+        private int NextSchemaIndex(int from, int direction)
+        {
+            for (int i = from + direction; i >= 0 && i < _comboSchema.Items.Count; i += direction)
+            {
+                if (_comboSchema.Items[i] is SchemaEntry)
+                    return i;
+            }
+            return -1;
+        }
+
+        private void SelectByUser(int index)
+        {
+            if (index >= 0 && index != _comboSchema.SelectedIndex)
+                _comboSchema.SelectedIndex = index;
+        }
+
+        // The closed list moves among the schemas only: the keyboard and the wheel never land on a
+        // header or run an action (they would on their own).
+        private void ComboSchema_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_comboSchema.DroppedDown || e.Alt || e.Control)
+                return;
+            int target;
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                case Keys.Right:
+                    target = NextSchemaIndex(_comboSchema.SelectedIndex, 1);
+                    break;
+                case Keys.Up:
+                case Keys.Left:
+                    target = NextSchemaIndex(_comboSchema.SelectedIndex < 0 ? _comboSchema.Items.Count : _comboSchema.SelectedIndex, -1);
+                    break;
+                case Keys.Home:
+                case Keys.PageUp:
+                    target = NextSchemaIndex(-1, 1);
+                    break;
+                case Keys.End:
+                case Keys.PageDown:
+                    target = NextSchemaIndex(_comboSchema.Items.Count, -1);
+                    break;
+                default:
+                    return;
+            }
+            e.Handled = true;
+            SelectByUser(target);
+        }
+
+        private void ComboSchema_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (_comboSchema.DroppedDown || char.IsControl(e.KeyChar))
+                return;
+            e.Handled = true;
+            int count = _comboSchema.Items.Count;
+            int start = _comboSchema.SelectedIndex;
+            string key = e.KeyChar.ToString();
+            for (int step = 1; step <= count; step++)
+            {
+                int index = (start + step + count) % count;
+                SchemaEntry entry = _comboSchema.Items[index] as SchemaEntry;
+                if (entry != null && entry.Name.StartsWith(key, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    SelectByUser(index);
+                    return;
+                }
+            }
+        }
+
+        private void ComboSchema_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (_comboSchema.DroppedDown)
+                return;
+            if (e is HandledMouseEventArgs handled)
+                handled.Handled = true;
+            if (e.Delta < 0)
+                SelectByUser(NextSchemaIndex(_comboSchema.SelectedIndex, 1));
+            else if (e.Delta > 0)
+                SelectByUser(NextSchemaIndex(_comboSchema.SelectedIndex < 0 ? _comboSchema.Items.Count : _comboSchema.SelectedIndex, -1));
+        }
+
+        // ===== Actions =====
+
+        /// <summary>The direct connection of the local actions: the one selected, else the report's.</summary>
+        private string TargetDirectAlias
+        {
+            get { return IsLocalSchemaSelected ? LocalAlias : _defaultDirectAlias; }
+        }
+
+        /// <summary>The Hub database of "New cloud schema...": the selected schema's, else the report's Agent connection's.</summary>
+        private long TargetHubDatabaseId
+        {
+            get
+            {
+                if (HubDatabaseId > 0)
+                    return HubDatabaseId;
+                return IsLocalSchemaSelected ? 0 : _preferredConnectionHubDatabaseId;
+            }
+        }
+
+        private bool CanEditLocalSchema
+        {
+            get { return TargetDirectAlias.Length > 0 && LocalSchemaEditRequested != null; }
+        }
+
+        private void UpdateActions()
+        {
+            _newLocalAction.Enabled = CanEditLocalSchema;
+            _newLocalAction.Reason = "";
+            _newCloudAction.Enabled = TargetHubDatabaseId > 0;
+            // A direct connection is not in the Hub: there is nothing to create a cloud schema on
+            _newCloudAction.Reason = !_newCloudAction.Enabled && (IsLocalSchemaSelected || _directAliases.Count > 0) ? Tr(1842) : "";
+            _comboSchema.Invalidate();
+        }
+
+        private void RunAction(ActionItem action)
+        {
+            UpdateActions();
+            if (!action.Enabled)
+            {
+                if (action.Reason.Length > 0)
+                    _toolTip.Show(action.Reason, _comboSchema, 0, _comboSchema.Height, 4000);
+                return;
+            }
+            if (action.Kind == ActionKind.NewLocalSchema)
+                RequestLocalSchemaEdit(TargetDirectAlias, true);
+            else
+                OpenUrl(CloudSchemasUrl + "?new=1&hubDatabaseId=" + TargetHubDatabaseId);
+        }
+
+        private void RequestLocalSchemaEdit(string alias, bool addSubschema)
+        {
+            EventHandler<LocalSchemaEditEventArgs> handler = LocalSchemaEditRequested;
+            if (handler == null || string.IsNullOrEmpty(alias))
+                return;
+            var args = new LocalSchemaEditEventArgs(alias, addSubschema);
+            handler(this, args);
+            // The file may have been generated, refreshed or changed: the list is read again
+            if (!string.IsNullOrEmpty(args.AddedSubschema))
+                SelectLocalSchema(alias, args.AddedSubschema);
+            else
+                ReloadLocalSchemas();
+        }
+
+        private static void OpenUrl(string url)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                RpAuthManager.Instance.Log("Unable to open " + url + ": " + ex.Message);
+            }
+        }
+
+        private void BtnConfig_Click(object sender, EventArgs e)
+        {
+            _menuConfig.Show(_btnConfig, new Point(0, _btnConfig.Height));
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshSchemas();
+        }
+
+        // ===== Plan warnings =====
+
+        private void UpdatePlanWarnings()
+        {
+            UpdatePlanWarningsOfItems();
+            _comboSchema.Invalidate();
+            UpdateSelectionTooltip();
+        }
+
+        private void UpdatePlanWarningsOfItems()
+        {
+            RpProfile profile = RpAuthManager.Instance.Profile;
+            foreach (object item in _comboSchema.Items)
+            {
+                if (item is SchemaEntry entry)
+                    entry.OverPlan = !_ignorePlanLimits && IsOverPlan(entry, profile);
+            }
+        }
+
+        /// <summary>
+        /// True when the tables that would travel, or the columns of the widest one, pass the plan's
+        /// limits with the cloud AI (a limit of 0 or less is none; an unknown count is never marked).
+        /// </summary>
+        private static bool IsOverPlan(SchemaEntry entry, RpProfile profile)
+        {
+            if (entry.Tables < 0 || profile == null)
                 return false;
+            return (profile.MaxTables > 0 && entry.Tables > profile.MaxTables) ||
+                (profile.MaxColumnsPerTable > 0 && entry.WidestColumns > profile.MaxColumnsPerTable);
+        }
 
-            if (SelectPreferredLocalSchema())
-                return true;
+        private void UpdateSelectionTooltip()
+        {
+            SchemaEntry entry = _comboSchema.SelectedItem as SchemaEntry;
+            string text = entry == null ? "" : (entry.OverPlan ? Tr(1844) : entry.Caption);
+            _toolTip.SetToolTip(_comboSchema, text);
+        }
 
-            if (_preferredHubSchemaId != 0)
+        // ===== Drawing =====
+
+        private void ComboSchema_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0 || e.Index >= _comboSchema.Items.Count)
             {
-                for (int i = 1; i < _comboSchema.Items.Count; i++)
-                {
-                    SchemaItem item = _comboSchema.Items[i] as SchemaItem;
-                    if (item == null)
-                        continue;
+                e.DrawBackground();
+                return;
+            }
+            object item = _comboSchema.Items[e.Index];
+            GroupHeaderItem header = item as GroupHeaderItem;
+            ActionItem action = item as ActionItem;
+            bool inEdit = (e.State & DrawItemState.ComboBoxEdit) == DrawItemState.ComboBoxEdit;
+            // Headers and disabled actions are never highlighted
+            bool plain = header != null || (action != null && !action.Enabled);
+            if (plain)
+            {
+                using (var back = new SolidBrush(_comboSchema.BackColor))
+                    e.Graphics.FillRectangle(back, e.Bounds);
+            }
+            else
+                e.DrawBackground();
+            if (action != null && action.First && !inEdit)
+                e.Graphics.DrawLine(SystemPens.ControlDark, e.Bounds.Left + 2, e.Bounds.Top, e.Bounds.Right - 3, e.Bounds.Top);
 
-                    if (item.HubSchemaId == _preferredHubSchemaId)
-                    {
-                        _comboSchema.SelectedIndex = i;
-                        return true;
-                    }
+            int indent = inEdit ? 1 : (item is SchemaEntry ? ItemIndent : 3);
+            var bounds = new Rectangle(e.Bounds.Left + indent, e.Bounds.Top, Math.Max(0, e.Bounds.Width - indent), e.Bounds.Height);
+            Color color = plain ? SystemColors.GrayText
+                : ((e.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : _comboSchema.ForeColor);
+            const TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |
+                TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix;
+            Font font = e.Font ?? _comboSchema.Font;
+            if (header != null)
+            {
+                using (var bold = new Font(font, FontStyle.Bold))
+                    TextRenderer.DrawText(e.Graphics, header.Text, bold, bounds, color, flags);
+            }
+            else
+                TextRenderer.DrawText(e.Graphics, item.ToString(), font, bounds, color, flags);
+            if (!plain)
+                e.DrawFocusRectangle();
+        }
+
+        private void ComboSchema_DropDown(object sender, EventArgs e)
+        {
+            // Wide enough for the longest caption
+            int width = _comboSchema.Width;
+            foreach (object item in _comboSchema.Items)
+            {
+                Font font = item is GroupHeaderItem ? new Font(_comboSchema.Font, FontStyle.Bold) : _comboSchema.Font;
+                try
+                {
+                    int itemWidth = TextRenderer.MeasureText(item.ToString(), font).Width + ItemIndent + 8;
+                    width = Math.Max(width, itemWidth);
+                }
+                finally
+                {
+                    if (font != _comboSchema.Font)
+                        font.Dispose();
                 }
             }
+            if (_comboSchema.Items.Count > _comboSchema.MaxDropDownItems)
+                width += SystemInformation.VerticalScrollBarWidth;
+            _comboSchema.DropDownWidth = Math.Min(width, Math.Max(_comboSchema.Width, Screen.FromControl(this).WorkingArea.Width / 2));
+        }
 
-            if (_preferredHubDatabaseId != 0)
+        // ===== Items =====
+
+        /// <summary>A non-selectable group title of the list.</summary>
+        private sealed class GroupHeaderItem
+        {
+            public GroupHeaderItem(string text)
             {
-                for (int i = 1; i < _comboSchema.Items.Count; i++)
-                {
-                    SchemaItem item = _comboSchema.Items[i] as SchemaItem;
-                    if (item == null)
-                        continue;
-
-                    if (item.HubDatabaseId == _preferredHubDatabaseId)
-                    {
-                        _comboSchema.SelectedIndex = i;
-                        return true;
-                    }
-                }
+                Text = text ?? "";
             }
 
-            if (_preferredConnectionHubDatabaseId != 0)
-            {
-                for (int i = 1; i < _comboSchema.Items.Count; i++)
-                {
-                    SchemaItem item = _comboSchema.Items[i] as SchemaItem;
-                    if (item == null)
-                        continue;
+            public readonly string Text;
 
-                    if (item.HubDatabaseId == _preferredConnectionHubDatabaseId)
-                    {
-                        _comboSchema.SelectedIndex = i;
-                        return true;
-                    }
-                }
+            public override string ToString() { return Text; }
+        }
+
+        private enum ActionKind
+        {
+            NewLocalSchema,
+            NewCloudSchema
+        }
+
+        /// <summary>An entry at the end of the list that runs an action instead of being selected.</summary>
+        private sealed class ActionItem
+        {
+            public ActionItem(ActionKind kind)
+            {
+                Kind = kind;
             }
 
-            // As before the local schemas existed: the first Hub schema.
-            for (int i = 1; i < _comboSchema.Items.Count; i++)
+            public readonly ActionKind Kind;
+            public string Text = "";
+            public bool Enabled;
+            /// <summary>Why it is disabled, shown with it ("" when there is nothing to say).</summary>
+            public string Reason = "";
+            /// <summary>The first action: a line separates it from the schemas.</summary>
+            public bool First;
+
+            public override string ToString()
             {
-                if (_comboSchema.Items[i] is SchemaItem)
-                {
-                    _comboSchema.SelectedIndex = i;
-                    return true;
-                }
+                return Reason.Length > 0 ? Text + " (" + Reason + ")" : Text;
+            }
+        }
+
+        /// <summary>A schema of the list, local or of the Hub, with what it would send to the AI.</summary>
+        private abstract class SchemaEntry
+        {
+            /// <summary>Tables that would travel, or -1 when not known.</summary>
+            public int Tables = -1;
+            /// <summary>Columns of the widest of them.</summary>
+            public int WidestColumns;
+            /// <summary>True when it passes the plan's limits with the cloud AI.</summary>
+            public bool OverPlan;
+
+            public abstract string Name { get; }
+
+            public string Caption
+            {
+                get { return (OverPlan ? WarningSign : "") + Name + (Tables >= 0 ? " (" + Tables + ")" : ""); }
             }
 
-            return false;
+            public override string ToString() { return Caption; }
         }
 
         /// <summary>
         /// The local schema of a direct connection for the combo box: all its tables or a subschema.
         /// </summary>
-        private class LocalSchemaItem
+        private sealed class LocalSchemaItem : SchemaEntry
         {
-            public string Alias = "";
-            public string Subschema = "";
-
-            public override string ToString()
+            public LocalSchemaItem(string alias, string subschema)
             {
-                return Alias + " (local) - " + (Subschema.Length == 0 ? "All tables" : Subschema);
+                Alias = alias ?? "";
+                Subschema = subschema ?? "";
+            }
+
+            public readonly string Alias;
+            public readonly string Subschema;
+
+            public override string Name
+            {
+                get { return Alias + " · " + (Subschema.Length == 0 ? Tr(1843) : Subschema); }
             }
         }
 
         /// <summary>
         /// Schema data item for the combo box.
         /// </summary>
-        private class SchemaItem
+        private sealed class SchemaItem : SchemaEntry
         {
-            public string DisplayName;
+            public string DisplayName = "";
             public long HubDatabaseId;
             public long HubSchemaId;
             public string ApiKey = "";
 
-            public override string ToString() { return DisplayName; }
+            public override string Name { get { return DisplayName; } }
         }
     }
 }

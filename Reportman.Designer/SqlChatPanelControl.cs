@@ -178,6 +178,9 @@ namespace Reportman.Designer
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
             _schemaSelector.SchemaChanged += SchemaSelector_SchemaChanged;
+            // With the AI on the user's Agent the plan limits do not apply: no schema is marked
+            _aiSelectionControl.ProviderChanged += (s, e) => _schemaSelector.IgnorePlanLimits =
+                string.Equals(_aiSelectionControl.SelectedTier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
 
             TableLayoutPanel topPanel = new TableLayoutPanel
             {
@@ -631,6 +634,7 @@ namespace Reportman.Designer
             string tier = _aiSelectionControl.SelectedTier;
             _agentClient.Token = RpAuthManager.Instance.Token;
             _agentClient.InstallId = RpAuthManager.Instance.InstallId;
+            _agentClient.AcceptLanguage = RpAuthManager.Instance.AILanguageCode;
             _agentClient.AITier = tier;
             _agentClient.ApiKey = EffectiveApiKey;
             _agentClient.HubDatabaseId = EffectiveHubDatabaseId;

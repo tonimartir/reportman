@@ -3570,6 +3570,7 @@ end;
             op.AddProperty("sqlExplanation", PropertyType.String, null, item.SQLExplanation);
             op.AddProperty("sqlExplanationError", PropertyType.String, null, item.SQLExplanationError);
             op.AddProperty("hubSchemaId", PropertyType.Integer, null, item.HubSchemaId);
+            op.AddProperty("schemaName", PropertyType.String, null, item.SchemaName);
         }
 
         private void AddSubreportProperties(SubReport item, ChangeObjectOperation op)

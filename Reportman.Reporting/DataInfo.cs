@@ -61,6 +61,11 @@ namespace Reportman.Reporting
         /// Gets or sets the database hub schema identifier.
         /// </summary>
         public long HubSchemaId { get; set; }
+        /// <summary>
+        /// The local subschema (or the host's zone) the dataset was made with, by name; empty for all the
+        /// tables or a Hub schema (<see cref="HubSchemaId"/>). Saved only when it is not empty.
+        /// </summary>
+        public string SchemaName { get; set; }
         /// <summary>A master dataset can be assigned so the query is executed each time the parameters of the
         /// query change, the parameters with the same name as master dataset fields will be checked</summary>
 		public string DataSource { get; set; }
@@ -183,6 +188,7 @@ namespace Reportman.Reporting
             ninfo.SQLExplanation = this.SQLExplanation;
             ninfo.SQLExplanationError = this.SQLExplanationError;
             ninfo.HubSchemaId = this.HubSchemaId;
+            ninfo.SchemaName = this.SchemaName;
             return ninfo;
         }
         /// <summary>
@@ -197,6 +203,7 @@ namespace Reportman.Reporting
             SQLExplanation = "";
             SQLExplanationError = "";
             HubSchemaId = 0;
+            SchemaName = "";
             MyBaseFilename = ""; MyBaseFields = ""; MyBaseIndexFields = ""; MyBaseMasterFields = "";
             BDEIndexFields = ""; BDEIndexName = ""; BDETable = "";
             BDEFilter = ""; BDEMasterFields = ""; BDEFirstRange = ""; BDELastRange = "";

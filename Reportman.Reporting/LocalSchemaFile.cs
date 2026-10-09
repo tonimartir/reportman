@@ -439,10 +439,11 @@ namespace Reportman.Reporting
 
         /// <summary>
         /// The database configuration the copilot sends inline for a direct connection:
-        /// <c>{ name: ALIAS, dialect, schemaTables, hubDatabaseId: 0, hubSchemaId: 0 }</c>, with the tables of
+        /// <c>{ name: ALIAS, dialect, schemaTables, schemaName, hubDatabaseId: 0, hubSchemaId: 0 }</c>, with the tables of
         /// the chosen subschema (all of them when empty) and, of each one, the columns it chose, their allowed
         /// values, and the relations whose two ends are in what travels. The name is the connection alias: the
-        /// AI puts a new dataset on the connection with that name.
+        /// AI puts a new dataset on the connection with that name, and records the subschema's name in it
+        /// (<c>schemaName</c>, empty for all the tables).
         /// </summary>
         public static Dictionary<string, object> BuildInlineConfig(LocalSchemaFile file, string subschema)
         {
@@ -505,6 +506,7 @@ namespace Reportman.Reporting
                 { "dialect", CloudDialect(file.Dialect) },
                 { "hubDatabaseId", 0 },
                 { "hubSchemaId", 0 },
+                { "schemaName", selected != null ? selected.Name : "" },
                 { "schemaTables", tables }
             };
         }

@@ -543,6 +543,7 @@ namespace Reportman.Designer
             string tier = _aiSelectionControl.SelectedTier;
             _agentClient.Token = RpAuthManager.Instance.Token;
             _agentClient.InstallId = RpAuthManager.Instance.InstallId;
+            _agentClient.AcceptLanguage = RpAuthManager.Instance.AILanguageCode;
             _agentClient.AITier = tier;
             _agentClient.ApiKey = "";
             _agentClient.HubDatabaseId = 0;

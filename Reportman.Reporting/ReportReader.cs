@@ -1276,6 +1276,9 @@ namespace Reportman.Reporting
                 case "HUBSCHEMAID":
                     ditem.HubSchemaId = GetAsInteger();
                     break;
+                case "SCHEMANAME":
+                    ditem.SchemaName = GetAsString();
+                    break;
                 case "MYBASEFILENAME":
                     ditem.MyBaseFilename = GetAsString();
                     break;
@@ -2612,6 +2615,9 @@ namespace Reportman.Reporting
                 WritePropertyS("SQLEXPLANATIONERROR", dinfo.SQLExplanationError, astream);
             if (dinfo.HubSchemaId != 0)
                 WritePropertyI("HUBSCHEMAID", (int)dinfo.HubSchemaId, astream);
+            // Only with a name: an older reader fails on what it does not know, so only a report that uses it can
+            if (!string.IsNullOrEmpty(dinfo.SchemaName))
+                WritePropertyS("SCHEMANAME", dinfo.SchemaName, astream);
             WritePropertyS("DATASOURCE", dinfo.DataSource, astream);
             WritePropertyS("MYBASEFILENAME", dinfo.MyBaseFilename, astream);
             WritePropertyS("MYBASEFIELDS", dinfo.MyBaseFields, astream);

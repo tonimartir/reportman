@@ -36,6 +36,8 @@ namespace Reportman.Designer
         private readonly Func<DbConnection> _createConnection;
         private LocalSchemaFile _file;
         private bool _filling;
+        private bool _startAdding;
+        private LocalSubschema _added;
 
         private Label _lblInfo;
         private Label _lblPath;
@@ -61,8 +63,38 @@ namespace Reportman.Designer
         /// <param name="createConnection">Creates a connection to read the catalog from.</param>
         public static bool Edit(IWin32Window owner, string folder, string alias, Func<DbConnection> createConnection)
         {
+            string added;
+            return Edit(owner, folder, alias, createConnection, false, out added);
+        }
+
+        /// <summary>
+        /// Shows the utility for the connection <paramref name="alias"/>; with
+        /// <paramref name="addSubschema"/> it starts asking the name of a new subschema, as "Add..."
+        /// does, once the file is read. Returns true when the file was saved.
+        /// </summary>
+        /// <param name="owner">The owner window.</param>
+        /// <param name="folder">The dbxschemas folder.</param>
+        /// <param name="alias">The connection alias.</param>
+        /// <param name="createConnection">Creates a connection to read the catalog from.</param>
+        /// <param name="addSubschema">True to start adding a subschema.</param>
+        /// <param name="addedSubschema">When saved, the name of the last subschema added in the dialog
+        /// (empty when none was, or it was deleted again).</param>
+        public static bool Edit(IWin32Window owner, string folder, string alias, Func<DbConnection> createConnection,
+            bool addSubschema, out string addedSubschema)
+        {
             using (var form = new LocalSchemaEditorForm(folder, alias, createConnection))
-                return form.ShowDialog(owner) == DialogResult.OK;
+            {
+                form._startAdding = addSubschema;
+                bool saved = form.ShowDialog(owner) == DialogResult.OK;
+                addedSubschema = saved ? form.AddedSubschemaName : "";
+                return saved;
+            }
+        }
+
+        /// <summary>The name of the last subschema added in the dialog, or "" when none is there.</summary>
+        private string AddedSubschemaName
+        {
+            get { return _added != null && _file != null && _file.Schemas.Contains(_added) ? _added.Name : ""; }
         }
 
         /// <summary>
@@ -77,7 +109,17 @@ namespace Reportman.Designer
             _alias = (alias ?? "").Trim().ToUpperInvariant();
             _createConnection = createConnection;
             InitializeComponent();
-            Shown += async (s, e) => await LoadFileAsync();
+            Shown += async (s, e) =>
+            {
+                await LoadFileAsync();
+                // Opened to add a subschema: the name is asked as soon as the tables are known
+                if (_startAdding)
+                {
+                    _startAdding = false;
+                    if (_file != null)
+                        AddSubschema();
+                }
+            };
         }
 
         private string FilePath { get { return LocalSchemaStore.PathFor(_folder, _alias); } }
@@ -207,6 +249,9 @@ namespace Reportman.Designer
                 });
                 // What was written here (contexts, subschemas, unsaved changes included) is kept.
                 _file = LocalSchemaStore.Merge(_file, fresh);
+                // The merge copies the subschemas: the one added here is followed by its name
+                if (_added != null)
+                    _added = LocalSchemaStore.FindSubschema(_file, _added.Name);
             }
             catch (Exception ex)
             {
@@ -364,7 +409,8 @@ namespace Reportman.Designer
             string name = AskName("Add subschema", "", null);
             if (name == null)
                 return;
-            _file.Schemas.Add(new LocalSubschema { Name = name });
+            _added = new LocalSubschema { Name = name };
+            _file.Schemas.Add(_added);
             FillAll(name);
         }
 

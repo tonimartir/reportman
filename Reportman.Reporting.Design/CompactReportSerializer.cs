@@ -34,7 +34,7 @@ namespace Reportman.Reporting.Design
     /// DataInfo (extras): SQL, MyBaseFilename, MyBaseFields,
     ///   MyBaseIndexFields, MyBaseMasterFields, BDEIndexFields, BDEIndexName, BDETable,
     ///   BDEType, BDEFilter, BDEMasterFields, BDEFirstRange, BDELastRange, OpenOnStart,
-    ///   GroupUnion, ParallelUnion, HubSchemaId, DataUnions
+    ///   GroupUnion, ParallelUnion, HubSchemaId, SchemaName, DataUnions
     ///
     /// Param (extras): ErrorMessage, IsReadOnly, NeverVisible,
     ///   AllowNulls, LookupDataset, SearchDataset, Search, SearchParam, Items, Values,

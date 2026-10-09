@@ -169,6 +169,8 @@ namespace Reportman.Designer
 
             // Refresh credits gauge
             _aiSelectionControl.RefreshState();
+            // The plan may have changed: the schemas that do not fit it
+            _aiSchemaSelectorControl.RefreshPlanWarnings();
 
             // Reload agents and schemas (like Delphi)
             LoadUserAgentsAsync();
@@ -224,13 +226,29 @@ namespace Reportman.Designer
         /// <param name="preferLocal">True when the report has no Hub schema: the local schema is selected by default.</param>
         public void SetDirectConnections(System.Collections.Generic.IList<string> aliases, string preferredAlias, bool preferLocal)
         {
+            SetDirectConnections(aliases, preferredAlias, preferLocal, null);
+        }
+
+        /// <summary>
+        /// Sets the direct connections of the report, as <see cref="SetDirectConnections(System.Collections.Generic.IList{string}, string, bool)"/>;
+        /// for a report just opened, <paramref name="reportSubschema"/> is the subschema its datasets of
+        /// <paramref name="preferredAlias"/> were made with (<see cref="DataInfo.SchemaName"/>, "" when
+        /// they say none): it is selected while it is still in the local schema file, else all the tables.
+        /// </summary>
+        /// <param name="aliases">Aliases of the report's direct connections.</param>
+        /// <param name="preferredAlias">The connection to select by default.</param>
+        /// <param name="preferLocal">True when the local schema is selected by default.</param>
+        /// <param name="reportSubschema">Null to keep the current choice (the same report again).</param>
+        public void SetDirectConnections(System.Collections.Generic.IList<string> aliases, string preferredAlias, bool preferLocal,
+            string reportSubschema)
+        {
             if (InvokeRequired)
             {
-                try { Invoke(new Action(() => SetDirectConnections(aliases, preferredAlias, preferLocal))); } catch { }
+                try { Invoke(new Action(() => SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema))); } catch { }
                 return;
             }
             _aiSchemaSelectorControl.LocalSchemaFolder = LocalSchemaFolder;
-            _aiSchemaSelectorControl.SetDirectConnections(aliases, preferredAlias, preferLocal);
+            _aiSchemaSelectorControl.SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema);
         }
 
         /// <summary>A connection to the database of <paramref name="alias"/> as the report document defines it.</summary>
@@ -248,9 +266,13 @@ namespace Reportman.Designer
             };
         }
 
-        private void OnLocalSchemaEditRequested(object sender, EventArgs e)
+        /// <summary>
+        /// "Local schemas..." and "New local schema..." of the selector: the utility of the connection's
+        /// local schema file, adding a subschema in the second case (the selector selects it after).
+        /// </summary>
+        private void OnLocalSchemaEditRequested(object sender, LocalSchemaEditEventArgs e)
         {
-            string alias = _aiSchemaSelectorControl.LocalAlias;
+            string alias = e.Alias;
             if (alias.Length == 0)
                 return;
             try
@@ -258,14 +280,22 @@ namespace Reportman.Designer
                 string reportDocument = ReportDocumentProvider != null ? ReportDocumentProvider() : "";
                 if (string.IsNullOrWhiteSpace(reportDocument))
                     throw new InvalidOperationException("Unable to serialize the current report to XML.");
+                string added;
                 if (LocalSchemaEditorForm.Edit(FindForm(), LocalSchemaFolder, alias,
-                    ConnectionFactory(reportDocument, alias, PrepareReportConnections)))
-                    _aiSchemaSelectorControl.ReloadLocalSchemas();
+                    ConnectionFactory(reportDocument, alias, PrepareReportConnections), e.AddSubschema, out added))
+                    e.AddedSubschema = e.AddSubschema ? added : "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(FindForm(), ex.Message, "Local schema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>With the AI on the user's Agent the plan limits do not apply: no schema is marked.</summary>
+        private void UpdateSchemaPlanLimits()
+        {
+            _aiSchemaSelectorControl.IgnorePlanLimits =
+                string.Equals(_aiSelectionControl.SelectedTier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
         }
 
         private void LoadSchemasAsync()
@@ -351,6 +381,8 @@ namespace Reportman.Designer
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
             _aiSchemaSelectorControl.LocalSchemaEditRequested += OnLocalSchemaEditRequested;
+            _aiSelectionControl.ProviderChanged += (s, e) => UpdateSchemaPlanLimits();
+            UpdateSchemaPlanLimits();
 
             // Top panel with GridPanel stacking (like Delphi's GridTop)
             TableLayoutPanel topGrid = new TableLayoutPanel
@@ -668,6 +700,7 @@ namespace Reportman.Designer
                 // Configure client
                 _agentClient.Token = RpAuthManager.Instance.Token;
                 _agentClient.InstallId = RpAuthManager.Instance.InstallId;
+                _agentClient.AcceptLanguage = RpAuthManager.Instance.AILanguageCode;
                 _agentClient.AITier = tier;
                 _agentClient.ApiKey = _aiSchemaSelectorControl.SchemaApiKey;
                 if (string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase))
@@ -844,7 +877,12 @@ namespace Reportman.Designer
             string errorMessage = GetJsonString(root, "errorMessage");
             if (!string.IsNullOrWhiteSpace(errorMessage))
             {
-                SafeAppendMessage("system", "Error: " + ComposeApiErrorMessage(errorMessage, GetJsonString(root, "debugDetails")));
+                // The schema does not fit the plan: the cloud's message already says the numbers and the
+                // way out, and is not a failure to debug.
+                if (ReportmanAgentClient.IsSchemaTooLargeForTier(resultDoc))
+                    SafeAppendMessage("system", errorMessage);
+                else
+                    SafeAppendMessage("system", "Error: " + ComposeApiErrorMessage(errorMessage, GetJsonString(root, "debugDetails")));
                 return;
             }
 

@@ -44,6 +44,11 @@ namespace Reportman.Designer
         /// </summary>
         public event EventHandler StopRequested;
 
+        /// <summary>
+        /// Occurs when the selected provider changes (<see cref="SelectedTier"/> may be different).
+        /// </summary>
+        public event EventHandler ProviderChanged;
+
         private sealed class ProgressTokenEntry
         {
             public string ProgressId;
@@ -126,7 +131,11 @@ namespace Reportman.Designer
             _comboProvider = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };
             _comboProvider.Items.AddRange(new object[] { "Standard", "Precision" });
             _comboProvider.SelectedIndex = 0;
-            _comboProvider.SelectedIndexChanged += (s, e) => UpdateGaugeVisibility();
+            _comboProvider.SelectedIndexChanged += (s, e) =>
+            {
+                UpdateGaugeVisibility();
+                ProviderChanged?.Invoke(this, EventArgs.Empty);
+            };
 
             _lblMode = new Label { Text = "MODE", AutoSize = true, Font = new Font("Segoe UI", 8f) };
             _comboMode = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };

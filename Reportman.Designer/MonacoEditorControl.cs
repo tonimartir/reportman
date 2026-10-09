@@ -119,6 +119,9 @@ namespace Reportman.Designer
                 Visible = false
             };
             _aiSelectionControl.StopRequested += (s, e) => CancelAutoCompleteInference();
+            // With the AI on the user's Agent the plan limits do not apply: no schema is marked
+            _aiSelectionControl.ProviderChanged += (s, e) => _schemaSelector.IgnorePlanLimits =
+                string.Equals(_aiSelectionControl.SelectedTier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
 
             _topPanel = new TableLayoutPanel
             {
@@ -648,6 +651,7 @@ namespace Reportman.Designer
 
                 _agentClient.Token = RpAuthManager.Instance.Token;
                 _agentClient.InstallId = RpAuthManager.Instance.InstallId;
+                _agentClient.AcceptLanguage = RpAuthManager.Instance.AILanguageCode;
                 _agentClient.ApiKey = EffectiveApiKey;
                 _agentClient.HubDatabaseId = HubDatabaseId;
                 _agentClient.HubSchemaId = HubSchemaId;
@@ -693,6 +697,12 @@ namespace Reportman.Designer
 
                 using (result)
                 {
+                    // A schema bigger than the plan: autocomplete stays silent, the chat says why
+                    if (ReportmanAgentClient.IsSchemaTooLargeForTier(result))
+                    {
+                        await SendEmptyAICompletionsAsync(requestId);
+                        return;
+                    }
                     string responseJson = BuildAutoCompleteResponseJson(result);
                     if (string.IsNullOrWhiteSpace(responseJson))
                         await SendEmptyAICompletionsAsync(requestId);
