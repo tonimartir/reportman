@@ -426,6 +426,21 @@ namespace Reportman.Designer
             PrintItem nitem = (PrintItem)ritem;
             SubReportEdit.SelectPrintItem(nitem);
         }
+        public void SelectProperty(string caption)
+        {
+            if (string.IsNullOrEmpty(caption) || DataSource == null)
+                return;
+            foreach (DataGridViewRow row in Rows)
+            {
+                DataRowView view = row.DataBoundItem as DataRowView;
+                if (view == null || !string.Equals(view.Row["NAME"].ToString(), caption, StringComparison.Ordinal))
+                    continue;
+                // The caption cell is read only: the row is selected without editing the value
+                if (row.Visible)
+                    CurrentCell = row.Cells[ColLabel.Index];
+                return;
+            }
+        }
 
         /// <summary>
         /// Headless self-test of the selection→property-commit→undo path. Populates the

@@ -45,10 +45,13 @@ namespace Reportman.Designer
 
             using (GridOptions ndia = new GridOptions())
             {
-                ndia.bcolor.BackColor = GraphicUtils.ColorFromInteger(nreport.GridColor);
+                System.Drawing.Color oldcolor = GraphicUtils.ColorFromInteger(nreport.GridColor);
+                ndia.bcolor.BackColor = oldcolor;
                 ndia.checkenabled.Checked = nreport.GridEnabled;
-                ndia.textwidth.Text = Twips.TextFromTwips(nreport.GridWidth);
-                ndia.textheight.Text = Twips.TextFromTwips(nreport.GridHeight);
+                string oldwidth = Twips.TextFromTwips(nreport.GridWidth);
+                string oldheight = Twips.TextFromTwips(nreport.GridHeight);
+                ndia.textwidth.Text = oldwidth;
+                ndia.textheight.Text = oldheight;
                 if (nreport.GridLines)
                     ndia.combostyle.SelectedIndex = 1;
                 else
@@ -56,11 +59,22 @@ namespace Reportman.Designer
                 ndia.checkvisible.Checked = nreport.GridVisible;
                 if (ndia.ShowDialog() == DialogResult.OK)
                 {
-                    nreport.GridLines = (ndia.combostyle.SelectedIndex == 1);
+                    bool gridlines = (ndia.combostyle.SelectedIndex == 1);
+                    // A value is read back only if edited: the text rounds the twips
+                    int gridwidth = ndia.textwidth.Text == oldwidth ? nreport.GridWidth : Twips.TwipsFromText(ndia.textwidth.Text);
+                    int gridheight = ndia.textheight.Text == oldheight ? nreport.GridHeight : Twips.TwipsFromText(ndia.textheight.Text);
+                    int gridcolor = ndia.bcolor.BackColor == oldcolor ? nreport.GridColor :
+                        Reportman.Drawing.GraphicUtils.IntegerFromColor(ndia.bcolor.BackColor);
+                    // The grid is saved in the report
+                    if (nreport.GridLines != gridlines || nreport.GridEnabled != ndia.checkenabled.Checked ||
+                        nreport.GridWidth != gridwidth || nreport.GridHeight != gridheight ||
+                        nreport.GridColor != gridcolor || nreport.GridVisible != ndia.checkvisible.Checked)
+                        nreport.Modified = true;
+                    nreport.GridLines = gridlines;
                     nreport.GridEnabled = ndia.checkenabled.Checked;
-                    nreport.GridWidth = Twips.TwipsFromText(ndia.textwidth.Text);
-                    nreport.GridHeight = Twips.TwipsFromText(ndia.textheight.Text);
-                    nreport.GridColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(ndia.bcolor.BackColor);
+                    nreport.GridWidth = gridwidth;
+                    nreport.GridHeight = gridheight;
+                    nreport.GridColor = gridcolor;
                     nreport.GridVisible = ndia.checkvisible.Checked;
                     nresult = true;
                 }

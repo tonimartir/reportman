@@ -53,6 +53,8 @@ namespace Reportman.Designer
         private string _existingContextJson = "";
         private System.Threading.CancellationTokenSource _cts;
         private Action<string> _authLogHandler;
+        // Tokens and times of the running request for the AI log
+        private readonly AIRequestLogStats _logStats = new AIRequestLogStats();
 
         // Agent client
         private ReportmanAgentClient _agentClient;
@@ -650,6 +652,7 @@ namespace Reportman.Designer
             _txtPrompt.Clear();
             SetBusy(true);
             _cts = new System.Threading.CancellationTokenSource();
+            _logStats.Begin();
 
             try
             {
@@ -698,6 +701,7 @@ namespace Reportman.Designer
 
                 var loop = new CopilotModifyReportLoop(_agentClient) { PrepareReport = prepare };
                 loop.StatusChanged += AppendLog;
+                loop.AnswerReceived += _logStats.AddAnswer;
                 var outcome = await System.Threading.Tasks.Task.Run(async () =>
                 {
                     if (localAlias.Length > 0)
@@ -721,8 +725,9 @@ namespace Reportman.Designer
                         this,
                         (senderObj, actor, stage, chunkType, chunk, inTokens, outTokens, progId, prefill) =>
                         {
+                            long received = System.Diagnostics.Stopwatch.GetTimestamp();
                             PostToUi(() => UpdateStreamingProgress(actor, stage, chunkType, chunk,
-                                inTokens, outTokens, progId, prefill));
+                                inTokens, outTokens, progId, prefill, received));
                         },
                         _cts.Token).ConfigureAwait(false);
                 }, _cts.Token);
@@ -742,6 +747,9 @@ namespace Reportman.Designer
             }
             finally
             {
+                string totals = _logStats.End();
+                if (totals != null)
+                    AppendLog(totals);
                 AICopilotManager.Instance.EndInference();
                 SetBusy(false);
                 _txtPrompt.Focus();
@@ -760,7 +768,7 @@ namespace Reportman.Designer
         }
 
         private void UpdateStreamingProgress(string actor, string stage, string chunkType, string chunk,
-            int inputTokens, int outputTokens, string progressId, int prefillPercent)
+            int inputTokens, int outputTokens, string progressId, int prefillPercent, long received)
         {
             if (string.Equals(stage, "ReceivingResponse", StringComparison.OrdinalIgnoreCase) &&
                 string.Equals(chunkType, "Partial", StringComparison.OrdinalIgnoreCase))
@@ -769,6 +777,10 @@ namespace Reportman.Designer
             }
 
             AppendAILogProgress(chunkType, chunk, progressId);
+            // A model call that ends: its tokens, time and speed
+            string callStats = _logStats.Progress(actor, stage, chunkType, inputTokens, outputTokens, progressId, received);
+            if (callStats != null)
+                AppendLog(callStats);
 
             if (string.Equals(actor, "AI", StringComparison.OrdinalIgnoreCase))
             {

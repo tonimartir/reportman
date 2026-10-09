@@ -29,6 +29,10 @@ namespace Reportman.Designer
         public void FinishEdit()
         {
         }
+        public void SelectProperty(string caption)
+        {
+            // Not supported by this inspector
+        }
         protected override void OnPropertyValueChanged(PropertyValueChangedEventArgs e)
         {
             bool executeonpropchange = false;

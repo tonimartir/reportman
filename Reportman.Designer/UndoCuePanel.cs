@@ -1,4 +1,5 @@
-﻿using Reportman.Reporting;
+﻿using Reportman.Drawing;
+using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,7 @@ namespace Reportman.Designer
         private Button btnClear;
         private Panel panelList;
         private VScrollBar vscroll;
+        private ToolTip toolTip;
         private Report FReport;
         private int scrollOffset;
         private const int RowHeight = 60;
@@ -52,29 +54,45 @@ namespace Reportman.Designer
             panelList.Invalidate();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && toolTip != null)
+            {
+                toolTip.Dispose();
+                toolTip = null;
+            }
+            base.Dispose(disposing);
+        }
+
         private void InitializeControls()
         {
             panelButtons = new Panel();
             panelButtons.Dock = DockStyle.Top;
             panelButtons.Height = 32;
 
+            toolTip = new ToolTip();
+
             btnUndo = new Button();
-            btnUndo.Text = "↩ Undo";
+            btnUndo.Text = "↩ " + Translator.TranslateStr(1481);
             btnUndo.Location = new Point(2, 4);
-            btnUndo.Size = new Size(75, 24);
+            btnUndo.Size = new Size(Math.Max(75, btnUndo.PreferredSize.Width), 24);
             btnUndo.Click += BtnUndo_Click;
+            toolTip.SetToolTip(btnUndo, Translator.TranslateStr(1481) + " (Ctrl+Z)");
 
             btnRedo = new Button();
-            btnRedo.Text = "↪ Redo";
-            btnRedo.Location = new Point(80, 4);
-            btnRedo.Size = new Size(75, 24);
+            btnRedo.Text = "↪ " + Translator.TranslateStr(1482);
+            btnRedo.Location = new Point(btnUndo.Right + 3, 4);
+            btnRedo.Size = new Size(Math.Max(75, btnRedo.PreferredSize.Width), 24);
             btnRedo.Click += BtnRedo_Click;
+            toolTip.SetToolTip(btnRedo, Translator.TranslateStr(1482) + " (Ctrl+Y)");
 
+            // Short caption, the whole action in its tooltip and its confirmation
             btnClear = new Button();
-            btnClear.Text = "Clear";
-            btnClear.Location = new Point(158, 4);
-            btnClear.Size = new Size(55, 24);
+            btnClear.Text = Translator.TranslateStr(1532);
+            btnClear.Location = new Point(btnRedo.Right + 3, 4);
+            btnClear.Size = new Size(Math.Max(55, btnClear.PreferredSize.Width), 24);
             btnClear.Click += BtnClear_Click;
+            toolTip.SetToolTip(btnClear, Translator.TranslateStr(1484));
 
             panelButtons.Controls.Add(btnUndo);
             panelButtons.Controls.Add(btnRedo);
@@ -236,7 +254,7 @@ namespace Reportman.Designer
                     // Parent info
                     if (!string.IsNullOrEmpty(op.ParentName))
                     {
-                        e.Graphics.DrawString("Parent: " + op.ParentName, fontSmall, Brushes.FromArgb(80, 80, 80), 16, detailY);
+                        e.Graphics.DrawString(Translator.TranslateStr(1486) + ": " + op.ParentName, fontSmall, Brushes.FromArgb(80, 80, 80), 16, detailY);
                         detailY += PropertyLineHeight;
                     }
                     if (!string.IsNullOrEmpty(op.OldParentName))
@@ -259,7 +277,7 @@ namespace Reportman.Designer
 
                     if (op.Properties.Count > 0)
                     {
-                        string toggleText = expanded ? "▼ Hide properties" : "▶ Show properties";
+                        string toggleText = (expanded ? "▼ " : "▶ ") + Translator.TranslateStr(1487);
                         e.Graphics.DrawString(toggleText, fontSmall, Brushes.Blue, 16, detailY);
                         detailY += PropertyLineHeight + 2;
 
@@ -388,8 +406,14 @@ namespace Reportman.Designer
         private void BtnClear_Click(object sender, EventArgs e)
         {
             if (FReport?.UndoCue == null) return;
+            if (FReport.UndoCue.UndoOperations.Count == 0 && FReport.UndoCue.RedoOperations.Count == 0) return;
+            if (MessageBox.Show(FindForm(), Translator.TranslateStr(1484), Translator.TranslateStr(729),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
             FReport.UndoCue.UndoOperations.Clear();
             FReport.UndoCue.RedoOperations.Clear();
+            // The history is saved in the report
+            FReport.Modified = true;
             expandedStates.Clear();
             UpdateScrollBar();
             panelList.Invalidate();

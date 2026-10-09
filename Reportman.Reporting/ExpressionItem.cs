@@ -409,6 +409,11 @@ namespace Reportman.Reporting
                 if (IsHtml)
                     aresult = EvaluateHtmlExpressions(aresult);
             }
+            catch (ReportException)
+            {
+                // Evaluate already named this item and its property: wrapping it again repeated them
+                throw;
+            }
             catch (Exception E)
             {
                 throw new ReportException(E.Message + (char)10 + Name + " Prop:Expression",

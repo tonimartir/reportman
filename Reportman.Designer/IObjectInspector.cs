@@ -14,6 +14,8 @@ namespace Reportman.Designer
         FrameStructure Structure { get; set; }
         PropertyChanged OnPropertyChange { get; set; }
         void FinishEdit();
+        /// <summary>Selects the property shown with the given caption, if it is listed.</summary>
+        void SelectProperty(string caption);
     }
     /// <summary>
     /// Callback raised when an inspected object's property is edited, reporting the

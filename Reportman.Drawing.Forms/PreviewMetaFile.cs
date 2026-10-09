@@ -963,7 +963,7 @@ namespace Reportman.Drawing.Forms
         }
         private void WorkAsyncError(string message)
         {
-            MessageBox.Show("Error", message);
+            MessageBox.Show(message, Translator.TranslateStr(730), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         /// <summary>
         /// Internal procedure initializing data when setting metafile, it draws also the first page

@@ -601,11 +601,24 @@ namespace Reportman.Reporting
         /// <summary>A short line for each SQL being run and its outcome.</summary>
         public event Action<string> StatusChanged;
 
+        /// <summary>
+        /// Raised with each answer of the cloud (one per call: its final frame, with the usage steps and the
+        /// credits of that call), on the loop's thread, before the loop disposes it.
+        /// </summary>
+        public event Action<JsonDocument> AnswerReceived;
+
         private void Status(string message)
         {
             Action<string> handler = StatusChanged;
             if (handler != null)
                 handler(message);
+        }
+
+        private void Answer(JsonDocument answer)
+        {
+            Action<JsonDocument> handler = AnswerReceived;
+            if (handler != null && answer != null)
+                handler(answer);
         }
 
         /// <summary>
@@ -622,6 +635,7 @@ namespace Reportman.Reporting
             int rounds = 0;
             try
             {
+                Answer(result);
                 while (IsWaitingForClientSql(result))
                 {
                     if (rounds >= MaxRounds)
@@ -663,6 +677,7 @@ namespace Reportman.Reporting
                     result.Dispose();
                     result = next;
                     outcome.Calls++;
+                    Answer(result);
                 }
             }
             catch

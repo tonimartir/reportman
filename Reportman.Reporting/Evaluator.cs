@@ -304,7 +304,7 @@ namespace Reportman.Reporting
                 case TokenType.Symbol:
                     iden = SearchIdentifier(FParser.TokenString());
                     if (iden == null)
-                        throw new EvalException(Translator.TranslateStr(440) + FParser.TokenString(),
+                        throw new EvalException(UnknownIdentifier(FParser.TokenString()),
                             FParser.SourceLine, FParser.SourcePos, "");
                     FValue = iden.Value;
                     FParser.NextToken();
@@ -470,7 +470,7 @@ namespace Reportman.Reporting
             {
                 iden = SearchIdentifier(FParser.TokenString());
                 if (iden == null)
-                    throw new EvalException(Translator.TranslateStr(440) + FParser.TokenString(),
+                    throw new EvalException(UnknownIdentifier(FParser.TokenString()),
                         FParser.SourceLine, FParser.SourcePos, "");
                 // Process parameters
                 if (iden is IdenFunction)
@@ -770,6 +770,12 @@ namespace Reportman.Reporting
                     aoperator = FParser.TokenString().ToUpper();
             }
         }
+        // "Unknown identifier: X", whatever the translation ends with (some have the colon, some a
+        // space, some nothing): the identifier once, after one colon and one space
+        private static string UnknownIdentifier(string name)
+        {
+            return Translator.TranslateStr(440).TrimEnd(' ', ':', '\r') + ": " + name;
+        }
         private void variables(ref Variant FValue)
         {
             EvalIdentifier iden;
@@ -778,8 +784,8 @@ namespace Reportman.Reporting
             {
                 iden = SearchIdentifier(FParser.TokenString());
                 if (iden == null)
-                    throw new EvalException(Translator.TranslateStr(440) + FParser.TokenString() + FParser.TokenString(),
-                        FParser.SourceLine, FParser.SourcePos, "");
+                    throw new EvalException(UnknownIdentifier(FParser.TokenString()),
+                        FParser.SourceLine, FParser.SourcePos, FParser.TokenString());
                 else
                 {
                     // Assignment operator creates a new variable

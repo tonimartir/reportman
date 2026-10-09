@@ -465,7 +465,7 @@ namespace Reportman.Designer
 
             DisableMenus();
 
-            tabudocue.Text = "Undo";
+            tabudocue.Text = Translator.TranslateStr(1483);
             fundocue.OnUndoRedo += UndoCue_OnUndoRedo;
         }
 
@@ -789,6 +789,8 @@ namespace Reportman.Designer
         /// </summary>
         public bool CheckSave()
         {
+            // A property still being edited in the inspector is a change too
+            FinishEdit();
             if (!ReportChanged())
                 return true;
             else
@@ -914,13 +916,20 @@ namespace Reportman.Designer
         }
         private void ButtonPreviewClick(object sender, EventArgs e)
         {
-            Report.MetaFile.Clear();
-            if (OnPreviewClick != null)
+            try
             {
-                OnPreviewClick(this, new PreviewReportArgs(Report.MetaFile));
-                return;
+                Report.MetaFile.Clear();
+                if (OnPreviewClick != null)
+                {
+                    OnPreviewClick(this, new PreviewReportArgs(Report.MetaFile));
+                    return;
+                }
+                PrintReport(true);
             }
-            PrintReport(true);
+            catch (Exception ex)
+            {
+                ShowExecutionError(ex);
+            }
             /*        previewmetafile = new PreviewMetaFile();
                     SetReportEvents();
                     previewmetafile.OptimizeWMF = OptimizeWMF;
@@ -1484,7 +1493,15 @@ namespace Reportman.Designer
 
         private void ButtonPageSetupClick(object sender, EventArgs e)
         {
-            PageSetup.ShowPageSetup(FReport, true);
+            // The definition before and after the dialog: only a real change marks the report modified
+            string before = SaveReportAsXmlForAI();
+            if (!PageSetup.ShowPageSetup(FReport, true, FindForm()))
+                return;
+            if (!string.Equals(before, SaveReportAsXmlForAI(), StringComparison.Ordinal))
+            {
+                FReport.Modified = true;
+                subreportedit.Redraw();
+            }
         }
         /// <summary>
         /// Reserved hook for reporting unsaved changes; currently always returns false.
@@ -1508,6 +1525,8 @@ namespace Reportman.Designer
             }
             else
             {
+                if (!CheckSave())
+                    return;
                 Parent.Controls.Remove(this);
             }
         }
@@ -1685,29 +1704,55 @@ namespace Reportman.Designer
         }
 
 
+        // Export: a copy of the report in a file, the designer goes on editing the current one
         private void ButtonExportClick(object sender, EventArgs e)
         {
-            SaveFileDialog savedialog = new SaveFileDialog();
-            savedialog.Filter = Translator.TranslateStr(704) + "|*.rep";
-            savedialog.Title = "";
-            if (sender == msaveas)
+            FinishEdit();
+            using (SaveFileDialog savedialog = new SaveFileDialog())
             {
-                savedialog.FileName = CurrentFilename;
-            }
-            if (savedialog.ShowDialog(this.FindForm()) == DialogResult.OK)
-            {
-                Report.SaveToFile(savedialog.FileName);
-                AddRecentEntry(savedialog.FileName);
-                if (sender == msaveas)
+                savedialog.Filter = Translator.TranslateStr(704) + "|*.rep";
+                savedialog.Title = "";
+                if (savedialog.ShowDialog(this.FindForm()) == DialogResult.OK)
                 {
-                    CurrentFilename = savedialog.FileName;
+                    Report.SaveToFile(savedialog.FileName);
+                    AddRecentEntry(savedialog.FileName);
                 }
             }
         }
 
         private void ButtonSaveAsClick(object sender, EventArgs e)
         {
-            ButtonExportClick(this, new EventArgs());
+            SaveAs();
+        }
+
+        /// <summary>
+        /// Saves the report in a file chosen by the user, which becomes the report's file: the next
+        /// Save writes it, and it leaves the library entry the report was opened from.
+        /// Returns false if the user cancelled.
+        /// </summary>
+        private bool SaveAs()
+        {
+            if (FReport == null)
+                return false;
+            FinishEdit();
+            using (SaveFileDialog savedialog = new SaveFileDialog())
+            {
+                savedialog.Filter = Translator.TranslateStr(704) + "|*.rep";
+                savedialog.Title = Translator.TranslateStr(48);
+                if (CurrentFilename.Length > 0)
+                    savedialog.FileName = CurrentFilename;
+                else if (CurrentReportSelection != null && !string.IsNullOrEmpty(CurrentReportSelection.ReportName) &&
+                    CurrentReportSelection.ReportName.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) < 0)
+                    savedialog.FileName = CurrentReportSelection.ReportName;
+                if (savedialog.ShowDialog(this.FindForm()) != DialogResult.OK)
+                    return false;
+                FReport.SaveToFile(savedialog.FileName);
+                CurrentFilename = savedialog.FileName;
+                CurrentReportSelection = null;
+                SetSaved();
+                AddRecentEntry(CurrentFilename);
+            }
+            return true;
         }
 
         private void ButtonSaveClick(object sender, EventArgs e)
@@ -1718,7 +1763,162 @@ namespace Reportman.Designer
 
         private void ButtonPrintClick(object sender, EventArgs e)
         {
-            PrintReport(false);
+            try
+            {
+                PrintReport(false);
+            }
+            catch (Exception ex)
+            {
+                ShowExecutionError(ex);
+            }
+        }
+
+        // Inspector caption (translation key) of the properties the engine names in its errors
+        private static readonly Dictionary<string, int> ErrorPropertyCaptions = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Expression", 571 },
+            { "PrintCondition", 614 },
+            { "BeforePrint", 613 },
+            { "AfterPrint", 612 },
+            { "AgIniValue", 303 },
+            { "AnnotationExpression", 1480 },
+            { "BeginPageExpression", 618 },
+            { "SkipToPage", 927 },
+            { "SkipExpreH", 922 },
+            { "SkipExpreV", 923 },
+            { "ClearExpression", 966 },
+            { "ChangeSerieExpression", 714 },
+            { "GetValueCondition", 717 },
+            { "SerieCaption", 1331 },
+            { "Value", 194 }
+        };
+
+        /// <summary>
+        /// Shows an error of the preview or the print in a standard message box (Ctrl+C copies its
+        /// text), without the stack trace. When the engine names the component that failed, it is
+        /// selected first, with its property in the object inspector.
+        /// </summary>
+        private void ShowExecutionError(Exception ex)
+        {
+            ReportItem item;
+            string itemName;
+            string propertyName;
+            Exception error = FindReportError(ex, out item, out itemName, out propertyName);
+            if (FReport != null && (item != null || !string.IsNullOrEmpty(itemName)))
+            {
+                try
+                {
+                    SelectReportItem(item != null ? FindDesignerItem(item) : FindDesignerItem(itemName), propertyName);
+                }
+                catch
+                {
+                    // Selecting is a help: the message is shown anyway
+                }
+            }
+            MessageBox.Show(FindForm(), error.Message, Translator.TranslateStr(730), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        // The engine's error (ReportException or ReportNamedException) in the chain of an exception, with
+        // the item and the property it names; else the innermost wrapped exception
+        private static Exception FindReportError(Exception ex, out ReportItem item, out string itemName, out string propertyName)
+        {
+            item = null;
+            itemName = "";
+            propertyName = "";
+            for (Exception current = ex; current != null; current = current.InnerException)
+            {
+                ReportException reportError = current as ReportException;
+                if (reportError != null)
+                {
+                    item = reportError.Item;
+                    propertyName = reportError.PropertyName ?? "";
+                    return reportError;
+                }
+                ReportNamedException namedError = current as ReportNamedException;
+                if (namedError != null)
+                {
+                    itemName = namedError.ItemName ?? "";
+                    propertyName = namedError.PropertyName ?? "";
+                    return namedError;
+                }
+            }
+            Exception shown = ex;
+            while ((shown is System.Reflection.TargetInvocationException || shown is AggregateException) && shown.InnerException != null)
+                shown = shown.InnerException;
+            return shown;
+        }
+
+        // The designer's own instance of an item: errors of a converted copy of the report
+        // (ConvertToDotNetOnExecute) name items of the copy
+        private ReportItem FindDesignerItem(ReportItem item)
+        {
+            if (item == null)
+                return null;
+            if (item.Report == FReport)
+                return item;
+            return FindDesignerItem(item.Name);
+        }
+
+        private ReportItem FindDesignerItem(string name)
+        {
+            if (FReport == null || string.IsNullOrEmpty(name))
+                return null;
+            ReportItem found;
+            if (FReport.Components.TryGetValue(name, out found) || FReport.Components.TryGetValue(name.ToUpper(), out found))
+                return found;
+            foreach (KeyValuePair<string, ReportItem> pair in FReport.Components)
+            {
+                if (string.Equals(pair.Key, name, StringComparison.OrdinalIgnoreCase))
+                    return pair.Value;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Selects an item of the report in the designer as the user would: a component (with its
+        /// section and subreport) or a section in the design surface, a subreport in the structure, a
+        /// connection, a dataset or a parameter in the data tab; then the property, when given and
+        /// shown by the object inspector.
+        /// </summary>
+        private void SelectReportItem(ReportItem item, string propertyName)
+        {
+            if (FReport == null || item == null)
+                return;
+            PrintPosItem posItem = item as PrintPosItem;
+            if (posItem != null || item is Section || item is SubReport)
+            {
+                ReportItem structureItem = posItem != null ? posItem.Section : item;
+                if (structureItem == null)
+                    return;
+                PControl.SelectedTab = tabstruc;
+                // Selecting the node that is already selected raises no event
+                if (fstructure.FindSelectedNode().Tag == structureItem)
+                    StructureSelectionChange(this, EventArgs.Empty);
+                else
+                    fstructure.SelectItem(structureItem, false);
+                if (posItem != null)
+                {
+                    SubReport subreport = posItem.Section.SubReport;
+                    if (subreport != null && subreportedit.SubReport != subreport)
+                        subreportedit.SetSubReport(FReport, subreport);
+                    subreportedit.SelectPrintItem(posItem);
+                    subreportedit.parentcontrol.Invalidate();
+                }
+            }
+            else if (item is DataInfo || item is DatabaseInfo || item is Param)
+            {
+                PControl.SelectedTab = tabdata;
+                TreeNode selected = fdatadef.FindSelectedNode();
+                if (selected != null && selected.Tag == item)
+                    DataSelectionChange(this, EventArgs.Empty);
+                else
+                    fdatadef.SelectItem(item);
+            }
+            else
+                return;
+            int caption;
+            if (!string.IsNullOrEmpty(propertyName) && ErrorPropertyCaptions.TryGetValue(propertyName, out caption))
+                frameproperties.inspector.SelectProperty(Translator.TranslateStr(caption));
         }
 
         private int GetCurrentZoomIndex()
@@ -1927,7 +2127,11 @@ namespace Reportman.Designer
 
         private void majustar1_5_Click(object sender, EventArgs e)
         {
+            // Modified only if a margin or a section height changed
+            string before = SaveReportAsXmlForAI();
             Report.AlignSectionsTo(6);
+            if (!string.Equals(before, SaveReportAsXmlForAI(), StringComparison.Ordinal))
+                Report.Modified = true;
             subreportedit.Redraw();
         }
 

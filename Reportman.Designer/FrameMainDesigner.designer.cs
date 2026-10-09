@@ -533,6 +533,7 @@
             msave.Name = "msave";
             msave.Size = new System.Drawing.Size(187, 26);
             msave.Text = "Save";
+            msave.Click += ButtonSaveClick;
             // 
             // msaveas
             // 

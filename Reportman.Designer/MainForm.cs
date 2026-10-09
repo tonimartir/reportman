@@ -35,7 +35,8 @@ namespace Reportman.Designer
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (maindesigner != null)
+            // A designer closed with its exit button already asked
+            if (maindesigner != null && maindesigner.Parent != null)
             {
                 e.Cancel = !maindesigner.CheckSave();
             }
