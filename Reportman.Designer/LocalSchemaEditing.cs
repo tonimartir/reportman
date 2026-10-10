@@ -536,6 +536,15 @@ namespace Reportman.Designer
                     foreach (JsonElement fk in JsonArray(item, "foreignKeys"))
                         ImportRelation(file, table, fk);
                 }
+                // None of its tables is in this database: it was written for another one, and an empty
+                // subschema would be of no use. Nothing is created (and, with no table found, nothing was
+                // written to the dictionary either)
+                if (order.Count == 0)
+                {
+                    result.Subschema = null;
+                    result.Name = name;
+                    return result;
+                }
                 foreach (LocalSchemaTable table in order)
                 {
                     AddTable(file, result.Subschema, table);
@@ -883,8 +892,11 @@ namespace Reportman.Designer
     /// <summary>What <see cref="LocalSchemaEditing.Import(LocalSchemaFile, string, string, IEnumerable{string}, string)"/> did.</summary>
     internal sealed class LocalSchemaImportResult
     {
-        /// <summary>The subschema created, already in the file.</summary>
+        /// <summary>The subschema created, already in the file; null when none of the tables of the schema is in the database (nothing was created).</summary>
         public LocalSubschema Subschema { get; set; }
+
+        /// <summary>The name of the schema imported, when <see cref="Subschema"/> is null (to say which one does not match).</summary>
+        public string Name { get; set; } = "";
 
         /// <summary>What the database does not have and was left out: TABLE, or TABLE.COLUMN of a table it has.</summary>
         public List<string> Skipped { get; } = new List<string>();

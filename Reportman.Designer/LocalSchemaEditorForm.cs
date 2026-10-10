@@ -1209,6 +1209,12 @@ namespace Reportman.Designer
         /// </summary>
         private void ShowImported(LocalSchemaImportResult result, string title)
         {
+            // None of its tables is in this database: nothing was created, and the user is told it does not match
+            if (result.Subschema == null)
+            {
+                MessageBox.Show(this, TrFormat(1993, result.Name), title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             _added = result.Subschema;
             StructureChanged();
             FillAll(result.Subschema);
