@@ -54,7 +54,8 @@ namespace Reportman.Designer
 
         /// <summary>
         /// Queries the agent with the current API key and returns the available Hub
-        /// databases as the dropdown's standard values.
+        /// databases as the dropdown's standard values, each «database - Agent» and
+        /// "(not connected)" after it while its Agent is not connected.
         /// </summary>
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
@@ -70,21 +71,19 @@ namespace Reportman.Designer
                     try
                     {
                         // Run off the UI thread to avoid a SynchronizationContext deadlock.
-                        List<string> raw = Task.Run(() =>
+                        List<HubSchema> schemas = Task.Run(() =>
                             RpAuthManager.Instance.GetApiKeySchemasAsync(apiKey)).GetAwaiter().GetResult();
                         var seen = new HashSet<long>();
-                        foreach (string s in raw)
+                        foreach (HubSchema schema in schemas)
                         {
-                            int eq = s.LastIndexOf('=');
-                            if (eq < 0) continue;
-                            string name = s.Substring(0, eq);
-                            string idpart = s.Substring(eq + 1);
-                            int bar = idpart.IndexOf('|');
-                            string idstr = bar >= 0 ? idpart.Substring(0, bar) : idpart;
-                            long id;
-                            long.TryParse(idstr.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out id);
-                            if (id > 0 && seen.Add(id))
-                                list.Add(new HubDatabaseRef { Id = id, Name = name });
+                            if (schema.HubDatabaseId <= 0 || !seen.Add(schema.HubDatabaseId))
+                                continue;
+                            // «database - Agent»; this list cannot paint the red dot of an Agent that is
+                            // not connected, so it says it in words
+                            string name = schema.IsOnline == false
+                                ? schema.DatabaseLabel + " " + DesignerText.Tr(2005)
+                                : schema.DatabaseLabel;
+                            list.Add(new HubDatabaseRef { Id = schema.HubDatabaseId, Name = name });
                         }
                     }
                     catch (Exception ex)

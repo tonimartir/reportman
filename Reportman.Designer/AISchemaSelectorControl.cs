@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Reportman.Drawing;
 using Reportman.Reporting;
@@ -46,7 +48,11 @@ namespace Reportman.Designer
     /// (<see cref="SetDirectConnections(IList{string}, string, bool)"/>: each subschema of the
     /// connection's dbxschemas file) and the Hub schemas, each with its icon (local or cloud), the
     /// number of tables that would travel and a warning when it does not fit the plan with the cloud
-    /// AI, and ends with "New local schema..." and "New cloud schema...". The config button drops down
+    /// AI, and ends with "New local schema..." and "New cloud schema...". A Hub schema reads «schema -
+    /// Agent», with a red dot before the name while its Agent is not connected (it can still be
+    /// chosen: the AI designs with the schema, only the data waits for the Agent; the Hub schemas are
+    /// those of the login and of every Agent connection of dbxconnections.ini,
+    /// docs/agents-desconectados-plan.md, §2.1). The config button drops down
     /// "Local schemas..." and "Cloud schemas..." (docs/esquemas-locales-pantalla-plan.md, §5.4.1).
     /// Only a subschema or a cloud schema goes to the AI, never the whole dictionary of the file
     /// ("all the tables" stays in the local schema screen only, §5.7.1).
@@ -59,6 +65,9 @@ namespace Reportman.Designer
         private const string LocalIcon = "⛁ ";
         private const string CloudIcon = "☁ ";
         private const int ItemIndent = 14;
+        // The open list is as wide as its longest entry, up to this (in logical pixels) or the screen
+        private const int MaxDropDownWidth = 600;
+        private static readonly Color OfflineDotColor = Color.FromArgb(220, 38, 38);
 
         // The choice made for each connection in this session: direct alias → subschema, Hub
         // database → schema.
@@ -417,13 +426,12 @@ namespace Reportman.Designer
         }
 
         /// <summary>
-        /// Populates the schema list combo box with a list of schema names.
-        /// Format of elements: "DisplayName=hubDatabaseId|hubSchemaId", "DisplayName=hubDatabaseId|hubSchemaId|apiKey"
-        /// or "DisplayName=hubDatabaseId|hubSchemaId|apiKey|tables|widestColumns" (the number of tables of the
-        /// schema, empty when not known, and the columns of its widest table).
+        /// Populates the list with the schemas of the Hub (the report's own Hub database first, the
+        /// rest in their order), each labeled «schema - Agent» (<see cref="HubSchema.Label"/>), with the
+        /// number of its tables and a red dot when its Agent is not connected.
         /// </summary>
-        /// <param name="schemas">The list of schema name strings to apply.</param>
-        public void ApplySchemas(List<string> schemas)
+        /// <param name="schemas">The schemas, as <see cref="RpAuthManager.GetUserSchemasAsync"/> lists them.</param>
+        public void ApplySchemas(IEnumerable<HubSchema> schemas)
         {
             if (_preferredHubDatabaseId == 0 && _preferredHubSchemaId == 0)
             {
@@ -436,10 +444,20 @@ namespace Reportman.Designer
             if (schemas != null)
             {
                 var otherItems = new List<SchemaItem>();
-                foreach (var entry in schemas)
+                foreach (HubSchema schema in schemas)
                 {
-                    if (!TryParseSchemaEntry(entry, out var item))
+                    if (schema == null)
                         continue;
+                    var item = new SchemaItem
+                    {
+                        DisplayName = schema.Label,
+                        HubDatabaseId = schema.HubDatabaseId,
+                        HubSchemaId = schema.HubSchemaId,
+                        ApiKey = schema.ApiKey ?? "",
+                        IsOnline = schema.IsOnline,
+                        Tables = schema.Tables,
+                        WidestColumns = schema.WidestColumns
+                    };
                     // The schemas of the report's own Hub database first
                     if (_preferredConnectionHubDatabaseId != 0 && item.HubDatabaseId == _preferredConnectionHubDatabaseId)
                         hubItems.Add(item);
@@ -584,50 +602,19 @@ namespace Reportman.Designer
             entry.WidestColumns = widest;
         }
 
-        private static void AddMergedSchemas(IEnumerable<string> source, List<string> destination,
-            HashSet<string> seenSchemaKeys, string defaultApiKey)
+        /// <summary>Adds the schemas of <paramref name="source"/> not listed yet (by Hub database and schema).</summary>
+        private static void AddMergedSchemas(IEnumerable<HubSchema> source, List<HubSchema> destination,
+            HashSet<string> seenSchemaKeys)
         {
             if (source == null)
                 return;
 
-            foreach (var entry in source)
+            foreach (HubSchema schema in source)
             {
-                if (!TryParseSchemaEntry(entry, out var item))
-                    continue;
-
-                string schemaKey = item.HubDatabaseId.ToString() + "|" + item.HubSchemaId.ToString();
-                if (!seenSchemaKeys.Add(schemaKey))
-                    continue;
-
-                string apiKey = string.IsNullOrWhiteSpace(item.ApiKey) ? defaultApiKey : item.ApiKey;
-                destination.Add(item.DisplayName + "=" + item.HubDatabaseId + "|" + item.HubSchemaId + "|" + apiKey + "|" +
-                    (item.Tables >= 0 ? item.Tables.ToString() : "") + "|" + item.WidestColumns);
+                string schemaKey = schema.HubDatabaseId.ToString() + "|" + schema.HubSchemaId.ToString();
+                if (seenSchemaKeys.Add(schemaKey))
+                    destination.Add(schema);
             }
-        }
-
-        private static bool TryParseSchemaEntry(string entry, out SchemaItem item)
-        {
-            item = null;
-
-            if (string.IsNullOrWhiteSpace(entry))
-                return false;
-
-            int eq = entry.IndexOf('=');
-            if (eq <= 0)
-                return false;
-
-            string displayName = entry.Substring(0, eq);
-            string value = entry.Substring(eq + 1);
-            string[] parts = value.Split('|');
-
-            item = new SchemaItem();
-            item.DisplayName = displayName;
-            if (parts.Length >= 1) item.HubDatabaseId = long.TryParse(parts[0], out var dbId) ? dbId : 0;
-            if (parts.Length >= 2) item.HubSchemaId = long.TryParse(parts[1], out var scId) ? scId : 0;
-            if (parts.Length >= 3) item.ApiKey = parts[2];
-            if (parts.Length >= 4) item.Tables = int.TryParse(parts[3], out var tables) ? tables : -1;
-            if (parts.Length >= 5) item.WidestColumns = int.TryParse(parts[4], out var columns) ? columns : 0;
-            return true;
         }
 
         private async void LoadSchemasAsync()
@@ -635,17 +622,27 @@ namespace Reportman.Designer
             _btnRefresh.Enabled = false;
             try
             {
-                var mergedSchemas = new List<string>();
-                var seenSchemaKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
-                if (!string.IsNullOrWhiteSpace(_preferredConnectionApiKey))
+                // The schemas of every Agent connection of dbxconnections.ini, as the Delphi copilot: the
+                // report's connection first (its schemas run with its key), then the login's, then the
+                // other connections'. The requests go together; a schema listed twice keeps the first.
+                string preferredApiKey = _preferredConnectionApiKey;
+                Task<List<HubSchema>> preferredSchemas = string.IsNullOrWhiteSpace(preferredApiKey) ? null
+                    : RpAuthManager.Instance.GetApiKeySchemasAsync(preferredApiKey);
+                Task<List<HubSchema>> userSchemas = RpAuthManager.Instance.GetUserSchemasAsync();
+                var otherSchemas = new List<Task<List<HubSchema>>>();
+                foreach (string apiKey in DbxConnections.GetAgentApiKeys())
                 {
-                    var apiKeySchemas = await RpAuthManager.Instance.GetApiKeySchemasAsync(_preferredConnectionApiKey);
-                    AddMergedSchemas(apiKeySchemas, mergedSchemas, seenSchemaKeys, _preferredConnectionApiKey);
+                    if (!string.Equals(apiKey, preferredApiKey, StringComparison.Ordinal))
+                        otherSchemas.Add(RpAuthManager.Instance.GetApiKeySchemasAsync(apiKey));
                 }
 
-                var userSchemas = await RpAuthManager.Instance.GetUserSchemasAsync();
-                AddMergedSchemas(userSchemas, mergedSchemas, seenSchemaKeys, "");
+                var mergedSchemas = new List<HubSchema>();
+                var seenSchemaKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (preferredSchemas != null)
+                    AddMergedSchemas(await preferredSchemas, mergedSchemas, seenSchemaKeys);
+                AddMergedSchemas(await userSchemas, mergedSchemas, seenSchemaKeys);
+                foreach (Task<List<HubSchema>> schemas in otherSchemas)
+                    AddMergedSchemas(await schemas, mergedSchemas, seenSchemaKeys);
 
                 if (!IsDisposed)
                     ApplySchemas(mergedSchemas);
@@ -1077,7 +1074,17 @@ namespace Reportman.Designer
         private void UpdateSelectionTooltip()
         {
             SchemaEntry entry = _comboSchema.SelectedItem as SchemaEntry;
-            string text = entry == null ? "" : (entry.OverPlan ? Tr(1844) : entry.Caption);
+            string text = "";
+            if (entry != null)
+            {
+                if (entry.OverPlan)
+                    text = Tr(1844);
+                // Its Agent is not connected: the AI designs with the schema, the data waits for it
+                if (entry.Offline)
+                    text = text.Length > 0 ? text + Environment.NewLine + Tr(2004) : Tr(2004);
+                if (text.Length == 0)
+                    text = entry.Caption;
+            }
             _toolTip.SetToolTip(_comboSchema, text);
         }
 
@@ -1108,32 +1115,90 @@ namespace Reportman.Designer
 
             int indent = inEdit ? 1 : (item is SchemaEntry ? ItemIndent : 3);
             var bounds = new Rectangle(e.Bounds.Left + indent, e.Bounds.Top, Math.Max(0, e.Bounds.Width - indent), e.Bounds.Height);
+            bool selected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
             Color color = plain ? SystemColors.GrayText
-                : ((e.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : _comboSchema.ForeColor);
+                : (selected ? SystemColors.HighlightText : _comboSchema.ForeColor);
             const TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |
                 TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix;
             Font font = e.Font ?? _comboSchema.Font;
+            SchemaEntry entry = item as SchemaEntry;
             if (header != null)
             {
                 using (var bold = new Font(font, FontStyle.Bold))
                     TextRenderer.DrawText(e.Graphics, header.Text, bold, bounds, color, flags);
             }
+            else if (entry != null && entry.Offline)
+                DrawOfflineEntry(e.Graphics, entry, font, bounds, color, flags, selected);
             else
                 TextRenderer.DrawText(e.Graphics, item.ToString(), font, bounds, color, flags);
             if (!plain)
                 e.DrawFocusRectangle();
         }
 
+        /// <summary>
+        /// A schema whose Agent is not connected: its icon (and plan warning), a small red dot, then its
+        /// name. On the highlight the dot is ringed with the text color so it still stands out.
+        /// </summary>
+        private static void DrawOfflineEntry(Graphics graphics, SchemaEntry entry, Font font, Rectangle bounds,
+            Color color, TextFormatFlags flags, bool selected)
+        {
+            string prefix = entry.Prefix;
+            int left = bounds.Left;
+            if (prefix.Length > 0)
+            {
+                TextRenderer.DrawText(graphics, prefix, font, bounds, color, flags);
+                left += TextRenderer.MeasureText(graphics, prefix, font, bounds.Size, flags & ~TextFormatFlags.EndEllipsis).Width;
+            }
+            int size = OfflineDotSize(font);
+            int slot = OfflineDotSlot(font);
+            var dot = new Rectangle(left + (slot - size) / 2, bounds.Top + (bounds.Height - size) / 2, size, size);
+            SmoothingMode smoothing = graphics.SmoothingMode;
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            try
+            {
+                using (var brush = new SolidBrush(OfflineDotColor))
+                    graphics.FillEllipse(brush, dot);
+                if (selected)
+                {
+                    using (var pen = new Pen(color))
+                        graphics.DrawEllipse(pen, dot);
+                }
+            }
+            finally
+            {
+                graphics.SmoothingMode = smoothing;
+            }
+            left += slot;
+            TextRenderer.DrawText(graphics, entry.Text, font,
+                new Rectangle(left, bounds.Top, Math.Max(0, bounds.Right - left), bounds.Height), color, flags);
+        }
+
+        /// <summary>The diameter of the red dot: half the height of the text, so it follows the DPI.</summary>
+        private static int OfflineDotSize(Font font)
+        {
+            return Math.Max(5, font.Height / 2);
+        }
+
+        /// <summary>The width the red dot takes in a line, with a little space at each side.</summary>
+        private static int OfflineDotSlot(Font font)
+        {
+            return OfflineDotSize(font) * 3 / 2;
+        }
+
         private void ComboSchema_DropDown(object sender, EventArgs e)
         {
-            // Wide enough for the longest caption
-            int width = _comboSchema.Width;
+            // As wide as the longest entry (its red dot included): at least the combo, at most
+            // MaxDropDownWidth or the screen
+            int width = 0;
             foreach (object item in _comboSchema.Items)
             {
                 Font font = item is GroupHeaderItem ? new Font(_comboSchema.Font, FontStyle.Bold) : _comboSchema.Font;
                 try
                 {
                     int itemWidth = TextRenderer.MeasureText(item.ToString(), font).Width + ItemIndent + 8;
+                    SchemaEntry entry = item as SchemaEntry;
+                    if (entry != null && entry.Offline)
+                        itemWidth += OfflineDotSlot(font);
                     width = Math.Max(width, itemWidth);
                 }
                 finally
@@ -1144,7 +1209,8 @@ namespace Reportman.Designer
             }
             if (_comboSchema.Items.Count > _comboSchema.MaxDropDownItems)
                 width += SystemInformation.VerticalScrollBarWidth;
-            _comboSchema.DropDownWidth = Math.Min(width, Math.Max(_comboSchema.Width, Screen.FromControl(this).WorkingArea.Width / 2));
+            int maxWidth = Math.Min(_comboSchema.LogicalToDeviceUnits(MaxDropDownWidth), Screen.FromControl(this).WorkingArea.Width);
+            _comboSchema.DropDownWidth = Math.Max(_comboSchema.Width, Math.Min(width, maxWidth));
         }
 
         // ===== Items =====
@@ -1205,9 +1271,24 @@ namespace Reportman.Designer
             /// <summary>The icon before the text: local or cloud.</summary>
             public abstract string Icon { get; }
 
+            /// <summary>True when the Agent that serves it is not connected: a red dot goes before the name.</summary>
+            public virtual bool Offline { get { return false; } }
+
+            /// <summary>What goes before the name: the icon and, over the plan, the warning.</summary>
+            public string Prefix
+            {
+                get { return Icon + (OverPlan ? WarningSign : ""); }
+            }
+
+            /// <summary>The name and the number of tables.</summary>
+            public string Text
+            {
+                get { return Name + (Tables >= 0 ? " (" + Tables + ")" : ""); }
+            }
+
             public string Caption
             {
-                get { return Icon + (OverPlan ? WarningSign : "") + Name + (Tables >= 0 ? " (" + Tables + ")" : ""); }
+                get { return Prefix + Text; }
             }
 
             public override string ToString() { return Caption; }
@@ -1240,14 +1321,19 @@ namespace Reportman.Designer
         /// </summary>
         private sealed class SchemaItem : SchemaEntry
         {
+            /// <summary>The label: «schema - Agent» (<see cref="HubSchema.Label"/>).</summary>
             public string DisplayName = "";
             public long HubDatabaseId;
             public long HubSchemaId;
             public string ApiKey = "";
+            /// <summary>Whether its Agent is connected; null when the cloud does not say (no dot).</summary>
+            public bool? IsOnline;
 
             public override string Name { get { return DisplayName; } }
 
             public override string Icon { get { return CloudIcon; } }
+
+            public override bool Offline { get { return IsOnline == false; } }
         }
     }
 }

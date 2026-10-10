@@ -150,11 +150,36 @@ namespace Reportman.Designer
         /// <summary>True if the section's DriverName is a Reportman agent driver.</summary>
         public static bool IsAgentConnection(string alias)
         {
-            string driver = GetValue(ReadLines(ResolveExistingPath()), alias, "DriverName", "");
+            return IsAgentDriver(GetValue(ReadLines(ResolveExistingPath()), alias, "DriverName", ""));
+        }
+
+        private static bool IsAgentDriver(string driver)
+        {
             return string.Equals(driver, AGENT_DRIVER_NAME, StringComparison.OrdinalIgnoreCase) ||
                    string.Equals(driver, "Reportman Agent", StringComparison.OrdinalIgnoreCase) ||
                    string.Equals(driver, "Http Agent", StringComparison.OrdinalIgnoreCase) ||
                    string.Equals(driver, "HttpAgent", StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// The API keys of all the agent connections of the file, each once and in the file's order:
+        /// the copilot lists the schemas of every one of them, as the Delphi designer does.
+        /// </summary>
+        public static List<string> GetAgentApiKeys()
+        {
+            var result = new List<string>();
+            string[] lines = ReadLines(ResolveExistingPath());
+            foreach (string line in lines)
+            {
+                string alias;
+                if (!IsSectionHeader(line, out alias) || alias.Length == 0 ||
+                    !IsAgentDriver(GetValue(lines, alias, "DriverName", "")))
+                    continue;
+                string apiKey = GetValue(lines, alias, "ApiKey", "").Trim();
+                if (apiKey.Length > 0 && !result.Contains(apiKey))
+                    result.Add(apiKey);
+            }
+            return result;
         }
 
         /// <summary>Read the HTTP Agent parameters stored for a connection alias.</summary>

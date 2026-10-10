@@ -805,28 +805,26 @@ namespace Reportman.Designer
 
         /// <summary>
         /// GET /api/agent/databases → { databases: [...], aiEndpoints: [...] }
-        /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId||tables|widestColumns":
-        /// the third field (an API key) is empty here; tables is the number of tables of the schema
-        /// (empty when the Hub does not say) and widestColumns the columns of its widest table.
+        /// Returns the schemas of the Hub the login sees (see <see cref="HubSchema"/>), with no API key.
         /// </summary>
-        public Task<List<string>> GetUserSchemasAsync()
+        public Task<List<HubSchema>> GetUserSchemasAsync()
         {
             return GetSchemasAsync("");
         }
 
         /// <summary>
         /// GET /api/agent/databases using a Reportman Agent ApiKey.
-        /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId||tables|widestColumns"
-        /// (see <see cref="GetUserSchemasAsync"/>).
+        /// Returns the schemas the key (and the login) sees, each with that key in
+        /// <see cref="HubSchema.ApiKey"/> (see <see cref="GetUserSchemasAsync"/>).
         /// </summary>
-        public Task<List<string>> GetApiKeySchemasAsync(string apiKey)
+        public Task<List<HubSchema>> GetApiKeySchemasAsync(string apiKey)
         {
             return GetSchemasAsync(apiKey);
         }
 
-        private async Task<List<string>> GetSchemasAsync(string apiKey)
+        private async Task<List<HubSchema>> GetSchemasAsync(string apiKey)
         {
-            var result = new List<string>();
+            var result = new List<HubSchema>();
             try
             {
                 using (var client = CreateHttpClient())
@@ -841,28 +839,7 @@ namespace Reportman.Designer
                     if (response.IsSuccessStatusCode)
                     {
                         var json = await response.Content.ReadAsStringAsync();
-                        using (var doc = JsonDocument.Parse(json))
-                        {
-                            JsonElement databases;
-                            if (doc.RootElement.TryGetProperty("databases", out databases) && databases.ValueKind == JsonValueKind.Array)
-                            {
-                                foreach (var item in databases.EnumerateArray())
-                                {
-                                    string displayName = "";
-                                    string hubDbId = "0";
-                                    string hubSchemaId = "0";
-                                    if (item.TryGetProperty("displayName", out var dn)) displayName = dn.GetString() ?? "";
-                                    if (string.IsNullOrEmpty(displayName) && item.TryGetProperty("name", out var nm)) displayName = nm.GetString() ?? "";
-                                    if (item.TryGetProperty("hubDatabaseId", out var hdb)) hubDbId = hdb.GetRawText().Trim('"');
-                                    if (item.TryGetProperty("hubSchemaId", out var hs)) hubSchemaId = hs.GetRawText().Trim('"');
-                                    displayName = displayName.Replace(" - ", " / ");
-                                    CountSchemaTables(item, out int tables, out int widestColumns);
-                                    result.Add(displayName + "=" + hubDbId + "|" + hubSchemaId + "||" +
-                                        (tables >= 0 ? tables.ToString(System.Globalization.CultureInfo.InvariantCulture) : "") + "|" +
-                                        widestColumns.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                                }
-                            }
-                        }
+                        result = HubSchema.ListFromJson(json, apiKey);
                     }
                 }
             }
@@ -871,30 +848,6 @@ namespace Reportman.Designer
                 Log((string.IsNullOrWhiteSpace(apiKey) ? "GetUserSchemas" : "GetApiKeySchemas") + " Error: " + ex.Message);
             }
             return result;
-        }
-
-        /// <summary>
-        /// The tables of a schema of GET api/agent/databases ("schemaTables") and the columns of the
-        /// widest one: what the plan limits are checked against. Tables is -1 when it is not there.
-        /// </summary>
-        private static void CountSchemaTables(JsonElement schema, out int tables, out int widestColumns)
-        {
-            tables = -1;
-            widestColumns = 0;
-            JsonElement list;
-            if ((!schema.TryGetProperty("schemaTables", out list) && !schema.TryGetProperty("SchemaTables", out list)) ||
-                list.ValueKind != JsonValueKind.Array)
-                return;
-            tables = 0;
-            foreach (JsonElement table in list.EnumerateArray())
-            {
-                tables++;
-                JsonElement columns;
-                if (table.ValueKind == JsonValueKind.Object &&
-                    (table.TryGetProperty("columns", out columns) || table.TryGetProperty("Columns", out columns)) &&
-                    columns.ValueKind == JsonValueKind.Array)
-                    widestColumns = Math.Max(widestColumns, columns.GetArrayLength());
-            }
         }
 
         /// <summary>
@@ -1072,5 +1025,166 @@ namespace Reportman.Designer
         /// user's tier; 0 or less is no limit, or not known yet.
         /// </summary>
         public int MaxColumnsPerTable { get; set; }
+    }
+
+    /// <summary>
+    /// A schema of a Hub database, as GET api/agent/databases lists it in "databases": its ids, what it
+    /// would send to the AI, and the Agent that serves it (its name and whether it is connected: the
+    /// lists label it «schema - Agent» and draw a red dot before it when the Agent is not connected
+    /// (docs/agents-desconectados-plan.md, §2.1).
+    /// </summary>
+    public sealed class HubSchema
+    {
+        /// <summary>Gets or sets the name of the schema ("name").</summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>
+        /// Gets or sets the label the lists showed before the Agent's name came: the cloud's
+        /// "displayName" ("database - schema", written "database / schema"), else the schema name.
+        /// </summary>
+        public string DisplayName { get; set; } = "";
+
+        /// <summary>Gets or sets the name of its Hub database (the start of "displayName"), or "" when not known.</summary>
+        public string DatabaseName { get; set; } = "";
+
+        /// <summary>Gets or sets the identifier of its Hub database (hubDatabaseId).</summary>
+        public long HubDatabaseId { get; set; }
+
+        /// <summary>Gets or sets the identifier of the schema (hubSchemaId).</summary>
+        public long HubSchemaId { get; set; }
+
+        /// <summary>Gets or sets the API key it was listed with; empty when the login lists it.</summary>
+        public string ApiKey { get; set; } = "";
+
+        /// <summary>Gets or sets the number of its tables, or -1 when the Hub does not say.</summary>
+        public int Tables { get; set; } = -1;
+
+        /// <summary>Gets or sets the columns of its widest table.</summary>
+        public int WidestColumns { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether its Agent is connected; null when the cloud does not say (an older
+        /// cloud): nothing is drawn then.
+        /// </summary>
+        public bool? IsOnline { get; set; }
+
+        /// <summary>Gets or sets the name of its Agent ("agentName"), or "" when the cloud does not say.</summary>
+        public string AgentName { get; set; } = "";
+
+        /// <summary>
+        /// Gets the label of the schema in the lists: «schema - Agent»; without the Agent's name, the
+        /// one of before (<see cref="DisplayName"/>).
+        /// </summary>
+        public string Label
+        {
+            get { return Name.Length > 0 && AgentName.Length > 0 ? Name + " - " + AgentName : DisplayName; }
+        }
+
+        /// <summary>
+        /// Gets the label of its database in a list of Hub databases: «database - Agent»; without the
+        /// Agent's name, the one of before (<see cref="DisplayName"/>).
+        /// </summary>
+        public string DatabaseLabel
+        {
+            get { return DatabaseName.Length > 0 && AgentName.Length > 0 ? DatabaseName + " - " + AgentName : DisplayName; }
+        }
+
+        /// <summary>
+        /// The schemas of a GET api/agent/databases answer ("databases"), each with
+        /// <paramref name="apiKey"/>, the key they were asked with ("" for the login).
+        /// </summary>
+        /// <param name="json">The answer of the cloud.</param>
+        /// <param name="apiKey">The API key of the request, or "".</param>
+        public static List<HubSchema> ListFromJson(string json, string apiKey)
+        {
+            var result = new List<HubSchema>();
+            using (var doc = JsonDocument.Parse(json))
+            {
+                JsonElement databases;
+                if (doc.RootElement.ValueKind == JsonValueKind.Object &&
+                    doc.RootElement.TryGetProperty("databases", out databases) && databases.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (JsonElement item in databases.EnumerateArray())
+                    {
+                        if (item.ValueKind == JsonValueKind.Object)
+                            result.Add(FromJson(item, apiKey));
+                    }
+                }
+            }
+            return result;
+        }
+
+        private static HubSchema FromJson(JsonElement item, string apiKey)
+        {
+            var schema = new HubSchema();
+            schema.ApiKey = (apiKey ?? "").Trim();
+            schema.Name = ReadString(item, "name");
+            schema.AgentName = ReadString(item, "agentName").Trim();
+            string displayName = ReadString(item, "displayName");
+            // The cloud writes "database - schema"
+            string schemaSuffix = " - " + schema.Name;
+            if (schema.Name.Length > 0 && displayName.Length > schemaSuffix.Length &&
+                displayName.EndsWith(schemaSuffix, StringComparison.Ordinal))
+                schema.DatabaseName = displayName.Substring(0, displayName.Length - schemaSuffix.Length);
+            if (string.IsNullOrEmpty(displayName))
+                displayName = schema.Name;
+            schema.DisplayName = displayName.Replace(" - ", " / ");
+            schema.HubDatabaseId = ReadId(item, "hubDatabaseId");
+            schema.HubSchemaId = ReadId(item, "hubSchemaId");
+            JsonElement online;
+            if (item.TryGetProperty("isOnline", out online))
+            {
+                bool value;
+                if (online.ValueKind == JsonValueKind.True || online.ValueKind == JsonValueKind.False)
+                    schema.IsOnline = online.GetBoolean();
+                else if (online.ValueKind == JsonValueKind.String && bool.TryParse(online.GetString(), out value))
+                    schema.IsOnline = value;
+            }
+            CountSchemaTables(item, out int tables, out int widestColumns);
+            schema.Tables = tables;
+            schema.WidestColumns = widestColumns;
+            return schema;
+        }
+
+        private static string ReadString(JsonElement item, string name)
+        {
+            JsonElement value;
+            return item.TryGetProperty(name, out value) && value.ValueKind == JsonValueKind.String ? value.GetString() ?? "" : "";
+        }
+
+        private static long ReadId(JsonElement item, string name)
+        {
+            JsonElement value;
+            long id;
+            if (!item.TryGetProperty(name, out value) ||
+                !long.TryParse(value.GetRawText().Trim('"'), System.Globalization.NumberStyles.Integer,
+                    System.Globalization.CultureInfo.InvariantCulture, out id))
+                return 0;
+            return id;
+        }
+
+        /// <summary>
+        /// The tables of a schema of GET api/agent/databases ("schemaTables") and the columns of the
+        /// widest one: what the plan limits are checked against. Tables is -1 when it is not there.
+        /// </summary>
+        private static void CountSchemaTables(JsonElement schema, out int tables, out int widestColumns)
+        {
+            tables = -1;
+            widestColumns = 0;
+            JsonElement list;
+            if ((!schema.TryGetProperty("schemaTables", out list) && !schema.TryGetProperty("SchemaTables", out list)) ||
+                list.ValueKind != JsonValueKind.Array)
+                return;
+            tables = 0;
+            foreach (JsonElement table in list.EnumerateArray())
+            {
+                tables++;
+                JsonElement columns;
+                if (table.ValueKind == JsonValueKind.Object &&
+                    (table.TryGetProperty("columns", out columns) || table.TryGetProperty("Columns", out columns)) &&
+                    columns.ValueKind == JsonValueKind.Array)
+                    widestColumns = Math.Max(widestColumns, columns.GetArrayLength());
+            }
+        }
     }
 }

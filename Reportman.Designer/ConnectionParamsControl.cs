@@ -451,28 +451,30 @@ namespace Reportman.Designer
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-                List<string> raw = System.Threading.Tasks.Task.Run(() =>
+                List<HubSchema> schemas = System.Threading.Tasks.Task.Run(() =>
                     RpAuthManager.Instance.GetApiKeySchemasAsync(ak)).GetAwaiter().GetResult();
                 HashSet<long> ids = new HashSet<long>();
-                foreach (string s in raw)
+                long sel = AgentHubDatabaseId;
+                // The cloud lists the databases of an Agent that is not connected too: the key is
+                // right, but their data cannot be opened until it comes back
+                bool offline = false;
+                foreach (HubSchema schema in schemas)
                 {
-                    int eq = s.LastIndexOf('=');
-                    if (eq < 0) continue;
-                    string idp = s.Substring(eq + 1);
-                    int bar = idp.IndexOf('|');
-                    string idstr = bar >= 0 ? idp.Substring(0, bar) : idp;
-                    long id;
-                    if (long.TryParse(idstr.Trim(), out id) && id > 0)
-                        ids.Add(id);
+                    if (schema.HubDatabaseId <= 0)
+                        continue;
+                    ids.Add(schema.HubDatabaseId);
+                    if (schema.HubDatabaseId == sel && schema.IsOnline == false)
+                        offline = true;
                 }
                 if (ids.Count == 0)
                 {
                     SetResult(false, DesignerText.Tr(1675));
                     return;
                 }
-                long sel = AgentHubDatabaseId;
                 if (sel > 0 && !ids.Contains(sel))
                     SetResult(false, DesignerText.Format(1971, ids.Count.ToString()));
+                else if (offline)
+                    SetResult(false, DesignerText.Tr(2004));
                 else
                     SetResult(true, DesignerText.Format(1972, ids.Count.ToString()));
             }
