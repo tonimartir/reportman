@@ -43,20 +43,25 @@ namespace Reportman.Designer
     /// Row 0: "SCHEMA" label spanning full width (like PROVIDER/MODE labels)
     /// Row 1: [ComboBox (fill)] [Config ⚙ ▾ button] [Refresh button]
     /// The list groups the local schemas of the report's direct connections
-    /// (<see cref="SetDirectConnections(IList{string}, string, bool)"/>: "all the tables" and each
-    /// subschema of the connection's dbxschemas file) and the Hub schemas, each with the number of
-    /// tables that would travel and a warning when it does not fit the plan with the cloud AI, and ends
-    /// with "New local schema..." and "New cloud schema...". The config button drops down "Local
-    /// schemas..." and "Cloud schemas..." (docs/esquemas-locales-pantalla-plan.md, §5.4.1).
+    /// (<see cref="SetDirectConnections(IList{string}, string, bool)"/>: each subschema of the
+    /// connection's dbxschemas file) and the Hub schemas, each with its icon (local or cloud), the
+    /// number of tables that would travel and a warning when it does not fit the plan with the cloud
+    /// AI, and ends with "New local schema..." and "New cloud schema...". The config button drops down
+    /// "Local schemas..." and "Cloud schemas..." (docs/esquemas-locales-pantalla-plan.md, §5.4.1).
+    /// Only a subschema or a cloud schema goes to the AI, never the whole dictionary of the file
+    /// ("all the tables" stays in the local schema screen only, §5.7.1).
     /// </summary>
     public class AISchemaSelectorControl : UserControl
     {
         private const string CloudSchemasUrl = "https://app.reportman.es/database-config";
         private const string WarningSign = "⚠ ";
+        // Before the text (and the warning): a local subschema or a schema in the cloud
+        private const string LocalIcon = "⛁ ";
+        private const string CloudIcon = "☁ ";
         private const int ItemIndent = 14;
 
-        // The choice made for each connection in this session: direct alias → subschema ("" all the
-        // tables), Hub database → schema.
+        // The choice made for each connection in this session: direct alias → subschema, Hub
+        // database → schema.
         private static readonly Dictionary<string, string> RememberedSubschemas =
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private static readonly Dictionary<long, long> RememberedHubSchemas = new Dictionary<long, long>();
@@ -111,12 +116,23 @@ namespace Reportman.Designer
         public string LocalAlias { get; private set; } = "";
 
         /// <summary>
-        /// Gets the subschema of <see cref="LocalAlias"/> selected, or "" for all its tables.
+        /// Gets the subschema of <see cref="LocalAlias"/> selected, or "" when none is.
         /// </summary>
         public string LocalSubschema { get; private set; } = "";
 
         /// <summary>True when the selection is the local schema of a direct connection.</summary>
         public bool IsLocalSchemaSelected { get { return LocalAlias.Length > 0; } }
+
+        /// <summary>
+        /// Gets the direct connection of the report the AI needs a subschema of: with no schema
+        /// selected (no subschema, no cloud schema) and a direct connection in the report, its alias;
+        /// otherwise "". The copilot does not call the cloud then and asks to choose one (the AI only
+        /// receives a subschema, never all the tables of the file).
+        /// </summary>
+        public string MissingSchemaAlias
+        {
+            get { return IsLocalSchemaSelected || HubDatabaseId != 0 || HubSchemaId != 0 ? "" : TargetDirectAlias; }
+        }
 
         /// <summary>
         /// Gets the identifier of the database currently selected.
@@ -269,9 +285,9 @@ namespace Reportman.Designer
         /// <summary>
         /// Sets the direct (not Agent) connections of the report, whose local schemas are offered
         /// before the Hub schemas. When the list changes and <paramref name="preferLocal"/> is true
-        /// (the report gives no Hub schema), the schema chosen last in this session for
-        /// <paramref name="preferredAlias"/> (else all its tables) becomes the preferred selection;
-        /// while the list stays the same the current choice is kept.
+        /// (the report gives no Hub schema), the subschema chosen last in this session for
+        /// <paramref name="preferredAlias"/> (else the first one of its file, else none) becomes the
+        /// preferred selection; while the list stays the same the current choice is kept.
         /// </summary>
         /// <param name="aliases">Aliases of the report's direct connections.</param>
         /// <param name="preferredAlias">The connection the copilot should work with by default.</param>
@@ -285,8 +301,8 @@ namespace Reportman.Designer
         /// Sets the direct connections of the report, as <see cref="SetDirectConnections(IList{string}, string, bool)"/>,
         /// for a report just opened when <paramref name="reportSubschema"/> is not null: with
         /// <paramref name="preferLocal"/>, its subschema of <paramref name="preferredAlias"/> is selected
-        /// (all the tables when it is not in the file any more), or, when it is empty, the one chosen
-        /// last in this session for that connection.
+        /// while it is in the file; else the one chosen last in this session for that connection, else
+        /// the first one of the file, else none (the copilot then asks to choose one).
         /// </summary>
         /// <param name="aliases">Aliases of the report's direct connections.</param>
         /// <param name="preferredAlias">The connection the copilot should work with by default.</param>
@@ -357,10 +373,11 @@ namespace Reportman.Designer
 
         /// <summary>
         /// Reads the local schemas again and selects <paramref name="subschema"/> of the direct
-        /// connection <paramref name="alias"/> ("" for all its tables), as if the user had chosen it.
+        /// connection <paramref name="alias"/>, as if the user had chosen it (when it is not in the file,
+        /// or is "", the one chosen last there, else the first one).
         /// </summary>
         /// <param name="alias">The direct connection.</param>
-        /// <param name="subschema">The subschema, or "" for all the tables.</param>
+        /// <param name="subschema">The subschema.</param>
         public void SelectLocalSchema(string alias, string subschema)
         {
             _preferredLocalAlias = (alias ?? "").Trim();
@@ -376,6 +393,18 @@ namespace Reportman.Designer
         public void RefreshPlanWarnings()
         {
             UpdatePlanWarnings();
+        }
+
+        /// <summary>
+        /// True when the schema selected passes the plan's limits with the cloud AI: its tables, or
+        /// the columns of its widest one, as the list counted them (an unknown count never does). The
+        /// AI on the user's Agent has no limits: ask only when the AI runs in the cloud.
+        /// </summary>
+        public bool SelectedSchemaExceedsPlan()
+        {
+            SchemaEntry entry = _lastSchemaIndex >= 0 && _lastSchemaIndex < _comboSchema.Items.Count
+                ? _comboSchema.Items[_lastSchemaIndex] as SchemaEntry : null;
+            return entry != null && IsOverPlan(entry, RpAuthManager.Instance.Profile);
         }
 
         /// <summary>
@@ -503,9 +532,10 @@ namespace Reportman.Designer
         }
 
         /// <summary>
-        /// The local schemas of the direct connections: all the tables and each subschema, with the
-        /// tables that would travel. A file that does not exist yet is not generated just to list it:
-        /// then only "all the tables" is offered, without a number.
+        /// The local schemas of the direct connections: each subschema, with the tables that would
+        /// travel. All the tables of a file (its dictionary) are not offered: a big database does not
+        /// fit the AI whole, so only a subschema goes. A file that does not exist yet is not generated
+        /// just to list it: that connection offers only "New local schema...".
         /// </summary>
         private List<LocalSchemaItem> BuildLocalItems()
         {
@@ -513,10 +543,6 @@ namespace Reportman.Designer
             foreach (string alias in _directAliases)
             {
                 LocalSchemaFile file = LoadLocalSchemaFile(alias);
-                var all = new LocalSchemaItem(alias, "");
-                if (file != null)
-                    CountTables(file, "", all);
-                result.Add(all);
                 if (file == null)
                     continue;
                 foreach (LocalSubschema s in file.Schemas)
@@ -546,7 +572,7 @@ namespace Reportman.Designer
             }
         }
 
-        /// <summary>The tables of a subschema (all of them for "") and the columns of the widest one, as they travel inline.</summary>
+        /// <summary>The tables of a subschema and the columns of the widest one, as they travel inline.</summary>
         private static void CountTables(LocalSchemaFile file, string subschema, SchemaEntry entry)
         {
             LocalSubschema selected = LocalSchemaStore.FindSubschema(file, subschema);
@@ -774,15 +800,27 @@ namespace Reportman.Designer
                     return index;
             }
 
+            // A direct connection without subschemas selects nothing, not a cloud schema of some other
+            // database: the copilot asks to choose or make one.
+            if (_preferredLocalAlias.Length > 0)
+                return -1;
+
             // As before the local schemas existed: the first Hub schema.
             return FindHubIndex(item => true);
         }
 
+        /// <summary>
+        /// The subschema to select of the preferred direct connection: the one asked for (the report's,
+        /// D3) while it is in the file; else the one chosen last there in this session; else the first
+        /// one of the file; -1 when the file has none.
+        /// </summary>
         private int FindPreferredLocalIndex()
         {
             if (_preferredLocalAlias.Length == 0)
                 return -1;
-            int allIndex = -1;
+            string remembered = RememberedSubschema(_preferredLocalAlias);
+            int rememberedIndex = -1;
+            int firstIndex = -1;
             for (int i = 0; i < _comboSchema.Items.Count; i++)
             {
                 LocalSchemaItem item = _comboSchema.Items[i] as LocalSchemaItem;
@@ -790,11 +828,14 @@ namespace Reportman.Designer
                     continue;
                 if (string.Equals(item.Subschema, _preferredLocalSubschema, StringComparison.OrdinalIgnoreCase))
                     return i;
-                if (item.Subschema.Length == 0 && allIndex < 0)
-                    allIndex = i;
+                if (rememberedIndex < 0 && string.Equals(item.Subschema, remembered, StringComparison.OrdinalIgnoreCase))
+                    rememberedIndex = i;
+                if (firstIndex < 0)
+                    firstIndex = i;
             }
-            // A subschema that was deleted or renamed falls back to all the tables of the connection.
-            return allIndex;
+            // A subschema that was deleted or renamed (or an old report that names none) never falls
+            // back to all the tables: the last one chosen, else the first one.
+            return rememberedIndex >= 0 ? rememberedIndex : firstIndex;
         }
 
         /// <summary>The schema chosen last in this session for a Hub database, else its first one.</summary>
@@ -1161,16 +1202,19 @@ namespace Reportman.Designer
 
             public abstract string Name { get; }
 
+            /// <summary>The icon before the text: local or cloud.</summary>
+            public abstract string Icon { get; }
+
             public string Caption
             {
-                get { return (OverPlan ? WarningSign : "") + Name + (Tables >= 0 ? " (" + Tables + ")" : ""); }
+                get { return Icon + (OverPlan ? WarningSign : "") + Name + (Tables >= 0 ? " (" + Tables + ")" : ""); }
             }
 
             public override string ToString() { return Caption; }
         }
 
         /// <summary>
-        /// The local schema of a direct connection for the combo box: all its tables or a subschema.
+        /// A subschema of the local schema of a direct connection for the combo box.
         /// </summary>
         private sealed class LocalSchemaItem : SchemaEntry
         {
@@ -1185,8 +1229,10 @@ namespace Reportman.Designer
 
             public override string Name
             {
-                get { return Alias + " · " + (Subschema.Length == 0 ? Tr(1843) : Subschema); }
+                get { return Alias + " · " + Subschema; }
             }
+
+            public override string Icon { get { return LocalIcon; } }
         }
 
         /// <summary>
@@ -1200,6 +1246,8 @@ namespace Reportman.Designer
             public string ApiKey = "";
 
             public override string Name { get { return DisplayName; } }
+
+            public override string Icon { get { return CloudIcon; } }
         }
     }
 }

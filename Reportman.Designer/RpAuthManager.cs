@@ -951,6 +951,45 @@ namespace Reportman.Designer
             return result;
         }
 
+        // ===== API: the schema library =====
+
+        /// <summary>
+        /// GET /api/schema/list → [{ id, name, description, schemas: [{ id, name, version, categoryId }] }]:
+        /// the categories of the Reportman AI schema library and their schemas, as the cloud answers them.
+        /// Unlike the lists above, a failure throws with its reason: the user asked for it and is told why.
+        /// </summary>
+        public Task<string> GetSchemaLibraryAsync()
+        {
+            return GetLibraryJsonAsync("/api/schema/list", "GetSchemaLibrary");
+        }
+
+        /// <summary>
+        /// GET /api/schema/{id} → { id, name, version, categoryId, fullSchema }: a schema of the library,
+        /// whose fullSchema is the JSON of a database configuration with its schemaTables. A failure
+        /// throws with its reason.
+        /// </summary>
+        /// <param name="id">The id of the schema in the library's list.</param>
+        public Task<string> GetLibrarySchemaAsync(long id)
+        {
+            return GetLibraryJsonAsync("/api/schema/" + id.ToString(System.Globalization.CultureInfo.InvariantCulture), "GetLibrarySchema");
+        }
+
+        private async Task<string> GetLibraryJsonAsync(string path, string operation)
+        {
+            using (var client = CreateHttpClient())
+            {
+                if (!string.IsNullOrEmpty(Token))
+                    client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", "Bearer " + Token);
+                using (var response = await client.GetAsync(HUB_API_URL + path))
+                {
+                    Log(operation + ": " + (int)response.StatusCode);
+                    if (!response.IsSuccessStatusCode)
+                        throw new HttpRequestException("HTTP " + (int)response.StatusCode + " " + response.ReasonPhrase);
+                    return await response.Content.ReadAsStringAsync();
+                }
+            }
+        }
+
         /// <summary>
         /// Runs CheckStatusAsync on a background thread, then fires AuthChanged on completion.
         /// </summary>

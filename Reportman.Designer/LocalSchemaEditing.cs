@@ -445,6 +445,23 @@ namespace Reportman.Designer
         /// <param name="reservedNames">Names a subschema cannot take (all the tables), or null.</param>
         public static LocalSchemaImportResult Import(LocalSchemaFile file, string json, string fileName, IEnumerable<string> reservedNames)
         {
+            return Import(file, json, fileName, reservedNames, "");
+        }
+
+        /// <summary>
+        /// Imports a schema as <see cref="Import(LocalSchemaFile, string, string, IEnumerable{string})"/> does, named
+        /// <paramref name="subschemaName"/> when it is not empty (numbered when taken) instead of as the text says: a
+        /// schema of the Reportman AI library is named as the library calls it, while its text (a database
+        /// configuration) says the name of the database it was written for.
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="json">The text of the imported schema.</param>
+        /// <param name="fileName">The path or name of the imported file, for the name when there is none.</param>
+        /// <param name="reservedNames">Names a subschema cannot take (all the tables), or null.</param>
+        /// <param name="subschemaName">The name of the new subschema; empty for the one the text says.</param>
+        public static LocalSchemaImportResult Import(LocalSchemaFile file, string json, string fileName, IEnumerable<string> reservedNames,
+            string subschemaName)
+        {
             if (file == null)
                 throw new ArgumentNullException("file");
             JsonDocument document;
@@ -463,7 +480,9 @@ namespace Reportman.Designer
                 JsonElement schemaTables;
                 if (!TryJsonProperty(root, "schemaTables", out schemaTables) || schemaTables.ValueKind != JsonValueKind.Array)
                     return null;
-                string name = JsonText(root, "name").Trim();
+                string name = (subschemaName ?? "").Trim();
+                if (name.Length == 0)
+                    name = JsonText(root, "name").Trim();
                 if (name.Length == 0)
                     name = NameFromFileName(fileName);
                 if (name.Length == 0)
@@ -592,6 +611,75 @@ namespace Reportman.Designer
             for (int i = 0; i < max; i++)
                 shown.Add(names[i]);
             return string.Join(", ", shown) + ", … (+" + (names.Count - max).ToString(CultureInfo.CurrentCulture) + ")";
+        }
+
+        // ===== The schema library of Reportman AI (docs/esquemas-locales-pantalla-plan.md, §5.7.1, C.2) =====
+
+        /// <summary>
+        /// The categories of the Reportman AI schema library as <c>GET api/schema/list</c> answers them
+        /// (<c>[{ id, name, description, schemas: [{ id, name, version, categoryId }] }]</c>, camelCase or PascalCase),
+        /// in its order. A category without schemas is left out: there is nothing to choose in it. Anything but a
+        /// list gives none; a text that is not JSON throws <see cref="JsonException"/>.
+        /// </summary>
+        /// <param name="json">The answer of the list.</param>
+        public static List<LocalSchemaLibraryCategory> ParseLibrary(string json)
+        {
+            var result = new List<LocalSchemaLibraryCategory>();
+            using (JsonDocument document = JsonDocument.Parse((json ?? "").TrimStart('﻿')))
+            {
+                JsonElement root = document.RootElement;
+                if (root.ValueKind != JsonValueKind.Array)
+                    return result;
+                foreach (JsonElement item in root.EnumerateArray())
+                {
+                    if (item.ValueKind != JsonValueKind.Object)
+                        continue;
+                    var category = new LocalSchemaLibraryCategory
+                    {
+                        Name = JsonText(item, "name").Trim(),
+                        Description = JsonText(item, "description").Trim()
+                    };
+                    foreach (JsonElement s in JsonArray(item, "schemas"))
+                    {
+                        // The schema is read later by its id: without one there is nothing to read
+                        long id;
+                        if (s.ValueKind != JsonValueKind.Object ||
+                            !long.TryParse(JsonText(s, "id"), NumberStyles.Integer, CultureInfo.InvariantCulture, out id) || id <= 0)
+                            continue;
+                        string name = JsonText(s, "name").Trim();
+                        category.Schemas.Add(new LocalSchemaLibrarySchema
+                        {
+                            Id = id,
+                            Name = name.Length > 0 ? name : id.ToString(CultureInfo.InvariantCulture),
+                            Version = JsonText(s, "version").Trim()
+                        });
+                    }
+                    if (category.Schemas.Count > 0)
+                        result.Add(category);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// The schema of an answer of <c>GET api/schema/{id}</c> (<c>{ id, name, version, categoryId, fullSchema }</c>):
+        /// its <c>fullSchema</c>, a database configuration with <c>schemaTables</c> (maybe PascalCase, with numeric
+        /// types) that <see cref="Import(LocalSchemaFile, string, string, IEnumerable{string}, string)"/> reads; empty
+        /// when there is none. A text that is not JSON throws <see cref="JsonException"/>.
+        /// </summary>
+        /// <param name="json">The answer of the schema.</param>
+        public static string LibraryFullSchema(string json)
+        {
+            using (JsonDocument document = JsonDocument.Parse((json ?? "").TrimStart('﻿')))
+            {
+                JsonElement value;
+                if (!TryJsonProperty(document.RootElement, "fullSchema", out value))
+                    return "";
+                // A string with the JSON, as the cloud keeps it; an object written in place is read too
+                if (value.ValueKind == JsonValueKind.String)
+                    return value.GetString() ?? "";
+                return value.ValueKind == JsonValueKind.Object ? value.GetRawText() : "";
+            }
         }
 
         // The web reads the Desktop's PascalCase by lowering the first letter of every property; here, any case.
@@ -792,7 +880,7 @@ namespace Reportman.Designer
         }
     }
 
-    /// <summary>What <see cref="LocalSchemaEditing.Import"/> did.</summary>
+    /// <summary>What <see cref="LocalSchemaEditing.Import(LocalSchemaFile, string, string, IEnumerable{string}, string)"/> did.</summary>
     internal sealed class LocalSchemaImportResult
     {
         /// <summary>The subschema created, already in the file.</summary>
@@ -800,5 +888,31 @@ namespace Reportman.Designer
 
         /// <summary>What the database does not have and was left out: TABLE, or TABLE.COLUMN of a table it has.</summary>
         public List<string> Skipped { get; } = new List<string>();
+    }
+
+    /// <summary>A category of the Reportman AI schema library (<see cref="LocalSchemaEditing.ParseLibrary"/>).</summary>
+    internal sealed class LocalSchemaLibraryCategory
+    {
+        /// <summary>The name of the category.</summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>What the category is about; may be empty.</summary>
+        public string Description { get; set; } = "";
+
+        /// <summary>Its schemas, in the library's order.</summary>
+        public List<LocalSchemaLibrarySchema> Schemas { get; } = new List<LocalSchemaLibrarySchema>();
+    }
+
+    /// <summary>A schema of the Reportman AI schema library as its list gives it: the schema itself is read by its id.</summary>
+    internal sealed class LocalSchemaLibrarySchema
+    {
+        /// <summary>The id that <c>GET api/schema/{id}</c> reads.</summary>
+        public long Id { get; set; }
+
+        /// <summary>The name of the schema: the name of the subschema made from it.</summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>Its version; may be empty.</summary>
+        public string Version { get; set; } = "";
     }
 }

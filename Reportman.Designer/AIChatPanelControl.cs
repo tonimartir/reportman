@@ -216,10 +216,9 @@ namespace Reportman.Designer
         }
 
         /// <summary>
-        /// Sets the direct (not Agent) connections of the report: the schema selector offers the local
-        /// schema of each one (all its tables and its subschemas), and with one selected the copilot
-        /// sends that schema inline and runs the SQL it writes with the report's connection. Call it
-        /// before <see cref="SetHubContext"/>.
+        /// Sets the direct (not Agent) connections of the report: the schema selector offers the
+        /// subschemas of the local schema of each one, and with one selected the copilot sends it inline
+        /// and runs the SQL it writes with the report's connection. Call it before <see cref="SetHubContext"/>.
         /// </summary>
         /// <param name="aliases">Aliases of the report's direct connections.</param>
         /// <param name="preferredAlias">The connection to select by default.</param>
@@ -233,7 +232,8 @@ namespace Reportman.Designer
         /// Sets the direct connections of the report, as <see cref="SetDirectConnections(System.Collections.Generic.IList{string}, string, bool)"/>;
         /// for a report just opened, <paramref name="reportSubschema"/> is the subschema its datasets of
         /// <paramref name="preferredAlias"/> were made with (<see cref="DataInfo.SchemaName"/>, "" when
-        /// they say none): it is selected while it is still in the local schema file, else all the tables.
+        /// they say none): it is selected while it is still in the local schema file, else the one chosen
+        /// last for that connection, else the first one of the file, else none.
         /// </summary>
         /// <param name="aliases">Aliases of the report's direct connections.</param>
         /// <param name="preferredAlias">The connection to select by default.</param>
@@ -685,10 +685,87 @@ namespace Reportman.Designer
 
         // ===== Send logic =====
 
+        /// <summary>
+        /// Checks the schema the copilot sends before the cloud is called (docs/esquemas-locales-pantalla-plan.md,
+        /// §5.7.1): with a direct connection, one of the subschemas of its file, never all its tables (a big
+        /// database does not fit the AI whole, and a subschema deleted since the list was read is not replaced
+        /// by the dictionary); with the AI in the cloud, a schema that fits the plan (the AI.Api decides anyway,
+        /// with the plan of whoever pays). False, with the reason in the chat, when nothing must be sent.
+        /// </summary>
+        /// <param name="tier">The AI tier: with LocalAgent the plan limits do not apply.</param>
+        /// <param name="inlineConfig">The subschema of a direct connection to send inline, or null for a cloud schema (or none).</param>
+        private bool PrepareSchemaToSend(string tier, out System.Collections.Generic.Dictionary<string, object> inlineConfig)
+        {
+            inlineConfig = null;
+            bool cloudAI = !string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
+            string localAlias = _aiSchemaSelectorControl.LocalAlias;
+            if (localAlias.Length == 0)
+            {
+                // A direct connection with no schema chosen: the AI would get nothing, or all the tables
+                string missing = _aiSchemaSelectorControl.MissingSchemaAlias;
+                if (missing.Length > 0)
+                {
+                    SafeAppendMessage("system", DesignerText.Format(1984, missing));
+                    return false;
+                }
+                // A cloud schema, or a report without connections as always
+                if (cloudAI && _aiSchemaSelectorControl.SelectedSchemaExceedsPlan())
+                {
+                    SafeAppendMessage("system", DesignerText.Tr(1844));
+                    return false;
+                }
+                return true;
+            }
+
+            string localSubschema = _aiSchemaSelectorControl.LocalSubschema;
+            LocalSchemaFile schema;
+            try
+            {
+                // A subschema is only offered from an existing file: nothing to generate here
+                schema = LocalSchemaStore.Load(LocalSchemaStore.PathFor(LocalSchemaFolder, localAlias));
+            }
+            catch (Exception ex)
+            {
+                SafeAppendMessage("system", DesignerText.Tr(355) + ": " + ex.Message);
+                return false;
+            }
+            LocalSubschema selected = LocalSchemaStore.FindSubschema(schema, localSubschema);
+            if (selected == null)
+            {
+                // Gone from the file since the list was read: the list follows, and nothing is sent
+                AppendLog("The subschema " + localSubschema + " is not in the file of " + localAlias + ": nothing is sent.");
+                _aiSchemaSelectorControl.ReloadLocalSchemas();
+                SafeAppendMessage("system", DesignerText.Format(1984, localAlias));
+                return false;
+            }
+            // Counted again from the file: it may have changed since the list was read
+            int tables, widest;
+            string widestTable;
+            LocalSchemaEditing.Count(schema, selected, out tables, out widest, out widestTable);
+            RpProfile profile = RpAuthManager.Instance.Profile;
+            if (cloudAI && profile != null &&
+                LocalSchemaEditing.IsOverPlan(tables, widest, profile.MaxTables, profile.MaxColumnsPerTable))
+            {
+                SafeAppendMessage("system", DesignerText.Tr(1844));
+                return false;
+            }
+            inlineConfig = LocalSchemaStore.BuildInlineConfig(schema, selected.Name);
+            AppendLog("Schema " + localAlias + " / " + selected.Name + ": " + tables + " tables sent inline.");
+            return true;
+        }
+
         private async void BtnSend_Click(object sender, EventArgs e)
         {
             string prompt = _txtPrompt.Text.Trim();
             if (string.IsNullOrEmpty(prompt)) return;
+
+            // Checked first: when it is not sent, the prompt stays to send it again with a schema
+            System.Collections.Generic.Dictionary<string, object> inlineConfig;
+            if (!PrepareSchemaToSend(_aiSelectionControl.SelectedTier, out inlineConfig))
+            {
+                _tabControl.SelectedTab = _tabChat;
+                return;
+            }
 
             _txtPrompt.Clear();
             SetBusy(true);
@@ -724,15 +801,10 @@ namespace Reportman.Designer
                 }
                 _agentClient.HubDatabaseId = _aiSchemaSelectorControl.HubDatabaseId;
                 _agentClient.HubSchemaId = _aiSchemaSelectorControl.HubSchemaId;
-                _agentClient.InlineConfig = null;
-
-                // A direct connection's local schema: its file (generated from the catalog the first
-                // time) travels inline, and the SQL the copilot writes is run here with that connection.
-                string localAlias = _aiSchemaSelectorControl.LocalAlias;
-                string localSubschema = _aiSchemaSelectorControl.LocalSubschema;
-                string schemaFolder = LocalSchemaFolder;
+                // A direct connection's subschema travels inline, and the SQL the copilot writes is
+                // run here with that connection.
+                _agentClient.InlineConfig = inlineConfig;
                 Action<Report> prepare = PrepareReportConnections;
-                var connectionFactory = localAlias.Length > 0 ? ConnectionFactory(reportDocument, localAlias, prepare) : null;
 
                 AICopilotManager.Instance.OnCancelRequested = () =>
                 {
@@ -746,18 +818,6 @@ namespace Reportman.Designer
                 loop.AnswerReceived += _logStats.AddAnswer;
                 var outcome = await System.Threading.Tasks.Task.Run(async () =>
                 {
-                    if (localAlias.Length > 0)
-                    {
-                        string path = LocalSchemaStore.PathFor(schemaFolder, localAlias);
-                        if (!System.IO.File.Exists(path))
-                            AppendLog("Reading the tables of " + localAlias + " into " + path + "...");
-                        LocalSchemaFile schema = LocalSchemaStore.LoadOrGenerate(schemaFolder, localAlias, connectionFactory, false);
-                        if (LocalSchemaStore.FindSubschema(schema, localSubschema) == null && localSubschema.Length > 0)
-                            AppendLog("The subschema " + localSubschema + " is not in the file: all the tables are sent.");
-                        _agentClient.InlineConfig = LocalSchemaStore.BuildInlineConfig(schema, localSubschema);
-                        AppendLog("Schema " + localAlias + (localSubschema.Length > 0 ? " / " + localSubschema : "") + ": " +
-                            LocalSchemaStore.TablesOf(schema, localSubschema).Count + " tables sent inline.");
-                    }
                     return await loop.RunAsync(
                         prompt,
                         reportDocument,

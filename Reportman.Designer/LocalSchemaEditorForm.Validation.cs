@@ -25,12 +25,14 @@ namespace Reportman.Designer
 {
     // The Validation tab: Save, and «Analyze with AI», which sends what the copilot would send for the
     // subschema to NlToSql/AnalyzeSchemaStream and shows the Markdown it answers (🟢/🟡/🔴 per table and
-    // column): what the AI does not understand.
+    // column): what the AI does not understand. Only a subschema is analyzed: all the tables (the
+    // dictionary) never go to the AI, as with the copilot (docs/esquemas-locales-pantalla-plan.md, §5.7.1).
     public partial class LocalSchemaEditorForm
     {
         private Button _btnValidationSave;
         private Button _btnAnalyze;
         private Button _btnStopAnalysis;
+        private Label _lblChooseSubschema;
         private Label _lblAnalysis;
         private WebMarkdownControl _markdown;
         private CancellationTokenSource _analysis;
@@ -54,10 +56,13 @@ namespace Reportman.Designer
             {
                 try { _analysis?.Cancel(); } catch (ObjectDisposedException) { }
             };
+            // With all the tables the button is disabled, and this says why
+            _lblChooseSubschema = new Label { AutoSize = true, Margin = new Padding(8, 9, 0, 0), Text = Tr(1985), Visible = false };
             _lblAnalysis = new Label { AutoSize = true, Margin = new Padding(8, 9, 0, 0), ForeColor = System.Drawing.SystemColors.GrayText };
             bar.Controls.Add(_btnValidationSave);
             bar.Controls.Add(_btnAnalyze);
             bar.Controls.Add(_btnStopAnalysis);
+            bar.Controls.Add(_lblChooseSubschema);
             bar.Controls.Add(_lblAnalysis);
             _markdown = new WebMarkdownControl { Dock = DockStyle.Fill };
 
@@ -73,8 +78,9 @@ namespace Reportman.Designer
                 return;
             bool running = _analysis != null;
             _btnValidationSave.Enabled = _file != null && !_busy;
-            _btnAnalyze.Enabled = _file != null && !_busy && !running;
+            _btnAnalyze.Enabled = _file != null && !_busy && !running && _current != null;
             _btnStopAnalysis.Visible = running;
+            _lblChooseSubschema.Visible = _file != null && _current == null && !running;
         }
 
         private string SchemaCaption
@@ -84,7 +90,9 @@ namespace Reportman.Designer
 
         private async void Analyze()
         {
-            if (_file == null || _analysis != null)
+            // Never all the tables: the button is disabled then, and this is the net under it (a name
+            // the file does not find would send the whole dictionary)
+            if (_file == null || _analysis != null || _current == null || LocalSchemaStore.FindSubschema(_file, _current.Name) == null)
                 return;
             CommitEdits();
             var cts = new CancellationTokenSource();
@@ -107,8 +115,8 @@ namespace Reportman.Designer
                     ApiKey = "",
                     HubDatabaseId = 0,
                     HubSchemaId = 0,
-                    // What the copilot would send for this subschema (all the tables without one)
-                    InlineConfig = LocalSchemaStore.BuildInlineConfig(_file, _current != null ? _current.Name : "")
+                    // What the copilot would send for this subschema
+                    InlineConfig = LocalSchemaStore.BuildInlineConfig(_file, _current.Name)
                 };
                 if (_ai.IsLocalAgent)
                 {

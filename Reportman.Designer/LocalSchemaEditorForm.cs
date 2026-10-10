@@ -92,6 +92,7 @@ namespace Reportman.Designer
         private Button _btnDelete;
         private Button _btnExport;
         private Button _btnImport;
+        private Button _btnLibrary;
         private TextBox _txtSchemaDescription;
         private Label _lblTablesCounter;
         private Label _lblColumnsCounter;
@@ -358,12 +359,13 @@ namespace Reportman.Designer
             _listSchemas.DrawItem += ListSchemas_DrawItem;
             _listSchemas.SelectedIndexChanged += ListSchemas_SelectedIndexChanged;
 
-            var buttons = new TableLayoutPanel { Dock = DockStyle.Bottom, ColumnCount = 2, RowCount = 3, Height = 96 };
+            var buttons = new TableLayoutPanel { Dock = DockStyle.Bottom, ColumnCount = 2, RowCount = 4, Height = 128 };
             buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 33.34f));
+            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
+            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
+            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
+            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
             _btnAdd = new Button { Text = Tr(149) + "...", Dock = DockStyle.Fill };
             _btnAdd.Click += (s, e) => AddSubschema();
             _btnDuplicate = new Button { Text = Tr(1847), Dock = DockStyle.Fill };
@@ -377,14 +379,20 @@ namespace Reportman.Designer
             _btnExport.Click += (s, e) => ExportSubschema();
             _btnImport = new Button { Text = Tr(1932), Dock = DockStyle.Fill };
             _btnImport.Click += (s, e) => ImportSubschema();
+            // The same import from the schema library of Reportman AI instead of a file
+            _btnLibrary = new Button { Text = Tr(1986), Dock = DockStyle.Fill };
+            _btnLibrary.Click += (s, e) => ImportFromLibrary();
             _toolTip.SetToolTip(_btnExport, Tr(1933));
             _toolTip.SetToolTip(_btnImport, Tr(1934));
+            _toolTip.SetToolTip(_btnLibrary, Tr(1987));
             buttons.Controls.Add(_btnAdd, 0, 0);
             buttons.Controls.Add(_btnDuplicate, 1, 0);
             buttons.Controls.Add(_btnRename, 0, 1);
             buttons.Controls.Add(_btnDelete, 1, 1);
             buttons.Controls.Add(_btnExport, 0, 2);
             buttons.Controls.Add(_btnImport, 1, 2);
+            buttons.Controls.Add(_btnLibrary, 0, 3);
+            buttons.SetColumnSpan(_btnLibrary, 2);
 
             var description = new Panel { Dock = DockStyle.Bottom, Height = 110, Padding = new Padding(0, 6, 0, 0) };
             var lblDescription = new Label { Text = Tr(197), Dock = DockStyle.Top, Height = 20 };
@@ -587,6 +595,7 @@ namespace Reportman.Designer
             // Export works with all the tables too (the whole catalog); import always makes a new subschema
             _btnExport.Enabled = hasFile;
             _btnImport.Enabled = hasFile;
+            _btnLibrary.Enabled = hasFile;
             _txtSchemaDescription.Enabled = _current != null;
             _btnRefresh.Enabled = !_busy && _createConnection != null;
             UpdateTablesButtons();
@@ -1118,7 +1127,88 @@ namespace Reportman.Designer
                 MessageBox.Show(this, Tr(1938), Caption(1932), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // As one added here: after saving, the copilot is left on it
+            ShowImported(result, Caption(1932));
+        }
+
+        /// <summary>
+        /// Makes a new subschema from a schema of the Reportman AI library (<c>GET api/schema/list</c>, then
+        /// <c>api/schema/{id}</c>): the same import as a file's, named as the library calls the schema; it stays
+        /// selected and unsaved, and the subschema stays local (nothing is written to the cloud).
+        /// </summary>
+        private async void ImportFromLibrary()
+        {
+            if (_file == null || _busy)
+                return;
+            CommitEdits();
+            string title = Caption(1986);
+            List<LocalSchemaLibraryCategory> categories = null;
+            SetBusy(true);
+            try
+            {
+                categories = LocalSchemaEditing.ParseLibrary(await RpAuthManager.Instance.GetSchemaLibraryAsync());
+            }
+            catch (Exception ex)
+            {
+                if (!IsDisposed)
+                    MessageBox.Show(this, TrFormat(1989, ErrorReason(ex)), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (!IsDisposed)
+                    SetBusy(false);
+            }
+            if (categories == null || IsDisposed)
+                return;
+            LocalSchemaLibrarySchema chosen = LocalSchemaLibraryForm.Choose(this, categories);
+            if (chosen == null)
+                return;
+
+            LocalSchemaImportResult result = null;
+            bool read = false;
+            SetBusy(true);
+            try
+            {
+                string schema = LocalSchemaEditing.LibraryFullSchema(await RpAuthManager.Instance.GetLibrarySchemaAsync(chosen.Id));
+                read = true;
+                if (!IsDisposed && schema.Length > 0)
+                    result = LocalSchemaEditing.Import(_file, schema, "", ReservedNames, chosen.Name);
+            }
+            catch (Exception ex)
+            {
+                if (!IsDisposed)
+                    MessageBox.Show(this, TrFormat(1989, ErrorReason(ex)), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (!IsDisposed)
+                    SetBusy(false);
+            }
+            if (!read || IsDisposed)
+                return;
+            if (result == null)
+            {
+                // Read, but not a schema: nothing was changed
+                MessageBox.Show(this, TrFormat(1989, Tr(1938)), title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ShowImported(result, title);
+        }
+
+        /// <summary>Why a request failed: its message and, when it says more, the one of its innermost cause.</summary>
+        private static string ErrorReason(Exception ex)
+        {
+            Exception inner = ex;
+            while (inner.InnerException != null)
+                inner = inner.InnerException;
+            return inner == ex || inner.Message == ex.Message ? ex.Message : ex.Message + " (" + inner.Message + ")";
+        }
+
+        /// <summary>
+        /// A subschema just imported, from a file or from the library: selected and unsaved, as one added here
+        /// (after saving, the copilot is left on it), saying what came in and what the database does not have.
+        /// </summary>
+        private void ShowImported(LocalSchemaImportResult result, string title)
+        {
             _added = result.Subschema;
             StructureChanged();
             FillAll(result.Subschema);
@@ -1128,7 +1218,7 @@ namespace Reportman.Designer
             string message = done;
             if (result.Skipped.Count > 0)
                 message += Environment.NewLine + Environment.NewLine + TrFormat(1937, LocalSchemaEditing.ShortList(result.Skipped, 12));
-            MessageBox.Show(this, message, Caption(1932), MessageBoxButtons.OK,
+            MessageBox.Show(this, message, title, MessageBoxButtons.OK,
                 result.Skipped.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
         }
 
