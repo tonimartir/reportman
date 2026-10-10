@@ -48,14 +48,14 @@ namespace Reportman.Designer
             
             _tabControl = new TabControl { Dock = DockStyle.Fill };
             _tabSql = new TabPage { Text = "SQL" };
-            _tabAudit = new TabPage { Text = "Audit" };
+            _tabAudit = new TabPage { Text = DesignerText.Tr(1553) };
             
             // Top Panel for SQL Tab
             _topPanel = new Panel { Dock = DockStyle.Top, Height = 55, Padding = new Padding(5) };
             
             _chkAiToggle = new CheckBox 
             { 
-                Text = "AI Autocomplete", 
+                Text = DesignerText.Tr(1947), 
                 Appearance = Appearance.Button, 
                 Dock = DockStyle.Right, 
                 Width = 120,

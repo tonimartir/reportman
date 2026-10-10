@@ -67,6 +67,9 @@ namespace Reportman.Designer
             _btnRemoveTables.Click += (s, e) => RemoveSelectedTables();
             _toolTip.SetToolTip(_btnAddTables, Tr(1909));
             _toolTip.SetToolTip(_btnRemoveTables, Tr(1910));
+            // The arrows say nothing to a screen reader: the same texts as the tooltips
+            _btnAddTables.AccessibleName = Tr(1909);
+            _btnRemoveTables.AccessibleName = Tr(1910);
             _tableButtonsPanel.Controls.Add(_btnAddTables);
             _tableButtonsPanel.Controls.Add(_btnRemoveTables);
 

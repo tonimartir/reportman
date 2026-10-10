@@ -34,6 +34,9 @@ namespace Reportman.Designer
             bconnect.Text = Translator.TranslateStr(156);
             bup.Text = Translator.TranslateStr(139);
             bdown.Text = Translator.TranslateStr(140);
+            mdataaddconnection.Text = Translator.TranslateStr(154);
+            madddataset.Text = Translator.TranslateStr(1192);
+            maddparam.Text = Translator.TranslateStr(722);
 
         }
         /// <summary>

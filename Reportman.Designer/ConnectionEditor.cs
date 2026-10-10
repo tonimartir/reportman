@@ -148,7 +148,7 @@ namespace Reportman.Designer
                 catch (Exception ex)
                 {
                     MessageBox.Show(framemain.FindForm(),
-                        "Could not save the agent connection to dbxconnections.ini:\n" + ex.Message,
+                        Translator.TranslateStr(1758) + ex.Message,
                         "dbxconnections", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -179,7 +179,7 @@ namespace Reportman.Designer
                 newform.ShowIcon = false;
                 newform.ShowInTaskbar = false;
                 newform.StartPosition = FormStartPosition.CenterScreen;
-                newform.Text = "Database connection";
+                newform.Text = Translator.TranslateStr(1979);
                 newform.Width = Convert.ToInt32(720 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 newform.Height = Convert.ToInt32(560 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
 

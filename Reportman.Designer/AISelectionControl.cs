@@ -127,9 +127,9 @@ namespace Reportman.Designer
             gridAI.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             gridAI.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-            _lblProvider = new Label { Text = "PROVIDER", AutoSize = true, Font = new Font("Segoe UI", 8f) };
+            _lblProvider = new Label { Text = DesignerText.Tr(1516).ToUpper(), AutoSize = true, Font = new Font("Segoe UI", 8f) };
             _comboProvider = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };
-            _comboProvider.Items.AddRange(new object[] { "Standard", "Precision" });
+            _comboProvider.Items.AddRange(new object[] { DesignerText.Tr(1518), DesignerText.Tr(1519) });
             _comboProvider.SelectedIndex = 0;
             _comboProvider.SelectedIndexChanged += (s, e) =>
             {
@@ -137,9 +137,9 @@ namespace Reportman.Designer
                 ProviderChanged?.Invoke(this, EventArgs.Empty);
             };
 
-            _lblMode = new Label { Text = "MODE", AutoSize = true, Font = new Font("Segoe UI", 8f) };
+            _lblMode = new Label { Text = DesignerText.Tr(1517).ToUpper(), AutoSize = true, Font = new Font("Segoe UI", 8f) };
             _comboMode = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };
-            _comboMode.Items.AddRange(new object[] { "Fast", "Reasoning" });
+            _comboMode.Items.AddRange(new object[] { DesignerText.Tr(1520), DesignerText.Tr(1521) });
             _comboMode.SelectedIndex = 0;
 
             // Credit gauge panel (custom painted circle)
@@ -152,7 +152,7 @@ namespace Reportman.Designer
             };
             _panelGauge.Paint += PanelGauge_Paint;
             _gaugeTooltip = new ToolTip();
-            _gaugeTooltip.SetToolTip(_panelGauge, "Credits");
+            _gaugeTooltip.SetToolTip(_panelGauge, DesignerText.Tr(1524));
 
             gridAI.Controls.Add(_lblProvider, 0, 0);
             gridAI.Controls.Add(_comboProvider, 0, 1);
@@ -185,7 +185,7 @@ namespace Reportman.Designer
             gridInference.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44f));
             gridInference.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-            _btnStop = new Button { Text = "Stop", AutoSize = true, MinimumSize = new Size(50, 30) };
+            _btnStop = new Button { Text = DesignerText.Tr(1522), AutoSize = true, MinimumSize = new Size(50, 30) };
             _btnStop.Click += (s, e) => StopRequested?.Invoke(this, EventArgs.Empty);
 
             _lblTokens = new Label
@@ -616,14 +616,18 @@ namespace Reportman.Designer
         /// </summary>
         private static string BuildGaugeTooltip(RpAuthManager auth)
         {
+            // The texts of the Delphi designer's gauge hint
             var profile = auth.Profile;
             string text;
             if (auth.UsesFreeCredits)
-                text = string.Format("Free credits: {0:N0} of {1:N0} left", profile.FreeRemaining, profile.FreeInitial);
+                text = DesignerText.Tr(1524) + Environment.NewLine +
+                    DesignerText.Format(1835, profile.FreeRemaining.ToString("N0"), profile.FreeInitial.ToString("N0"));
             else
-                text = string.Format("Daily credits: {0:N0} of {1:N0} used", profile.DailyConsumed, profile.DailyMax);
+                text = DesignerText.Tr(1525) + Environment.NewLine +
+                    DesignerText.Tr(1526) + ": " + profile.DailyConsumed.ToString("N0") + Environment.NewLine +
+                    DesignerText.Tr(1527) + ": " + profile.DailyMax.ToString("N0");
             if (!auth.IsLoggedIn)
-                text += Environment.NewLine + string.Format("Sign in and get {0:N0} free credits that never expire", auth.LoginGiftCredits);
+                text += Environment.NewLine + DesignerText.Format(1833, auth.LoginGiftCredits.ToString("N0"));
             return text;
         }
 

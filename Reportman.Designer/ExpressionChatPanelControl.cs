@@ -147,11 +147,11 @@ namespace Reportman.Designer
 
             _tabControl = new TabControl { Dock = DockStyle.Fill };
 
-            _chatTab = new TabPage { Text = "Chat" };
+            _chatTab = new TabPage { Text = DesignerText.Tr(1529) };
             _conversation = new WebMarkdownControl { Dock = DockStyle.Fill };
             _chatTab.Controls.Add(_conversation);
 
-            _aiLogTab = new TabPage { Text = "AI Log" };
+            _aiLogTab = new TabPage { Text = DesignerText.Tr(1530) };
             Panel aiLogToolbar = new Panel
             {
                 Dock = DockStyle.Top,
@@ -160,7 +160,7 @@ namespace Reportman.Designer
             };
             Button clearAiLogButton = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Left,
                 Width = 90
             };
@@ -173,7 +173,7 @@ namespace Reportman.Designer
             _aiLogTab.Controls.Add(_aiLogView);
             _aiLogTab.Controls.Add(aiLogToolbar);
 
-            _netLogTab = new TabPage { Text = "Net Log" };
+            _netLogTab = new TabPage { Text = DesignerText.Tr(1531) };
             Panel netLogToolbar = new Panel
             {
                 Dock = DockStyle.Top,
@@ -182,7 +182,7 @@ namespace Reportman.Designer
             };
             Button clearNetLogButton = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Left,
                 Width = 90
             };
@@ -214,7 +214,7 @@ namespace Reportman.Designer
 
             _sendButton = new Button
             {
-                Text = "Send",
+                Text = DesignerText.Tr(1534),
                 Dock = DockStyle.Top,
                 Height = 30
             };
@@ -222,7 +222,7 @@ namespace Reportman.Designer
 
             _applyButton = new Button
             {
-                Text = "Apply",
+                Text = DesignerText.Tr(1535),
                 Dock = DockStyle.Top,
                 Height = 30,
                 Enabled = false
@@ -231,7 +231,7 @@ namespace Reportman.Designer
 
             _clearButton = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Top,
                 Height = 30
             };
@@ -381,7 +381,7 @@ namespace Reportman.Designer
         {
             _sendButton.Enabled = !_isBusy && !string.IsNullOrWhiteSpace(_promptText.Text);
             _applyButton.Enabled = !_isBusy && !string.IsNullOrWhiteSpace(_suggestedExpression);
-            _clearButton.Text = _isBusy ? "Stop" : "Clear";
+            _clearButton.Text = DesignerText.Tr(_isBusy ? 1522 : 1532);
         }
 
         private void SetBusy(bool busy)
@@ -419,7 +419,7 @@ namespace Reportman.Designer
         {
             if (_cts != null)
                 _cts.Cancel();
-            SafeAppendMessage("system", "Inference was cancelled by the user.");
+            SafeAppendMessage("system", DesignerText.Tr(1536));
         }
 
         private async void SendButton_Click(object sender, EventArgs e)
@@ -455,7 +455,7 @@ namespace Reportman.Designer
                 string validationError;
                 if (!ValidateSuggestedExpression(result.Expression, out validationError))
                 {
-                    SafeAppendMessage("system", "Local validation failed. Retrying once: " + validationError);
+                    SafeAppendMessage("system", DesignerText.Tr(1601) + " " + validationError);
                     result = await RequestSuggestionAsync(prompt, result.Expression, true, cursorPosition, semanticContextJson, _cts.Token);
                     if (!result.Success)
                     {
@@ -465,31 +465,31 @@ namespace Reportman.Designer
 
                     if (!ValidateSuggestedExpression(result.Expression, out validationError))
                     {
-                        string retryMessage = "Generated expression is still invalid after one automatic fix: " + validationError;
+                        string retryMessage = DesignerText.Tr(1602) + " " + validationError;
                         if (!string.IsNullOrWhiteSpace(result.Explanation))
                             retryMessage += Environment.NewLine + Environment.NewLine + result.Explanation;
-                        retryMessage += Environment.NewLine + Environment.NewLine + "You can still apply it and edit it manually.";
+                        retryMessage += Environment.NewLine + Environment.NewLine + DesignerText.Tr(1603);
                         SetSuggestedExpression(result.Expression, retryMessage);
                         return;
                     }
 
                     SetSuggestedExpression(result.Expression,
                         string.IsNullOrWhiteSpace(result.Explanation)
-                            ? "Expression fixed after local validation."
-                            : "Expression fixed after local validation." + Environment.NewLine + Environment.NewLine + result.Explanation);
+                            ? DesignerText.Tr(1604)
+                            : DesignerText.Tr(1604) + Environment.NewLine + Environment.NewLine + result.Explanation);
                     return;
                 }
 
                 SetSuggestedExpression(result.Expression,
-                    string.IsNullOrWhiteSpace(result.Explanation) ? "Expression generated." : result.Explanation);
+                    string.IsNullOrWhiteSpace(result.Explanation) ? DesignerText.Tr(1605) : result.Explanation);
             }
             catch (OperationCanceledException)
             {
-                SafeAppendMessage("system", "Inference was cancelled by the user.");
+                SafeAppendMessage("system", DesignerText.Tr(1536));
             }
             catch (Exception ex)
             {
-                SafeAppendMessage("system", "Error: " + ex.Message);
+                SafeAppendMessage("system", DesignerText.Tr(355) + ": " + ex.Message);
             }
             finally
             {
@@ -569,14 +569,15 @@ namespace Reportman.Designer
             errorMessage = "";
             bool result = !string.IsNullOrWhiteSpace(expression);
             if (!result)
-                errorMessage = "Empty expression returned";
+                errorMessage = DesignerText.Tr(1608);
             return result;
         }
 
         private void SetSuggestedExpression(string expression, string message)
         {
             _suggestedExpression = expression ?? "";
-            string text = string.IsNullOrWhiteSpace(message) ? "Suggested expression:" : message + Environment.NewLine + Environment.NewLine + "Suggested expression:";
+            string title = DesignerText.Tr(1538) + ":";
+            string text = string.IsNullOrWhiteSpace(message) ? title : message + Environment.NewLine + Environment.NewLine + title;
             text += Environment.NewLine + "```reportman" + Environment.NewLine + _suggestedExpression + Environment.NewLine + "```";
             SafeAppendMessage("assistant", text);
             UpdateButtons();
@@ -587,7 +588,7 @@ namespace Reportman.Designer
             SuggestionResult result = new SuggestionResult();
             if (resultDoc == null)
             {
-                result.ErrorMessage = "No final response received";
+                result.ErrorMessage = DesignerText.Tr(1606);
                 return result;
             }
 
@@ -616,7 +617,7 @@ namespace Reportman.Designer
             if (string.IsNullOrWhiteSpace(result.Expression))
             {
                 result.ErrorMessage = string.IsNullOrWhiteSpace(result.Explanation)
-                    ? "Empty expression returned"
+                    ? DesignerText.Tr(1608)
                     : result.Explanation;
             }
 

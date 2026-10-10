@@ -174,10 +174,10 @@ namespace Reportman.Designer
         {
             _popupMenu = new ContextMenuStrip();
 
-            _menuLogin = new ToolStripMenuItem("Login");
+            _menuLogin = new ToolStripMenuItem(DesignerText.Tr(1492));
             _menuLogin.Click += (s, e) => ShowLoginDialog();
 
-            _menuLanguage = new ToolStripMenuItem("Language");
+            _menuLanguage = new ToolStripMenuItem(DesignerText.Tr(1494));
             // Build language submenu from supported languages
             string[] languages = new string[] { "English", "Spanish", "Italian", "French", "German", "Portuguese", "Chinese", "Catalan" };
             foreach (string lang in languages)
@@ -193,22 +193,22 @@ namespace Reportman.Designer
             }
             UpdateLanguageChecks();
 
-            _menuPricePlans = new ToolStripMenuItem("AI price plans");
+            _menuPricePlans = new ToolStripMenuItem(DesignerText.Tr(1495));
             _menuPricePlans.Click += (s, e) =>
             {
                 try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = "https://app.reportman.es/subscription", UseShellExecute = true }); } catch { }
             };
 
-            _menuConfigureSchemas = new ToolStripMenuItem("Configure DB Schemas");
+            _menuConfigureSchemas = new ToolStripMenuItem(DesignerText.Tr(1496));
             _menuConfigureSchemas.Click += (s, e) =>
             {
                 try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = "https://app.reportman.es/database-config", UseShellExecute = true }); } catch { }
             };
 
-            _menuDbAiAgent = new ToolStripMenuItem("DB && AI Agent");
+            _menuDbAiAgent = new ToolStripMenuItem(DesignerText.Tr(1497).Replace("&", "&&"));
 
             _menuSepLogout = new ToolStripSeparator();
-            _menuLogout = new ToolStripMenuItem("Logout");
+            _menuLogout = new ToolStripMenuItem(DesignerText.Tr(1493));
             _menuLogout.Click += (s, e) =>
             {
                 RpAuthManager.Instance.Logout();
@@ -332,7 +332,7 @@ namespace Reportman.Designer
         /// </summary>
         private static string GuestCaption()
         {
-            return "Guest: sign in and get more credits";
+            return DesignerText.Tr(1834);
         }
 
         /// <summary>
@@ -341,8 +341,7 @@ namespace Reportman.Designer
         /// </summary>
         private static string LoginGiftCaption()
         {
-            return string.Format("Sign in and get {0:N0} free credits that never expire",
-                RpAuthManager.Instance.LoginGiftCredits);
+            return DesignerText.Format(1833, RpAuthManager.Instance.LoginGiftCredits.ToString("N0"));
         }
 
         private string GetTierName(int tierId)

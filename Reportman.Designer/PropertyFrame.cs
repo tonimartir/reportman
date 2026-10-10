@@ -11,6 +11,9 @@ namespace Reportman.Designer
         public PropertyFrame()
         {
             InitializeComponent();
+            // Send to back and bring to front, as the Delphi inspector
+            bback.Text = DesignerText.Tr(672);
+            bforward.Text = DesignerText.Tr(671);
             // Add Object inspector grid
             inspector = new ObjectInspector();
             //inspector = new Inspector();

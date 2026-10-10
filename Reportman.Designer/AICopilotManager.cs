@@ -68,9 +68,8 @@ namespace Reportman.Designer
                 return true;
 
             var result = MessageBox.Show(owner, 
-                "The AI is currently generating a response or processing a task.\n\n" +
-                "If you modify the report now, it might cause inconsistencies. Do you want to cancel the AI task and proceed?", 
-                "AI is Thinking", 
+                DesignerText.Tr(1651), 
+                DesignerText.Tr(729), 
                 MessageBoxButtons.YesNo, 
                 MessageBoxIcon.Warning);
 

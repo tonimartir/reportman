@@ -296,7 +296,7 @@ namespace Reportman.Designer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(FindForm(), ex.Message, "Local schema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(FindForm(), ex.Message, DesignerText.Format(1845, alias), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -429,7 +429,7 @@ namespace Reportman.Designer
 
             _btnSend = new Button
             {
-                Text = "Send",
+                Text = DesignerText.Tr(1534),
                 Dock = DockStyle.Top,
                 Height = 30
             };
@@ -437,7 +437,7 @@ namespace Reportman.Designer
 
             _btnApply = new Button
             {
-                Text = "Apply",
+                Text = DesignerText.Tr(1535),
                 Dock = DockStyle.Top,
                 Height = 30,
                 Enabled = false
@@ -446,7 +446,7 @@ namespace Reportman.Designer
 
             _btnClear = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Top,
                 Height = 30
             };
@@ -474,12 +474,12 @@ namespace Reportman.Designer
             _tabControl = new TabControl { Dock = DockStyle.Fill };
 
             // --- Tab: Chat ---
-            _tabChat = new TabPage { Text = "Chat" };
+            _tabChat = new TabPage { Text = DesignerText.Tr(1529) };
             _markdownControl = new WebMarkdownControl { Dock = DockStyle.Fill };
             _tabChat.Controls.Add(_markdownControl);
 
             // --- Tab: AI Log ---
-            _tabLog = new TabPage { Text = "AI Log" };
+            _tabLog = new TabPage { Text = DesignerText.Tr(1530) };
 
             _logToolbar = new Panel
             {
@@ -489,14 +489,14 @@ namespace Reportman.Designer
             };
             _btnClearLog = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Left,
                 Width = 93
             };
             _btnClearLog.Click += (s, e) => _logView.ClearAll();
             _btnReportAI = new Button
             {
-                Text = "Report content",
+                Text = DesignerText.Tr(1533),
                 Dock = DockStyle.Left,
                 Width = 138
             };
@@ -514,7 +514,7 @@ namespace Reportman.Designer
             _tabLog.Controls.Add(_logToolbar);
 
             // --- Tab: Net Log ---
-            _tabNetLog = new TabPage { Text = "Net Log" };
+            _tabNetLog = new TabPage { Text = DesignerText.Tr(1531) };
 
             _netLogToolbar = new Panel
             {
@@ -524,7 +524,7 @@ namespace Reportman.Designer
             };
             _btnClearNetLog = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Left,
                 Width = 93
             };
@@ -580,11 +580,11 @@ namespace Reportman.Designer
 
             if (_isBusy)
             {
-                _btnClear.Text = "Stop";
+                _btnClear.Text = DesignerText.Tr(1522);
             }
             else
             {
-                _btnClear.Text = "Clear";
+                _btnClear.Text = DesignerText.Tr(1532);
             }
         }
 
@@ -780,12 +780,12 @@ namespace Reportman.Designer
             catch (OperationCanceledException)
             {
                 _markdownControl.FinishStreaming();
-                SafeAppendMessage("system", "Inference was cancelled by the user.");
+                SafeAppendMessage("system", DesignerText.Tr(1536));
             }
             catch (Exception ex)
             {
                 _markdownControl.FinishStreaming();
-                SafeAppendMessage("system", "Error: " + ex.Message);
+                SafeAppendMessage("system", DesignerText.Tr(355) + ": " + ex.Message);
             }
             finally
             {
@@ -867,7 +867,7 @@ namespace Reportman.Designer
             {
                 if (outcome.TooManyTurns)
                 {
-                    SafeAppendMessage("system", "Error: the copilot asked to run SQL too many times; the request was stopped.");
+                    SafeAppendMessage("system", DesignerText.Tr(355) + ": " + DesignerText.Tr(1945));
                     return;
                 }
                 HandleModifyReportResult(resultDoc, outcome.DocumentToApply);
@@ -878,7 +878,7 @@ namespace Reportman.Designer
         {
             if (resultDoc == null)
             {
-                SafeAppendMessage("assistant", "No report changes were returned.");
+                SafeAppendMessage("assistant", DesignerText.Tr(1540));
                 return;
             }
 
@@ -891,20 +891,20 @@ namespace Reportman.Designer
                 if (ReportmanAgentClient.IsSchemaTooLargeForTier(resultDoc))
                     SafeAppendMessage("system", errorMessage);
                 else
-                    SafeAppendMessage("system", "Error: " + ComposeApiErrorMessage(errorMessage, GetJsonString(root, "debugDetails")));
+                    SafeAppendMessage("system", DesignerText.Tr(355) + ": " + ComposeApiErrorMessage(errorMessage, GetJsonString(root, "debugDetails")));
                 return;
             }
 
             if (!root.TryGetProperty("result", out var resultElement) || resultElement.ValueKind != JsonValueKind.Object)
             {
-                SafeAppendMessage("assistant", "No report changes were returned.");
+                SafeAppendMessage("assistant", DesignerText.Tr(1540));
                 return;
             }
 
             string resultError = GetJsonString(resultElement, "errorMessage");
             if (!string.IsNullOrWhiteSpace(resultError))
             {
-                SafeAppendMessage("system", "Error: " + resultError);
+                SafeAppendMessage("system", DesignerText.Tr(355) + ": " + resultError);
                 return;
             }
 
@@ -921,7 +921,7 @@ namespace Reportman.Designer
 
             string message = GetJsonString(resultElement, "explanation").Trim();
             if (message.Length == 0)
-                message = !string.IsNullOrWhiteSpace(modifiedReportDocument) ? "Report updated." : "No report changes were returned.";
+                message = DesignerText.Tr(!string.IsNullOrWhiteSpace(modifiedReportDocument) ? 1539 : 1540);
             SafeAppendMessage("assistant", message);
         }
 

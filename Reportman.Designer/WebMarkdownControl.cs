@@ -133,12 +133,74 @@ namespace Reportman.Designer
             if (e.IsSuccess)
             {
                 _isReady = true;
+                _webView.ExecuteScriptAsync(BuildLocalizationScript());
                 FlushPendingScripts();
             }
             else
             {
                 Console.WriteLine($"WebMarkdown Navigation Failed. Error: {e.WebErrorStatus}");
             }
+        }
+
+        /// <summary>
+        /// index.html writes its labels in English (the copy button, the message titles and the
+        /// thinking blocks): the script puts the designer's translations in their place, also in the
+        /// messages added later.
+        /// </summary>
+        private static string BuildLocalizationScript()
+        {
+            string labels = JsonSerializer.Serialize(new Dictionary<string, string>
+            {
+                { "copyAll", DesignerText.Tr(1940) },
+                { "copied", DesignerText.Tr(1941) },
+                { "You", DesignerText.Tr(1942) },
+                { "Assistant", DesignerText.Tr(1943) },
+                { "thinking", DesignerText.Tr(1944) }
+            });
+            return @"(function (L) {
+    var btn = document.getElementById('copy-btn');
+    if (btn && btn.lastChild)
+        btn.lastChild.textContent = ' ' + L.copyAll;
+    // The same as index.html, with the translated confirmation
+    window.showCopySuccess = function (b) {
+        var span = b.querySelector('span');
+        var icon = span.textContent;
+        var text = b.lastChild.textContent;
+        span.textContent = '✅';
+        b.lastChild.textContent = ' ' + L.copied;
+        b.classList.add('copy-success');
+        setTimeout(function () {
+            span.textContent = icon;
+            b.lastChild.textContent = text;
+            b.classList.remove('copy-success');
+        }, 2000);
+    };
+    function translate(node) {
+        if (!node || node.nodeType !== 1)
+            return;
+        var titles = node.querySelectorAll('.msg-header > span:last-child');
+        for (var i = 0; i < titles.length; i++) {
+            var title = titles[i].textContent;
+            if ((title === 'You' || title === 'Assistant') && L[title] !== title)
+                titles[i].textContent = L[title];
+        }
+        var thinking = node.querySelectorAll('details.think-block > summary');
+        for (var j = 0; j < thinking.length; j++) {
+            var summary = thinking[j].textContent;
+            if (summary.indexOf('Thinking...') >= 0 && L.thinking !== 'Thinking...')
+                thinking[j].textContent = summary.replace('Thinking...', L.thinking);
+        }
+    }
+    var messages = document.getElementById('messages');
+    if (!messages)
+        return;
+    translate(messages);
+    new MutationObserver(function (records) {
+        for (var r = 0; r < records.length; r++)
+            for (var k = 0; k < records[r].addedNodes.length; k++)
+                translate(records[r].addedNodes[k]);
+    }).observe(messages, { childList: true, subtree: true });
+})(" + labels + ");";
         }
 
         private void ExecuteOrQueue(string script)

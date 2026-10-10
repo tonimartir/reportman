@@ -30,6 +30,7 @@ namespace Reportman.Designer
 
             BOK.Text = Translator.TranslateStr(93);
             bcancel.Text = Translator.TranslateStr(94);
+            bshowdata.Text = Translator.TranslateStr(156);
 
         }
         private void Init()
@@ -70,8 +71,7 @@ namespace Reportman.Designer
                 Dock = DockStyle.Fill,
                 CurrentSqlProvider = SyncSqlAndReturnAsync
             };
-            sqlChatPanel.Initialize(MemoSQL.Text,
-                "Write your query in natural language. A new SQL query will be generated based on the current SQL and the selected schema. Click 'Apply' to use the generated SQL.");
+            sqlChatPanel.Initialize(MemoSQL.Text, Translator.TranslateStr(1556));
             sqlChatPanel.ApplySuggestion += SqlChatPanel_ApplySuggestion;
             sqlChatPanel.SchemaContextChanged += SqlChatPanel_SchemaContextChanged;
 

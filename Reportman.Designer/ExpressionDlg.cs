@@ -15,7 +15,7 @@ namespace Reportman.Designer
     /// </summary>
     public partial class ExpressionDlg : UserControl
     {
-        private const string ExpressionChatInitialMessage = "Ask for help rewriting, simplifying or validating the current expression. Click 'Apply' to replace the expression.";
+        private static string ExpressionChatInitialMessage { get { return Translator.TranslateStr(1600); } }
 
         Report Report;
         Evaluator Evaluator;
@@ -41,6 +41,7 @@ namespace Reportman.Designer
             BAdd.Text = Translator.TranslateStr(243);
             BCheckSyn.Text = Translator.TranslateStr(244);
             BShowResult.Text = Translator.TranslateStr(246);
+            BConectar.Text = Translator.TranslateStr(753);
             LCategory.Items.Clear();
             LCategory.Items.Add(Translator.TranslateStr(247));
             LCategory.Items.Add(Translator.TranslateStr(248));
@@ -285,7 +286,7 @@ namespace Reportman.Designer
             // /
             oplist.Add(new HelpInformation("/", Translator.TranslateStr(456), "", ""));
             // :=
-            oplist.Add(new HelpInformation(":=", "Assign value to variable", "", ""));
+            oplist.Add(new HelpInformation(":=", Translator.TranslateStr(1949), "", ""));
             // =
             oplist.Add(new HelpInformation("=", Translator.TranslateStr(457), "", ""));
             // >=
@@ -482,7 +483,7 @@ namespace Reportman.Designer
             {
                 if (string.IsNullOrWhiteSpace(expression))
                 {
-                    errorMessage = "Empty expression returned";
+                    errorMessage = Translator.TranslateStr(1608);
                     return false;
                 }
                 return true;
@@ -542,7 +543,7 @@ namespace Reportman.Designer
             try
             {
                 Evaluator.CheckSyntax(MemoExpre.Text);
-                MessageBox.Show("Syntax is correct", "Correct", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Translator.TranslateStr(1490), Translator.TranslateStr(1773), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -553,7 +554,7 @@ namespace Reportman.Designer
                 }
                 MemoExpre.Focus();
                 //throw;    // do not throw message it will raise unhandled exception
-                MessageBox.Show(ex.Message, "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Translator.TranslateStr(355), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -563,7 +564,7 @@ namespace Reportman.Designer
             try
             {
                 Evaluator.Evaluate();
-                MessageBox.Show(Evaluator.Result.ToString(), "Result", MessageBoxButtons.OK, MessageBoxIcon.None);
+                MessageBox.Show(Evaluator.Result.ToString(), Translator.TranslateStr(1948), MessageBoxButtons.OK, MessageBoxIcon.None);
             }
             catch (Exception ex)
             {
@@ -574,7 +575,7 @@ namespace Reportman.Designer
                 }
                 MemoExpre.Focus();
                 //throw;      // do not throw message it will raise unhandled exception
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Translator.TranslateStr(355), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }            
         }
     }

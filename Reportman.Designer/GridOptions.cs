@@ -21,7 +21,7 @@ namespace Reportman.Designer
 
             bok.Text = Translator.TranslateStr(93);
             bcancel.Text = Translator.TranslateStr(94);
-            Text = Translator.TranslateStr(94);
+            Text = Translator.TranslateStr(179);
 
             lhorzontal.Text = Translator.TranslateStr(180);
             lvertical.Text = Translator.TranslateStr(181);

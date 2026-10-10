@@ -43,6 +43,8 @@ namespace Reportman.Designer
             labelReportSearchField.Text = Translator.TranslateStr(1117);
             labelReportGroupsTable.Text = Translator.TranslateStr(1118);
             labelConnectionString.Text = Translator.TranslateStr(1119);
+            label1.Text = Translator.TranslateStr(1516);
+            bconnect.Text = Translator.TranslateStr(753);
 
             BuildDbxPathRow();
         }
@@ -67,7 +69,7 @@ namespace Reportman.Designer
             Label l = new Label();
             l.Dock = DockStyle.Top;
             l.AutoSize = true;
-            l.Text = "dbxconnections.ini (HTTP Agent connections):";
+            l.Text = "dbxconnections.ini (" + Translator.TranslateStr(1966) + "):";
 
             p.Controls.Add(tb);
             p.Controls.Add(l);

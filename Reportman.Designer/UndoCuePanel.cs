@@ -193,7 +193,7 @@ namespace Reportman.Designer
             {
                 using (var font = new Font("Segoe UI", 9f))
                 {
-                    e.Graphics.DrawString("No undo operations", font, Brushes.Gray, 10, 10);
+                    e.Graphics.DrawString(Translator.TranslateStr(1963), font, Brushes.Gray, 10, 10);
                 }
                 return;
             }
@@ -259,12 +259,12 @@ namespace Reportman.Designer
                     }
                     if (!string.IsNullOrEmpty(op.OldParentName))
                     {
-                        e.Graphics.DrawString("Old Parent: " + op.OldParentName, fontSmall, Brushes.FromArgb(80, 80, 80), 16, detailY);
+                        e.Graphics.DrawString(Translator.TranslateStr(1964) + ": " + op.OldParentName, fontSmall, Brushes.FromArgb(80, 80, 80), 16, detailY);
                         detailY += PropertyLineHeight;
                     }
                     if (op.OldItemIndex.HasValue)
                     {
-                        e.Graphics.DrawString("Old Index: " + op.OldItemIndex.Value, fontSmall, Brushes.FromArgb(80, 80, 80), 16, detailY);
+                        e.Graphics.DrawString(Translator.TranslateStr(1965) + ": " + op.OldItemIndex.Value, fontSmall, Brushes.FromArgb(80, 80, 80), 16, detailY);
                         detailY += PropertyLineHeight;
                     }
 

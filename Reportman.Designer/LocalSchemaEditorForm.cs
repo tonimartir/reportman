@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -89,6 +90,8 @@ namespace Reportman.Designer
         private Button _btnDuplicate;
         private Button _btnRename;
         private Button _btnDelete;
+        private Button _btnExport;
+        private Button _btnImport;
         private TextBox _txtSchemaDescription;
         private Label _lblTablesCounter;
         private Label _lblColumnsCounter;
@@ -355,11 +358,12 @@ namespace Reportman.Designer
             _listSchemas.DrawItem += ListSchemas_DrawItem;
             _listSchemas.SelectedIndexChanged += ListSchemas_SelectedIndexChanged;
 
-            var buttons = new TableLayoutPanel { Dock = DockStyle.Bottom, ColumnCount = 2, RowCount = 2, Height = 64 };
+            var buttons = new TableLayoutPanel { Dock = DockStyle.Bottom, ColumnCount = 2, RowCount = 3, Height = 96 };
             buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 50f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 50f));
+            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
+            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
+            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 33.34f));
             _btnAdd = new Button { Text = Tr(149) + "...", Dock = DockStyle.Fill };
             _btnAdd.Click += (s, e) => AddSubschema();
             _btnDuplicate = new Button { Text = Tr(1847), Dock = DockStyle.Fill };
@@ -368,10 +372,19 @@ namespace Reportman.Designer
             _btnRename.Click += (s, e) => RenameSubschema();
             _btnDelete = new Button { Text = Tr(150), Dock = DockStyle.Fill };
             _btnDelete.Click += (s, e) => DeleteSubschema();
+            // In the format of the Reportman AI web (its schema screen exports and imports the same file)
+            _btnExport = new Button { Text = Tr(1931), Dock = DockStyle.Fill };
+            _btnExport.Click += (s, e) => ExportSubschema();
+            _btnImport = new Button { Text = Tr(1932), Dock = DockStyle.Fill };
+            _btnImport.Click += (s, e) => ImportSubschema();
+            _toolTip.SetToolTip(_btnExport, Tr(1933));
+            _toolTip.SetToolTip(_btnImport, Tr(1934));
             buttons.Controls.Add(_btnAdd, 0, 0);
             buttons.Controls.Add(_btnDuplicate, 1, 0);
             buttons.Controls.Add(_btnRename, 0, 1);
             buttons.Controls.Add(_btnDelete, 1, 1);
+            buttons.Controls.Add(_btnExport, 0, 2);
+            buttons.Controls.Add(_btnImport, 1, 2);
 
             var description = new Panel { Dock = DockStyle.Bottom, Height = 110, Padding = new Padding(0, 6, 0, 0) };
             var lblDescription = new Label { Text = Tr(197), Dock = DockStyle.Top, Height = 20 };
@@ -571,6 +584,9 @@ namespace Reportman.Designer
             _btnDuplicate.Enabled = hasFile && _current != null;
             _btnRename.Enabled = hasFile && _current != null;
             _btnDelete.Enabled = hasFile && _current != null;
+            // Export works with all the tables too (the whole catalog); import always makes a new subschema
+            _btnExport.Enabled = hasFile;
+            _btnImport.Enabled = hasFile;
             _txtSchemaDescription.Enabled = _current != null;
             _btnRefresh.Enabled = !_busy && _createConnection != null;
             UpdateTablesButtons();
@@ -830,12 +846,20 @@ namespace Reportman.Designer
         /// <summary>An entry of the list: a subschema, or all the tables (null).</summary>
         private sealed class SchemaEntry
         {
-            public SchemaEntry(LocalSubschema schema)
+            public SchemaEntry(LocalSchemaEditorForm owner, LocalSubschema schema)
             {
+                _owner = owner;
                 Schema = schema;
             }
 
+            private readonly LocalSchemaEditorForm _owner;
             public readonly LocalSubschema Schema;
+
+            // The text the list draws, also what accessibility reads for the item
+            public override string ToString()
+            {
+                return _owner.EntryText(this);
+            }
         }
 
         private string EntryText(SchemaEntry entry)
@@ -884,11 +908,11 @@ namespace Reportman.Designer
                 int index = -1;
                 if (_file != null)
                 {
-                    _listSchemas.Items.Add(new SchemaEntry(null));
+                    _listSchemas.Items.Add(new SchemaEntry(this, null));
                     index = 0;
                     foreach (LocalSubschema s in _file.Schemas)
                     {
-                        _listSchemas.Items.Add(new SchemaEntry(s));
+                        _listSchemas.Items.Add(new SchemaEntry(this, s));
                         if (select != null && s == select)
                             index = _listSchemas.Items.Count - 1;
                     }
@@ -944,9 +968,7 @@ namespace Reportman.Designer
                 string problem = "";
                 if (name.Length == 0)
                     problem = Tr(1905);
-                else if (string.Equals(name, Tr(1843), StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(name, "All tables", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(name, "All the tables", StringComparison.OrdinalIgnoreCase))
+                else if (Array.Exists(ReservedNames, r => string.Equals(r, name, StringComparison.OrdinalIgnoreCase)))
                     problem = TrFormat(1906, Tr(1843));
                 else if (_file.Schemas.Exists(s => s != except && string.Equals(s.Name, name, StringComparison.OrdinalIgnoreCase)))
                     problem = TrFormat(1907, name);
@@ -959,10 +981,13 @@ namespace Reportman.Designer
 
         private string UniqueName(string name)
         {
-            string result = name;
-            for (int n = 2; _file.Schemas.Exists(s => string.Equals(s.Name, result, StringComparison.OrdinalIgnoreCase)); n++)
-                result = name + " " + n.ToString(CultureInfo.InvariantCulture);
-            return result;
+            return LocalSchemaEditing.UniqueSubschemaName(_file, name, null);
+        }
+
+        /// <summary>The names a subschema cannot take: the one of all the tables, translated and in English.</summary>
+        private static string[] ReservedNames
+        {
+            get { return new[] { Tr(1843), "All tables", "All the tables" }; }
         }
 
         private void AddSubschema()
@@ -1018,6 +1043,93 @@ namespace Reportman.Designer
             _file.Schemas.Remove(_current);
             StructureChanged();
             FillAll(null);
+        }
+
+        private static string SchemaFileFilter
+        {
+            get { return Tr(1939) + " (*.json)|*.json"; }
+        }
+
+        /// <summary>
+        /// Saves what travels of the subschema shown (the whole catalog with all the tables) as the Reportman AI
+        /// web exports a schema, so the web, or another local schema screen, imports it.
+        /// </summary>
+        private void ExportSubschema()
+        {
+            if (_file == null || _busy)
+                return;
+            CommitEdits();
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Title = Caption(1931);
+                dialog.Filter = SchemaFileFilter;
+                dialog.DefaultExt = "json";
+                dialog.AddExtension = true;
+                dialog.OverwritePrompt = true;
+                dialog.FileName = LocalSchemaEditing.ExportFileName(LocalSchemaEditing.ExportName(_file, _current));
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                    return;
+                try
+                {
+                    // UTF-8 without BOM, as the web's download
+                    File.WriteAllText(dialog.FileName, LocalSchemaEditing.ExportJson(_file, _current), new UTF8Encoding(false));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, Caption(1931), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                SetStatus(TrFormat(1935, dialog.FileName));
+            }
+        }
+
+        /// <summary>
+        /// Makes a new subschema from a schema exported by the Reportman AI web (or by a local schema screen): the
+        /// tables and columns the database has, their descriptions and allowed values into the dictionary, and the
+        /// relations; it stays selected and unsaved, and what the database does not have is said.
+        /// </summary>
+        private void ImportSubschema()
+        {
+            if (_file == null || _busy)
+                return;
+            CommitEdits();
+            string path;
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Title = Caption(1932);
+                dialog.Filter = SchemaFileFilter;
+                dialog.CheckFileExists = true;
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                    return;
+                path = dialog.FileName;
+            }
+            LocalSchemaImportResult result;
+            try
+            {
+                result = LocalSchemaEditing.Import(_file, File.ReadAllText(path, Encoding.UTF8), path, ReservedNames);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Caption(1932), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (result == null)
+            {
+                MessageBox.Show(this, Tr(1938), Caption(1932), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            // As one added here: after saving, the copilot is left on it
+            _added = result.Subschema;
+            StructureChanged();
+            FillAll(result.Subschema);
+            _tabs.SelectedTab = _tabTables;
+            string done = TrFormat(1936, result.Subschema.Name, Number(result.Subschema.Tables.Count));
+            SetStatus(done);
+            string message = done;
+            if (result.Skipped.Count > 0)
+                message += Environment.NewLine + Environment.NewLine + TrFormat(1937, LocalSchemaEditing.ShortList(result.Skipped, 12));
+            MessageBox.Show(this, message, Caption(1932), MessageBoxButtons.OK,
+                result.Skipped.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
         }
 
         /// <summary>A one line text prompt; null when cancelled.</summary>

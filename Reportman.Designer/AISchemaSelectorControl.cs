@@ -198,7 +198,7 @@ namespace Reportman.Designer
 
             _lblSchema = new Label
             {
-                Text = "SCHEMA",
+                Text = Tr(1528).ToUpper(),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 8f)
             };
@@ -247,11 +247,11 @@ namespace Reportman.Designer
                 Dock = DockStyle.Fill
             };
             _btnConfig.Click += BtnConfig_Click;
-            _toolTip.SetToolTip(_btnConfig, "Configure DB Schemas");
+            _toolTip.SetToolTip(_btnConfig, Tr(1496));
 
             _btnRefresh = new Button
             {
-                Text = "Refresh",
+                Text = Tr(1149),
                 MinimumSize = new Size(60, 23),
                 MaximumSize = new Size(80, 25),
                 Dock = DockStyle.Fill

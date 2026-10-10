@@ -200,11 +200,11 @@ namespace Reportman.Designer
 
             _tabControl = new TabControl { Dock = DockStyle.Fill };
 
-            _chatTab = new TabPage { Text = "Chat" };
+            _chatTab = new TabPage { Text = DesignerText.Tr(1529) };
             _conversation = new WebMarkdownControl { Dock = DockStyle.Fill };
             _chatTab.Controls.Add(_conversation);
 
-            _aiLogTab = new TabPage { Text = "AI Log" };
+            _aiLogTab = new TabPage { Text = DesignerText.Tr(1530) };
             Panel aiLogToolbar = new Panel
             {
                 Dock = DockStyle.Top,
@@ -213,7 +213,7 @@ namespace Reportman.Designer
             };
             Button clearAiLogButton = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Left,
                 Width = 90
             };
@@ -226,7 +226,7 @@ namespace Reportman.Designer
             _aiLogTab.Controls.Add(_aiLogView);
             _aiLogTab.Controls.Add(aiLogToolbar);
 
-            _netLogTab = new TabPage { Text = "Net Log" };
+            _netLogTab = new TabPage { Text = DesignerText.Tr(1531) };
             Panel netLogToolbar = new Panel
             {
                 Dock = DockStyle.Top,
@@ -235,7 +235,7 @@ namespace Reportman.Designer
             };
             Button clearNetLogButton = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Left,
                 Width = 90
             };
@@ -267,7 +267,7 @@ namespace Reportman.Designer
 
             _sendButton = new Button
             {
-                Text = "Send",
+                Text = DesignerText.Tr(1534),
                 Dock = DockStyle.Top,
                 Height = 30
             };
@@ -275,7 +275,7 @@ namespace Reportman.Designer
 
             _applyButton = new Button
             {
-                Text = "Apply",
+                Text = DesignerText.Tr(1535),
                 Dock = DockStyle.Top,
                 Height = 30,
                 Enabled = false
@@ -284,7 +284,7 @@ namespace Reportman.Designer
 
             _clearButton = new Button
             {
-                Text = "Clear",
+                Text = DesignerText.Tr(1532),
                 Dock = DockStyle.Top,
                 Height = 30
             };
@@ -506,7 +506,7 @@ namespace Reportman.Designer
         {
             _sendButton.Enabled = !_isBusy && !string.IsNullOrWhiteSpace(_promptText.Text);
             _applyButton.Enabled = !_isBusy && !string.IsNullOrWhiteSpace(_suggestedSql);
-            _clearButton.Text = _isBusy ? "Stop" : "Clear";
+            _clearButton.Text = DesignerText.Tr(_isBusy ? 1522 : 1532);
         }
 
         private void SetBusy(bool busy)
@@ -542,7 +542,7 @@ namespace Reportman.Designer
         {
             if (_cts != null)
                 _cts.Cancel();
-            SafeAppendMessage("system", "Inference was cancelled by the user.");
+            SafeAppendMessage("system", DesignerText.Tr(1536));
         }
 
         private async void SendButton_Click(object sender, EventArgs e)
@@ -574,15 +574,15 @@ namespace Reportman.Designer
                 }
 
                 SetSuggestedSql(result.Sql,
-                    string.IsNullOrWhiteSpace(result.Explanation) ? "SQL generated." : result.Explanation);
+                    string.IsNullOrWhiteSpace(result.Explanation) ? DesignerText.Tr(1946) : result.Explanation);
             }
             catch (OperationCanceledException)
             {
-                SafeAppendMessage("system", "Inference was cancelled by the user.");
+                SafeAppendMessage("system", DesignerText.Tr(1536));
             }
             catch (Exception ex)
             {
-                SafeAppendMessage("system", "Error: " + ex.Message);
+                SafeAppendMessage("system", DesignerText.Tr(355) + ": " + ex.Message);
             }
             finally
             {
@@ -656,7 +656,8 @@ namespace Reportman.Designer
         private void SetSuggestedSql(string sql, string message)
         {
             _suggestedSql = sql ?? "";
-            string text = string.IsNullOrWhiteSpace(message) ? "Suggested SQL:" : message + Environment.NewLine + Environment.NewLine + "Suggested SQL:";
+            string title = DesignerText.Tr(1559) + ":";
+            string text = string.IsNullOrWhiteSpace(message) ? title : message + Environment.NewLine + Environment.NewLine + title;
             text += Environment.NewLine + "```sql" + Environment.NewLine + _suggestedSql + Environment.NewLine + "```";
             SafeAppendMessage("assistant", text);
             UpdateButtons();
@@ -667,7 +668,7 @@ namespace Reportman.Designer
             SqlSuggestionResult result = new SqlSuggestionResult();
             if (resultDoc == null)
             {
-                result.ErrorMessage = "No final response received";
+                result.ErrorMessage = DesignerText.Tr(1606);
                 return result;
             }
 
@@ -698,7 +699,7 @@ namespace Reportman.Designer
             result.Explanation = GetJsonString(resultElement, "explanation");
 
             if (string.IsNullOrWhiteSpace(result.Sql))
-                result.ErrorMessage = string.IsNullOrWhiteSpace(result.Explanation) ? "No SQL was returned by the service." : result.Explanation;
+                result.ErrorMessage = string.IsNullOrWhiteSpace(result.Explanation) ? DesignerText.Tr(1558) : result.Explanation;
 
             return result;
         }

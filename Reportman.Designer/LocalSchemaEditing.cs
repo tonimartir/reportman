@@ -18,6 +18,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Reportman.Reporting;
 
@@ -317,6 +321,352 @@ namespace Reportman.Designer
             return result;
         }
 
+        // ===== Export and import, in the format of the Reportman AI web (docs/esquemas-locales-pantalla-plan.md, §5.6) =====
+
+        /// <summary>The name an export carries: the subschema's, or the connection alias for all the tables (null).</summary>
+        public static string ExportName(LocalSchemaFile file, LocalSubschema subschema)
+        {
+            if (subschema != null)
+                return subschema.Name ?? "";
+            return file != null ? file.Alias ?? "" : "";
+        }
+
+        /// <summary>
+        /// The file name an export proposes, as the web's: <c>&lt;name&gt;_Config.json</c>, with the characters a
+        /// file name cannot have changed to '_'.
+        /// </summary>
+        public static string ExportFileName(string name)
+        {
+            string n = (name ?? "").Trim();
+            if (n.Length == 0)
+                n = "schema";
+            var sb = new StringBuilder(n.Length + 12);
+            foreach (char c in n)
+                sb.Append(Array.IndexOf(Path.GetInvalidFileNameChars(), c) >= 0 ? '_' : c);
+            return sb.ToString() + "_Config.json";
+        }
+
+        /// <summary>
+        /// A subschema (all the tables for null) as the Reportman AI web exports and imports a schema:
+        /// <c>{ "name", "schemaTables" }</c>, camelCase, indented with two spaces. The tables are what travels,
+        /// exactly as the copilot sends them (<see cref="LocalSchemaStore.BuildInlineConfig"/>), but for the
+        /// relations written here that are not complete yet, which are not saved either.
+        /// </summary>
+        public static string ExportJson(LocalSchemaFile file, LocalSubschema subschema)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            Dictionary<string, object> inline = LocalSchemaStore.BuildInlineConfig(file, subschema != null ? subschema.Name : "");
+            var tables = (List<object>)inline["schemaTables"];
+            foreach (object table in tables)
+            {
+                var foreignKeys = ((Dictionary<string, object>)table)["foreignKeys"] as List<object>;
+                if (foreignKeys != null)
+                    foreignKeys.RemoveAll(IsIncompleteExport);
+            }
+            var root = new Dictionary<string, object>
+            {
+                { "name", ExportName(file, subschema) },
+                { "schemaTables", tables }
+            };
+            // Written as JSON.stringify(exported, null, 2) writes it: the descriptions readable, LF line ends
+            var options = new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+            return JsonSerializer.Serialize(root, options).Replace("\r\n", "\n");
+        }
+
+        private static bool IsIncompleteExport(object item)
+        {
+            var fk = item as Dictionary<string, object>;
+            if (fk == null)
+                return true;
+            object target, source, targets;
+            fk.TryGetValue("targetTable", out target);
+            fk.TryGetValue("sourceColumns", out source);
+            fk.TryGetValue("targetColumns", out targets);
+            var sourceColumns = source as List<string>;
+            var targetColumns = targets as List<string>;
+            return string.IsNullOrWhiteSpace(target as string) || sourceColumns == null || targetColumns == null ||
+                sourceColumns.Count == 0 || sourceColumns.Count != targetColumns.Count ||
+                sourceColumns.Exists(string.IsNullOrEmpty) || targetColumns.Exists(string.IsNullOrEmpty);
+        }
+
+        /// <summary>
+        /// The name of an imported schema whose file says none: the file name without its extension and without
+        /// the <c>_Config</c> an export adds.
+        /// </summary>
+        public static string NameFromFileName(string fileName)
+        {
+            string name = "";
+            try
+            {
+                name = Path.GetFileNameWithoutExtension(fileName ?? "") ?? "";
+            }
+            catch (ArgumentException)
+            {
+                // Not a path: no name from it
+            }
+            if (name.EndsWith("_Config", StringComparison.OrdinalIgnoreCase))
+                name = name.Substring(0, name.Length - "_Config".Length);
+            return name.Trim();
+        }
+
+        /// <summary>
+        /// <paramref name="name"/>, or numbered («name 2», «name 3»...) when a subschema or one of
+        /// <paramref name="reservedNames"/> already has it (ignoring case).
+        /// </summary>
+        public static string UniqueSubschemaName(LocalSchemaFile file, string name, IEnumerable<string> reservedNames)
+        {
+            string result = name ?? "";
+            for (int n = 2; ContainsName(reservedNames, result) ||
+                (file != null && file.Schemas.Exists(s => string.Equals(s.Name, result, StringComparison.OrdinalIgnoreCase))); n++)
+                result = (name ?? "") + " " + n.ToString(CultureInfo.InvariantCulture);
+            return result;
+        }
+
+        /// <summary>
+        /// Imports a schema the Reportman AI web exported (or a local screen: the same format; the PascalCase and
+        /// numeric types of the Desktop are read too) as a new subschema of <paramref name="file"/>, added at the
+        /// end, named as the file says (numbered when taken; without a name, after <paramref name="fileName"/>):
+        /// <list type="bullet">
+        /// <item>the tables of the file the catalog has, as the catalog spells them, each with the columns of the
+        /// file the catalog has as its explicit list (its primary key when none is left); the types are the catalog's;</item>
+        /// <item>the descriptions and allowed values of the file that are not empty go to the dictionary, shared by
+        /// every subschema: what is imported wins;</item>
+        /// <item>each relation of the file whose ends are in the catalog: the one the dictionary already has (the same
+        /// target over the same columns) takes the file's description when it has one; a new one is added as written
+        /// here (no constraint name);</item>
+        /// <item>what the database does not have (tables, or columns of a table it has) is left out and listed.</item>
+        /// </list>
+        /// Null, and nothing changed, when the text is not a schema: not JSON, or without <c>schemaTables</c>.
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="json">The text of the imported file.</param>
+        /// <param name="fileName">The path or name of the imported file, for the name when it has none.</param>
+        /// <param name="reservedNames">Names a subschema cannot take (all the tables), or null.</param>
+        public static LocalSchemaImportResult Import(LocalSchemaFile file, string json, string fileName, IEnumerable<string> reservedNames)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            JsonDocument document;
+            try
+            {
+                document = JsonDocument.Parse((json ?? "").TrimStart('﻿'),
+                    new JsonDocumentOptions { AllowTrailingCommas = true, CommentHandling = JsonCommentHandling.Skip });
+            }
+            catch (JsonException)
+            {
+                return null;
+            }
+            using (document)
+            {
+                JsonElement root = document.RootElement;
+                JsonElement schemaTables;
+                if (!TryJsonProperty(root, "schemaTables", out schemaTables) || schemaTables.ValueKind != JsonValueKind.Array)
+                    return null;
+                string name = JsonText(root, "name").Trim();
+                if (name.Length == 0)
+                    name = NameFromFileName(fileName);
+                if (name.Length == 0)
+                    name = file.Alias ?? "";
+                var result = new LocalSchemaImportResult();
+                result.Subschema = new LocalSubschema { Name = UniqueSubschemaName(file, name, reservedNames) };
+                // The columns of each table, gathered first: a table may come more than once
+                var chosen = new Dictionary<LocalSchemaTable, List<string>>();
+                var order = new List<LocalSchemaTable>();
+                foreach (JsonElement item in schemaTables.EnumerateArray())
+                {
+                    string tableName = JsonText(item, "name").Trim();
+                    if (tableName.Length == 0)
+                        continue;
+                    LocalSchemaTable table = FindTable(file, tableName);
+                    if (table == null)
+                    {
+                        AddSkipped(result.Skipped, tableName);
+                        continue;
+                    }
+                    List<string> columns;
+                    if (!chosen.TryGetValue(table, out columns))
+                    {
+                        columns = new List<string>();
+                        chosen.Add(table, columns);
+                        order.Add(table);
+                    }
+                    string context = JsonText(item, "context");
+                    if (!string.IsNullOrWhiteSpace(context))
+                        table.Context = context;
+                    foreach (JsonElement c in JsonArray(item, "columns"))
+                    {
+                        string columnName = JsonText(c, "name").Trim();
+                        if (columnName.Length == 0)
+                            continue;
+                        LocalSchemaColumn column = FindColumn(table, columnName);
+                        if (column == null)
+                        {
+                            AddSkipped(result.Skipped, table.Name + "." + columnName);
+                            continue;
+                        }
+                        if (!ContainsName(columns, column.Name))
+                            columns.Add(column.Name);
+                        string columnContext = JsonText(c, "context");
+                        if (!string.IsNullOrWhiteSpace(columnContext))
+                            column.Context = columnContext;
+                        List<LocalAllowedValue> values = JsonAllowedValues(c);
+                        if (values != null)
+                            column.AllowedValues = values;
+                    }
+                    foreach (JsonElement fk in JsonArray(item, "foreignKeys"))
+                        ImportRelation(file, table, fk);
+                }
+                foreach (LocalSchemaTable table in order)
+                {
+                    AddTable(file, result.Subschema, table);
+                    List<string> columns = chosen[table];
+                    SetChosenColumns(result.Subschema, table, columns.Count > 0 ? columns : PrimaryKey(table));
+                }
+                file.Schemas.Add(result.Subschema);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// A relation of an imported table into the dictionary, as the catalog spells it, when its ends are there:
+        /// the same one the dictionary has takes its description (when it has one); a new one is written here.
+        /// </summary>
+        private static void ImportRelation(LocalSchemaFile file, LocalSchemaTable source, JsonElement item)
+        {
+            LocalSchemaTable target = FindTable(file, JsonText(item, "targetTable").Trim());
+            if (target == null)
+                return;
+            List<string> sourceColumns = SpelledColumns(source, JsonNames(item, "sourceColumns"));
+            List<string> targetColumns = SpelledColumns(target, JsonNames(item, "targetColumns"));
+            if (sourceColumns == null || targetColumns == null || sourceColumns.Count == 0 || sourceColumns.Count != targetColumns.Count)
+                return;
+            var relation = new LocalSchemaForeignKey
+            {
+                ConstraintName = "",
+                TargetTable = target.Name,
+                SourceColumns = sourceColumns,
+                TargetColumns = targetColumns,
+                RelationshipContext = JsonText(item, "relationshipContext")
+            };
+            LocalSchemaForeignKey same = source.ForeignKeys.Find(fk => LocalSchemaStore.SameRelation(fk, relation));
+            if (same == null)
+                source.ForeignKeys.Add(relation);
+            else if (!string.IsNullOrWhiteSpace(relation.RelationshipContext))
+                same.RelationshipContext = relation.RelationshipContext;
+        }
+
+        /// <summary>The names as the table spells them; null when one is not a column of it.</summary>
+        private static List<string> SpelledColumns(LocalSchemaTable table, List<string> names)
+        {
+            var result = new List<string>();
+            foreach (string name in names)
+            {
+                LocalSchemaColumn column = FindColumn(table, name);
+                if (column == null)
+                    return null;
+                result.Add(column.Name);
+            }
+            return result;
+        }
+
+        private static void AddSkipped(List<string> skipped, string name)
+        {
+            if (!ContainsName(skipped, name))
+                skipped.Add(name);
+        }
+
+        /// <summary>
+        /// A short list of names for a message: all of them when they are <paramref name="max"/> or fewer, else the
+        /// first ones, «…» and how many more.
+        /// </summary>
+        public static string ShortList(IList<string> names, int max)
+        {
+            if (names == null || names.Count == 0)
+                return "";
+            if (max < 1)
+                max = 1;
+            if (names.Count <= max)
+                return string.Join(", ", names);
+            var shown = new List<string>();
+            for (int i = 0; i < max; i++)
+                shown.Add(names[i]);
+            return string.Join(", ", shown) + ", … (+" + (names.Count - max).ToString(CultureInfo.CurrentCulture) + ")";
+        }
+
+        // The web reads the Desktop's PascalCase by lowering the first letter of every property; here, any case.
+        private static bool TryJsonProperty(JsonElement element, string name, out JsonElement value)
+        {
+            value = default(JsonElement);
+            if (element.ValueKind != JsonValueKind.Object)
+                return false;
+            if (element.TryGetProperty(name, out value))
+                return true;
+            foreach (JsonProperty property in element.EnumerateObject())
+            {
+                if (string.Equals(property.Name, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    value = property.Value;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>A text property: a string as it is, a number or a boolean as written, anything else empty.</summary>
+        private static string JsonText(JsonElement element, string name)
+        {
+            JsonElement value;
+            if (!TryJsonProperty(element, name, out value))
+                return "";
+            switch (value.ValueKind)
+            {
+                case JsonValueKind.String:
+                    return value.GetString() ?? "";
+                case JsonValueKind.Number:
+                case JsonValueKind.True:
+                case JsonValueKind.False:
+                    return value.GetRawText();
+                default:
+                    return "";
+            }
+        }
+
+        /// <summary>The items of an array property; none when it is not an array.</summary>
+        private static List<JsonElement> JsonArray(JsonElement element, string name)
+        {
+            var result = new List<JsonElement>();
+            JsonElement value;
+            if (TryJsonProperty(element, name, out value) && value.ValueKind == JsonValueKind.Array)
+                foreach (JsonElement item in value.EnumerateArray())
+                    if (item.ValueKind == JsonValueKind.Object || item.ValueKind == JsonValueKind.String)
+                        result.Add(item);
+            return result;
+        }
+
+        /// <summary>The names of an array of strings (the columns of a relation).</summary>
+        private static List<string> JsonNames(JsonElement element, string name)
+        {
+            var result = new List<string>();
+            foreach (JsonElement item in JsonArray(element, name))
+                if (item.ValueKind == JsonValueKind.String)
+                    result.Add((item.GetString() ?? "").Trim());
+            return result;
+        }
+
+        /// <summary>The allowed values of an imported column with a value; null when it has none.</summary>
+        private static List<LocalAllowedValue> JsonAllowedValues(JsonElement column)
+        {
+            var result = new List<LocalAllowedValue>();
+            foreach (JsonElement item in JsonArray(column, "allowedValues"))
+            {
+                string value = JsonText(item, "value");
+                if (value.Length > 0)
+                    result.Add(new LocalAllowedValue { Value = value, Label = JsonText(item, "label") });
+            }
+            return result.Count > 0 ? result : null;
+        }
+
         /// <summary>
         /// A name for the SQL of the dialect: as it is when it needs no quotes (a plain identifier in the case
         /// the database folds to), else quoted as the dialect quotes.
@@ -440,5 +790,15 @@ namespace Reportman.Designer
             string text = Convert.ToString(value, CultureInfo.CurrentCulture) ?? "";
             return text.Length > 200 ? text.Substring(0, 200) + "…" : text;
         }
+    }
+
+    /// <summary>What <see cref="LocalSchemaEditing.Import"/> did.</summary>
+    internal sealed class LocalSchemaImportResult
+    {
+        /// <summary>The subschema created, already in the file.</summary>
+        public LocalSubschema Subschema { get; set; }
+
+        /// <summary>What the database does not have and was left out: TABLE, or TABLE.COLUMN of a table it has.</summary>
+        public List<string> Skipped { get; } = new List<string>();
     }
 }

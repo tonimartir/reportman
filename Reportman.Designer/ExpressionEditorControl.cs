@@ -43,7 +43,7 @@ namespace Reportman.Designer
             
             _lblTitle = new Label 
             { 
-                Text = "Expression Editor", 
+                Text = DesignerText.Tr(240), 
                 Dock = DockStyle.Left, 
                 AutoSize = true,
                 TextAlign = ContentAlignment.MiddleLeft,
@@ -52,7 +52,7 @@ namespace Reportman.Designer
             
             _chkAiToggle = new CheckBox 
             { 
-                Text = "AI Suggest", 
+                Text = DesignerText.Tr(1947), 
                 Appearance = Appearance.Button, 
                 Dock = DockStyle.Right, 
                 Width = 100,

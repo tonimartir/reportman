@@ -158,6 +158,11 @@ namespace Reportman.Designer
         public EditSubReport()
         {
             InitializeComponent();
+            msendtoback.Text = DesignerText.Tr(672);
+            mbringtofront.Text = DesignerText.Tr(671);
+            mchangedefaultfontToolStripMenuItem.Text = DesignerText.Tr(1958);
+            mhide.Text = DesignerText.Tr(15);
+            mshowall.Text = DesignerText.Tr(17);
 
             UseWindowsMetafiles = false;
 
@@ -2561,7 +2566,7 @@ namespace Reportman.Designer
                 fontname = FReport.LFontName;
             else
                 fontname = FReport.WFontName;
-            mcurrentfont.Text = "Default font: " + fontname + " " + FReport.FontSize.ToString();
+            mcurrentfont.Text = DesignerText.Tr(1957) + ": " + fontname + " " + FReport.FontSize.ToString();
             mcurrentfont.Font = new Font(fontname, mcurrentfont.Font.Size, Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(FReport.FontStyle));
             mcurrentfont.ForeColor = GraphicUtils.ColorFromInteger(FReport.FontColor);
             mcurrentfont.Enabled = false;

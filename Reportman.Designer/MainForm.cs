@@ -19,6 +19,7 @@ namespace Reportman.Designer
         public MainForm()
         {
             InitializeComponent();
+            Text = DesignerText.Tr(1);
 
             maindesigner = new FrameMainDesigner();
             maindesigner.Dock = DockStyle.Fill;

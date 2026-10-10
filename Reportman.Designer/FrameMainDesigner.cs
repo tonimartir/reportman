@@ -379,9 +379,9 @@ namespace Reportman.Designer
             FReport = null;
             bexport.Text = Translator.TranslateStr(704);
             bnew.Text = Translator.TranslateStr(40);
-            mnewblank.Text = "Blank";
-            mnewgrouped.Text = "Grouped";
-            mnewgroupeddesign.Text = "Grouped (Design)";
+            mnewblank.Text = Translator.TranslateStr(1952);
+            mnewgrouped.Text = Translator.TranslateStr(1953);
+            mnewgroupeddesign.Text = Translator.TranslateStr(1954);
             bopen.Text = Translator.TranslateStr(42);
             bsave.Text = Translator.TranslateStr(46);
             bpreview.Text = Translator.TranslateStr(54);
@@ -435,7 +435,7 @@ namespace Reportman.Designer
             bshape.Text = Translator.TranslateStr(1206);
             bimage.Text = Translator.TranslateStr(1205);
             bbarcode.Text = Translator.TranslateStr(1209);
-            bchart.Text = "Chart";
+            bchart.Text = Translator.TranslateStr(1950);
 
 
             blabel.ToolTipText = Translator.TranslateStr(82);
@@ -468,6 +468,29 @@ namespace Reportman.Designer
             DisableMenus();
 
             tabudocue.Text = Translator.TranslateStr(1483);
+            label1.Text = Translator.TranslateStr(1951);
+            label2.Text = Translator.TranslateStr(1487);
+            bundo.Text = "↩ " + Translator.TranslateStr(1481);
+            bundo.ToolTipText = Translator.TranslateStr(1481) + " (Ctrl+Z)";
+            bredo.Text = "↪ " + Translator.TranslateStr(1482);
+            bredo.ToolTipText = Translator.TranslateStr(1482) + " (Ctrl+Y)";
+            // Zoom+ / Zoom- with the hints of the preview's zoom buttons
+            bzoomplus.Text = Translator.TranslateStr(236);
+            bzoomplus.ToolTipText = Translator.TranslateStr(237);
+            bzoomminus.Text = Translator.TranslateStr(234);
+            bzoomminus.ToolTipText = Translator.TranslateStr(235);
+            // Image only buttons: the text is their tooltip
+            bmoveleft.Text = Translator.TranslateStr(24);
+            bmoveright.Text = Translator.TranslateStr(26);
+            bmoveup.Text = Translator.TranslateStr(28);
+            bmovedown.Text = Translator.TranslateStr(30);
+            bEdit.Text = Translator.TranslateStr(3);
+            majustar1_5.Text = Translator.TranslateStr(1059);
+            mcsv.Text = Translator.TranslateStr(1259);
+            bhideRight.Text = Translator.TranslateStr(1956);
+            bchatIA.Text = Translator.TranslateStr(1550);
+            bchatIA.ToolTipText = Translator.TranslateStr(1551);
+            bexit.Text = Translator.TranslateStr(44);
             fundocue.OnUndoRedo += UndoCue_OnUndoRedo;
         }
 
@@ -1171,12 +1194,12 @@ namespace Reportman.Designer
             // Copy
             if (subreportedit.SelectedItems.Count == 0)
             {
-                MessageBox.Show("No items selected");
+                MessageBox.Show(Translator.TranslateStr(1955));
                 return;
             }
             if (!(subreportedit.SelectedItems.Values[0] is PrintPosItem))
             {
-                MessageBox.Show("No items selected");
+                MessageBox.Show(Translator.TranslateStr(1955));
                 return;
             }
             List<PrintPosItem> nlist = new List<PrintPosItem>();
@@ -1204,23 +1227,23 @@ namespace Reportman.Designer
             // Paste
             if (subreportedit.SelectedSection == null)
             {
-                MessageBox.Show("Select a destination section first");
+                MessageBox.Show(Translator.TranslateStr(533));
                 return;
             }
             if (!Clipboard.ContainsText())
             {
-                MessageBox.Show("Clipboard data not valid");
+                MessageBox.Show(Translator.TranslateStr(272));
                 return;
             }
             string ntext = Clipboard.GetText().Trim();
             if (ntext.Length < 10)
             {
-                MessageBox.Show("Clipboard content not valid");
+                MessageBox.Show(Translator.TranslateStr(272));
                 return;
             }
             if (ntext.Substring(0, 8) != "<SECTION")
             {
-                MessageBox.Show("Clipboard content not valid");
+                MessageBox.Show(Translator.TranslateStr(272));
                 return;
             }
             Section sec = subreportedit.SelectedSection;

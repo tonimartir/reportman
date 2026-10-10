@@ -89,7 +89,7 @@ namespace Reportman.Designer
             FormBorderStyle = FormBorderStyle.Sizable;
             MinimizeBox = false;
             MaximizeBox = false;
-            Text = "New report";
+            Text = Translator.TranslateStr(1131);
             float scale = Reportman.Drawing.Windows.GraphicUtils.DPIScale;
             ClientSize = new Size(Convert.ToInt32(740 * scale), Convert.ToInt32(560 * scale));
             MinimumSize = new Size(Convert.ToInt32(580 * scale), Convert.ToInt32(440 * scale));
@@ -117,11 +117,11 @@ namespace Reportman.Designer
 
             BCancel = MakeButton(Translator.TranslateStr(94)); // Cancel
             BCancel.Click += delegate { DialogResult = DialogResult.Cancel; Close(); };
-            BBack = MakeButton("< Back");
+            BBack = MakeButton("< " + Translator.TranslateStr(934));
             BBack.Click += BBack_Click;
-            BNext = MakeButton("Next >");
+            BNext = MakeButton(Translator.TranslateStr(933) + " >");
             BNext.Click += BNext_Click;
-            BFinish = MakeButton("Finish");
+            BFinish = MakeButton(Translator.TranslateStr(935));
             BFinish.Click += BFinish_Click;
 
             FlowLayoutPanel flow = new FlowLayoutPanel();
@@ -170,18 +170,18 @@ namespace Reportman.Designer
         {
             if (FPage == WizPage.RouteSel)
             {
-                LTitle.Text = "Connection route";
-                LHelper.Text = "Choose how this report will get its data: a Reportman AI / DB Agent, a direct database connection, or a blank report.";
+                LTitle.Text = Translator.TranslateStr(1710);
+                LHelper.Text = Translator.TranslateStr(1711);
             }
             else if (FRoute == Route.Agent)
             {
-                LTitle.Text = "Reportman AI / DB Agent connection";
-                LHelper.Text = "Enter the API key, then expand 'Database' to list the connections for that key. API key and database are stored in dbxconnections.ini.";
+                LTitle.Text = Translator.TranslateStr(1712);
+                LHelper.Text = Translator.TranslateStr(1976);
             }
             else
             {
-                LTitle.Text = "Direct database connection";
-                LHelper.Text = "Pick a .Net driver, edit its parameters and test the connection. Only the connection string is stored in the report.";
+                LTitle.Text = Translator.TranslateStr(1726);
+                LHelper.Text = Translator.TranslateStr(1977);
             }
         }
 
@@ -208,30 +208,30 @@ namespace Reportman.Designer
         {
             int y = 8;
             FRbAgent = new RadioButton();
-            FRbAgent.Text = "Reportman AI / DB Agent (distributed connection)";
+            FRbAgent.Text = Translator.TranslateStr(1724);
             FRbAgent.Left = 8; FRbAgent.Top = y; FRbAgent.Width = 660; FRbAgent.AutoSize = false; FRbAgent.Height = 22;
             FRbAgent.Checked = FRoute == Route.Agent;
             FRbAgent.CheckedChanged += RouteChanged;
             PContent.Controls.Add(FRbAgent);
-            AddHelp("Use a Reportman AI database connection authenticated with an API key.", 28, y + 24, 640);
+            AddHelp(Translator.TranslateStr(1725), 28, y + 24, 640);
 
             y += 70;
             FRbDirect = new RadioButton();
-            FRbDirect.Text = "Direct database connection";
+            FRbDirect.Text = Translator.TranslateStr(1726);
             FRbDirect.Left = 8; FRbDirect.Top = y; FRbDirect.Width = 660; FRbDirect.AutoSize = false; FRbDirect.Height = 22;
             FRbDirect.Checked = FRoute == Route.Direct;
             FRbDirect.CheckedChanged += RouteChanged;
             PContent.Controls.Add(FRbDirect);
-            AddHelp("Connect directly using a .Net provider (Firebird, MySQL, PostgreSQL, SQL Server, SQLite, ODBC...).", 28, y + 24, 640);
+            AddHelp(Translator.TranslateStr(1978), 28, y + 24, 640);
 
             y += 70;
             FRbNone = new RadioButton();
-            FRbNone.Text = "Continue with no connection (blank report)";
+            FRbNone.Text = Translator.TranslateStr(1728);
             FRbNone.Left = 8; FRbNone.Top = y; FRbNone.Width = 660; FRbNone.AutoSize = false; FRbNone.Height = 22;
             FRbNone.Checked = FRoute == Route.None;
             FRbNone.CheckedChanged += RouteChanged;
             PContent.Controls.Add(FRbNone);
-            AddHelp("Create a blank report without selecting or creating any data connection.", 28, y + 24, 640);
+            AddHelp(Translator.TranslateStr(1729), 28, y + 24, 640);
         }
 
         private void AddHelp(string text, int left, int top, int width)
@@ -265,7 +265,7 @@ namespace Reportman.Designer
             t.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
             Label l = new Label();
-            l.Text = "Connection name (alias)";
+            l.Text = Translator.TranslateStr(400);
             l.AutoSize = true;
             l.Margin = new Padding(0, 4, 0, 2);
 
@@ -334,7 +334,7 @@ namespace Reportman.Designer
             if (FPage == WizPage.Connection && FParams != null && FParams.IsHttpAgent &&
                 FParams.AgentApiKey.Trim().Length == 0)
             {
-                MessageBox.Show(this, "Please enter the agent API key.", "New report",
+                MessageBox.Show(this, Translator.TranslateStr(1777), Translator.TranslateStr(1131),
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -362,7 +362,7 @@ namespace Reportman.Designer
                 catch (Exception ex)
                 {
                     MessageBox.Show(this,
-                        "Could not save the agent connection to dbxconnections.ini:\n" + ex.Message,
+                        Translator.TranslateStr(1758) + ex.Message,
                         "dbxconnections", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 DatabaseInfo it = new DatabaseInfo();

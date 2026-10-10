@@ -144,6 +144,32 @@ namespace Reportman.Designer
         }
     }
 
+    /// <summary>A property grid display name read from the Reportman resource strings.</summary>
+    internal sealed class TranslatedDisplayNameAttribute : DisplayNameAttribute
+    {
+        private readonly int _index;
+
+        public TranslatedDisplayNameAttribute(int index)
+        {
+            _index = index;
+        }
+
+        public override string DisplayName { get { return DesignerText.Tr(_index); } }
+    }
+
+    /// <summary>A property grid description read from the Reportman resource strings.</summary>
+    internal sealed class TranslatedDescriptionAttribute : DescriptionAttribute
+    {
+        private readonly int _index;
+
+        public TranslatedDescriptionAttribute(int index)
+        {
+            _index = index;
+        }
+
+        public override string Description { get { return DesignerText.Tr(_index); } }
+    }
+
     /// <summary>
     /// Object bound to the connection assistant PropertyGrid when the HTTP Agent
     /// "driver" is selected: the API key plus a live Hub-database selector.
@@ -152,8 +178,8 @@ namespace Reportman.Designer
     {
         /// <summary>Gets or sets the Reportman AI / DB Agent API key used to query the Hub.</summary>
         [Category("Agent")]
-        [DisplayName("API key")]
-        [Description("Reportman AI / DB Agent API key. Stored in dbxconnections.ini, not in the report.")]
+        [TranslatedDisplayName(1732)]
+        [TranslatedDescription(1974)]
         [PasswordPropertyText(true)]
         public string ApiKey { get; set; }
 
@@ -168,8 +194,8 @@ namespace Reportman.Designer
 
         /// <summary>Gets or sets the selected Hub database.</summary>
         [Category("Agent")]
-        [DisplayName("Database")]
-        [Description("Hub database to use. Expand the list to query the agent with the API key above.")]
+        [TranslatedDisplayName(1973)]
+        [TranslatedDescription(1975)]
         [TypeConverter(typeof(HubDatabaseConverter))]
         public HubDatabaseRef Database { get; set; }
 

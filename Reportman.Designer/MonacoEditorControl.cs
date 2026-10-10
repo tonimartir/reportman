@@ -100,7 +100,7 @@ namespace Reportman.Designer
 
             _chkAiToggle = new CheckBox
             {
-                Text = "AI Autocomplete",
+                Text = DesignerText.Tr(1947),
                 Appearance = Appearance.Button,
                 AutoSize = false,
                 Width = 130,

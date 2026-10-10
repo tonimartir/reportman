@@ -153,7 +153,7 @@ namespace Reportman.Designer
             pdriver.AutoSize = true;
             pdriver.WrapContents = false;
             lblDriver = new Label();
-            lblDriver.Text = "Driver:";
+            lblDriver.Text = DesignerText.Tr(147) + ":";
             lblDriver.AutoSize = true;
             lblDriver.Anchor = AnchorStyles.Left;
             lblDriver.Margin = new Padding(3, 7, 3, 0);
@@ -181,7 +181,7 @@ namespace Reportman.Designer
             pconn.RowCount = 2;
             pconn.AutoSize = true;
             lblConn = new Label();
-            lblConn.Text = "Connection string:";
+            lblConn.Text = DesignerText.Tr(1099) + ":";
             lblConn.AutoSize = true;
             lblConn.Margin = new Padding(0, 4, 0, 0);
             txtConn = new TextBox();
@@ -201,7 +201,7 @@ namespace Reportman.Designer
             ptest.AutoSize = true;
             ptest.WrapContents = false;
             btnTest = new Button();
-            btnTest.Text = "Test connection";
+            btnTest.Text = DesignerText.Tr(1746);
             btnTest.AutoSize = true;
             btnTest.Click += BtnTest_Click;
             lblResult = new Label();
@@ -220,7 +220,7 @@ namespace Reportman.Designer
 
         private void TryTranslate()
         {
-            try { btnTest.Text = "Test connection"; }
+            try { btnTest.Text = DesignerText.Tr(1746); }
             catch { }
         }
 
@@ -274,7 +274,7 @@ namespace Reportman.Designer
                     new ProviderItem { Invariant = DatabaseInfo.FIREBIRD_PROVIDER2, Display = Friendly(DatabaseInfo.FIREBIRD_PROVIDER2, null) });
 
             // Special HTTP Agent entry first (API key + Hub database, stored in dbxconnections.ini).
-            cmbProvider.Items.Add(new ProviderItem { Invariant = HTTP_AGENT, Display = "Reportman Agent (HTTP) — needs API key" });
+            cmbProvider.Items.Add(new ProviderItem { Invariant = HTTP_AGENT, Display = DesignerText.Tr(1967) });
             foreach (ProviderItem it in items.Values)
                 cmbProvider.Items.Add(it);
         }
@@ -423,11 +423,11 @@ namespace Reportman.Designer
             grid.SelectedObject = FAgentParams;
             try { grid.ExpandAllGridItems(); }
             catch { }
-            lblConn.Text = "Storage:";
+            lblConn.Text = DesignerText.Tr(1968) + ":";
             FUpdating = true;
             txtConn.ReadOnly = true;
-            txtConn.Text = "API key & selected database are stored in dbxconnections.ini" +
-                Environment.NewLine + "Path: " + DbxConnections.GetPath();
+            txtConn.Text = DesignerText.Tr(1969) +
+                Environment.NewLine + DesignerText.Tr(1970) + ": " + DbxConnections.GetPath();
             FUpdating = false;
             SetResult(null, "");
         }
@@ -435,7 +435,7 @@ namespace Reportman.Designer
         private void ExitAgentMode()
         {
             FAgentMode = false;
-            lblConn.Text = "Connection string:";
+            lblConn.Text = DesignerText.Tr(1099) + ":";
             txtConn.ReadOnly = false;
         }
 
@@ -444,7 +444,7 @@ namespace Reportman.Designer
             string ak = AgentApiKey.Trim();
             if (ak.Length == 0)
             {
-                SetResult(false, "API key is required.");
+                SetResult(false, DesignerText.Tr(1777));
                 return;
             }
             Cursor old = Cursor.Current;
@@ -467,14 +467,14 @@ namespace Reportman.Designer
                 }
                 if (ids.Count == 0)
                 {
-                    SetResult(false, "API key accepted but no databases were returned (or the Hub is unreachable).");
+                    SetResult(false, DesignerText.Tr(1675));
                     return;
                 }
                 long sel = AgentHubDatabaseId;
                 if (sel > 0 && !ids.Contains(sel))
-                    SetResult(false, "API key OK (" + ids.Count + " databases) but the selected database is not in the list.");
+                    SetResult(false, DesignerText.Format(1971, ids.Count.ToString()));
                 else
-                    SetResult(true, "API key OK — " + ids.Count + " database(s) available.");
+                    SetResult(true, DesignerText.Format(1972, ids.Count.ToString()));
             }
             catch (Exception ex)
             {
@@ -580,7 +580,7 @@ namespace Reportman.Designer
                     conn.Open();
                     conn.Close();
                 }
-                SetResult(true, "Connection successful");
+                SetResult(true, DesignerText.Tr(1772));
             }
             catch (Exception ex)
             {

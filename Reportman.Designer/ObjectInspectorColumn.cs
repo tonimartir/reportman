@@ -1423,7 +1423,7 @@ namespace Reportman.Designer
         }
         public static string GetImageFilters()
         {
-            string nfilter = "All image files|*.png;*.jpeg;*.jpg;*.bmp;*.gif";
+            string nfilter = DesignerText.Tr(1802) + "|*.png;*.jpeg;*.jpg;*.bmp;*.gif";
             return nfilter;
 
         }

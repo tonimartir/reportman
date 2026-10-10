@@ -193,6 +193,15 @@ namespace Reportman.Designer
             bdelete.Text = Translator.TranslateStr(1142);
             bsearch.Text = Translator.TranslateStr(1143);
             brename.Text = Translator.TranslateStr(1212);
+            bexpand.Text = Translator.TranslateStr(1960);
+            bcontract.Text = Translator.TranslateStr(1961);
+            bnuevo.Text = Translator.TranslateStr(40);
+            bup.Text = Translator.TranslateStr(27);
+            bdown.Text = Translator.TranslateStr(29);
+            bleft.Text = Translator.TranslateStr(23);
+            toolStripButton1.Text = Translator.TranslateStr(1859);
+            bexport.Text = Translator.TranslateStr(1931);
+            bimport.Text = Translator.TranslateStr(1932);
 
             arbde = new System.Windows.Forms.DragEventHandler(this.Arbol_DragDrop);
             arbden = new System.Windows.Forms.DragEventHandler(this.Arbol_DragEnter);
@@ -1461,8 +1470,8 @@ namespace Reportman.Designer
             string search_name = xrow[LibraryConfig.ReportSearchField].ToString();
 
             SaveFileDialog savedialog = new SaveFileDialog();
-            savedialog.Title = "Exportar informe";
-            savedialog.Filter = "Archivos informe|*.rep";
+            savedialog.Title = Translator.TranslateStr(1931).TrimEnd('.');
+            savedialog.Filter = Translator.TranslateStr(704) + "|*.rep";
             if (savedialog.ShowDialog(this.FindForm()) != DialogResult.OK)
                 return;
             Executer.StartTransaction(IsolationLevel.ReadCommitted);
@@ -1507,8 +1516,8 @@ namespace Reportman.Designer
             parent_group = Convert.ToInt32(xrow["GROUP_CODE"]);
             TreeNode parent_treenode = (TreeNode)xrow["NODE"];
             OpenFileDialog opendialog = new OpenFileDialog();
-            opendialog.Title = "Importar informe";
-            opendialog.Filter = "Archivos informe|*.rep";
+            opendialog.Title = Translator.TranslateStr(1932).TrimEnd('.');
+            opendialog.Filter = Translator.TranslateStr(704) + "|*.rep";
             if (opendialog.ShowDialog(this.FindForm()) != DialogResult.OK)
                 return;
             // Validate report
@@ -1592,14 +1601,14 @@ namespace Reportman.Designer
             DataRow xrow = (DataRow)selnode.Tag;
             string report_name = xrow[LibraryConfig.ReportSearchField].ToString();
             OpenFileDialog opendialog = new OpenFileDialog();
-            opendialog.Title = "Importar informe";
-            opendialog.Filter = "Archivos informe|*.rep";
+            opendialog.Title = Translator.TranslateStr(1932).TrimEnd('.');
+            opendialog.Filter = Translator.TranslateStr(704) + "|*.rep";
             if (opendialog.ShowDialog(this.FindForm()) != DialogResult.OK)
                 return;
             Reportman.Reporting.Report newreport = new Reporting.Report();
             newreport.LoadFromFile(opendialog.FileName);
-            if (MessageBox.Show("¿Actualizar informe " + report_name + " con el informe del archivo seleccionado?",
-                "Confirmación", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            if (MessageBox.Show(DesignerText.Format(1962, report_name),
+                Translator.TranslateStr(729), MessageBoxButtons.OKCancel) == DialogResult.Cancel)
                 return;
             string sqltext = "";
             Executer.StartTransaction(IsolationLevel.ReadCommitted);

@@ -59,7 +59,7 @@ namespace Reportman.Designer
 
         private void InitializeComponent()
         {
-            this.Text = "Login - Reportman AI";
+            this.Text = DesignerText.Tr(1499);
             this.Size = new Size(420, 520);
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -68,7 +68,7 @@ namespace Reportman.Designer
 
             lblTitle = new Label
             {
-                Text = "Sign in to Reportman AI",
+                Text = DesignerText.Tr(1500),
                 Font = new Font("Segoe UI", 14, FontStyle.Bold),
                 Dock = DockStyle.Top,
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -80,7 +80,7 @@ namespace Reportman.Designer
 
             btnGoogle = new Button
             {
-                Text = "Login with Google",
+                Text = DesignerText.Tr(1501),
                 Dock = DockStyle.Top,
                 Height = 32,
                 FlatStyle = FlatStyle.System,
@@ -90,7 +90,7 @@ namespace Reportman.Designer
 
             btnMicrosoft = new Button
             {
-                Text = "Login with Microsoft",
+                Text = DesignerText.Tr(1502),
                 Dock = DockStyle.Top,
                 Height = 32,
                 FlatStyle = FlatStyle.System,
@@ -100,7 +100,7 @@ namespace Reportman.Designer
 
             btnEmail = new Button
             {
-                Text = "Login with Email",
+                Text = DesignerText.Tr(1503),
                 Dock = DockStyle.Top,
                 Height = 32,
                 FlatStyle = FlatStyle.System,
@@ -115,14 +115,14 @@ namespace Reportman.Designer
             // === Email panel (initially hidden) ===
             panelEmail = new Panel { Dock = DockStyle.Top, Height = 160, Padding = new Padding(30, 5, 30, 5), Visible = false };
 
-            lblEmail = new Label { Text = "Email:", Dock = DockStyle.Top, Height = 20 };
+            lblEmail = new Label { Text = DesignerText.Tr(1504), Dock = DockStyle.Top, Height = 20 };
             txtEmail = new TextBox { Dock = DockStyle.Top };
-            btnSendCode = new Button { Text = "Send Code", Dock = DockStyle.Top, Height = 30 };
+            btnSendCode = new Button { Text = DesignerText.Tr(1506), Dock = DockStyle.Top, Height = 30 };
             btnSendCode.Click += BtnSendCode_Click;
 
-            lblCode = new Label { Text = "Verification Code:", Dock = DockStyle.Top, Height = 20 };
+            lblCode = new Label { Text = DesignerText.Tr(1505), Dock = DockStyle.Top, Height = 20 };
             txtCode = new TextBox { Dock = DockStyle.Top };
-            btnLoginCode = new Button { Text = "Login with Code", Dock = DockStyle.Top, Height = 30 };
+            btnLoginCode = new Button { Text = DesignerText.Tr(1492), Dock = DockStyle.Top, Height = 30 };
             btnLoginCode.Click += BtnLoginCode_Click;
 
             panelEmail.Controls.Add(btnLoginCode);
@@ -179,24 +179,24 @@ namespace Reportman.Designer
         private async void BtnGoogle_Click(object sender, EventArgs e)
         {
             SetAllButtonsEnabled(false);
-            SetStatus("Starting Google login...", Color.Blue);
+            SetStatus(DesignerText.Tr(1507), Color.Blue);
             try
             {
                 bool ok = await RpAuthManager.Instance.LoginGoogleAsync();
                 if (ok)
                 {
-                    SetStatus("Login successful!", Color.Green);
+                    SetStatus(DesignerText.Tr(1773), Color.Green);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
                 {
-                    SetStatus("Google login failed or was cancelled.", Color.Red);
+                    SetStatus(DesignerText.Tr(1508), Color.Red);
                 }
             }
             catch (Exception ex)
             {
-                SetStatus("Error: " + ex.Message, Color.Red);
+                SetStatus(DesignerText.Tr(355) + ": " + ex.Message, Color.Red);
             }
             finally
             {
@@ -209,24 +209,24 @@ namespace Reportman.Designer
         private async void BtnMicrosoft_Click(object sender, EventArgs e)
         {
             SetAllButtonsEnabled(false);
-            SetStatus("Starting Microsoft login...", Color.Blue);
+            SetStatus(DesignerText.Tr(1507), Color.Blue);
             try
             {
                 bool ok = await RpAuthManager.Instance.LoginMicrosoftAsync();
                 if (ok)
                 {
-                    SetStatus("Login successful!", Color.Green);
+                    SetStatus(DesignerText.Tr(1773), Color.Green);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
                 {
-                    SetStatus("Microsoft login failed or was cancelled.", Color.Red);
+                    SetStatus(DesignerText.Tr(1508), Color.Red);
                 }
             }
             catch (Exception ex)
             {
-                SetStatus("Error: " + ex.Message, Color.Red);
+                SetStatus(DesignerText.Tr(355) + ": " + ex.Message, Color.Red);
             }
             finally
             {
@@ -247,22 +247,22 @@ namespace Reportman.Designer
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                SetStatus("Enter a valid email address.", Color.Red);
+                SetStatus(DesignerText.Tr(1509), Color.Red);
                 return;
             }
 
             SetAllButtonsEnabled(false);
-            SetStatus("Sending verification code...", Color.Blue);
+            SetStatus(DesignerText.Tr(1510), Color.Blue);
 
             bool ok = await RpAuthManager.Instance.RequestLoginCodeAsync(txtEmail.Text.Trim());
             if (ok)
             {
-                SetStatus("Code sent! Check your email.", Color.Green);
+                SetStatus(DesignerText.Tr(1511), Color.Green);
                 txtCode.Focus();
             }
             else
             {
-                SetStatus("Failed to send code. Check the email address.", Color.Red);
+                SetStatus(DesignerText.Tr(1512), Color.Red);
             }
             SetAllButtonsEnabled(true);
         }
@@ -271,24 +271,24 @@ namespace Reportman.Designer
         {
             if (string.IsNullOrWhiteSpace(txtCode.Text))
             {
-                SetStatus("Enter the verification code.", Color.Red);
+                SetStatus(DesignerText.Tr(1513), Color.Red);
                 return;
             }
 
             SetAllButtonsEnabled(false);
-            SetStatus("Verifying code...", Color.Blue);
+            SetStatus(DesignerText.Tr(1514), Color.Blue);
 
             bool ok = await RpAuthManager.Instance.LoginWithCodeAsync(
                 txtEmail.Text.Trim(), txtCode.Text.Trim());
             if (ok)
             {
-                SetStatus("Login successful!", Color.Green);
+                SetStatus(DesignerText.Tr(1773), Color.Green);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                SetStatus("Invalid code or login failed.", Color.Red);
+                SetStatus(DesignerText.Tr(1515), Color.Red);
             }
             SetAllButtonsEnabled(true);
         }

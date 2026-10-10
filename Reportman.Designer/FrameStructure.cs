@@ -68,6 +68,8 @@ namespace Reportman.Designer
 
 
             mstrucaddsubreport.Text = Translator.TranslateStr(353);
+            bexport.Text = Translator.TranslateStr(1931);
+            bimport.Text = Translator.TranslateStr(1932);
 
         }
         /// <summary>
@@ -288,7 +290,7 @@ namespace Reportman.Designer
                     return;
                 if (sub.Alias != null && sub.Alias.Length > 0)
                 {
-                    var resultado = MessageBox.Show("�Eliminar par�metros y datos relacionados?",
+                    var resultado = MessageBox.Show(Translator.TranslateStr(1959),
                         Translator.TranslateStr(729), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (resultado == DialogResult.Cancel)
                         return;
