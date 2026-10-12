@@ -498,8 +498,53 @@ namespace Reportman.Drawing
             for (int i = 0; i < ncaras; i++)
             {
                 if (SePuedeIncrustar(filename, i))
+                {
                     yield return i;
+                    foreach (int instancia in InstanciasDeEstilo(filename, i))
+                        yield return instancia;
+                }
             }
+        }
+        /// <summary>
+        /// THE BOLD AND ITALIC OF A VARIABLE FONT (12-10-2026). A variable font is one file with one
+        /// face, its default instance (the regular), and the scan only saw that: a bold text was
+        /// measured and drawn with the regular. Its named instances "Bold", "Italic" and "Bold Italic"
+        /// are faces too, with the instance in the upper 16 bits of the index, as fontconfig gives
+        /// them: FreeType measures that instance, HarfBuzz shapes it and the subset pins its axes
+        /// (HbSubset). Only with hb-subset, which is what embeds them as static fonts.
+        /// </summary>
+        static IEnumerable<int> InstanciasDeEstilo(string filename, int nfaceindex)
+        {
+            List<int> result = new List<int>();
+            if (!HbSubset.Available)
+                return result;
+            IntPtr namebuffer = Marshal.StringToHGlobalAnsi(filename);
+            try
+            {
+                FT_FaceRec_* aface;
+                if (FT.FT_New_Face(FreeTypeLib, (byte*)namebuffer, (IntPtr)nfaceindex, &aface) != 0)
+                    return result;
+                int instancias = (int)(aface->style_flags.ToInt64() >> 16) & 0x7FFF;
+                FT.FT_Done_Face(aface);
+                for (int j = 1; j <= instancias; j++)
+                {
+                    int indice = (j << 16) | nfaceindex;
+                    if (FT.FT_New_Face(FreeTypeLib, (byte*)namebuffer, (IntPtr)indice, &aface) != 0)
+                        continue;
+                    string estilo = aface->style_name == null ? "" : BytePtrToString(aface->style_name);
+                    FT.FT_Done_Face(aface);
+                    if (estilo == "Bold" || estilo == "Italic" || estilo == "Bold Italic")
+                        result.Add(indice);
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(namebuffer);
+            }
+            return result;
         }
         /// <summary>How many faces a font file holds: one for a plain font, several for a collection.</summary>
         static int CuantasCaras(string filename)
@@ -1550,6 +1595,22 @@ namespace Reportman.Drawing
             }
             return nresult;
         }
+        /// <summary>Whether the face of a font file (lower 16 bits of the index in a collection) has CFF outlines (sfnt 'OTTO').</summary>
+        private static bool CaraConContornosCFF(byte[] datos, int indiceCara)
+        {
+            if (datos == null || datos.Length < 16)
+                return false;
+            long dir = 0;
+            if (datos[0] == 't' && datos[1] == 't' && datos[2] == 'c' && datos[3] == 'f')
+            {
+                long rec = 12 + (long)(indiceCara & 0xFFFF) * 4;
+                if (rec + 4 > datos.Length)
+                    return false;
+                dir = ((long)datos[rec] << 24) | ((long)datos[rec + 1] << 16) | ((long)datos[rec + 2] << 8) | datos[rec + 3];
+            }
+            return dir + 4 <= datos.Length && datos[dir] == 'O' && datos[dir + 1] == 'T'
+                && datos[dir + 2] == 'T' && datos[dir + 3] == 'O';
+        }
         /// <summary>Builds a subsetted TrueType font stream containing only the glyphs used in <paramref name="data"/>.</summary>
         /// <param name="data">The metric container holding the used glyphs and the source font bytes.</param>
         /// <returns>A memory stream with the subsetted font.</returns>
@@ -1565,9 +1626,12 @@ namespace Reportman.Drawing
             // deja en `data.GlyphMap` y el escritor de PDF lo vuelca en un /CIDToGIDMap. Si la
             // biblioteca no trae la API de plan, `HbSubset` conserva los indices y el mapa
             // vuelve null: mismo PDF que hasta ahora.
+            //
+            // NOT FOR CFF OUTLINES (12-10-2026): the PDF declares them as a CIDFontType0, which has
+            // no /CIDToGIDMap and takes the CID as the glyph number, so they keep their numbers.
             SortedList<int, int> mapa;
             byte[] porHarfBuzz = HbSubset.Subset(data.FontData.Data, caraSubset, data.Glyphs.Values,
-                compacto: true, out mapa);
+                compacto: !CaraConContornosCFF(data.FontData.Data, caraSubset), out mapa);
             if (porHarfBuzz != null)
             {
                 data.GlyphMap = mapa;
@@ -1921,6 +1985,9 @@ namespace Reportman.Drawing
         /// <summary>
         /// Detect HarfBuzz script tag from the first significant character in the text.
         /// Matches the Delphi logicalRun.ScriptString behavior from ICU.
+        /// DIGITS AND PUNCTUATION DO NOT DECIDE THE SCRIPT (12-10-2026, as rpinfoprovft.pas
+        /// DetectaScript): a right to left run that began with "{{'0." or "&lt;u&gt;" was shaped as
+        /// Latin, the Arabic after it in isolated letters that did not join.
         /// </summary>
         private static string DetectScript(string text)
         {
@@ -1928,6 +1995,10 @@ namespace Reportman.Drawing
             {
                 if (c <= ' ') continue; // skip whitespace/control
                 int cp = (int)c;
+                // Neutral: ASCII digits and punctuation, and the signs of Latin-1
+                if (cp < 0x41 || (cp > 0x5A && cp < 0x61) || (cp > 0x7A && cp < 0xC0)
+                    || cp == 0xD7 || cp == 0xF7)
+                    continue;
                 // Arabic: U+0600..U+06FF, U+0750..U+077F, U+08A0..U+08FF, U+FB50..U+FDFF, U+FE70..U+FEFF
                 if ((cp >= 0x0600 && cp <= 0x06FF) || (cp >= 0x0750 && cp <= 0x077F) ||
                     (cp >= 0x08A0 && cp <= 0x08FF) || (cp >= 0xFB50 && cp <= 0xFDFF) ||
@@ -2546,11 +2617,38 @@ namespace Reportman.Drawing
                                 if (g.LineCluster > maxCluster) maxCluster = g.LineCluster;
                             }
                         }
-                        lineInfo.Position = minCluster;
-                        lineInfo.Size = visualGlyphs.Count > 0 ? maxCluster - minCluster + 1 : 0;
-                        lineInfo.Text = lineInfo.Size > 0 && minCluster + lineInfo.Size <= PlainText.Length
-                            ? PlainText.Substring(minCluster, lineInfo.Size)
-                            : (lineInfo.Size > 0 ? PlainText.Substring(minCluster) : string.Empty);
+                        // THE TEXT OF THE LINE AND ITS CLUSTERS (12-10-2026, as rpinfoprovgdi.pas). The
+                        // clusters are positions in the paragraph (`line`), and the line was cut from
+                        // the whole text with them: from the second paragraph on, its text (the
+                        // /ActualText, and the text the PDF writer gives each glyph) came from another
+                        // place. Position is now in the whole text, the text reaches the end of the
+                        // last cluster (a lam-alef ligature is two characters) and the clusters of the
+                        // glyphs are positions in the text of the line, as the PDF writer reads them.
+                        if (visualGlyphs.Count > 0)
+                        {
+                            int finLinea = maxCluster + 1;
+                            int siguiente = line.Length;
+                            if (lineIdx + 1 < calculatedLines.Count && calculatedLines[lineIdx + 1].Glyphs.Count > 0)
+                                siguiente = Math.Min(siguiente, calculatedLines[lineIdx + 1].MinClusterText);
+                            while (finLinea < siguiente && !char.IsWhiteSpace(line[finLinea]))
+                                finLinea++;
+                            finLinea = Math.Min(finLinea, line.Length);
+                            lineInfo.Position = lineSubText.Position + minCluster;
+                            lineInfo.Size = Math.Max(0, finLinea - minCluster);
+                            lineInfo.Text = line.Substring(minCluster, lineInfo.Size);
+                            for (int k = 0; k < visualGlyphs.Count; k++)
+                            {
+                                TGlyphPos g = visualGlyphs[k];
+                                g.LineCluster -= minCluster;
+                                visualGlyphs[k] = g;
+                            }
+                        }
+                        else
+                        {
+                            lineInfo.Position = lineSubText.Position;
+                            lineInfo.Size = 0;
+                            lineInfo.Text = string.Empty;
+                        }
                         
                         double lw = 0;
                         double maxLineFontSize = FontSize;

@@ -107,6 +107,31 @@ namespace Reportman.Drawing
         private static SubsetOrFail hb_subset_or_fail;
         private static BlobGetData hb_blob_get_data;
 
+        // The static instance of a variable font (HarfBuzz >= 6.0), all optional: without them a
+        // variable font goes whole, as before.
+        [StructLayout(LayoutKind.Sequential)]
+        private struct AxisInfo
+        {
+            public uint AxisIndex, Tag, NameId, Flags;
+            public float MinValue, DefaultValue, MaxValue;
+            public uint Reserved;
+        }
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint GetAxisInfos(IntPtr face, uint startOffset, ref uint axesCount, [Out] AxisInfo[] axes);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint GetInstanceCoords(IntPtr face, uint instanceIndex, ref uint coordsLength, [Out] float[] coords);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate bool PinAxisLocation(IntPtr input, IntPtr face, uint axisTag, float axisValue);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr FaceReferenceTable(IntPtr face, uint tag);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint BlobGetLength(IntPtr blob);
+        private static GetAxisInfos hb_ot_var_get_axis_infos;
+        private static GetInstanceCoords hb_ot_var_named_instance_get_design_coords;
+        private static PinAxisLocation hb_subset_input_pin_axis_location;
+        private static FaceReferenceTable hb_face_reference_table;
+        private static BlobGetLength hb_blob_get_length;
+
         private static readonly object InitLock = new object();
         private static bool initialized;
         private static IntPtr library;
@@ -181,10 +206,13 @@ namespace Reportman.Drawing
                 blob = hb_blob_create(datos, (uint)fuente.Length, HB_MEMORY_MODE_READONLY,
                     IntPtr.Zero, IntPtr.Zero);
                 if (blob == IntPtr.Zero) return null;
-                face = hb_face_create(blob, (uint)caraIndice);
+                // The face inside a collection is the lower 16 bits; the upper ones name the
+                // instance of a variable font (fontconfig, FreeType), pinned below
+                face = hb_face_create(blob, (uint)caraIndice & 0xFFFF);
                 if (face == IntPtr.Zero) return null;
                 input = hb_subset_input_create_or_fail();
                 if (input == IntPtr.Zero) return null;
+                PinVariableAxes(input, face, (uint)caraIndice >> 16);
 
                 if (!conPlan && hb_subset_input_set_flags != null)
                     hb_subset_input_set_flags(input, HB_SUBSET_FLAGS_RETAIN_GIDS);
@@ -252,6 +280,53 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// A VARIABLE FONT AS A STATIC ONE (12-10-2026, as rpHarfBuzz.pas RpHBVariableInstance). PDF
+        /// has no variable fonts: a variable font embedded with its variations draws its default
+        /// instance whatever weight the text was laid out with, and the bold of Noto Sans Arabic came
+        /// out regular, with the advances of the bold. Every axis is pinned at the coordinates of the
+        /// named instance (1-based, 0 for the default instance), which also drops the variation
+        /// tables. Only TrueType outlines (glyf, no CFF2), and only when the library can do it:
+        /// otherwise the font goes whole, as before.
+        /// </summary>
+        private static void PinVariableAxes(IntPtr input, IntPtr face, uint instance)
+        {
+            if (hb_ot_var_get_axis_infos == null || hb_ot_var_named_instance_get_design_coords == null
+                || hb_subset_input_pin_axis_location == null || hb_face_reference_table == null
+                || hb_blob_get_length == null)
+                return;
+            if (TableLength(face, 0x66766172) == 0          // 'fvar'
+                || TableLength(face, 0x676C7966) == 0       // 'glyf'
+                || TableLength(face, 0x43464632) != 0)      // 'CFF2'
+                return;
+            uint count = 0;
+            uint total = hb_ot_var_get_axis_infos(face, 0, ref count, null);
+            if (total == 0)
+                return;
+            AxisInfo[] axes = new AxisInfo[total];
+            count = total;
+            hb_ot_var_get_axis_infos(face, 0, ref count, axes);
+            float[] coords = new float[total];
+            for (int i = 0; i < total; i++)
+                coords[i] = axes[i].DefaultValue;
+            if (instance > 0)
+            {
+                uint ncoords = total;
+                hb_ot_var_named_instance_get_design_coords(face, instance - 1, ref ncoords, coords);
+            }
+            for (int i = 0; i < count; i++)
+                hb_subset_input_pin_axis_location(input, face, axes[i].Tag, coords[i]);
+        }
+
+        private static uint TableLength(IntPtr face, uint tag)
+        {
+            IntPtr table = hb_face_reference_table(face, tag);
+            if (table == IntPtr.Zero)
+                return 0;
+            try { return hb_blob_get_length(table); }
+            finally { hb_blob_destroy(table); }
+        }
+
         private static bool Bind()
         {
             IntPtr handle = IntPtr.Zero;
@@ -294,6 +369,12 @@ namespace Reportman.Drawing
             hb_subset_plan_old_to_new_glyph_mapping = Bind<PtrToPtr>("hb_subset_plan_old_to_new_glyph_mapping");
             hb_subset_plan_destroy = Bind<PtrVoid>("hb_subset_plan_destroy");
             hb_map_get = Bind<MapGet>("hb_map_get");
+            // Variable fonts as static instances: optional, as the plan API
+            hb_ot_var_get_axis_infos = Bind<GetAxisInfos>("hb_ot_var_get_axis_infos");
+            hb_ot_var_named_instance_get_design_coords = Bind<GetInstanceCoords>("hb_ot_var_named_instance_get_design_coords");
+            hb_subset_input_pin_axis_location = Bind<PinAxisLocation>("hb_subset_input_pin_axis_location");
+            hb_face_reference_table = Bind<FaceReferenceTable>("hb_face_reference_table");
+            hb_blob_get_length = Bind<BlobGetLength>("hb_blob_get_length");
 
             // `set_flags` es opcional (no esta en las HarfBuzz mas viejas); el resto no.
             return hb_blob_create != null && hb_blob_destroy != null && hb_blob_get_data != null

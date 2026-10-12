@@ -761,7 +761,9 @@ namespace Reportman.Drawing
                         hasBreak = (line[charIdx] == ' ' || line[charIdx] == '\n');
                     }
                     
-                    if (hasBreak)
+                    // A break at glyph j only when it fits, or is a blank (trimmed at the end
+                    // of the line): a hyphen that did not fit stayed on the line past its edge.
+                    if (hasBreak && (acc <= remaining || positions[j].CharCode == ' ' || positions[j].CharCode == '\n'))
                         lastBreakGlyphIdx = j;
                         
                     if (acc > remaining)
@@ -861,7 +863,9 @@ namespace Reportman.Drawing
                         hasBreak = (line[charIdx] == ' ' || line[charIdx] == '\n');
                     }
                     
-                    if (hasBreak)
+                    // A break at glyph j only when it fits, or is a blank (trimmed at the end
+                    // of the line): a hyphen that did not fit stayed on the line past its edge.
+                    if (hasBreak && (acc <= remaining || positions[j].CharCode == ' ' || positions[j].CharCode == '\n'))
                         lastBreakGlyphIdx = j;
                         
                     if (acc > remaining)
