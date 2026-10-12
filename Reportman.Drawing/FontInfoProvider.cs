@@ -381,6 +381,30 @@ namespace Reportman.Drawing
         /// </summary>
         public Dictionary<int, string> GlyphText = new Dictionary<int, string>();
         /// <summary>
+        /// ONE TEXT PER CODE, NOT PER GLYPH (12-10-2026, as rppdffile.pas ShapedGlyphCode). The
+        /// /ToUnicode CMap gives one text per code, and the code of a shaped glyph was its glyph
+        /// number: a glyph drawn for several texts could declare only one. A font that splits the
+        /// dots of its letters into marks (Noto Sans Arabic, Noto Naskh Arabic) draws the same
+        /// skeleton for several letters, and the text copied from the PDF had wrong letters. The
+        /// first text a glyph is drawn for keeps its glyph number as its code (this dictionary);
+        /// another text gets a code of its own, from <see cref="GlyphCount"/> up
+        /// (<see cref="CIDExtra"/>), drawn through the /CIDToGIDMap.
+        /// </summary>
+        public Dictionary<int, string> CIDClaim = new Dictionary<int, string>();
+        /// <summary>The code of its own of each "glyph|text" that is not the first text of its glyph.</summary>
+        public Dictionary<string, int> CIDExtra = new Dictionary<string, int>();
+        /// <summary>The glyph of each code of its own, the code being <see cref="GlyphCount"/> plus the position.</summary>
+        public List<int> CIDExtraGlyph = new List<int>();
+        /// <summary>The text of each code of its own, in the same order as <see cref="CIDExtraGlyph"/>.</summary>
+        public List<string> CIDExtraText = new List<string>();
+        /// <summary>The number of glyphs of the font (maxp), -1 until it is read; 0 when it cannot be.</summary>
+        public int GlyphCount = -1;
+        /// <summary>
+        /// Whether the embedded font program is an OpenType font with CFF outlines declared as such
+        /// (/FontFile3 /OpenType, CIDFontType0), set by the PDF writer when it embeds it.
+        /// </summary>
+        public bool CFFOpenType;
+        /// <summary>
         /// Maps characters to their advance widths.
         /// </summary>
         public SortedList<char, double> Widths;

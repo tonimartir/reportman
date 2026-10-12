@@ -1282,11 +1282,12 @@ namespace Reportman.Drawing
         /// <param name="lInfo">La línea conformada.</param>
         /// <returns>Por cada glifo, el texto del que sale, o null cuando no se puede saber y hay que
         /// dejar el camino de siempre.</returns>
-        private static string[] TextoDeCadaGlifo(LineInfo lInfo)
+        private static string[] TextoDeCadaGlifo(LineInfo lInfo, out bool[] callar)
         {
             List<TGlyphPos> glifos = lInfo.Glyphs;
             string texto = lInfo.Text;
             string[] salida = new string[glifos.Count];
+            callar = new bool[glifos.Count];
             if (string.IsNullOrEmpty(texto))
                 return salida;
             // LOS LÍMITES SE SACAN DE LOS VALORES, NO DEL ORDEN DE LOS GLIFOS: así da igual que la
@@ -1294,6 +1295,8 @@ namespace Reportman.Drawing
             // un cluster es el principio del siguiente.
             List<int> limites = new List<int>();
             Dictionary<int, int> cuantos = new Dictionary<int, int>();
+            Dictionary<int, int> primero = new Dictionary<int, int>();
+            Dictionary<int, int> ultimo = new Dictionary<int, int>();
             for (int i = 0; i < glifos.Count; i++)
             {
                 int c = glifos[i].LineCluster;
@@ -1305,13 +1308,29 @@ namespace Reportman.Drawing
                 {
                     cuantos[c] = 1;
                     limites.Add(c);
+                    primero[c] = i;
                 }
+                ultimo[c] = i;
             }
             limites.Sort();
+            // THE GLYPH OF EACH CLUSTER THAT CARRIES ITS TEXT (12-10-2026, as rppdffile.pas): the
+            // first in the order of the shaper, which is the last on the page in a right to left run
+            // (there the neighbouring clusters decrease). A letter whose dots are marks (Noto Sans
+            // Arabic) gave its text to the dots and left its skeleton without one, and a viewer names
+            // a glyph without text by its glyph name: the skeleton of «ت» copied as «ٮ».
+            Dictionary<int, int> elegido = new Dictionary<int, int>();
+            foreach (int c in primero.Keys)
+            {
+                int f = primero[c];
+                int l = ultimo[c];
+                bool rtl = (l < glifos.Count - 1 && glifos[l + 1].LineCluster >= 0 && glifos[l + 1].LineCluster < c)
+                    || (f > 0 && glifos[f - 1].LineCluster > c);
+                elegido[c] = rtl ? l : f;
+            }
             for (int i = 0; i < glifos.Count; i++)
             {
                 int c = glifos[i].LineCluster;
-                if (c < 0 || c >= texto.Length || cuantos[c] != 1)
+                if (c < 0 || c >= texto.Length)
                     continue;
                 int pos = limites.BinarySearch(c);
                 int fin = (pos >= 0 && pos + 1 < limites.Count) ? limites[pos + 1] : texto.Length;
@@ -1334,12 +1353,270 @@ namespace Reportman.Drawing
                     continue;
                 bool limpio = true;
                 for (int k = c; k < fin; k++)
-                    if (char.IsWhiteSpace(texto[k]))
+                    if (texto[k] <= ' ')
                         limpio = false;
-                if (limpio)
-                    salida[i] = texto.Substring(c, largo);
+                if (!limpio)
+                    continue;
+                // ONE CHARACTER SPLIT IN SEVERAL GLYPHS (Devanagari, the dots of Noto Sans Arabic):
+                // the character belongs to the glyph that carries the cluster and the others declare
+                // NOTHING. Putting it in all of them repeats it in the extracted text («कककतत ककक»),
+                // and a wrong attribution is worse than none.
+                if (largo == 1 && cuantos[c] > 1 && elegido[c] != i)
+                {
+                    callar[i] = true;
+                    continue;
+                }
+                // SEVERAL CHARACTERS IN SEVERAL GLYPHS (a letter and its vowel, 12-10-2026): each
+                // glyph declared the whole cluster and the text came out twice («دًدًا»). As many
+                // glyphs as characters: each its own, in the order of the shaper. Otherwise the whole
+                // cluster in the glyph that carries it and the others silent, without losing a letter.
+                if (largo > 1 && cuantos[c] > 1)
+                {
+                    if (cuantos[c] == largo)
+                    {
+                        int k = elegido[c] == ultimo[c] ? ultimo[c] - i : i - primero[c];
+                        if (k >= 0 && k < largo)
+                        {
+                            salida[i] = texto[c + k].ToString();
+                            continue;
+                        }
+                    }
+                    if (elegido[c] != i)
+                    {
+                        callar[i] = true;
+                        continue;
+                    }
+                }
+                salida[i] = texto.Substring(c, largo);
             }
             return salida;
+        }
+        /// <summary>
+        /// The number of glyphs of a font and whether its outlines are CFF, from the font data loaded
+        /// to embed it (12-10-2026, as rppdffile.pas FontGlyphCount). Of a collection, the largest of
+        /// its fonts and CFF if any is, so a code of its own (<see cref="TTFontData.CIDExtra"/>) is
+        /// never a glyph number. 0 when it cannot be read.
+        /// </summary>
+        private static int SfntGlyphCount(byte[] datos, out bool cff)
+        {
+            cff = false;
+            if (datos == null || datos.Length < 12)
+                return 0;
+            int U16(long pos) => (pos >= 0 && pos + 2 <= datos.Length) ? (datos[pos] << 8) | datos[pos + 1] : 0;
+            long U32(long pos) => (pos >= 0 && pos + 4 <= datos.Length)
+                ? ((long)datos[pos] << 24) | ((long)datos[pos + 1] << 16) | ((long)datos[pos + 2] << 8) | datos[pos + 3] : -1;
+            int resultado = 0;
+            bool algunCff = false;
+            void Fuente(long dir)
+            {
+                int tablas = U16(dir + 4);
+                for (int t = 0; t < tablas; t++)
+                {
+                    long rec = dir + 12 + t * 16;
+                    long tag = U32(rec);
+                    if (tag == 0x6D617870) // 'maxp'
+                    {
+                        int n = U16(U32(rec + 8) + 4);
+                        if (n > resultado) resultado = n;
+                    }
+                    else if (tag == 0x43464620 || tag == 0x43464632) // 'CFF ', 'CFF2'
+                        algunCff = true;
+                }
+            }
+            if (U32(0) == 0x74746366) // 'ttcf'
+            {
+                long fuentes = U32(8);
+                for (long f = 0; f < fuentes && f < 4096; f++)
+                    Fuente(U32(12 + f * 4));
+            }
+            else
+                Fuente(0);
+            cff = algunCff;
+            return resultado;
+        }
+        /// <summary>
+        /// The code a shaped glyph is written with in the content stream, for the text it stands for
+        /// (12-10-2026, as rppdffile.pas ShapedGlyphCode): its glyph number for the first text of the
+        /// glyph (<see cref="TTFontData.CIDClaim"/>, which the /ToUnicode CMap declares), a code of
+        /// its own for any other. A Type 1 or CFF font (no /CIDToGIDMap) or one whose glyphs cannot be
+        /// counted keeps the glyph number, as before.
+        /// </summary>
+        private static int ShapedGlyphCode(TTFontData adata, int glyph, string texto)
+        {
+            string reclamado;
+            if (!adata.CIDClaim.TryGetValue(glyph, out reclamado))
+            {
+                adata.CIDClaim[glyph] = texto;
+                return glyph;
+            }
+            if (reclamado == texto || adata.Type1)
+                return glyph;
+            if (adata.GlyphCount < 0)
+            {
+                bool cff;
+                adata.GlyphCount = SfntGlyphCount(adata.FontData?.Data, out cff);
+                if (cff)
+                    adata.GlyphCount = 0;
+            }
+            if (adata.GlyphCount <= glyph)
+                return glyph;
+            string clave = glyph.ToString(CultureInfo.InvariantCulture) + "|" + texto;
+            int code;
+            if (adata.CIDExtra.TryGetValue(clave, out code))
+                return code;
+            code = adata.GlyphCount + adata.CIDExtraGlyph.Count;
+            if (code > 65535)
+                return glyph;
+            adata.CIDExtra[clave] = code;
+            adata.CIDExtraGlyph.Add(glyph);
+            adata.CIDExtraText.Add(texto);
+            return code;
+        }
+        /// <summary>Whether the font at <paramref name="baseOffset"/> has CFF outlines (sfnt version 'OTTO').</summary>
+        internal static bool SfntIsCFF(byte[] datos, long baseOffset)
+        {
+            return datos != null && baseOffset >= 0 && baseOffset + 4 <= datos.Length
+                && datos[baseOffset] == 'O' && datos[baseOffset + 1] == 'T'
+                && datos[baseOffset + 2] == 'T' && datos[baseOffset + 3] == 'O';
+        }
+        /// <summary>
+        /// Whether the glyph numbers of the CFF font at <paramref name="baseOffset"/> are its CIDs, as a
+        /// CIDFontType0 reads them (12-10-2026, as rppdffile.pas CFFGlyphsAreCIDs): a CFF that is not
+        /// CID-keyed takes the CID as the glyph number, a CID-keyed one maps the CID through its
+        /// charset. The content stream writes glyph numbers, so a CID-keyed font can only be declared
+        /// as CFF when its charset is the identity (Adobe Identity: Noto Sans CJK, Source Han); false
+        /// when it is not or cannot be read.
+        /// </summary>
+        internal static bool CFFGlyphsAreCIDs(byte[] datos, long baseOffset)
+        {
+            if (datos == null)
+                return false;
+            long size = datos.Length;
+            int U8(long pos)
+            {
+                if (pos < 0 || pos >= size)
+                    throw new IndexOutOfRangeException("CFF");
+                return datos[pos];
+            }
+            int U16(long pos) => (U8(pos) << 8) | U8(pos + 1);
+            long U32(long pos) => ((long)U16(pos) << 16) | (long)U16(pos + 2);
+            long OffsetAt(long pos, int osize)
+            {
+                long r = 0;
+                for (int k = 0; k < osize; k++)
+                    r = (r << 8) | (long)U8(pos + k);
+                return r;
+            }
+            // An INDEX at pos: its count, the start and end of its first element and its end
+            void ReadIndex(long pos, out int count, out long first, out long end, out long next)
+            {
+                count = U16(pos);
+                if (count == 0)
+                {
+                    first = end = next = pos + 2;
+                    return;
+                }
+                int osz = U8(pos + 2);
+                long dataBase = pos + 3 + (long)(count + 1) * osz - 1;
+                first = dataBase + OffsetAt(pos + 3, osz);
+                end = dataBase + OffsetAt(pos + 3 + osz, osz);
+                next = dataBase + OffsetAt(pos + 3 + (long)count * osz, osz);
+            }
+            try
+            {
+                // The 'CFF ' table
+                long cff = -1, cffEnd = 0;
+                int tables = U16(baseOffset + 4);
+                for (int i = 0; i < tables; i++)
+                    if (U32(baseOffset + 12 + i * 16) == 0x43464620)
+                    {
+                        cff = U32(baseOffset + 12 + i * 16 + 8);
+                        cffEnd = cff + U32(baseOffset + 12 + i * 16 + 12);
+                        break;
+                    }
+                if (cff < 0)
+                    return false;
+                if (cffEnd < size)
+                    size = cffEnd;
+                // Header, Name INDEX, Top DICT INDEX (its first DICT)
+                long dummy, nextPos, dictStart, dictEnd;
+                int count;
+                ReadIndex(cff + U8(cff + 2), out count, out dummy, out dummy, out nextPos);
+                ReadIndex(nextPos, out count, out dictStart, out dictEnd, out dummy);
+                if (count < 1)
+                    return false;
+                bool cidKeyed = false;
+                long charset = 0, charStrings = -1, operand = 0;
+                long p = dictStart;
+                while (p < dictEnd)
+                {
+                    int b0 = U8(p);
+                    if (b0 <= 21)
+                    {
+                        int op = b0;
+                        p++;
+                        if (b0 == 12)
+                        {
+                            op = 1200 + U8(p);
+                            p++;
+                        }
+                        if (op == 1230) cidKeyed = true;          // ROS
+                        else if (op == 15) charset = operand;
+                        else if (op == 17) charStrings = operand;
+                    }
+                    else if (b0 == 28) { operand = (short)U16(p + 1); p += 3; }
+                    else if (b0 == 29) { operand = (int)U32(p + 1); p += 5; }
+                    else if (b0 == 30)
+                    {
+                        // A real number: nibbles up to the end nibble 0xF
+                        p++;
+                        while ((U8(p) & 0x0F) != 0x0F && (U8(p) >> 4) != 0x0F)
+                            p++;
+                        p++;
+                    }
+                    else if (b0 >= 32 && b0 <= 246) { operand = b0 - 139; p++; }
+                    else if (b0 >= 247 && b0 <= 250) { operand = (b0 - 247) * 256 + U8(p + 1) + 108; p += 2; }
+                    else if (b0 >= 251 && b0 <= 254) { operand = -(b0 - 251) * 256 - U8(p + 1) - 108; p += 2; }
+                    else p++;
+                }
+                if (!cidKeyed)
+                    return true;
+                // A CID-keyed font: its charset must give each glyph its own number as CID
+                if (charStrings < 0 || charset <= 2)
+                    return false;
+                int nGlyphs = U16(cff + charStrings);
+                p = cff + charset;
+                int format = U8(p);
+                p++;
+                int gid = 1;
+                while (gid < nGlyphs)
+                {
+                    if (format == 0)
+                    {
+                        if (U16(p) != gid)
+                            return false;
+                        p += 2;
+                        gid++;
+                    }
+                    else if (format == 1 || format == 2)
+                    {
+                        int first = U16(p);
+                        int left;
+                        if (format == 1) { left = U8(p + 2); p += 3; }
+                        else { left = U16(p + 2); p += 4; }
+                        if (first != gid)
+                            return false;
+                        gid += left + 1;
+                    }
+                    else
+                        return false;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         /// <summary>
         /// Emits per-glyph PDF text operators from shaped glyph data, positioning each glyph with its own
@@ -1384,7 +1661,8 @@ namespace Reportman.Drawing
                 Font.GetFontFamilyKey(), Font.Style, File.PDFConformance);
             int tamanoEmitido = Font.Size;
             // De qué texto sale cada glifo cuando no es un solo carácter, para el CMap de ToUnicode.
-            string[] textoDelGlifo = TextoDeCadaGlifo(lInfo);
+            bool[] callarGlifo;
+            string[] textoDelGlifo = TextoDeCadaGlifo(lInfo, out callarGlifo);
 
             for (int i = 0; i < lInfo.Glyphs.Count; i++)
             {
@@ -1462,8 +1740,23 @@ namespace Reportman.Drawing
                 // Y SI ESTE GLIFO VALE POR VARIOS CARACTERES —una ligadura—, de cuáles sale: el CMap
                 // de ToUnicode lo necesita para que el texto se pueda extraer, buscar y copiar. Sin
                 // esto el glifo apunta a un carácter de uso privado y la «fi» desaparece del texto.
-                if (textoDelGlifo[i] != null && datosDelGlifo != null)
-                    datosDelGlifo.GlyphText[g.GlyphIndex] = textoDelGlifo[i];
+                // ONE TEXT PER CODE, NOT PER GLYPH (12-10-2026): the same glyph can stand for
+                // different texts (the skeleton of a letter whose dots are marks, shared by several
+                // letters), and the CMap gives one text per code: the first text of a glyph keeps its
+                // number and any other gets a code of its own (ShapedGlyphCode).
+                int code = g.GlyphIndex;
+                if (datosDelGlifo != null)
+                {
+                    string textoAqui;
+                    if (textoDelGlifo[i] != null)
+                        textoAqui = textoDelGlifo[i];
+                    else if (callarGlifo[i])
+                        textoAqui = "";
+                    else
+                        textoAqui = g.CharCode.ToString();
+                    code = ShapedGlyphCode(datosDelGlifo, g.GlyphIndex, textoAqui);
+                }
+                gidHex = IntToHex(code);
 
                 // Calcular posiciones PDF
                 double absY = posY - g.YOffset;
@@ -3409,30 +3702,19 @@ namespace Reportman.Drawing
             FTempStream.WriteTo(FMainPDF);
         }
         /// <summary>
-        /// A QUÉ TEXTO SE TRADUCE UN GLIFO en el CMap de ToUnicode, que es lo que hace que un PDF se
-        /// pueda leer, buscar y copiar: el texto del que salió si vale por varios caracteres —una
-        /// ligadura— y, si no, el carácter con el que está catalogado, que es lo de siempre.
-        ///
-        /// Un destino de varios caracteres es lo que la norma pide para una ligadura: el glifo de
-        /// «fi» se declara como «fi», no como una f ni como el carácter de uso privado que se le
-        /// inventó para poder subconjuntarlo. Ver <see cref="TTFontData.GlyphText"/>.
+        /// Whether a text can be declared for a code in the ToUnicode CMap. A ligature declares the
+        /// whole text (the glyph of «fi» as «fi», what the standard asks for); but WITHOUT A VALID
+        /// TEXT NOTHING IS DECLARED: an empty text (a glyph that stands for nothing, the second glyph
+        /// of a split character), a control character or half of a surrogate pair would turn a mute
+        /// text into a dirty one.
         /// </summary>
-        /// <param name="adata">La fuente cuyo CMap se está escribiendo.</param>
-        /// <param name="glyph">El índice de glifo que se está declarando.</param>
-        /// <param name="catalogado">El carácter con el que el glifo está en la tabla de anchuras.</param>
-        /// <returns>Los caracteres en hexadecimal, uno detrás de otro, sin los ángulos.</returns>
-        static string DestinoUnicode(TTFontData adata, int glyph, char catalogado)
+        static bool DestinoValido(string texto)
         {
-            if (adata.GlyphText != null
-                && adata.GlyphText.TryGetValue(glyph, out string texto)
-                && !string.IsNullOrEmpty(texto))
-            {
-                StringBuilder nresult = new StringBuilder();
-                for (int i = 0; i < texto.Length; i++)
-                    nresult.Append(PDFCanvas.IntToHex((int)texto[i]));
-                return nresult.ToString();
-            }
-            return PDFCanvas.IntToHex((int)catalogado);
+            if (string.IsNullOrEmpty(texto) || texto[0] < ' ')
+                return false;
+            if (texto.Length == 1 && char.IsSurrogate(texto[0]))
+                return false;
+            return true;
         }
         void SetFontType()
         {
@@ -3472,7 +3754,20 @@ namespace Reportman.Drawing
 
                     System.IO.MemoryStream fontcontentstream = new MemoryStream();
 
-
+                    // AN OPENTYPE FONT WITH CFF OUTLINES (12-10-2026, as rppdffile.pas) went as a
+                    // TrueType font program (/FontFile2, CIDFontType2), which only holds glyf
+                    // outlines: viewers warn of the mismatch and a PDF/A validator rejects it. It
+                    // goes as /FontFile3 /OpenType with a CIDFontType0 when its glyph numbers are its
+                    // CIDs (CFFGlyphsAreCIDs) and its glyphs were not renumbered (a CIDFontType0 has
+                    // no CIDToGIDMap); otherwise it stays as it was.
+                    byte[] programa = fontcontent?.ToArray();
+                    adata.CFFOpenType = !adata.Type1 && (adata.GlyphMap == null || adata.GlyphMap.Count == 0)
+                        && PDFCanvas.SfntIsCFF(programa, 0) && PDFCanvas.CFFGlyphsAreCIDs(programa, 0);
+                    if (adata.CFFOpenType)
+                    {
+                        SWriteLine(FTempStream, "<< /Subtype /OpenType");
+                    }
+                    else
                     if (PDFConformance == PDFConformanceType.PDF_A_3)
                     {
                         SWriteLine(FTempStream, "<< /Type /FontFile2");
@@ -3530,6 +3825,9 @@ namespace Reportman.Drawing
                     if (adata.Type1)
                         SWriteLine(FTempStream, "/FontFile " +
                             adata.ObjectIndex.ToString() + " 0 R");
+                    else if (adata.CFFOpenType)
+                        SWriteLine(FTempStream, "/FontFile3 " +
+                            adata.ObjectIndex.ToString() + " 0 R");
                     else
                         SWriteLine(FTempStream, "/FontFile2 " +
                             adata.ObjectIndex.ToString() + " 0 R");
@@ -3557,24 +3855,68 @@ namespace Reportman.Drawing
                         "1 begincodespacerange" + LINE_FEED +
                         "<0000><FFFF>" + LINE_FEED +
                         "endcodespacerange" + LINE_FEED);
+                    // ONE ENTRY PER CODE (12-10-2026). A glyph is declared once, with the first text
+                    // the shaper drew it for (CIDClaim) when it was shaped, which wins over the
+                    // character it is catalogued under: in Noto Sans Arabic the isolated «ي» is the
+                    // glyph of «ى» with two dots as marks, and with a «ى» loaded somewhere the «ي»
+                    // copied as «ى». Two entries for the same code contradict each other. The other
+                    // texts of a glyph go with their own codes (ShapedGlyphCode).
+                    List<KeyValuePair<int, string>> entradas = new List<KeyValuePair<int, string>>();
+                    HashSet<int> declarados = new HashSet<int>();
+                    for (int idx = 0; idx < adata.CacheWidths.Count; idx++)
+                    {
+                        char nkey = adata.CacheWidths.Keys[idx];
+                        int nvalue = adata.CacheWidths[nkey].Glyph;
+                        if (declarados.Contains(nvalue))
+                            continue;
+                        string destino;
+                        if (!adata.CIDClaim.TryGetValue(nvalue, out destino))
+                        {
+                            if (!adata.GlyphText.TryGetValue(nvalue, out destino) || string.IsNullOrEmpty(destino))
+                                destino = nkey.ToString();
+                        }
+                        declarados.Add(nvalue);
+                        if (DestinoValido(destino))
+                            entradas.Add(new KeyValuePair<int, string>(nvalue, destino));
+                    }
+                    // THE GLYPHS OF THE SHAPING THAT NO CHARACTER POINTS AT (12-10-2026, as
+                    // rppdffile.pas): the DirectWrite provider records the glyphs it draws only in
+                    // glyphsInfo (the FreeType one also gives them a private-use character), so a
+                    // joined Arabic form or a ligature had no entry and copied as nothing.
+                    foreach (KeyValuePair<int, GlyphInfo> par in adata.glyphsInfo)
+                    {
+                        int nvalue = par.Key;
+                        if (nvalue <= 0 || declarados.Contains(nvalue))
+                            continue;
+                        string destino;
+                        if (!adata.CIDClaim.TryGetValue(nvalue, out destino))
+                        {
+                            if (!adata.GlyphText.TryGetValue(nvalue, out destino) || string.IsNullOrEmpty(destino))
+                                destino = par.Value.Char.ToString();
+                        }
+                        declarados.Add(nvalue);
+                        if (DestinoValido(destino))
+                            entradas.Add(new KeyValuePair<int, string>(nvalue, destino));
+                    }
+                    for (int k = 0; k < adata.CIDExtraGlyph.Count; k++)
+                        if (DestinoValido(adata.CIDExtraText[k]))
+                            entradas.Add(new KeyValuePair<int, string>(adata.GlyphCount + k, adata.CIDExtraText[k]));
                     int currentindex = 0;
                     int nsize = 0;
-                    while (currentindex < adata.CacheWidths.Count)
+                    while (currentindex < entradas.Count)
                     {
-                        nsize = adata.CacheWidths.Count - currentindex;
-                        if (nsize <= 0)
-                            break;
+                        nsize = entradas.Count - currentindex;
                         if (nsize > 100)
                             nsize = 100;
                         cmaphead.Append(nsize.ToString() +
                             " beginbfchar" + LINE_FEED);
                         for (int idx = 0; idx < nsize; idx++)
                         {
-                            char nkey = adata.CacheWidths.Keys[currentindex + idx];
-                            int nvalue = adata.CacheWidths[nkey].Glyph;
-
-                            string fromTo = "<" + PDFCanvas.IntToHex(nvalue) + "> ";
-                            cmaphead.Append(fromTo + " <" + DestinoUnicode(adata, nvalue, nkey) + ">" + LINE_FEED);
+                            KeyValuePair<int, string> entrada = entradas[currentindex + idx];
+                            StringBuilder hex = new StringBuilder();
+                            foreach (char ch in entrada.Value)
+                                hex.Append(PDFCanvas.IntToHex((int)ch));
+                            cmaphead.Append("<" + PDFCanvas.IntToHex(entrada.Key) + ">  <" + hex.ToString() + ">" + LINE_FEED);
                         }
                         cmaphead.Append("endbfchar" + LINE_FEED);
                         currentindex = currentindex + nsize;
@@ -3647,17 +3989,48 @@ namespace Reportman.Drawing
                     // translation goes here: two bytes per CID up to the highest one used, mostly
                     // zeros, flate-compressed with the rest. Written before the Type0 object,
                     // which must be followed by its descendant.
+                    // THE CODES OF THEIR OWN (ShapedGlyphCode, 12-10-2026) go through it too: each
+                    // draws the glyph it was given for, from GlyphCount up.
                     long cidToGidObject = 0;
-                    if (adata.Embedded && adata.GlyphMap != null && adata.GlyphMap.Count > 0)
+                    bool mapaCompacto = adata.Embedded && adata.GlyphMap != null && adata.GlyphMap.Count > 0;
+                    bool codigosPropios = adata.CIDExtraGlyph.Count > 0 && !adata.Type1;
+                    if (mapaCompacto || codigosPropios)
                     {
                         int maxCid = 0;
-                        foreach (int cid in adata.GlyphMap.Keys)
-                            if (cid > maxCid) maxCid = cid;
-                        byte[] tabla = new byte[(maxCid + 1) * 2];
-                        foreach (KeyValuePair<int, int> par in adata.GlyphMap)
+                        if (mapaCompacto)
                         {
-                            tabla[par.Key * 2] = (byte)(par.Value >> 8);
-                            tabla[par.Key * 2 + 1] = (byte)(par.Value & 0xFF);
+                            foreach (int cid in adata.GlyphMap.Keys)
+                                if (cid > maxCid) maxCid = cid;
+                        }
+                        if (codigosPropios)
+                            maxCid = Math.Max(maxCid, adata.GlyphCount + adata.CIDExtraGlyph.Count - 1);
+                        byte[] tabla = new byte[(maxCid + 1) * 2];
+                        if (mapaCompacto)
+                        {
+                            foreach (KeyValuePair<int, int> par in adata.GlyphMap)
+                            {
+                                tabla[par.Key * 2] = (byte)(par.Value >> 8);
+                                tabla[par.Key * 2 + 1] = (byte)(par.Value & 0xFF);
+                            }
+                        }
+                        else
+                        {
+                            // The glyph numbers draw themselves (identity) up to GlyphCount
+                            for (int cid = 0; cid < adata.GlyphCount && cid <= maxCid; cid++)
+                            {
+                                tabla[cid * 2] = (byte)(cid >> 8);
+                                tabla[cid * 2 + 1] = (byte)(cid & 0xFF);
+                            }
+                        }
+                        for (int k = 0; k < adata.CIDExtraGlyph.Count && codigosPropios; k++)
+                        {
+                            int glifo = adata.CIDExtraGlyph[k];
+                            int destino = glifo;
+                            if (mapaCompacto && !adata.GlyphMap.TryGetValue(glifo, out destino))
+                                destino = 0;
+                            int cid = adata.GlyphCount + k;
+                            tabla[cid * 2] = (byte)(destino >> 8);
+                            tabla[cid * 2 + 1] = (byte)(destino & 0xFF);
                         }
                         FObjectCount = FObjectCount + 1;
                         cidToGidObject = FObjectCount;
@@ -3697,6 +4070,8 @@ namespace Reportman.Drawing
                     SWriteLine(FTempStream, "<< /Type /Font");
                     if (adata.Type1)
                         SWriteLine(FTempStream, "/Subtype /CIDFontType1");
+                    else if (adata.CFFOpenType)
+                        SWriteLine(FTempStream, "/Subtype /CIDFontType0");
                     else
                         SWriteLine(FTempStream, "/Subtype /CIDFontType2");
                     SWriteLine(FTempStream, "/BaseFont /" + CONS_UNICODEPREDIX + adata.PostcriptName);
@@ -3724,21 +4099,54 @@ namespace Reportman.Drawing
 					 */
                     index = 0;
                     acount = 0;
+                    HashSet<int> conAncho = new HashSet<int>();
                     while (index < adata.CacheWidths.Count)
                     {
                         char nkey = adata.CacheWidths.Keys[index];
                         int nvalue = adata.CacheWidths[nkey].Glyph;
                         double nwidth = adata.CacheWidths[nkey].Width;
                         awidths = awidths + nvalue.ToString() + "[" + nwidth.ToString("#0.0", NumberFormatInfo.InvariantInfo) + "] ";
+                        conAncho.Add(nvalue);
                         acount++;
                         if ((acount % 8) == 7)
                             awidths = awidths + LINE_FEED;
 
                         index++;
                     }
+                    // The glyphs of the shaping no character points at (DirectWrite records them only
+                    // in glyphsInfo): without an entry they took /DW 1000, a whole em, and a viewer
+                    // selected them as boxes far wider than the glyph and copied the overlaps as
+                    // spaces in the middle of the words (12-10-2026, as rppdffile.pas)
+                    foreach (KeyValuePair<int, GlyphInfo> par in adata.glyphsInfo)
+                    {
+                        if (par.Key <= 0 || conAncho.Contains(par.Key))
+                            continue;
+                        conAncho.Add(par.Key);
+                        awidths = awidths + par.Key.ToString() + "[" +
+                            par.Value.Width.ToString("#0.0", NumberFormatInfo.InvariantInfo) + "] ";
+                        acount++;
+                        if ((acount % 8) == 7)
+                            awidths = awidths + LINE_FEED;
+                    }
+                    // The codes of their own (ShapedGlyphCode), with the width of their glyph
+                    for (int k = 0; k < adata.CIDExtraGlyph.Count; k++)
+                    {
+                        GlyphInfo info;
+                        if (!adata.glyphsInfo.TryGetValue(adata.CIDExtraGlyph[k], out info))
+                            continue;
+                        awidths = awidths + (adata.GlyphCount + k).ToString() + "[" +
+                            info.Width.ToString("#0.0", NumberFormatInfo.InvariantInfo) + "] ";
+                        acount++;
+                        if ((acount % 8) == 7)
+                            awidths = awidths + LINE_FEED;
+                    }
                     SWriteLine(FTempStream, awidths);
                     SWriteLine(FTempStream, "]");
-                    if (cidToGidObject > 0)
+                    // Only a CIDFontType2 has a CIDToGIDMap; a CIDFontType0 takes the CID as the glyph
+                    if (adata.CFFOpenType)
+                    {
+                    }
+                    else if (cidToGidObject > 0)
                         SWriteLine(FTempStream, "/CIDToGIDMap " + cidToGidObject.ToString() + " 0 R");
                     else
                         SWriteLine(FTempStream, "/CIDToGIDMap /Identity");
