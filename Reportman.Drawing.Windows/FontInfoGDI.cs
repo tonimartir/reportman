@@ -649,17 +649,35 @@ namespace Reportman.Drawing
             GLYPHMETRICS gm;
             uint flags = GGO_METRICS | GGO_GLYPH_INDEX;
 
-            uint res = GetGlyphOutlineW(hDC, (uint)glyph, flags, out gm, 0, IntPtr.Zero, ref mat);
-
-            int width;
-            if (res == GDI_ERROR)
+            // THE FONT OF THE GLYPH, AND ITS ADVANCE IN THOUSANDTHS OF AN EM as GetCharWidth
+            // (12-10-2026, as rpinfoprovgdi.pas): GDI gives it in pixels of the font selected at
+            // TTF_PRECISION points, and the font selected in the DC was whichever was measured last.
+            // The pixels went to the /W widths of the PDF, 4/3 too wide at 96 dpi: the boxes of the
+            // shaped glyphs overlapped and a viewer copied their text with spaces in the words.
+            double width;
+            Monitor.Enter(tflag);
+            try
             {
-                width = 0;
+                SelectFont(pdffont);
+                Font ft = (Font)font.Clone();
+                IntPtr hFt = ft.ToHfont();
+                IntPtr previous = SelectObject(hDC, hFt);
+                try
+                {
+                    uint res = GetGlyphOutlineW(hDC, (uint)glyph, flags, out gm, 0, IntPtr.Zero, ref mat);
+                    // gmCellIncX es el advance horizontal (short)
+                    width = res == GDI_ERROR ? 0 : (double)gm.gmCellIncX / dpix * 72;
+                }
+                finally
+                {
+                    SelectObject(hDC, previous);
+                    DeleteObject(hFt);
+                    ft.Dispose();
+                }
             }
-            else
+            finally
             {
-                // gmCellIncX es el advance horizontal (short)
-                width = gm.gmCellIncX;
+                Monitor.Exit(tflag);
             }
 
             // Guardarlo en caché si no existía
@@ -769,6 +787,56 @@ namespace Reportman.Drawing
             return false;
         }
 
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        private class LOGFONTW
+        {
+            public int lfHeight, lfWidth, lfEscapement, lfOrientation, lfWeight;
+            public byte lfItalic, lfUnderline, lfStrikeOut, lfCharSet, lfOutPrecision,
+                lfClipPrecision, lfQuality, lfPitchAndFamily;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+            public string lfFaceName;
+        }
+
+        /// <summary>The DirectWrite font GDI takes for a GDI font name, or null when there is none.</summary>
+        private static SharpDX.DirectWrite.Font DWriteFontForGdiName(SharpDX.DirectWrite.Factory factory,
+            string gdiName, bool bold, bool italic)
+        {
+            try
+            {
+                LOGFONTW lf = new LOGFONTW
+                {
+                    lfHeight = -100,
+                    lfWeight = bold ? 700 : 400,
+                    lfItalic = (byte)(italic ? 1 : 0),
+                    lfCharSet = 1,          // DEFAULT_CHARSET
+                    lfOutPrecision = 7,     // OUT_TT_ONLY_PRECIS
+                    lfFaceName = gdiName.Length > 31 ? gdiName.Substring(0, 31) : gdiName
+                };
+                return factory.GdiInterop.FromLogFont(lf);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>The English (else the first) family name of a DirectWrite font.</summary>
+        private static string FamilyNameOf(SharpDX.DirectWrite.Font font)
+        {
+            try
+            {
+                var names = font.FontFamily.FamilyNames;
+                int idx;
+                if (!names.FindLocaleName("en-us", out idx))
+                    idx = 0;
+                return names.GetString(idx);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public override List<LineInfo> TextExtent(
             string Text,
             ref Rectangle Rect,
@@ -805,8 +873,30 @@ namespace Reportman.Drawing
             SharpDX.DirectWrite.FontFace fontFace = null;
             SharpDX.DirectWrite.FontCollection fontCollection = factory.GetSystemFontCollection(false);
 
+            SharpDX.DirectWrite.FontStretch fontStretch = SharpDX.DirectWrite.FontStretch.Normal;
             int index;
             bool exists = fontCollection.FindFamilyName(familyName, out index);
+            if (!exists)
+            {
+                // A GDI NAME OF A FACE OF A TYPOGRAPHIC FAMILY (12-10-2026, as rpinfoprovgdi.pas
+                // DWriteFontForGdiName): «Gotham Light», «Segoe UI Light» and «Arial Narrow» are, for
+                // DirectWrite, the families Gotham, Segoe UI and Arial with their weight or stretch.
+                // FindFamilyName does not find them and the text was measured and laid out with Segoe
+                // UI; the font GDI takes for that name gives the family, weight, style and stretch.
+                SharpDX.DirectWrite.Font gdiFont = DWriteFontForGdiName(factory, familyName, pdfFont.Bold, pdfFont.Italic);
+                if (gdiFont != null)
+                {
+                    string dwFamily = FamilyNameOf(gdiFont);
+                    if (!string.IsNullOrEmpty(dwFamily) && fontCollection.FindFamilyName(dwFamily, out index))
+                    {
+                        familyName = dwFamily;
+                        fontWeight = gdiFont.Weight;
+                        fontStyle = gdiFont.Style;
+                        fontStretch = gdiFont.Stretch;
+                        exists = true;
+                    }
+                }
+            }
             if (!exists)
             {
                 exists = fontCollection.FindFamilyName("Segoe UI", out index);
@@ -818,7 +908,7 @@ namespace Reportman.Drawing
             if (exists)
             {
                 var fontFamily = fontCollection.GetFontFamily(index);
-                var font = fontFamily.GetFirstMatchingFont(fontWeight, SharpDX.DirectWrite.FontStretch.Normal, fontStyle);
+                var font = fontFamily.GetFirstMatchingFont(fontWeight, fontStretch, fontStyle);
                 var method = typeof(SharpDX.DirectWrite.Font).GetMethod("CreateFontFace", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
                 fontFace = new SharpDX.DirectWrite.FontFace(font);
                 // method.Invoke(font, new object[] { fontFace });
@@ -830,7 +920,7 @@ namespace Reportman.Drawing
             }
 
                 // --- Crear TextFormat ---
-                var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, SharpDX.DirectWrite.FontStretch.Normal, fontSizeInDips);
+                var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, fontStretch, fontSizeInDips);
                 
                 // Detect paragraph direction from first strong directional character.
                 // This is a fundamental bidi requirement: visual run ordering depends on paragraph embedding level.
@@ -960,6 +1050,19 @@ namespace Reportman.Drawing
                             else
                                 lineInfo.Text = Text.Substring(lineInfo.Position);
                         }
+                        // THE CLUSTERS ARE POSITIONS IN THE TEXT OF THE LINE (12-10-2026, as
+                        // rpinfoprovgdi.pas): DirectWrite counts them in the whole text laid out,
+                        // while the PDF writer reads them as positions in the text of the line
+                        // (TextoDeCadaGlifo, ToUnicode): they only matched on the first line.
+                        for (int j = 0; j < lineInfo.Glyphs.Count; j++)
+                        {
+                            TGlyphPos g = lineInfo.Glyphs[j];
+                            if (g.LineCluster >= minLineCluster)
+                            {
+                                g.LineCluster -= minLineCluster;
+                                lineInfo.Glyphs[j] = g;
+                            }
+                        }
                     }
                     else
                     {
@@ -996,6 +1099,34 @@ namespace Reportman.Drawing
                         totalWidth = lineInfo.Width;
 
                     result.Add(lineInfo);
+                }
+
+                // The text of a line ends where its last cluster does, not where it starts: a
+                // ligature (lam-alef) at the end of a line is two characters (12-10-2026). Up to the
+                // next line, without the white space and line breaks in between.
+                string textoDeLasLineas = (isHtml && htmlRuns != null) ? layoutText : Text;
+                for (int i = 0; i < result.Count; i++)
+                {
+                    LineInfo actual = result[i];
+                    if (actual.Size <= 0)
+                        continue;
+                    int siguiente = textoDeLasLineas.Length;
+                    for (int j = i + 1; j < result.Count; j++)
+                        if (result[j].Size > 0)
+                        {
+                            siguiente = result[j].Position;
+                            break;
+                        }
+                    int fin = siguiente;
+                    while (fin > actual.Position + actual.Size && fin - 1 < textoDeLasLineas.Length
+                        && char.IsWhiteSpace(textoDeLasLineas[fin - 1]))
+                        fin--;
+                    if (fin > actual.Position + actual.Size && fin <= textoDeLasLineas.Length)
+                    {
+                        actual.Size = fin - actual.Position;
+                        actual.Text = textoDeLasLineas.Substring(actual.Position, actual.Size);
+                        result[i] = actual;
+                    }
                 }
 
                 // Ajustar rectángulo final

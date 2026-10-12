@@ -1122,7 +1122,7 @@ namespace Reportman.Drawing
                         int[] allPixPos = ComputeGlyphPixPositions(linfo, Alignment, arect, intdpix, out allDx);
                         int nposy = posy + linfo.TopPos - ascent;
                         DrawGlyphRuns(hdc, linfo, allPixPos, allDx, nposy, nfont, baseFontSizePt, origColorRef,
-                            baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy);
+                            baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy, intdpix);
                     }
                 }
             }
@@ -1189,7 +1189,7 @@ namespace Reportman.Drawing
         /// </summary>
         private void DrawGlyphRuns(IntPtr hdc, LineInfo linfo, int[] allPixPos, int[] allDx, int nposy,
             Font nfont, float baseFontSizePt, uint origColorRef,
-            bool baseBold, bool baseItalic, bool baseUnderline, bool baseStrikeOut, float intdpiy)
+            bool baseBold, bool baseItalic, bool baseUnderline, bool baseStrikeOut, float intdpiy, float intdpix)
         {
             int glyphCount = linfo.Glyphs.Count;
             int runStyle = (linfo.Glyphs[0].Bold ? 1 : 0) | (linfo.Glyphs[0].Italic ? 2 : 0) | (linfo.Glyphs[0].Underline ? 4 : 0) | (linfo.Glyphs[0].StrikeOut ? 8 : 0);
@@ -1218,6 +1218,36 @@ namespace Reportman.Drawing
             var runGlyphs = new List<ushort>();
             var runDx = new List<int>();
 
+            // Selects the font and color of the current run (without underline and strikeout when
+            // asked) and returns the top of its glyphs in pixels, on the baseline of the line
+            int SelectRunFont(bool withoutLines)
+            {
+                int style = withoutLines ? runStyle & ~(4 | 8) : runStyle;
+                currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
+                    runFontFamily, runFontSize, style, baseBold, baseItalic,
+                    !withoutLines && baseUnderline, !withoutLines && baseStrikeOut,
+                    intdpiy, Scale, currentFont);
+                if (runHasColor)
+                {
+                    uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
+                    SetTextColor(hdc, cr);
+                }
+                else
+                    SetTextColor(hdc, origColorRef);
+                int baselineOffset = curTmAscent - baseAscent;
+                return (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset;
+            }
+
+            void FlushRun()
+            {
+                if (runGlyphs.Count == 0)
+                    return;
+                int pixY = SelectRunFont(false);
+                ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY, ETO_GLYPH_INDEX, IntPtr.Zero,
+                    runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
+                runGlyphs.Clear(); runDx.Clear();
+            }
+
             for (int k = 0; k < glyphCount; k++)
             {
                 var g = linfo.Glyphs[k];
@@ -1227,54 +1257,42 @@ namespace Reportman.Drawing
                 int gColor = g.Color;
                 bool gHasColor = g.HasColor;
 
-                if ((glyphStyle != runStyle || gFontFamily != runFontFamily ||
+                if (glyphStyle != runStyle || gFontFamily != runFontFamily ||
                      Math.Abs(gFontSize - runFontSize) > 0.01f || gColor != runColor ||
-                     gHasColor != runHasColor) && runGlyphs.Count > 0)
+                     gHasColor != runHasColor)
                 {
-                    currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
-                        runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
-                        intdpiy, Scale, currentFont);
-                    if (runHasColor)
-                    {
-                        uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
-                        SetTextColor(hdc, cr);
-                    }
-                    else
-                        SetTextColor(hdc, origColorRef);
-
-                    int baselineOffset = curTmAscent - baseAscent;
-                    int pixY = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset;
-                    ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY, ETO_GLYPH_INDEX, IntPtr.Zero,
-                        runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
-
-                    runGlyphs.Clear(); runDx.Clear();
+                    FlushRun();
                     runStyle = glyphStyle; runFontFamily = gFontFamily;
                     runFontSize = gFontSize; runColor = gColor;
-                    runHasColor = gHasColor; runFirstGlyph = k;
+                    runHasColor = gHasColor;
                 }
+
+                // A GLYPH OFF ITS PEN POSITION, ALONE AT ITS OFFSET (12-10-2026, as rpgdidriver.pas
+                // DrawGlyphRuns). ExtTextOutW places glyphs by their advances only: the marks a shaper
+                // moves (the dots of Noto Sans Arabic, vowels, combining accents) came out displaced
+                // to the left and up. YOffset goes upwards. Without underline and strikeout: the run
+                // of its base glyph draws them, here GDI would draw them again over its own width.
+                if (g.XOffset != 0 || g.YOffset != 0)
+                {
+                    FlushRun();
+                    int pixYMark = SelectRunFont(true);
+                    ushort[] uno = new ushort[] { (ushort)g.GlyphIndex };
+                    ExtTextOutW(hdc,
+                        allPixPos[k] + (int)Math.Round(g.XOffset * intdpix / 1440 * Scale),
+                        pixYMark - (int)Math.Round(g.YOffset * intdpiy / 1440 * Scale),
+                        ETO_GLYPH_INDEX, IntPtr.Zero, uno, 1, null);
+                    runFirstGlyph = k + 1;
+                    continue;
+                }
+
+                if (runGlyphs.Count == 0)
+                    runFirstGlyph = k;
                 runGlyphs.Add((ushort)g.GlyphIndex);
                 runDx.Add(allDx[k]);
             }
 
             // Flush last run
-            if (runGlyphs.Count > 0)
-            {
-                currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
-                    runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
-                    intdpiy, Scale, currentFont);
-                if (runHasColor)
-                {
-                    uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
-                    SetTextColor(hdc, cr);
-                }
-                else
-                    SetTextColor(hdc, origColorRef);
-
-                int baselineOffset2 = curTmAscent - baseAscent;
-                int pixY2 = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset2;
-                ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY2, ETO_GLYPH_INDEX, IntPtr.Zero,
-                    runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
-            }
+            FlushRun();
 
             if (currentFont != IntPtr.Zero)
             {
@@ -1649,7 +1667,7 @@ namespace Reportman.Drawing
                                     int[] wDx;
                                     int[] wPixPos = ComputeGlyphPixPositions(winfo, 0, wordrect, intdpix, out wDx);
                                     DrawGlyphRuns(hdc, winfo, wPixPos, wDx, nposy, nfont, baseFontSizePt, origColorRef,
-                                        baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy);
+                                        baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy, intdpix);
                                 }
                                 currpos = currpos + lwidths[lindex] + alinedif;
                             }
@@ -1664,7 +1682,7 @@ namespace Reportman.Drawing
                         int[] allDx;
                         int[] allPixPos = ComputeGlyphPixPositions(linfo, Alignment, arect, intdpix, out allDx);
                         DrawGlyphRuns(hdc, linfo, allPixPos, allDx, nposy, nfont, baseFontSizePt, origColorRef,
-                            baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy);
+                            baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy, intdpix);
                     }
                 }
             }

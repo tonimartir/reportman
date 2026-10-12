@@ -215,7 +215,10 @@ namespace Reportman.Drawing.Windows
                 if (glyphRun.Offsets != null)
                 {
                     var off = glyphRun.Offsets[i];
-                    pos.XOffset = (int)Math.Round(-off.AdvanceOffset * DIP_TO_TWIPS_FACTOR);
+                    // advanceOffset goes in the reading direction: to the left only in RTL runs
+                    // (12-10-2026, as RpDirectWriteRenderer.pas). Negated for every run, the marks
+                    // of LTR runs (combining accents, Devanagari) moved to the wrong side.
+                    pos.XOffset = (int)Math.Round((runIsRTL ? -off.AdvanceOffset : off.AdvanceOffset) * DIP_TO_TWIPS_FACTOR);
                     pos.YOffset = (int)Math.Round(off.AscenderOffset * DIP_TO_TWIPS_FACTOR);
                 }
                 if (_fontFace != glyphRun.FontFace)
