@@ -147,7 +147,8 @@ namespace Reportman.Drawing.CrossPlatform
         {
             string text = page.GetText(obj);
             if (text.Length == 0) return;
-            string family = page.GetWFontNameText(obj);
+            // Courier New for Courier on macOS (FontInfoFt.PlatformFamily)
+            string family = FontInfoFt.PlatformFamily(page.GetWFontNameText(obj));
             bool bold = GraphicUtils.FontStyleIsBold(obj.FontStyle);
             bool italic = GraphicUtils.FontStyleIsItalic(obj.FontStyle);
             bool underline = GraphicUtils.FontStyleIsUnderline(obj.FontStyle);
@@ -336,7 +337,7 @@ namespace Reportman.Drawing.CrossPlatform
         /// <inheritdoc/>
         public override Point TextExtent(TextObjectStruct aobj, Point extent)
         {
-            using (SKTypeface face = SKTypeface.FromFamilyName(aobj.WFontName) ?? SKTypeface.Default)
+            using (SKTypeface face = SKTypeface.FromFamilyName(FontInfoFt.PlatformFamily(aobj.WFontName)) ?? SKTypeface.Default)
             using (SKFont font = new SKFont(face, aobj.FontSize * Dpi / 72f))
             {
                 float w = font.MeasureText(aobj.Text ?? "");

@@ -747,6 +747,52 @@ namespace Reportman.Drawing
             return null;
         }
 
+        /// <summary>True on macOS, which .NET Core reports as <see cref="PlatformID.Unix"/>.</summary>
+        public static readonly bool IsMacOS = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+
+        /// <summary>
+        /// The family of an X11 font name: "adobe-courier" (foundry-family, as the reports made
+        /// with Kylix and the Qt designers carry them) or a whole XLFD
+        /// ("-adobe-courier-medium-r-normal--12-..."); empty when the name is not one. Mirrors
+        /// RpCTX11Family in rpinfoprovct.pas.
+        /// </summary>
+        public static string X11Family(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return "";
+            string rest = name.StartsWith("-", StringComparison.Ordinal) ? name.Substring(1) : name;
+            int p = rest.IndexOf('-');
+            if (p <= 0)
+                return "";
+            rest = rest.Substring(p + 1);
+            p = rest.IndexOf('-');
+            if (p >= 0)
+                rest = rest.Substring(0, p);
+            return rest.Trim();
+        }
+
+        /// <summary>
+        /// COURIER IS DRAWN WITH COURIER NEW ON MACOS (13-10-2026). Courier.ttc of macOS, embedded
+        /// in a PDF or in a print job, restarts some printers (HP M477fdw over AirPrint); Courier
+        /// New ships with macOS, has the same widths and prints. Mirrors RpCTFamilyAlias in
+        /// rpinfoprovct.pas.
+        /// </summary>
+        public static string PlatformFamily(string family)
+        {
+            if (IsMacOS && string.Equals(family, "Courier", StringComparison.OrdinalIgnoreCase))
+                return "Courier New";
+            return family;
+        }
+
+        /// <summary>Whether the enumerated list has any face of a family (upper case).</summary>
+        private bool HasFamily(string family)
+        {
+            foreach (string key in fontlist.Keys)
+                if (key.StartsWith(family + "____", StringComparison.Ordinal))
+                    return true;
+            return false;
+        }
+
         /// <summary>
         /// Picks the font for a request from the enumerated list, by family and style, exactly as
         /// this engine has always done when there is no fontconfig to ask.
@@ -762,6 +808,12 @@ namespace Reportman.Drawing
             {
                 fontname = pdfFont.WFontName.ToUpper();
             }
+            // An X11 name ("adobe-courier") is the family after its foundry when the list lacks
+            // the whole name; the similar names and the aliases below then find "Courier New"
+            string x11 = X11Family(fontname);
+            if (x11.Length > 0 && !HasFamily(fontname))
+                fontname = x11;
+            fontname = PlatformFamily(fontname).ToUpper();
             string familyname = fontname;
             string suffix = "";
             bool isbold = (pdfFont.Style & 1) > 0;
@@ -1188,6 +1240,7 @@ namespace Reportman.Drawing
             // its PostScript past. The Delphi engine sends it to Cantarell and so does this one.
             if (familyname == "Helvetica")
                 familyname = "Cantarell";
+            familyname = PlatformFamily(familyname);
             if (ignoreFamily)
                 familyname = "";
             // Bold and italic are read from the flags and not from the Style bits, the way the
@@ -1733,11 +1786,15 @@ namespace Reportman.Drawing
             // where a font with the right metrics is going to be.
             foreach (string nextra in ExtraFontDirectories)
                 dirs.Add(nextra);
-            switch (System.Environment.OSVersion.Platform)
+            // .NET Core reports macOS as Unix: it went to the Linux branch and found no fonts
+            switch (IsMacOS ? PlatformID.MacOSX : System.Environment.OSVersion.Platform)
             {
                 case PlatformID.MacOSX:
                     dirs.Add("/Library/Fonts");
-                    dirs.Add("~/Library/Fonts");
+                    string machome = System.Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    if (!string.IsNullOrEmpty(machome))
+                        dirs.Add(Path.Combine(machome, "Library", "Fonts"));
+                    // Supplemental (Arial, Courier New...) is scanned with it
                     dirs.Add("/System/Library/Fonts");
                     break;
                 case PlatformID.Unix:
