@@ -692,7 +692,10 @@ namespace Reportman.Drawing
             int LineWidth;
             double W, H;
             string opfill;
-            if ((PenStyle == 5) && (BrushStyle == 2))
+            // Clear pen (5) and clear brush (1, bsClear): nothing to paint. It said 2 (Horizontal), a slip from
+            // rppdffile.pas, which checks 1: a clear brush fell through to "S" and stroked the outline with the
+            // default pen, and a hatched shape with a clear pen was not painted at all.
+            if ((PenStyle == 5) && (BrushStyle == 1))
                 return;
             SetDash();
             W = X2 - X1;
@@ -746,7 +749,10 @@ namespace Reportman.Drawing
         {
             int LineWidth;
             string opfill;
-            if ((PenStyle == 5) && (BrushStyle == 2))
+            // Clear pen (5) and clear brush (1, bsClear): nothing to paint. It said 2 (Horizontal), a slip from
+            // rppdffile.pas, which checks 1: a clear brush fell through to "S" and stroked the outline with the
+            // default pen, and a hatched shape with a clear pen was not painted at all.
+            if ((PenStyle == 5) && (BrushStyle == 1))
                 return;
             SetDash();
             LineWidth = 1;
@@ -799,7 +805,10 @@ namespace Reportman.Drawing
         {
             int LineWidth;
             string opfill;
-            if ((PenStyle == 5) && (BrushStyle == 2))
+            // Clear pen (5) and clear brush (1, bsClear): nothing to paint. It said 2 (Horizontal), a slip from
+            // rppdffile.pas, which checks 1: a clear brush fell through to "S" and stroked the outline with the
+            // default pen, and a hatched shape with a clear pen was not painted at all.
+            if ((PenStyle == 5) && (BrushStyle == 1))
                 return;
             SetDash();
             LineWidth = 1;

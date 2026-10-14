@@ -250,17 +250,18 @@ namespace Reportman.Drawing.CrossPlatform
                         if (fill) canvas.DrawOval(r, brush);
                         if (stroke) canvas.DrawOval(r, pen);
                         break;
+                    // A line is all pen: with a clear pen there is nothing to draw (the PDF and GDI drivers agree).
                     case ShapeType.HorzLine:
-                        canvas.DrawLine(left, top, left + width, top, pen);
+                        if (stroke) canvas.DrawLine(left, top, left + width, top, pen);
                         break;
                     case ShapeType.VertLine:
-                        canvas.DrawLine(left, top, left, top + height, pen);
+                        if (stroke) canvas.DrawLine(left, top, left, top + height, pen);
                         break;
                     case ShapeType.Oblique1:
-                        canvas.DrawLine(left, top, left + width, top + height, pen);
+                        if (stroke) canvas.DrawLine(left, top, left + width, top + height, pen);
                         break;
                     case ShapeType.Oblique2:
-                        canvas.DrawLine(left, top + height, left + width, top, pen);
+                        if (stroke) canvas.DrawLine(left, top + height, left + width, top, pen);
                         break;
                 }
             }
