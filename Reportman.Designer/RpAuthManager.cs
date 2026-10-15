@@ -14,7 +14,7 @@ namespace Reportman.Designer
 {
     /// <summary>
     /// Port of Delphi's TRpAuthManager: singleton managing authentication,
-    /// profile, tiers, OAuth flows (Google/Microsoft), email OTP, and config persistence.
+    /// profile, tiers, OAuth flows (Google/Microsoft/Apple), email OTP, and config persistence.
     /// Config is saved to %LOCALAPPDATA%\Reportman\reportman_auth.ini (shared with Delphi).
     /// </summary>
     public class RpAuthManager
