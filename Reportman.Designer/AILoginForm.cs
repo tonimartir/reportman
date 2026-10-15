@@ -58,10 +58,54 @@ namespace Reportman.Designer
             txtLog.AppendText("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + msg + Environment.NewLine);
         }
 
+        // A login button with the logo of its provider at the left and the caption centered.
+        // FlatStyle.Standard: a System button does not draw images
+        private Button NewProviderButton(string text, string icon)
+        {
+            var button = new Button
+            {
+                Text = text,
+                Dock = DockStyle.Top,
+                Height = 40,
+                FlatStyle = FlatStyle.Standard,
+                UseVisualStyleBackColor = true,
+                Cursor = Cursors.Hand,
+                TextAlign = ContentAlignment.MiddleCenter,
+                ImageAlign = ContentAlignment.MiddleLeft,
+                TextImageRelation = TextImageRelation.Overlay,
+                Padding = new Padding(12, 0, 0, 0),
+                Image = LoadProviderIcon(icon)
+            };
+            return button;
+        }
+
+        // The icon of the screen's DPI: 20 pixels at 100 %, the 30 and 40 pixel files above
+        private Image LoadProviderIcon(string icon)
+        {
+            int target = (int)Math.Round(20 * DeviceDpi / 96.0);
+            int size = target <= 20 ? 20 : target <= 30 ? 30 : 40;
+            using (var stream = typeof(AILoginForm).Assembly.GetManifestResourceStream($"LoginIcons.{icon}_{size}.png"))
+            {
+                if (stream == null)
+                    return null;
+                using (var image = Image.FromStream(stream))
+                {
+                    var result = new Bitmap(target, target);
+                    using (var g = Graphics.FromImage(result))
+                    {
+                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                        g.DrawImage(image, 0, 0, target, target);
+                    }
+                    return result;
+                }
+            }
+        }
+
         private void InitializeComponent()
         {
             this.Text = DesignerText.Tr(1499);
-            this.Size = new Size(420, 552);
+            this.Size = new Size(420, 606);
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -77,51 +121,26 @@ namespace Reportman.Designer
             };
 
             // === Button panel ===
-            panelButtons = new Panel { Dock = DockStyle.Top, Height = 152, Padding = new Padding(30, 8, 30, 8) };
+            // The provider buttons as in the Delphi designer: 40 pixels high, 10 apart,
+            // with the provider's logo at their left
+            panelButtons = new Panel { Dock = DockStyle.Top, Height = 206, Padding = new Padding(30, 8, 30, 8) };
 
-            btnGoogle = new Button
-            {
-                Text = DesignerText.Tr(1501),
-                Dock = DockStyle.Top,
-                Height = 32,
-                FlatStyle = FlatStyle.System,
-                Cursor = Cursors.Hand
-            };
+            btnGoogle = NewProviderButton(DesignerText.Tr(1501), "google");
             btnGoogle.Click += BtnGoogle_Click;
-
-            btnMicrosoft = new Button
-            {
-                Text = DesignerText.Tr(1502),
-                Dock = DockStyle.Top,
-                Height = 32,
-                FlatStyle = FlatStyle.System,
-                Cursor = Cursors.Hand
-            };
+            btnMicrosoft = NewProviderButton(DesignerText.Tr(1502), "microsoft");
             btnMicrosoft.Click += BtnMicrosoft_Click;
-
-            btnApple = new Button
-            {
-                Text = DesignerText.Tr(2009),
-                Dock = DockStyle.Top,
-                Height = 32,
-                FlatStyle = FlatStyle.System,
-                Cursor = Cursors.Hand
-            };
+            btnApple = NewProviderButton(DesignerText.Tr(2009), "apple");
             btnApple.Click += BtnApple_Click;
-
-            btnEmail = new Button
-            {
-                Text = DesignerText.Tr(1503),
-                Dock = DockStyle.Top,
-                Height = 32,
-                FlatStyle = FlatStyle.System,
-                Cursor = Cursors.Hand
-            };
+            btnEmail = NewProviderButton(DesignerText.Tr(1503), "email");
             btnEmail.Click += BtnEmail_Click;
 
+            // Docked to the top: the last one added is the topmost
             panelButtons.Controls.Add(btnEmail);
+            panelButtons.Controls.Add(new Panel { Dock = DockStyle.Top, Height = 10 });
             panelButtons.Controls.Add(btnApple);
+            panelButtons.Controls.Add(new Panel { Dock = DockStyle.Top, Height = 10 });
             panelButtons.Controls.Add(btnMicrosoft);
+            panelButtons.Controls.Add(new Panel { Dock = DockStyle.Top, Height = 10 });
             panelButtons.Controls.Add(btnGoogle);
 
             // === Email panel (initially hidden) ===

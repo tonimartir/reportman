@@ -43,6 +43,8 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\MonacoEditor.zip" />
 	  <EmbeddedResource Include="Resources\WebMarkdown.zip" />
+	  <!-- Icons of the login buttons (the same as the Delphi/Lazarus designers': build/loginicons) -->
+	  <EmbeddedResource Include="Resources\LoginIcons\*.png" LogicalName="LoginIcons.%(Filename)%(Extension)" />
 	</ItemGroup>
   <ItemGroup>
     <Compile Update="Inspector.cs">
