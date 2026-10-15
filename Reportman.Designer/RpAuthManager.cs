@@ -343,6 +343,142 @@ namespace Reportman.Designer
             return false;
         }
 
+        // ===== Sign in with Apple =====
+
+        /// <summary>Why the last Apple sign-in failed when the server said so (null otherwise).</summary>
+        public string LastLoginError { get; private set; }
+
+        /// <summary>
+        /// Sign in with Apple through the API's web flow, as the WPF and Avalonia designers do: Apple only returns to a
+        /// registered https address with a form POST, so the browser opens api/login/apple/web and the API sends it on to
+        /// a listener of this program on 127.0.0.1 with ?token=…&amp;email=… (or ?error=…). The state travels in the return
+        /// address: the API keeps its query and adds its answer to it.
+        /// </summary>
+        public async Task<bool> LoginAppleAsync()
+        {
+            LastLoginError = null;
+            int port = PickLoopbackPort();
+            string state = Guid.NewGuid().ToString("N");
+            string returnUrl = "http://127.0.0.1:" + port + "/?state=" + state;
+            string loginUrl = HUB_API_URL + "/api/login/apple/web?returnUrl=" + Uri.EscapeDataString(returnUrl) +
+                "&installId=" + Uri.EscapeDataString(InstallId ?? "");
+            Log("Apple sign-in: port=" + port);
+
+            // Asked first, without following its redirect: a server where Sign in with Apple is not configured says so
+            // at once, instead of leaving the browser on an error page while this program waits.
+            string refusal = await ApiLoginRefusalAsync(loginUrl);
+            if (refusal != null)
+            {
+                LastLoginError = refusal;
+                Log("Sign in with Apple is not available: " + refusal);
+                return false;
+            }
+
+            var answer = await WaitForApiTokenAsync(port, state, loginUrl);
+            if (string.IsNullOrEmpty(answer.Token))
+            {
+                LastLoginError = answer.Error;
+                return false;
+            }
+
+            Token = answer.Token;
+            IsLoggedIn = true;
+            SaveConfig();
+            // The profile and tiers of the new session (a token the API refuses logs out)
+            await CheckStatusAsync();
+            return IsLoggedIn && !string.IsNullOrEmpty(Token);
+        }
+
+        /// <summary>Null when the API redirects to the provider; otherwise its answer (e.g. 503 "not configured").</summary>
+        private async Task<string> ApiLoginRefusalAsync(string loginUrl)
+        {
+            try
+            {
+                using (var handler = new HttpClientHandler { AllowAutoRedirect = false })
+                using (var http = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(20) })
+                using (var response = await http.GetAsync(loginUrl))
+                {
+                    int status = (int)response.StatusCode;
+                    if (status >= 300 && status < 400)
+                        return null;
+                    string body = (await response.Content.ReadAsStringAsync()).Trim();
+                    return body.Length == 0 ? "HTTP " + status : body;
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        /// <summary>
+        /// Opens <paramref name="loginUrl"/> once the listener on 127.0.0.1 is started and waits for the API's answer:
+        /// its token, or the error it reports (both null on timeout). An answer without <paramref name="expectedState"/>
+        /// does not belong to this login request.
+        /// </summary>
+        private async Task<(string Token, string Error)> WaitForApiTokenAsync(int port, string expectedState, string loginUrl)
+        {
+            var listener = new HttpListener();
+            listener.Prefixes.Add("http://127.0.0.1:" + port + "/");
+            try
+            {
+                listener.Start();
+                Process.Start(new ProcessStartInfo { FileName = loginUrl, UseShellExecute = true });
+                var deadline = DateTime.UtcNow.AddMinutes(5);
+                while (true)
+                {
+                    var contextTask = listener.GetContextAsync();
+                    var remaining = deadline - DateTime.UtcNow;
+                    if (remaining <= TimeSpan.Zero ||
+                        await Task.WhenAny(contextTask, Task.Delay(remaining)) != contextTask)
+                    {
+                        Log("Apple sign-in: timeout.");
+                        return (null, null);
+                    }
+                    var context = await contextTask;
+                    string token = context.Request.QueryString["token"];
+                    string error = context.Request.QueryString["error"];
+                    string state = context.Request.QueryString["state"];
+                    if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(error))
+                    {
+                        // favicon.ico and the like
+                        context.Response.StatusCode = 404;
+                        context.Response.Close();
+                        continue;
+                    }
+                    if (string.IsNullOrEmpty(error) && state != expectedState)
+                        error = "The response does not belong to this login request (state)";
+
+                    string html = string.IsNullOrEmpty(error)
+                        ? "<html><body><h1>Login successful!</h1><p>You can close this window.</p>"
+                        : "<html><body><h1>Login failed</h1><p>" + WebUtility.HtmlEncode(error) + "</p>";
+                    // The token leaves the address bar and the history
+                    html += "<script>history.replaceState(null, '', '/'); window.close();</script></body></html>";
+                    byte[] buffer = Encoding.UTF8.GetBytes(html);
+                    context.Response.ContentType = "text/html; charset=utf-8";
+                    context.Response.ContentLength64 = buffer.Length;
+                    await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+                    context.Response.Close();
+
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        Log("Apple sign-in error: " + error);
+                        return (null, error);
+                    }
+                    return (token, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log("Apple sign-in listener error: " + ex.Message);
+                return (null, null);
+            }
+            finally
+            {
+                try { listener.Stop(); } catch { }
+            }
+        }
+
         // ===== OAuth Loopback Callback Listener =====
 
         /// <summary>

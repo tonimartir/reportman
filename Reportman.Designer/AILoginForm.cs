@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Reportman.Designer
 {
     /// <summary>
-    /// Port of Delphi's TFRpLoginVCL: modal dialog with Google, Microsoft, and Email OTP login.
+    /// Port of Delphi's TFRpLoginVCL: modal dialog with Google, Microsoft, Apple and Email OTP login.
     /// Uses RpAuthManager for all auth operations.
     /// </summary>
     public class AILoginForm : Form
@@ -15,6 +15,7 @@ namespace Reportman.Designer
         private Panel panelButtons;
         private Button btnGoogle;
         private Button btnMicrosoft;
+        private Button btnApple;
         private Button btnEmail;
         private Panel panelEmail;
         private Label lblEmail;
@@ -60,7 +61,7 @@ namespace Reportman.Designer
         private void InitializeComponent()
         {
             this.Text = DesignerText.Tr(1499);
-            this.Size = new Size(420, 520);
+            this.Size = new Size(420, 552);
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -76,7 +77,7 @@ namespace Reportman.Designer
             };
 
             // === Button panel ===
-            panelButtons = new Panel { Dock = DockStyle.Top, Height = 120, Padding = new Padding(30, 8, 30, 8) };
+            panelButtons = new Panel { Dock = DockStyle.Top, Height = 152, Padding = new Padding(30, 8, 30, 8) };
 
             btnGoogle = new Button
             {
@@ -98,6 +99,16 @@ namespace Reportman.Designer
             };
             btnMicrosoft.Click += BtnMicrosoft_Click;
 
+            btnApple = new Button
+            {
+                Text = DesignerText.Tr(2009),
+                Dock = DockStyle.Top,
+                Height = 32,
+                FlatStyle = FlatStyle.System,
+                Cursor = Cursors.Hand
+            };
+            btnApple.Click += BtnApple_Click;
+
             btnEmail = new Button
             {
                 Text = DesignerText.Tr(1503),
@@ -109,6 +120,7 @@ namespace Reportman.Designer
             btnEmail.Click += BtnEmail_Click;
 
             panelButtons.Controls.Add(btnEmail);
+            panelButtons.Controls.Add(btnApple);
             panelButtons.Controls.Add(btnMicrosoft);
             panelButtons.Controls.Add(btnGoogle);
 
@@ -163,6 +175,7 @@ namespace Reportman.Designer
         {
             btnGoogle.Enabled = enabled;
             btnMicrosoft.Enabled = enabled;
+            btnApple.Enabled = enabled;
             btnEmail.Enabled = enabled;
             btnSendCode.Enabled = enabled;
             btnLoginCode.Enabled = enabled;
@@ -222,6 +235,38 @@ namespace Reportman.Designer
                 else
                 {
                     SetStatus(DesignerText.Tr(1508), Color.Red);
+                }
+            }
+            catch (Exception ex)
+            {
+                SetStatus(DesignerText.Tr(355) + ": " + ex.Message, Color.Red);
+            }
+            finally
+            {
+                SetAllButtonsEnabled(true);
+            }
+        }
+
+        // ===== Apple Login =====
+
+        private async void BtnApple_Click(object sender, EventArgs e)
+        {
+            SetAllButtonsEnabled(false);
+            SetStatus(DesignerText.Tr(1507), Color.Blue);
+            try
+            {
+                bool ok = await RpAuthManager.Instance.LoginAppleAsync();
+                if (ok)
+                {
+                    SetStatus(DesignerText.Tr(1773), Color.Green);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    // What the server said (Sign in with Apple not configured...)
+                    string reason = RpAuthManager.Instance.LastLoginError;
+                    SetStatus(string.IsNullOrEmpty(reason) ? DesignerText.Tr(1508) : reason, Color.Red);
                 }
             }
             catch (Exception ex)
