@@ -3392,7 +3392,12 @@ end;
                     {
                         if (groupId != 0)
                         {
-                            var opName = new ChangeObjectOperation(OperationType.Modify, groupId);
+                            // Without the section's name undo can not find it ("Item not found")
+                            var opName = new ChangeObjectOperation(OperationType.Modify, groupId)
+                            {
+                                ComponentName = section.Name,
+                                ComponentClass = section.ClassName
+                            };
                             opName.AddProperty("childSubreportName", PropertyType.String, section.ChildSubReportName, "");
                             UndoCue.AddOperation(opName, this);
                         }

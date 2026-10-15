@@ -429,7 +429,12 @@ namespace Reportman.Reporting.Design
 
                     if (groupId != 0)
                     {
-                        var undoOperation = new ChangeObjectOperation(OperationType.Modify, groupId);
+                        // Without the section's name undo can not find it ("Item not found")
+                        var undoOperation = new ChangeObjectOperation(OperationType.Modify, groupId)
+                        {
+                            ComponentName = section.Name,
+                            ComponentClass = section.ClassName
+                        };
                         undoOperation.AddProperty("childSubreportName", PropertyType.String, section.ChildSubReportName, string.Empty);
                         report.UndoCue?.AddOperation(undoOperation, report);
                     }
@@ -755,7 +760,8 @@ namespace Reportman.Reporting.Design
             var target = GetComponentByName(report, operation.TargetName);
             var undoOperation = new ChangeObjectOperation(OperationType.Modify, groupId)
             {
-                ComponentName = target.Name,
+                // The report has no name: every undo engine finds it as "REPORT"
+                ComponentName = target is Report ? "REPORT" : target.Name,
                 ComponentClass = target.ClassName,
                 ParentName = GetParentName(report, target)
             };

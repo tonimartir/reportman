@@ -297,7 +297,9 @@ namespace Reportman.Reporting
 
         private ReportItem GetComponentByName(string name, Report report)
         {
-            if (name == "REPORT")
+            // An empty name is the report too: the AI server recorded its
+            // changes with the report's Name, which is empty
+            if (string.IsNullOrEmpty(name) || name == "REPORT")
             {
                 return report;
             }
