@@ -784,6 +784,47 @@ namespace Reportman.Drawing
             return family;
         }
 
+        private static HashSet<string> installedFamilies;
+        private static readonly object installedFamiliesLock = new object();
+
+        /// <summary>
+        /// Whether a family is installed: fontconfig's list of families where there is fontconfig,
+        /// else the enumerated list.
+        /// </summary>
+        private bool IsInstalledFamily(string family)
+        {
+            if (string.IsNullOrEmpty(family))
+                return false;
+            if (!FontConfig.Available)
+                return HasFamily(family.ToUpper());
+            lock (installedFamiliesLock)
+            {
+                if (installedFamilies == null)
+                    installedFamilies = new HashSet<string>(FontConfig.ListFamilies(false),
+                        StringComparer.OrdinalIgnoreCase);
+                return installedFamilies.Contains(family);
+            }
+        }
+
+        /// <summary>
+        /// The family a report font asks for outside Windows: its LFontName, but on macOS its
+        /// WFontName when the Mac has that family and not the first, as the Core Text provider of
+        /// the Delphi engine does (RpCTBaseFontName in rpinfoprovct.pas): a report made with
+        /// "DejaVu Sans" for Linux and "Arial" for Windows prints in Arial on a Mac, not in what
+        /// fontconfig would substitute. With neither installed, LFontName, and the text finds its
+        /// font by coverage.
+        /// </summary>
+        private string BaseFamily(PDFFont pdfFont)
+        {
+            string lname = pdfFont.LFontName ?? "";
+            if (!IsMacOS)
+                return lname;
+            string wname = pdfFont.WFontName ?? "";
+            if (wname.Length > 0 && !IsInstalledFamily(lname) && IsInstalledFamily(wname))
+                return wname;
+            return lname;
+        }
+
         /// <summary>Whether the enumerated list has any face of a family (upper case).</summary>
         private bool HasFamily(string family)
         {
@@ -802,7 +843,7 @@ namespace Reportman.Drawing
             string fontname = "";
             if ((System.Environment.OSVersion.Platform == PlatformID.Unix) || (System.Environment.OSVersion.Platform == PlatformID.MacOSX))
             {
-                fontname = pdfFont.LFontName.ToUpper();
+                fontname = BaseFamily(pdfFont).ToUpper();
             }
             else
             {
@@ -1233,12 +1274,11 @@ namespace Reportman.Drawing
         /// <summary>Returns true when fontconfig answered with a font this engine can use, in which case it is now the current one.</summary>
         private bool SelectFontFontConfigInt(PDFFont pdfFont, string content, bool ignoreFamily)
         {
-            string familyname = pdfFont.LFontName;
-            if (familyname == null)
-                familyname = "";
-            // Helvetica is not a font that exists on a Unix box, it is a name a report carries from
-            // its PostScript past. The Delphi engine sends it to Cantarell and so does this one.
-            if (familyname == "Helvetica")
+            string familyname = BaseFamily(pdfFont);
+            // Helvetica is not a font that exists on a Linux box, it is a name a report carries from
+            // its PostScript past. The Delphi engine sends it to Cantarell and so does this one. A
+            // Mac has it (and the Core Text provider uses it).
+            if (familyname == "Helvetica" && !IsMacOS)
                 familyname = "Cantarell";
             familyname = PlatformFamily(familyname);
             if (ignoreFamily)

@@ -6,11 +6,13 @@ namespace Reportman.Drawing
     /// <summary>
     /// The bidirectional analysis this engine needs from ICU: paragraph levels, logical
     /// levels per character and visual runs. Two implementations behind it: icu.net (Windows,
-    /// Linux, macOS — the versioned libicuuc/libicui18n) and, on Android, the platform's own
-    /// ICU4C through <c>libicu.so</c>, the stable C API Android exports to apps since API 31
-    /// (public.libraries.txt). icu.net cannot run on Android at all (its platform detection
-    /// throws on "Android (API level N)"), and shipping ICU would add ~30 MB per ABI for a
-    /// library the device already has.
+    /// Linux — the versioned libicuuc/libicui18n) and, on Android and macOS, the platform's own
+    /// ICU4C: <c>libicu.so</c>, the stable C API Android exports to apps since API 31
+    /// (public.libraries.txt), and <c>/usr/lib/libicucore.dylib</c> of macOS, with the same
+    /// unversioned symbols. icu.net cannot run on Android at all (its platform detection
+    /// throws on "Android (API level N)") nor on a Mac without a versioned ICU installed
+    /// ("Can't load ICU library"), and shipping ICU would add ~30 MB for a library the system
+    /// already has.
     /// </summary>
     internal interface IBidiPara : IDisposable
     {
@@ -69,8 +71,9 @@ namespace Reportman.Drawing
 #if !NETFRAMEWORK
     /// <summary>
     /// The handful of ICU4C entry points the engine uses, bound by function pointer to the
-    /// library Android exports to apps (<c>libicu.so</c>, unversioned symbols). Only probed on
-    /// Android; elsewhere <see cref="Available"/> is false and icu.net is used.
+    /// library of the system with unversioned symbols: <c>libicu.so</c> on Android,
+    /// <c>/usr/lib/libicucore.dylib</c> on macOS. Only probed there; elsewhere
+    /// <see cref="Available"/> is false and icu.net is used.
     /// </summary>
     internal static unsafe class IcuNative
     {
@@ -108,11 +111,16 @@ namespace Reportman.Drawing
 
         private static bool Probe()
         {
-            if (!OperatingSystem.IsAndroid())
+            string library;
+            if (OperatingSystem.IsAndroid())
+                library = "libicu.so";
+            else if (OperatingSystem.IsMacOS())
+                library = "/usr/lib/libicucore.dylib";
+            else
                 return false;
             try
             {
-                if (!NativeLibrary.TryLoad("libicu.so", out IntPtr lib) || lib == IntPtr.Zero)
+                if (!NativeLibrary.TryLoad(library, out IntPtr lib) || lib == IntPtr.Zero)
                     return false;
                 IntPtr p;
                 if (!NativeLibrary.TryGetExport(lib, "ubidi_open", out p)) return false;
@@ -144,7 +152,7 @@ namespace Reportman.Drawing
         }
     }
 
-    /// <summary>BiDi on the platform ICU (Android). The text is pinned for as long as ICU may look at it.</summary>
+    /// <summary>BiDi on the platform ICU (Android, macOS). The text is pinned for as long as ICU may look at it.</summary>
     internal sealed unsafe class BidiNative : IBidiPara
     {
         private IntPtr handle;
