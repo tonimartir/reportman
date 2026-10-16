@@ -12,6 +12,11 @@
     <Content Include="repmand_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <!-- The sample reports, the same as the Delphi and Lazarus designers' (made by
+         build/samples of reportmandelphi): samples\ next to designer.exe -->
+    <None Include="..\samples\**\*" Link="samples\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Reportman.Designer\Reportman.Designer.csproj" />
     <ProjectReference Include="..\Reportman.Drawing.CrossPlatform\Reportman.Drawing.CrossPlatform.csproj" />
     <ProjectReference Include="..\Reportman.Drawing.Excel\Reportman.Drawing.Excel.csproj" />

@@ -43,6 +43,14 @@ namespace designer
                     RunNewWizard(args);
                     return;
                 }
+                // designer.exe /welcome /shot <png> [/select <n>]  -> headless capture of the welcome window
+                if (HasArg(args, "/welcome"))
+                {
+                    int selected = 0;
+                    int.TryParse(GetArgValue(args, "/select") ?? "0", out selected);
+                    Reportman.Designer.WelcomeForm.Capture(GetArgValue(args, "/shot"), selected);
+                    return;
+                }
                 // designer.exe /undotest [/rep <file>] [/out <txt>] -> headless undo-on-select test
                 if (HasArg(args, "/undotest"))
                 {

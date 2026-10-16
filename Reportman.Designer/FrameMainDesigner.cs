@@ -111,6 +111,9 @@ namespace Reportman.Designer
         private const int DefaultAIChatPanelWidth = 350;
         private const string PreferencesSectionName = "Preferences";
         private const string ShowAIChatPreferenceKey = "ShowAIChat";
+        private const string ShowWelcomePreferenceKey = "ShowWelcome";
+        private const string DocumentationUrl = "https://reportman.es/docnet/";
+        private ToolStripDropDownButton bhelp;
         private string CurrentFilename = "";
         ReportLibrarySelection CurrentReportSelection = null;
 
@@ -491,7 +494,89 @@ namespace Reportman.Designer
             bchatIA.Text = Translator.TranslateStr(1550);
             bchatIA.ToolTipText = Translator.TranslateStr(1551);
             bexit.Text = Translator.TranslateStr(44);
+            BuildHelpMenu();
             fundocue.OnUndoRedo += UndoCue_OnUndoRedo;
+        }
+
+        // Help, before the exit button: the sample reports (the welcome window) and the documentation
+        private void BuildHelpMenu()
+        {
+            bhelp = new ToolStripDropDownButton
+            {
+                Name = "bhelp",
+                DisplayStyle = ToolStripItemDisplayStyle.Text,
+                Text = Translator.TranslateStr(6)
+            };
+            ToolStripMenuItem msamples = new ToolStripMenuItem(Translator.TranslateStr(2012));
+            msamples.ToolTipText = Translator.TranslateStr(2013);
+            msamples.Click += (sender, e) => ShowWelcome(false);
+            ToolStripMenuItem mdocumentation = new ToolStripMenuItem(Translator.TranslateStr(60));
+            mdocumentation.ToolTipText = Translator.TranslateStr(61);
+            mdocumentation.Click += (sender, e) => OpenDocumentation();
+            bhelp.DropDownItems.Add(msamples);
+            bhelp.DropDownItems.Add(new ToolStripSeparator());
+            bhelp.DropDownItems.Add(mdocumentation);
+            TopBarSecondary.Items.Insert(TopBarSecondary.Items.IndexOf(bexit), bhelp);
+        }
+
+        private void OpenDocumentation()
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(DocumentationUrl) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(FindForm(), ex.Message, Translator.TranslateStr(60), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Shows the welcome window with the sample reports and does what the user chooses there:
+        /// open a sample, create a report or open one. At startup it is shown only when the user has
+        /// not hidden it ([Preferences] ShowWelcome of repmand.ini, shared with the Delphi designer).
+        /// </summary>
+        /// <param name="atStartup">True when called at startup, which honours the preference.</param>
+        public void ShowWelcome(bool atStartup)
+        {
+            string configFilename = DelphiRecentFiles.GetConfigFilename();
+            IniFile inif = new IniFile(configFilename);
+            bool showAtStartup = inif.ReadBool(PreferencesSectionName, ShowWelcomePreferenceKey, true);
+            if (atStartup && !showAtStartup)
+                return;
+            WelcomeAction action;
+            string samplePath;
+            using (WelcomeForm form = new WelcomeForm())
+            {
+                form.ShowAtStartup = showAtStartup;
+                form.ShowDialog(FindForm());
+                action = form.DialogResult == DialogResult.OK ? form.Action : WelcomeAction.None;
+                samplePath = form.SamplePath;
+                if (form.ShowAtStartup != showAtStartup)
+                {
+                    inif.WriteBool(PreferencesSectionName, ShowWelcomePreferenceKey, form.ShowAtStartup);
+                    inif.SaveToFile(configFilename);
+                }
+            }
+            try
+            {
+                switch (action)
+                {
+                    case WelcomeAction.OpenSample:
+                        OpenFile(samplePath);
+                        break;
+                    case WelcomeAction.NewReport:
+                        ButtonNewBlankClick(this, EventArgs.Empty);
+                        break;
+                    case WelcomeAction.OpenReport:
+                        ButtonOpenClick(this, EventArgs.Empty);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowExecutionError(ex);
+            }
         }
 
         private void ApplyAIChatPanelVisibility()
@@ -938,6 +1023,7 @@ namespace Reportman.Designer
                     mstream.Seek(0, System.IO.SeekOrigin.Begin);
                     ReportToPrint.LoadFromStream(mstream);
                     ReportToPrint.ConvertToDotNet();
+                    ReportToPrint.ReportFolder = Report.ReportFolder;
                     foreach (DatabaseInfo bdInfo in Report.DatabaseInfo)
                     {
                         if (bdInfo.Connection != null)
@@ -1741,6 +1827,7 @@ namespace Reportman.Designer
                     return false;
                 string nfilename = ndiag.FileName;
                 FReport.SaveToFile(nfilename);
+                FReport.ReportFolder = System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(nfilename));
                 CurrentFilename = nfilename;
                 SetSaved();
                 AddRecentEntry(CurrentFilename);
@@ -1806,6 +1893,7 @@ namespace Reportman.Designer
                 if (savedialog.ShowDialog(this.FindForm()) != DialogResult.OK)
                     return false;
                 FReport.SaveToFile(savedialog.FileName);
+                FReport.ReportFolder = System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(savedialog.FileName));
                 CurrentFilename = savedialog.FileName;
                 CurrentReportSelection = null;
                 SetSaved();
@@ -2053,6 +2141,8 @@ namespace Reportman.Designer
             }
             nrep.ConvertToDotNet();
             FixReport(nrep);
+            // A relative SQLite database of the report is looked for in its folder
+            nrep.ReportFolder = System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(filename));
             Report = nrep;
             CurrentFilename = filename;
             CurrentReportSelection = null;

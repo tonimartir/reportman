@@ -24,6 +24,7 @@ namespace Reportman.Designer
             maindesigner = new FrameMainDesigner();
             maindesigner.Dock = DockStyle.Fill;
             this.Controls.Add(maindesigner);
+            Shown += MainForm_Shown;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -32,6 +33,15 @@ namespace Reportman.Designer
             string[] args = System.Environment.GetCommandLineArgs();
             if (args.Length > 1)
                 maindesigner.OpenFile(args[1]);
+        }
+
+        // Without a report on the command line, the welcome window with the sample reports, once the
+        // main window is painted (unless the user hid it)
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            if (System.Environment.GetCommandLineArgs().Length > 1)
+                return;
+            BeginInvoke(new Action(() => maindesigner.ShowWelcome(true)));
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
