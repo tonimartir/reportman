@@ -96,7 +96,7 @@ namespace Reportman.Reporting
                     //					col.DataType=(Type)nrow["DataType"];
                     //					col.Caption=acolname;
                     //					col.Caption=acolname;
-                    col = Columns.Add(acolname, (Type)nrow["DataType"]);
+                    col = Columns.Add(acolname, ReportDataset.SchemaColumnType(adatatable, nrow));
                     if (col.DataType.ToString() == "System.String")
                     {
                         int maxlength = (int)nrow["ColumnSize"];
@@ -161,7 +161,7 @@ namespace Reportman.Reporting
             DataRow arow;
             arow = NewRow();
             for (i = 0; i < Columns.Count; i++)
-                arow[i] = FCurrentReader[i];
+                arow[i] = ReportDataset.ColumnValue(Columns[i], FCurrentReader[i]);
             Rows.Add(arow);
             if (OnDataChange != null)
                 OnDataChange(this);

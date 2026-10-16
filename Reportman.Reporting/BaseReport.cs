@@ -204,6 +204,14 @@ namespace Reportman.Reporting
         [Newtonsoft.Json.JsonIgnore]
         public List<int> ExecuteSubReportIndexes;
         /// <summary>
+        /// Folder of the file the report was loaded from (set by <see cref="LoadFromFile"/>, and by the
+        /// designer when it saves the report elsewhere). A relative SQLite database of a connection is
+        /// looked for there first, so a report and its database can be copied together. Not saved.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public string ReportFolder { get; set; } = "";
+        /// <summary>
         /// Report Metafile storing drawing information for the report, 
         /// that is pages and objects inside pages
         /// </summary>
@@ -1042,7 +1050,11 @@ namespace Reportman.Reporting
             bool doconvert = false;
             for (index = 0; index < DatabaseInfo.Count; index++)
             {
-                if ((DatabaseInfo[index].Driver != (DriverType.DotNet2)) && (DriverType.Mybase != DatabaseInfo[index].Driver))
+                // A SQLite connection of the Delphi engine kept in the report (the samples) already
+                // runs here (DatabaseInfo.IsEngineSqlite): converting it would change its SQL
+                // parameters and its driver, and the report would stop working in Delphi once saved
+                if ((DatabaseInfo[index].Driver != (DriverType.DotNet2)) && (DriverType.Mybase != DatabaseInfo[index].Driver)
+                    && !DatabaseInfo[index].IsEngineSqlite())
                 {
                     doconvert = true;
                     break;
@@ -1070,7 +1082,7 @@ namespace Reportman.Reporting
         {
             ReportReader areader = new ReportReader(this);
             areader.LoadFromFile(filename);
-
+            ReportFolder = Path.GetDirectoryName(Path.GetFullPath(filename));
         }
         /// <summary>
         /// Saves the report definition to a stream using the given stream version.

@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 #if REPMAN_DOTNET2
 using System.Xml;
 #endif
@@ -125,6 +126,47 @@ namespace Reportman.Reporting
         {
             get { return (FCurrentReader != null) || (FCurrentView != null); }
         }
+        /// <summary>
+        /// The column type of a row of a reader's schema table. SQLite gives the type of the value in
+        /// the first row, so a DATE column (ISO text, as SQLite databases usually keep dates) would be
+        /// a string, or a number when that first value is null; its declared type (DATE, DATETIME or
+        /// TIMESTAMP) makes it a DateTime, as in the Delphi engine.
+        /// </summary>
+        internal static Type SchemaColumnType(DataTable schema, DataRow row)
+        {
+            Type type = (Type)row["DataType"];
+            if ((type == typeof(string) || type == typeof(double) || type == typeof(long))
+                && schema.Columns.IndexOf("DataTypeName") >= 0 && row["DataTypeName"] != DBNull.Value)
+            {
+                string declared = row["DataTypeName"].ToString().Trim().ToUpperInvariant();
+                if (declared == "DATE" || declared == "DATETIME" || declared == "TIMESTAMP")
+                    return typeof(DateTime);
+            }
+            return type;
+        }
+        /// <summary>
+        /// A value of the reader for a column typed by <see cref="SchemaColumnType"/>: the forms of a
+        /// SQLite date (ISO 8601 text, Julian day, Unix time) become a DateTime.
+        /// </summary>
+        internal static object ColumnValue(DataColumn column, object value)
+        {
+            if (column.DataType != typeof(DateTime) || value == null || value == DBNull.Value || value is DateTime)
+                return value;
+            if (value is string text)
+            {
+                if (text.Trim().Length == 0)
+                    return DBNull.Value;
+                DateTime date;
+                if (DateTime.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out date))
+                    return date;
+                return value;
+            }
+            if (value is double julian)
+                return DateTime.FromOADate(julian - 2415018.5);
+            if (value is long unixTime)
+                return DateTimeOffset.FromUnixTimeSeconds(unixTime).UtcDateTime;
+            return value;
+        }
         private void DoUpdateData()
         {
             if (UpdateColumns)
@@ -176,7 +218,7 @@ namespace Reportman.Reporting
                         //					col.DataType=(Type)nrow["DataType"];
                         //					col.Caption=acolname;
                         //					col.Caption=acolname;
-                        col = Columns.Add(acolname, (Type)nrow["DataType"]);
+                        col = Columns.Add(acolname, SchemaColumnType(adatatable, nrow));
                         if (col.DataType.ToString() == "System.String")
                         {
                             int maxlength = (int)nrow["ColumnSize"];
@@ -209,7 +251,7 @@ namespace Reportman.Reporting
                 {
                     object[] values = new object[Columns.Count];
                     for (i = 0; i < Columns.Count; i++)
-                        values[i] = FCurrentReader[i];
+                        values[i] = ColumnValue(Columns[i], FCurrentReader[i]);
                     newRows.Add(values);
                     if (OnUpdateDataAsync != null)
                     {
@@ -232,12 +274,12 @@ namespace Reportman.Reporting
                     arow = NewRow();
                     Rows.Add(arow);
                     for (i = 0; i < Columns.Count; i++)
-                        arow[i] = FCurrentReader[i];
+                        arow[i] = ColumnValue(Columns[i], FCurrentReader[i]);
                     if (OnUpdateDataAsync != null)
                     {
                         object[] values = new object[Columns.Count];
                         for (i = 0; i < Columns.Count; i++)
-                            values[i] = FCurrentReader[i];
+                            values[i] = ColumnValue(Columns[i], FCurrentReader[i]);
                         var tareaUpdate = OnUpdateDataAsync(this, null, values, this);
                         tareaUpdate.Wait();
                     }
@@ -511,14 +553,14 @@ namespace Reportman.Reporting
                 FCurrent = FLastFetched;
             }
             for (i = 0; i < Columns.Count; i++)
-                arow[i] = FCurrentReader[i];
+                arow[i] = ColumnValue(Columns[i], FCurrentReader[i]);
             if (OnUpdateData != null)
                 OnUpdateData(this, arow);
             if (OnUpdateDataAsync != null)
             {
                 object[] values = new object[Columns.Count];
                 for (i = 0; i < Columns.Count; i++)
-                    values[i] = FCurrentReader[i];
+                    values[i] = ColumnValue(Columns[i], FCurrentReader[i]);
                 var tareaUpdate = OnUpdateDataAsync(this, null, values, this);
                 tareaUpdate.Wait();
             }

@@ -128,6 +128,11 @@ namespace Reportman.Reporting
         public static string MYSQL_PROVIDER = "MySql.Data.MySqlClient";
         /// <summary>The invariant name for the SQLite ADO.NET database provider client library.</summary>
         public static string SQLITE_PROVIDER = "System.Data.SQLite";
+        /// <summary>
+        /// The name the hosts register Microsoft.Data.Sqlite with (designer, printreport, Reportman
+        /// Server), used for the SQLite connections of the Delphi engine (see <see cref="IsEngineSqlite"/>).
+        /// </summary>
+        public static string SQLITECORE_PROVIDER = "SQLiteCore";
         private System.Data.IDbConnection FConnection;
         private System.Data.IDbConnection FExternalConnection;
         private System.Data.IDbTransaction IntTransaction;
@@ -383,6 +388,102 @@ namespace Reportman.Reporting
                    string.Equals(driverName, "HttpAgent", StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <summary>
+        /// The value of a connection parameter stored in the report as a parameter, as the Delphi
+        /// engine reads them: <c>ALIAS_DBPARAM_NAME</c>, or else <c>DBPARAM_NAME</c>.
+        /// </summary>
+        private string ReportDbParam(string name)
+        {
+            if (Report == null)
+                return "";
+            int index = Report.Params.IndexOf(Alias + "_DBPARAM_" + name);
+            if (index < 0)
+                index = Report.Params.IndexOf("DBPARAM_" + name);
+            if (index < 0)
+                return "";
+            Variant value = Report.Params[index].Value;
+            return value.IsNull ? "" : value.ToString().Trim();
+        }
+
+        /// <summary>
+        /// True for a SQLite connection of the Delphi engine (FireDAC, Zeos or dbExpress) whose
+        /// parameters live in the report: <c>DBPARAM_DRIVERID=SQLite</c> (or <c>DBPARAM_DRIVERNAME</c>)
+        /// and <c>DBPARAM_DATABASE</c>, as the sample reports do. The .Net engine opens it with
+        /// Microsoft.Data.Sqlite, so the same report runs in the three engines and stays a FireDAC
+        /// report when it is saved again.
+        /// </summary>
+        public bool IsEngineSqlite()
+        {
+            if (Driver != DriverType.Firedac && Driver != DriverType.ZEOS && Driver != DriverType.DBExpress
+                && !(Driver == DriverType.DotNet2 && ProviderFactory.Length == 0))
+                return false;
+            string driverId = ReportDbParam("DRIVERID");
+            if (driverId.Length == 0)
+                driverId = ReportDbParam("DRIVERNAME");
+            if (driverId.Length == 0)
+                driverId = ReportDbParam("DATABASE PROTOCOL");
+            return driverId.StartsWith("SQLITE", StringComparison.OrdinalIgnoreCase)
+                && ReportDbParam("DATABASE").Length > 0;
+        }
+
+        /// <summary>
+        /// A relative SQLite database (Data Source) is looked for in the folder of the report
+        /// (<see cref="BaseReport.ReportFolder"/>), then in the current folder. A relative database of a
+        /// report loaded from a file that is in neither raises an error: the provider would create an
+        /// empty one and the report would only say that a table does not exist. An absolute name, and a
+        /// relative one without a report folder, are left to the provider as before (it may create it).
+        /// </summary>
+        private string ResolveSqliteDataSource(string connectionString)
+        {
+            DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
+            builder.ConnectionString = connectionString;
+            string key = null;
+            foreach (string candidate in new string[] { "Data Source", "DataSource", "Filename" })
+            {
+                if (builder.ContainsKey(candidate))
+                {
+                    key = candidate;
+                    break;
+                }
+            }
+            if (key == null)
+                return connectionString;
+            string database = Convert.ToString(builder[key]);
+            if (database.Length == 0 || database == ":memory:" || database.StartsWith("file:", StringComparison.OrdinalIgnoreCase)
+                || database.Contains("|DataDirectory|"))
+                return connectionString;
+            if (builder.ContainsKey("Mode") && string.Equals(Convert.ToString(builder["Mode"]), "Memory", StringComparison.OrdinalIgnoreCase))
+                return connectionString;
+            if (Path.IsPathRooted(database))
+                return connectionString;
+            string folder = Report == null ? "" : Report.ReportFolder;
+            List<string> searched = new List<string>();
+            if (!string.IsNullOrEmpty(folder))
+            {
+                string candidate = Path.GetFullPath(Path.Combine(folder, database));
+                if (File.Exists(candidate))
+                {
+                    builder[key] = candidate;
+                    return builder.ConnectionString;
+                }
+                searched.Add(candidate);
+            }
+            // Without the folder of a report, the provider creates it as before
+            if (File.Exists(database) || string.IsNullOrEmpty(folder))
+                return connectionString;
+            searched.Add(Path.GetFullPath(database));
+            // The text of the Delphi engine: "The SQLite database %s of the connection %s was not
+            // found. Searched: %s"
+            string message = Translator.TranslateStr(2019);
+            foreach (string value in new string[] { database, Alias, string.Join(", ", searched) })
+            {
+                int index = message.IndexOf("%s", StringComparison.Ordinal);
+                if (index >= 0)
+                    message = message.Substring(0, index) + value + message.Substring(index + 2);
+            }
+            throw new NamedException(message, Alias);
+        }
+
         private void ResolveHttpAgentDriverFromConfig()
         {
             if (!LoadParams || Driver == DriverType.HttpAgent || string.IsNullOrWhiteSpace(Alias))
@@ -501,28 +602,40 @@ namespace Reportman.Reporting
             if (Report != null)
             {
                 int index = Report.Params.IndexOf("ADOCONNECTIONSTRING");
-                if (index > 0)
+                if (index >= 0)
                     UsedConnectionString = Report.Params[index].Value.ToString();
                 index = Report.Params.IndexOf(Alias + "_ADOCONNECTIONSTRING");
-                if (index > 0)
+                if (index >= 0)
                     UsedConnectionString = Report.Params[index].Value.ToString();
             }
 
             if (Driver == DriverType.IBX)
                 ProviderFactory = FIREBIRD_PROVIDER2;
-            if (this.ProviderFactory.Length == 0)
+            // The SQLite connection of a Delphi report (the samples) goes through Microsoft.Data.Sqlite,
+            // without changing the report
+            string usedFactory = ProviderFactory;
+            if (IsEngineSqlite())
+            {
+                usedFactory = SQLITECORE_PROVIDER;
+                DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
+                builder["Data Source"] = ReportDbParam("DATABASE");
+                UsedConnectionString = builder.ConnectionString;
+            }
+            if (usedFactory.Length == 0)
                 throw new UnNamedException("Provider factory not supplied");
             DbProviderFactory afactory = null;
-            if (CustomProviderFactories.IndexOfKey(ProviderFactory) >= 0)
-                afactory = CustomProviderFactories[ProviderFactory];
+            if (CustomProviderFactories.IndexOfKey(usedFactory) >= 0)
+                afactory = CustomProviderFactories[usedFactory];
             if (afactory == null)
 #if NETSTANDARD2_0
-                throw new Exception("You must provide in .netstandard a DatabaseInfo.CustomProviderFactory for the name: " + ProviderFactory);
+                throw new Exception("You must provide in .netstandard a DatabaseInfo.CustomProviderFactory for the name: " + usedFactory);
 #else
-                afactory = DbProviderFactories.GetFactory(this.ProviderFactory);
+                afactory = DbProviderFactories.GetFactory(usedFactory);
 #endif
             if (afactory == null)
-                throw new NamedException("System.Data.Common.DbProviderFactories Factory not found:" + this.ProviderFactory.ToString(), DotNetDriver.ToString());
+                throw new NamedException("System.Data.Common.DbProviderFactories Factory not found:" + usedFactory, DotNetDriver.ToString());
+            if (usedFactory == SQLITECORE_PROVIDER || usedFactory == SQLITE_PROVIDER)
+                UsedConnectionString = ResolveSqliteDataSource(UsedConnectionString);
             DbConnection aconnection = afactory.CreateConnection();
             aconnection.ConnectionString = UsedConnectionString;
             return aconnection;
