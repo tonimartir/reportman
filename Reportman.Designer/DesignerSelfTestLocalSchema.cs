@@ -348,6 +348,10 @@ namespace Reportman.Designer
             log.Check(Resolved(file, "{COMPANY_NAME}", null) == "Company", "a placeholder alone takes the whole name: the first table");
             log.Check(Resolved(file, "{COMPANY-NAME}$Item", null) == "(none)", "not a placeholder: a literal text");
             log.Check(Resolved(file, "GONE", null) == "(none)" && Resolved(file, "", null) == "(none)", "not there: none");
+            // A placeholder written twice takes the same text both times (XY_ZW, first in the catalog, does not match)
+            file.Tables.Add(new LocalSchemaTable { Name = "XY_ZW" });
+            file.Tables.Add(new LocalSchemaTable { Name = "XY_XY" });
+            log.Check(Resolved(file, "{P}_{P}", null) == "XY_XY", "a placeholder written twice, the same text: " + Resolved(file, "{P}_{P}", null));
         }
 
         // A relation whose target is a template: found as the tables are, with the same value

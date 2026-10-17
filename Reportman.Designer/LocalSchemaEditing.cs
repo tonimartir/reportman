@@ -1051,14 +1051,28 @@ namespace Reportman.Designer
                 return position + piece.Text.Length <= name.Length &&
                     string.Compare(name, position, piece.Text, 0, piece.Text.Length, StringComparison.OrdinalIgnoreCase) == 0 &&
                     MatchTemplate(pieces, index + 1, name, position + piece.Text.Length, taken);
-            for (int length = 1; position + length <= name.Length; length++)
+            // A placeholder written again takes the text it took before (as the Delphi designer and the web)
+            for (int earlier = 0; earlier < index; earlier++)
             {
-                if (MatchTemplate(pieces, index + 1, name, position + length, taken))
+                if (pieces[earlier].IsPlaceholder && taken[earlier] != null &&
+                    string.Equals(pieces[earlier].Text, piece.Text, StringComparison.OrdinalIgnoreCase))
                 {
-                    taken[index] = name.Substring(position, length);
+                    string text = taken[earlier];
+                    if (position + text.Length > name.Length ||
+                        string.Compare(name, position, text, 0, text.Length, StringComparison.OrdinalIgnoreCase) != 0 ||
+                        !MatchTemplate(pieces, index + 1, name, position + text.Length, taken))
+                        return false;
+                    taken[index] = name.Substring(position, text.Length);
                     return true;
                 }
             }
+            for (int length = 1; position + length <= name.Length; length++)
+            {
+                taken[index] = name.Substring(position, length);
+                if (MatchTemplate(pieces, index + 1, name, position + length, taken))
+                    return true;
+            }
+            taken[index] = null;
             return false;
         }
 
