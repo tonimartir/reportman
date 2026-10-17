@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Reportman.Drawing.Windows;
+using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
@@ -33,6 +34,42 @@ namespace Reportman.Designer
     {
         /// <summary>Name of the index of the samples folder.</summary>
         public const string IndexFileName = "samples.ini";
+
+        /// <summary>The connection alias of the samples, and the folder of its local schema in the samples.</summary>
+        public const string ConnectionAlias = "SAMPLES";
+        private const string SchemasFolderName = LocalSchemaStore.FolderName;
+
+        /// <summary>
+        /// The local schema of the samples (dbxschemas\SAMPLES.json of the installed samples, made with
+        /// the local schema editor) into the dbxschemas folder of the designer, where the copilot and the
+        /// editor look for it, when it is not there yet: a new installation asks the copilot for a report
+        /// on the samples at once. An existing file is never replaced (it may have been changed). Returns
+        /// the file installed, or an empty string.
+        /// </summary>
+        public static string InstallSchema()
+        {
+            try
+            {
+                string installed = InstalledFolder();
+                if (installed.Length == 0)
+                    return "";
+                string source = Path.Combine(installed, SchemasFolderName, ConnectionAlias + ".json");
+                if (!File.Exists(source))
+                    return "";
+                string target = LocalSchemaStore.PathFor(LocalSchemaEditorForm.DesignerFolder(), ConnectionAlias);
+                if (File.Exists(target))
+                    return "";
+                Directory.CreateDirectory(Path.GetDirectoryName(target));
+                File.Copy(source, target, false);
+                File.SetAttributes(target, File.GetAttributes(target) & ~FileAttributes.ReadOnly);
+                return target;
+            }
+            catch (Exception)
+            {
+                // A folder that can not be written: the copilot asks for a subschema, as without it
+                return "";
+            }
+        }
 
         /// <summary>
         /// The installed samples folder: <c>samples</c> next to the program, or, in a development tree,
@@ -73,6 +110,9 @@ namespace Reportman.Designer
             foreach (string source in Directory.GetFiles(installed, "*", SearchOption.AllDirectories))
             {
                 string relative = source.Substring(installed.Length).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                // The local schema goes next to dbxconnections.ini (InstallSchema), not to the documents
+                if (relative.StartsWith(SchemasFolderName + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
+                    continue;
                 string target = Path.Combine(working, relative);
                 bool copy = !File.Exists(target);
                 if (!copy && !string.Equals(Path.GetExtension(source), ".rep", StringComparison.OrdinalIgnoreCase))

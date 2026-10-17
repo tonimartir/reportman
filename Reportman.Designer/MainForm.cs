@@ -20,6 +20,8 @@ namespace Reportman.Designer
         {
             InitializeComponent();
             Text = DesignerText.Tr(1);
+            // The designer starts maximized, as the Delphi one
+            WindowState = FormWindowState.Maximized;
 
             maindesigner = new FrameMainDesigner();
             maindesigner.Dock = DockStyle.Fill;
@@ -29,6 +31,9 @@ namespace Reportman.Designer
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // The local schema of the samples for the copilot, on a computer that does not have it
+            // yet: before a report opens, so that its copilot lists the subschemas
+            SampleReports.InstallSchema();
             // Browse the command line
             string[] args = System.Environment.GetCommandLineArgs();
             if (args.Length > 1)
