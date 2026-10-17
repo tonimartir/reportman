@@ -134,14 +134,6 @@ namespace Reportman.Designer
         private Label _lblConnStatus;
 
         /// <summary>
-        /// Shows the local schemas of the connection <paramref name="alias"/>. Returns true when the file
-        /// was saved.
-        /// </summary>
-        /// <param name="owner">The owner window.</param>
-        /// <param name="folder">The dbxschemas folder.</param>
-        /// <param name="alias">The connection alias.</param>
-        /// <param name="createConnection">Creates a connection to read the catalog from.</param>
-        /// <summary>
         /// The dbxschemas folder of this designer: next to the dbxconnections.ini it writes
         /// (%PUBLIC% on Windows), or next to the program when there is none. The copilot and the data
         /// definitions of the designer open the files of the same folder.
@@ -154,6 +146,14 @@ namespace Reportman.Designer
             return LocalSchemaStore.FolderFor(ini);
         }
 
+        /// <summary>
+        /// Shows the local schemas of the connection <paramref name="alias"/>. Returns true when the file
+        /// was saved.
+        /// </summary>
+        /// <param name="owner">The owner window.</param>
+        /// <param name="folder">The dbxschemas folder.</param>
+        /// <param name="alias">The connection alias.</param>
+        /// <param name="createConnection">Creates a connection to read the catalog from.</param>
         public static bool Edit(IWin32Window owner, string folder, string alias, Func<DbConnection> createConnection)
         {
             string added;
@@ -1168,7 +1168,8 @@ namespace Reportman.Designer
         /// <summary>
         /// Makes a new subschema from a schema exported by the Reportman AI web (or by a local schema screen): the
         /// tables and columns the database has, their descriptions and allowed values into the dictionary, and the
-        /// relations; it stays selected and unsaved, and what the database does not have is said.
+        /// relations; it stays selected and unsaved, and what the database does not have is said. When the names of
+        /// its tables are templates with several values here, the user chooses them first.
         /// </summary>
         private void ImportSubschema()
         {
@@ -1188,7 +1189,11 @@ namespace Reportman.Designer
             LocalSchemaImportResult result;
             try
             {
-                result = LocalSchemaEditing.Import(_file, File.ReadAllText(path, Encoding.UTF8), path, ReservedNames);
+                string json = File.ReadAllText(path, Encoding.UTF8);
+                Dictionary<string, string> values;
+                if (!ChooseTemplateValues(json, out values))
+                    return;
+                result = LocalSchemaEditing.Import(_file, json, path, ReservedNames, "", values);
             }
             catch (Exception ex)
             {
@@ -1206,7 +1211,9 @@ namespace Reportman.Designer
         /// <summary>
         /// Makes a new subschema from a schema of the Reportman AI library (<c>GET api/schema/list</c>, then
         /// <c>api/schema/{id}</c>): the same import as a file's, named as the library calls the schema; it stays
-        /// selected and unsaved, and the subschema stays local (nothing is written to the cloud).
+        /// selected and unsaved, and the subschema stays local (nothing is written to the cloud). Every schema of the
+        /// library is read before choosing, to say how many of its tables this database has and to start on the one
+        /// written for it; the one chosen is imported from what was read.
         /// </summary>
         private async void ImportFromLibrary()
         {
@@ -1219,9 +1226,12 @@ namespace Reportman.Designer
             try
             {
                 categories = LocalSchemaEditing.ParseLibrary(await RpAuthManager.Instance.GetSchemaLibraryAsync());
+                if (!IsDisposed)
+                    await ReadLibrarySchemasAsync(categories);
             }
             catch (Exception ex)
             {
+                categories = null;
                 if (!IsDisposed)
                     MessageBox.Show(this, TrFormat(1989, ErrorReason(ex)), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1236,28 +1246,44 @@ namespace Reportman.Designer
             if (chosen == null)
                 return;
 
+            string schema = chosen.FullSchema;
+            if (schema == null)
+            {
+                // It could not be read with the others: read again now
+                SetBusy(true);
+                try
+                {
+                    schema = LocalSchemaEditing.LibraryFullSchema(await RpAuthManager.Instance.GetLibrarySchemaAsync(chosen.Id));
+                }
+                catch (Exception ex)
+                {
+                    if (!IsDisposed)
+                        MessageBox.Show(this, TrFormat(1989, ErrorReason(ex)), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    if (!IsDisposed)
+                        SetBusy(false);
+                }
+                if (schema == null || IsDisposed)
+                    return;
+            }
             LocalSchemaImportResult result = null;
-            bool read = false;
-            SetBusy(true);
-            try
+            if (schema.Length > 0)
             {
-                string schema = LocalSchemaEditing.LibraryFullSchema(await RpAuthManager.Instance.GetLibrarySchemaAsync(chosen.Id));
-                read = true;
-                if (!IsDisposed && schema.Length > 0)
-                    result = LocalSchemaEditing.Import(_file, schema, "", ReservedNames, chosen.Name);
-            }
-            catch (Exception ex)
-            {
-                if (!IsDisposed)
+                Dictionary<string, string> values;
+                if (!ChooseTemplateValues(schema, out values))
+                    return;
+                try
+                {
+                    result = LocalSchemaEditing.Import(_file, schema, "", ReservedNames, chosen.Name, values);
+                }
+                catch (Exception ex)
+                {
                     MessageBox.Show(this, TrFormat(1989, ErrorReason(ex)), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
-            finally
-            {
-                if (!IsDisposed)
-                    SetBusy(false);
-            }
-            if (!read || IsDisposed)
-                return;
             if (result == null)
             {
                 // Read, but not a schema: nothing was changed
@@ -1265,6 +1291,59 @@ namespace Reportman.Designer
                 return;
             }
             ShowImported(result, title);
+        }
+
+        /// <summary>
+        /// Reads every schema of the library at once, and how many of its tables this database has: a schema that
+        /// cannot be read is left without them (it is read again if it is chosen).
+        /// </summary>
+        private Task ReadLibrarySchemasAsync(List<LocalSchemaLibraryCategory> categories)
+        {
+            var reads = new List<Task>();
+            foreach (LocalSchemaLibraryCategory category in categories)
+                foreach (LocalSchemaLibrarySchema schema in category.Schemas)
+                    reads.Add(ReadLibrarySchemaAsync(schema));
+            return Task.WhenAll(reads);
+        }
+
+        private async Task ReadLibrarySchemaAsync(LocalSchemaLibrarySchema schema)
+        {
+            string json;
+            try
+            {
+                json = LocalSchemaEditing.LibraryFullSchema(await RpAuthManager.Instance.GetLibrarySchemaAsync(schema.Id));
+            }
+            catch (Exception)
+            {
+                // Shown without its coverage, and read again if it is chosen
+                return;
+            }
+            if (IsDisposed || _file == null)
+                return;
+            schema.FullSchema = json;
+            schema.Coverage = LocalSchemaEditing.LibraryCoverage(_file, json);
+        }
+
+        /// <summary>
+        /// The values of the placeholders that build the names of the tables of a schema to import
+        /// (<see cref="LocalSchemaEditing.LibraryPlaceholders"/>): one this database has a single value for takes it,
+        /// and the user chooses among several. False when the user cancels: nothing is imported.
+        /// </summary>
+        private bool ChooseTemplateValues(string json, out Dictionary<string, string> values)
+        {
+            values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            foreach (LocalSchemaPlaceholder placeholder in LocalSchemaEditing.LibraryPlaceholders(_file, json))
+            {
+                string value = placeholder.Values[0];
+                if (placeholder.Values.Count > 1)
+                {
+                    value = PromptChoice(this, Tr(2029), TrFormat(2030, "{" + placeholder.Name + "}"), placeholder.Values);
+                    if (value == null)
+                        return false;
+                }
+                values[placeholder.Name] = value;
+            }
+            return true;
         }
 
         /// <summary>Why a request failed: its message and, when it says more, the one of its innermost cause.</summary>
@@ -1278,7 +1357,8 @@ namespace Reportman.Designer
 
         /// <summary>
         /// A subschema just imported, from a file or from the library: selected and unsaved, as one added here
-        /// (after saving, the copilot is left on it), saying what came in and what the database does not have.
+        /// (after saving, the copilot is left on it), saying what came in (and the values of the templates that named
+        /// its tables) and what the database does not have.
         /// </summary>
         private void ShowImported(LocalSchemaImportResult result, string title)
         {
@@ -1295,6 +1375,9 @@ namespace Reportman.Designer
             string done = TrFormat(1936, result.Subschema.Name, Number(result.Subschema.Tables.Count));
             SetStatus(done);
             string message = done;
+            // The names of its tables were templates: the values that made them
+            if (result.TemplateValues.Count > 0)
+                message += Environment.NewLine + TrFormat(2031, LocalSchemaEditing.TemplateValuesText(result.TemplateValues));
             if (result.Skipped.Count > 0)
                 message += Environment.NewLine + Environment.NewLine + TrFormat(1937, LocalSchemaEditing.ShortList(result.Skipped, 12));
             MessageBox.Show(this, message, title, MessageBoxButtons.OK,
@@ -1326,6 +1409,64 @@ namespace Reportman.Designer
                 form.AcceptButton = ok;
                 form.CancelButton = cancel;
                 return form.ShowDialog(owner) == DialogResult.OK ? box.Text : null;
+            }
+        }
+
+        /// <summary>One of a list of values, the first one selected; null when cancelled.</summary>
+        private static string PromptChoice(IWin32Window owner, string title, string text, IList<string> values)
+        {
+            using (var form = new Form())
+            {
+                form.Text = title;
+                form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.MinimizeBox = false;
+                form.MaximizeBox = false;
+                form.ShowInTaskbar = false;
+                form.ShowIcon = false;
+                form.AutoScaleMode = AutoScaleMode.Font;
+                form.Font = new Font("Segoe UI", 9f);
+                form.ClientSize = new Size(400, 260);
+                var layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 3, Padding = new Padding(12, 10, 12, 10) };
+                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                // The text wraps in the width of the dialog
+                var lbl = new Label { Text = text, AutoSize = true, MaximumSize = new Size(376, 0), Margin = new Padding(0, 0, 0, 8) };
+                var list = new ListBox { Dock = DockStyle.Fill, IntegralHeight = false };
+                foreach (string value in values)
+                    list.Items.Add(value);
+                if (list.Items.Count > 0)
+                    list.SelectedIndex = 0;
+                var buttons = new FlowLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    FlowDirection = FlowDirection.RightToLeft,
+                    WrapContents = false,
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    Margin = new Padding(0, 8, 0, 0)
+                };
+                var cancel = new Button { Text = Tr(94), DialogResult = DialogResult.Cancel, Width = 75 };
+                var ok = new Button { Text = Tr(93), DialogResult = DialogResult.OK, Width = 75 };
+                buttons.Controls.Add(cancel);
+                buttons.Controls.Add(ok);
+                // A double click takes the value
+                list.DoubleClick += (s, e) =>
+                {
+                    if (list.SelectedIndex >= 0)
+                        form.DialogResult = DialogResult.OK;
+                };
+                layout.Controls.Add(lbl, 0, 0);
+                layout.Controls.Add(list, 0, 1);
+                layout.Controls.Add(buttons, 0, 2);
+                form.Controls.Add(layout);
+                form.AcceptButton = ok;
+                form.CancelButton = cancel;
+                form.ActiveControl = list;
+                if (form.ShowDialog(owner) != DialogResult.OK || list.SelectedIndex < 0)
+                    return null;
+                return (string)list.SelectedItem;
             }
         }
     }

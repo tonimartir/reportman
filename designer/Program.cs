@@ -64,6 +64,19 @@ namespace designer
                         Reportman.Designer.DesignerSelfTestFormat.RunFormatTests());
                     return;
                 }
+                // designer.exe /localschematest [/dir <tests\local_schema_file>] [/out <txt>] -> headless local schema
+                // import checks; the exit code is 1 when one fails
+                if (HasArg(args, "/localschematest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "localschematest.txt");
+                    int failed;
+                    System.IO.File.WriteAllText(outFile,
+                        Reportman.Designer.DesignerSelfTestLocalSchema.RunLocalSchemaTests(GetArgValue(args, "/dir"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
 
                 Application.Run(new Reportman.Designer.MainForm());
             }

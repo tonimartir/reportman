@@ -468,7 +468,9 @@ namespace Reportman.Designer
         /// numeric types of the Desktop are read too) as a new subschema of <paramref name="file"/>, added at the
         /// end, named as the file says (numbered when taken; without a name, after <paramref name="fileName"/>):
         /// <list type="bullet">
-        /// <item>the tables of the file the catalog has, as the catalog spells them, each with the columns of the
+        /// <item>the tables of the file the catalog has (qualified names and templates found as
+        /// <see cref="ResolveTable(LocalSchemaFile, string, IDictionary{string, string})"/> finds them, the first value of
+        /// each placeholder), as the catalog spells them, each with the columns of the
         /// file the catalog has as its explicit list (its primary key when none is left); the types are the catalog's;</item>
         /// <item>the descriptions and allowed values of the file that are not empty go to the dictionary, shared by
         /// every subschema: what is imported wins;</item>
@@ -502,24 +504,48 @@ namespace Reportman.Designer
         public static LocalSchemaImportResult Import(LocalSchemaFile file, string json, string fileName, IEnumerable<string> reservedNames,
             string subschemaName)
         {
+            return Import(file, json, fileName, reservedNames, subschemaName, null);
+        }
+
+        /// <summary>
+        /// Imports a schema as <see cref="Import(LocalSchemaFile, string, string, IEnumerable{string}, string)"/> does,
+        /// with the values of the placeholders that build the names of its tables (<c>{COMPANY_NAME}</c> of
+        /// <c>[{COMPANY_NAME}$Customer]</c>, as the library writes them for the AI): a placeholder without a value takes
+        /// the first one <see cref="LibraryPlaceholders"/> finds, and every table and every target of a relation is the
+        /// one <see cref="ResolveTable(LocalSchemaFile, string, IDictionary{string, string})"/> finds with them. The
+        /// descriptions are imported as they are written, placeholders and all. The result says the values used.
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="json">The text of the imported schema.</param>
+        /// <param name="fileName">The path or name of the imported file, for the name when there is none.</param>
+        /// <param name="reservedNames">Names a subschema cannot take (all the tables), or null.</param>
+        /// <param name="subschemaName">The name of the new subschema; empty for the one the text says.</param>
+        /// <param name="templateValues">The value of each placeholder by its name without braces (ignoring case), or null.</param>
+        public static LocalSchemaImportResult Import(LocalSchemaFile file, string json, string fileName, IEnumerable<string> reservedNames,
+            string subschemaName, IDictionary<string, string> templateValues)
+        {
             if (file == null)
                 throw new ArgumentNullException("file");
-            JsonDocument document;
-            try
-            {
-                document = JsonDocument.Parse((json ?? "").TrimStart('﻿'),
-                    new JsonDocumentOptions { AllowTrailingCommas = true, CommentHandling = JsonCommentHandling.Skip });
-            }
-            catch (JsonException)
-            {
+            JsonDocument document = ParseSchemaJson(json);
+            if (document == null)
                 return null;
-            }
             using (document)
             {
                 JsonElement root = document.RootElement;
                 JsonElement schemaTables;
                 if (!TryJsonProperty(root, "schemaTables", out schemaTables) || schemaTables.ValueKind != JsonValueKind.Array)
                     return null;
+                // The placeholders the user did not choose take the value most of the tables have
+                List<LocalSchemaPlaceholder> placeholders = Placeholders(file, TableNames(schemaTables));
+                var filled = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                if (templateValues != null)
+                    foreach (KeyValuePair<string, string> value in templateValues)
+                        if (!string.IsNullOrWhiteSpace(value.Key) && !string.IsNullOrEmpty(value.Value))
+                            filled[value.Key.Trim()] = value.Value;
+                foreach (LocalSchemaPlaceholder placeholder in placeholders)
+                    if (!filled.ContainsKey(placeholder.Name))
+                        filled[placeholder.Name] = placeholder.Values[0];
+                var used = new List<KeyValuePair<string, string>>();
                 string name = (subschemaName ?? "").Trim();
                 if (name.Length == 0)
                     name = JsonText(root, "name").Trim();
@@ -537,9 +563,10 @@ namespace Reportman.Designer
                     string tableName = JsonText(item, "name").Trim();
                     if (tableName.Length == 0)
                         continue;
-                    LocalSchemaTable table = FindTable(file, tableName);
+                    LocalSchemaTable table = ResolveTable(file, tableName, filled, used);
                     if (table == null)
                     {
+                        // Said as the schema names it, template and all
                         AddSkipped(result.Skipped, tableName);
                         continue;
                     }
@@ -574,7 +601,7 @@ namespace Reportman.Designer
                             column.AllowedValues = values;
                     }
                     foreach (JsonElement fk in JsonArray(item, "foreignKeys"))
-                        ImportRelation(file, table, fk);
+                        ImportRelation(file, table, fk, filled);
                 }
                 // None of its tables is in this database: it was written for another one, and an empty
                 // subschema would be of no use. Nothing is created (and, with no table found, nothing was
@@ -592,17 +619,27 @@ namespace Reportman.Designer
                     SetChosenColumns(result.Subschema, table, columns.Count > 0 ? columns : PrimaryKey(table));
                 }
                 file.Schemas.Add(result.Subschema);
+                // The values used, in the order the placeholders come in the schema
+                foreach (LocalSchemaPlaceholder placeholder in placeholders)
+                {
+                    string value = FindValue(used, placeholder.Name);
+                    if (value != null)
+                        AddValue(result.TemplateValues, placeholder.Name, value);
+                }
+                foreach (KeyValuePair<string, string> value in used)
+                    AddValue(result.TemplateValues, value.Key, value.Value);
                 return result;
             }
         }
 
         /// <summary>
         /// A relation of an imported table into the dictionary, as the catalog spells it, when its ends are there:
-        /// the same one the dictionary has takes its description (when it has one); a new one is written here.
+        /// the same one the dictionary has takes its description (when it has one); a new one is written here. Its
+        /// target is found as the tables of the schema are (<see cref="ResolveTable(LocalSchemaFile, string, IDictionary{string, string})"/>).
         /// </summary>
-        private static void ImportRelation(LocalSchemaFile file, LocalSchemaTable source, JsonElement item)
+        private static void ImportRelation(LocalSchemaFile file, LocalSchemaTable source, JsonElement item, IDictionary<string, string> values)
         {
-            LocalSchemaTable target = FindTable(file, JsonText(item, "targetTable").Trim());
+            LocalSchemaTable target = ResolveTable(file, JsonText(item, "targetTable"), values);
             if (target == null)
                 return;
             List<string> sourceColumns = SpelledColumns(source, JsonNames(item, "sourceColumns"));
@@ -660,6 +697,443 @@ namespace Reportman.Designer
             for (int i = 0; i < max; i++)
                 shown.Add(names[i]);
             return string.Join(", ", shown) + ", … (+" + (names.Count - max).ToString(CultureInfo.CurrentCulture) + ")";
+        }
+
+        // ===== The names of the tables of an imported schema: qualified, or templates for the AI =====
+        // The schemas of the Reportman AI library name their tables for the AI of the cloud: «[{COMPANY_NAME}$Customer]»
+        // for a Dynamics BC, where each company has its own set («CRONUS España S_A_$Customer»), and
+        // «[{DB_NAME}].dbo.OINV» for a SAP Business One, whose company database just has «OINV». The Delphi designer
+        // (rplocalschemas.pas) and the web find them with the same rules, so the three import the same.
+
+        /// <summary>A piece of a table name: a literal text, or a placeholder <c>{NAME}</c> (its name, without braces).</summary>
+        private struct TemplatePiece
+        {
+            public TemplatePiece(string text, bool isPlaceholder)
+            {
+                Text = text;
+                IsPlaceholder = isPlaceholder;
+            }
+
+            public readonly string Text;
+            public readonly bool IsPlaceholder;
+        }
+
+        /// <summary>
+        /// The table of the catalog a table name of an imported schema means, null when there is none:
+        /// <list type="number">
+        /// <item>the name as the catalog has it (ignoring case);</item>
+        /// <item>else its last part, the qualifiers before a dot (outside brackets and quotes) dropped and one pair of
+        /// enclosing brackets or quotes removed: <c>OINV</c> of <c>[{DB_NAME}].dbo.OINV</c>, as the catalog has it;</item>
+        /// <item>else, when that part has placeholders (<c>{COMPANY_NAME}$Customer</c>): with a value in
+        /// <paramref name="values"/> for every one of them, the table named as they make it; without some, the first
+        /// table of the catalog (in its order) the part matches with the values there are, each placeholder taking one
+        /// or more characters (the fewest first).</item>
+        /// </list>
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="name">The name of the table in the imported schema.</param>
+        /// <param name="values">The value of each placeholder by its name without braces (ignoring case), or null.</param>
+        public static LocalSchemaTable ResolveTable(LocalSchemaFile file, string name, IDictionary<string, string> values)
+        {
+            return ResolveTable(file, name, values, null);
+        }
+
+        /// <summary>
+        /// <see cref="ResolveTable(LocalSchemaFile, string, IDictionary{string, string})"/>, adding to
+        /// <paramref name="used"/> (when it is not null) the value each placeholder had when a template found the table.
+        /// </summary>
+        private static LocalSchemaTable ResolveTable(LocalSchemaFile file, string name, IDictionary<string, string> values,
+            List<KeyValuePair<string, string>> used)
+        {
+            if (file == null)
+                return null;
+            string trimmed = (name ?? "").Trim();
+            if (trimmed.Length == 0)
+                return null;
+            LocalSchemaTable table = FindTable(file, trimmed);
+            if (table != null)
+                return table;
+            string part = LastNamePart(trimmed);
+            List<TemplatePiece> pieces = ParseTemplate(part);
+            if (!HasPlaceholders(pieces))
+                return FindTable(file, part);
+            // The values there are become text: the rest of the placeholders are matched against the catalog
+            var template = new List<TemplatePiece>();
+            var given = new List<KeyValuePair<string, string>>();
+            bool complete = true;
+            foreach (TemplatePiece piece in pieces)
+            {
+                string value = piece.IsPlaceholder ? TemplateValue(values, piece.Text) : null;
+                if (value != null)
+                {
+                    template.Add(new TemplatePiece(value, false));
+                    AddValue(given, piece.Text, value);
+                }
+                else
+                {
+                    template.Add(piece);
+                    complete = complete && !piece.IsPlaceholder;
+                }
+            }
+            if (complete)
+                table = FindTable(file, TemplateText(template));
+            else
+            {
+                foreach (LocalSchemaTable t in file.Tables)
+                {
+                    var taken = new string[template.Count];
+                    if (!MatchTemplate(template, 0, t.Name, 0, taken))
+                        continue;
+                    table = t;
+                    for (int i = 0; i < template.Count; i++)
+                        if (template[i].IsPlaceholder)
+                            AddValue(given, template[i].Text, taken[i]);
+                    break;
+                }
+            }
+            if (table != null && used != null)
+                foreach (KeyValuePair<string, string> value in given)
+                    AddValue(used, value.Key, value.Value);
+            return table;
+        }
+
+        /// <summary>
+        /// The placeholders that build the names of the tables of a schema and, for each, the values this database has
+        /// for it: the texts it takes in the names of the catalog that the tables match (only the tables whose name is
+        /// not in the catalog as it is). The values come first when they find more tables of the schema, then in the
+        /// order they are found (the tables of the schema in order and, for each, the catalog's); the placeholders in the
+        /// order they come in the schema. A placeholder no table of the catalog gives a value to is not listed: its
+        /// tables are not in this database. None when the text is not a schema.
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="json">The text of the schema, as <see cref="Import(LocalSchemaFile, string, string, IEnumerable{string}, string, IDictionary{string, string})"/> reads it.</param>
+        public static List<LocalSchemaPlaceholder> LibraryPlaceholders(LocalSchemaFile file, string json)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            List<string> names = SchemaTableNames(json);
+            return names != null ? Placeholders(file, names) : new List<LocalSchemaPlaceholder>();
+        }
+
+        /// <summary>A value of a placeholder while they are gathered: the tables of the schema it finds, and when it came.</summary>
+        private sealed class PlaceholderValue
+        {
+            public string Value = "";
+            public readonly List<string> Tables = new List<string>();
+            public int First;
+        }
+
+        private static List<LocalSchemaPlaceholder> Placeholders(LocalSchemaFile file, List<string> names)
+        {
+            var order = new List<string>();
+            var found = new Dictionary<string, List<PlaceholderValue>>(StringComparer.OrdinalIgnoreCase);
+            int occurrence = 0;
+            foreach (string n in names)
+            {
+                string name = (n ?? "").Trim();
+                if (name.Length == 0 || FindTable(file, name) != null)
+                    continue;
+                // A last part without placeholders is found, or not, as it is
+                List<TemplatePiece> pieces = ParseTemplate(LastNamePart(name));
+                if (!HasPlaceholders(pieces))
+                    continue;
+                foreach (TemplatePiece piece in pieces)
+                {
+                    if (piece.IsPlaceholder && !found.ContainsKey(piece.Text))
+                    {
+                        found.Add(piece.Text, new List<PlaceholderValue>());
+                        order.Add(piece.Text);
+                    }
+                }
+                foreach (LocalSchemaTable t in file.Tables)
+                {
+                    var taken = new string[pieces.Count];
+                    if (!MatchTemplate(pieces, 0, t.Name, 0, taken))
+                        continue;
+                    for (int i = 0; i < pieces.Count; i++)
+                    {
+                        if (!pieces[i].IsPlaceholder)
+                            continue;
+                        List<PlaceholderValue> list = found[pieces[i].Text];
+                        string text = taken[i];
+                        PlaceholderValue value = list.Find(v => string.Equals(v.Value, text, StringComparison.OrdinalIgnoreCase));
+                        if (value == null)
+                        {
+                            value = new PlaceholderValue { Value = text, First = occurrence++ };
+                            list.Add(value);
+                        }
+                        if (!ContainsName(value.Tables, name))
+                            value.Tables.Add(name);
+                    }
+                }
+            }
+            var result = new List<LocalSchemaPlaceholder>();
+            foreach (string name in order)
+            {
+                List<PlaceholderValue> list = found[name];
+                if (list.Count == 0)
+                    continue;
+                list.Sort((a, b) => a.Tables.Count != b.Tables.Count ? b.Tables.Count.CompareTo(a.Tables.Count) : a.First.CompareTo(b.First));
+                var placeholder = new LocalSchemaPlaceholder { Name = name };
+                foreach (PlaceholderValue value in list)
+                    placeholder.Values.Add(value.Value);
+                result.Add(placeholder);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// How much of a schema of the library this database has: its tables (different names, ignoring case) and how
+        /// many of them <see cref="ResolveTable(LocalSchemaFile, string, IDictionary{string, string})"/> finds without
+        /// values (a template, when it matches some table). Null when the text is not a schema.
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="json">The text of the schema.</param>
+        public static LocalSchemaCoverage LibraryCoverage(LocalSchemaFile file, string json)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            List<string> names = SchemaTableNames(json);
+            if (names == null)
+                return null;
+            var tables = new List<string>();
+            int matched = 0;
+            foreach (string n in names)
+            {
+                string name = (n ?? "").Trim();
+                if (name.Length == 0 || ContainsName(tables, name))
+                    continue;
+                tables.Add(name);
+                if (ResolveTable(file, name, null) != null)
+                    matched++;
+            }
+            return new LocalSchemaCoverage(matched, tables.Count);
+        }
+
+        /// <summary>
+        /// The schema of the library written for this database: of the ones whose <see cref="LocalSchemaLibrarySchema.Coverage"/>
+        /// is <see cref="LocalSchemaCoverage.Detected"/>, the one with more tables here, then the one with the larger part
+        /// of its tables here, then the first in the library's order. Null when none is.
+        /// </summary>
+        /// <param name="categories">The categories of the library, the coverage of their schemas known.</param>
+        /// <param name="category">The category of the schema found, or null.</param>
+        public static LocalSchemaLibrarySchema BestLibrarySchema(IList<LocalSchemaLibraryCategory> categories, out LocalSchemaLibraryCategory category)
+        {
+            category = null;
+            LocalSchemaLibrarySchema best = null;
+            if (categories == null)
+                return null;
+            foreach (LocalSchemaLibraryCategory c in categories)
+            {
+                foreach (LocalSchemaLibrarySchema schema in c.Schemas)
+                {
+                    LocalSchemaCoverage coverage = schema.Coverage;
+                    if (coverage == null || !coverage.Detected)
+                        continue;
+                    if (best != null)
+                    {
+                        // matched/total compared without dividing: both totals are positive
+                        LocalSchemaCoverage other = best.Coverage;
+                        if (coverage.Matched < other.Matched || (coverage.Matched == other.Matched &&
+                            (long)coverage.Matched * other.Total <= (long)other.Matched * coverage.Total))
+                            continue;
+                    }
+                    best = schema;
+                    category = c;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>The values of the placeholders for a message: «{COMPANY_NAME} = CRONUS España S_A_», joined by «, ».</summary>
+        /// <param name="values">The placeholders (without braces) and their values.</param>
+        public static string TemplateValuesText(IEnumerable<KeyValuePair<string, string>> values)
+        {
+            var parts = new List<string>();
+            if (values != null)
+                foreach (KeyValuePair<string, string> value in values)
+                    parts.Add("{" + value.Key + "} = " + value.Value);
+            return string.Join(", ", parts);
+        }
+
+        /// <summary>
+        /// The last part of a table name: what follows its last dot outside brackets and quotes, trimmed, without one
+        /// pair of enclosing brackets or quotes.
+        /// </summary>
+        private static string LastNamePart(string name)
+        {
+            int start = 0;
+            char closing = '\0';
+            for (int i = 0; i < name.Length; i++)
+            {
+                char c = name[i];
+                if (closing != '\0')
+                {
+                    if (c == closing)
+                        closing = '\0';
+                }
+                else if (c == '[')
+                    closing = ']';
+                else if (c == '"')
+                    closing = '"';
+                else if (c == '.')
+                    start = i + 1;
+            }
+            string part = name.Substring(start).Trim();
+            if (part.Length >= 2 && ((part[0] == '[' && part[part.Length - 1] == ']') || (part[0] == '"' && part[part.Length - 1] == '"')))
+                part = part.Substring(1, part.Length - 2).Trim();
+            return part;
+        }
+
+        /// <summary>A name split in literal texts and placeholders <c>{NAME}</c>, NAME one or more of A-Z, a-z, 0-9 and _.</summary>
+        private static List<TemplatePiece> ParseTemplate(string text)
+        {
+            var result = new List<TemplatePiece>();
+            var literal = new StringBuilder();
+            int i = 0;
+            while (i < text.Length)
+            {
+                if (text[i] == '{')
+                {
+                    int end = i + 1;
+                    while (end < text.Length && IsPlaceholderChar(text[end]))
+                        end++;
+                    if (end > i + 1 && end < text.Length && text[end] == '}')
+                    {
+                        if (literal.Length > 0)
+                        {
+                            result.Add(new TemplatePiece(literal.ToString(), false));
+                            literal.Clear();
+                        }
+                        result.Add(new TemplatePiece(text.Substring(i + 1, end - i - 1), true));
+                        i = end + 1;
+                        continue;
+                    }
+                }
+                literal.Append(text[i]);
+                i++;
+            }
+            if (literal.Length > 0)
+                result.Add(new TemplatePiece(literal.ToString(), false));
+            return result;
+        }
+
+        private static bool IsPlaceholderChar(char c)
+        {
+            return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '_';
+        }
+
+        private static bool HasPlaceholders(List<TemplatePiece> pieces)
+        {
+            return pieces.Exists(p => p.IsPlaceholder);
+        }
+
+        /// <summary>The pieces as one text (a placeholder as it is written).</summary>
+        private static string TemplateText(List<TemplatePiece> pieces)
+        {
+            var result = new StringBuilder();
+            foreach (TemplatePiece piece in pieces)
+                result.Append(piece.IsPlaceholder ? "{" + piece.Text + "}" : piece.Text);
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// True when <paramref name="name"/>, from <paramref name="position"/>, matches the pieces from
+        /// <paramref name="index"/>: the texts in order, ignoring case, and each placeholder one or more characters, the
+        /// fewest first (the first match found wins). <paramref name="taken"/> gets the text of each placeholder.
+        /// </summary>
+        private static bool MatchTemplate(List<TemplatePiece> pieces, int index, string name, int position, string[] taken)
+        {
+            if (index == pieces.Count)
+                return position == name.Length;
+            TemplatePiece piece = pieces[index];
+            if (!piece.IsPlaceholder)
+                return position + piece.Text.Length <= name.Length &&
+                    string.Compare(name, position, piece.Text, 0, piece.Text.Length, StringComparison.OrdinalIgnoreCase) == 0 &&
+                    MatchTemplate(pieces, index + 1, name, position + piece.Text.Length, taken);
+            for (int length = 1; position + length <= name.Length; length++)
+            {
+                if (MatchTemplate(pieces, index + 1, name, position + length, taken))
+                {
+                    taken[index] = name.Substring(position, length);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>The value of a placeholder (ignoring the case of its name); null when there is none or it is empty.</summary>
+        private static string TemplateValue(IDictionary<string, string> values, string name)
+        {
+            if (values == null)
+                return null;
+            string value;
+            if (!values.TryGetValue(name, out value))
+            {
+                value = null;
+                foreach (KeyValuePair<string, string> item in values)
+                {
+                    if (string.Equals((item.Key ?? "").Trim(), name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        value = item.Value;
+                        break;
+                    }
+                }
+            }
+            return string.IsNullOrEmpty(value) ? null : value;
+        }
+
+        private static string FindValue(List<KeyValuePair<string, string>> values, string name)
+        {
+            foreach (KeyValuePair<string, string> value in values)
+                if (string.Equals(value.Key, name, StringComparison.OrdinalIgnoreCase))
+                    return value.Value;
+            return null;
+        }
+
+        // The first value of a placeholder stays
+        private static void AddValue(List<KeyValuePair<string, string>> values, string name, string value)
+        {
+            if (FindValue(values, name) == null)
+                values.Add(new KeyValuePair<string, string>(name, value));
+        }
+
+        /// <summary>The JSON of an imported schema, or null when it is not JSON.</summary>
+        private static JsonDocument ParseSchemaJson(string json)
+        {
+            try
+            {
+                return JsonDocument.Parse((json ?? "").TrimStart('﻿'),
+                    new JsonDocumentOptions { AllowTrailingCommas = true, CommentHandling = JsonCommentHandling.Skip });
+            }
+            catch (JsonException)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>The names of the tables of the <c>schemaTables</c> of a schema, as written.</summary>
+        private static List<string> TableNames(JsonElement schemaTables)
+        {
+            var result = new List<string>();
+            foreach (JsonElement item in schemaTables.EnumerateArray())
+                result.Add(JsonText(item, "name"));
+            return result;
+        }
+
+        /// <summary>The names of the tables of a schema; null when the text is not one (as for the import).</summary>
+        private static List<string> SchemaTableNames(string json)
+        {
+            JsonDocument document = ParseSchemaJson(json);
+            if (document == null)
+                return null;
+            using (document)
+            {
+                JsonElement schemaTables;
+                if (!TryJsonProperty(document.RootElement, "schemaTables", out schemaTables) || schemaTables.ValueKind != JsonValueKind.Array)
+                    return null;
+                return TableNames(schemaTables);
+            }
         }
 
         // ===== The schema library of Reportman AI (docs/esquemas-locales-pantalla-plan.md, §5.7.1, C.2) =====
@@ -929,7 +1403,7 @@ namespace Reportman.Designer
         }
     }
 
-    /// <summary>What <see cref="LocalSchemaEditing.Import(LocalSchemaFile, string, string, IEnumerable{string}, string)"/> did.</summary>
+    /// <summary>What <see cref="LocalSchemaEditing.Import(LocalSchemaFile, string, string, IEnumerable{string}, string, IDictionary{string, string})"/> did.</summary>
     internal sealed class LocalSchemaImportResult
     {
         /// <summary>The subschema created, already in the file; null when none of the tables of the schema is in the database (nothing was created).</summary>
@@ -938,8 +1412,55 @@ namespace Reportman.Designer
         /// <summary>The name of the schema imported, when <see cref="Subschema"/> is null (to say which one does not match).</summary>
         public string Name { get; set; } = "";
 
-        /// <summary>What the database does not have and was left out: TABLE, or TABLE.COLUMN of a table it has.</summary>
+        /// <summary>What the database does not have and was left out: TABLE (as the schema names it), or TABLE.COLUMN of a table it has.</summary>
         public List<string> Skipped { get; } = new List<string>();
+
+        /// <summary>
+        /// The value each placeholder of the names of the tables had (its name without braces, and the value), for the
+        /// ones that found some table, in the order they come in the schema; none when no name was a template.
+        /// </summary>
+        public List<KeyValuePair<string, string>> TemplateValues { get; } = new List<KeyValuePair<string, string>>();
+    }
+
+    /// <summary>
+    /// A placeholder of the names of the tables of a schema (<see cref="LocalSchemaEditing.LibraryPlaceholders"/>) and
+    /// the values this database has for it.
+    /// </summary>
+    internal sealed class LocalSchemaPlaceholder
+    {
+        /// <summary>Its name, without braces: <c>COMPANY_NAME</c> of <c>{COMPANY_NAME}</c>.</summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>Its values as the catalog spells them, the one that finds more tables first; never empty.</summary>
+        public List<string> Values { get; } = new List<string>();
+    }
+
+    /// <summary>How much of a schema of the library a database has (<see cref="LocalSchemaEditing.LibraryCoverage"/>).</summary>
+    internal sealed class LocalSchemaCoverage
+    {
+        /// <summary>Initializes a coverage.</summary>
+        /// <param name="matched">The tables of the schema the database has.</param>
+        /// <param name="total">The tables of the schema.</param>
+        public LocalSchemaCoverage(int matched, int total)
+        {
+            Matched = matched;
+            Total = total;
+        }
+
+        /// <summary>The tables of the schema the database has.</summary>
+        public int Matched { get; }
+
+        /// <summary>The tables of the schema (different names).</summary>
+        public int Total { get; }
+
+        /// <summary>
+        /// True when the schema seems written for the database: it has two of its tables or more (or the only one),
+        /// and at least half of them.
+        /// </summary>
+        public bool Detected
+        {
+            get { return (Matched >= 2 || (Matched == Total && Total == 1)) && Matched * 2 >= Total; }
+        }
     }
 
     /// <summary>A category of the Reportman AI schema library (<see cref="LocalSchemaEditing.ParseLibrary"/>).</summary>
@@ -966,5 +1487,14 @@ namespace Reportman.Designer
 
         /// <summary>Its version; may be empty.</summary>
         public string Version { get; set; } = "";
+
+        /// <summary>
+        /// Its schema (<see cref="LocalSchemaEditing.LibraryFullSchema"/>) when it was read before choosing; null when
+        /// it was not, or could not be, read.
+        /// </summary>
+        public string FullSchema { get; set; }
+
+        /// <summary>How much of it the database has (<see cref="LocalSchemaEditing.LibraryCoverage"/>); null when unknown.</summary>
+        public LocalSchemaCoverage Coverage { get; set; }
     }
 }

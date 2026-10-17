@@ -71,10 +71,11 @@ namespace Reportman.Designer
             _btnCompleteRelation = new Button { Text = Tr(1867), AutoSize = true };
             _btnCompleteRelation.Click += (s, e) => CompleteRelation();
             // A suggestion not wanted: left out of the subschema, it is not offered again
-            _btnIgnoreRelation = new Button { Text = Tr(727), AutoSize = true };
+            _btnIgnoreRelation = new Button { Text = Tr(2020), AutoSize = true };
             _btnIgnoreRelation.Click += (s, e) => IgnoreRelation();
             _toolTip.SetToolTip(_btnNewRelation, Tr(1868));
             _toolTip.SetToolTip(_btnCompleteRelation, Tr(1919));
+            _toolTip.SetToolTip(_btnIgnoreRelation, Tr(2021));
             toolbar.Controls.Add(_btnNewRelation);
             toolbar.Controls.Add(_btnDeleteRelation);
             toolbar.Controls.Add(_btnCompleteRelation);
