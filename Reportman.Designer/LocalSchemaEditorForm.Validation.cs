@@ -23,12 +23,15 @@ using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
-    // The Validation tab: Save, and «Analyze with AI», which sends what the copilot would send for the
-    // subschema to NlToSql/AnalyzeSchemaStream and shows the Markdown it answers (🟢/🟡/🔴 per table and
-    // column): what the AI does not understand. Only a subschema is analyzed: all the tables (the
-    // dictionary) never go to the AI, as with the copilot (docs/esquemas-locales-pantalla-plan.md, §5.7.1).
+    // The Validation tab: the AI that analyzes (provider and mode, with the credits gauge, as the Validation
+    // tab of the web's database configuration), Save, and «Analyze with AI», which sends what the copilot
+    // would send for the subschema to NlToSql/AnalyzeSchemaStream and shows the Markdown it answers
+    // (🟢/🟡/🔴 per table and column): what the AI does not understand. Only a subschema is analyzed: all
+    // the tables (the dictionary) never go to the AI, as with the copilot
+    // (docs/esquemas-locales-pantalla-plan.md, §5.7.1).
     public partial class LocalSchemaEditorForm
     {
+        private AISelectionControl _aiSelection;
         private Button _btnValidationSave;
         private Button _btnAnalyze;
         private Button _btnStopAnalysis;
@@ -46,6 +49,27 @@ namespace Reportman.Designer
                 Height = 40,
                 Text = Tr(1877)
             };
+            // The AI that analyzes: it starts as the panel that opened the dialog has it; with the user's
+            // Agent the plan limits do not apply, and the counters say so
+            _aiSelection = new AISelectionControl
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+            _aiSelection.ProviderChanged += (s, e) => PlanLimitsChanged();
+            var aiRow = new TableLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                ColumnCount = 2,
+                RowCount = 1,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+            aiRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 480f));
+            aiRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
+            aiRow.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            aiRow.Controls.Add(_aiSelection, 0, 0);
             var bar = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 36, WrapContents = false };
             _btnValidationSave = new Button { Text = Tr(46), AutoSize = true };
             _btnValidationSave.Click += (s, e) => SaveFile();
@@ -68,6 +92,7 @@ namespace Reportman.Designer
 
             page.Controls.Add(_markdown);
             page.Controls.Add(bar);
+            page.Controls.Add(aiRow);
             page.Controls.Add(info);
             return page;
         }
@@ -77,6 +102,8 @@ namespace Reportman.Designer
             if (_btnAnalyze == null)
                 return;
             bool running = _analysis != null;
+            // The request is written when it starts: the AI is not changed while it runs
+            _aiSelection.Enabled = !running;
             _btnValidationSave.Enabled = _file != null && !_busy;
             _btnAnalyze.Enabled = _file != null && !_busy && !running && _current != null;
             _btnStopAnalysis.Visible = running;
@@ -103,7 +130,9 @@ namespace Reportman.Designer
             stats.Begin();
             _markdown.ClearAll();
             _lblAnalysis.Text = Tr(1878);
-            bool cloud = !_ai.IsLocalAgent;
+            // The provider and mode chosen in this tab
+            LocalSchemaAnalysisSettings ai = LocalSchemaAnalysisSettings.From(_aiSelection);
+            bool cloud = !ai.IsLocalAgent;
             try
             {
                 var client = new ReportmanAgentClient
@@ -111,21 +140,21 @@ namespace Reportman.Designer
                     Token = RpAuthManager.Instance.Token,
                     InstallId = RpAuthManager.Instance.InstallId,
                     AcceptLanguage = RpAuthManager.Instance.AILanguageCode,
-                    AITier = _ai.Tier,
+                    AITier = ai.Tier,
                     ApiKey = "",
                     HubDatabaseId = 0,
                     HubSchemaId = 0,
                     // What the copilot would send for this subschema
                     InlineConfig = LocalSchemaStore.BuildInlineConfig(_file, _current.Name)
                 };
-                if (_ai.IsLocalAgent)
+                if (ai.IsLocalAgent)
                 {
-                    client.AgentSecret = _ai.AgentSecret;
-                    client.AgentAiId = _ai.AgentAiId;
+                    client.AgentSecret = ai.AgentSecret;
+                    client.AgentAiId = ai.AgentAiId;
                 }
                 client.LogMessage += message => RpAuthManager.Instance.Log(message);
                 // The request is written here, before the first await: later edits do not change it
-                JsonDocument answer = await client.AnalyzeSchemaAsync(_ai.Mode, RpAuthManager.Instance.AILanguageCode, this,
+                JsonDocument answer = await client.AnalyzeSchemaAsync(ai.Mode, RpAuthManager.Instance.AILanguageCode, this,
                     (sender, actor, stage, chunkType, chunk, inputTokens, outputTokens, progressId, prefill) =>
                     {
                         long received = Stopwatch.GetTimestamp();

@@ -324,7 +324,7 @@ namespace Reportman.Designer
 
             fdatadef.OnSelectionChange += new EventHandler(DataSelectionChange);
             fdatadef.OnReportChange += new EventHandler(DataDefChange);
-            fdatadef.LocalSchemasChanged += (s, e) => InitializeAIChatSchemaSelection();
+            fdatadef.LocalSchemasChanged += (s, e) => NotifyLocalSchemasChanged();
 
             subreportedit.AfterInsert += new EventHandler(AfterInsertDesign);
             subreportedit.AfterSelect += new EventHandler(AfterSelectDesign);
@@ -777,6 +777,24 @@ namespace Reportman.Designer
             }
             FAIChatControl.SetDirectConnections(directAliases, preferredDirectAlias, preferLocal, reportSubschema);
             FAIChatControl.SetHubContext(hubDatabaseId, hubSchemaId, schemaApiKey);
+        }
+
+        /// <summary>
+        /// The local schema file of a connection was saved outside the copilot (the gear of the data
+        /// definitions, the SQL editor): the copilot lists its subschemas again.
+        /// </summary>
+        internal void NotifyLocalSchemasChanged()
+        {
+            InitializeAIChatSchemaSelection();
+        }
+
+        /// <summary>
+        /// Shows in the undo list a step recorded outside the inspector and the editors of this frame (the
+        /// schema the SQL editor writes in its dataset).
+        /// </summary>
+        internal void RefreshUndoList()
+        {
+            fundocue.RefreshList();
         }
 
         /// <summary>

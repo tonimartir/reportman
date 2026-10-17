@@ -13,12 +13,15 @@ namespace Reportman.Designer
     public partial class SQLEditor : UserControl
     {
         Report Report;
+        FrameMainDesigner FrameMain;
         string datainfoalias;
         private MonacoEditorControl monacoEditor;
         private SplitContainer sqlSplitContainer;
         private SqlChatPanelControl sqlChatPanel;
         private SqlEditorContext sqlEditorContext;
         private bool initialSqlSplitterDistanceApplied;
+        // The schema the user chose in either selector, written to the dataset when the dialog is accepted
+        private SqlSchemaContextChangedEventArgs chosenSchema;
 
         /// <summary>
         /// Initializes a new instance of the SQLEditor class, building UI layout and translating label controls.
@@ -65,6 +68,7 @@ namespace Reportman.Designer
             };
             monacoEditor.SqlContentChanged += MonacoEditor_SqlContentChanged;
             monacoEditor.SchemaContextChanged += MonacoEditor_SchemaContextChanged;
+            monacoEditor.LocalSchemaEditRequested += (s, e) => EditLocalSchema(e, monacoEditor.LocalSchemaAnalysis);
 
             sqlChatPanel = new SqlChatPanelControl
             {
@@ -74,6 +78,7 @@ namespace Reportman.Designer
             sqlChatPanel.Initialize(MemoSQL.Text, Translator.TranslateStr(1556));
             sqlChatPanel.ApplySuggestion += SqlChatPanel_ApplySuggestion;
             sqlChatPanel.SchemaContextChanged += SqlChatPanel_SchemaContextChanged;
+            sqlChatPanel.LocalSchemaEditRequested += (s, e) => EditLocalSchema(e, sqlChatPanel.LocalSchemaAnalysis);
 
             sqlSplitContainer.Panel1.Controls.Add(monacoEditor);
             sqlSplitContainer.Panel2.Controls.Add(sqlChatPanel);
@@ -99,34 +104,52 @@ namespace Reportman.Designer
                 sqlChatPanel.SetCurrentSql(MemoSQL.Text);
         }
 
+        // The two selectors (autocomplete and chat) show the same schema: the one chosen in either
         private void SqlChatPanel_SchemaContextChanged(object sender, SqlSchemaContextChangedEventArgs e)
         {
-            DataInfo dinfo = GetDataInfo();
-            if (dinfo != null)
-                dinfo.HubSchemaId = e.HubSchemaId;
-
-            sqlEditorContext.HubDatabaseId = e.HubDatabaseId;
-            sqlEditorContext.HubSchemaId = e.HubSchemaId;
-            sqlEditorContext.ApiKey = e.ApiKey ?? "";
-
+            chosenSchema = e;
             if (monacoEditor != null)
-                monacoEditor.SetHubContext(sqlEditorContext.HubDatabaseId, sqlEditorContext.HubSchemaId,
-                    sqlEditorContext.ApiKey);
+                monacoEditor.SetSelectedSchemaContext(e.HubDatabaseId, e.HubSchemaId, e.ApiKey,
+                    e.LocalAlias, e.LocalSubschema);
         }
 
         private void MonacoEditor_SchemaContextChanged(object sender, SqlSchemaContextChangedEventArgs e)
         {
-            DataInfo dinfo = GetDataInfo();
-            if (dinfo != null)
-                dinfo.HubSchemaId = e.HubSchemaId;
-
-            sqlEditorContext.HubDatabaseId = e.HubDatabaseId;
-            sqlEditorContext.HubSchemaId = e.HubSchemaId;
-            sqlEditorContext.ApiKey = e.ApiKey ?? "";
-
+            chosenSchema = e;
             if (sqlChatPanel != null)
-                sqlChatPanel.SetSelectedSchemaContext(sqlEditorContext.HubDatabaseId,
-                    sqlEditorContext.HubSchemaId, sqlEditorContext.ApiKey);
+                sqlChatPanel.SetSelectedSchemaContext(e.HubDatabaseId, e.HubSchemaId, e.ApiKey,
+                    e.LocalAlias, e.LocalSubschema);
+        }
+
+        /// <summary>
+        /// "Local schemas..." and "New local schema..." of either selector: the utility of the local schema
+        /// file of the connection, opened with the report's own connection (a relative SQLite database is
+        /// next to the report, as from the data definitions) and, for «Analyze with AI», the AI of the panel
+        /// that asked. After a save both selectors and the designer's copilot read the file again; the
+        /// selector that asked selects the subschema added.
+        /// </summary>
+        private void EditLocalSchema(LocalSchemaEditEventArgs e, LocalSchemaAnalysisSettings analysis)
+        {
+            DatabaseInfo dbinfo = Report != null && e.Alias.Length > 0 ? Report.DatabaseInfo[e.Alias] : null;
+            if (dbinfo == null)
+                return;
+            try
+            {
+                string added;
+                if (!LocalSchemaEditorForm.Edit(FindForm(), LocalSchemaEditorForm.DesignerFolder(), e.Alias,
+                    () => dbinfo.CreateDbConnection(), e.AddSubschema, analysis, out added))
+                    return;
+                e.AddedSubschema = e.AddSubschema ? added : "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(FindForm(), ex.Message, DesignerText.Format(1845, e.Alias), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            monacoEditor.ReloadLocalSchemas();
+            sqlChatPanel.ReloadLocalSchemas();
+            if (FrameMain != null)
+                FrameMain.NotifyLocalSchemasChanged();
         }
 
         private async Task SyncSqlFromEditorAsync()
@@ -149,6 +172,22 @@ namespace Reportman.Designer
             sqlEditorContext = ResolveSqlEditorContext();
             if (monacoEditor == null)
                 return;
+
+            // A direct connection: both selectors offer the subschemas of its local schema, as the copilot,
+            // and start on the dataset's one (else the one chosen last, else the first one, else none)
+            if (!string.IsNullOrEmpty(sqlEditorContext.DirectAlias))
+            {
+                string[] aliases = new string[] { sqlEditorContext.DirectAlias };
+                bool preferLocal = sqlEditorContext.HubSchemaId == 0;
+                string folder = LocalSchemaEditorForm.DesignerFolder();
+                monacoEditor.LocalSchemaFolder = folder;
+                monacoEditor.SetDirectConnections(aliases, sqlEditorContext.DirectAlias, preferLocal, sqlEditorContext.SchemaName);
+                if (sqlChatPanel != null)
+                {
+                    sqlChatPanel.LocalSchemaFolder = folder;
+                    sqlChatPanel.SetDirectConnections(aliases, sqlEditorContext.DirectAlias, preferLocal, sqlEditorContext.SchemaName);
+                }
+            }
 
             monacoEditor.SetBaseConnectionContext(sqlEditorContext.HubDatabaseId,
                 sqlEditorContext.HubSchemaId, sqlEditorContext.ApiKey,
@@ -225,10 +264,15 @@ namespace Reportman.Designer
 
             dbinfo.ResolveHttpAgentConnectionParamsFromConfig();
 
+            // Not an Agent connection (nor MyBase): the SQL runs on this computer, and its schema is local
+            bool direct = dbinfo.Driver != DriverType.HttpAgent && dbinfo.Driver != DriverType.Mybase;
             result.HubSchemaId = dinfo.HubSchemaId;
-            result.HubDatabaseId = dbinfo.HttpAgentHubDatabaseId;
+            // A direct connection is not in the Hub: no cloud schema of some database is preferred for it
+            result.HubDatabaseId = direct ? 0 : dbinfo.HttpAgentHubDatabaseId;
             result.ApiKey = dbinfo.HttpAgentApiKey ?? "";
             result.RuntimeDb = ResolveNlToSqlRuntime(dbinfo);
+            result.DirectAlias = direct ? dbinfo.Alias : "";
+            result.SchemaName = (dinfo.SchemaName ?? "").Trim();
             return result;
         }
 
@@ -278,6 +322,7 @@ namespace Reportman.Designer
                 newform.Height = Convert.ToInt32(600 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 SQLEditor dia = new SQLEditor();
                 dia.Report = framemain.Report;
+                dia.FrameMain = framemain;
                 dia.MemoSQL.Text = sql;
                 dia.datainfoalias = datainfotalias;
                 dia.Init();
@@ -286,11 +331,39 @@ namespace Reportman.Designer
                 if (newform.ShowDialog(framemain.FindForm()) == DialogResult.OK)
                 {
                     sql = dia.MemoSQL.Text;
+                    dia.StoreChosenSchema();
                     return true;
                 }
                 else
                     return false;
             }
+        }
+
+        /// <summary>
+        /// Writes in the dataset the schema the user chose in the dialog, as one undo step: a local subschema
+        /// by name (<see cref="DataInfo.SchemaName"/>, and no Hub schema), a Hub schema by id
+        /// (<see cref="DataInfo.HubSchemaId"/>) only with an Agent connection: a direct connection never keeps
+        /// the id of a cloud schema, as with the copilot.
+        /// </summary>
+        private void StoreChosenSchema()
+        {
+            DataInfo dinfo = GetDataInfo();
+            if (dinfo == null || chosenSchema == null)
+                return;
+            bool direct = !string.IsNullOrEmpty(sqlEditorContext.DirectAlias);
+            if (!chosenSchema.IsLocalSchema && direct)
+                return;
+            FrameMainDesigner.UndoItemState state = FrameMainDesigner.CaptureUndoState(dinfo);
+            if (chosenSchema.IsLocalSchema)
+            {
+                dinfo.SchemaName = chosenSchema.LocalSubschema;
+                dinfo.HubSchemaId = 0;
+            }
+            else
+                dinfo.HubSchemaId = chosenSchema.HubSchemaId;
+            int groupId = 0;
+            if (FrameMainDesigner.AddUndoChanges(Report, state, ref groupId) && FrameMain != null)
+                FrameMain.RefreshUndoList();
         }
 
         private async void BOK_Click(object sender, EventArgs e)
@@ -345,6 +418,10 @@ namespace Reportman.Designer
             public long HubSchemaId;
             public string ApiKey;
             public string RuntimeDb;
+            // The dataset's connection when it is a direct one, else ""
+            public string DirectAlias;
+            // The local subschema the dataset was made with, "" when it says none
+            public string SchemaName;
         }
     }
 }

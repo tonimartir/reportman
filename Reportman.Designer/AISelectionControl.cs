@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reportman.Designer
@@ -89,11 +90,14 @@ namespace Reportman.Designer
         }
 
         /// <summary>
-        /// Gets the selected AI agent execution mode (Fast or Reasoning).
+        /// Gets or sets the selected AI agent execution mode (Fast or Reasoning).
         /// </summary>
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string SelectedMode
         {
             get { return _comboMode.SelectedIndex == 1 ? "Reasoning" : "Fast"; }
+            set { _comboMode.SelectedIndex = string.Equals(value, "Reasoning", StringComparison.OrdinalIgnoreCase) ? 1 : 0; }
         }
 
         /// <summary>
@@ -563,6 +567,77 @@ namespace Reportman.Designer
                 _comboProvider.SelectedIndex = 1;
             else
                 _comboProvider.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Loads the user's Agents that are online into the provider list, as the AI panels do, keeping
+        /// the provider selected. A host can call it instead of loading them itself.
+        /// </summary>
+        public Task LoadUserAgentsAsync()
+        {
+            return LoadUserAgentsAsync(SelectedTier, AgentAiId);
+        }
+
+        /// <summary>
+        /// Loads the user's Agents that are online into the provider list, as the AI panels do, and then
+        /// selects <paramref name="selectedTier"/>: the Agent <paramref name="selectedAgentAiId"/> while it is
+        /// online, else Standard or Precision. Without a login only Standard and Precision stay. It does not
+        /// throw: a failure goes to the log of <see cref="RpAuthManager"/>.
+        /// </summary>
+        /// <param name="selectedTier">The provider to select after loading: Standard, Precision or LocalAgent.</param>
+        /// <param name="selectedAgentAiId">With LocalAgent, the AI of the Agent to select.</param>
+        public async Task LoadUserAgentsAsync(string selectedTier, long selectedAgentAiId)
+        {
+            try
+            {
+                ClearAgentEndpoints();
+                if (string.IsNullOrEmpty(RpAuthManager.Instance.Token))
+                {
+                    RestoreProviderSelection(selectedTier, selectedAgentAiId);
+                    return;
+                }
+
+                List<string> agents = await RpAuthManager.Instance.GetUserAgentsAsync();
+                if (IsDisposed)
+                    return;
+                if (InvokeRequired)
+                    Invoke(new Action(() => ApplyUserAgents(agents, selectedTier, selectedAgentAiId)));
+                else
+                    ApplyUserAgents(agents, selectedTier, selectedAgentAiId);
+            }
+            catch (Exception ex)
+            {
+                RpAuthManager.Instance.Log("LoadUserAgents Error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// The Agents of <see cref="RpAuthManager.GetUserAgentsAsync"/> («name=id|secret|isOnline») that are
+        /// online go to the provider list, then the provider is selected again.
+        /// </summary>
+        private void ApplyUserAgents(List<string> agents, string selectedTier, long selectedAgentAiId)
+        {
+            ClearAgentEndpoints();
+            if (agents != null)
+            {
+                foreach (string entry in agents)
+                {
+                    int eq = entry.IndexOf('=');
+                    if (eq <= 0)
+                        continue;
+                    string displayName = entry.Substring(0, eq);
+                    string[] parts = entry.Substring(eq + 1).Split('|');
+                    if (parts.Length < 2)
+                        continue;
+
+                    long agentAiId;
+                    if (!long.TryParse(parts[0], out agentAiId))
+                        agentAiId = 0;
+                    bool isOnline = parts.Length >= 3 && parts[2] == "1";
+                    AddAgentEndpoint(agentAiId, parts[1], displayName, isOnline);
+                }
+            }
+            RestoreProviderSelection(selectedTier, selectedAgentAiId);
         }
 
         /// <summary>

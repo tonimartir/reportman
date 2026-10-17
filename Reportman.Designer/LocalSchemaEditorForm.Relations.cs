@@ -23,8 +23,11 @@ using Reportman.Reporting;
 namespace Reportman.Designer
 {
     // The Relations tab: the dictionary's relations whose two tables are in the subschema, the ones of the
-    // catalog whose target is outside as suggestions («Complete»), and an editor for relations the database
-    // does not declare (kept in the dictionary with an empty constraint name).
+    // catalog whose target is outside as suggestions («Complete», or «Ignore» to leave one out), and an editor
+    // for relations the database does not declare (kept in the dictionary with an empty constraint name). A
+    // relation deleted in a subschema, or a suggestion ignored, is left out of that subschema; one of the
+    // catalog deleted with all the tables is left out of every subschema (the dictionary keeps them, and
+    // adding the relation again brings it back); only one written here is deleted from the dictionary.
     public partial class LocalSchemaEditorForm
     {
         private ListView _listRelations;
@@ -33,6 +36,7 @@ namespace Reportman.Designer
         private Button _btnNewRelation;
         private Button _btnDeleteRelation;
         private Button _btnCompleteRelation;
+        private Button _btnIgnoreRelation;
         private ComboBox _comboSourceTable;
         private ComboBox _comboTargetTable;
         private DataGridView _gridPairs;
@@ -66,11 +70,15 @@ namespace Reportman.Designer
             _btnDeleteRelation.Click += (s, e) => DeleteRelation();
             _btnCompleteRelation = new Button { Text = Tr(1867), AutoSize = true };
             _btnCompleteRelation.Click += (s, e) => CompleteRelation();
+            // A suggestion not wanted: left out of the subschema, it is not offered again
+            _btnIgnoreRelation = new Button { Text = Tr(727), AutoSize = true };
+            _btnIgnoreRelation.Click += (s, e) => IgnoreRelation();
             _toolTip.SetToolTip(_btnNewRelation, Tr(1868));
             _toolTip.SetToolTip(_btnCompleteRelation, Tr(1919));
             toolbar.Controls.Add(_btnNewRelation);
             toolbar.Controls.Add(_btnDeleteRelation);
             toolbar.Controls.Add(_btnCompleteRelation);
+            toolbar.Controls.Add(_btnIgnoreRelation);
 
             _listRelations = new ListView
             {
@@ -211,6 +219,9 @@ namespace Reportman.Designer
                     {
                         foreach (LocalSchemaForeignKey fk in source.ForeignKeys)
                         {
+                            // Left out of this subschema (or of every one): neither of the schema nor a suggestion
+                            if (LocalSchemaStore.IsExcluded(_file, _current, source.Name, fk))
+                                continue;
                             bool targetKnown = LocalSchemaEditing.FindTable(_file, fk.TargetTable) != null;
                             // In a subschema a relation is of the schema only when it travels (its two ends by table
                             // and by column); any other one with a known target is a suggestion
@@ -388,13 +399,23 @@ namespace Reportman.Designer
             if (_btnNewRelation == null)
                 return;
             bool editable = _file != null && !_busy;
-            bool written = _relation != null && LocalSchemaEditing.IsWritten(_relation.Fk);
             _btnNewRelation.Enabled = editable && LocalSchemaEditing.TablesOf(_file, _current).Count > 0;
-            _btnDeleteRelation.Enabled = editable && written;
-            _btnCompleteRelation.Enabled = editable && _current != null && _relation != null &&
-                LocalSchemaEditing.FindTable(_file, _relation.Fk.TargetTable) != null &&
-                (!LocalSchemaEditing.IsWritten(_relation.Fk) || LocalSchemaEditing.IsComplete(_relation.Fk)) &&
-                !LocalSchemaEditing.Travels(_file, _current, _relation.Source, _relation.Fk);
+            // Every relation listed can be deleted: of the subschema, of every one, or from the dictionary
+            _btnDeleteRelation.Enabled = editable && _relation != null;
+            bool suggestion = editable && IsSuggestion(_relation);
+            _btnCompleteRelation.Enabled = suggestion && LocalSchemaEditing.FindTable(_file, _relation.Fk.TargetTable) != null;
+            _btnIgnoreRelation.Enabled = suggestion;
+        }
+
+        /// <summary>
+        /// A suggestion of the subschema shown: a complete relation that does not travel yet (one written here
+        /// and still incomplete is a draft, which Delete removes).
+        /// </summary>
+        private bool IsSuggestion(RelationRef relation)
+        {
+            return _current != null && relation != null &&
+                (!LocalSchemaEditing.IsWritten(relation.Fk) || LocalSchemaEditing.IsComplete(relation.Fk)) &&
+                !LocalSchemaEditing.Travels(_file, _current, relation.Source, relation.Fk);
         }
 
         /// <summary>
@@ -441,17 +462,53 @@ namespace Reportman.Designer
             _comboTargetTable.Focus();
         }
 
+        /// <summary>
+        /// Deletes the relation selected. In a subschema it is left out of it; with all the tables one of the catalog
+        /// is left out of every subschema (the dictionary keeps both, and adding the relation again brings it back,
+        /// so nothing is asked). One written here is deleted from the dictionary, after asking, with all the tables,
+        /// or anywhere while it is still incomplete.
+        /// </summary>
         private void DeleteRelation()
         {
-            if (_relation == null || !LocalSchemaEditing.IsWritten(_relation.Fk))
+            if (_relation == null || _file == null)
                 return;
-            string target = _relation.Fk.TargetTable.Length > 0 ? _relation.Fk.TargetTable : "?";
-            if (MessageBox.Show(this, TrFormat(1927, _relation.Source.Name + " → " + target), Tr(150),
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
-            _relation.Source.ForeignKeys.Remove(_relation.Fk);
+            CommitEdits();
+            LocalSchemaTable source = _relation.Source;
+            LocalSchemaForeignKey fk = _relation.Fk;
+            if (LocalSchemaEditing.IsWritten(fk) && (_current == null || !LocalSchemaEditing.IsComplete(fk)))
+            {
+                string target = fk.TargetTable.Length > 0 ? fk.TargetTable : "?";
+                if (MessageBox.Show(this, TrFormat(1927, source.Name + " → " + target), Tr(150),
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+                LocalSchemaEditing.RemoveRelation(_file, source, fk);
+            }
+            else
+                LocalSchemaStore.Exclude(_file, _current, source.Name, fk);
             _relation = null;
+            RelationsChanged();
+        }
+
+        /// <summary>A suggestion not wanted («Ignore»): left out of the subschema, it is not offered there again.</summary>
+        private void IgnoreRelation()
+        {
+            if (!IsSuggestion(_relation))
+                return;
+            CommitEdits();
+            LocalSchemaStore.Exclude(_file, _current, _relation.Source.Name, _relation.Fk);
+            _relation = null;
+            RelationsChanged();
+        }
+
+        /// <summary>
+        /// What travels of the relations changed: the number of relations, the keys of the Columns tab and the
+        /// list follow.
+        /// </summary>
+        private void RelationsChanged()
+        {
             MarkDirty();
+            FillConnectionTab();
+            FillColumnsTab();
             FillRelationsTab();
         }
 
@@ -463,6 +520,37 @@ namespace Reportman.Designer
             if (!LocalSchemaEditing.Complete(_file, _current, _relation.Source, _relation.Fk))
                 return;
             TablesChanged();
+        }
+
+        /// <summary>
+        /// A relation written here with the ends of one left out (of the subschema shown, or of every one) is that
+        /// one added again, not a copy of it: it is no longer left out, the copy goes while the dictionary still has
+        /// the relation, in a subschema it is completed so that it travels, and the tabs follow. False, changing
+        /// nothing, for any other relation.
+        /// </summary>
+        private bool ReviveExcluded(RelationRef relation)
+        {
+            if (relation == null || !relation.Source.ForeignKeys.Contains(relation.Fk) ||
+                !LocalSchemaEditing.IsWritten(relation.Fk) || !LocalSchemaEditing.IsComplete(relation.Fk) ||
+                !LocalSchemaStore.IsExcluded(_file, _current, relation.Source.Name, relation.Fk))
+                return false;
+            LocalSchemaForeignKey fk = relation.Fk;
+            LocalSchemaStore.Unexclude(_file, _current, relation.Source.Name, fk);
+            LocalSchemaForeignKey kept = relation.Source.ForeignKeys.Find(other => other != fk && LocalSchemaStore.SameRelation(other, fk));
+            if (kept != null)
+            {
+                relation.Source.ForeignKeys.Remove(fk);
+                // What was written in the copy is not lost when the relation says nothing
+                if (string.IsNullOrWhiteSpace(kept.RelationshipContext) && !string.IsNullOrWhiteSpace(fk.RelationshipContext))
+                    kept.RelationshipContext = fk.RelationshipContext;
+                relation = new RelationRef(relation.Source, kept);
+            }
+            _relation = relation;
+            if (_current != null && !LocalSchemaEditing.Travels(_file, _current, relation.Source, relation.Fk))
+                LocalSchemaEditing.Complete(_file, _current, relation.Source, relation.Fk);
+            FillConnectionTab();
+            TablesChanged();
+            return true;
         }
 
         private void SourceTableChanged()
@@ -479,6 +567,9 @@ namespace Reportman.Designer
             _relation.Fk.SourceColumns = new List<string>();
             _relation.Fk.TargetColumns = new List<string>();
             PrefillPairs(_relation);
+            // The ends of a relation left out: that one is added again (the list would not show the copy)
+            if (ReviveExcluded(_relation))
+                return;
             MarkDirty();
             FillRelationsTab();
             CompleteWrittenLater();
@@ -493,24 +584,34 @@ namespace Reportman.Designer
                 return;
             _relation.Fk.TargetTable = target.Name;
             PrefillPairs(_relation);
+            // The ends of a relation left out: that one is added again (the list would not show the copy)
+            if (ReviveExcluded(_relation))
+                return;
             MarkDirty();
             FillRelationsTab();
             CompleteWrittenLater();
         }
 
         /// <summary>
-        /// A relation written while a subschema is shown is completed as a suggestion is, as soon as it has a
-        /// target and all its pairs: the target table and the columns of both ends enter the subschema.
+        /// A relation written with the ends of one left out is that one added again (<see cref="ReviveExcluded"/>).
+        /// Otherwise, a relation written while a subschema is shown is completed as a suggestion is, as soon as
+        /// it has a target and all its pairs: the target table and the columns of both ends enter the subschema.
         /// Deferred: the grid may still be committing the value.
         /// </summary>
         private void CompleteWrittenLater()
         {
             RelationRef relation = _relation;
-            if (_current == null || relation == null || !NeedsCompleting(relation))
+            if (relation == null)
+                return;
+            bool leftOut = LocalSchemaEditing.IsWritten(relation.Fk) && LocalSchemaEditing.IsComplete(relation.Fk) &&
+                LocalSchemaStore.IsExcluded(_file, _current, relation.Source.Name, relation.Fk);
+            if (!leftOut && (_current == null || !NeedsCompleting(relation)))
                 return;
             BeginInvoke(new Action(() =>
             {
-                if (IsDisposed || _current == null || !NeedsCompleting(relation))
+                if (IsDisposed || ReviveExcluded(relation))
+                    return;
+                if (_current == null || !NeedsCompleting(relation))
                     return;
                 if (LocalSchemaEditing.Complete(_file, _current, relation.Source, relation.Fk))
                 {

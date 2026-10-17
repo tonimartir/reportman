@@ -51,6 +51,13 @@ namespace Reportman.Reporting
         public List<LocalSchemaTable> Tables { get; set; } = new List<LocalSchemaTable>();
         /// <summary>The subschemas defined by the user.</summary>
         public List<LocalSubschema> Schemas { get; set; } = new List<LocalSubschema>();
+        /// <summary>
+        /// The relations left out of every subschema (and of all the tables): a foreign key of the catalog people
+        /// deleted from the dictionary, which the next reading of the catalog would bring back. Null or empty: none;
+        /// written only when there is one.
+        /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<LocalRelationRef> ExcludedRelations { get; set; }
         /// <summary>Properties this version does not know, kept as they are.</summary>
         [JsonExtensionData]
         public Dictionary<string, JsonElement> Extra { get; set; }
@@ -141,6 +148,32 @@ namespace Reportman.Reporting
         /// </summary>
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, List<string>> Columns { get; set; }
+        /// <summary>
+        /// The relations left out of this subschema although both ends travel: deleted in it, or a suggestion
+        /// discarded (the dictionary keeps them). Null or empty: none; written only when there is one.
+        /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<LocalRelationRef> ExcludedRelations { get; set; }
+        /// <summary>Properties this version does not know, kept as they are.</summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Extra { get; set; }
+    }
+
+    /// <summary>
+    /// A relation of a <see cref="LocalSchemaFile"/> by its ends, for the lists of relations left out
+    /// (<see cref="LocalSchemaFile.ExcludedRelations"/>, <see cref="LocalSubschema.ExcludedRelations"/>): the tables and
+    /// columns are compared ignoring case, the columns in the order of the foreign key, whatever its constraint name.
+    /// </summary>
+    public class LocalRelationRef
+    {
+        /// <summary>The table that has the foreign key.</summary>
+        public string SourceTable { get; set; } = "";
+        /// <summary>Its columns, in order.</summary>
+        public List<string> SourceColumns { get; set; } = new List<string>();
+        /// <summary>The referenced table.</summary>
+        public string TargetTable { get; set; } = "";
+        /// <summary>Its columns, in the same order.</summary>
+        public List<string> TargetColumns { get; set; } = new List<string>();
         /// <summary>Properties this version does not know, kept as they are.</summary>
         [JsonExtensionData]
         public Dictionary<string, JsonElement> Extra { get; set; }
@@ -343,7 +376,8 @@ namespace Reportman.Reporting
             fresh.Schemas = new List<LocalSubschema>();
             foreach (LocalSubschema schema in previous.Schemas)
             {
-                var kept = new LocalSubschema { Name = schema.Name, Description = schema.Description, Extra = schema.Extra };
+                // The relations left out stay left out: the catalog brings its foreign keys back on every reading.
+                var kept = new LocalSubschema { Name = schema.Name, Description = schema.Description, ExcludedRelations = schema.ExcludedRelations, Extra = schema.Extra };
                 foreach (string name in schema.Tables)
                 {
                     string current;
@@ -377,6 +411,7 @@ namespace Reportman.Reporting
             }
             if (string.IsNullOrEmpty(fresh.Alias))
                 fresh.Alias = previous.Alias;
+            fresh.ExcludedRelations = previous.ExcludedRelations;
             fresh.Extra = previous.Extra;
             if (previous.Version > fresh.Version)
                 fresh.Version = previous.Version;
@@ -437,6 +472,96 @@ namespace Reportman.Reporting
                 if (!string.Equals(a[i], b[i], StringComparison.OrdinalIgnoreCase))
                     return false;
             return true;
+        }
+
+        /// <summary>
+        /// Whether the relation <paramref name="fk"/> of <paramref name="sourceTable"/> is left out: of every subschema
+        /// (the file's list) or of <paramref name="subschema"/> (its own list; null: the file's list only). A relation
+        /// left out never travels to the AI, nor is it offered as a suggestion there.
+        /// </summary>
+        public static bool IsExcluded(LocalSchemaFile file, LocalSubschema subschema, string sourceTable, LocalSchemaForeignKey fk)
+        {
+            if (fk == null)
+                return false;
+            return IndexOfRelation(file != null ? file.ExcludedRelations : null, sourceTable, fk) >= 0
+                || IndexOfRelation(subschema != null ? subschema.ExcludedRelations : null, sourceTable, fk) >= 0;
+        }
+
+        /// <summary>
+        /// Leaves the relation <paramref name="fk"/> of <paramref name="sourceTable"/> out of <paramref name="subschema"/>
+        /// (a relation deleted in it, a suggestion discarded: the dictionary keeps it), or out of every subschema when
+        /// <paramref name="subschema"/> is null (a relation of the catalog deleted from the dictionary). Once.
+        /// </summary>
+        public static void Exclude(LocalSchemaFile file, LocalSubschema subschema, string sourceTable, LocalSchemaForeignKey fk)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            if (fk == null)
+                throw new ArgumentNullException("fk");
+            List<LocalRelationRef> list;
+            if (subschema != null)
+            {
+                if (subschema.ExcludedRelations == null)
+                    subschema.ExcludedRelations = new List<LocalRelationRef>();
+                list = subschema.ExcludedRelations;
+            }
+            else
+            {
+                if (file.ExcludedRelations == null)
+                    file.ExcludedRelations = new List<LocalRelationRef>();
+                list = file.ExcludedRelations;
+            }
+            if (IndexOfRelation(list, sourceTable, fk) >= 0)
+                return;
+            list.Add(new LocalRelationRef
+            {
+                SourceTable = sourceTable ?? "",
+                SourceColumns = new List<string>(fk.SourceColumns ?? new List<string>()),
+                TargetTable = fk.TargetTable ?? "",
+                TargetColumns = new List<string>(fk.TargetColumns ?? new List<string>())
+            });
+        }
+
+        /// <summary>
+        /// The relation <paramref name="fk"/> of <paramref name="sourceTable"/> added again: out of the list of
+        /// <paramref name="subschema"/> (when not null) and of the file's, instead of a second copy of it. True when it
+        /// was in one of them.
+        /// </summary>
+        public static bool Unexclude(LocalSchemaFile file, LocalSubschema subschema, string sourceTable, LocalSchemaForeignKey fk)
+        {
+            if (fk == null)
+                return false;
+            bool removed = false;
+            if (subschema != null && subschema.ExcludedRelations != null)
+            {
+                removed |= subschema.ExcludedRelations.RemoveAll(r => Refers(r, sourceTable, fk)) > 0;
+                if (subschema.ExcludedRelations.Count == 0)
+                    subschema.ExcludedRelations = null;
+            }
+            if (file != null && file.ExcludedRelations != null)
+            {
+                removed |= file.ExcludedRelations.RemoveAll(r => Refers(r, sourceTable, fk)) > 0;
+                if (file.ExcludedRelations.Count == 0)
+                    file.ExcludedRelations = null;
+            }
+            return removed;
+        }
+
+        private static int IndexOfRelation(List<LocalRelationRef> list, string sourceTable, LocalSchemaForeignKey fk)
+        {
+            if (list == null)
+                return -1;
+            return list.FindIndex(r => Refers(r, sourceTable, fk));
+        }
+
+        /// <summary>The same ends: source and target tables and their columns in order, ignoring case.</summary>
+        private static bool Refers(LocalRelationRef r, string sourceTable, LocalSchemaForeignKey fk)
+        {
+            return r != null
+                && string.Equals(r.SourceTable ?? "", sourceTable ?? "", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(r.TargetTable ?? "", fk.TargetTable ?? "", StringComparison.OrdinalIgnoreCase)
+                && SameNames(r.SourceColumns ?? new List<string>(), fk.SourceColumns ?? new List<string>())
+                && SameNames(r.TargetColumns ?? new List<string>(), fk.TargetColumns ?? new List<string>());
         }
 
         /// <summary>
@@ -524,7 +649,8 @@ namespace Reportman.Reporting
         /// The database configuration the copilot sends inline for a direct connection:
         /// <c>{ name: ALIAS, dialect, schemaTables, schemaName, hubDatabaseId: 0, hubSchemaId: 0 }</c>, with the tables of
         /// the chosen subschema (all of them when empty) and, of each one, the columns it chose, their allowed
-        /// values, and the relations whose two ends are in what travels. The name is the connection alias: the
+        /// values, and the relations whose two ends are in what travels and that are not left out (<see cref="IsExcluded"/>:
+        /// the file's list, and the subschema's). The name is the connection alias: the
         /// AI puts a new dataset on the connection with that name, and records the subschema's name in it
         /// (<c>schemaName</c>, empty for all the tables).
         /// </summary>
@@ -563,8 +689,11 @@ namespace Reportman.Reporting
                 var foreignKeys = new List<object>();
                 foreach (LocalSchemaForeignKey fk in t.ForeignKeys)
                 {
-                    // A relation travels when its two ends do: a column the AI does not see is no use to it.
+                    // A relation travels when its two ends do: a column the AI does not see is no use to it. Nor one
+                    // people left out, of every subschema or of this one.
                     if (selected != null && (!Travels(travels, t.Name, fk.SourceColumns) || !Travels(travels, fk.TargetTable, fk.TargetColumns)))
+                        continue;
+                    if (IsExcluded(file, selected, t.Name, fk))
                         continue;
                     foreignKeys.Add(new Dictionary<string, object>
                     {
@@ -703,7 +832,28 @@ namespace Reportman.Reporting
                     }
                     s.Columns = columns.Count > 0 ? columns : null;
                 }
+                s.ExcludedRelations = NormalizeRelations(s.ExcludedRelations);
             }
+            file.ExcludedRelations = NormalizeRelations(file.ExcludedRelations);
+        }
+
+        /// <summary>A list of relations left out: without the entries that name no table, each one once; null when empty.</summary>
+        private static List<LocalRelationRef> NormalizeRelations(List<LocalRelationRef> list)
+        {
+            if (list == null)
+                return null;
+            var result = new List<LocalRelationRef>();
+            foreach (LocalRelationRef r in list)
+            {
+                if (r == null || string.IsNullOrEmpty(r.SourceTable) || string.IsNullOrEmpty(r.TargetTable))
+                    continue;
+                if (r.SourceColumns == null) r.SourceColumns = new List<string>();
+                if (r.TargetColumns == null) r.TargetColumns = new List<string>();
+                var fk = new LocalSchemaForeignKey { TargetTable = r.TargetTable, SourceColumns = r.SourceColumns, TargetColumns = r.TargetColumns };
+                if (IndexOfRelation(result, r.SourceTable, fk) < 0)
+                    result.Add(r);
+            }
+            return result.Count > 0 ? result : null;
         }
     }
 }

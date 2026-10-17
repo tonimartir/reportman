@@ -275,15 +275,8 @@ namespace Reportman.Designer
                 string reportDocument = ReportDocumentProvider != null ? ReportDocumentProvider() : "";
                 if (string.IsNullOrWhiteSpace(reportDocument))
                     throw new InvalidOperationException("Unable to serialize the current report to XML.");
-                // «Analyze with AI» uses the provider and mode selected here
-                string tier = _aiSelectionControl.SelectedTier;
-                var analysis = new LocalSchemaAnalysisSettings
-                {
-                    Tier = tier,
-                    Mode = _aiSelectionControl.SelectedMode,
-                    AgentSecret = string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase) ? _aiSelectionControl.AgentSecret : "",
-                    AgentAiId = string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase) ? _aiSelectionControl.AgentAiId : 0
-                };
+                // «Analyze with AI» starts with the provider and mode selected here
+                LocalSchemaAnalysisSettings analysis = LocalSchemaAnalysisSettings.From(_aiSelectionControl);
                 string added;
                 if (LocalSchemaEditorForm.Edit(FindForm(), LocalSchemaFolder, alias,
                     ConnectionFactory(reportDocument, alias, PrepareReportConnections), e.AddSubschema, analysis, out added))
@@ -681,72 +674,19 @@ namespace Reportman.Designer
         // ===== Send logic =====
 
         /// <summary>
-        /// Checks the schema the copilot sends before the cloud is called (docs/esquemas-locales-pantalla-plan.md,
-        /// §5.7.1): with a direct connection, one of the subschemas of its file, never all its tables (a big
-        /// database does not fit the AI whole, and a subschema deleted since the list was read is not replaced
-        /// by the dictionary); with the AI in the cloud, a schema that fits the plan (the AI.Api decides anyway,
-        /// with the plan of whoever pays). False, with the reason in the chat, when nothing must be sent.
+        /// Checks the schema the copilot sends before the cloud is called, as the selector checks it
+        /// (<see cref="AISchemaSelectorControl.PrepareSchemaToSend"/>). False, with the reason in the chat,
+        /// when nothing must be sent.
         /// </summary>
         /// <param name="tier">The AI tier: with LocalAgent the plan limits do not apply.</param>
         /// <param name="inlineConfig">The subschema of a direct connection to send inline, or null for a cloud schema (or none).</param>
         private bool PrepareSchemaToSend(string tier, out System.Collections.Generic.Dictionary<string, object> inlineConfig)
         {
-            inlineConfig = null;
-            bool cloudAI = !string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
-            string localAlias = _aiSchemaSelectorControl.LocalAlias;
-            if (localAlias.Length == 0)
-            {
-                // A direct connection with no schema chosen: the AI would get nothing, or all the tables
-                string missing = _aiSchemaSelectorControl.MissingSchemaAlias;
-                if (missing.Length > 0)
-                {
-                    SafeAppendMessage("system", DesignerText.Format(1984, missing));
-                    return false;
-                }
-                // A cloud schema, or a report without connections as always
-                if (cloudAI && _aiSchemaSelectorControl.SelectedSchemaExceedsPlan())
-                {
-                    SafeAppendMessage("system", DesignerText.Tr(1844));
-                    return false;
-                }
+            string message;
+            if (_aiSchemaSelectorControl.PrepareSchemaToSend(tier, out inlineConfig, out message, AppendLog))
                 return true;
-            }
-
-            string localSubschema = _aiSchemaSelectorControl.LocalSubschema;
-            LocalSchemaFile schema;
-            try
-            {
-                // A subschema is only offered from an existing file: nothing to generate here
-                schema = LocalSchemaStore.Load(LocalSchemaStore.PathFor(LocalSchemaFolder, localAlias));
-            }
-            catch (Exception ex)
-            {
-                SafeAppendMessage("system", DesignerText.Tr(355) + ": " + ex.Message);
-                return false;
-            }
-            LocalSubschema selected = LocalSchemaStore.FindSubschema(schema, localSubschema);
-            if (selected == null)
-            {
-                // Gone from the file since the list was read: the list follows, and nothing is sent
-                AppendLog("The subschema " + localSubschema + " is not in the file of " + localAlias + ": nothing is sent.");
-                _aiSchemaSelectorControl.ReloadLocalSchemas();
-                SafeAppendMessage("system", DesignerText.Format(1984, localAlias));
-                return false;
-            }
-            // Counted again from the file: it may have changed since the list was read
-            int tables, widest;
-            string widestTable;
-            LocalSchemaEditing.Count(schema, selected, out tables, out widest, out widestTable);
-            RpProfile profile = RpAuthManager.Instance.Profile;
-            if (cloudAI && profile != null &&
-                LocalSchemaEditing.IsOverPlan(tables, widest, profile.MaxTables, profile.MaxColumnsPerTable))
-            {
-                SafeAppendMessage("system", DesignerText.Tr(1844));
-                return false;
-            }
-            inlineConfig = LocalSchemaStore.BuildInlineConfig(schema, selected.Name);
-            AppendLog("Schema " + localAlias + " / " + selected.Name + ": " + tables + " tables sent inline.");
-            return true;
+            SafeAppendMessage("system", message);
+            return false;
         }
 
         private async void BtnSend_Click(object sender, EventArgs e)

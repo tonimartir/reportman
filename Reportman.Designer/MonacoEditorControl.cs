@@ -51,10 +51,21 @@ namespace Reportman.Designer
         public event EventHandler SqlContentChanged;
 
         /// <summary>
-        /// Raised when the effective schema context (Hub database, schema and API key) changes,
-        /// for example after the user selects a different schema in the selector.
+        /// Raised when the effective schema context (Hub database, schema and API key, or a local
+        /// subschema) changes, for example after the user selects a different schema in the selector.
         /// </summary>
         public event EventHandler<SqlSchemaContextChangedEventArgs> SchemaContextChanged;
+
+        /// <summary>
+        /// Occurs when the schema selector asks to edit the local schema of a direct connection ("Local
+        /// schemas..." of its config button, "New local schema..." of its list). The sender is the selector,
+        /// which reads the file again afterwards; without a handler those entries stay disabled.
+        /// </summary>
+        public event EventHandler<LocalSchemaEditEventArgs> LocalSchemaEditRequested
+        {
+            add { _schemaSelector.LocalSchemaEditRequested += value; }
+            remove { _schemaSelector.LocalSchemaEditRequested -= value; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the control, creating the Reportman agent client
@@ -238,6 +249,78 @@ namespace Reportman.Designer
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string RuntimeDb { get; set; } = "";
+
+        /// <summary>
+        /// Gets or sets the folder of the local schema files (dbxschemas) of the direct connections set with
+        /// <see cref="SetDirectConnections"/>.
+        /// </summary>
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public string LocalSchemaFolder
+        {
+            get { return _schemaSelector.LocalSchemaFolder; }
+            set { _schemaSelector.LocalSchemaFolder = value ?? ""; }
+        }
+
+        /// <summary>
+        /// Gets the AI «Analyze with AI» of the local schema editor starts with when this editor opens it: the
+        /// provider and mode of the autocomplete.
+        /// </summary>
+        [System.ComponentModel.Browsable(false)]
+        public LocalSchemaAnalysisSettings LocalSchemaAnalysis
+        {
+            get { return LocalSchemaAnalysisSettings.From(_aiSelectionControl); }
+        }
+
+        /// <summary>
+        /// Sets the direct (not Agent) connections whose local subschemas the schema selector offers before the
+        /// Hub schemas (<see cref="AISchemaSelectorControl.SetDirectConnections(IList{string}, string, bool, string)"/>):
+        /// with <paramref name="preferLocal"/>, <paramref name="reportSubschema"/> is selected while it is in the
+        /// file, else the one chosen last for that connection, else the first one, else none. Call it before
+        /// <see cref="SetBaseConnectionContext"/>.
+        /// </summary>
+        /// <param name="aliases">Aliases of the direct connections.</param>
+        /// <param name="preferredAlias">The connection to select by default.</param>
+        /// <param name="preferLocal">True when the local schema is selected by default.</param>
+        /// <param name="reportSubschema">The subschema the dataset was made with ("" when it says none).</param>
+        public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal, string reportSubschema)
+        {
+            _schemaSelector.SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema);
+            UpdateEffectiveSchemaContext();
+        }
+
+        /// <summary>
+        /// Reads the local schema files again keeping the selection, after one was saved elsewhere.
+        /// </summary>
+        public void ReloadLocalSchemas()
+        {
+            _schemaSelector.ReloadLocalSchemas();
+            UpdateEffectiveSchemaContext();
+        }
+
+        /// <summary>
+        /// Selects the schema another selector of the same dataset chose, without raising
+        /// <see cref="SchemaContextChanged"/>: the local subschema <paramref name="localSubschema"/> of
+        /// <paramref name="localAlias"/>, or, when <paramref name="localAlias"/> is "", the Hub schema, as
+        /// <see cref="SetHubContext(long, long, string)"/>.
+        /// </summary>
+        /// <param name="hubDatabaseId">The Hub database identifier.</param>
+        /// <param name="hubSchemaId">The Hub schema identifier.</param>
+        /// <param name="apiKey">The API key for authentication.</param>
+        /// <param name="localAlias">The direct connection of the local subschema, or "".</param>
+        /// <param name="localSubschema">The local subschema.</param>
+        public void SetSelectedSchemaContext(long hubDatabaseId, long hubSchemaId, string apiKey,
+            string localAlias, string localSubschema)
+        {
+            _selectedHubDatabaseId = hubDatabaseId;
+            _selectedHubSchemaId = hubSchemaId;
+            _selectedSchemaApiKey = apiKey ?? "";
+
+            if (EnableSqlAutocompleteUi)
+                _schemaSelector.SelectSameSchema(localAlias, localSubschema, hubDatabaseId, hubSchemaId, _selectedSchemaApiKey);
+
+            UpdateEffectiveSchemaContext();
+        }
 
         /// <summary>
         /// Sets the base connection context, including the database, schema, API key, and runtime database.
@@ -426,13 +509,21 @@ namespace Reportman.Designer
         {
             UpdateEffectiveSchemaContext();
             SchemaContextChanged?.Invoke(this,
-                new SqlSchemaContextChangedEventArgs(HubDatabaseId, HubSchemaId, EffectiveApiKey));
+                new SqlSchemaContextChangedEventArgs(HubDatabaseId, HubSchemaId, EffectiveApiKey,
+                    _schemaSelector.LocalAlias, _schemaSelector.LocalSubschema));
         }
 
         private void UpdateEffectiveSchemaContext()
         {
             if (EnableSqlAutocompleteUi)
             {
+                // A local subschema travels inline: no Hub ids, not even the connection's
+                if (_schemaSelector.IsLocalSchemaSelected)
+                {
+                    HubDatabaseId = 0;
+                    HubSchemaId = 0;
+                    return;
+                }
                 HubDatabaseId = _schemaSelector.HubDatabaseId > 0 ? _schemaSelector.HubDatabaseId : _baseHubDatabaseId;
                 HubSchemaId = (_schemaSelector.HubDatabaseId > 0 || _schemaSelector.HubSchemaId > 0)
                     ? _schemaSelector.HubSchemaId
@@ -451,7 +542,11 @@ namespace Reportman.Designer
             get
             {
                 if (EnableSqlAutocompleteUi)
+                {
+                    if (_schemaSelector.IsLocalSchemaSelected)
+                        return "";
                     return !string.IsNullOrWhiteSpace(_schemaSelector.SchemaApiKey) ? _schemaSelector.SchemaApiKey : ApiKey;
+                }
 
                 return !string.IsNullOrWhiteSpace(_selectedSchemaApiKey) ? _selectedSchemaApiKey : ApiKey;
             }
@@ -642,6 +737,16 @@ namespace Reportman.Designer
 
             try
             {
+                // Checked as the chat checks it: with a direct connection and no subschema chosen, or a
+                // schema over the plan with the cloud AI, autocomplete stays silent (the chat says why)
+                Dictionary<string, object> inlineConfig;
+                string reason;
+                if (!_schemaSelector.PrepareSchemaToSend(_aiSelectionControl.SelectedTier, out inlineConfig, out reason, null))
+                {
+                    await SendEmptyAICompletionsAsync(requestId);
+                    return;
+                }
+
                 SetInferenceProgress(true);
                 _aiSelectionControl.UpdateTokens(0, 0);
 
@@ -652,9 +757,12 @@ namespace Reportman.Designer
                 _agentClient.Token = RpAuthManager.Instance.Token;
                 _agentClient.InstallId = RpAuthManager.Instance.InstallId;
                 _agentClient.AcceptLanguage = RpAuthManager.Instance.AILanguageCode;
-                _agentClient.ApiKey = EffectiveApiKey;
-                _agentClient.HubDatabaseId = HubDatabaseId;
-                _agentClient.HubSchemaId = HubSchemaId;
+                // A direct connection's subschema travels inline, without Hub ids nor key
+                bool inline = inlineConfig != null;
+                _agentClient.ApiKey = inline ? "" : EffectiveApiKey;
+                _agentClient.HubDatabaseId = inline ? 0 : HubDatabaseId;
+                _agentClient.HubSchemaId = inline ? 0 : HubSchemaId;
+                _agentClient.InlineConfig = inlineConfig;
                 _agentClient.RuntimeDb = RuntimeDb;
                 _agentClient.AITier = _aiSelectionControl.SelectedTier;
 

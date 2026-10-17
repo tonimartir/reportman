@@ -396,6 +396,28 @@ namespace Reportman.Designer
         }
 
         /// <summary>
+        /// Selects what another selector of the same connection selected, without raising
+        /// <see cref="SchemaChanged"/> (the two selectors of the SQL editor follow each other): the
+        /// subschema <paramref name="localSubschema"/> of the direct connection <paramref name="localAlias"/>,
+        /// or, when <paramref name="localAlias"/> is "", the Hub schema <paramref name="hubSchemaId"/> of
+        /// <paramref name="hubDatabaseId"/>, as <see cref="SetHubContext"/>.
+        /// </summary>
+        /// <param name="localAlias">The direct connection of the local subschema, or "" for a Hub schema.</param>
+        /// <param name="localSubschema">The local subschema.</param>
+        /// <param name="hubDatabaseId">The Hub database of the schema.</param>
+        /// <param name="hubSchemaId">The Hub schema.</param>
+        /// <param name="apiKey">The API key of the schema.</param>
+        public void SelectSameSchema(string localAlias, string localSubschema, long hubDatabaseId, long hubSchemaId, string apiKey)
+        {
+            _preferredLocalAlias = (localAlias ?? "").Trim();
+            _preferredLocalSubschema = _preferredLocalAlias.Length > 0 ? (localSubschema ?? "").Trim() : "";
+            if (_preferredLocalAlias.Length > 0)
+                ReloadLocalSchemas();
+            else
+                SetHubContext(hubDatabaseId, hubSchemaId, apiKey);
+        }
+
+        /// <summary>
         /// Marks again the schemas that do not fit the plan, after the profile (and so the plan)
         /// changed.
         /// </summary>
@@ -414,6 +436,80 @@ namespace Reportman.Designer
             SchemaEntry entry = _lastSchemaIndex >= 0 && _lastSchemaIndex < _comboSchema.Items.Count
                 ? _comboSchema.Items[_lastSchemaIndex] as SchemaEntry : null;
             return entry != null && IsOverPlan(entry, RpAuthManager.Instance.Profile);
+        }
+
+        /// <summary>
+        /// Checks the schema selected before the cloud is called (docs/esquemas-locales-pantalla-plan.md,
+        /// §5.7.1), the same for the copilot, the SQL chat and the SQL autocomplete: with a direct connection,
+        /// one of the subschemas of its file, never all its tables (a big database does not fit the AI whole,
+        /// and a subschema deleted since the list was read is not replaced by the dictionary); with the AI in
+        /// the cloud, a schema that fits the plan (the AI.Api decides anyway, with the plan of whoever pays).
+        /// False, with the reason in <paramref name="message"/>, when nothing must be sent.
+        /// </summary>
+        /// <param name="tier">The AI tier: with LocalAgent the plan limits do not apply.</param>
+        /// <param name="inlineConfig">The subschema of a direct connection to send inline, or null for a cloud schema (or none).</param>
+        /// <param name="message">When it returns false, what to tell the user.</param>
+        /// <param name="log">Receives the lines for the AI log; null for none.</param>
+        public bool PrepareSchemaToSend(string tier, out Dictionary<string, object> inlineConfig, out string message,
+            Action<string> log)
+        {
+            inlineConfig = null;
+            message = "";
+            bool cloudAI = !string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
+            string localAlias = LocalAlias;
+            if (localAlias.Length == 0)
+            {
+                // A direct connection with no schema chosen: the AI would get nothing, or all the tables
+                string missing = MissingSchemaAlias;
+                if (missing.Length > 0)
+                {
+                    message = DesignerText.Format(1984, missing);
+                    return false;
+                }
+                // A cloud schema, or a report without connections as always
+                if (cloudAI && SelectedSchemaExceedsPlan())
+                {
+                    message = DesignerText.Tr(1844);
+                    return false;
+                }
+                return true;
+            }
+
+            string localSubschema = LocalSubschema;
+            LocalSchemaFile schema;
+            try
+            {
+                // A subschema is only offered from an existing file: nothing to generate here
+                schema = LocalSchemaStore.Load(LocalSchemaStore.PathFor(LocalSchemaFolder, localAlias));
+            }
+            catch (Exception ex)
+            {
+                message = DesignerText.Tr(355) + ": " + ex.Message;
+                return false;
+            }
+            LocalSubschema selected = LocalSchemaStore.FindSubschema(schema, localSubschema);
+            if (selected == null)
+            {
+                // Gone from the file since the list was read: the list follows, and nothing is sent
+                log?.Invoke("The subschema " + localSubschema + " is not in the file of " + localAlias + ": nothing is sent.");
+                ReloadLocalSchemas();
+                message = DesignerText.Format(1984, localAlias);
+                return false;
+            }
+            // Counted again from the file: it may have changed since the list was read
+            int tables, widest;
+            string widestTable;
+            LocalSchemaEditing.Count(schema, selected, out tables, out widest, out widestTable);
+            RpProfile profile = RpAuthManager.Instance.Profile;
+            if (cloudAI && profile != null &&
+                LocalSchemaEditing.IsOverPlan(tables, widest, profile.MaxTables, profile.MaxColumnsPerTable))
+            {
+                message = DesignerText.Tr(1844);
+                return false;
+            }
+            inlineConfig = LocalSchemaStore.BuildInlineConfig(schema, selected.Name);
+            log?.Invoke("Schema " + localAlias + " / " + selected.Name + ": " + tables + " tables sent inline.");
+            return true;
         }
 
         /// <summary>

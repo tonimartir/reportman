@@ -16,7 +16,8 @@ namespace Reportman.Designer
     /// <summary>
     /// Event data raised when the active Hub database, schema or API key bound to
     /// the SQL chat panel changes, carrying the effective identifiers used for
-    /// subsequent AI requests.
+    /// subsequent AI requests, or the local subschema of a direct connection selected
+    /// instead (it travels inline, without Hub identifiers).
     /// </summary>
     public class SqlSchemaContextChangedEventArgs : EventArgs
     {
@@ -27,10 +28,27 @@ namespace Reportman.Designer
         /// <param name="hubSchemaId">The hub schema identifier.</param>
         /// <param name="apiKey">The API key.</param>
         public SqlSchemaContextChangedEventArgs(long hubDatabaseId, long hubSchemaId, string apiKey)
+            : this(hubDatabaseId, hubSchemaId, apiKey, "", "")
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlSchemaContextChangedEventArgs"/> class, with the
+        /// local subschema selected when there is one.
+        /// </summary>
+        /// <param name="hubDatabaseId">The hub database identifier.</param>
+        /// <param name="hubSchemaId">The hub schema identifier.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="localAlias">The direct connection whose local subschema is selected, or "".</param>
+        /// <param name="localSubschema">The local subschema selected, or "".</param>
+        public SqlSchemaContextChangedEventArgs(long hubDatabaseId, long hubSchemaId, string apiKey,
+            string localAlias, string localSubschema)
         {
             HubDatabaseId = hubDatabaseId;
             HubSchemaId = hubSchemaId;
             ApiKey = apiKey ?? "";
+            LocalAlias = localAlias ?? "";
+            LocalSubschema = LocalAlias.Length > 0 ? (localSubschema ?? "") : "";
         }
 
         /// <summary>
@@ -45,6 +63,18 @@ namespace Reportman.Designer
         /// Gets the API key.
         /// </summary>
         public string ApiKey { get; private set; }
+        /// <summary>
+        /// Gets the direct connection whose local subschema is selected, or "" for a Hub schema (or none).
+        /// </summary>
+        public string LocalAlias { get; private set; }
+        /// <summary>
+        /// Gets the local subschema of <see cref="LocalAlias"/> selected, or "".
+        /// </summary>
+        public string LocalSubschema { get; private set; }
+        /// <summary>
+        /// Gets a value indicating whether the selection is a local subschema.
+        /// </summary>
+        public bool IsLocalSchema { get { return LocalAlias.Length > 0; } }
     }
 
     /// <summary>
@@ -96,11 +126,44 @@ namespace Reportman.Designer
         public event EventHandler<SqlSchemaContextChangedEventArgs> SchemaContextChanged;
 
         /// <summary>
+        /// Occurs when the schema selector asks to edit the local schema of a direct connection ("Local
+        /// schemas..." of its config button, "New local schema..." of its list). The sender is the selector,
+        /// which reads the file again afterwards; without a handler those entries stay disabled.
+        /// </summary>
+        public event EventHandler<LocalSchemaEditEventArgs> LocalSchemaEditRequested
+        {
+            add { _schemaSelector.LocalSchemaEditRequested += value; }
+            remove { _schemaSelector.LocalSchemaEditRequested -= value; }
+        }
+
+        /// <summary>
         /// Gets or sets the provider func that retrieves the current SQL text from the editor.
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Func<Task<string>> CurrentSqlProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the folder of the local schema files (dbxschemas) of the direct connections set with
+        /// <see cref="SetDirectConnections"/>.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string LocalSchemaFolder
+        {
+            get { return _schemaSelector.LocalSchemaFolder; }
+            set { _schemaSelector.LocalSchemaFolder = value ?? ""; }
+        }
+
+        /// <summary>
+        /// Gets the AI «Analyze with AI» of the local schema editor starts with when this panel opens it: the
+        /// provider and mode selected here.
+        /// </summary>
+        [Browsable(false)]
+        public LocalSchemaAnalysisSettings LocalSchemaAnalysis
+        {
+            get { return LocalSchemaAnalysisSettings.From(_aiSelectionControl); }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlChatPanelControl"/> class, configuring subcomponents, layout, and event handlers.
@@ -378,6 +441,30 @@ namespace Reportman.Designer
         }
 
         /// <summary>
+        /// Sets the direct (not Agent) connections whose local subschemas the schema selector offers before the
+        /// Hub schemas (<see cref="AISchemaSelectorControl.SetDirectConnections(IList{string}, string, bool, string)"/>):
+        /// with <paramref name="preferLocal"/>, <paramref name="reportSubschema"/> is selected while it is in the
+        /// file, else the one chosen last for that connection, else the first one, else none. Call it before
+        /// <see cref="SetBaseConnectionContext"/>.
+        /// </summary>
+        /// <param name="aliases">Aliases of the direct connections.</param>
+        /// <param name="preferredAlias">The connection to select by default.</param>
+        /// <param name="preferLocal">True when the local schema is selected by default.</param>
+        /// <param name="reportSubschema">The subschema the dataset was made with ("" when it says none).</param>
+        public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal, string reportSubschema)
+        {
+            _schemaSelector.SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema);
+        }
+
+        /// <summary>
+        /// Reads the local schema files again keeping the selection, after one was saved elsewhere.
+        /// </summary>
+        public void ReloadLocalSchemas()
+        {
+            _schemaSelector.ReloadLocalSchemas();
+        }
+
+        /// <summary>
         /// Sets the context for the selected schema.
         /// </summary>
         /// <param name="hubDatabaseId">The hub database identifier.</param>
@@ -385,22 +472,54 @@ namespace Reportman.Designer
         /// <param name="apiKey">The API key.</param>
         public void SetSelectedSchemaContext(long hubDatabaseId, long hubSchemaId, string apiKey)
         {
-            _schemaSelector.SetHubContext(hubDatabaseId, hubSchemaId, apiKey ?? "");
+            SetSelectedSchemaContext(hubDatabaseId, hubSchemaId, apiKey, "", "");
         }
 
+        /// <summary>
+        /// Selects the schema another selector of the same dataset chose, without raising
+        /// <see cref="SchemaContextChanged"/>: the local subschema <paramref name="localSubschema"/> of
+        /// <paramref name="localAlias"/>, or, when <paramref name="localAlias"/> is "", the Hub schema.
+        /// </summary>
+        /// <param name="hubDatabaseId">The hub database identifier.</param>
+        /// <param name="hubSchemaId">The hub schema identifier.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="localAlias">The direct connection of the local subschema, or "".</param>
+        /// <param name="localSubschema">The local subschema.</param>
+        public void SetSelectedSchemaContext(long hubDatabaseId, long hubSchemaId, string apiKey,
+            string localAlias, string localSubschema)
+        {
+            _schemaSelector.SelectSameSchema(localAlias, localSubschema, hubDatabaseId, hubSchemaId, apiKey ?? "");
+        }
+
+        // A local subschema travels inline: no Hub ids nor key, not even the connection's
         private long EffectiveHubDatabaseId
         {
-            get { return _schemaSelector.HubDatabaseId > 0 ? _schemaSelector.HubDatabaseId : _baseHubDatabaseId; }
+            get
+            {
+                if (_schemaSelector.IsLocalSchemaSelected)
+                    return 0;
+                return _schemaSelector.HubDatabaseId > 0 ? _schemaSelector.HubDatabaseId : _baseHubDatabaseId;
+            }
         }
 
         private long EffectiveHubSchemaId
         {
-            get { return _schemaSelector.HubDatabaseId > 0 || _schemaSelector.HubSchemaId > 0 ? _schemaSelector.HubSchemaId : _baseHubSchemaId; }
+            get
+            {
+                if (_schemaSelector.IsLocalSchemaSelected)
+                    return 0;
+                return _schemaSelector.HubDatabaseId > 0 || _schemaSelector.HubSchemaId > 0 ? _schemaSelector.HubSchemaId : _baseHubSchemaId;
+            }
         }
 
         private string EffectiveApiKey
         {
-            get { return !string.IsNullOrWhiteSpace(_schemaSelector.SchemaApiKey) ? _schemaSelector.SchemaApiKey : _baseApiKey; }
+            get
+            {
+                if (_schemaSelector.IsLocalSchemaSelected)
+                    return "";
+                return !string.IsNullOrWhiteSpace(_schemaSelector.SchemaApiKey) ? _schemaSelector.SchemaApiKey : _baseApiKey;
+            }
         }
 
         private void OnAuthChanged(bool success)
@@ -489,7 +608,8 @@ namespace Reportman.Designer
         private void SchemaSelector_SchemaChanged(object sender, EventArgs e)
         {
             SchemaContextChanged?.Invoke(this,
-                new SqlSchemaContextChangedEventArgs(EffectiveHubDatabaseId, EffectiveHubSchemaId, EffectiveApiKey));
+                new SqlSchemaContextChangedEventArgs(EffectiveHubDatabaseId, EffectiveHubSchemaId, EffectiveApiKey,
+                    _schemaSelector.LocalAlias, _schemaSelector.LocalSubschema));
         }
 
         private void PromptText_KeyDown(object sender, KeyEventArgs e)
@@ -551,6 +671,17 @@ namespace Reportman.Designer
             if (prompt.Length == 0)
                 return;
 
+            // The schema is checked first, as the copilot does: when nothing is sent, the prompt stays to
+            // send it again once a schema is chosen
+            Dictionary<string, object> inlineConfig;
+            string reason;
+            if (!_schemaSelector.PrepareSchemaToSend(_aiSelectionControl.SelectedTier, out inlineConfig, out reason, AppendAILog))
+            {
+                SafeAppendMessage("system", reason);
+                _tabControl.SelectedTab = _chatTab;
+                return;
+            }
+
             _promptText.Clear();
             _suggestedSql = "";
             SetBusy(true);
@@ -566,7 +697,7 @@ namespace Reportman.Designer
                 _currentSql = currentSql;
 
                 SafeAppendMessage("user", prompt);
-                SqlSuggestionResult result = await RequestSqlSuggestionAsync(prompt, currentSql, _cts.Token);
+                SqlSuggestionResult result = await RequestSqlSuggestionAsync(prompt, currentSql, inlineConfig, _cts.Token);
                 if (!result.Success)
                 {
                     SafeAppendMessage("system", result.ErrorMessage);
@@ -597,9 +728,9 @@ namespace Reportman.Designer
         }
 
         private async Task<SqlSuggestionResult> RequestSqlSuggestionAsync(string prompt, string currentSql,
-            CancellationToken cancellationToken)
+            Dictionary<string, object> inlineConfig, CancellationToken cancellationToken)
         {
-            ConfigureAgentClient();
+            ConfigureAgentClient(inlineConfig);
             _conversation.BeginStreaming("agent");
             JsonDocument resultDoc = null;
             try
@@ -629,7 +760,7 @@ namespace Reportman.Designer
             }
         }
 
-        private void ConfigureAgentClient()
+        private void ConfigureAgentClient(Dictionary<string, object> inlineConfig)
         {
             string tier = _aiSelectionControl.SelectedTier;
             _agentClient.Token = RpAuthManager.Instance.Token;
@@ -639,6 +770,8 @@ namespace Reportman.Designer
             _agentClient.ApiKey = EffectiveApiKey;
             _agentClient.HubDatabaseId = EffectiveHubDatabaseId;
             _agentClient.HubSchemaId = EffectiveHubSchemaId;
+            // A direct connection's subschema travels inline: the Hub ids are 0 then
+            _agentClient.InlineConfig = inlineConfig;
             _agentClient.RuntimeDb = _runtimeDb;
 
             if (string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase))

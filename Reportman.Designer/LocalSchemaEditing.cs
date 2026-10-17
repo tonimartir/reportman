@@ -179,7 +179,9 @@ namespace Reportman.Designer
             RemoveColumnsEntry(subschema, table);
         }
 
-        /// <summary>A copy of a subschema with another name: the same tables, columns and description.</summary>
+        /// <summary>
+        /// A copy of a subschema with another name: the same tables, columns, description and relations left out.
+        /// </summary>
         public static LocalSubschema Duplicate(LocalSubschema source, string name)
         {
             var copy = new LocalSubschema
@@ -194,6 +196,23 @@ namespace Reportman.Designer
                 copy.Columns = new Dictionary<string, List<string>>();
                 foreach (KeyValuePair<string, List<string>> entry in source.Columns)
                     copy.Columns[entry.Key] = new List<string>(entry.Value ?? new List<string>());
+            }
+            if (source.ExcludedRelations != null)
+            {
+                copy.ExcludedRelations = new List<LocalRelationRef>();
+                foreach (LocalRelationRef r in source.ExcludedRelations)
+                {
+                    if (r == null)
+                        continue;
+                    copy.ExcludedRelations.Add(new LocalRelationRef
+                    {
+                        SourceTable = r.SourceTable,
+                        SourceColumns = new List<string>(r.SourceColumns ?? new List<string>()),
+                        TargetTable = r.TargetTable,
+                        TargetColumns = new List<string>(r.TargetColumns ?? new List<string>()),
+                        Extra = r.Extra != null ? new Dictionary<string, System.Text.Json.JsonElement>(r.Extra) : null
+                    });
+                }
             }
             return copy;
         }
@@ -267,10 +286,14 @@ namespace Reportman.Designer
 
         /// <summary>
         /// True when the relation travels with the subschema, as <see cref="LocalSchemaStore.BuildInlineConfig"/>
-        /// decides: its two tables and the columns of both ends travel (every relation with all the tables).
+        /// decides: its two tables and the columns of both ends travel, and it is not left out of the subschema
+        /// or of every one (<see cref="LocalSchemaStore.IsExcluded"/>). With all the tables, every relation not
+        /// left out of every subschema.
         /// </summary>
         public static bool Travels(LocalSchemaFile file, LocalSubschema subschema, LocalSchemaTable source, LocalSchemaForeignKey fk)
         {
+            if (source != null && LocalSchemaStore.IsExcluded(file, subschema, source.Name, fk))
+                return false;
             if (subschema == null)
                 return true;
             LocalSchemaTable target = FindTable(file, fk.TargetTable);
@@ -303,6 +326,23 @@ namespace Reportman.Designer
             AddColumns(subschema, source, fk.SourceColumns);
             AddColumns(subschema, target, fk.TargetColumns);
             return true;
+        }
+
+        /// <summary>
+        /// Removes a relation people wrote from the dictionary and, when its table has no other one with the same
+        /// ends, the entries that left it out of the subschemas and of every one: a relation written again later
+        /// with those ends is not left out by them.
+        /// </summary>
+        public static void RemoveRelation(LocalSchemaFile file, LocalSchemaTable source, LocalSchemaForeignKey fk)
+        {
+            if (source == null || fk == null)
+                return;
+            source.ForeignKeys.Remove(fk);
+            if (file == null || source.ForeignKeys.Exists(other => LocalSchemaStore.SameRelation(other, fk)))
+                return;
+            foreach (LocalSubschema s in file.Schemas)
+                LocalSchemaStore.Unexclude(file, s, source.Name, fk);
+            LocalSchemaStore.Unexclude(file, null, source.Name, fk);
         }
 
         /// <summary>

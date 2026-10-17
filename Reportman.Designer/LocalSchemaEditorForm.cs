@@ -28,11 +28,26 @@ using Reportman.Reporting;
 namespace Reportman.Designer
 {
     /// <summary>
-    /// The AI that «Analyze with AI» of <see cref="LocalSchemaEditorForm"/> uses: the provider and mode the
-    /// copilot has selected.
+    /// The AI that «Analyze with AI» of <see cref="LocalSchemaEditorForm"/> starts with: the provider and mode
+    /// selected in the AI panel that opened it (the copilot, the SQL editor). The dialog lets the user change it.
     /// </summary>
     public class LocalSchemaAnalysisSettings
     {
+        /// <summary>The provider and mode selected in <paramref name="selection"/>, with its Agent for LocalAgent.</summary>
+        /// <param name="selection">The AI selection of a panel.</param>
+        public static LocalSchemaAnalysisSettings From(AISelectionControl selection)
+        {
+            string tier = selection.SelectedTier;
+            bool localAgent = string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
+            return new LocalSchemaAnalysisSettings
+            {
+                Tier = tier,
+                Mode = selection.SelectedMode,
+                AgentSecret = localAgent ? selection.AgentSecret : "",
+                AgentAiId = localAgent ? selection.AgentAiId : 0
+            };
+        }
+
         /// <summary>Gets or sets the AI tier: Standard, Precision or LocalAgent.</summary>
         public string Tier { get; set; } = "Standard";
 
@@ -70,6 +85,7 @@ namespace Reportman.Designer
         private readonly string _folder;
         private readonly string _alias;
         private readonly Func<DbConnection> _createConnection;
+        // The AI the analysis starts with; the Validation tab lets the user choose another one
         private readonly LocalSchemaAnalysisSettings _ai;
         private LocalSchemaFile _file;
         // The subschema shown, null for all the tables
@@ -165,14 +181,15 @@ namespace Reportman.Designer
         /// <summary>
         /// Shows the local schemas of the connection <paramref name="alias"/>, as
         /// <see cref="Edit(IWin32Window, string, string, Func{DbConnection}, bool, out string)"/>, with the AI
-        /// «Analyze with AI» uses (the copilot's selection). Returns true when the file was saved.
+        /// «Analyze with AI» starts with (the selection of the panel that opens it). Returns true when the file
+        /// was saved.
         /// </summary>
         /// <param name="owner">The owner window.</param>
         /// <param name="folder">The dbxschemas folder.</param>
         /// <param name="alias">The connection alias.</param>
         /// <param name="createConnection">Creates a connection to read the catalog and the preview from.</param>
         /// <param name="addSubschema">True to start adding a subschema.</param>
-        /// <param name="analysis">The AI of the analysis; null for Standard and Fast.</param>
+        /// <param name="analysis">The AI the analysis starts with; null for Standard and Fast.</param>
         /// <param name="addedSubschema">When saved, the name of the last subschema added in the dialog
         /// (empty when none was, or it was deleted again).</param>
         public static bool Edit(IWin32Window owner, string folder, string alias, Func<DbConnection> createConnection,
@@ -204,7 +221,7 @@ namespace Reportman.Designer
         /// <param name="folder">The dbxschemas folder.</param>
         /// <param name="alias">The connection alias.</param>
         /// <param name="createConnection">Creates a connection to read the catalog and the preview from.</param>
-        /// <param name="analysis">The AI of the analysis; null for Standard and Fast.</param>
+        /// <param name="analysis">The AI the analysis starts with; null for Standard and Fast.</param>
         public LocalSchemaEditorForm(string folder, string alias, Func<DbConnection> createConnection,
             LocalSchemaAnalysisSettings analysis)
         {
@@ -213,8 +230,15 @@ namespace Reportman.Designer
             _createConnection = createConnection;
             _ai = analysis ?? new LocalSchemaAnalysisSettings();
             InitializeComponent();
+            _aiSelection.RestoreProviderSelection(_ai.Tier, _ai.AgentAiId);
+            _aiSelection.SelectedMode = _ai.Mode;
+            RpAuthManager.Instance.AuthChanged += OnAuthChanged;
             Shown += async (s, e) =>
             {
+                // The user's Agents for the AI of the analysis (its Agent, when it came selected), while
+                // the file is read
+                _aiSelection.RefreshState();
+                _ = _aiSelection.LoadUserAgentsAsync(_ai.Tier, _ai.AgentAiId);
                 await LoadFileAsync();
                 // Opened to add a subschema: the name is asked as soon as the tables are known
                 if (_startAdding && !IsDisposed)
@@ -232,6 +256,7 @@ namespace Reportman.Designer
         {
             if (disposing)
             {
+                RpAuthManager.Instance.AuthChanged -= OnAuthChanged;
                 _toolTip?.Dispose();
                 CancelBackgroundWork();
             }
@@ -291,8 +316,15 @@ namespace Reportman.Designer
             return value.ToString("N0", CultureInfo.CurrentCulture);
         }
 
-        /// <summary>True when the plan limits do not apply: the AI runs on the user's Agent.</summary>
-        private bool IgnorePlanLimits { get { return _ai.IsLocalAgent; } }
+        /// <summary>True when the plan limits do not apply: the AI chosen for the analysis runs on the user's Agent.</summary>
+        private bool IgnorePlanLimits
+        {
+            get
+            {
+                return _aiSelection != null &&
+                    string.Equals(_aiSelection.SelectedTier, "LocalAgent", StringComparison.OrdinalIgnoreCase);
+            }
+        }
 
         private int MaxTables
         {
@@ -554,9 +586,12 @@ namespace Reportman.Designer
             }
             _txtConnDialect.Text = _file.Dialect;
             _txtConnRead.Text = FormatGenerated(_file.GeneratedUtc);
+            // The relations of the dictionary: not the ones of the catalog deleted with all the tables
             int relations = 0;
             foreach (LocalSchemaTable t in _file.Tables)
-                relations += t.ForeignKeys.Count;
+                foreach (LocalSchemaForeignKey fk in t.ForeignKeys)
+                    if (!LocalSchemaStore.IsExcluded(_file, null, t.Name, fk))
+                        relations++;
             _txtConnTables.Text = Number(_file.Tables.Count) + " (" + Tr(1850) + ": " + Number(relations) + ")";
         }
 
@@ -595,6 +630,31 @@ namespace Reportman.Designer
             UseWaitCursor = busy;
             _split.Enabled = !busy;
             UpdateButtons();
+        }
+
+        /// <summary>
+        /// A login, a logout or a new status of the user: the credits gauge and the Agents of the AI selection,
+        /// and the counters of the plan, follow.
+        /// </summary>
+        private void OnAuthChanged(bool success)
+        {
+            if (IsDisposed)
+                return;
+            if (InvokeRequired)
+            {
+                PostToUi(() => OnAuthChanged(success));
+                return;
+            }
+            _aiSelection.RefreshState();
+            _ = _aiSelection.LoadUserAgentsAsync();
+            PlanLimitsChanged();
+        }
+
+        /// <summary>The limits of the plan, or whether they apply, changed: the counters and the list follow.</summary>
+        private void PlanLimitsChanged()
+        {
+            UpdateCounters();
+            _listSchemas.Invalidate();
         }
 
         private void UpdateButtons()
