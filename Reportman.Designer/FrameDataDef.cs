@@ -23,6 +23,19 @@ namespace Reportman.Designer
         /// </summary>
         public event EventHandler OnSelectionChange;
         /// <summary>
+        /// Occurs when the local schema of a connection was saved from the gear of the toolbar: the
+        /// copilot lists its subschemas again.
+        /// </summary>
+        public event EventHandler LocalSchemasChanged;
+
+        // The schemas of the connection, as the gear of the copilot: its local schema (a direct
+        // connection) and the schemas of the cloud
+        private const string CloudSchemasUrl = "https://app.reportman.es/database-config";
+        private ToolStripDropDownButton bschemas;
+        private ToolStripMenuItem mlocalschemas;
+        private ToolStripMenuItem mcloudschemas;
+
+        /// <summary>
         /// Initializes a new instance of the FrameDataDef class.
         /// </summary>
         public FrameDataDef()
@@ -38,6 +51,66 @@ namespace Reportman.Designer
             madddataset.Text = Translator.TranslateStr(1192);
             maddparam.Text = Translator.TranslateStr(722);
 
+            mlocalschemas = new ToolStripMenuItem(Translator.TranslateStr(1840));
+            mlocalschemas.Click += mlocalschemas_Click;
+            mcloudschemas = new ToolStripMenuItem(Translator.TranslateStr(1841));
+            mcloudschemas.Click += mcloudschemas_Click;
+            bschemas = new ToolStripDropDownButton
+            {
+                DisplayStyle = ToolStripItemDisplayStyle.Text,
+                Text = "\u2699",
+                ToolTipText = Translator.TranslateStr(1496)
+            };
+            bschemas.DropDownItems.Add(mlocalschemas);
+            bschemas.DropDownItems.Add(mcloudschemas);
+            // The local schema only for a connection that runs SQL on this computer
+            bschemas.DropDownOpening += (s, e) => mlocalschemas.Enabled = SelectedDirectConnection() != null;
+            TopBar.Items.Insert(TopBar.Items.IndexOf(bconnect) + 1, bschemas);
+        }
+
+        /// <summary>The selected connection when it is a direct one (not an Agent, not MyBase), else null.</summary>
+        private DatabaseInfo SelectedDirectConnection()
+        {
+            TreeNode nnode = FindSelectedNode();
+            DatabaseInfo dbinfo = nnode != null ? nnode.Tag as DatabaseInfo : null;
+            if (dbinfo == null)
+                return null;
+            // A connection the connections file maps to the Agent is not direct
+            dbinfo.ResolveHttpAgentConnectionParamsFromConfig();
+            if (dbinfo.Driver == DriverType.HttpAgent || dbinfo.Driver == DriverType.Mybase)
+                return null;
+            return dbinfo;
+        }
+
+        private void mlocalschemas_Click(object sender, EventArgs e)
+        {
+            DatabaseInfo dbinfo = SelectedDirectConnection();
+            if (dbinfo == null)
+                return;
+            try
+            {
+                string added;
+                // The connection of the report itself: a relative SQLite database is next to the report
+                if (LocalSchemaEditorForm.Edit(FindForm(), LocalSchemaEditorForm.DesignerFolder(), dbinfo.Alias,
+                    () => dbinfo.CreateDbConnection(), false, null, out added))
+                    LocalSchemasChanged?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(FindForm(), ex.Message, DesignerText.Format(1845, dbinfo.Alias), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mcloudschemas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = CloudSchemasUrl, UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(FindForm(), ex.Message);
+            }
         }
         /// <summary>
         /// Gets the currently selected TreeNode that wraps a ReportItem model.

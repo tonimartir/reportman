@@ -125,6 +125,19 @@ namespace Reportman.Designer
         /// <param name="folder">The dbxschemas folder.</param>
         /// <param name="alias">The connection alias.</param>
         /// <param name="createConnection">Creates a connection to read the catalog from.</param>
+        /// <summary>
+        /// The dbxschemas folder of this designer: next to the dbxconnections.ini it writes
+        /// (%PUBLIC% on Windows), or next to the program when there is none. The copilot and the data
+        /// definitions of the designer open the files of the same folder.
+        /// </summary>
+        public static string DesignerFolder()
+        {
+            string ini = DbxConnections.ResolveWritePath();
+            if (string.IsNullOrEmpty(ini))
+                ini = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dbxconnections.ini");
+            return LocalSchemaStore.FolderFor(ini);
+        }
+
         public static bool Edit(IWin32Window owner, string folder, string alias, Func<DbConnection> createConnection)
         {
             string added;

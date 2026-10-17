@@ -100,12 +100,7 @@ namespace Reportman.Designer
             get
             {
                 if (string.IsNullOrEmpty(_localSchemaFolder))
-                {
-                    string ini = DbxConnections.ResolveWritePath();
-                    if (string.IsNullOrEmpty(ini))
-                        ini = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dbxconnections.ini");
-                    return LocalSchemaStore.FolderFor(ini);
-                }
+                    return LocalSchemaEditorForm.DesignerFolder();
                 return _localSchemaFolder;
             }
             set

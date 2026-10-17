@@ -293,6 +293,14 @@ namespace Reportman.Designer
             // AI Copilot Chat Integration
             FAIChatControl = new AIChatPanelControl { Dock = DockStyle.Right, Width = DefaultAIChatPanelWidth };
             FAIChatControl.ReportDocumentProvider = SaveReportAsXmlForAI;
+            // The copies of the report the copilot loads from the document (its SQL check, the local
+            // schema editor) open their connections as the report does: a relative SQLite database
+            // (the samples) is next to the report file, not in the current folder
+            FAIChatControl.PrepareReportConnections = copy =>
+            {
+                if (FReport != null)
+                    copy.ReportFolder = FReport.ReportFolder;
+            };
             FAIChatControl.ApplyModifiedReportDocument = ApplyModifiedReportDocumentFromAI;
             FAIChatSplitter = new Splitter { Dock = DockStyle.Right, Width = 5 };
             panelcontent.Controls.Add(FAIChatSplitter);
@@ -316,6 +324,7 @@ namespace Reportman.Designer
 
             fdatadef.OnSelectionChange += new EventHandler(DataSelectionChange);
             fdatadef.OnReportChange += new EventHandler(DataDefChange);
+            fdatadef.LocalSchemasChanged += (s, e) => InitializeAIChatSchemaSelection();
 
             subreportedit.AfterInsert += new EventHandler(AfterInsertDesign);
             subreportedit.AfterSelect += new EventHandler(AfterSelectDesign);
