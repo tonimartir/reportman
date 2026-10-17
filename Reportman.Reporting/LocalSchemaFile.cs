@@ -171,6 +171,9 @@ namespace Reportman.Reporting
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 PropertyNameCaseInsensitive = true,
                 WriteIndented = true,
+                // The file is read by people too, and the descriptions are in their language: accents and
+                // quotes are written as they are (as the Delphi designer does), not as escape sequences
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 ReadCommentHandling = JsonCommentHandling.Skip,
                 AllowTrailingCommas = true
             };
