@@ -447,8 +447,14 @@ namespace Reportman.Reporting
             if (string.IsNullOrEmpty(textObj.Text) || maxExtent.Y <= 0)
                 return true;
 
+            // Measure at the width the caller asked for. Both callers set it: DoPrint passes PrintWidth,
+            // GetExtension passes the item width. PrintWidth alone is only valid once the item has been
+            // printed: when a section is measured before that, it is 0 (or the previous record's width),
+            // every character becomes a line, the text never "fits", and an AutoExpand section takes the
+            // rest of the page, pushing whatever follows onto the next one.
             Point measureExtent = maxExtent;
-            measureExtent.X = PrintWidth;
+            if (measureExtent.X <= 0)
+                measureExtent.X = PrintWidth;
             List<LineInfo> lines = adriver.TextExtentLineInfo(textObj, ref measureExtent);
             if ((lines == null) || (lines.Count == 0))
                 return false;
