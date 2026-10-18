@@ -74,6 +74,15 @@ namespace Reportman.Reporting
         public List<LocalSchemaColumn> Columns { get; set; } = new List<LocalSchemaColumn>();
         /// <summary>The foreign keys of the table, when the provider exposes them.</summary>
         public List<LocalSchemaForeignKey> ForeignKeys { get; set; } = new List<LocalSchemaForeignKey>();
+        /// <summary>
+        /// False when the columns of the table were not read from the catalog: a large catalog
+        /// (<see cref="DatabaseCatalogReader.LargeCatalogThreshold"/>) reads them when the table is used
+        /// (<see cref="LocalSchemaStore.ReadColumns"/>), and until then <see cref="Columns"/> and <see cref="ForeignKeys"/>
+        /// are empty. Null (not written) when they were read, as in every file written before; a file that says true
+        /// is read as null.
+        /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? ColumnsRead { get; set; }
         /// <summary>Properties this version does not know, kept as they are.</summary>
         [JsonExtensionData]
         public Dictionary<string, JsonElement> Extra { get; set; }
@@ -273,9 +282,33 @@ namespace Reportman.Reporting
 
         /// <summary>
         /// Reads the catalog of an open or closed connection (it is opened and closed here when it was
-        /// closed) into a new file for <paramref name="alias"/>.
+        /// closed) into a new file for <paramref name="alias"/>. A large catalog
+        /// (<see cref="DatabaseCatalogReader.LargeCatalogThreshold"/>) comes with the names of its tables only.
         /// </summary>
         public static LocalSchemaFile Generate(DbConnection connection, string alias)
+        {
+            return Generate(connection, alias, null, DatabaseCatalogReader.LargeCatalogThreshold);
+        }
+
+        /// <summary>
+        /// Reads the catalog of a connection into a new file for <paramref name="alias"/>, to refresh
+        /// <paramref name="previous"/> (<see cref="Merge"/>): a large catalog reads the columns of the tables of its
+        /// subschemas and of the ones whose columns it had read (<see cref="TablesToRead"/>), and only the names of the
+        /// others.
+        /// </summary>
+        /// <param name="connection">The connection (opened and closed here when it was closed).</param>
+        /// <param name="alias">The connection alias.</param>
+        /// <param name="previous">The file being refreshed; null for a new one.</param>
+        public static LocalSchemaFile Generate(DbConnection connection, string alias, LocalSchemaFile previous)
+        {
+            return Generate(connection, alias, previous, DatabaseCatalogReader.LargeCatalogThreshold);
+        }
+
+        /// <summary>
+        /// <see cref="Generate(DbConnection, string, LocalSchemaFile)"/> with the number of tables from which the
+        /// catalog is large (tests lower it; 0 or less, never).
+        /// </summary>
+        public static LocalSchemaFile Generate(DbConnection connection, string alias, LocalSchemaFile previous, int largeCatalogThreshold)
         {
             if (connection == null)
                 throw new ArgumentNullException("connection");
@@ -291,8 +324,141 @@ namespace Reportman.Reporting
                 file.Alias = (alias ?? "").Trim().ToUpperInvariant();
                 file.Dialect = DatabaseCatalogReader.DialectOf(connection);
                 file.GeneratedUtc = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'", CultureInfo.InvariantCulture);
-                file.Tables = DatabaseCatalogReader.ReadTables(connection);
+                file.Tables = DatabaseCatalogReader.ReadTables(connection, TablesToRead(previous), largeCatalogThreshold);
                 return file;
+            }
+            finally
+            {
+                if (opened)
+                    connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// The tables whose columns a new reading of a large catalog reads for <paramref name="file"/>: the tables of its
+        /// subschemas and the ones whose columns it had read. None for null.
+        /// </summary>
+        public static List<string> TablesToRead(LocalSchemaFile file)
+        {
+            var result = new List<string>();
+            if (file == null)
+                return result;
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            if (file.Schemas != null)
+                foreach (LocalSubschema s in file.Schemas)
+                    if (s != null && s.Tables != null)
+                        foreach (string name in s.Tables)
+                            if (!string.IsNullOrEmpty(name) && seen.Add(name))
+                                result.Add(name);
+            if (file.Tables != null)
+                foreach (LocalSchemaTable t in file.Tables)
+                    if (t != null && !string.IsNullOrEmpty(t.Name) && IsRead(t) && seen.Add(t.Name))
+                        result.Add(t.Name);
+            return result;
+        }
+
+        /// <summary>True when the columns of the table were read from the catalog (<see cref="LocalSchemaTable.ColumnsRead"/> is not false).</summary>
+        public static bool IsRead(LocalSchemaTable table)
+        {
+            return table != null && table.ColumnsRead != false;
+        }
+
+        /// <summary>
+        /// True when the columns of some table of the file were not read: its catalog is large, and the columns of a table
+        /// are read when it is used.
+        /// </summary>
+        public static bool IsLargeCatalog(LocalSchemaFile file)
+        {
+            return file != null && file.Tables != null && file.Tables.Exists(t => t != null && !IsRead(t));
+        }
+
+        /// <summary>
+        /// The tables of the file among <paramref name="names"/> (ignoring case) whose columns were not read, as the file
+        /// spells them, each once, in the order of <paramref name="names"/>.
+        /// </summary>
+        public static List<string> UnreadTables(LocalSchemaFile file, IEnumerable<string> names)
+        {
+            var result = new List<string>();
+            if (file == null || file.Tables == null || names == null)
+                return result;
+            var unread = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            foreach (LocalSchemaTable t in file.Tables)
+                if (t != null && !string.IsNullOrEmpty(t.Name) && !IsRead(t) && !unread.ContainsKey(t.Name))
+                    unread.Add(t.Name, t.Name);
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (string name in names)
+            {
+                string spelled;
+                if (!string.IsNullOrEmpty(name) && unread.TryGetValue(name.Trim(), out spelled) && seen.Add(spelled))
+                    result.Add(spelled);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// The columns of some tables, read when they are used, merged into <paramref name="file"/>: for each table of the
+        /// file whose columns were not read (<see cref="IsRead"/>) that <paramref name="catalogTables"/> has (ignoring
+        /// case), its columns, primary key and foreign keys as the catalog has them (the comments of the database as the
+        /// contexts of its columns), its own description kept (the catalog's when it has none), and the mark removed. A
+        /// table already read is not touched. Returns the names of the tables merged, as the file spells them.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="catalogTables">The tables as the catalog has them (<see cref="DatabaseCatalogReader.ReadTableDetails"/>).</param>
+        public static List<string> MergeColumns(LocalSchemaFile file, IEnumerable<LocalSchemaTable> catalogTables)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            var result = new List<string>();
+            if (catalogTables == null || file.Tables == null)
+                return result;
+            var unread = new Dictionary<string, LocalSchemaTable>(StringComparer.OrdinalIgnoreCase);
+            foreach (LocalSchemaTable t in file.Tables)
+                if (t != null && !string.IsNullOrEmpty(t.Name) && !IsRead(t) && !unread.ContainsKey(t.Name))
+                    unread.Add(t.Name, t);
+            foreach (LocalSchemaTable read in catalogTables)
+            {
+                LocalSchemaTable table;
+                if (read == null || string.IsNullOrEmpty(read.Name) || !unread.TryGetValue(read.Name, out table))
+                    continue;
+                unread.Remove(read.Name);
+                table.Columns = read.Columns ?? new List<LocalSchemaColumn>();
+                table.ForeignKeys = read.ForeignKeys ?? new List<LocalSchemaForeignKey>();
+                if (string.IsNullOrEmpty(table.Context) && !string.IsNullOrEmpty(read.Context))
+                    table.Context = read.Context;
+                table.ColumnsRead = null;
+                result.Add(table.Name);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Reads from the catalog of a connection the columns of the tables of <paramref name="tables"/> that
+        /// <paramref name="file"/> has not read yet, with queries filtered by them, and merges them into it
+        /// (<see cref="MergeColumns"/>): what the designers do when a table of a large catalog is used. The connection is
+        /// opened and closed here when it was closed, and not opened at all when every table was read already. Returns the
+        /// names of the tables merged; one the catalog no longer has stays as it was.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="connection">A connection to its database.</param>
+        /// <param name="tables">The names of the tables (ignoring case).</param>
+        public static List<string> ReadColumns(LocalSchemaFile file, DbConnection connection, IEnumerable<string> tables)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            if (connection == null)
+                throw new ArgumentNullException("connection");
+            List<string> unread = UnreadTables(file, tables);
+            if (unread.Count == 0)
+                return new List<string>();
+            bool opened = false;
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
+                connection.Open();
+                opened = true;
+            }
+            try
+            {
+                return MergeColumns(file, DatabaseCatalogReader.ReadTableDetails(connection, unread));
             }
             finally
             {
@@ -305,7 +471,9 @@ namespace Reportman.Reporting
         /// The refreshed file: the tables of <paramref name="fresh"/> (just read from the catalog) with what
         /// <paramref name="previous"/> had that the catalog cannot know, for the tables, columns and foreign keys
         /// that still exist: the context written, the allowed values and the properties of a newer version; and
-        /// the subschemas of <paramref name="previous"/> without the tables and columns that are gone.
+        /// the subschemas of <paramref name="previous"/> without the tables and columns that are gone. A table of a large
+        /// catalog whose columns <paramref name="fresh"/> did not read and <paramref name="previous"/> had read keeps them,
+        /// as they were, until they are read again.
         /// </summary>
         public static LocalSchemaFile Merge(LocalSchemaFile previous, LocalSchemaFile fresh)
         {
@@ -320,16 +488,29 @@ namespace Reportman.Reporting
                 if (!oldTables.ContainsKey(t.Name))
                     oldTables.Add(t.Name, t);
             var freshNames = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var freshTables = new Dictionary<string, LocalSchemaTable>(StringComparer.OrdinalIgnoreCase);
             foreach (LocalSchemaTable table in fresh.Tables)
             {
                 if (!freshNames.ContainsKey(table.Name))
+                {
                     freshNames.Add(table.Name, table.Name);
+                    freshTables.Add(table.Name, table);
+                }
                 LocalSchemaTable old;
                 if (!oldTables.TryGetValue(table.Name, out old))
                     continue;
                 if (!string.IsNullOrEmpty(old.Context))
                     table.Context = old.Context;
                 table.Extra = old.Extra;
+                if (!IsRead(table) && IsRead(old))
+                {
+                    // Read before and not in this reading (a large catalog read without it): what was read stays, the
+                    // relations people added come back below as the others
+                    table.Columns = old.Columns;
+                    table.ForeignKeys = old.ForeignKeys.FindAll(fk => fk.ConstraintName.Length > 0);
+                    table.ColumnsRead = null;
+                    continue;
+                }
                 foreach (LocalSchemaColumn column in table.Columns)
                 {
                     LocalSchemaColumn oldColumn = old.Columns.Find(c => string.Equals(c.Name, column.Name, StringComparison.OrdinalIgnoreCase));
@@ -363,7 +544,7 @@ namespace Reportman.Reporting
                 {
                     if (oldFk.ConstraintName.Length > 0)
                         continue;
-                    LocalSchemaForeignKey manual = ManualRelation(fresh, table, oldFk);
+                    LocalSchemaForeignKey manual = ManualRelation(freshTables, table, oldFk);
                     if (manual == null)
                         continue;
                     LocalSchemaForeignKey same = table.ForeignKeys.Find(fk => SameRelation(fk, manual));
@@ -389,8 +570,8 @@ namespace Reportman.Reporting
                 {
                     foreach (KeyValuePair<string, List<string>> entry in schema.Columns)
                     {
-                        LocalSchemaTable table = fresh.Tables.Find(t => string.Equals(t.Name, entry.Key, StringComparison.OrdinalIgnoreCase));
-                        if (table == null || !kept.Tables.Contains(table.Name))
+                        LocalSchemaTable table;
+                        if (!freshTables.TryGetValue(entry.Key, out table) || !kept.Tables.Contains(table.Name))
                             continue;
                         var columns = new List<string>();
                         foreach (string name in entry.Value)
@@ -398,6 +579,8 @@ namespace Reportman.Reporting
                             LocalSchemaColumn column = table.Columns.Find(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase));
                             if (column != null && !columns.Contains(column.Name))
                                 columns.Add(column.Name);
+                            else if (column == null && !IsRead(table) && !columns.Contains(name))
+                                columns.Add(name); // columns not read: the choice stays as it was written
                         }
                         if (columns.Count > 0)
                         {
@@ -422,9 +605,11 @@ namespace Reportman.Reporting
         /// A relation added by hand to <paramref name="table"/>, as the fresh catalog spells its ends; null when an end
         /// is gone.
         /// </summary>
-        private static LocalSchemaForeignKey ManualRelation(LocalSchemaFile fresh, LocalSchemaTable table, LocalSchemaForeignKey old)
+        private static LocalSchemaForeignKey ManualRelation(Dictionary<string, LocalSchemaTable> fresh, LocalSchemaTable table, LocalSchemaForeignKey old)
         {
-            LocalSchemaTable target = fresh.Tables.Find(t => string.Equals(t.Name, old.TargetTable, StringComparison.OrdinalIgnoreCase));
+            LocalSchemaTable target;
+            if (string.IsNullOrEmpty(old.TargetTable) || !fresh.TryGetValue(old.TargetTable, out target))
+                target = null;
             if (target == null || old.SourceColumns == null || old.TargetColumns == null || old.SourceColumns.Count == 0
                 || old.SourceColumns.Count != old.TargetColumns.Count)
                 return null;
@@ -575,6 +760,17 @@ namespace Reportman.Reporting
         /// <param name="refresh">Regenerate the tables even when the file exists.</param>
         public static LocalSchemaFile LoadOrGenerate(string folder, string alias, Func<DbConnection> createConnection, bool refresh)
         {
+            return LoadOrGenerate(folder, alias, createConnection, refresh, DatabaseCatalogReader.LargeCatalogThreshold);
+        }
+
+        /// <summary>
+        /// <see cref="LoadOrGenerate(string, string, Func{DbConnection}, bool)"/> with the number of tables from which the
+        /// catalog is large (tests lower it; 0 or less, never): a refresh of a large catalog reads again the columns of the
+        /// tables of the subschemas and of the ones the file had read (<see cref="TablesToRead"/>).
+        /// </summary>
+        public static LocalSchemaFile LoadOrGenerate(string folder, string alias, Func<DbConnection> createConnection, bool refresh,
+            int largeCatalogThreshold)
+        {
             string path = PathFor(folder, alias);
             LocalSchemaFile existing = Load(path);
             if (existing != null && !refresh)
@@ -583,7 +779,7 @@ namespace Reportman.Reporting
                 throw new InvalidOperationException("No connection to read the schema of " + alias);
             LocalSchemaFile fresh;
             using (DbConnection connection = createConnection())
-                fresh = Generate(connection, alias);
+                fresh = Generate(connection, alias, existing, largeCatalogThreshold);
             LocalSchemaFile result = Merge(existing, fresh);
             Save(result, path);
             return result;
@@ -785,6 +981,8 @@ namespace Reportman.Reporting
             foreach (LocalSchemaTable t in file.Tables)
             {
                 if (t.Context == null) t.Context = "";
+                // Read is written as nothing, as every file before the mark
+                if (t.ColumnsRead == true) t.ColumnsRead = null;
                 if (t.Columns == null) t.Columns = new List<LocalSchemaColumn>();
                 if (t.ForeignKeys == null) t.ForeignKeys = new List<LocalSchemaForeignKey>();
                 t.Columns.RemoveAll(c => c == null || string.IsNullOrEmpty(c.Name));

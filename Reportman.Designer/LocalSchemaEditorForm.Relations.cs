@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Reportman.Reporting;
 
@@ -27,9 +28,14 @@ namespace Reportman.Designer
     // for relations the database does not declare (kept in the dictionary with an empty constraint name). A
     // relation deleted in a subschema, or a suggestion ignored, is left out of that subschema; one of the
     // catalog deleted with all the tables is left out of every subschema (the dictionary keeps them, and
-    // adding the relation again brings it back); only one written here is deleted from the dictionary.
+    // adding the relation again brings it back); only one written here is deleted from the dictionary. Of a
+    // large catalog, a table chosen as an end of a relation has its columns read first.
     public partial class LocalSchemaEditorForm
     {
+        // From this many tables a combo of tables fills its list when it is opened: a large catalog's hundred
+        // thousand names are not added to it every time the tab is filled
+        private const int LazyComboTables = 2000;
+
         private ListView _listRelations;
         private ListViewGroup _groupRelations;
         private ListViewGroup _groupSuggested;
@@ -45,6 +51,18 @@ namespace Reportman.Designer
         private TextBox _txtRelationDescription;
         private Label _lblRelationState;
         private RelationRef _relation;
+
+        /// <summary>The names of the tables of a combo that fills its list when it is opened (<see cref="LazyComboTables"/>).</summary>
+        private sealed class ComboTables
+        {
+            public ComboTables(List<string> names)
+            {
+                Names = names;
+            }
+
+            public readonly List<string> Names;
+            public bool Filled;
+        }
 
         /// <summary>A relation of the list: its source table and the foreign key.</summary>
         private sealed class RelationRef
@@ -124,8 +142,10 @@ namespace Reportman.Designer
             grid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             _comboSourceTable = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };
             _comboSourceTable.SelectedIndexChanged += (s, e) => SourceTableChanged();
+            _comboSourceTable.DropDown += (s, e) => FillComboList(_comboSourceTable);
             _comboTargetTable = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };
             _comboTargetTable.SelectedIndexChanged += (s, e) => TargetTableChanged();
+            _comboTargetTable.DropDown += (s, e) => FillComboList(_comboTargetTable);
             grid.Controls.Add(new Label { Text = Tr(1869), AutoSize = true, Anchor = AnchorStyles.Left, Margin = new Padding(0, 4, 6, 4) }, 0, 0);
             grid.Controls.Add(_comboSourceTable, 1, 0);
             grid.Controls.Add(new Label { Text = Tr(1870), AutoSize = true, Anchor = AnchorStyles.Left, Margin = new Padding(12, 4, 6, 4) }, 2, 0);
@@ -207,6 +227,7 @@ namespace Reportman.Designer
                 return;
             RelationRef keep = _relation;
             RelationRef found = null;
+            _relationsStale = false;
             _groupRelations.Header = _current == null ? Tr(1850) : Tr(1893);
             bool filling = _filling;
             _filling = true;
@@ -266,11 +287,28 @@ namespace Reportman.Designer
 
         private static void FillTableCombo(ComboBox combo, List<LocalSchemaTable> tables)
         {
-            bool same = combo.Items.Count == tables.Count;
+            if (tables.Count >= LazyComboTables)
+            {
+                // Many: the names are kept, and the list holds the one selected until it is opened
+                var names = new List<string>(tables.Count);
+                foreach (LocalSchemaTable t in tables)
+                    names.Add(t.Name);
+                var lazy = combo.Tag as ComboTables;
+                bool known = lazy != null && lazy.Names.Count == names.Count;
+                for (int i = 0; known && i < names.Count; i++)
+                    known = lazy.Names[i] == names[i];
+                if (known)
+                    return;
+                combo.Tag = new ComboTables(names);
+                combo.Items.Clear();
+                return;
+            }
+            bool same = combo.Tag == null && combo.Items.Count == tables.Count;
             for (int i = 0; same && i < tables.Count; i++)
                 same = (string)combo.Items[i] == tables[i].Name;
             if (same)
                 return;
+            combo.Tag = null;
             combo.BeginUpdate();
             try
             {
@@ -282,6 +320,50 @@ namespace Reportman.Designer
             {
                 combo.EndUpdate();
             }
+        }
+
+        /// <summary>A combo of many tables (<see cref="FillTableCombo"/>) opened: its list takes all of them, the one selected kept.</summary>
+        private void FillComboList(ComboBox combo)
+        {
+            var lazy = combo.Tag as ComboTables;
+            if (lazy == null || lazy.Filled)
+                return;
+            string selected = combo.SelectedItem as string;
+            bool filling = _filling;
+            _filling = true;
+            combo.BeginUpdate();
+            try
+            {
+                combo.Items.Clear();
+                combo.Items.AddRange(lazy.Names.ToArray());
+                lazy.Filled = true;
+                SelectComboTable(combo, selected);
+            }
+            finally
+            {
+                combo.EndUpdate();
+                _filling = filling;
+            }
+        }
+
+        /// <summary>Selects a table in a combo of tables (none for null), added to its list when it does not have it.</summary>
+        private static void SelectComboTable(ComboBox combo, string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                combo.SelectedIndex = -1;
+                return;
+            }
+            int index = combo.Items.IndexOf(name);
+            if (index < 0)
+            {
+                var lazy = combo.Tag as ComboTables;
+                // A list not filled yet has only the one selected
+                if (lazy != null && !lazy.Filled)
+                    combo.Items.Clear();
+                index = combo.Items.Add(name);
+            }
+            combo.SelectedIndex = index;
         }
 
         private void FillRelationItem(ListViewItem item, RelationRef relation)
@@ -326,17 +408,11 @@ namespace Reportman.Designer
             _filling = true;
             try
             {
-                _comboSourceTable.SelectedItem = relation != null ? relation.Source.Name : null;
-                if (relation != null && _comboSourceTable.SelectedIndex < 0)
-                {
-                    // A source outside the list (a relation of all the tables): shown as it is
-                    _comboSourceTable.Items.Add(relation.Source.Name);
-                    _comboSourceTable.SelectedItem = relation.Source.Name;
-                }
-                _comboTargetTable.SelectedItem = relation != null && relation.Fk.TargetTable.Length > 0
-                    ? (object)LocalSchemaEditing.FindTable(_file, relation.Fk.TargetTable)?.Name : null;
-                if (relation == null || _comboTargetTable.SelectedItem == null)
-                    _comboTargetTable.SelectedIndex = -1;
+                // A source outside the list (a relation of all the tables) is shown as it is
+                SelectComboTable(_comboSourceTable, relation != null ? relation.Source.Name : null);
+                LocalSchemaTable target = relation != null && relation.Fk.TargetTable.Length > 0
+                    ? LocalSchemaEditing.FindTable(_file, relation.Fk.TargetTable) : null;
+                SelectComboTable(_comboTargetTable, target != null ? target.Name : null);
                 _comboSourceTable.Enabled = written && !_busy;
                 _comboTargetTable.Enabled = written && !_busy;
                 FillPairs(relation);
@@ -447,14 +523,17 @@ namespace Reportman.Designer
             CompleteWrittenLater();
         }
 
-        private void NewRelation()
+        private async void NewRelation()
         {
             List<LocalSchemaTable> tables = LocalSchemaEditing.TablesOf(_file, _current);
-            if (tables.Count == 0)
+            if (tables.Count == 0 || _busy)
                 return;
             CommitEdits();
             // From the table being looked at in Columns, else the first one
             LocalSchemaTable source = _columnsTable != null && tables.Contains(_columnsTable) ? _columnsTable : tables[0];
+            // An end of a relation has its columns (all the tables of a large catalog: one maybe not read yet)
+            if (!LocalSchemaStore.IsRead(source) && (!await ReadColumnsAsync(new[] { source.Name }, true) || IsDisposed))
+                return;
             var fk = new LocalSchemaForeignKey { ConstraintName = "" };
             source.ForeignKeys.Add(fk);
             _relation = new RelationRef(source, fk);
@@ -513,12 +592,18 @@ namespace Reportman.Designer
             FillRelationsTab();
         }
 
-        private void CompleteRelation()
+        private async void CompleteRelation()
         {
-            if (_relation == null || _current == null)
+            if (_relation == null || _current == null || _busy)
                 return;
             CommitEdits();
-            if (!LocalSchemaEditing.Complete(_file, _current, _relation.Source, _relation.Fk))
+            RelationRef relation = _relation;
+            // The target enters the subschema: of a large catalog, with its columns read first
+            LocalSchemaTable target = LocalSchemaEditing.FindTable(_file, relation.Fk.TargetTable);
+            if (target != null && !LocalSchemaStore.IsRead(target) &&
+                (!await ReadColumnsAsync(new[] { target.Name }, true) || IsDisposed || _relation != relation))
+                return;
+            if (!LocalSchemaEditing.Complete(_file, _current, relation.Source, relation.Fk))
                 return;
             TablesChanged();
         }
@@ -554,12 +639,14 @@ namespace Reportman.Designer
             return true;
         }
 
-        private void SourceTableChanged()
+        private async void SourceTableChanged()
         {
             if (_filling || _relation == null || !LocalSchemaEditing.IsWritten(_relation.Fk))
                 return;
             LocalSchemaTable source = LocalSchemaEditing.FindTable(_file, _comboSourceTable.SelectedItem as string);
             if (source == null || source == _relation.Source)
+                return;
+            if (!await EndRead(source))
                 return;
             // The relation belongs to its source table: it moves, and the source columns go
             _relation.Source.ForeignKeys.Remove(_relation.Fk);
@@ -576,12 +663,33 @@ namespace Reportman.Designer
             CompleteWrittenLater();
         }
 
-        private void TargetTableChanged()
+        /// <summary>
+        /// A table chosen as an end of the relation edited, of a large catalog, with its columns read first. False when
+        /// they could not be read or the relation is no longer the one edited: the editor shows the relation as it was.
+        /// </summary>
+        private async Task<bool> EndRead(LocalSchemaTable table)
+        {
+            if (LocalSchemaStore.IsRead(table))
+                return true;
+            RelationRef relation = _relation;
+            bool read = await ReadColumnsAsync(new[] { table.Name }, true);
+            if (IsDisposed)
+                return false;
+            if (read && _relation == relation && LocalSchemaStore.IsRead(table))
+                return true;
+            if (_relation == relation)
+                FillRelationEditor();
+            return false;
+        }
+
+        private async void TargetTableChanged()
         {
             if (_filling || _relation == null || !LocalSchemaEditing.IsWritten(_relation.Fk))
                 return;
             LocalSchemaTable target = LocalSchemaEditing.FindTable(_file, _comboTargetTable.SelectedItem as string);
             if (target == null || string.Equals(target.Name, _relation.Fk.TargetTable, StringComparison.OrdinalIgnoreCase))
+                return;
+            if (!await EndRead(target))
                 return;
             _relation.Fk.TargetTable = target.Name;
             PrefillPairs(_relation);

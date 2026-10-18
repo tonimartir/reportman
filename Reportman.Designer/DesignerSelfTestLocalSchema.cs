@@ -16,8 +16,12 @@
 using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
@@ -26,7 +30,9 @@ namespace Reportman.Designer
     /// the Delphi designer and the web test too (tests\local_schema_file): the schemas of the Reportman AI library whose
     /// table names are qualified (<c>[{DB_NAME}].dbo.OINV</c>) or templates for the AI (<c>[{COMPANY_NAME}$Customer]</c>),
     /// the values of their placeholders, how much of each schema a database has and the one detected for it, and the
-    /// import of names that are in the database as they are, which works as it did.
+    /// import of names that are in the database as they are, which works as it did. And the word filter of the lists,
+    /// a large catalog (the names first, the columns of a table when it is used, with a SQLite database of eight tables
+    /// and the threshold at five) and the lists that paint only what they show.
     /// </summary>
     public static class DesignerSelfTestLocalSchema
     {
@@ -80,6 +86,12 @@ namespace Reportman.Designer
             RunCheck(log, "library: a table name resolved", f => TestResolve(f, folder));
             RunCheck(log, "library: relations between templates", f => TestRelations(f, folder));
             RunCheck(log, "library 6: exact names as before", f => TestExactNames(f, folder));
+            RunCheck(log, "filter: the shared cases", TestFilter);
+            RunCheck(log, "filter: case and accents", TestFold);
+            RunCheck(log, "large catalog: the merge of the columns read", TestMergeColumns);
+            RunCheck(log, "large catalog: an import reads its tables first", f => TestImportLargeCatalog(f, folder));
+            RunCheck(log, "large catalog: a SQLite database, threshold 5", TestLargeCatalogDatabase);
+            RunCheck(log, "lists: a hundred thousand tables", TestTableList);
             failed = log.Failed;
             return log.ToString();
         }
@@ -374,6 +386,263 @@ namespace Reportman.Designer
             log.Check(result != null && result.TemplateValues.Count == 0, "and no value was used");
             lines = LocalSchemaEditing.FindTable(file, Cronus + "$Sales Invoice Line");
             log.Check(lines != null && lines.ForeignKeys.Count == 0, "nor a relation written");
+        }
+
+        // F. Every word in the name or in the description, in any order, ignoring case and accents
+        private static void TestFilter(LocalSchemaLog log)
+        {
+            const string customers = "Clientes activos y bloqueados";
+            string[,] cases =
+            {
+                { "CUSTOMERS", customers, "cliente activo", "yes" },
+                { "CUSTOMERS", customers, "cliente borrado", "no" },
+                { "CUSTOMERS", customers, "cust ACTIV", "yes" },
+                { "CUSTOMERS", customers, "", "yes" },
+                { "CUSTOMERS", customers, "   ", "yes" },
+                { "PRODUCTS", "Categoría de producto", "categoria", "yes" },
+                { "PRODUCTS", "Categoría de producto", "CATEGORÍA", "yes" },
+                { Cronus + "$Item", "", "espana item", "yes" },
+                { Cronus + "$Item", "", "ESPAÑA", "yes" },
+                { "VBAK", "Documento de ventas: datos de cabecera", "cabecera pedido", "no" },
+                { "VBAK", "Documento de ventas: datos de cabecera", "ventas cabecera", "yes" },
+                { "KNA1", "", "kna1 cliente", "no" }
+            };
+            for (int i = 0; i < cases.GetLength(0); i++)
+            {
+                bool expected = cases[i, 3] == "yes";
+                bool matches = LocalSchemaEditing.MatchesWords(cases[i, 0], cases[i, 1], cases[i, 2]);
+                log.Check(matches == expected, cases[i, 0] + " / «" + cases[i, 1] + "» / «" + cases[i, 2] + "»: " +
+                    (matches ? "matches" : "does not match"));
+            }
+            log.Check(new LocalSchemaFilter(" \t ").IsEmpty && !new LocalSchemaFilter("a").IsEmpty, "only spaces is no word");
+            log.Check(LocalSchemaEditing.MatchesWords("A", null, "a") && !LocalSchemaEditing.MatchesWords(null, null, "a"),
+                "no description, no name");
+        }
+
+        // F.3: lower case first, then the 161 letters of the table as their base letter; any other character stays
+        private static void TestFold(LocalSchemaLog log)
+        {
+            const string accented = "ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöùúûüýÿĀāĂăĄąĆćĈĉĊċČčĎďĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĨĩĪīĬĭĮįİĴĵĶķĹĺĻļĽľŃńŅņŇňŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽž";
+            const string plain = "aaaaaaceeeeiiiinooooouuuuyaaaaaaceeeeiiiinooooouuuuyyaaaaaaccccccccddeeeeeeeeeegggggggghhiiiiiiiiijjkkllllllnnnnnnoooooorrrrrrssssssssttttuuuuuuuuuuuuwwyyyzzzzzz";
+            log.Check(accented.Length == 161 && plain.Length == 161, "161 letters");
+            string folded = LocalSchemaFilter.Fold(accented);
+            int wrong = 0;
+            for (int i = 0; i < accented.Length && i < folded.Length; i++)
+                if (folded[i] != plain[i])
+                {
+                    if (wrong++ == 0)
+                        log.Check(false, "the letter " + accented[i] + " is " + folded[i] + ", not " + plain[i]);
+                }
+            log.Check(wrong == 0 && folded.Length == plain.Length, "every letter of the table: " + wrong.ToString() + " wrong");
+            log.Check(LocalSchemaFilter.Fold("ÆØßΩ-Ñ_$1") == "æøßω-n_$1", "any other character only in lower case: " + LocalSchemaFilter.Fold("ÆØßΩ-Ñ_$1"));
+            log.Check(LocalSchemaFilter.Fold(null) == "" && LocalSchemaFilter.Fold("") == "", "nothing is nothing");
+        }
+
+        private static LocalSchemaTable NewTable(string name, string context, bool read)
+        {
+            var table = new LocalSchemaTable { Name = name, Context = context };
+            if (!read)
+                table.ColumnsRead = false;
+            return table;
+        }
+
+        // C.4, the shared case: A not read is merged with the catalog's A; B, read, is not touched
+        private static void TestMergeColumns(LocalSchemaLog log)
+        {
+            var file = new LocalSchemaFile { Alias = "MERGE" };
+            file.Tables.Add(NewTable("A", "Tabla A", false));
+            LocalSchemaTable b = NewTable("B", "", true);
+            b.Columns.Add(new LocalSchemaColumn { Name = "X", Context = "dicho" });
+            file.Tables.Add(b);
+            var catalogA = new LocalSchemaTable { Name = "a" };
+            catalogA.Columns.Add(new LocalSchemaColumn { Name = "ID", DataType = "Integer", IsPrimaryKey = true });
+            catalogA.Columns.Add(new LocalSchemaColumn { Name = "NAME" });
+            var fk = new LocalSchemaForeignKey { ConstraintName = "FK_A_B", TargetTable = "B" };
+            fk.SourceColumns.Add("ID");
+            fk.TargetColumns.Add("X");
+            catalogA.ForeignKeys.Add(fk);
+            var catalogB = new LocalSchemaTable { Name = "B" };
+            catalogB.Columns.Add(new LocalSchemaColumn { Name = "Y" });
+
+            List<string> merged = LocalSchemaStore.MergeColumns(file, new[] { catalogA, catalogB });
+            log.Check(Joined(merged) == "A", "only A is merged: " + Joined(merged));
+            LocalSchemaTable a = file.Tables[0];
+            var names = new List<string>();
+            foreach (LocalSchemaColumn c in a.Columns)
+                names.Add(c.Name);
+            log.Check(Joined(names) == "ID|NAME" && a.Columns[0].IsPrimaryKey && !a.Columns[1].IsPrimaryKey, "A has ID (its key) and NAME: " + Joined(names));
+            log.Check(a.ForeignKeys.Count == 1 && a.ForeignKeys[0].TargetTable == "B" && Joined(a.ForeignKeys[0].SourceColumns) == "ID" &&
+                Joined(a.ForeignKeys[0].TargetColumns) == "X", "A has the foreign key to B.X");
+            log.Check(a.Context == "Tabla A" && a.ColumnsRead == null && LocalSchemaStore.IsRead(a), "A keeps its description and loses the mark");
+            log.Check(b.Columns.Count == 1 && b.Columns[0].Name == "X" && b.Columns[0].Context == "dicho", "B is not touched");
+            log.Check(LocalSchemaStore.ToJson(file).IndexOf("columnsRead", StringComparison.Ordinal) < 0, "no mark is written");
+        }
+
+        // C.4: before an import, the tables it finds are read; then it imports as over the whole catalog
+        private static void TestImportLargeCatalog(LocalSchemaLog log, string folder)
+        {
+            string bc = ReadLibrary(folder, "library-bc-invoices.json");
+            LocalSchemaFile whole = LoadLibraryFile(folder);
+            LocalSchemaFile large = LoadLibraryFile(folder);
+            foreach (LocalSchemaTable t in large.Tables)
+            {
+                t.Columns.Clear();
+                t.ForeignKeys.Clear();
+                t.ColumnsRead = false;
+            }
+            log.Check(LocalSchemaStore.IsLargeCatalog(large) && !LocalSchemaStore.IsLargeCatalog(whole), "the catalog without its columns is large");
+            List<string> tables = LocalSchemaEditing.ImportTables(large, bc, null);
+            log.Check(Joined(tables) == "Company|" + Cronus + "$Customer|" + Cronus + "$Item|" + Cronus + "$Sales Invoice Header|" +
+                Cronus + "$Sales Invoice Line", "the tables it finds, by names only: " + Joined(tables));
+            log.Check(Joined(LocalSchemaEditing.ImportTables(large, bc, Choice("COMPANY_NAME", Other))) == "Company|" + Other + "$Customer|" + Other + "$Item",
+                "with the values chosen: " + Joined(LocalSchemaEditing.ImportTables(large, bc, Choice("COMPANY_NAME", Other))));
+            log.Check(Joined(LocalSchemaEditing.ImportTables(large, LinesFile, null)) == Cronus + "$Sales Invoice Line|" + Cronus + "$Sales Invoice Header",
+                "and the targets of its relations: " + Joined(LocalSchemaEditing.ImportTables(large, LinesFile, null)));
+            log.Check(LocalSchemaEditing.ImportTables(large, "not json", null).Count == 0, "none when it is not a schema");
+            log.Check(LocalSchemaStore.IsLargeCatalog(large) && large.Schemas.Count == 0, "finding them changes nothing");
+
+            // The reading: the tables of the catalog (a whole file of its own has them) merged
+            LocalSchemaFile catalog = LoadLibraryFile(folder);
+            var read = new List<LocalSchemaTable>();
+            foreach (string name in LocalSchemaStore.UnreadTables(large, tables))
+                read.Add(LocalSchemaEditing.FindTable(catalog, name));
+            log.Check(Joined(LocalSchemaStore.MergeColumns(large, read)) == Joined(tables), "they are read");
+            LocalSchemaImportResult expected = LocalSchemaEditing.Import(whole, bc, "", null, "Invoices");
+            LocalSchemaImportResult result = LocalSchemaEditing.Import(large, bc, "", null, "Invoices");
+            log.Check(result != null && result.Subschema != null && expected != null && expected.Subschema != null, "both import");
+            if (result == null || result.Subschema == null || expected == null || expected.Subschema == null)
+                return;
+            log.Check(Joined(result.Subschema.Tables) == Joined(expected.Subschema.Tables) && Joined(result.Skipped) == Joined(expected.Skipped),
+                "the same tables and nothing else skipped: " + Joined(result.Subschema.Tables) + " / " + Joined(result.Skipped));
+            string lines = Columns(large, result.Subschema, Cronus + "$Sales Invoice Line");
+            log.Check(lines == Columns(whole, expected.Subschema, Cronus + "$Sales Invoice Line"), "the same columns: " + lines);
+            log.Check(!LocalSchemaStore.IsRead(LocalSchemaEditing.FindTable(large, "KNA1")), "a table it does not use stays unread");
+        }
+
+        private static void Execute(Func<DbConnection> create, string sql)
+        {
+            using (DbConnection connection = create())
+            {
+                connection.Open();
+                using (DbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = sql;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private static string ReadNames(LocalSchemaFile file)
+        {
+            var names = new List<string>();
+            foreach (LocalSchemaTable t in file.Tables)
+                if (LocalSchemaStore.IsRead(t))
+                    names.Add(t.Name);
+            return Joined(names);
+        }
+
+        // C: eight tables and the threshold at five; a subschema with two of them; one more asked for
+        private static void TestLargeCatalogDatabase(LocalSchemaLog log)
+        {
+            DbProviderFactory factory;
+            try
+            {
+                factory = DbProviderFactories.GetFactory("SQLiteCore");
+            }
+            catch (Exception ex)
+            {
+                log.Check(false, "no SQLiteCore provider (designer.exe registers it): " + ex.Message);
+                return;
+            }
+            string dir = Path.Combine(Path.GetTempPath(), "rplocalschema-" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(dir);
+            // Without pooling the file is closed with the connection, and the folder can go
+            string database = "Data Source=" + Path.Combine(dir, "large.db") + ";Pooling=False";
+            Func<DbConnection> create = () =>
+            {
+                DbConnection connection = factory.CreateConnection();
+                connection.ConnectionString = database;
+                return connection;
+            };
+            try
+            {
+                var sql = new StringBuilder("CREATE TABLE T1 (ID INTEGER PRIMARY KEY, NAME TEXT);");
+                for (int i = 2; i <= 8; i++)
+                    sql.Append("CREATE TABLE T" + i.ToString() + " (ID INTEGER PRIMARY KEY, NAME TEXT" + (i == 2 ? ", T1_ID INTEGER REFERENCES T1(ID)" : "") + ");");
+                Execute(create, sql.ToString());
+
+                LocalSchemaFile file = LocalSchemaStore.LoadOrGenerate(dir, "LARGE", create, false, 5);
+                log.Check(file.Tables.Count == 8 && ReadNames(file) == "" && LocalSchemaStore.IsLargeCatalog(file),
+                    "the first time, the names of the 8 tables only: " + ReadNames(file));
+                log.Check(file.Tables.TrueForAll(t => t.Columns.Count == 0 && t.ForeignKeys.Count == 0 && t.ColumnsRead == false), "every table marked, without columns");
+
+                var two = new LocalSubschema { Name = "Two" };
+                two.Tables.Add("T2");
+                two.Tables.Add("t5");
+                file.Schemas.Add(two);
+                LocalSchemaStore.Save(file, LocalSchemaStore.PathFor(dir, "LARGE"));
+                file = LocalSchemaStore.LoadOrGenerate(dir, "LARGE", create, true, 5);
+                log.Check(ReadNames(file) == "T2|T5", "read again, the two tables of the subschema: " + ReadNames(file));
+                log.Check(file.Tables.FindAll(t => t.ColumnsRead == false).Count == 6, "the other six keep the mark");
+                LocalSchemaTable t2 = LocalSchemaEditing.FindTable(file, "T2");
+                log.Check(t2.Columns.Count == 3 && t2.Columns[0].IsPrimaryKey && t2.ForeignKeys.Count == 1 && t2.ForeignKeys[0].TargetTable == "T1",
+                    "T2 with its columns, key and foreign key");
+
+                List<string> read;
+                using (DbConnection connection = create())
+                    read = LocalSchemaStore.ReadColumns(file, connection, new[] { "t7", "T2" });
+                log.Check(Joined(read) == "T7" && ReadNames(file) == "T2|T5|T7", "asking for one more reads it: " + ReadNames(file));
+                log.Check(LocalSchemaEditing.FindTable(file, "T7").Columns.Count == 2, "T7 with its two columns");
+            }
+            finally
+            {
+                try { Directory.Delete(dir, true); } catch { }
+            }
+        }
+
+        // V: a list of a hundred thousand tables fills at once, and keeps its selection by name
+        private static void TestTableList(LocalSchemaLog log)
+        {
+            var tables = new List<LocalSchemaTable>();
+            for (int i = 0; i < 100000; i++)
+                tables.Add(new LocalSchemaTable { Name = "T" + i.ToString("D6") });
+            using (var form = new Form { ShowInTaskbar = false, StartPosition = FormStartPosition.Manual, Location = new Point(-20000, -20000), Size = new Size(300, 400) })
+            {
+                var list = new LocalSchemaEditorForm.TableList(true) { Dock = DockStyle.Fill };
+                form.Controls.Add(list);
+                // Before its window: kept, and shown when it is created
+                list.SetTables(tables);
+                list.SelectTables(new[] { tables[5] });
+                log.Check(form.Handle != IntPtr.Zero && list.Handle != IntPtr.Zero, "the windows are created");
+                log.Check(list.VirtualListSize == 100000 && Joined(Names(list.SelectedTables)) == "T000005", "selected before its window: " +
+                    Joined(Names(list.SelectedTables)));
+
+                var watch = Stopwatch.StartNew();
+                list.SetTables(tables);
+                list.SelectTables(new[] { tables[5], tables[99998] });
+                long ms = watch.ElapsedMilliseconds;
+                log.Check(ms < 2000, "a hundred thousand tables in " + ms.ToString() + " ms");
+                log.Check(Joined(Names(list.SelectedTables)) == "T000005|T099998" && list.SelectedCount == 2, "two selected: " + Joined(Names(list.SelectedTables)));
+                log.Check(list.CurrentTable == tables[99998], "the last one is the current one");
+
+                // Filtered: the one that is still there stays selected
+                var filtered = tables.FindAll(t => t.Name.EndsWith("8", StringComparison.Ordinal));
+                list.SetTables(filtered);
+                log.Check(list.VirtualListSize == 10000 && Joined(Names(list.SelectedTables)) == "T099998", "filtered, the one still there: " +
+                    Joined(Names(list.SelectedTables)));
+                list.SelectTables(null);
+                log.Check(list.SelectedCount == 0 && list.CurrentTable == null, "none selected");
+                list.SetTables(new List<LocalSchemaTable>());
+                log.Check(list.VirtualListSize == 0 && list.SelectedTables.Count == 0, "empty");
+            }
+        }
+
+        private static List<string> Names(List<LocalSchemaTable> tables)
+        {
+            var result = new List<string>();
+            foreach (LocalSchemaTable t in tables)
+                result.Add(t.Name);
+            return result;
         }
 
         // 6. Names that are in the database as they are: as before

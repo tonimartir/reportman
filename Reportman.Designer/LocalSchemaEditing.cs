@@ -75,9 +75,27 @@ namespace Reportman.Designer
             var result = new List<LocalSchemaTable>();
             if (file == null)
                 return result;
+            if (subschema == null)
+            {
+                result.AddRange(file.Tables);
+                return result;
+            }
+            // A large catalog has a hundred thousand tables: the names of the subschema are looked up, not scanned
+            HashSet<string> names = NameSet(subschema.Tables);
             foreach (LocalSchemaTable t in file.Tables)
-                if (HasTable(subschema, t.Name))
+                if (names.Contains(t.Name))
                     result.Add(t);
+            return result;
+        }
+
+        /// <summary>The names, ignoring case, to look up.</summary>
+        public static HashSet<string> NameSet(IEnumerable<string> names)
+        {
+            var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            if (names != null)
+                foreach (string n in names)
+                    if (!string.IsNullOrEmpty(n))
+                        result.Add(n);
             return result;
         }
 
@@ -158,12 +176,17 @@ namespace Reportman.Designer
             if (file == null || subschema == null || table == null || HasTable(subschema, table.Name))
                 return false;
             var ordered = new List<string>();
+            HashSet<string> chosen = NameSet(subschema.Tables);
+            var catalog = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (LocalSchemaTable t in file.Tables)
-                if (t == table || ContainsName(subschema.Tables, t.Name))
+            {
+                catalog.Add(t.Name);
+                if (t == table || chosen.Contains(t.Name))
                     ordered.Add(t.Name);
+            }
             // Names the catalog does not have any more stay, at the end: nothing is lost by adding.
             foreach (string name in subschema.Tables)
-                if (FindTable(file, name) == null && !ContainsName(ordered, name))
+                if (!catalog.Contains(name) && !ContainsName(ordered, name))
                     ordered.Add(name);
             subschema.Tables = ordered;
             SetChosenColumns(subschema, table, PrimaryKey(table));
@@ -253,7 +276,8 @@ namespace Reportman.Designer
             foreach (LocalSchemaTable t in TablesOf(file, subschema))
             {
                 tables++;
-                int columns = LocalSchemaStore.ColumnsOf(subschema, t).Count;
+                // All the tables send every column (ColumnsOf), counted without copying them
+                int columns = subschema == null ? t.Columns.Count : LocalSchemaStore.ColumnsOf(subschema, t).Count;
                 if (columns > widestColumns)
                 {
                     widestColumns = columns;
@@ -536,15 +560,8 @@ namespace Reportman.Designer
                 if (!TryJsonProperty(root, "schemaTables", out schemaTables) || schemaTables.ValueKind != JsonValueKind.Array)
                     return null;
                 // The placeholders the user did not choose take the value most of the tables have
-                List<LocalSchemaPlaceholder> placeholders = Placeholders(file, TableNames(schemaTables));
-                var filled = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-                if (templateValues != null)
-                    foreach (KeyValuePair<string, string> value in templateValues)
-                        if (!string.IsNullOrWhiteSpace(value.Key) && !string.IsNullOrEmpty(value.Value))
-                            filled[value.Key.Trim()] = value.Value;
-                foreach (LocalSchemaPlaceholder placeholder in placeholders)
-                    if (!filled.ContainsKey(placeholder.Name))
-                        filled[placeholder.Name] = placeholder.Values[0];
+                List<LocalSchemaPlaceholder> placeholders;
+                Dictionary<string, string> filled = FilledValues(file, schemaTables, templateValues, out placeholders);
                 var used = new List<KeyValuePair<string, string>>();
                 string name = (subschemaName ?? "").Trim();
                 if (name.Length == 0)
@@ -630,6 +647,77 @@ namespace Reportman.Designer
                     AddValue(result.TemplateValues, value.Key, value.Value);
                 return result;
             }
+        }
+
+        /// <summary>
+        /// The value of each placeholder of the names of the tables for an import: the ones given, and for the others the
+        /// value most of the tables have (the first of <see cref="LibraryPlaceholders"/>).
+        /// </summary>
+        private static Dictionary<string, string> FilledValues(LocalSchemaFile file, JsonElement schemaTables,
+            IDictionary<string, string> templateValues, out List<LocalSchemaPlaceholder> placeholders)
+        {
+            placeholders = Placeholders(file, TableNames(schemaTables));
+            var filled = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            if (templateValues != null)
+                foreach (KeyValuePair<string, string> value in templateValues)
+                    if (!string.IsNullOrWhiteSpace(value.Key) && !string.IsNullOrEmpty(value.Value))
+                        filled[value.Key.Trim()] = value.Value;
+            foreach (LocalSchemaPlaceholder placeholder in placeholders)
+                if (!filled.ContainsKey(placeholder.Name))
+                    filled[placeholder.Name] = placeholder.Values[0];
+            return filled;
+        }
+
+        /// <summary>
+        /// The tables of the catalog an import of <paramref name="json"/> with <paramref name="templateValues"/> resolves, as
+        /// <see cref="Import(LocalSchemaFile, string, string, IEnumerable{string}, string, IDictionary{string, string})"/>
+        /// finds them: the tables of the schema and the targets of their relations, as the file spells them, each once, in
+        /// the order they come. Nothing is changed. The screen reads their columns before importing when the catalog is
+        /// large: the import chooses among them. None when the text is not a schema.
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="json">The text of the schema to import.</param>
+        /// <param name="templateValues">The value of each placeholder by its name without braces (ignoring case), or null.</param>
+        public static List<string> ImportTables(LocalSchemaFile file, string json, IDictionary<string, string> templateValues)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            var result = new List<string>();
+            JsonDocument document = ParseSchemaJson(json);
+            if (document == null)
+                return result;
+            using (document)
+            {
+                JsonElement schemaTables;
+                if (!TryJsonProperty(document.RootElement, "schemaTables", out schemaTables) || schemaTables.ValueKind != JsonValueKind.Array)
+                    return result;
+                List<LocalSchemaPlaceholder> placeholders;
+                Dictionary<string, string> filled = FilledValues(file, schemaTables, templateValues, out placeholders);
+                foreach (JsonElement item in schemaTables.EnumerateArray())
+                {
+                    LocalSchemaTable table = ResolveTable(file, JsonText(item, "name"), filled);
+                    if (table == null)
+                        continue;
+                    if (!ContainsName(result, table.Name))
+                        result.Add(table.Name);
+                    foreach (JsonElement fk in JsonArray(item, "foreignKeys"))
+                    {
+                        LocalSchemaTable target = ResolveTable(file, JsonText(fk, "targetTable"), filled);
+                        if (target != null && !ContainsName(result, target.Name))
+                            result.Add(target.Name);
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// True when an item matches the words of <paramref name="filter"/> in its name or in its description, as every
+        /// filter of the local schema screen does (<see cref="LocalSchemaFilter"/>).
+        /// </summary>
+        public static bool MatchesWords(string name, string description, string filter)
+        {
+            return new LocalSchemaFilter(filter).Matches(name, description);
         }
 
         /// <summary>
@@ -1414,6 +1502,86 @@ namespace Reportman.Designer
                 return "(" + bytes.Length.ToString("N0", CultureInfo.CurrentCulture) + " " + Reportman.Drawing.Translator.TranslateStr(1176) + ")";
             string text = Convert.ToString(value, CultureInfo.CurrentCulture) ?? "";
             return text.Length > 200 ? text.Substring(0, 200) + "…" : text;
+        }
+    }
+
+    /// <summary>
+    /// The filter of the lists of the local schema screen (the same in the Delphi designer and the web): the text is split
+    /// into words by white space, and an item matches when every word is in its name or in its description, different words
+    /// maybe in different fields and in any order («cliente activo» finds CUSTOMERS, «Clientes activos y bloqueados»),
+    /// ignoring case and accents. An empty text (or only spaces) matches everything. It runs over all the items, never over
+    /// the ones a list shows.
+    /// </summary>
+    internal sealed class LocalSchemaFilter
+    {
+        // The letters with an accent of U+00C0-U+017F and their base letter (their NFD base), one to one; any other
+        // character stays as it is, so the three designers compare the same
+        private const string Accented = "ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöùúûüýÿĀāĂăĄąĆćĈĉĊċČčĎďĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĨĩĪīĬĭĮįİĴĵĶķĹĺĻļĽľŃńŅņŇňŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽž";
+        private const string Plain = "aaaaaaceeeeiiiinooooouuuuyaaaaaaceeeeiiiinooooouuuuyyaaaaaaccccccccddeeeeeeeeeegggggggghhiiiiiiiiijjkkllllllnnnnnnoooooorrrrrrssssssssttttuuuuuuuuuuuuwwyyyzzzzzz";
+        private const char First = '\u00C0';
+        private const char Last = '\u017F';
+        private static readonly char[] Map = BuildMap();
+
+        private readonly string[] _words;
+
+        /// <summary>Initializes the filter of a text.</summary>
+        /// <param name="text">The text typed in the filter box.</param>
+        public LocalSchemaFilter(string text)
+        {
+            string[] words = (text ?? "").Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < words.Length; i++)
+                words[i] = Fold(words[i]);
+            _words = words;
+        }
+
+        /// <summary>True when the text has no word: everything matches.</summary>
+        public bool IsEmpty
+        {
+            get { return _words.Length == 0; }
+        }
+
+        /// <summary>True when every word is in the name or in the description.</summary>
+        /// <param name="name">The name of the item.</param>
+        /// <param name="description">Its description; null or empty when it has none.</param>
+        public bool Matches(string name, string description)
+        {
+            if (_words.Length == 0)
+                return true;
+            string folded = Fold(name);
+            string context = null;
+            foreach (string word in _words)
+            {
+                if (folded.IndexOf(word, StringComparison.Ordinal) >= 0)
+                    continue;
+                if (context == null)
+                    context = Fold(description);
+                if (context.IndexOf(word, StringComparison.Ordinal) < 0)
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>A text as the filter compares it: in lower case, then each letter of the table as its base letter.</summary>
+        public static string Fold(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return "";
+            char[] chars = text.ToLowerInvariant().ToCharArray();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                char c = chars[i];
+                if (c >= First && c <= Last && Map[c - First] != '\0')
+                    chars[i] = Map[c - First];
+            }
+            return new string(chars);
+        }
+
+        private static char[] BuildMap()
+        {
+            var map = new char[Last - First + 1];
+            for (int i = 0; i < Accented.Length; i++)
+                map[Accented[i] - First] = Plain[i];
+            return map;
         }
     }
 

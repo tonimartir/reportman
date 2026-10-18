@@ -26,10 +26,11 @@ using Reportman.Reporting;
 namespace Reportman.Designer
 {
     // The Columns tab: of the table clicked, its columns with a check box (checked = in the subschema's list),
-    // the description and allowed values of the column clicked (the dictionary's), and a preview of 5 rows.
+    // the description and allowed values of the column clicked (the dictionary's), and a preview of 5 rows. The
+    // columns of a table of a large catalog are read when it is clicked.
     public partial class LocalSchemaEditorForm
     {
-        private ListBox _listColumnTables;
+        private TableList _listColumnTables;
         private TextBox _txtColumnTablesFilter;
         private Label _lblColumnTables;
         private Label _lblColumnTablesCount;
@@ -56,16 +57,17 @@ namespace Reportman.Designer
             var page = new TabPage(Tr(1849)) { Padding = new Padding(6) };
 
             // The tables
-            _listColumnTables = new ListBox { IntegralHeight = false, DisplayMember = "Name" };
-            _listColumnTables.SelectedIndexChanged += (s, e) =>
+            _listColumnTables = new TableList(false);
+            _listColumnTables.SelectionChanged += (s, e) =>
             {
                 if (_filling)
                     return;
                 CommitEdits();
-                _columnsTable = _listColumnTables.SelectedItem as LocalSchemaTable;
+                _columnsTable = _listColumnTables.CurrentTable;
                 _column = null;
                 FillColumnsList();
                 ClearPreview();
+                ReadColumnsTableLater();
             };
             Panel tablesPanel = NewListPanel(_listColumnTables, out _lblColumnTables, out _txtColumnTablesFilter, out _lblColumnTablesCount);
             _lblColumnTables.Text = Tr(1848);
@@ -207,8 +209,9 @@ namespace Reportman.Designer
         {
             var tables = new List<LocalSchemaTable>();
             List<LocalSchemaTable> all = LocalSchemaEditing.TablesOf(_file, _current);
+            var filter = new LocalSchemaFilter(_txtColumnTablesFilter.Text);
             foreach (LocalSchemaTable t in all)
-                if (MatchesFilter(t.Name, _txtColumnTablesFilter.Text))
+                if (filter.Matches(t.Name, t.Context))
                     tables.Add(t);
             // The table clicked stays, also after reading the database again (new objects, same name)
             LocalSchemaTable keep = null;
@@ -225,18 +228,8 @@ namespace Reportman.Designer
             _filling = true;
             try
             {
-                _listColumnTables.BeginUpdate();
-                try
-                {
-                    _listColumnTables.Items.Clear();
-                    foreach (LocalSchemaTable t in tables)
-                        _listColumnTables.Items.Add(t);
-                    _listColumnTables.SelectedItem = _columnsTable;
-                }
-                finally
-                {
-                    _listColumnTables.EndUpdate();
-                }
+                _listColumnTables.SetTables(tables);
+                _listColumnTables.SelectTables(_columnsTable != null ? new[] { _columnsTable } : null);
             }
             finally
             {
@@ -245,6 +238,22 @@ namespace Reportman.Designer
             _lblColumnTables.Text = _current == null ? Tr(1843) : Tr(1858);
             _lblColumnTablesCount.Text = CountText(tables.Count, all.Count);
             FillColumnsList();
+            ReadColumnsTableLater();
+        }
+
+        /// <summary>
+        /// The table clicked in this tab, of a large catalog, without its columns: they are read now, while the tab is
+        /// shown (the dialog goes on meanwhile), and the list follows when they come and it is still the one clicked.
+        /// </summary>
+        private void ReadColumnsTableLater()
+        {
+            LocalSchemaTable table = _columnsTable;
+            if (table == null || _file == null || LocalSchemaStore.IsRead(table) || _tabs.SelectedTab != _tabColumns ||
+                _readingTables.Contains(table.Name))
+                return;
+            _ = ReadColumnsAsync(new[] { table.Name }, false);
+            if (_columnsTable == table && !LocalSchemaStore.IsRead(table))
+                _lblColumns.Text = TrFormat(2033, table.Name);
         }
 
         private static string TypeText(LocalSchemaColumn column)
@@ -291,9 +300,10 @@ namespace Reportman.Designer
                     if (table != null)
                     {
                         List<string> travelling = LocalSchemaEditing.TravellingColumns(_current, table);
+                        var filter = new LocalSchemaFilter(_txtColumnsFilter.Text);
                         foreach (LocalSchemaColumn c in table.Columns)
                         {
-                            if (!MatchesFilter(c.Name, _txtColumnsFilter.Text))
+                            if (!filter.Matches(c.Name, c.Context))
                                 continue;
                             bool pale;
                             var item = new ListViewItem(c.Name) { Tag = c, UseItemStyleForSubItems = false };
@@ -325,7 +335,10 @@ namespace Reportman.Designer
             {
                 _filling = filling;
             }
-            _lblColumns.Text = table == null ? Tr(1849) : Tr(1849) + ": " + table.Name;
+            // While the columns of the table are read, it says so
+            _lblColumns.Text = table == null ? Tr(1849)
+                : !LocalSchemaStore.IsRead(table) && _readingTables.Contains(table.Name) ? TrFormat(2033, table.Name)
+                : Tr(1849) + ": " + table.Name;
             UpdateColumnsCounter();
             UpdateColumnsButtons();
             FillColumnDetails();

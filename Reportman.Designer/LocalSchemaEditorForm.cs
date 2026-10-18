@@ -74,6 +74,12 @@ namespace Reportman.Designer
     /// tables and columns; on the right the tabs Connection, Tables, Columns, Relations and Validation, with
     /// the counters of the plan, which warn and never block. Changes are saved with Save, and closing with
     /// changes asks.
+    /// <para>
+    /// A large catalog (<see cref="DatabaseCatalogReader.LargeCatalogThreshold"/> tables) comes with the names of its
+    /// tables only, and the columns of a table are read when it is used: added to a subschema, clicked in Columns,
+    /// chosen as an end of a relation, before an import. The lists paint only the rows they show, and their filters
+    /// find the words typed in the names and in the descriptions (<see cref="LocalSchemaFilter"/>).
+    /// </para>
     /// </summary>
     public partial class LocalSchemaEditorForm : Form
     {
@@ -99,6 +105,10 @@ namespace Reportman.Designer
         private bool _startAdding;
         private LocalSubschema _added;
         private string _baseTitle = "";
+        // The tables of a large catalog whose columns are being read
+        private readonly HashSet<string> _readingTables = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        // Columns read while the Relations tab was not shown: it is filled again when it is
+        private bool _relationsStale;
 
         private SplitContainer _split;
         private ListBox _listSchemas;
@@ -132,6 +142,7 @@ namespace Reportman.Designer
         private TextBox _txtConnFile;
         private Button _btnRefresh;
         private Label _lblConnStatus;
+        private Label _lblConnLarge;
 
         /// <summary>
         /// The dbxschemas folder of this designer: next to the dbxconnections.ini it writes
@@ -483,7 +494,15 @@ namespace Reportman.Designer
             _tabs.TabPages.Add(_tabColumns);
             _tabs.TabPages.Add(_tabRelations);
             _tabs.TabPages.Add(_tabValidation);
-            _tabs.SelectedIndexChanged += (s, e) => CommitEdits();
+            _tabs.SelectedIndexChanged += (s, e) =>
+            {
+                CommitEdits();
+                // What waits for the tab to be shown: the columns of the table clicked, the relations of the tables read
+                if (_tabs.SelectedTab == _tabColumns)
+                    ReadColumnsTableLater();
+                else if (_tabs.SelectedTab == _tabRelations && _relationsStale)
+                    FillRelationsTab();
+            };
 
             panel.Controls.Add(_tabs);
             panel.Controls.Add(counters);
@@ -503,6 +522,11 @@ namespace Reportman.Designer
             filterRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
             filterRow.Controls.Add(new Label { Text = Tr(1859) + ":", AutoSize = true, Anchor = AnchorStyles.Left, Margin = new Padding(0, 0, 4, 0) }, 0, 0);
             filter = new TextBox { Dock = DockStyle.Fill, Margin = new Padding(0, 2, 0, 2) };
+            // The words of the name or of the description, in any order (LocalSchemaFilter)
+#if NETCOREAPP
+            filter.PlaceholderText = Tr(2035);
+#endif
+            _toolTip.SetToolTip(filter, Tr(2035));
             filterRow.Controls.Add(filter, 1, 0);
             footer = new Label { Dock = DockStyle.Bottom, Height = 20, ForeColor = SystemColors.GrayText, AutoEllipsis = true };
             list.Dock = DockStyle.Fill;
@@ -511,12 +535,6 @@ namespace Reportman.Designer
             panel.Controls.Add(title);
             panel.Controls.Add(footer);
             return panel;
-        }
-
-        private static bool MatchesFilter(string text, string filter)
-        {
-            string f = (filter ?? "").Trim();
-            return f.Length == 0 || (text ?? "").IndexOf(f, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         private static TextBox ReadOnlyBox()
@@ -555,8 +573,11 @@ namespace Reportman.Designer
                 Text = Tr(1898)
             };
             _lblConnStatus = new Label { Dock = DockStyle.Fill, ForeColor = UsageRed, Padding = new Padding(0, 8, 0, 0) };
+            // A large catalog says it: the columns of a table are read when it is used
+            _lblConnLarge = new Label { Dock = DockStyle.Top, AutoSize = false, Height = 40, Padding = new Padding(0, 6, 0, 0), Visible = false };
 
             page.Controls.Add(_lblConnStatus);
+            page.Controls.Add(_lblConnLarge);
             page.Controls.Add(info);
             page.Controls.Add(refreshRow);
             page.Controls.Add(grid);
@@ -582,8 +603,12 @@ namespace Reportman.Designer
                 _txtConnDialect.Text = "";
                 _txtConnRead.Text = "";
                 _txtConnTables.Text = "";
+                _lblConnLarge.Visible = false;
                 return;
             }
+            bool large = LocalSchemaStore.IsLargeCatalog(_file);
+            _lblConnLarge.Text = large ? TrFormat(2032, Number(_file.Tables.Count)) : "";
+            _lblConnLarge.Visible = large;
             _txtConnDialect.Text = _file.Dialect;
             _txtConnRead.Text = FormatGenerated(_file.GeneratedUtc);
             // The relations of the dictionary: not the ones of the catalog deleted with all the tables
@@ -829,10 +854,13 @@ namespace Reportman.Designer
             try
             {
                 SetStatus(TrFormat(1899, _alias));
+                // A large catalog reads again the columns of the tables of the subschemas and of the ones read (the
+                // dialog is busy meanwhile: nothing changes the file while it is read)
+                LocalSchemaFile previous = _file;
                 LocalSchemaFile fresh = await Task.Run(() =>
                 {
                     using (DbConnection connection = _createConnection())
-                        return LocalSchemaStore.Generate(connection, _alias);
+                        return LocalSchemaStore.Generate(connection, _alias, previous);
                 });
                 if (IsDisposed)
                     return;
@@ -862,6 +890,90 @@ namespace Reportman.Designer
             }
             if (!IsDisposed)
                 FillAll(_current);
+        }
+
+        /// <summary>
+        /// Reads the columns of the tables of <paramref name="tables"/> the file has not read (a large catalog reads them
+        /// when a table is used) and merges them into it (<see cref="LocalSchemaStore.MergeColumns"/>), saying it in the
+        /// status line meanwhile. With <paramref name="block"/> the dialog is busy until they come (what follows needs
+        /// them: adding tables, an import) and a failure is shown; else it goes on, and the tables already being read are
+        /// not read twice. When it fails the tables stay unread and the status line says why. False when it failed.
+        /// </summary>
+        private async Task<bool> ReadColumnsAsync(IEnumerable<string> tables, bool block)
+        {
+            if (_file == null)
+                return false;
+            List<string> unread = LocalSchemaStore.UnreadTables(_file, tables);
+            if (!block)
+                unread.RemoveAll(n => _readingTables.Contains(n));
+            if (unread.Count == 0)
+                return true;
+            string names = LocalSchemaEditing.ShortList(unread, 5);
+            Func<DbConnection> createConnection = _createConnection;
+            foreach (string name in unread)
+                _readingTables.Add(name);
+            if (block)
+                SetBusy(true);
+            SetStatus(TrFormat(2033, names));
+            try
+            {
+                if (createConnection == null)
+                    throw new InvalidOperationException("No connection to read " + names);
+                List<LocalSchemaTable> read = await Task.Run(() =>
+                {
+                    using (DbConnection connection = createConnection())
+                        return DatabaseCatalogReader.ReadTableDetails(connection, unread);
+                });
+                if (IsDisposed || _file == null)
+                    return false;
+                // Into the file shown now (the same one, or the one read again meanwhile)
+                bool unchanged = !_dirty;
+                List<string> merged = LocalSchemaStore.MergeColumns(_file, read);
+                // What the catalog has is no change of the user's: a dialog without changes stays without them (they
+                // are read again the next time), one with changes saves them too
+                if (merged.Count > 0 && unchanged)
+                    _savedJson = LocalSchemaStore.ToJson(_file);
+                if (_lblStatus.Text == TrFormat(2033, names))
+                    SetStatus("");
+                if (merged.Count > 0)
+                    ColumnsMerged();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (IsDisposed)
+                    return false;
+                string message = TrFormat(2036, names, ex.Message);
+                SetStatus(message);
+                if (block)
+                    MessageBox.Show(this, message, _baseTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            finally
+            {
+                foreach (string name in unread)
+                    _readingTables.Remove(name);
+                if (!IsDisposed)
+                {
+                    if (block)
+                        SetBusy(false);
+                    // The columns of the table clicked, or why they are not there
+                    if (_columnsTable != null && unread.Contains(_columnsTable.Name))
+                        FillColumnsList();
+                }
+            }
+        }
+
+        /// <summary>The columns of some tables were read: what shows them follows (the relations, when they are shown).</summary>
+        private void ColumnsMerged()
+        {
+            FillConnectionTab();
+            UpdateCounters();
+            _listSchemas.Invalidate();
+            if (_tabs.SelectedTab == _tabRelations)
+                FillRelationsTab();
+            else
+                _relationsStale = true;
         }
 
         /// <summary>Saves the file; false when it was not saved.</summary>
@@ -1171,7 +1283,7 @@ namespace Reportman.Designer
         /// relations; it stays selected and unsaved, and what the database does not have is said. When the names of
         /// its tables are templates with several values here, the user chooses them first.
         /// </summary>
-        private void ImportSubschema()
+        private async void ImportSubschema()
         {
             if (_file == null || _busy)
                 return;
@@ -1192,6 +1304,9 @@ namespace Reportman.Designer
                 string json = File.ReadAllText(path, Encoding.UTF8);
                 Dictionary<string, string> values;
                 if (!ChooseTemplateValues(json, out values))
+                    return;
+                // The tables it finds are read first (a large catalog): the import chooses among their columns
+                if (!await ReadColumnsAsync(LocalSchemaEditing.ImportTables(_file, json, values), true) || IsDisposed)
                     return;
                 result = LocalSchemaEditing.Import(_file, json, path, ReservedNames, "", values);
             }
@@ -1273,6 +1388,9 @@ namespace Reportman.Designer
             {
                 Dictionary<string, string> values;
                 if (!ChooseTemplateValues(schema, out values))
+                    return;
+                // The tables it finds are read first (a large catalog): the import chooses among their columns
+                if (!await ReadColumnsAsync(LocalSchemaEditing.ImportTables(_file, schema, values), true) || IsDisposed)
                     return;
                 try
                 {

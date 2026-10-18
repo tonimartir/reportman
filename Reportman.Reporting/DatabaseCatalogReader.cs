@@ -26,9 +26,24 @@ namespace Reportman.Reporting
     /// INFORMATION_SCHEMA views where they exist, and sqlite_master plus PRAGMA for SQLite
     /// (Microsoft.Data.Sqlite has no schema collections). Column types come from the reader schema of
     /// each table, without reading rows.
+    /// <para>
+    /// The names of the tables are read first. A large catalog (more than <see cref="LargeCatalogThreshold"/>
+    /// tables: an ERP's thousands) reads the columns, keys and comments only of the tables it is asked for, with
+    /// queries filtered by them: the names of a hundred thousand tables are a few megabytes, their columns are
+    /// millions.
+    /// </para>
     /// </summary>
     public static class DatabaseCatalogReader
     {
+        /// <summary>
+        /// The number of tables up to which every table of a catalog is read with its columns; a catalog with more is
+        /// large and reads them only for the tables it is asked for (<see cref="ReadTables(DbConnection, IEnumerable{string}, int)"/>).
+        /// </summary>
+        public const int LargeCatalogThreshold = 5000;
+
+        // The names of a filtered catalog query go in batches of this many (TABLE_NAME IN (...))
+        private const int FilterBatch = 200;
+
         private enum Family { Other, Firebird, PostgreSQL, SQLite, SQLServer, MySQL, Oracle }
 
         private static Family FamilyOf(DbConnection connection)
@@ -128,20 +143,133 @@ namespace Reportman.Reporting
         /// <summary>
         /// Every user table and view of an open connection, sorted by name, with columns, primary key
         /// and foreign keys (when the provider exposes them). A table whose columns cannot be read is
-        /// still listed.
+        /// still listed. A large catalog (more than <see cref="LargeCatalogThreshold"/> tables) comes with
+        /// the names only, every table marked as not read (<see cref="LocalSchemaTable.ColumnsRead"/>).
         /// </summary>
         public static List<LocalSchemaTable> ReadTables(DbConnection connection)
+        {
+            return ReadTables(connection, null, LargeCatalogThreshold);
+        }
+
+        /// <summary>
+        /// Every user table and view of an open connection, sorted by name. The names are read first, with the
+        /// comments of the tables where the database keeps them. With <paramref name="largeCatalogThreshold"/> tables
+        /// or fewer every table comes with its columns, primary key and foreign keys, as
+        /// <see cref="ReadTables(DbConnection)"/> always did; with more (a large catalog) only the tables of
+        /// <paramref name="tablesToRead"/> do, read by queries filtered by them, and every other one has
+        /// <see cref="LocalSchemaTable.ColumnsRead"/> false and no columns nor foreign keys.
+        /// </summary>
+        /// <param name="connection">The connection (opened here when it is closed).</param>
+        /// <param name="tablesToRead">The tables to read with their columns in a large catalog (ignoring case); null for none.</param>
+        /// <param name="largeCatalogThreshold">The number of tables from which the catalog is large
+        /// (<see cref="LargeCatalogThreshold"/>); 0 or less, never.</param>
+        public static List<LocalSchemaTable> ReadTables(DbConnection connection, IEnumerable<string> tablesToRead, int largeCatalogThreshold)
         {
             if (connection == null)
                 throw new ArgumentNullException("connection");
             if (connection.State != ConnectionState.Open)
                 connection.Open();
             Family family = FamilyOf(connection);
+            List<CatalogName> names = family == Family.SQLite ? SqliteTableNames(connection) : CatalogTableNames(connection, family);
+            bool large = largeCatalogThreshold > 0 && names.Count > largeCatalogThreshold;
+            HashSet<string> wanted = null;
+            if (large)
+            {
+                wanted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                if (tablesToRead != null)
+                    foreach (string name in tablesToRead)
+                        if (!string.IsNullOrEmpty(name))
+                            wanted.Add(name.Trim());
+            }
+
+            var result = new List<LocalSchemaTable>(names.Count);
+            var details = new List<KeyValuePair<CatalogName, LocalSchemaTable>>();
+            foreach (CatalogName name in names)
+            {
+                // The database's own comment, where it keeps one, is the starting context of the table.
+                var table = new LocalSchemaTable { Name = name.Name, Context = name.Description };
+                if (wanted == null || wanted.Contains(name.Name))
+                    details.Add(new KeyValuePair<CatalogName, LocalSchemaTable>(name, table));
+                else
+                    table.ColumnsRead = false;
+                result.Add(table);
+            }
+            ReadDetails(connection, family, details, large);
+            // The comments of the tables go with the names; the ones of the columns, with the columns read.
+            TableComments(connection, family, result, null);
+            ColumnComments(connection, family, Tables(details), large ? NamesOf(details) : null);
+            return result;
+        }
+
+        /// <summary>
+        /// The tables named in <paramref name="tables"/> (ignoring case) that the catalog of an open connection has, as
+        /// it spells them and in its order, each one with its columns, primary key, foreign keys and the comments of the
+        /// database, read by queries filtered by them: the columns of a large catalog, read when a table is used. A name
+        /// the catalog does not have is left out.
+        /// </summary>
+        /// <param name="connection">The connection (opened here when it is closed).</param>
+        /// <param name="tables">The names of the tables.</param>
+        public static List<LocalSchemaTable> ReadTableDetails(DbConnection connection, IEnumerable<string> tables)
+        {
+            if (connection == null)
+                throw new ArgumentNullException("connection");
+            var result = new List<LocalSchemaTable>();
+            var wanted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            if (tables != null)
+                foreach (string name in tables)
+                    if (!string.IsNullOrEmpty(name))
+                        wanted.Add(name.Trim());
+            if (wanted.Count == 0)
+                return result;
+            if (connection.State != ConnectionState.Open)
+                connection.Open();
+            Family family = FamilyOf(connection);
+            // The names of the catalog: its spelling, its schema and the comment of each table
+            List<CatalogName> names = family == Family.SQLite ? SqliteTableNames(connection) : CatalogTableNames(connection, family);
+            var details = new List<KeyValuePair<CatalogName, LocalSchemaTable>>();
+            foreach (CatalogName name in names)
+            {
+                if (!wanted.Contains(name.Name))
+                    continue;
+                var table = new LocalSchemaTable { Name = name.Name, Context = name.Description };
+                details.Add(new KeyValuePair<CatalogName, LocalSchemaTable>(name, table));
+                result.Add(table);
+            }
+            ReadDetails(connection, family, details, true);
+            List<string> filter = NamesOf(details);
+            TableComments(connection, family, result, filter);
+            ColumnComments(connection, family, result, filter);
+            return result;
+        }
+
+        private static List<LocalSchemaTable> Tables(List<KeyValuePair<CatalogName, LocalSchemaTable>> details)
+        {
+            var result = new List<LocalSchemaTable>(details.Count);
+            foreach (KeyValuePair<CatalogName, LocalSchemaTable> pair in details)
+                result.Add(pair.Value);
+            return result;
+        }
+
+        private static List<string> NamesOf(List<KeyValuePair<CatalogName, LocalSchemaTable>> details)
+        {
+            var result = new List<string>(details.Count);
+            foreach (KeyValuePair<CatalogName, LocalSchemaTable> pair in details)
+                result.Add(pair.Key.Name);
+            return result;
+        }
+
+        /// <summary>
+        /// The columns, primary key and foreign keys of the tables of <paramref name="details"/>; with
+        /// <paramref name="filtered"/> the queries for the whole database are filtered by those tables.
+        /// </summary>
+        private static void ReadDetails(DbConnection connection, Family family, List<KeyValuePair<CatalogName, LocalSchemaTable>> details,
+            bool filtered)
+        {
+            if (details.Count == 0)
+                return;
             DbProviderFactory factory = null;
             try { factory = DbProviderFactories.GetFactory(connection); } catch { }
-
-            var result = new List<LocalSchemaTable>();
-            List<CatalogName> names = family == Family.SQLite ? SqliteTableNames(connection) : CatalogTableNames(connection, family);
+            List<string> filter = filtered ? NamesOf(details) : null;
 
             // The INFORMATION_SCHEMA family answers one query for the whole database, far faster than a
             // KeyInfo reader per table (Npgsql reads the catalog each time).
@@ -150,20 +278,19 @@ namespace Reportman.Reporting
             HashSet<string> primaryKeys = null;
             if (informationSchema)
             {
-                try { allForeignKeys = InformationSchemaForeignKeys(connection); }
+                try { allForeignKeys = InformationSchemaForeignKeys(connection, family, filter); }
                 catch { allForeignKeys = new Dictionary<string, List<LocalSchemaForeignKey>>(StringComparer.OrdinalIgnoreCase); }
-                try { primaryKeys = InformationSchemaPrimaryKeys(connection); }
+                try { primaryKeys = InformationSchemaPrimaryKeys(connection, family, filter); }
                 catch { primaryKeys = null; }
             }
 
-            foreach (CatalogName name in names)
+            foreach (KeyValuePair<CatalogName, LocalSchemaTable> pair in details)
             {
-                // The database's own comment, where it keeps one, is the starting context of the table.
-                var table = new LocalSchemaTable { Name = name.Name, Context = name.Description };
+                LocalSchemaTable table = pair.Value;
                 if (family == Family.SQLite)
                     SqliteColumns(connection, table);
                 else if (!TryColumnsFromReader(connection, factory, table, !informationSchema))
-                    ColumnsFromCatalog(connection, name.Schema, table);
+                    ColumnsFromCatalog(connection, pair.Key.Schema, table);
                 if (primaryKeys != null)
                 {
                     foreach (LocalSchemaColumn c in table.Columns)
@@ -186,80 +313,164 @@ namespace Reportman.Reporting
                 {
                     // A table whose foreign keys cannot be read keeps its columns.
                 }
-                result.Add(table);
             }
-            ReadComments(connection, family, result);
-            return result;
         }
 
         /// <summary>
-        /// The comments the database keeps on its tables and columns, as the starting context of each one that
-        /// has none yet: Firebird (RDB$DESCRIPTION), PostgreSQL (COMMENT ON), SQL Server (MS_Description), MySQL
-        /// (COMMENT) and Oracle (COMMENT ON). Best effort: a catalog that cannot be read leaves them empty.
+        /// The comments the database keeps on its tables, as the starting context of each one that has none yet:
+        /// Firebird (RDB$DESCRIPTION), PostgreSQL (COMMENT ON), SQL Server (MS_Description), MySQL (COMMENT) and
+        /// Oracle (COMMENT ON). With <paramref name="filter"/> only of those tables, else of the whole database. Best
+        /// effort: a catalog that cannot be read leaves them empty.
         /// </summary>
-        private static void ReadComments(DbConnection connection, Family family, List<LocalSchemaTable> tables)
+        private static void TableComments(DbConnection connection, Family family, List<LocalSchemaTable> tables, List<string> filter)
         {
-            string tableSql, columnSql;
+            string sql, column;
             switch (family)
             {
                 case Family.Firebird:
-                    tableSql = "SELECT TRIM(RDB$RELATION_NAME), RDB$DESCRIPTION FROM RDB$RELATIONS " +
+                    sql = "SELECT TRIM(RDB$RELATION_NAME), RDB$DESCRIPTION FROM RDB$RELATIONS " +
                         "WHERE RDB$DESCRIPTION IS NOT NULL AND COALESCE(RDB$SYSTEM_FLAG, 0) = 0";
-                    columnSql = "SELECT TRIM(RDB$RELATION_NAME), TRIM(RDB$FIELD_NAME), RDB$DESCRIPTION " +
-                        "FROM RDB$RELATION_FIELDS WHERE RDB$DESCRIPTION IS NOT NULL";
+                    column = "RDB$RELATION_NAME";
                     break;
                 case Family.PostgreSQL:
-                    tableSql = "SELECT c.relname, obj_description(c.oid, 'pg_class') FROM pg_class c " +
+                    sql = "SELECT c.relname, obj_description(c.oid, 'pg_class') FROM pg_class c " +
                         "JOIN pg_namespace n ON n.oid = c.relnamespace " +
                         "WHERE c.relkind IN ('r', 'v', 'm', 'p', 'f') AND n.nspname NOT IN ('pg_catalog', 'information_schema') " +
                         "AND obj_description(c.oid, 'pg_class') IS NOT NULL";
-                    columnSql = "SELECT c.relname, a.attname, col_description(c.oid, a.attnum) FROM pg_class c " +
-                        "JOIN pg_namespace n ON n.oid = c.relnamespace JOIN pg_attribute a ON a.attrelid = c.oid " +
-                        "WHERE a.attnum > 0 AND NOT a.attisdropped AND n.nspname NOT IN ('pg_catalog', 'information_schema') " +
-                        "AND col_description(c.oid, a.attnum) IS NOT NULL";
+                    column = "c.relname";
                     break;
                 case Family.SQLServer:
-                    tableSql = "SELECT o.name, CAST(ep.value AS nvarchar(max)) FROM sys.extended_properties ep " +
+                    sql = "SELECT o.name, CAST(ep.value AS nvarchar(max)) FROM sys.extended_properties ep " +
                         "JOIN sys.objects o ON o.object_id = ep.major_id " +
                         "WHERE ep.class = 1 AND ep.minor_id = 0 AND ep.name = 'MS_Description'";
-                    columnSql = "SELECT o.name, c.name, CAST(ep.value AS nvarchar(max)) FROM sys.extended_properties ep " +
-                        "JOIN sys.objects o ON o.object_id = ep.major_id " +
-                        "JOIN sys.columns c ON c.object_id = ep.major_id AND c.column_id = ep.minor_id " +
-                        "WHERE ep.class = 1 AND ep.minor_id > 0 AND ep.name = 'MS_Description'";
+                    column = "o.name";
                     break;
                 case Family.MySQL:
                     // A view's comment is the word VIEW, not a description.
-                    tableSql = "SELECT TABLE_NAME, TABLE_COMMENT FROM INFORMATION_SCHEMA.TABLES " +
+                    sql = "SELECT TABLE_NAME, TABLE_COMMENT FROM INFORMATION_SCHEMA.TABLES " +
                         "WHERE TABLE_SCHEMA = DATABASE() AND TABLE_COMMENT <> '' AND TABLE_COMMENT <> 'VIEW'";
-                    columnSql = "SELECT TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT FROM INFORMATION_SCHEMA.COLUMNS " +
-                        "WHERE TABLE_SCHEMA = DATABASE() AND COLUMN_COMMENT <> ''";
+                    column = "TABLE_NAME";
                     break;
                 case Family.Oracle:
-                    tableSql = "SELECT TABLE_NAME, COMMENTS FROM USER_TAB_COMMENTS WHERE COMMENTS IS NOT NULL";
-                    columnSql = "SELECT TABLE_NAME, COLUMN_NAME, COMMENTS FROM USER_COL_COMMENTS WHERE COMMENTS IS NOT NULL";
+                    sql = "SELECT TABLE_NAME, COMMENTS FROM USER_TAB_COMMENTS WHERE COMMENTS IS NOT NULL";
+                    column = "TABLE_NAME";
                     break;
                 default:
                     return;
             }
-            var byName = new Dictionary<string, LocalSchemaTable>(StringComparer.OrdinalIgnoreCase);
+            if (tables.Count == 0)
+                return;
+            Dictionary<string, LocalSchemaTable> byName = ByName(tables);
+            foreach (string query in Filtered(family, sql, " AND " + column, filter))
+            {
+                foreach (string[] row in Rows(connection, query, 2))
+                {
+                    LocalSchemaTable table;
+                    if (byName.TryGetValue(row[0], out table) && string.IsNullOrEmpty(table.Context))
+                        table.Context = row[1];
+                }
+            }
+        }
+
+        /// <summary>
+        /// The comments the database keeps on the columns of <paramref name="tables"/>, as the starting context of each
+        /// one that has none yet (the dialects of <see cref="TableComments"/>). With <paramref name="filter"/> the query
+        /// is filtered by those tables, else it reads the whole database.
+        /// </summary>
+        private static void ColumnComments(DbConnection connection, Family family, List<LocalSchemaTable> tables, List<string> filter)
+        {
+            string sql, column;
+            switch (family)
+            {
+                case Family.Firebird:
+                    sql = "SELECT TRIM(RDB$RELATION_NAME), TRIM(RDB$FIELD_NAME), RDB$DESCRIPTION " +
+                        "FROM RDB$RELATION_FIELDS WHERE RDB$DESCRIPTION IS NOT NULL";
+                    column = "RDB$RELATION_NAME";
+                    break;
+                case Family.PostgreSQL:
+                    sql = "SELECT c.relname, a.attname, col_description(c.oid, a.attnum) FROM pg_class c " +
+                        "JOIN pg_namespace n ON n.oid = c.relnamespace JOIN pg_attribute a ON a.attrelid = c.oid " +
+                        "WHERE a.attnum > 0 AND NOT a.attisdropped AND n.nspname NOT IN ('pg_catalog', 'information_schema') " +
+                        "AND col_description(c.oid, a.attnum) IS NOT NULL";
+                    column = "c.relname";
+                    break;
+                case Family.SQLServer:
+                    sql = "SELECT o.name, c.name, CAST(ep.value AS nvarchar(max)) FROM sys.extended_properties ep " +
+                        "JOIN sys.objects o ON o.object_id = ep.major_id " +
+                        "JOIN sys.columns c ON c.object_id = ep.major_id AND c.column_id = ep.minor_id " +
+                        "WHERE ep.class = 1 AND ep.minor_id > 0 AND ep.name = 'MS_Description'";
+                    column = "o.name";
+                    break;
+                case Family.MySQL:
+                    sql = "SELECT TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT FROM INFORMATION_SCHEMA.COLUMNS " +
+                        "WHERE TABLE_SCHEMA = DATABASE() AND COLUMN_COMMENT <> ''";
+                    column = "TABLE_NAME";
+                    break;
+                case Family.Oracle:
+                    sql = "SELECT TABLE_NAME, COLUMN_NAME, COMMENTS FROM USER_COL_COMMENTS WHERE COMMENTS IS NOT NULL";
+                    column = "TABLE_NAME";
+                    break;
+                default:
+                    return;
+            }
+            if (tables.Count == 0)
+                return;
+            Dictionary<string, LocalSchemaTable> byName = ByName(tables);
+            foreach (string query in Filtered(family, sql, " AND " + column, filter))
+            {
+                foreach (string[] row in Rows(connection, query, 3))
+                {
+                    LocalSchemaTable table;
+                    if (!byName.TryGetValue(row[0], out table))
+                        continue;
+                    LocalSchemaColumn c = table.Columns.Find(x => string.Equals(x.Name, row[1], StringComparison.OrdinalIgnoreCase));
+                    if (c != null && string.IsNullOrEmpty(c.Context))
+                        c.Context = row[2];
+                }
+            }
+        }
+
+        private static Dictionary<string, LocalSchemaTable> ByName(List<LocalSchemaTable> tables)
+        {
+            var result = new Dictionary<string, LocalSchemaTable>(StringComparer.OrdinalIgnoreCase);
             foreach (LocalSchemaTable t in tables)
-                if (!byName.ContainsKey(t.Name))
-                    byName.Add(t.Name, t);
-            foreach (string[] row in Rows(connection, tableSql, 2))
+                if (!result.ContainsKey(t.Name))
+                    result.Add(t.Name, t);
+            return result;
+        }
+
+        /// <summary>
+        /// A catalog query as it is (no <paramref name="filter"/>), or once per batch of <see cref="FilterBatch"/>
+        /// names of <paramref name="filter"/>, followed by <paramref name="condition"/> and <c>IN (...)</c>: " AND
+        /// TABLE_NAME" after the WHERE of the query, or " WHERE TABLE_NAME" for one without. None for an empty filter.
+        /// </summary>
+        private static IEnumerable<string> Filtered(Family family, string sql, string condition, List<string> filter)
+        {
+            if (filter == null)
             {
-                LocalSchemaTable table;
-                if (byName.TryGetValue(row[0], out table) && string.IsNullOrEmpty(table.Context))
-                    table.Context = row[1];
+                yield return sql;
+                yield break;
             }
-            foreach (string[] row in Rows(connection, columnSql, 3))
+            for (int start = 0; start < filter.Count; start += FilterBatch)
             {
-                LocalSchemaTable table;
-                if (!byName.TryGetValue(row[0], out table))
-                    continue;
-                LocalSchemaColumn column = table.Columns.Find(c => string.Equals(c.Name, row[1], StringComparison.OrdinalIgnoreCase));
-                if (column != null && string.IsNullOrEmpty(column.Context))
-                    column.Context = row[2];
+                var list = new System.Text.StringBuilder();
+                for (int i = start; i < filter.Count && i < start + FilterBatch; i++)
+                {
+                    if (list.Length > 0)
+                        list.Append(", ");
+                    list.Append(Literal(family, filter[i]));
+                }
+                yield return sql + condition + " IN (" + list.ToString() + ")";
             }
+        }
+
+        /// <summary>A name as a string literal of the dialect: N'...' in SQL Server (the names are Unicode), the backslash escaped in MySQL.</summary>
+        private static string Literal(Family family, string text)
+        {
+            string value = (text ?? "").Replace("'", "''");
+            if (family == Family.MySQL)
+                value = value.Replace("\\", "\\\\");
+            return (family == Family.SQLServer ? "N'" : "'") + value + "'";
         }
 
         /// <summary>The rows of a catalog query, trimmed text, without the ones with an empty value; none when it fails.</summary>
@@ -554,58 +765,67 @@ namespace Reportman.Reporting
             }
         }
 
-        private static HashSet<string> InformationSchemaPrimaryKeys(DbConnection connection)
+        /// <summary>The primary key columns as "table.column": of the whole database, or of the tables of <paramref name="filter"/>.</summary>
+        private static HashSet<string> InformationSchemaPrimaryKeys(DbConnection connection, Family family, List<string> filter)
         {
             var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            using (DbCommand cmd = connection.CreateCommand())
-            {
-                cmd.CommandText = @"SELECT kcu.TABLE_NAME, kcu.COLUMN_NAME
+            const string sql = @"SELECT kcu.TABLE_NAME, kcu.COLUMN_NAME
 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc
 JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu ON kcu.CONSTRAINT_NAME = tc.CONSTRAINT_NAME AND kcu.CONSTRAINT_SCHEMA = tc.CONSTRAINT_SCHEMA AND kcu.TABLE_NAME = tc.TABLE_NAME
 WHERE tc.CONSTRAINT_TYPE = 'PRIMARY KEY'";
-                cmd.CommandTimeout = 20;
-                using (DbDataReader reader = cmd.ExecuteReader())
+            foreach (string query in Filtered(family, sql, " AND kcu.TABLE_NAME", filter))
+            {
+                using (DbCommand cmd = connection.CreateCommand())
                 {
-                    while (reader.Read())
-                        result.Add(Convert.ToString(reader.GetValue(0)) + "." + Convert.ToString(reader.GetValue(1)));
+                    cmd.CommandText = query;
+                    cmd.CommandTimeout = 20;
+                    using (DbDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            result.Add(Convert.ToString(reader.GetValue(0)) + "." + Convert.ToString(reader.GetValue(1)));
+                    }
                 }
             }
             return result;
         }
 
-        private static Dictionary<string, List<LocalSchemaForeignKey>> InformationSchemaForeignKeys(DbConnection connection)
+        /// <summary>The foreign keys by source table: of the whole database, or of the tables of <paramref name="filter"/>.</summary>
+        private static Dictionary<string, List<LocalSchemaForeignKey>> InformationSchemaForeignKeys(DbConnection connection, Family family, List<string> filter)
         {
             var result = new Dictionary<string, List<LocalSchemaForeignKey>>(StringComparer.OrdinalIgnoreCase);
-            using (DbCommand cmd = connection.CreateCommand())
-            {
-                cmd.CommandText = @"SELECT rc.CONSTRAINT_NAME AS CN, kcu.TABLE_NAME AS FK_TABLE, kcu.COLUMN_NAME AS FK_COLUMN, kcu.ORDINAL_POSITION AS POS, kcu2.TABLE_NAME AS PK_TABLE, kcu2.COLUMN_NAME AS PK_COLUMN
+            const string sql = @"SELECT rc.CONSTRAINT_NAME AS CN, kcu.TABLE_NAME AS FK_TABLE, kcu.COLUMN_NAME AS FK_COLUMN, kcu.ORDINAL_POSITION AS POS, kcu2.TABLE_NAME AS PK_TABLE, kcu2.COLUMN_NAME AS PK_COLUMN
 FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc
 JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu ON kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
-JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu2 ON kcu2.CONSTRAINT_NAME = rc.UNIQUE_CONSTRAINT_NAME AND kcu2.CONSTRAINT_SCHEMA = rc.UNIQUE_CONSTRAINT_SCHEMA AND kcu2.ORDINAL_POSITION = kcu.ORDINAL_POSITION
-ORDER BY kcu.TABLE_NAME, rc.CONSTRAINT_NAME, kcu.ORDINAL_POSITION";
-                cmd.CommandTimeout = 20;
-                using (DbDataReader reader = cmd.ExecuteReader())
+JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu2 ON kcu2.CONSTRAINT_NAME = rc.UNIQUE_CONSTRAINT_NAME AND kcu2.CONSTRAINT_SCHEMA = rc.UNIQUE_CONSTRAINT_SCHEMA AND kcu2.ORDINAL_POSITION = kcu.ORDINAL_POSITION";
+            foreach (string query in Filtered(family, sql, " WHERE kcu.TABLE_NAME", filter))
+            {
+                using (DbCommand cmd = connection.CreateCommand())
                 {
-                    LocalSchemaForeignKey current = null;
-                    string currentTable = "";
-                    while (reader.Read())
+                    cmd.CommandText = query + "\r\nORDER BY kcu.TABLE_NAME, rc.CONSTRAINT_NAME, kcu.ORDINAL_POSITION";
+                    cmd.CommandTimeout = 20;
+                    using (DbDataReader reader = cmd.ExecuteReader())
                     {
-                        string tableName = Convert.ToString(reader["FK_TABLE"]) ?? "";
-                        string name = Convert.ToString(reader["CN"]) ?? "";
-                        if (current == null || current.ConstraintName != name || currentTable != tableName)
+                        LocalSchemaForeignKey current = null;
+                        string currentTable = "";
+                        while (reader.Read())
                         {
-                            current = new LocalSchemaForeignKey { ConstraintName = name, TargetTable = Convert.ToString(reader["PK_TABLE"]) ?? "" };
-                            currentTable = tableName;
-                            List<LocalSchemaForeignKey> list;
-                            if (!result.TryGetValue(tableName, out list))
+                            string tableName = Convert.ToString(reader["FK_TABLE"]) ?? "";
+                            string name = Convert.ToString(reader["CN"]) ?? "";
+                            if (current == null || current.ConstraintName != name || currentTable != tableName)
                             {
-                                list = new List<LocalSchemaForeignKey>();
-                                result[tableName] = list;
+                                current = new LocalSchemaForeignKey { ConstraintName = name, TargetTable = Convert.ToString(reader["PK_TABLE"]) ?? "" };
+                                currentTable = tableName;
+                                List<LocalSchemaForeignKey> list;
+                                if (!result.TryGetValue(tableName, out list))
+                                {
+                                    list = new List<LocalSchemaForeignKey>();
+                                    result[tableName] = list;
+                                }
+                                list.Add(current);
                             }
-                            list.Add(current);
+                            current.SourceColumns.Add(Convert.ToString(reader["FK_COLUMN"]) ?? "");
+                            current.TargetColumns.Add(Convert.ToString(reader["PK_COLUMN"]) ?? "");
                         }
-                        current.SourceColumns.Add(Convert.ToString(reader["FK_COLUMN"]) ?? "");
-                        current.TargetColumns.Add(Convert.ToString(reader["PK_COLUMN"]) ?? "");
                     }
                 }
             }

@@ -22,14 +22,15 @@ using Reportman.Reporting;
 namespace Reportman.Designer
 {
     // The Tables tab: the tables of the database and the ones the subschema chooses (a table enters with its
-    // primary key), and the description of a table, which is the dictionary's.
+    // primary key, its columns read first when the catalog is large), and the description of a table, which is
+    // the dictionary's.
     public partial class LocalSchemaEditorForm
     {
         private TableLayoutPanel _tablesLayout;
         private Panel _availablePanel;
         private Panel _tableButtonsPanel;
-        private ListBox _listAvailable;
-        private ListBox _listChosen;
+        private TableList _listAvailable;
+        private TableList _listChosen;
         private Label _lblAvailable;
         private Label _lblChosen;
         private TextBox _txtAvailableFilter;
@@ -43,20 +44,227 @@ namespace Reportman.Designer
         private TextBox _txtTableDescription;
         private LocalSchemaTable _describedTable;
 
+        /// <summary>
+        /// A list of tables that paints only the rows it shows, so that a large catalog (a hundred thousand tables,
+        /// filtered or not) fills and scrolls at once: a ListView in virtual mode with one column and no header, as a
+        /// list box. Its tables are set at once (<see cref="SetTables"/>) keeping the selection by name, and
+        /// <see cref="SelectionChanged"/> is raised once for what the user does, never for what the program does.
+        /// Internal for the self-test (DesignerSelfTestLocalSchema).
+        /// </summary>
+        internal sealed class TableList : ListView
+        {
+            private List<LocalSchemaTable> _tables = new List<LocalSchemaTable>();
+            // The names to select when the window is created (a list of a tab not shown yet has none)
+            private HashSet<string> _pending;
+            private string _pendingFocus;
+            private int _quiet;
+            private bool _posted;
+
+            public TableList(bool multiSelect)
+            {
+                View = View.Details;
+                HeaderStyle = ColumnHeaderStyle.None;
+                FullRowSelect = true;
+                HideSelection = false;
+                MultiSelect = multiSelect;
+                VirtualMode = true;
+                Columns.Add("", 100);
+                RetrieveVirtualItem += (s, e) =>
+                    e.Item = new ListViewItem(e.ItemIndex >= 0 && e.ItemIndex < _tables.Count ? _tables[e.ItemIndex].Name : "");
+                SearchForVirtualItem += SearchTable;
+                // A click changes the selection twice (the old item, the new one) and a range comes apart: once, later
+                SelectedIndexChanged += (s, e) => Changed();
+                VirtualItemsSelectionRangeChanged += (s, e) => Changed();
+                ClientSizeChanged += (s, e) => FitColumn();
+            }
+
+            /// <summary>The user changed the selection.</summary>
+            public event EventHandler SelectionChanged;
+
+            /// <summary>The tables of the list, in its order.</summary>
+            public List<LocalSchemaTable> Tables
+            {
+                get { return _tables; }
+            }
+
+            /// <summary>The tables selected, in the order of the list.</summary>
+            public List<LocalSchemaTable> SelectedTables
+            {
+                get
+                {
+                    var result = new List<LocalSchemaTable>();
+                    if (!IsHandleCreated)
+                        return result;
+                    foreach (int index in SelectedIndices)
+                        if (index >= 0 && index < _tables.Count)
+                            result.Add(_tables[index]);
+                    return result;
+                }
+            }
+
+            /// <summary>The number of tables selected.</summary>
+            public int SelectedCount
+            {
+                get { return IsHandleCreated ? SelectedIndices.Count : 0; }
+            }
+
+            /// <summary>The table the user is on: the focused one when it is selected, else the first selected; null for none.</summary>
+            public LocalSchemaTable CurrentTable
+            {
+                get
+                {
+                    if (!IsHandleCreated || SelectedIndices.Count == 0)
+                        return null;
+                    ListViewItem focused = FocusedItem;
+                    if (focused != null && focused.Index >= 0 && focused.Index < _tables.Count && SelectedIndices.Contains(focused.Index))
+                        return _tables[focused.Index];
+                    int first = SelectedIndices[0];
+                    return first >= 0 && first < _tables.Count ? _tables[first] : null;
+                }
+            }
+
+            /// <summary>Shows <paramref name="tables"/>, the ones selected before (by name) still selected.</summary>
+            public void SetTables(List<LocalSchemaTable> tables)
+            {
+                HashSet<string> selected;
+                string focus;
+                if (IsHandleCreated)
+                {
+                    var names = new List<string>();
+                    foreach (LocalSchemaTable t in SelectedTables)
+                        names.Add(t.Name);
+                    selected = LocalSchemaEditing.NameSet(names);
+                    LocalSchemaTable current = CurrentTable;
+                    focus = current != null ? current.Name : null;
+                }
+                else
+                {
+                    selected = _pending ?? new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    focus = _pendingFocus;
+                }
+                _tables = tables ?? new List<LocalSchemaTable>();
+                Select(selected, focus);
+            }
+
+            /// <summary>Selects <paramref name="tables"/> (none for null), the last one focused and shown.</summary>
+            public void SelectTables(IEnumerable<LocalSchemaTable> tables)
+            {
+                var names = new List<string>();
+                if (tables != null)
+                    foreach (LocalSchemaTable t in tables)
+                        if (t != null)
+                            names.Add(t.Name);
+                Select(LocalSchemaEditing.NameSet(names), names.Count > 0 ? names[names.Count - 1] : null);
+            }
+
+            private void Select(HashSet<string> names, string focus)
+            {
+                if (!IsHandleCreated)
+                {
+                    _pending = names;
+                    _pendingFocus = focus;
+                    VirtualListSize = _tables.Count;
+                    return;
+                }
+                _pending = null;
+                _pendingFocus = null;
+                _quiet++;
+                BeginUpdate();
+                try
+                {
+                    SelectedIndices.Clear();
+                    VirtualListSize = _tables.Count;
+                    int shown = -1;
+                    if (names.Count > 0)
+                    {
+                        for (int i = 0; i < _tables.Count; i++)
+                        {
+                            if (!names.Contains(_tables[i].Name))
+                                continue;
+                            SelectedIndices.Add(i);
+                            if (shown < 0 || string.Equals(_tables[i].Name, focus, StringComparison.OrdinalIgnoreCase))
+                                shown = i;
+                        }
+                    }
+                    if (shown >= 0)
+                    {
+                        Items[shown].Focused = true;
+                        EnsureVisible(shown);
+                    }
+                }
+                finally
+                {
+                    EndUpdate();
+                    _quiet--;
+                }
+                // The same number of rows with other tables: the control would not paint them
+                Invalidate();
+            }
+
+            protected override void OnHandleCreated(EventArgs e)
+            {
+                base.OnHandleCreated(e);
+                FitColumn();
+                Select(_pending ?? new HashSet<string>(StringComparer.OrdinalIgnoreCase), _pendingFocus);
+            }
+
+            private void Changed()
+            {
+                if (_quiet > 0 || _posted || !IsHandleCreated)
+                    return;
+                _posted = true;
+                BeginInvoke(new Action(() =>
+                {
+                    _posted = false;
+                    if (!IsDisposed && SelectionChanged != null)
+                        SelectionChanged(this, EventArgs.Empty);
+                }));
+            }
+
+            // Typing the first letters of a name goes to it, as in a list box
+            private void SearchTable(object sender, SearchForVirtualItemEventArgs e)
+            {
+                if (string.IsNullOrEmpty(e.Text) || _tables.Count == 0)
+                    return;
+                int start = e.StartIndex >= 0 && e.StartIndex < _tables.Count ? e.StartIndex : 0;
+                for (int n = 0; n < _tables.Count; n++)
+                {
+                    int i = (start + n) % _tables.Count;
+                    string name = _tables[i].Name;
+                    if (e.IsPrefixSearch ? name.StartsWith(e.Text, StringComparison.CurrentCultureIgnoreCase)
+                        : string.Equals(name, e.Text, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        e.Index = i;
+                        return;
+                    }
+                }
+            }
+
+            // The one column takes the width of the list: no horizontal bar, a long name ends in an ellipsis
+            private void FitColumn()
+            {
+                if (Columns.Count == 0)
+                    return;
+                int width = Math.Max(20, ClientSize.Width - 1);
+                if (Columns[0].Width != width)
+                    Columns[0].Width = width;
+            }
+        }
+
         private TabPage BuildTablesTab()
         {
             var page = new TabPage(Tr(1848)) { Padding = new Padding(6) };
 
-            _listAvailable = new ListBox { IntegralHeight = false, SelectionMode = SelectionMode.MultiExtended, DisplayMember = "Name" };
+            _listAvailable = new TableList(true);
             _listAvailable.DoubleClick += (s, e) => AddSelectedTables();
-            _listAvailable.SelectedIndexChanged += (s, e) => DescribeTable(_listAvailable.SelectedItem as LocalSchemaTable);
+            _listAvailable.SelectionChanged += (s, e) => DescribeTable(_listAvailable.CurrentTable);
             _availablePanel = NewListPanel(_listAvailable, out _lblAvailable, out _txtAvailableFilter, out _lblAvailableCount);
             _lblAvailable.Text = Tr(1857);
             _txtAvailableFilter.TextChanged += (s, e) => FillAvailableTables();
 
-            _listChosen = new ListBox { IntegralHeight = false, SelectionMode = SelectionMode.MultiExtended, DisplayMember = "Name" };
+            _listChosen = new TableList(true);
             _listChosen.DoubleClick += (s, e) => RemoveSelectedTables();
-            _listChosen.SelectedIndexChanged += (s, e) => DescribeTable(_listChosen.SelectedItem as LocalSchemaTable);
+            _listChosen.SelectionChanged += (s, e) => DescribeTable(_listChosen.CurrentTable);
             Panel chosenPanel = NewListPanel(_listChosen, out _lblChosen, out _txtChosenFilter, out _lblChosenCount);
             _txtChosenFilter.TextChanged += (s, e) => FillChosenTables();
 
@@ -118,40 +326,20 @@ namespace Reportman.Designer
             DescribeTable(described);
         }
 
-        private static void FillList(ListBox list, List<LocalSchemaTable> tables)
-        {
-            var selected = new List<string>();
-            foreach (object item in list.SelectedItems)
-                selected.Add(((LocalSchemaTable)item).Name);
-            list.BeginUpdate();
-            try
-            {
-                list.Items.Clear();
-                foreach (LocalSchemaTable t in tables)
-                {
-                    int index = list.Items.Add(t);
-                    if (selected.Contains(t.Name))
-                        list.SetSelected(index, true);
-                }
-            }
-            finally
-            {
-                list.EndUpdate();
-            }
-        }
-
         private void FillAvailableTables()
         {
             var tables = new List<LocalSchemaTable>();
             int total = 0;
             if (_file != null && _current != null)
             {
+                HashSet<string> chosen = LocalSchemaEditing.NameSet(_current.Tables);
+                var filter = new LocalSchemaFilter(_txtAvailableFilter.Text);
                 foreach (LocalSchemaTable t in _file.Tables)
                 {
-                    if (LocalSchemaEditing.HasTable(_current, t.Name))
+                    if (chosen.Contains(t.Name))
                         continue;
                     total++;
-                    if (MatchesFilter(t.Name, _txtAvailableFilter.Text))
+                    if (filter.Matches(t.Name, t.Context))
                         tables.Add(t);
                 }
             }
@@ -159,7 +347,7 @@ namespace Reportman.Designer
             _filling = true;
             try
             {
-                FillList(_listAvailable, tables);
+                _listAvailable.SetTables(tables);
             }
             finally
             {
@@ -173,14 +361,15 @@ namespace Reportman.Designer
         {
             var tables = new List<LocalSchemaTable>();
             List<LocalSchemaTable> chosen = LocalSchemaEditing.TablesOf(_file, _current);
+            var filter = new LocalSchemaFilter(_txtChosenFilter.Text);
             foreach (LocalSchemaTable t in chosen)
-                if (MatchesFilter(t.Name, _txtChosenFilter.Text))
+                if (filter.Matches(t.Name, t.Context))
                     tables.Add(t);
             bool filling = _filling;
             _filling = true;
             try
             {
-                FillList(_listChosen, tables);
+                _listChosen.SetTables(tables);
             }
             finally
             {
@@ -200,8 +389,8 @@ namespace Reportman.Designer
             if (_btnAddTables == null)
                 return;
             bool editable = _file != null && _current != null && !_busy;
-            _btnAddTables.Enabled = editable && _listAvailable.SelectedItems.Count > 0;
-            _btnRemoveTables.Enabled = editable && _listChosen.SelectedItems.Count > 0;
+            _btnAddTables.Enabled = editable && _listAvailable.SelectedCount > 0;
+            _btnRemoveTables.Enabled = editable && _listChosen.SelectedCount > 0;
             _txtTableDescription.Enabled = _describedTable != null;
         }
 
@@ -227,13 +416,26 @@ namespace Reportman.Designer
             UpdateTablesButtons();
         }
 
-        private void AddSelectedTables()
+        /// <summary>
+        /// Adds the tables selected on the left to the subschema. Of a large catalog their columns are read first (the
+        /// subschema's tables always have them): one that cannot be read is not added, and the status line says why.
+        /// </summary>
+        private async void AddSelectedTables()
         {
-            if (_file == null || _current == null || _listAvailable.SelectedItems.Count == 0)
+            if (_file == null || _current == null || _busy || _listAvailable.SelectedCount == 0)
                 return;
-            var tables = new List<LocalSchemaTable>();
-            foreach (object item in _listAvailable.SelectedItems)
-                tables.Add((LocalSchemaTable)item);
+            LocalSubschema subschema = _current;
+            List<LocalSchemaTable> tables = _listAvailable.SelectedTables;
+            var names = new List<string>();
+            foreach (LocalSchemaTable t in tables)
+                names.Add(t.Name);
+            await ReadColumnsAsync(names, true);
+            if (IsDisposed || _current != subschema)
+                return;
+            // The tables are the file's: reading their columns filled them in place
+            tables.RemoveAll(t => !LocalSchemaStore.IsRead(t));
+            if (tables.Count == 0)
+                return;
             foreach (LocalSchemaTable t in tables)
                 LocalSchemaEditing.AddTable(_file, _current, t);
             TablesChanged();
@@ -241,28 +443,22 @@ namespace Reportman.Designer
             _filling = true;
             try
             {
-                _listChosen.ClearSelected();
-                foreach (LocalSchemaTable t in tables)
-                {
-                    int index = _listChosen.Items.IndexOf(t);
-                    if (index >= 0)
-                        _listChosen.SetSelected(index, true);
-                }
+                _listChosen.SelectTables(tables);
             }
             finally
             {
                 _filling = false;
             }
-            DescribeTable(tables.Count > 0 ? tables[tables.Count - 1] : null);
+            DescribeTable(tables[tables.Count - 1]);
         }
 
         private void RemoveSelectedTables()
         {
-            if (_file == null || _current == null || _listChosen.SelectedItems.Count == 0)
+            if (_file == null || _current == null || _listChosen.SelectedCount == 0)
                 return;
             var names = new List<string>();
-            foreach (object item in _listChosen.SelectedItems)
-                names.Add(((LocalSchemaTable)item).Name);
+            foreach (LocalSchemaTable t in _listChosen.SelectedTables)
+                names.Add(t.Name);
             // Only the choice goes: the descriptions stay in the dictionary
             foreach (string name in names)
                 LocalSchemaEditing.RemoveTable(_current, name);
