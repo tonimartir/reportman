@@ -2604,7 +2604,10 @@ namespace Reportman.Drawing
                             SegStartAbs = SegEndAbs;
                         }
                     }
-                    if (currentChunk.Glyphs.Count > 0) calculatedLines.Add(currentChunk);
+                    // AN EMPTY PARAGRAPH IS A LINE TOO: "a<br><br>b" leaves a blank line between them, as
+                    // DirectWrite does with the same plain text (FontInfoGDI). Without it the empty line had
+                    // no LineInfo and no height, and the paragraphs of an HTML text printed one against the other.
+                    if (currentChunk.Glyphs.Count > 0 || calculatedLines.Count == 0) calculatedLines.Add(currentChunk);
 
                     for (int lineIdx = 0; lineIdx < calculatedLines.Count; lineIdx++)
                     {
