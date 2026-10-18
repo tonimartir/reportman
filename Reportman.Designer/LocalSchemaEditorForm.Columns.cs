@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Globalization;
 using System.Threading;
@@ -67,7 +68,7 @@ namespace Reportman.Designer
                 _column = null;
                 FillColumnsList();
                 ClearPreview();
-                ReadColumnsTableLater();
+                ReadColumnsTableLater(true);
             };
             Panel tablesPanel = NewListPanel(_listColumnTables, out _lblColumnTables, out _txtColumnTablesFilter, out _lblColumnTablesCount);
             _lblColumnTables.Text = Tr(1848);
@@ -238,18 +239,25 @@ namespace Reportman.Designer
             _lblColumnTables.Text = _current == null ? Tr(1843) : Tr(1858);
             _lblColumnTablesCount.Text = CountText(tables.Count, all.Count);
             FillColumnsList();
-            ReadColumnsTableLater();
+            ReadColumnsTableLater(false);
         }
 
         /// <summary>
         /// The table clicked in this tab, of a large catalog, without its columns: they are read now, while the tab is
-        /// shown (the dialog goes on meanwhile), and the list follows when they come and it is still the one clicked.
+        /// shown (the dialog goes on meanwhile, until the progress window of a read that takes a while shows), and the
+        /// list follows when they come and it is still the one clicked. A table whose read the user cancelled is read
+        /// again only when it is <paramref name="asked"/> for: clicked, or the tab shown.
         /// </summary>
-        private void ReadColumnsTableLater()
+        /// <param name="asked">The user clicked the table or showed the tab; false when the tab is only filled again.</param>
+        private void ReadColumnsTableLater(bool asked)
         {
             LocalSchemaTable table = _columnsTable;
             if (table == null || _file == null || LocalSchemaStore.IsRead(table) || _tabs.SelectedTab != _tabColumns ||
                 _readingTables.Contains(table.Name))
+                return;
+            if (asked)
+                _cancelledReads.Remove(table.Name);
+            else if (_cancelledReads.Contains(table.Name))
                 return;
             _ = ReadColumnsAsync(new[] { table.Name }, false);
             if (_columnsTable == table && !LocalSchemaStore.IsRead(table))
@@ -522,6 +530,10 @@ namespace Reportman.Designer
             UpdateColumnsButtons();
         }
 
+        /// <summary>
+        /// The first <see cref="PreviewRows"/> rows of the table clicked, read off the UI thread with a progress window when
+        /// it takes a while; cancelled (by the user, or by another table clicked), the preview stays empty.
+        /// </summary>
         private async Task PreviewAsync()
         {
             if (_columnsTable == null || _file == null || _createConnection == null)
@@ -531,15 +543,23 @@ namespace Reportman.Designer
             _previewCts = cts;
             string table = _columnsTable.Name;
             string dialect = _file.Dialect;
+            Func<DbConnection> createConnection = _createConnection;
             _btnPreview.Enabled = false;
             _lblPreview.Text = TrFormat(1917, table);
             try
             {
-                DataTable rows = await Task.Run(() => LocalSchemaEditing.ReadPreview(_createConnection, dialect, table, PreviewRows));
+                DataTable rows = await RunReadAsync(TrFormat(2041, table), cts.Token,
+                    (progress, token) => LocalSchemaEditing.ReadPreviewAsync(createConnection, dialect, table, PreviewRows, progress, token));
                 if (IsDisposed || cts.IsCancellationRequested)
                     return;
                 _gridPreview.DataSource = rows;
                 _lblPreview.Text = TrFormat(1918, rows.Rows.Count.ToString(CultureInfo.CurrentCulture), table);
+            }
+            catch (OperationCanceledException)
+            {
+                // Cancelled by the user: the preview says again what it does (another table clicked cleared it already)
+                if (!IsDisposed && _previewCts == cts)
+                    ClearPreview();
             }
             catch (Exception ex)
             {

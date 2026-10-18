@@ -17,9 +17,217 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Reportman.Reporting
 {
+    /// <summary>The phase of a read of a database (<see cref="DatabaseReadProgress"/>).</summary>
+    public enum DatabaseReadPhase
+    {
+        /// <summary>The connection is being opened.</summary>
+        Connecting,
+        /// <summary>A query runs, until its first row comes.</summary>
+        Executing,
+        /// <summary>The rows of a query arrive.</summary>
+        Fetching
+    }
+
+    /// <summary>
+    /// Where a read of a database is (the catalog, the columns of some tables, the first rows of a table), for a progress
+    /// indicator: its phase, the rows all its queries fetched so far and the time since it started. Reported by
+    /// <see cref="DatabaseReadTracker"/>.
+    /// </summary>
+    public sealed class DatabaseReadProgress
+    {
+        /// <summary>Initializes a progress report.</summary>
+        /// <param name="phase">The phase of the read.</param>
+        /// <param name="rows">The rows fetched by all the queries of the read.</param>
+        /// <param name="elapsed">The time since the read started.</param>
+        public DatabaseReadProgress(DatabaseReadPhase phase, long rows, TimeSpan elapsed)
+        {
+            Phase = phase;
+            Rows = rows;
+            Elapsed = elapsed;
+        }
+
+        /// <summary>The phase of the read.</summary>
+        public DatabaseReadPhase Phase { get; }
+
+        /// <summary>The rows fetched by all the queries of the read so far.</summary>
+        public long Rows { get; }
+
+        /// <summary>The time since the read started, when this was reported.</summary>
+        public TimeSpan Elapsed { get; }
+
+        /// <summary>The phase as the progress events of Reportman Server name it: connecting, executing or fetching.</summary>
+        public string PhaseName
+        {
+            get { return NameOf(Phase); }
+        }
+
+        /// <summary>The name of a phase in the progress events of Reportman Server: connecting, executing or fetching.</summary>
+        public static string NameOf(DatabaseReadPhase phase)
+        {
+            switch (phase)
+            {
+                case DatabaseReadPhase.Connecting:
+                    return "connecting";
+                case DatabaseReadPhase.Executing:
+                    return "executing";
+                default:
+                    return "fetching";
+            }
+        }
+    }
+
+    /// <summary>
+    /// The progress of one read of a database, reported to an <see cref="IProgress{T}"/>: the reader opens the connection,
+    /// runs its queries and reads their rows through it (<see cref="OpenAsync"/>, <see cref="ExecuteReaderAsync"/>,
+    /// <see cref="ReadAsync"/>), with the token of the read, and the tracker counts the rows of all the queries and the time
+    /// since it was created. A phase is reported at once the first time the read reaches it; after that the state is
+    /// reported at most every <see cref="ReportInterval"/> (a catalog of thousands of tables runs thousands of short queries,
+    /// and a report per row would flood a window), and once more when the read ends (<see cref="Finish"/>). One read uses
+    /// it at a time; the reports come from the thread that reads.
+    /// </summary>
+    public sealed class DatabaseReadTracker
+    {
+        /// <summary>The shortest time between two reports, but for the first one of each phase.</summary>
+        public static readonly TimeSpan ReportInterval = TimeSpan.FromMilliseconds(100);
+
+        private readonly IProgress<DatabaseReadProgress> _progress;
+        private readonly Stopwatch _watch = Stopwatch.StartNew();
+        private DatabaseReadPhase _phase = DatabaseReadPhase.Connecting;
+        private long _rows;
+        // The phases reached, as bits, and whether something changed since the last report
+        private int _reached;
+        private bool _pending;
+        private TimeSpan _lastReport = TimeSpan.Zero;
+
+        /// <summary>Starts tracking a read.</summary>
+        /// <param name="progress">Where the progress is reported; null for nowhere.</param>
+        public DatabaseReadTracker(IProgress<DatabaseReadProgress> progress)
+        {
+            _progress = progress;
+        }
+
+        /// <summary>The phase of the read now.</summary>
+        public DatabaseReadPhase Phase
+        {
+            get { return _phase; }
+        }
+
+        /// <summary>The rows fetched by all the queries of the read so far.</summary>
+        public long Rows
+        {
+            get { return _rows; }
+        }
+
+        /// <summary>The time since the read started.</summary>
+        public TimeSpan Elapsed
+        {
+            get { return _watch.Elapsed; }
+        }
+
+        /// <summary>The state of the read now.</summary>
+        public DatabaseReadProgress Current
+        {
+            get { return new DatabaseReadProgress(_phase, _rows, _watch.Elapsed); }
+        }
+
+        /// <summary>The connection is being opened.</summary>
+        public void Connecting()
+        {
+            Enter(DatabaseReadPhase.Connecting, 0);
+        }
+
+        /// <summary>A query runs, until its first row comes.</summary>
+        public void Executing()
+        {
+            Enter(DatabaseReadPhase.Executing, 0);
+        }
+
+        /// <summary>Rows of a query arrived (none: nothing changes).</summary>
+        /// <param name="rows">How many.</param>
+        public void Fetched(int rows)
+        {
+            if (rows > 0)
+                Enter(DatabaseReadPhase.Fetching, rows);
+        }
+
+        /// <summary>The read ended: what was not reported yet is reported now.</summary>
+        public void Finish()
+        {
+            if (_pending && _progress != null)
+                Report(_watch.Elapsed);
+        }
+
+        /// <summary>Opens a closed connection, with the token of the read (nothing when it is open).</summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="cancellationToken">The token of the read.</param>
+        public async Task OpenAsync(DbConnection connection, CancellationToken cancellationToken)
+        {
+            if (connection == null)
+                throw new ArgumentNullException("connection");
+            if (connection.State == ConnectionState.Open)
+                return;
+            cancellationToken.ThrowIfCancellationRequested();
+            Connecting();
+            await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>Runs a query, with the token of the read, until its first row comes.</summary>
+        /// <param name="command">The command.</param>
+        /// <param name="behavior">How it runs (SchemaOnly, KeyInfo...).</param>
+        /// <param name="cancellationToken">The token of the read.</param>
+        public async Task<DbDataReader> ExecuteReaderAsync(DbCommand command, CommandBehavior behavior, CancellationToken cancellationToken)
+        {
+            if (command == null)
+                throw new ArgumentNullException("command");
+            cancellationToken.ThrowIfCancellationRequested();
+            Executing();
+            return await command.ExecuteReaderAsync(behavior, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>The next row of a query, counted, with the token of the read; false at the end.</summary>
+        /// <param name="reader">The reader of the query.</param>
+        /// <param name="cancellationToken">The token of the read: checked before every row.</param>
+        public async Task<bool> ReadAsync(DbDataReader reader, CancellationToken cancellationToken)
+        {
+            if (reader == null)
+                throw new ArgumentNullException("reader");
+            cancellationToken.ThrowIfCancellationRequested();
+            if (!await reader.ReadAsync(cancellationToken).ConfigureAwait(false))
+                return false;
+            Fetched(1);
+            return true;
+        }
+
+        private void Enter(DatabaseReadPhase phase, int rows)
+        {
+            int bit = 1 << (int)phase;
+            bool first = (_reached & bit) == 0;
+            _reached |= bit;
+            if (phase != _phase || rows > 0 || first)
+                _pending = true;
+            _phase = phase;
+            _rows += rows;
+            if (_progress == null || !_pending)
+                return;
+            TimeSpan now = _watch.Elapsed;
+            if (first || now - _lastReport >= ReportInterval)
+                Report(now);
+        }
+
+        private void Report(TimeSpan now)
+        {
+            _lastReport = now;
+            _pending = false;
+            _progress.Report(new DatabaseReadProgress(_phase, _rows, now));
+        }
+    }
+
     /// <summary>
     /// Reads the tables, columns, primary keys and foreign keys of a database through its ADO.NET
     /// provider: the schema collections (Firebird, PostgreSQL, SQL Server, MySQL, Oracle, ODBC), the
@@ -31,6 +239,11 @@ namespace Reportman.Reporting
     /// tables: an ERP's thousands) reads the columns, keys and comments only of the tables it is asked for, with
     /// queries filtered by them: the names of a hundred thousand tables are a few megabytes, their columns are
     /// millions.
+    /// </para>
+    /// <para>
+    /// Every read has an asynchronous form that reports its progress (<see cref="DatabaseReadProgress"/>) and stops when its
+    /// token is cancelled: the token reaches the opening of the connection, the execution of each query and the reading of
+    /// each row, as far as the provider honours it, and the read throws <see cref="OperationCanceledException"/>.
     /// </para>
     /// </summary>
     public static class DatabaseCatalogReader
@@ -165,12 +378,57 @@ namespace Reportman.Reporting
         /// (<see cref="LargeCatalogThreshold"/>); 0 or less, never.</param>
         public static List<LocalSchemaTable> ReadTables(DbConnection connection, IEnumerable<string> tablesToRead, int largeCatalogThreshold)
         {
+            return ReadTablesAsync(connection, tablesToRead, largeCatalogThreshold, null, CancellationToken.None).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// <see cref="ReadTables(DbConnection, IEnumerable{string}, int)"/> reporting its progress to
+        /// <paramref name="progress"/> and stopping when <paramref name="cancellationToken"/> is cancelled (it throws
+        /// <see cref="OperationCanceledException"/>).
+        /// </summary>
+        /// <param name="connection">The connection (opened here when it is closed).</param>
+        /// <param name="tablesToRead">The tables to read with their columns in a large catalog (ignoring case); null for none.</param>
+        /// <param name="largeCatalogThreshold">The number of tables from which the catalog is large
+        /// (<see cref="LargeCatalogThreshold"/>); 0 or less, never.</param>
+        /// <param name="progress">Where the progress of the read is reported; null for nowhere.</param>
+        /// <param name="cancellationToken">Stops the read.</param>
+        public static Task<List<LocalSchemaTable>> ReadTablesAsync(DbConnection connection, IEnumerable<string> tablesToRead, int largeCatalogThreshold,
+            IProgress<DatabaseReadProgress> progress, CancellationToken cancellationToken)
+        {
             if (connection == null)
                 throw new ArgumentNullException("connection");
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
+            var tracker = new DatabaseReadTracker(progress);
+            return RunAsync(tracker, cancellationToken,
+                () => ReadTablesCoreAsync(connection, tablesToRead, largeCatalogThreshold, tracker, cancellationToken));
+        }
+
+        /// <summary>
+        /// Runs a read: the progress that was not reported yet is reported when it ends, and a failure because it was
+        /// cancelled (a provider that answers a cancelled command with its own exception) is an
+        /// <see cref="OperationCanceledException"/>.
+        /// </summary>
+        internal static async Task<T> RunAsync<T>(DatabaseReadTracker tracker, CancellationToken cancellationToken, Func<Task<T>> read)
+        {
+            try
+            {
+                T result = await read().ConfigureAwait(false);
+                cancellationToken.ThrowIfCancellationRequested();
+                tracker.Finish();
+                return result;
+            }
+            catch (Exception ex) when (cancellationToken.IsCancellationRequested && !(ex is OperationCanceledException))
+            {
+                throw new OperationCanceledException(ex.Message, ex, cancellationToken);
+            }
+        }
+
+        /// <summary>The reading of <see cref="ReadTablesAsync"/> with the tracker of a read that may do more.</summary>
+        internal static async Task<List<LocalSchemaTable>> ReadTablesCoreAsync(DbConnection connection, IEnumerable<string> tablesToRead,
+            int largeCatalogThreshold, DatabaseReadTracker tracker, CancellationToken cancellationToken)
+        {
+            await tracker.OpenAsync(connection, cancellationToken).ConfigureAwait(false);
             Family family = FamilyOf(connection);
-            List<CatalogName> names = family == Family.SQLite ? SqliteTableNames(connection) : CatalogTableNames(connection, family);
+            List<CatalogName> names = await TableNamesAsync(connection, family, tracker, cancellationToken).ConfigureAwait(false);
             bool large = largeCatalogThreshold > 0 && names.Count > largeCatalogThreshold;
             HashSet<string> wanted = null;
             if (large)
@@ -194,10 +452,10 @@ namespace Reportman.Reporting
                     table.ColumnsRead = false;
                 result.Add(table);
             }
-            ReadDetails(connection, family, details, large);
+            await ReadDetailsAsync(connection, family, details, large, tracker, cancellationToken).ConfigureAwait(false);
             // The comments of the tables go with the names; the ones of the columns, with the columns read.
-            TableComments(connection, family, result, null);
-            ColumnComments(connection, family, Tables(details), large ? NamesOf(details) : null);
+            await TableCommentsAsync(connection, family, result, null, tracker, cancellationToken).ConfigureAwait(false);
+            await ColumnCommentsAsync(connection, family, Tables(details), large ? NamesOf(details) : null, tracker, cancellationToken).ConfigureAwait(false);
             return result;
         }
 
@@ -211,8 +469,30 @@ namespace Reportman.Reporting
         /// <param name="tables">The names of the tables.</param>
         public static List<LocalSchemaTable> ReadTableDetails(DbConnection connection, IEnumerable<string> tables)
         {
+            return ReadTableDetailsAsync(connection, tables, null, CancellationToken.None).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// <see cref="ReadTableDetails"/> reporting its progress to <paramref name="progress"/> and stopping when
+        /// <paramref name="cancellationToken"/> is cancelled (it throws <see cref="OperationCanceledException"/>).
+        /// </summary>
+        /// <param name="connection">The connection (opened here when it is closed).</param>
+        /// <param name="tables">The names of the tables.</param>
+        /// <param name="progress">Where the progress of the read is reported; null for nowhere.</param>
+        /// <param name="cancellationToken">Stops the read.</param>
+        public static Task<List<LocalSchemaTable>> ReadTableDetailsAsync(DbConnection connection, IEnumerable<string> tables,
+            IProgress<DatabaseReadProgress> progress, CancellationToken cancellationToken)
+        {
             if (connection == null)
                 throw new ArgumentNullException("connection");
+            var tracker = new DatabaseReadTracker(progress);
+            return RunAsync(tracker, cancellationToken, () => ReadTableDetailsCoreAsync(connection, tables, tracker, cancellationToken));
+        }
+
+        /// <summary>The reading of <see cref="ReadTableDetailsAsync"/> with the tracker of a read that may do more.</summary>
+        internal static async Task<List<LocalSchemaTable>> ReadTableDetailsCoreAsync(DbConnection connection, IEnumerable<string> tables,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
+        {
             var result = new List<LocalSchemaTable>();
             var wanted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             if (tables != null)
@@ -221,11 +501,10 @@ namespace Reportman.Reporting
                         wanted.Add(name.Trim());
             if (wanted.Count == 0)
                 return result;
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
+            await tracker.OpenAsync(connection, cancellationToken).ConfigureAwait(false);
             Family family = FamilyOf(connection);
             // The names of the catalog: its spelling, its schema and the comment of each table
-            List<CatalogName> names = family == Family.SQLite ? SqliteTableNames(connection) : CatalogTableNames(connection, family);
+            List<CatalogName> names = await TableNamesAsync(connection, family, tracker, cancellationToken).ConfigureAwait(false);
             var details = new List<KeyValuePair<CatalogName, LocalSchemaTable>>();
             foreach (CatalogName name in names)
             {
@@ -235,11 +514,19 @@ namespace Reportman.Reporting
                 details.Add(new KeyValuePair<CatalogName, LocalSchemaTable>(name, table));
                 result.Add(table);
             }
-            ReadDetails(connection, family, details, true);
+            await ReadDetailsAsync(connection, family, details, true, tracker, cancellationToken).ConfigureAwait(false);
             List<string> filter = NamesOf(details);
-            TableComments(connection, family, result, filter);
-            ColumnComments(connection, family, result, filter);
+            await TableCommentsAsync(connection, family, result, filter, tracker, cancellationToken).ConfigureAwait(false);
+            await ColumnCommentsAsync(connection, family, result, filter, tracker, cancellationToken).ConfigureAwait(false);
             return result;
+        }
+
+        private static Task<List<CatalogName>> TableNamesAsync(DbConnection connection, Family family, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
+        {
+            if (family == Family.SQLite)
+                return SqliteTableNamesAsync(connection, tracker, cancellationToken);
+            return Task.FromResult(CatalogTableNames(connection, family, tracker, cancellationToken));
         }
 
         private static List<LocalSchemaTable> Tables(List<KeyValuePair<CatalogName, LocalSchemaTable>> details)
@@ -262,8 +549,8 @@ namespace Reportman.Reporting
         /// The columns, primary key and foreign keys of the tables of <paramref name="details"/>; with
         /// <paramref name="filtered"/> the queries for the whole database are filtered by those tables.
         /// </summary>
-        private static void ReadDetails(DbConnection connection, Family family, List<KeyValuePair<CatalogName, LocalSchemaTable>> details,
-            bool filtered)
+        private static async Task ReadDetailsAsync(DbConnection connection, Family family, List<KeyValuePair<CatalogName, LocalSchemaTable>> details,
+            bool filtered, DatabaseReadTracker tracker, CancellationToken cancellationToken)
         {
             if (details.Count == 0)
                 return;
@@ -278,19 +565,21 @@ namespace Reportman.Reporting
             HashSet<string> primaryKeys = null;
             if (informationSchema)
             {
-                try { allForeignKeys = InformationSchemaForeignKeys(connection, family, filter); }
-                catch { allForeignKeys = new Dictionary<string, List<LocalSchemaForeignKey>>(StringComparer.OrdinalIgnoreCase); }
-                try { primaryKeys = InformationSchemaPrimaryKeys(connection, family, filter); }
-                catch { primaryKeys = null; }
+                try { allForeignKeys = await InformationSchemaForeignKeysAsync(connection, family, filter, tracker, cancellationToken).ConfigureAwait(false); }
+                catch (Exception) when (!cancellationToken.IsCancellationRequested)
+                { allForeignKeys = new Dictionary<string, List<LocalSchemaForeignKey>>(StringComparer.OrdinalIgnoreCase); }
+                try { primaryKeys = await InformationSchemaPrimaryKeysAsync(connection, family, filter, tracker, cancellationToken).ConfigureAwait(false); }
+                catch (Exception) when (!cancellationToken.IsCancellationRequested) { primaryKeys = null; }
             }
 
             foreach (KeyValuePair<CatalogName, LocalSchemaTable> pair in details)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 LocalSchemaTable table = pair.Value;
                 if (family == Family.SQLite)
-                    SqliteColumns(connection, table);
-                else if (!TryColumnsFromReader(connection, factory, table, !informationSchema))
-                    ColumnsFromCatalog(connection, pair.Key.Schema, table);
+                    await SqliteColumnsAsync(connection, table, tracker, cancellationToken).ConfigureAwait(false);
+                else if (!await TryColumnsFromReaderAsync(connection, factory, table, !informationSchema, tracker, cancellationToken).ConfigureAwait(false))
+                    ColumnsFromCatalog(connection, pair.Key.Schema, table, tracker, cancellationToken);
                 if (primaryKeys != null)
                 {
                     foreach (LocalSchemaColumn c in table.Columns)
@@ -305,11 +594,11 @@ namespace Reportman.Reporting
                             table.ForeignKeys.AddRange(fks);
                     }
                     else if (family == Family.SQLite)
-                        SqliteForeignKeys(connection, table);
+                        await SqliteForeignKeysAsync(connection, table, tracker, cancellationToken).ConfigureAwait(false);
                     else if (family == Family.Firebird)
-                        FirebirdForeignKeys(connection, table);
+                        FirebirdForeignKeys(connection, table, tracker, cancellationToken);
                 }
-                catch
+                catch (Exception) when (!cancellationToken.IsCancellationRequested)
                 {
                     // A table whose foreign keys cannot be read keeps its columns.
                 }
@@ -322,7 +611,8 @@ namespace Reportman.Reporting
         /// Oracle (COMMENT ON). With <paramref name="filter"/> only of those tables, else of the whole database. Best
         /// effort: a catalog that cannot be read leaves them empty.
         /// </summary>
-        private static void TableComments(DbConnection connection, Family family, List<LocalSchemaTable> tables, List<string> filter)
+        private static async Task TableCommentsAsync(DbConnection connection, Family family, List<LocalSchemaTable> tables, List<string> filter,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
         {
             string sql, column;
             switch (family)
@@ -363,7 +653,7 @@ namespace Reportman.Reporting
             Dictionary<string, LocalSchemaTable> byName = ByName(tables);
             foreach (string query in Filtered(family, sql, " AND " + column, filter))
             {
-                foreach (string[] row in Rows(connection, query, 2))
+                foreach (string[] row in await RowsAsync(connection, query, 2, tracker, cancellationToken).ConfigureAwait(false))
                 {
                     LocalSchemaTable table;
                     if (byName.TryGetValue(row[0], out table) && string.IsNullOrEmpty(table.Context))
@@ -374,10 +664,11 @@ namespace Reportman.Reporting
 
         /// <summary>
         /// The comments the database keeps on the columns of <paramref name="tables"/>, as the starting context of each
-        /// one that has none yet (the dialects of <see cref="TableComments"/>). With <paramref name="filter"/> the query
-        /// is filtered by those tables, else it reads the whole database.
+        /// one that has none yet (the dialects of <see cref="TableCommentsAsync"/>). With <paramref name="filter"/> the
+        /// query is filtered by those tables, else it reads the whole database.
         /// </summary>
-        private static void ColumnComments(DbConnection connection, Family family, List<LocalSchemaTable> tables, List<string> filter)
+        private static async Task ColumnCommentsAsync(DbConnection connection, Family family, List<LocalSchemaTable> tables, List<string> filter,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
         {
             string sql, column;
             switch (family)
@@ -418,7 +709,7 @@ namespace Reportman.Reporting
             Dictionary<string, LocalSchemaTable> byName = ByName(tables);
             foreach (string query in Filtered(family, sql, " AND " + column, filter))
             {
-                foreach (string[] row in Rows(connection, query, 3))
+                foreach (string[] row in await RowsAsync(connection, query, 3, tracker, cancellationToken).ConfigureAwait(false))
                 {
                     LocalSchemaTable table;
                     if (!byName.TryGetValue(row[0], out table))
@@ -474,7 +765,8 @@ namespace Reportman.Reporting
         }
 
         /// <summary>The rows of a catalog query, trimmed text, without the ones with an empty value; none when it fails.</summary>
-        private static List<string[]> Rows(DbConnection connection, string sql, int fieldCount)
+        private static async Task<List<string[]>> RowsAsync(DbConnection connection, string sql, int fieldCount, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
         {
             var result = new List<string[]>();
             try
@@ -483,9 +775,9 @@ namespace Reportman.Reporting
                 {
                     cmd.CommandText = sql;
                     cmd.CommandTimeout = 20;
-                    using (DbDataReader reader = cmd.ExecuteReader())
+                    using (DbDataReader reader = await tracker.ExecuteReaderAsync(cmd, CommandBehavior.Default, cancellationToken).ConfigureAwait(false))
                     {
-                        while (reader.Read())
+                        while (await tracker.ReadAsync(reader, cancellationToken).ConfigureAwait(false))
                         {
                             var row = new string[fieldCount];
                             for (int i = 0; i < fieldCount; i++)
@@ -496,7 +788,7 @@ namespace Reportman.Reporting
                     }
                 }
             }
-            catch
+            catch (Exception) when (!cancellationToken.IsCancellationRequested)
             {
                 // A catalog that cannot be read (permissions, an older server): no comments.
             }
@@ -525,8 +817,23 @@ namespace Reportman.Reporting
             public string Description = "";
         }
 
+        /// <summary>
+        /// A schema collection of the provider (it has no asynchronous form: the token is checked before), its rows counted
+        /// as fetched.
+        /// </summary>
+        private static DataTable Collection(DbConnection connection, string collection, string[] restrictions, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            tracker.Executing();
+            DataTable rows = restrictions == null ? connection.GetSchema(collection) : connection.GetSchema(collection, restrictions);
+            tracker.Fetched(rows.Rows.Count);
+            return rows;
+        }
+
         /// <summary>Tables and views through the ADO.NET "Tables" and "Views" collections, with their schema name and description.</summary>
-        private static List<CatalogName> CatalogTableNames(DbConnection connection, Family family)
+        private static List<CatalogName> CatalogTableNames(DbConnection connection, Family family, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
         {
             var result = new List<CatalogName>();
             var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -535,12 +842,10 @@ namespace Reportman.Reporting
                 DataTable tables;
                 try
                 {
-                    tables = connection.GetSchema(collection);
+                    tables = Collection(connection, collection, null, tracker, cancellationToken);
                 }
-                catch
+                catch (Exception) when (collection != "Tables" && !cancellationToken.IsCancellationRequested)
                 {
-                    if (collection == "Tables")
-                        throw;
                     continue;
                 }
                 string nameColumn = ColumnOf(tables, "TABLE_NAME", "VIEW_NAME") ?? tables.Columns[0].ColumnName;
@@ -575,31 +880,33 @@ namespace Reportman.Reporting
             return result;
         }
 
-        private static List<CatalogName> SqliteTableNames(DbConnection connection)
+        private static async Task<List<CatalogName>> SqliteTableNamesAsync(DbConnection connection, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
         {
             var result = new List<CatalogName>();
             using (DbCommand cmd = connection.CreateCommand())
             {
                 cmd.CommandText = "SELECT name FROM sqlite_master WHERE type IN ('table','view') AND name NOT LIKE 'sqlite_%' ORDER BY name";
-                using (DbDataReader reader = cmd.ExecuteReader())
+                using (DbDataReader reader = await tracker.ExecuteReaderAsync(cmd, CommandBehavior.Default, cancellationToken).ConfigureAwait(false))
                 {
-                    while (reader.Read())
+                    while (await tracker.ReadAsync(reader, cancellationToken).ConfigureAwait(false))
                         result.Add(new CatalogName { Name = reader.GetString(0) });
                 }
             }
             return result;
         }
 
-        private static void SqliteColumns(DbConnection connection, LocalSchemaTable table)
+        private static async Task SqliteColumnsAsync(DbConnection connection, LocalSchemaTable table, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
         {
             try
             {
                 using (DbCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "PRAGMA table_info(\"" + table.Name.Replace("\"", "\"\"") + "\")";
-                    using (DbDataReader reader = cmd.ExecuteReader())
+                    using (DbDataReader reader = await tracker.ExecuteReaderAsync(cmd, CommandBehavior.Default, cancellationToken).ConfigureAwait(false))
                     {
-                        while (reader.Read())
+                        while (await tracker.ReadAsync(reader, cancellationToken).ConfigureAwait(false))
                         {
                             string declared = reader.IsDBNull(2) ? "" : Convert.ToString(reader.GetValue(2));
                             table.Columns.Add(new LocalSchemaColumn
@@ -613,21 +920,22 @@ namespace Reportman.Reporting
                     }
                 }
             }
-            catch
+            catch (Exception) when (!cancellationToken.IsCancellationRequested)
             {
                 // Listed without columns.
             }
         }
 
-        private static void SqliteForeignKeys(DbConnection connection, LocalSchemaTable table)
+        private static async Task SqliteForeignKeysAsync(DbConnection connection, LocalSchemaTable table, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
         {
             using (DbCommand cmd = connection.CreateCommand())
             {
                 cmd.CommandText = "PRAGMA foreign_key_list(\"" + table.Name.Replace("\"", "\"\"") + "\")";
-                using (DbDataReader reader = cmd.ExecuteReader())
+                using (DbDataReader reader = await tracker.ExecuteReaderAsync(cmd, CommandBehavior.Default, cancellationToken).ConfigureAwait(false))
                 {
                     var byId = new Dictionary<long, LocalSchemaForeignKey>();
-                    while (reader.Read())
+                    while (await tracker.ReadAsync(reader, cancellationToken).ConfigureAwait(false))
                     {
                         long id = Convert.ToInt64(reader.GetValue(0));
                         LocalSchemaForeignKey fk;
@@ -648,8 +956,12 @@ namespace Reportman.Reporting
             }
         }
 
-        /// <summary>Columns, types and primary key from the reader schema of SELECT * (SchemaOnly, plus KeyInfo when asked).</summary>
-        private static bool TryColumnsFromReader(DbConnection connection, DbProviderFactory factory, LocalSchemaTable table, bool keyInfo)
+        /// <summary>
+        /// Columns, types and primary key from the reader schema of SELECT * (SchemaOnly, plus KeyInfo when asked); the
+        /// columns described count as the rows fetched.
+        /// </summary>
+        private static async Task<bool> TryColumnsFromReaderAsync(DbConnection connection, DbProviderFactory factory, LocalSchemaTable table,
+            bool keyInfo, DatabaseReadTracker tracker, CancellationToken cancellationToken)
         {
             try
             {
@@ -658,11 +970,12 @@ namespace Reportman.Reporting
                     cmd.CommandText = "SELECT * FROM " + Quote(factory, table.Name);
                     cmd.CommandTimeout = 15;
                     CommandBehavior behavior = keyInfo ? CommandBehavior.SchemaOnly | CommandBehavior.KeyInfo : CommandBehavior.SchemaOnly;
-                    using (DbDataReader reader = cmd.ExecuteReader(behavior))
+                    using (DbDataReader reader = await tracker.ExecuteReaderAsync(cmd, behavior, cancellationToken).ConfigureAwait(false))
                     {
                         DataTable schema = reader.GetSchemaTable();
                         if (schema == null || schema.Rows.Count == 0)
                             return false;
+                        tracker.Fetched(schema.Rows.Count);
                         int ordinal = 0;
                         foreach (DataRow row in schema.Rows)
                         {
@@ -697,7 +1010,7 @@ namespace Reportman.Reporting
                 }
                 return table.Columns.Count > 0;
             }
-            catch
+            catch (Exception) when (!cancellationToken.IsCancellationRequested)
             {
                 table.Columns.Clear();
                 return false;
@@ -705,11 +1018,13 @@ namespace Reportman.Reporting
         }
 
         /// <summary>Fallback: names and declared types from the "Columns" collection, with no key.</summary>
-        private static void ColumnsFromCatalog(DbConnection connection, string tableSchema, LocalSchemaTable table)
+        private static void ColumnsFromCatalog(DbConnection connection, string tableSchema, LocalSchemaTable table, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
         {
             try
             {
-                DataTable columns = connection.GetSchema("Columns", new string[] { null, string.IsNullOrEmpty(tableSchema) ? null : tableSchema, table.Name });
+                DataTable columns = Collection(connection, "Columns",
+                    new string[] { null, string.IsNullOrEmpty(tableSchema) ? null : tableSchema, table.Name }, tracker, cancellationToken);
                 string colName = ColumnOf(columns, "COLUMN_NAME") ?? columns.Columns[0].ColumnName;
                 string colType = ColumnOf(columns, "DATA_TYPE", "COLUMN_DATA_TYPE", "TYPE_NAME");
                 foreach (DataRow c in columns.Rows)
@@ -723,16 +1038,17 @@ namespace Reportman.Reporting
                     });
                 }
             }
-            catch
+            catch (Exception) when (!cancellationToken.IsCancellationRequested)
             {
                 // Listed without columns.
             }
         }
 
-        private static void FirebirdForeignKeys(DbConnection connection, LocalSchemaTable table)
+        private static void FirebirdForeignKeys(DbConnection connection, LocalSchemaTable table, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
         {
             // The Firebird provider's collection has everything, ordered by constraint and position.
-            DataTable rows = connection.GetSchema("ForeignKeyColumns", new string[] { null, null, table.Name });
+            DataTable rows = Collection(connection, "ForeignKeyColumns", new string[] { null, null, table.Name }, tracker, cancellationToken);
             var byName = new Dictionary<string, List<DataRow>>(StringComparer.OrdinalIgnoreCase);
             var order = new List<string>();
             foreach (DataRow r in rows.Rows)
@@ -766,7 +1082,8 @@ namespace Reportman.Reporting
         }
 
         /// <summary>The primary key columns as "table.column": of the whole database, or of the tables of <paramref name="filter"/>.</summary>
-        private static HashSet<string> InformationSchemaPrimaryKeys(DbConnection connection, Family family, List<string> filter)
+        private static async Task<HashSet<string>> InformationSchemaPrimaryKeysAsync(DbConnection connection, Family family, List<string> filter,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
         {
             var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             const string sql = @"SELECT kcu.TABLE_NAME, kcu.COLUMN_NAME
@@ -779,9 +1096,9 @@ WHERE tc.CONSTRAINT_TYPE = 'PRIMARY KEY'";
                 {
                     cmd.CommandText = query;
                     cmd.CommandTimeout = 20;
-                    using (DbDataReader reader = cmd.ExecuteReader())
+                    using (DbDataReader reader = await tracker.ExecuteReaderAsync(cmd, CommandBehavior.Default, cancellationToken).ConfigureAwait(false))
                     {
-                        while (reader.Read())
+                        while (await tracker.ReadAsync(reader, cancellationToken).ConfigureAwait(false))
                             result.Add(Convert.ToString(reader.GetValue(0)) + "." + Convert.ToString(reader.GetValue(1)));
                     }
                 }
@@ -790,7 +1107,8 @@ WHERE tc.CONSTRAINT_TYPE = 'PRIMARY KEY'";
         }
 
         /// <summary>The foreign keys by source table: of the whole database, or of the tables of <paramref name="filter"/>.</summary>
-        private static Dictionary<string, List<LocalSchemaForeignKey>> InformationSchemaForeignKeys(DbConnection connection, Family family, List<string> filter)
+        private static async Task<Dictionary<string, List<LocalSchemaForeignKey>>> InformationSchemaForeignKeysAsync(DbConnection connection,
+            Family family, List<string> filter, DatabaseReadTracker tracker, CancellationToken cancellationToken)
         {
             var result = new Dictionary<string, List<LocalSchemaForeignKey>>(StringComparer.OrdinalIgnoreCase);
             const string sql = @"SELECT rc.CONSTRAINT_NAME AS CN, kcu.TABLE_NAME AS FK_TABLE, kcu.COLUMN_NAME AS FK_COLUMN, kcu.ORDINAL_POSITION AS POS, kcu2.TABLE_NAME AS PK_TABLE, kcu2.COLUMN_NAME AS PK_COLUMN
@@ -803,11 +1121,11 @@ JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu2 ON kcu2.CONSTRAINT_NAME = rc.UNIQU
                 {
                     cmd.CommandText = query + "\r\nORDER BY kcu.TABLE_NAME, rc.CONSTRAINT_NAME, kcu.ORDINAL_POSITION";
                     cmd.CommandTimeout = 20;
-                    using (DbDataReader reader = cmd.ExecuteReader())
+                    using (DbDataReader reader = await tracker.ExecuteReaderAsync(cmd, CommandBehavior.Default, cancellationToken).ConfigureAwait(false))
                     {
                         LocalSchemaForeignKey current = null;
                         string currentTable = "";
-                        while (reader.Read())
+                        while (await tracker.ReadAsync(reader, cancellationToken).ConfigureAwait(false))
                         {
                             string tableName = Convert.ToString(reader["FK_TABLE"]) ?? "";
                             string name = Convert.ToString(reader["CN"]) ?? "";

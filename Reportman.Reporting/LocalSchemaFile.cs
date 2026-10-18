@@ -21,6 +21,8 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Reportman.Reporting
 {
@@ -191,6 +193,11 @@ namespace Reportman.Reporting
     /// <summary>
     /// Reads, writes, generates and refreshes <see cref="LocalSchemaFile"/> files, and builds the inline
     /// schema configuration the Reportman AI copilot needs for a direct connection.
+    /// <para>
+    /// The reads of the database have an asynchronous form that reports its progress and stops when its token is
+    /// cancelled (<see cref="DatabaseCatalogReader"/>); a read cancelled changes nothing: no file is written, and the
+    /// columns read are not merged.
+    /// </para>
     /// </summary>
     public static class LocalSchemaStore
     {
@@ -208,11 +215,16 @@ namespace Reportman.Reporting
 
         private static JsonSerializerOptions CreateJsonOptions()
         {
+            return CreateJsonOptions(true);
+        }
+
+        private static JsonSerializerOptions CreateJsonOptions(bool indented)
+        {
             return new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 PropertyNameCaseInsensitive = true,
-                WriteIndented = true,
+                WriteIndented = indented,
                 // The file is read by people too, and the descriptions are in their language: accents and
                 // quotes are written as they are (as the Delphi designer does), not as escape sequences
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
@@ -281,6 +293,15 @@ namespace Reportman.Reporting
         }
 
         /// <summary>
+        /// Serializes a file as the JSON it is saved with, indented or in a single line (what a server-sent event carries:
+        /// the strings escape their line breaks).
+        /// </summary>
+        public static string ToJson(LocalSchemaFile file, bool indented)
+        {
+            return JsonSerializer.Serialize(file, CreateJsonOptions(indented));
+        }
+
+        /// <summary>
         /// Reads the catalog of an open or closed connection (it is opened and closed here when it was
         /// closed) into a new file for <paramref name="alias"/>. A large catalog
         /// (<see cref="DatabaseCatalogReader.LargeCatalogThreshold"/>) comes with the names of its tables only.
@@ -310,12 +331,38 @@ namespace Reportman.Reporting
         /// </summary>
         public static LocalSchemaFile Generate(DbConnection connection, string alias, LocalSchemaFile previous, int largeCatalogThreshold)
         {
+            return GenerateAsync(connection, alias, previous, largeCatalogThreshold, null, CancellationToken.None).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// <see cref="Generate(DbConnection, string, LocalSchemaFile, int)"/> reporting its progress to
+        /// <paramref name="progress"/> (the opening of the connection, the queries, the rows of all of them) and stopping
+        /// when <paramref name="cancellationToken"/> is cancelled: it throws <see cref="OperationCanceledException"/>.
+        /// </summary>
+        /// <param name="connection">The connection (opened and closed here when it was closed).</param>
+        /// <param name="alias">The connection alias.</param>
+        /// <param name="previous">The file being refreshed; null for a new one.</param>
+        /// <param name="largeCatalogThreshold">The number of tables from which the catalog is large
+        /// (<see cref="DatabaseCatalogReader.LargeCatalogThreshold"/>; 0 or less, never).</param>
+        /// <param name="progress">Where the progress of the read is reported; null for nowhere.</param>
+        /// <param name="cancellationToken">Stops the read.</param>
+        public static Task<LocalSchemaFile> GenerateAsync(DbConnection connection, string alias, LocalSchemaFile previous, int largeCatalogThreshold,
+            IProgress<DatabaseReadProgress> progress, CancellationToken cancellationToken)
+        {
             if (connection == null)
                 throw new ArgumentNullException("connection");
+            var tracker = new DatabaseReadTracker(progress);
+            return DatabaseCatalogReader.RunAsync(tracker, cancellationToken,
+                () => GenerateCoreAsync(connection, alias, previous, largeCatalogThreshold, tracker, cancellationToken));
+        }
+
+        private static async Task<LocalSchemaFile> GenerateCoreAsync(DbConnection connection, string alias, LocalSchemaFile previous,
+            int largeCatalogThreshold, DatabaseReadTracker tracker, CancellationToken cancellationToken)
+        {
             bool opened = false;
             if (connection.State != System.Data.ConnectionState.Open)
             {
-                connection.Open();
+                await tracker.OpenAsync(connection, cancellationToken).ConfigureAwait(false);
                 opened = true;
             }
             try
@@ -324,7 +371,8 @@ namespace Reportman.Reporting
                 file.Alias = (alias ?? "").Trim().ToUpperInvariant();
                 file.Dialect = DatabaseCatalogReader.DialectOf(connection);
                 file.GeneratedUtc = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'", CultureInfo.InvariantCulture);
-                file.Tables = DatabaseCatalogReader.ReadTables(connection, TablesToRead(previous), largeCatalogThreshold);
+                file.Tables = await DatabaseCatalogReader.ReadTablesCoreAsync(connection, TablesToRead(previous), largeCatalogThreshold,
+                    tracker, cancellationToken).ConfigureAwait(false);
                 return file;
             }
             finally
@@ -443,22 +491,50 @@ namespace Reportman.Reporting
         /// <param name="tables">The names of the tables (ignoring case).</param>
         public static List<string> ReadColumns(LocalSchemaFile file, DbConnection connection, IEnumerable<string> tables)
         {
+            return ReadColumnsAsync(file, connection, tables, null, CancellationToken.None).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// <see cref="ReadColumns"/> reporting its progress to <paramref name="progress"/> and stopping when
+        /// <paramref name="cancellationToken"/> is cancelled: it throws <see cref="OperationCanceledException"/>, and the file
+        /// stays as it was (nothing is merged).
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="connection">A connection to its database.</param>
+        /// <param name="tables">The names of the tables (ignoring case).</param>
+        /// <param name="progress">Where the progress of the read is reported; null for nowhere.</param>
+        /// <param name="cancellationToken">Stops the read.</param>
+        public static Task<List<string>> ReadColumnsAsync(LocalSchemaFile file, DbConnection connection, IEnumerable<string> tables,
+            IProgress<DatabaseReadProgress> progress, CancellationToken cancellationToken)
+        {
             if (file == null)
                 throw new ArgumentNullException("file");
             if (connection == null)
                 throw new ArgumentNullException("connection");
+            var tracker = new DatabaseReadTracker(progress);
+            return DatabaseCatalogReader.RunAsync(tracker, cancellationToken,
+                () => ReadColumnsCoreAsync(file, connection, tables, tracker, cancellationToken));
+        }
+
+        private static async Task<List<string>> ReadColumnsCoreAsync(LocalSchemaFile file, DbConnection connection, IEnumerable<string> tables,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
+        {
             List<string> unread = UnreadTables(file, tables);
             if (unread.Count == 0)
                 return new List<string>();
             bool opened = false;
             if (connection.State != System.Data.ConnectionState.Open)
             {
-                connection.Open();
+                await tracker.OpenAsync(connection, cancellationToken).ConfigureAwait(false);
                 opened = true;
             }
             try
             {
-                return MergeColumns(file, DatabaseCatalogReader.ReadTableDetails(connection, unread));
+                List<LocalSchemaTable> read = await DatabaseCatalogReader.ReadTableDetailsCoreAsync(connection, unread, tracker, cancellationToken)
+                    .ConfigureAwait(false);
+                // Cancelled while it read: the file is not touched
+                cancellationToken.ThrowIfCancellationRequested();
+                return MergeColumns(file, read);
             }
             finally
             {
@@ -771,6 +847,27 @@ namespace Reportman.Reporting
         public static LocalSchemaFile LoadOrGenerate(string folder, string alias, Func<DbConnection> createConnection, bool refresh,
             int largeCatalogThreshold)
         {
+            return LoadOrGenerateAsync(folder, alias, createConnection, refresh, largeCatalogThreshold, null, CancellationToken.None)
+                .GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// <see cref="LoadOrGenerate(string, string, Func{DbConnection}, bool, int)"/> reporting the progress of the read of
+        /// the catalog (none when the file exists and is not refreshed) to <paramref name="progress"/>, and stopping when
+        /// <paramref name="cancellationToken"/> is cancelled: it throws <see cref="OperationCanceledException"/>, and the file
+        /// stays as it was (or is not created).
+        /// </summary>
+        /// <param name="folder">The dbxschemas folder.</param>
+        /// <param name="alias">Connection alias.</param>
+        /// <param name="createConnection">Creates a connection to read the catalog from (opened and closed here).</param>
+        /// <param name="refresh">Regenerate the tables even when the file exists.</param>
+        /// <param name="largeCatalogThreshold">The number of tables from which the catalog is large
+        /// (<see cref="DatabaseCatalogReader.LargeCatalogThreshold"/>; 0 or less, never).</param>
+        /// <param name="progress">Where the progress of the read is reported; null for nowhere.</param>
+        /// <param name="cancellationToken">Stops the read.</param>
+        public static async Task<LocalSchemaFile> LoadOrGenerateAsync(string folder, string alias, Func<DbConnection> createConnection, bool refresh,
+            int largeCatalogThreshold, IProgress<DatabaseReadProgress> progress, CancellationToken cancellationToken)
+        {
             string path = PathFor(folder, alias);
             LocalSchemaFile existing = Load(path);
             if (existing != null && !refresh)
@@ -779,7 +876,9 @@ namespace Reportman.Reporting
                 throw new InvalidOperationException("No connection to read the schema of " + alias);
             LocalSchemaFile fresh;
             using (DbConnection connection = createConnection())
-                fresh = Generate(connection, alias, existing, largeCatalogThreshold);
+                fresh = await GenerateAsync(connection, alias, existing, largeCatalogThreshold, progress, cancellationToken).ConfigureAwait(false);
+            // Cancelled while it read: nothing is written
+            cancellationToken.ThrowIfCancellationRequested();
             LocalSchemaFile result = Merge(existing, fresh);
             Save(result, path);
             return result;

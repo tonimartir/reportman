@@ -20,6 +20,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Reportman.Drawing;
@@ -80,6 +81,11 @@ namespace Reportman.Designer
     /// chosen as an end of a relation, before an import. The lists paint only the rows they show, and their filters
     /// find the words typed in the names and in the descriptions (<see cref="LocalSchemaFilter"/>).
     /// </para>
+    /// <para>
+    /// Every read of the database (the catalog, the columns of some tables, the first rows of a table) runs off the UI
+    /// thread, with a progress window when it takes a while and Cancel; a read cancelled changes nothing, and a first
+    /// opening whose catalog read is cancelled closes the dialog (<see cref="RunReadAsync{T}"/>).
+    /// </para>
     /// </summary>
     public partial class LocalSchemaEditorForm : Form
     {
@@ -107,6 +113,8 @@ namespace Reportman.Designer
         private string _baseTitle = "";
         // The tables of a large catalog whose columns are being read
         private readonly HashSet<string> _readingTables = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        // The tables whose read the user cancelled: the Columns tab does not read them again until one is clicked
+        private readonly HashSet<string> _cancelledReads = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         // Columns read while the Relations tab was not shown: it is filled again when it is
         private bool _relationsStale;
 
@@ -499,7 +507,7 @@ namespace Reportman.Designer
                 CommitEdits();
                 // What waits for the tab to be shown: the columns of the table clicked, the relations of the tables read
                 if (_tabs.SelectedTab == _tabColumns)
-                    ReadColumnsTableLater();
+                    ReadColumnsTableLater(true);
                 else if (_tabs.SelectedTab == _tabRelations && _relationsStale)
                     FillRelationsTab();
             };
@@ -808,6 +816,7 @@ namespace Reportman.Designer
         private async Task LoadFileAsync()
         {
             SetBusy(true);
+            bool cancelled = false;
             try
             {
                 LocalSchemaFile file = LocalSchemaStore.Load(FilePath);
@@ -815,7 +824,12 @@ namespace Reportman.Designer
                 {
                     // Never generated: the catalog is read now (and saved, as the copilot would do).
                     SetStatus(TrFormat(1899, _alias));
-                    file = await Task.Run(() => LocalSchemaStore.LoadOrGenerate(_folder, _alias, _createConnection, false));
+                    string folder = _folder;
+                    string alias = _alias;
+                    Func<DbConnection> createConnection = _createConnection;
+                    file = await RunReadAsync(TrFormat(2040, _alias), CancellationToken.None,
+                        (progress, token) => LocalSchemaStore.LoadOrGenerateAsync(folder, alias, createConnection, false,
+                            DatabaseCatalogReader.LargeCatalogThreshold, progress, token));
                 }
                 if (IsDisposed)
                     return;
@@ -824,6 +838,11 @@ namespace Reportman.Designer
                 _dirty = false;
                 SetStatus("");
                 _lblConnStatus.Text = "";
+            }
+            catch (OperationCanceledException)
+            {
+                // Nothing to show: the file was not written
+                cancelled = true;
             }
             catch (Exception ex)
             {
@@ -839,8 +858,14 @@ namespace Reportman.Designer
                 if (!IsDisposed)
                     SetBusy(false);
             }
-            if (!IsDisposed)
-                FillAll(null);
+            if (IsDisposed)
+                return;
+            if (cancelled)
+            {
+                Close();
+                return;
+            }
+            FillAll(null);
         }
 
         private async Task RefreshAsync()
@@ -851,16 +876,20 @@ namespace Reportman.Designer
             SetBusy(true);
             string selected = _current != null ? _current.Name : null;
             string added = _added != null ? _added.Name : null;
+            bool cancelled = false;
             try
             {
                 SetStatus(TrFormat(1899, _alias));
                 // A large catalog reads again the columns of the tables of the subschemas and of the ones read (the
                 // dialog is busy meanwhile: nothing changes the file while it is read)
                 LocalSchemaFile previous = _file;
-                LocalSchemaFile fresh = await Task.Run(() =>
+                string alias = _alias;
+                Func<DbConnection> createConnection = _createConnection;
+                LocalSchemaFile fresh = await RunReadAsync(TrFormat(2040, _alias), CancellationToken.None, async (progress, token) =>
                 {
-                    using (DbConnection connection = _createConnection())
-                        return LocalSchemaStore.Generate(connection, _alias, previous);
+                    using (DbConnection connection = createConnection())
+                        return await LocalSchemaStore.GenerateAsync(connection, alias, previous, DatabaseCatalogReader.LargeCatalogThreshold,
+                            progress, token).ConfigureAwait(false);
                 });
                 if (IsDisposed)
                     return;
@@ -875,6 +904,13 @@ namespace Reportman.Designer
                 SetStatus(TrFormat(1901, Number(_file.Tables.Count)));
                 _lblConnStatus.Text = "";
             }
+            catch (OperationCanceledException)
+            {
+                // Cancelled: the file keeps what it had, and nothing is said
+                cancelled = true;
+                if (!IsDisposed)
+                    SetStatus("");
+            }
             catch (Exception ex)
             {
                 if (IsDisposed)
@@ -888,16 +924,18 @@ namespace Reportman.Designer
                 if (!IsDisposed)
                     SetBusy(false);
             }
-            if (!IsDisposed)
+            if (!IsDisposed && !cancelled)
                 FillAll(_current);
         }
 
         /// <summary>
         /// Reads the columns of the tables of <paramref name="tables"/> the file has not read (a large catalog reads them
         /// when a table is used) and merges them into it (<see cref="LocalSchemaStore.MergeColumns"/>), saying it in the
-        /// status line meanwhile. With <paramref name="block"/> the dialog is busy until they come (what follows needs
-        /// them: adding tables, an import) and a failure is shown; else it goes on, and the tables already being read are
-        /// not read twice. When it fails the tables stay unread and the status line says why. False when it failed.
+        /// status line meanwhile, and in a progress window when it takes a while (<see cref="RunReadAsync{T}"/>). With
+        /// <paramref name="block"/> the dialog is busy until they come (what follows needs them: adding tables, an import)
+        /// and a failure is shown; else it goes on, and the tables already being read are not read twice. When it fails
+        /// the tables stay unread and the status line says why; cancelled, they stay unread and nothing is said. False
+        /// when it failed or was cancelled.
         /// </summary>
         private async Task<bool> ReadColumnsAsync(IEnumerable<string> tables, bool block)
         {
@@ -911,7 +949,10 @@ namespace Reportman.Designer
             string names = LocalSchemaEditing.ShortList(unread, 5);
             Func<DbConnection> createConnection = _createConnection;
             foreach (string name in unread)
+            {
                 _readingTables.Add(name);
+                _cancelledReads.Remove(name);
+            }
             if (block)
                 SetBusy(true);
             SetStatus(TrFormat(2033, names));
@@ -919,10 +960,10 @@ namespace Reportman.Designer
             {
                 if (createConnection == null)
                     throw new InvalidOperationException("No connection to read " + names);
-                List<LocalSchemaTable> read = await Task.Run(() =>
+                List<LocalSchemaTable> read = await RunReadAsync(TrFormat(2033, names), CancellationToken.None, async (progress, token) =>
                 {
                     using (DbConnection connection = createConnection())
-                        return DatabaseCatalogReader.ReadTableDetails(connection, unread);
+                        return await DatabaseCatalogReader.ReadTableDetailsAsync(connection, unread, progress, token).ConfigureAwait(false);
                 });
                 if (IsDisposed || _file == null)
                     return false;
@@ -938,6 +979,17 @@ namespace Reportman.Designer
                 if (merged.Count > 0)
                     ColumnsMerged();
                 return true;
+            }
+            catch (OperationCanceledException)
+            {
+                if (IsDisposed)
+                    return false;
+                // The tables stay unread, and the Columns tab does not read them again by itself
+                foreach (string name in unread)
+                    _cancelledReads.Add(name);
+                if (_lblStatus.Text == TrFormat(2033, names))
+                    SetStatus("");
+                return false;
             }
             catch (Exception ex)
             {
@@ -1033,6 +1085,11 @@ namespace Reportman.Designer
         {
             try { _analysis?.Cancel(); } catch (ObjectDisposedException) { }
             try { _previewCts?.Cancel(); } catch (ObjectDisposedException) { }
+            // The reads of the database: what they read is thrown away
+            foreach (CancellationTokenSource read in _reads.ToArray())
+            {
+                try { read.Cancel(); } catch (ObjectDisposedException) { }
+            }
         }
 
         // ===== The list of subschemas =====

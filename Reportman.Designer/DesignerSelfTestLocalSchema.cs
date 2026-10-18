@@ -21,6 +21,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reportman.Designer
@@ -32,7 +34,8 @@ namespace Reportman.Designer
     /// the values of their placeholders, how much of each schema a database has and the one detected for it, and the
     /// import of names that are in the database as they are, which works as it did. And the word filter of the lists,
     /// a large catalog (the names first, the columns of a table when it is used, with a SQLite database of eight tables
-    /// and the threshold at five) and the lists that paint only what they show.
+    /// and the threshold at five) and the lists that paint only what they show. And the progress of the reads of the
+    /// database (their phases and rows in order, a read cancelled that changes nothing, the status line).
     /// </summary>
     public static class DesignerSelfTestLocalSchema
     {
@@ -91,6 +94,9 @@ namespace Reportman.Designer
             RunCheck(log, "large catalog: the merge of the columns read", TestMergeColumns);
             RunCheck(log, "large catalog: an import reads its tables first", f => TestImportLargeCatalog(f, folder));
             RunCheck(log, "large catalog: a SQLite database, threshold 5", TestLargeCatalogDatabase);
+            RunCheck(log, "progress: the phases and the rows of a read", TestReadProgress);
+            RunCheck(log, "progress: a read cancelled changes nothing", TestReadCancelled);
+            RunCheck(log, "progress: the status line", TestReadStatusText);
             RunCheck(log, "lists: a hundred thousand tables", TestTableList);
             failed = log.Failed;
             return log.ToString();
@@ -598,6 +604,250 @@ namespace Reportman.Designer
             {
                 try { Directory.Delete(dir, true); } catch { }
             }
+        }
+
+        /// <summary>
+        /// A SQLite database in <paramref name="dir"/> made by <paramref name="sql"/>; null, failing, without the SQLiteCore
+        /// provider (designer.exe registers it).
+        /// </summary>
+        private static Func<DbConnection> SqliteDatabase(LocalSchemaLog log, string dir, string sql)
+        {
+            DbProviderFactory factory;
+            try
+            {
+                factory = DbProviderFactories.GetFactory("SQLiteCore");
+            }
+            catch (Exception ex)
+            {
+                log.Check(false, "no SQLiteCore provider (designer.exe registers it): " + ex.Message);
+                return null;
+            }
+            Directory.CreateDirectory(dir);
+            // Without pooling the file is closed with the connection, and the folder can go
+            string database = "Data Source=" + Path.Combine(dir, "progress.db") + ";Pooling=False";
+            Func<DbConnection> create = () =>
+            {
+                DbConnection connection = factory.CreateConnection();
+                connection.ConnectionString = database;
+                return connection;
+            };
+            Execute(create, sql);
+            return create;
+        }
+
+        // Eight tables (T2 points to T1) and seven rows in T1: 8 names + 17 columns + 1 foreign key are 26 rows of catalog
+        private static string EightTablesSql()
+        {
+            var sql = new StringBuilder("CREATE TABLE T1 (ID INTEGER PRIMARY KEY, NAME TEXT);");
+            for (int i = 2; i <= 8; i++)
+                sql.Append("CREATE TABLE T" + i.ToString() + " (ID INTEGER PRIMARY KEY, NAME TEXT" + (i == 2 ? ", T1_ID INTEGER REFERENCES T1(ID)" : "") + ");");
+            for (int i = 1; i <= 7; i++)
+                sql.Append("INSERT INTO T1 (ID, NAME) VALUES (" + i.ToString() + ", 'Name " + i.ToString() + "');");
+            return sql.ToString();
+        }
+
+        /// <summary>The reports of a read as they come, on the thread that reads; <see cref="OnReport"/> sees each one.</summary>
+        private sealed class RecordedProgress : IProgress<DatabaseReadProgress>
+        {
+            public readonly List<DatabaseReadProgress> Reports = new List<DatabaseReadProgress>();
+            public Action<DatabaseReadProgress> OnReport;
+
+            public void Report(DatabaseReadProgress value)
+            {
+                lock (Reports)
+                    Reports.Add(value);
+                if (OnReport != null)
+                    OnReport(value);
+            }
+
+            public string Phases()
+            {
+                var parts = new List<string>();
+                lock (Reports)
+                    foreach (DatabaseReadProgress p in Reports)
+                        parts.Add(p.PhaseName + ":" + p.Rows.ToString());
+                return string.Join(" ", parts);
+            }
+        }
+
+        /// <summary>
+        /// The reports of a read in order: connecting first (none when the connection was open), executing before
+        /// fetching, the rows never fewer than before and, at the end, <paramref name="rows"/>.
+        /// </summary>
+        private static void CheckOrder(LocalSchemaLog log, string what, RecordedProgress progress, bool connects, long rows)
+        {
+            List<DatabaseReadProgress> reports = progress.Reports;
+            log.Check(reports.Count >= (connects ? 3 : 2), what + ": the phases are reported: " + progress.Phases());
+            if (reports.Count == 0)
+                return;
+            log.Check(connects == (reports[0].Phase == DatabaseReadPhase.Connecting) && reports[0].Rows == 0,
+                what + ": " + (connects ? "connecting first" : "no connecting") + ": " + progress.Phases());
+            int executing = reports.FindIndex(p => p.Phase == DatabaseReadPhase.Executing);
+            int fetching = reports.FindIndex(p => p.Phase == DatabaseReadPhase.Fetching);
+            log.Check(executing >= 0 && fetching > executing, what + ": executing, then fetching: " + progress.Phases());
+            bool growing = true;
+            for (int i = 1; i < reports.Count; i++)
+                if (reports[i].Rows < reports[i - 1].Rows || reports[i].Elapsed < reports[i - 1].Elapsed)
+                    growing = false;
+            log.Check(growing, what + ": the rows and the time only grow: " + progress.Phases());
+            log.Check(reports[reports.Count - 1].Rows == rows, what + ": " + rows.ToString() + " rows in all: " + progress.Phases());
+        }
+
+        // P: a read reports its phases and the rows of all its queries, in order (the catalog, the columns of some tables
+        // and the first rows of a table)
+        private static void TestReadProgress(LocalSchemaLog log)
+        {
+            string dir = Path.Combine(Path.GetTempPath(), "rplocalschema-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                Func<DbConnection> create = SqliteDatabase(log, dir, EightTablesSql());
+                if (create == null)
+                    return;
+                var progress = new RecordedProgress();
+                LocalSchemaFile file = Task.Run(async () =>
+                {
+                    using (DbConnection connection = create())
+                        return await LocalSchemaStore.GenerateAsync(connection, "PROGRESS", null, 0, progress, CancellationToken.None);
+                }).GetAwaiter().GetResult();
+                log.Check(file.Tables.Count == 8 && ReadNames(file) == "T1|T2|T3|T4|T5|T6|T7|T8", "the catalog is read as always: " + ReadNames(file));
+                CheckOrder(log, "the catalog", progress, true, 26);
+
+                // The columns of two tables of a large catalog: the 8 names, the 5 columns and the foreign key
+                var large = LocalSchemaStore.LoadOrGenerate(dir, "PROGRESS", create, false, 5);
+                progress = new RecordedProgress();
+                List<string> read = Task.Run(async () =>
+                {
+                    using (DbConnection connection = create())
+                        return await LocalSchemaStore.ReadColumnsAsync(large, connection, new[] { "T1", "t2" }, progress, CancellationToken.None);
+                }).GetAwaiter().GetResult();
+                log.Check(Joined(read) == "T1|T2", "two tables read: " + Joined(read));
+                CheckOrder(log, "the columns", progress, true, 14);
+
+                // An open connection: no connecting
+                progress = new RecordedProgress();
+                using (DbConnection connection = create())
+                {
+                    connection.Open();
+                    List<LocalSchemaTable> tables = Task.Run(() => DatabaseCatalogReader.ReadTableDetailsAsync(connection, new[] { "T3" }, progress,
+                        CancellationToken.None)).GetAwaiter().GetResult();
+                    log.Check(tables.Count == 1 && tables[0].Columns.Count == 2, "T3 with its two columns");
+                }
+                CheckOrder(log, "an open connection", progress, false, 10);
+
+                // The preview: five rows of the seven
+                progress = new RecordedProgress();
+                System.Data.DataTable rows = Task.Run(() => LocalSchemaEditing.ReadPreviewAsync(create, "SQLite", "T1", 5, progress,
+                    CancellationToken.None)).GetAwaiter().GetResult();
+                log.Check(rows.Rows.Count == 5 && rows.Columns.Count == 2, "the preview, 5 rows: " + rows.Rows.Count.ToString());
+                CheckOrder(log, "the preview", progress, true, 5);
+            }
+            finally
+            {
+                try { Directory.Delete(dir, true); } catch { }
+            }
+        }
+
+        /// <summary>Runs a read that must be cancelled; the text of what it threw otherwise ("" when it was cancelled).</summary>
+        private static string Cancelled(Func<Task> read)
+        {
+            try
+            {
+                Task.Run(read).GetAwaiter().GetResult();
+                return "not cancelled";
+            }
+            catch (OperationCanceledException)
+            {
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.GetType().Name + ": " + ex.Message;
+            }
+        }
+
+        // P: a read cancelled while it fetches stops, and the file stays as it was: not written, nothing merged
+        private static void TestReadCancelled(LocalSchemaLog log)
+        {
+            string dir = Path.Combine(Path.GetTempPath(), "rplocalschema-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                Func<DbConnection> create = SqliteDatabase(log, dir, EightTablesSql());
+                if (create == null)
+                    return;
+                string path = LocalSchemaStore.PathFor(dir, "CANCEL");
+                LocalSchemaFile file = LocalSchemaStore.LoadOrGenerate(dir, "CANCEL", create, false, 5);
+                var two = new LocalSubschema { Name = "Two" };
+                two.Tables.Add("T2");
+                file.Schemas.Add(two);
+                LocalSchemaStore.Save(file, path);
+                string onDisk = File.ReadAllText(path, Encoding.UTF8);
+
+                // Read again, cancelled at its first row: the file on disk is the same
+                var cts = new CancellationTokenSource();
+                var progress = new RecordedProgress();
+                progress.OnReport = p =>
+                {
+                    if (p.Phase == DatabaseReadPhase.Fetching)
+                        cts.Cancel();
+                };
+                string outcome = Cancelled(() => LocalSchemaStore.LoadOrGenerateAsync(dir, "CANCEL", create, true, 5, progress, cts.Token));
+                log.Check(outcome == "", "reading the catalog again is cancelled: " + outcome);
+                log.Check(File.ReadAllText(path, Encoding.UTF8) == onDisk, "the file on disk is the same");
+                log.Check(progress.Reports.Count > 0 && progress.Reports[progress.Reports.Count - 1].Phase == DatabaseReadPhase.Fetching &&
+                    progress.Reports[progress.Reports.Count - 1].Rows == 1, "it stopped at its first row: " + progress.Phases());
+
+                // The columns of a table, cancelled: the table stays unread
+                string before = LocalSchemaStore.ToJson(file);
+                cts = new CancellationTokenSource();
+                progress = new RecordedProgress();
+                progress.OnReport = p =>
+                {
+                    if (p.Phase == DatabaseReadPhase.Fetching)
+                        cts.Cancel();
+                };
+                outcome = Cancelled(async () =>
+                {
+                    using (DbConnection connection = create())
+                        await LocalSchemaStore.ReadColumnsAsync(file, connection, new[] { "T7" }, progress, cts.Token);
+                });
+                log.Check(outcome == "", "reading the columns of T7 is cancelled: " + outcome);
+                log.Check(!LocalSchemaStore.IsRead(LocalSchemaEditing.FindTable(file, "T7")) && LocalSchemaStore.ToJson(file) == before,
+                    "T7 stays unread, the file is the same");
+
+                // A token cancelled before: nothing is read
+                cts = new CancellationTokenSource();
+                cts.Cancel();
+                progress = new RecordedProgress();
+                outcome = Cancelled(() => LocalSchemaEditing.ReadPreviewAsync(create, "SQLite", "T1", 5, progress, cts.Token));
+                log.Check(outcome == "" && progress.Reports.Count == 0, "a preview cancelled before it starts: " + outcome + " " + progress.Phases());
+                cts = new CancellationTokenSource();
+                progress = new RecordedProgress();
+                progress.OnReport = p =>
+                {
+                    if (p.Phase == DatabaseReadPhase.Fetching)
+                        cts.Cancel();
+                };
+                outcome = Cancelled(() => LocalSchemaEditing.ReadPreviewAsync(create, "SQLite", "T1", 5, progress, cts.Token));
+                log.Check(outcome == "", "a preview cancelled at its first row: " + outcome);
+            }
+            finally
+            {
+                try { Directory.Delete(dir, true); } catch { }
+            }
+        }
+
+        // P: 2037 while it connects, 2038 while a query runs, 2039 with the rows (thousands separators) while they come
+        private static void TestReadStatusText(LocalSchemaLog log)
+        {
+            log.Check(DesignerText.Tr(2037).Length > 0 && DesignerText.Tr(2038).Length > 0 && DesignerText.Tr(2039).Length > 0 &&
+                DesignerText.Tr(2040).Length > 0 && DesignerText.Tr(2041).Length > 0 && DesignerText.Tr(2042).Length > 0, "the strings 2037-2042");
+            string text = LocalSchemaEditorForm.ReadStatusText(null, TimeSpan.FromSeconds(3.7));
+            log.Check(text == DesignerText.Format(2037, "3"), "before the first report, connecting: " + text);
+            text = LocalSchemaEditorForm.ReadStatusText(new DatabaseReadProgress(DatabaseReadPhase.Executing, 0, TimeSpan.Zero), TimeSpan.FromSeconds(12.2));
+            log.Check(text == DesignerText.Format(2038, "12"), "executing, the seconds of the read: " + text);
+            string rows = 1234567L.ToString("N0", System.Globalization.CultureInfo.CurrentCulture);
+            text = LocalSchemaEditorForm.ReadStatusText(new DatabaseReadProgress(DatabaseReadPhase.Fetching, 1234567, TimeSpan.Zero), TimeSpan.FromSeconds(5));
+            log.Check(text == DesignerText.Format(2039, rows, "5") && text.Contains(rows), "fetching, the rows with their separators: " + text);
         }
 
         // V: a list of a hundred thousand tables fills at once, and keeps its selection by name

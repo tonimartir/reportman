@@ -23,6 +23,8 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using Reportman.Reporting;
 
 namespace Reportman.Designer
@@ -1440,21 +1442,49 @@ namespace Reportman.Designer
         /// </summary>
         public static DataTable ReadPreview(Func<DbConnection> createConnection, string dialect, string table, int rows)
         {
+            return ReadPreviewAsync(createConnection, dialect, table, rows, null, CancellationToken.None).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// <see cref="ReadPreview"/> reporting its progress to <paramref name="progress"/> (connecting, executing, the rows
+        /// fetched) and stopping when <paramref name="cancellationToken"/> is cancelled: it throws
+        /// <see cref="OperationCanceledException"/>.
+        /// </summary>
+        public static async Task<DataTable> ReadPreviewAsync(Func<DbConnection> createConnection, string dialect, string table, int rows,
+            IProgress<DatabaseReadProgress> progress, CancellationToken cancellationToken)
+        {
             if (createConnection == null)
                 throw new InvalidOperationException("No connection to read " + table);
             bool limited;
             string sql = PreviewSql(dialect, table, rows, out limited);
             var result = new DataTable(table ?? "");
             result.Locale = CultureInfo.CurrentCulture;
+            var tracker = new DatabaseReadTracker(progress);
+            try
+            {
+                await ReadPreviewRowsAsync(createConnection, sql, limited, rows, result, tracker, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex) when (cancellationToken.IsCancellationRequested && !(ex is OperationCanceledException))
+            {
+                // A provider that answers a cancelled command with an error of its own
+                throw new OperationCanceledException(ex.Message, ex, cancellationToken);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            tracker.Finish();
+            return result;
+        }
+
+        private static async Task ReadPreviewRowsAsync(Func<DbConnection> createConnection, string sql, bool limited, int rows, DataTable result,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
+        {
             using (DbConnection connection = createConnection())
             {
-                if (connection.State != ConnectionState.Open)
-                    connection.Open();
+                await tracker.OpenAsync(connection, cancellationToken).ConfigureAwait(false);
                 using (DbCommand command = connection.CreateCommand())
                 {
                     command.CommandText = sql;
                     command.CommandTimeout = 30;
-                    using (DbDataReader reader = command.ExecuteReader())
+                    using (DbDataReader reader = await tracker.ExecuteReaderAsync(command, CommandBehavior.Default, cancellationToken).ConfigureAwait(false))
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
@@ -1466,7 +1496,7 @@ namespace Reportman.Designer
                                 unique = name + " (" + n.ToString(CultureInfo.InvariantCulture) + ")";
                             result.Columns.Add(unique, typeof(string));
                         }
-                        while (result.Rows.Count < rows && reader.Read())
+                        while (result.Rows.Count < rows && await tracker.ReadAsync(reader, cancellationToken).ConfigureAwait(false))
                         {
                             var values = new object[reader.FieldCount];
                             for (int i = 0; i < reader.FieldCount; i++)
@@ -1481,7 +1511,6 @@ namespace Reportman.Designer
                     }
                 }
             }
-            return result;
         }
 
         private static string DisplayValue(DbDataReader reader, int ordinal)
