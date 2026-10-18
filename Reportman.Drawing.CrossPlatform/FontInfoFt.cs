@@ -2494,8 +2494,23 @@ namespace Reportman.Drawing
                                         if (deVuelta == null || deVuelta.filename != encontrada.filename
                                             || deVuelta.faceIndex != encontrada.faceIndex)
                                             return null;
-                                        var fallbackData = new TTFontData();
-                                        FillFontData(porNombre, fallbackData);
+                                        // La misma caché que las variantes del texto (fontDataCache), con
+                                        // la misma clave: rellenar las métricas de la reserva lee su
+                                        // fichero entero del disco (de 16 a 20 MB una CJK), y se hacía en
+                                        // cada medida de cada texto con emoji o con un script que su
+                                        // fuente no lleva. Ya se ha comprobado arriba que pedir esa
+                                        // familia por su nombre cae en esta misma cara.
+                                        string reservaKey = porNombre.GetFontFamilyKey() + porNombre.Style.ToString();
+                                        TTFontData fallbackData;
+                                        lock (fontDataCache)
+                                        {
+                                            if (!fontDataCache.TryGetValue(reservaKey, out fallbackData))
+                                            {
+                                                fallbackData = new TTFontData();
+                                                FillFontData(porNombre, fallbackData);
+                                                fontDataCache[reservaKey] = fallbackData;
+                                            }
+                                        }
                                         return Tuple.Create(porNombre, fallbackData, encontrada.familyname);
                                     };
 
