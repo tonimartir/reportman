@@ -440,6 +440,35 @@ namespace Reportman.Designer
             return JsonSerializer.Serialize(root, options).Replace("\r\n", "\n");
         }
 
+        // ===== Export all and Import all: the whole file of the connection (SPEC X) =====
+
+        /// <summary>
+        /// The file name Export all proposes: the one of the file of the connection, <c>&lt;ALIAS&gt;.json</c>.
+        /// </summary>
+        public static string WholeFileName(string alias)
+        {
+            string name = (alias ?? "").Trim();
+            return name.Length > 0 ? Path.GetFileName(LocalSchemaStore.PathFor("", name)) : "schema.json";
+        }
+
+        /// <summary>
+        /// The whole file as it is on screen, saved or not, in the format of the file: what <see cref="LocalSchemaStore.Save"/>
+        /// writes, but for the relations written here that are not complete yet, which are not saved either. The file shown is
+        /// not changed.
+        /// </summary>
+        public static string ExportAllJson(LocalSchemaFile file)
+        {
+            if (file == null)
+                throw new ArgumentNullException("file");
+            LocalSchemaFile copy = LocalSchemaFile.Parse(LocalSchemaStore.ToJson(file));
+            foreach (KeyValuePair<LocalSchemaTable, LocalSchemaForeignKey> pair in IncompleteWrittenRelations(copy))
+                pair.Key.ForeignKeys.Remove(pair.Value);
+            // As Save writes it: normalized (Parse), and at least the version this code writes
+            if (copy.Version < LocalSchemaStore.CurrentVersion)
+                copy.Version = LocalSchemaStore.CurrentVersion;
+            return LocalSchemaStore.ToJson(copy);
+        }
+
         private static bool IsIncompleteExport(object item)
         {
             var fk = item as Dictionary<string, object>;

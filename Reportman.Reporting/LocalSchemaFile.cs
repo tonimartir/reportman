@@ -63,6 +63,447 @@ namespace Reportman.Reporting
         /// <summary>Properties this version does not know, kept as they are.</summary>
         [JsonExtensionData]
         public Dictionary<string, JsonElement> Extra { get; set; }
+
+        // ===== Export all / Import all (docs: SPEC X, the same in the Delphi designer, this designer and Reportman Server) =====
+
+        /// <summary>
+        /// True when <paramref name="json"/> is a whole local schema file: a JSON object with an array <c>tables</c>, what
+        /// Export all writes or a <c>dbxschemas/&lt;ALIAS&gt;.json</c> copied as it is, from any designer or platform. A
+        /// subschema exported with Export (the format of the Reportman AI web, with <c>schemaTables</c>), any other JSON and a
+        /// text that is not JSON are not.
+        /// </summary>
+        /// <param name="json">The text of the file.</param>
+        public static bool IsWholeFileJson(string json)
+        {
+            try
+            {
+                using (JsonDocument document = JsonDocument.Parse(WithoutBom(json),
+                    new JsonDocumentOptions { AllowTrailingCommas = true, CommentHandling = JsonCommentHandling.Skip }))
+                {
+                    JsonElement root = document.RootElement;
+                    if (root.ValueKind != JsonValueKind.Object)
+                        return false;
+                    JsonElement tables;
+                    if (root.TryGetProperty("tables", out tables))
+                        return tables.ValueKind == JsonValueKind.Array;
+                    // Read as the file is read: the names of its properties ignoring case
+                    foreach (JsonProperty property in root.EnumerateObject())
+                        if (string.Equals(property.Name, "tables", StringComparison.OrdinalIgnoreCase))
+                            return property.Value.ValueKind == JsonValueKind.Array;
+                    return false;
+                }
+            }
+            catch (JsonException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Reads a whole local schema file from its text, as <see cref="LocalSchemaStore.Load"/> reads it from disk: the
+        /// properties of a newer version kept, everything normalized. Throws <see cref="JsonException"/> when the text is not
+        /// the JSON of a file (check it first with <see cref="IsWholeFileJson"/>).
+        /// </summary>
+        /// <param name="json">The text of the file.</param>
+        public static LocalSchemaFile Parse(string json)
+        {
+            LocalSchemaFile file = JsonSerializer.Deserialize<LocalSchemaFile>(WithoutBom(json), LocalSchemaStore.CreateJsonOptions())
+                ?? new LocalSchemaFile();
+            LocalSchemaStore.Normalize(file);
+            return file;
+        }
+
+        private static string WithoutBom(string json)
+        {
+            return (json ?? "").TrimStart('\uFEFF');
+        }
+
+        /// <summary>
+        /// True when the file has something people wrote, what an import of a whole file asks about before changing it: a
+        /// subschema, a relation left out of every subschema, a relation written by hand, or a description of a table, of a
+        /// column or of a relation, or allowed values of a column (a description that came from a comment of the database
+        /// counts too: it only asks). A file just read from the catalog has none.
+        /// </summary>
+        public bool HasContent()
+        {
+            if (Schemas != null && Schemas.Exists(s => s != null))
+                return true;
+            if (ExcludedRelations != null && ExcludedRelations.Exists(r => r != null))
+                return true;
+            if (Tables == null)
+                return false;
+            foreach (LocalSchemaTable table in Tables)
+            {
+                if (table == null)
+                    continue;
+                if (IsWritten(table.Context))
+                    return true;
+                if (table.Columns != null)
+                    foreach (LocalSchemaColumn column in table.Columns)
+                        if (column != null && (IsWritten(column.Context) ||
+                            (column.AllowedValues != null && column.AllowedValues.Exists(v => v != null && !string.IsNullOrEmpty(v.Value)))))
+                            return true;
+                if (table.ForeignKeys != null)
+                    foreach (LocalSchemaForeignKey fk in table.ForeignKeys)
+                        if (fk != null && (string.IsNullOrEmpty(fk.ConstraintName) || IsWritten(fk.RelationshipContext)))
+                            return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// The tables whose columns an import of <paramref name="imported"/> (<see cref="ImportAll"/>) needs and this file
+        /// has not read (a large catalog reads the columns of a table when it is used): of the tables of
+        /// <paramref name="imported"/> whose columns it has (all of them, unless its own catalog is large), of the tables of
+        /// its subschemas and of the targets of its relations written by hand, the ones this file has with
+        /// <see cref="LocalSchemaTable.ColumnsRead"/> false, as this file spells them, each once. They are read
+        /// (<see cref="LocalSchemaStore.ReadColumnsAsync"/>) before importing; nothing is changed here.
+        /// </summary>
+        /// <param name="imported">The file to import.</param>
+        public List<string> UnreadTablesOf(LocalSchemaFile imported)
+        {
+            var names = new List<string>();
+            if (imported == null)
+                return names;
+            if (imported.Tables != null)
+            {
+                foreach (LocalSchemaTable table in imported.Tables)
+                {
+                    if (table == null || string.IsNullOrEmpty(table.Name))
+                        continue;
+                    // A table the imported file did not read either brings no column: nothing to read for it
+                    if (LocalSchemaStore.IsRead(table))
+                        names.Add(table.Name);
+                    if (table.ForeignKeys != null)
+                        foreach (LocalSchemaForeignKey fk in table.ForeignKeys)
+                            if (fk != null && string.IsNullOrEmpty(fk.ConstraintName) && !string.IsNullOrEmpty(fk.TargetTable))
+                                names.Add(fk.TargetTable);
+                }
+            }
+            if (imported.Schemas != null)
+                foreach (LocalSubschema schema in imported.Schemas)
+                    if (schema != null && schema.Tables != null)
+                        names.AddRange(schema.Tables);
+            return LocalSchemaStore.UnreadTables(this, names);
+        }
+
+        /// <summary>
+        /// Imports a whole local schema file (Export all of another installation) into this one, the file shown. The catalog
+        /// of this file never changes (its tables, columns, types, primary keys and the relations its database declares):
+        /// only what people wrote comes from <paramref name="imported"/>. With <paramref name="replace"/> this file is first
+        /// emptied of what is written (every subschema, the relations left out of every subschema, the relations written by
+        /// hand, every description and every list of allowed values); then, as a merge:
+        /// <list type="number">
+        /// <item>each table of <paramref name="imported"/> is the one of this file with its name, ignoring case; one this
+        /// file does not have is skipped (<c>TABLE</c>);</item>
+        /// <item>its description, when not empty, becomes the table's;</item>
+        /// <item>each of its columns is the one of the table with its name; one it does not have is skipped
+        /// (<c>TABLE.COLUMN</c>); its description, when not empty, becomes the column's, and its allowed values, when it has
+        /// some, the column's whole list;</item>
+        /// <item>its relations of the database (with a constraint name) are found by that name, ignoring case, or else by the
+        /// same target table and columns, and their description, when not empty, becomes the one found's; one not found is
+        /// ignored;</item>
+        /// <item>its relations written by hand whose tables and columns are all here are added as written by hand, as this
+        /// file spells them; one with the same ends here already takes their description when it is not empty; one with an
+        /// end that is not here is ignored;</item>
+        /// <item>the relations it leaves out of every subschema whose source table is here are added to this file's list,
+        /// unless the same entry is there;</item>
+        /// <item>its subschemas, in its order: the tables that are here (as this file spells them), the columns of their
+        /// lists that are here (a list left empty: the primary key), the relations left out whose source table is here, the
+        /// description and the properties of a newer version; one with the name of a subschema of this file (ignoring case)
+        /// replaces it in place, else it is added at the end;</item>
+        /// <item>the subschemas and descriptions of this file that <paramref name="imported"/> does not have stay.</item>
+        /// </list>
+        /// Nothing is saved. A large catalog reads first the tables <see cref="UnreadTablesOf"/> says.
+        /// </summary>
+        /// <param name="imported">The file to import (<see cref="Parse"/>).</param>
+        /// <param name="replace">True to replace what is written here, false to merge with it.</param>
+        public LocalSchemaImportAllResult ImportAll(LocalSchemaFile imported, bool replace)
+        {
+            if (imported == null)
+                throw new ArgumentNullException("imported");
+            // Its own copy: emptying this file must not empty the one imported
+            if (ReferenceEquals(imported, this))
+                imported = Parse(LocalSchemaStore.ToJson(this));
+            LocalSchemaStore.Normalize(this);
+            LocalSchemaStore.Normalize(imported);
+            var result = new LocalSchemaImportAllResult();
+            if (replace)
+                ClearWritten();
+            var tables = new Dictionary<string, LocalSchemaTable>(StringComparer.OrdinalIgnoreCase);
+            foreach (LocalSchemaTable table in Tables)
+                if (!tables.ContainsKey(table.Name))
+                    tables.Add(table.Name, table);
+
+            // 1-5. The dictionary: descriptions, allowed values and relations of the tables and columns this file has
+            foreach (LocalSchemaTable source in imported.Tables)
+            {
+                LocalSchemaTable table;
+                if (!tables.TryGetValue(source.Name, out table))
+                {
+                    AddSkipped(result.Skipped, source.Name);
+                    continue;
+                }
+                if (IsWritten(source.Context))
+                    table.Context = source.Context;
+                foreach (LocalSchemaColumn sourceColumn in source.Columns)
+                {
+                    LocalSchemaColumn column = FindColumn(table, sourceColumn.Name);
+                    if (column == null)
+                    {
+                        AddSkipped(result.Skipped, table.Name + "." + sourceColumn.Name);
+                        continue;
+                    }
+                    if (IsWritten(sourceColumn.Context))
+                        column.Context = sourceColumn.Context;
+                    if (sourceColumn.AllowedValues != null && sourceColumn.AllowedValues.Count > 0)
+                        column.AllowedValues = CopyValues(sourceColumn.AllowedValues);
+                }
+                // The relations of the database first, then the ones written by hand
+                foreach (LocalSchemaForeignKey fk in source.ForeignKeys)
+                    if (fk.ConstraintName.Length > 0)
+                        DescribeRelation(table, fk);
+                foreach (LocalSchemaForeignKey fk in source.ForeignKeys)
+                    if (fk.ConstraintName.Length == 0)
+                        ImportRelation(tables, table, fk);
+            }
+
+            // 6. The relations left out of every subschema
+            if (imported.ExcludedRelations != null)
+            {
+                foreach (LocalRelationRef entry in imported.ExcludedRelations)
+                {
+                    if (!tables.ContainsKey(entry.SourceTable))
+                        continue;
+                    if (ExcludedRelations == null)
+                        ExcludedRelations = new List<LocalRelationRef>();
+                    if (IndexOfEntry(ExcludedRelations, entry) < 0)
+                        ExcludedRelations.Add(CopyEntry(entry));
+                }
+            }
+
+            // 7. The subschemas, replacing the ones with the same name
+            foreach (LocalSubschema source in imported.Schemas)
+            {
+                LocalSubschema schema = ImportSubschema(tables, source, result.Skipped);
+                int index = Schemas.FindIndex(s => string.Equals(s.Name, schema.Name, StringComparison.OrdinalIgnoreCase));
+                if (index >= 0)
+                {
+                    Schemas[index] = schema;
+                    result.Replaced++;
+                }
+                else
+                    Schemas.Add(schema);
+                result.Added++;
+                result.Subschemas.Add(schema.Name);
+            }
+            return result;
+        }
+
+        /// <summary>Empties the file of what people wrote; the catalog stays (Replace of an import).</summary>
+        private void ClearWritten()
+        {
+            Schemas.Clear();
+            ExcludedRelations = null;
+            foreach (LocalSchemaTable table in Tables)
+            {
+                table.Context = "";
+                foreach (LocalSchemaColumn column in table.Columns)
+                {
+                    column.Context = "";
+                    column.AllowedValues = null;
+                }
+                table.ForeignKeys.RemoveAll(fk => fk.ConstraintName.Length == 0);
+                foreach (LocalSchemaForeignKey fk in table.ForeignKeys)
+                    fk.RelationshipContext = "";
+            }
+        }
+
+        /// <summary>
+        /// The description of a relation of the database of an imported table to the same one here: the one with its constraint
+        /// name, else the one with its ends.
+        /// </summary>
+        private static void DescribeRelation(LocalSchemaTable table, LocalSchemaForeignKey fk)
+        {
+            if (!IsWritten(fk.RelationshipContext))
+                return;
+            LocalSchemaForeignKey same = table.ForeignKeys.Find(f => f.ConstraintName.Length > 0 &&
+                string.Equals(f.ConstraintName, fk.ConstraintName, StringComparison.OrdinalIgnoreCase))
+                ?? table.ForeignKeys.Find(f => LocalSchemaStore.SameRelation(f, fk));
+            if (same != null)
+                same.RelationshipContext = fk.RelationshipContext;
+        }
+
+        /// <summary>
+        /// A relation written by hand of an imported table, as this file spells its ends, when they are all here: added, or
+        /// its description to the one with the same ends.
+        /// </summary>
+        private static void ImportRelation(Dictionary<string, LocalSchemaTable> tables, LocalSchemaTable table, LocalSchemaForeignKey fk)
+        {
+            LocalSchemaTable target;
+            if (string.IsNullOrEmpty(fk.TargetTable) || !tables.TryGetValue(fk.TargetTable, out target))
+                return;
+            if (fk.SourceColumns.Count == 0 || fk.SourceColumns.Count != fk.TargetColumns.Count)
+                return;
+            List<string> sourceColumns = SpelledColumns(table, fk.SourceColumns);
+            List<string> targetColumns = SpelledColumns(target, fk.TargetColumns);
+            if (sourceColumns == null || targetColumns == null)
+                return;
+            var relation = new LocalSchemaForeignKey
+            {
+                ConstraintName = "",
+                TargetTable = target.Name,
+                SourceColumns = sourceColumns,
+                TargetColumns = targetColumns,
+                RelationshipContext = fk.RelationshipContext ?? "",
+                Extra = CopyExtra(fk.Extra)
+            };
+            LocalSchemaForeignKey same = table.ForeignKeys.Find(f => LocalSchemaStore.SameRelation(f, relation));
+            if (same == null)
+                table.ForeignKeys.Add(relation);
+            else if (IsWritten(relation.RelationshipContext))
+                same.RelationshipContext = relation.RelationshipContext;
+        }
+
+        /// <summary>An imported subschema with what this file has of it; what it does not have goes to <paramref name="skipped"/>.</summary>
+        private static LocalSubschema ImportSubschema(Dictionary<string, LocalSchemaTable> tables, LocalSubschema source, List<string> skipped)
+        {
+            var schema = new LocalSubschema
+            {
+                Name = source.Name,
+                Description = source.Description ?? "",
+                Extra = CopyExtra(source.Extra)
+            };
+            foreach (string name in source.Tables)
+            {
+                LocalSchemaTable table;
+                if (!tables.TryGetValue(name, out table))
+                {
+                    AddSkipped(skipped, name);
+                    continue;
+                }
+                if (!schema.Tables.Contains(table.Name))
+                    schema.Tables.Add(table.Name);
+            }
+            if (source.Columns != null)
+            {
+                foreach (KeyValuePair<string, List<string>> entry in source.Columns)
+                {
+                    LocalSchemaTable table;
+                    if (!tables.TryGetValue(entry.Key, out table) || !schema.Tables.Contains(table.Name))
+                        continue;
+                    var columns = new List<string>();
+                    foreach (string name in entry.Value)
+                    {
+                        LocalSchemaColumn column = FindColumn(table, name);
+                        if (column == null)
+                            AddSkipped(skipped, table.Name + "." + name);
+                        else if (!columns.Contains(column.Name))
+                            columns.Add(column.Name);
+                    }
+                    // None left: the table goes with its primary key, as always
+                    if (columns.Count == 0)
+                        continue;
+                    if (schema.Columns == null)
+                        schema.Columns = new Dictionary<string, List<string>>();
+                    schema.Columns[table.Name] = columns;
+                }
+            }
+            if (source.ExcludedRelations != null)
+            {
+                foreach (LocalRelationRef entry in source.ExcludedRelations)
+                {
+                    if (!tables.ContainsKey(entry.SourceTable))
+                        continue;
+                    if (schema.ExcludedRelations == null)
+                        schema.ExcludedRelations = new List<LocalRelationRef>();
+                    if (IndexOfEntry(schema.ExcludedRelations, entry) < 0)
+                        schema.ExcludedRelations.Add(CopyEntry(entry));
+                }
+            }
+            return schema;
+        }
+
+        private static bool IsWritten(string text)
+        {
+            return !string.IsNullOrWhiteSpace(text);
+        }
+
+        private static LocalSchemaColumn FindColumn(LocalSchemaTable table, string name)
+        {
+            return table.Columns.Find(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        /// <summary>The names as the table spells them; null when one is not a column of it.</summary>
+        private static List<string> SpelledColumns(LocalSchemaTable table, List<string> names)
+        {
+            var result = new List<string>();
+            foreach (string name in names)
+            {
+                LocalSchemaColumn column = FindColumn(table, name);
+                if (column == null)
+                    return null;
+                result.Add(column.Name);
+            }
+            return result;
+        }
+
+        private static void AddSkipped(List<string> skipped, string name)
+        {
+            if (!skipped.Exists(s => string.Equals(s, name, StringComparison.OrdinalIgnoreCase)))
+                skipped.Add(name);
+        }
+
+        private static int IndexOfEntry(List<LocalRelationRef> list, LocalRelationRef entry)
+        {
+            return LocalSchemaStore.IndexOfRelation(list, entry.SourceTable, new LocalSchemaForeignKey
+            {
+                TargetTable = entry.TargetTable,
+                SourceColumns = entry.SourceColumns,
+                TargetColumns = entry.TargetColumns
+            });
+        }
+
+        private static LocalRelationRef CopyEntry(LocalRelationRef entry)
+        {
+            return new LocalRelationRef
+            {
+                SourceTable = entry.SourceTable,
+                SourceColumns = new List<string>(entry.SourceColumns),
+                TargetTable = entry.TargetTable,
+                TargetColumns = new List<string>(entry.TargetColumns),
+                Extra = CopyExtra(entry.Extra)
+            };
+        }
+
+        private static List<LocalAllowedValue> CopyValues(List<LocalAllowedValue> values)
+        {
+            var result = new List<LocalAllowedValue>();
+            foreach (LocalAllowedValue value in values)
+                result.Add(new LocalAllowedValue { Value = value.Value, Label = value.Label ?? "", Extra = CopyExtra(value.Extra) });
+            return result;
+        }
+
+        private static Dictionary<string, JsonElement> CopyExtra(Dictionary<string, JsonElement> extra)
+        {
+            return extra != null ? new Dictionary<string, JsonElement>(extra) : null;
+        }
+    }
+
+    /// <summary>What <see cref="LocalSchemaFile.ImportAll"/> did.</summary>
+    public class LocalSchemaImportAllResult
+    {
+        /// <summary>The subschemas imported: every subschema of the imported file.</summary>
+        public int Added { get; set; }
+        /// <summary>How many of <see cref="Added"/> replaced a subschema with the same name.</summary>
+        public int Replaced { get; set; }
+        /// <summary>The names of the subschemas imported, in the order of the imported file.</summary>
+        public List<string> Subschemas { get; set; } = new List<string>();
+        /// <summary>
+        /// What the database does not have, not imported: <c>TABLE</c> (as the imported file names it) and
+        /// <c>TABLE.COLUMN</c> (the table as this file spells it), each once, in the order found.
+        /// </summary>
+        public List<string> Skipped { get; set; } = new List<string>();
     }
 
     /// <summary>A table of a <see cref="LocalSchemaFile"/>.</summary>
@@ -213,7 +654,7 @@ namespace Reportman.Reporting
         private static readonly string[] CloudDialects =
             { "Default", "SQLServer", "MySQL", "PostgreSQL", "Oracle", "SQLite", "Firebird1", "Firebird2", "Firebird4", "Firebird5", "Progress", "Firebird2Dialect1" };
 
-        private static JsonSerializerOptions CreateJsonOptions()
+        internal static JsonSerializerOptions CreateJsonOptions()
         {
             return CreateJsonOptions(true);
         }
@@ -260,10 +701,7 @@ namespace Reportman.Reporting
         {
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
                 return null;
-            string text = File.ReadAllText(path, Encoding.UTF8);
-            LocalSchemaFile file = JsonSerializer.Deserialize<LocalSchemaFile>(text, CreateJsonOptions()) ?? new LocalSchemaFile();
-            Normalize(file);
-            return file;
+            return LocalSchemaFile.Parse(File.ReadAllText(path, Encoding.UTF8));
         }
 
         /// <summary>Writes a file (UTF-8 without BOM), creating its folder when needed.</summary>
@@ -808,7 +1246,7 @@ namespace Reportman.Reporting
             return removed;
         }
 
-        private static int IndexOfRelation(List<LocalRelationRef> list, string sourceTable, LocalSchemaForeignKey fk)
+        internal static int IndexOfRelation(List<LocalRelationRef> list, string sourceTable, LocalSchemaForeignKey fk)
         {
             if (list == null)
                 return -1;
@@ -1069,7 +1507,7 @@ namespace Reportman.Reporting
             return DatabaseCatalogReader.LooseType(loose);
         }
 
-        private static void Normalize(LocalSchemaFile file)
+        internal static void Normalize(LocalSchemaFile file)
         {
             if (file.Alias == null) file.Alias = "";
             if (file.Dialect == null) file.Dialect = "Default";

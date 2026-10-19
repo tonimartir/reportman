@@ -35,7 +35,9 @@ namespace Reportman.Designer
     /// import of names that are in the database as they are, which works as it did. And the word filter of the lists,
     /// a large catalog (the names first, the columns of a table when it is used, with a SQLite database of eight tables
     /// and the threshold at five) and the lists that paint only what they show. And the progress of the reads of the
-    /// database (their phases and rows in order, a read cancelled that changes nothing, the status line).
+    /// database (their phases and rows in order, a read cancelled that changes nothing, the status line). And Export all and
+    /// Import all of the whole file (merge, replace, what has content, what is not a whole file, the round trip), the same
+    /// cases as the Delphi designer and Reportman Server.
     /// </summary>
     public static class DesignerSelfTestLocalSchema
     {
@@ -98,6 +100,14 @@ namespace Reportman.Designer
             RunCheck(log, "progress: a read cancelled changes nothing", TestReadCancelled);
             RunCheck(log, "progress: the status line", TestReadStatusText);
             RunCheck(log, "lists: a hundred thousand tables", TestTableList);
+            RunCheck(log, "import all: merge", TestImportAllMerge);
+            RunCheck(log, "import all: replace", TestImportAllReplace);
+            RunCheck(log, "import all: has content", TestImportAllHasContent);
+            RunCheck(log, "import all: not a whole file", f => TestImportAllNotWholeFile(f, folder));
+            RunCheck(log, "import all: export all, round trip", TestExportAllRoundTrip);
+            RunCheck(log, "import all: the relations of the database", TestImportAllDatabaseRelations);
+            RunCheck(log, "import all: a large catalog reads first", TestImportAllLargeCatalog);
+            RunCheck(log, "import all: the strings 2043-2053", TestImportAllStrings);
             failed = log.Failed;
             return log.ToString();
         }
@@ -893,6 +903,455 @@ namespace Reportman.Designer
             foreach (LocalSchemaTable t in tables)
                 result.Add(t.Name);
             return result;
+        }
+
+        // ===== X.6: Export all and Import all, the same cases as the Delphi designer and Reportman Server =====
+
+        // The catalog of the connection: ORDERS (ID, STATUS, X, CUSTOMER_ID -> CUSTOMERS), CUSTOMERS (ID, Y), PRODUCTS (ID)
+        private static LocalSchemaFile ShopCatalog()
+        {
+            var file = new LocalSchemaFile { Alias = "SHOP", Dialect = "SQLite", GeneratedUtc = "2026-10-19T00:00:00Z" };
+            LocalSchemaTable orders = CatalogTable("ORDERS", "ID", "STATUS", "X", "CUSTOMER_ID");
+            orders.ForeignKeys.Add(NewRelation("FK_ORDERS_CUSTOMERS", "CUSTOMERS", "CUSTOMER_ID", "ID", ""));
+            file.Tables.Add(orders);
+            file.Tables.Add(CatalogTable("CUSTOMERS", "ID", "Y"));
+            file.Tables.Add(CatalogTable("PRODUCTS", "ID"));
+            return file;
+        }
+
+        // A table whose first column is its primary key
+        private static LocalSchemaTable CatalogTable(string name, params string[] columns)
+        {
+            var table = new LocalSchemaTable { Name = name };
+            for (int i = 0; i < columns.Length; i++)
+                table.Columns.Add(new LocalSchemaColumn { Name = columns[i], DataType = i == 0 ? "Integer" : "String", IsPrimaryKey = i == 0 });
+            return table;
+        }
+
+        // A relation of one column; written by hand when the constraint name is empty
+        private static LocalSchemaForeignKey NewRelation(string constraint, string target, string sourceColumn, string targetColumn, string context)
+        {
+            var fk = new LocalSchemaForeignKey { ConstraintName = constraint, TargetTable = target, RelationshipContext = context };
+            fk.SourceColumns.Add(sourceColumn);
+            fk.TargetColumns.Add(targetColumn);
+            return fk;
+        }
+
+        private static LocalRelationRef NewEntry(string sourceTable, string sourceColumn, string targetTable, string targetColumn)
+        {
+            var entry = new LocalRelationRef { SourceTable = sourceTable, TargetTable = targetTable };
+            entry.SourceColumns.Add(sourceColumn);
+            entry.TargetColumns.Add(targetColumn);
+            return entry;
+        }
+
+        private static LocalSubschema NewSubschema(string name, params string[] tables)
+        {
+            var schema = new LocalSubschema { Name = name };
+            schema.Tables.AddRange(tables);
+            return schema;
+        }
+
+        private static List<LocalAllowedValue> NewValues(params string[] values)
+        {
+            var result = new List<LocalAllowedValue>();
+            foreach (string value in values)
+                result.Add(new LocalAllowedValue { Value = value, Label = "Label " + value });
+            return result;
+        }
+
+        // D: Sales (ORDERS, CUSTOMERS) and Mine (PRODUCTS); ORDERS "D orders", ORDERS.STATUS [A], CUSTOMERS "D customers";
+        // ORDERS.X -> PRODUCTS by hand. And ORDERS.ID "D id", FK_ORDERS_CUSTOMERS "D: who"
+        private static LocalSchemaFile ShopD()
+        {
+            LocalSchemaFile d = ShopCatalog();
+            d.Schemas.Add(NewSubschema("Sales", "ORDERS", "CUSTOMERS"));
+            d.Schemas.Add(NewSubschema("Mine", "PRODUCTS"));
+            LocalSchemaTable orders = LocalSchemaEditing.FindTable(d, "ORDERS");
+            orders.Context = "D orders";
+            LocalSchemaEditing.FindColumn(orders, "ID").Context = "D id";
+            LocalSchemaEditing.FindColumn(orders, "STATUS").AllowedValues = NewValues("A");
+            orders.ForeignKeys[0].RelationshipContext = "D: who";
+            orders.ForeignKeys.Add(NewRelation("", "PRODUCTS", "X", "ID", "D: its product"));
+            LocalSchemaEditing.FindTable(d, "CUSTOMERS").Context = "D customers";
+            return d;
+        }
+
+        // F, the whole file of another installation: Sales (ORDERS, GHOST) and New (customers); ORDERS "F orders", CUSTOMERS "",
+        // ORDERS.STATUS [B, C], a column ORDERS.NOPE, a table GHOST, CUSTOMERS.Y -> ORDERS by hand, a root exclusion (and one
+        // of GHOST, which is not here)
+        private static string ShopF()
+        {
+            var f = new LocalSchemaFile { Alias = "OTHER", Dialect = "SQLite", GeneratedUtc = "2026-10-18T00:00:00Z" };
+            LocalSchemaTable orders = CatalogTable("ORDERS", "ID", "STATUS", "X", "CUSTOMER_ID", "NOPE");
+            orders.Context = "F orders";
+            LocalSchemaEditing.FindColumn(orders, "STATUS").AllowedValues = NewValues("B", "C");
+            orders.ForeignKeys.Add(NewRelation("FK_ORDERS_CUSTOMERS", "CUSTOMERS", "CUSTOMER_ID", "ID", "F: who ordered"));
+            f.Tables.Add(orders);
+            LocalSchemaTable customers = CatalogTable("CUSTOMERS", "ID", "Y");
+            customers.ForeignKeys.Add(NewRelation("", "ORDERS", "Y", "ID", "F: by hand"));
+            f.Tables.Add(customers);
+            f.Tables.Add(CatalogTable("GHOST", "ID"));
+            LocalSubschema sales = NewSubschema("Sales", "ORDERS", "GHOST");
+            sales.Description = "F sales";
+            sales.Columns = new Dictionary<string, List<string>> { { "ORDERS", new List<string> { "ID", "STATUS", "NOPE" } } };
+            f.Schemas.Add(sales);
+            f.Schemas.Add(NewSubschema("New", "customers"));
+            f.ExcludedRelations = new List<LocalRelationRef>
+            {
+                NewEntry("ORDERS", "CUSTOMER_ID", "CUSTOMERS", "ID"),
+                NewEntry("GHOST", "ID", "ORDERS", "ID")
+            };
+            return LocalSchemaStore.ToJson(f);
+        }
+
+        private static string SchemaNames(LocalSchemaFile file)
+        {
+            var names = new List<string>();
+            foreach (LocalSubschema s in file.Schemas)
+                names.Add(s.Name);
+            return Joined(names);
+        }
+
+        // The relations written by hand of a table: «X>PRODUCTS.ID=description»
+        private static string Written(LocalSchemaFile file, string table)
+        {
+            var result = new List<string>();
+            LocalSchemaTable t = LocalSchemaEditing.FindTable(file, table);
+            if (t != null)
+                foreach (LocalSchemaForeignKey fk in t.ForeignKeys)
+                    if (LocalSchemaEditing.IsWritten(fk))
+                        result.Add(string.Join(",", fk.SourceColumns) + ">" + fk.TargetTable + "." + string.Join(",", fk.TargetColumns) + "=" + fk.RelationshipContext);
+            return Joined(result);
+        }
+
+        private static string Entries(List<LocalRelationRef> list)
+        {
+            var result = new List<string>();
+            if (list != null)
+                foreach (LocalRelationRef r in list)
+                    result.Add(r.SourceTable + "." + string.Join(",", r.SourceColumns) + ">" + r.TargetTable + "." + string.Join(",", r.TargetColumns));
+            return Joined(result);
+        }
+
+        private static string Sorted(List<string> values)
+        {
+            var copy = new List<string>(values);
+            copy.Sort(StringComparer.OrdinalIgnoreCase);
+            return Joined(copy);
+        }
+
+        private static string Context(LocalSchemaFile file, string table)
+        {
+            LocalSchemaTable t = LocalSchemaEditing.FindTable(file, table);
+            return t != null ? t.Context : "(no table " + table + ")";
+        }
+
+        private static string ColumnContext(LocalSchemaFile file, string table, string column)
+        {
+            LocalSchemaColumn c = LocalSchemaEditing.FindColumn(LocalSchemaEditing.FindTable(file, table), column);
+            return c != null ? c.Context : "(no column " + table + "." + column + ")";
+        }
+
+        private static string AllowedValues(LocalSchemaFile file, string table, string column)
+        {
+            LocalSchemaColumn c = LocalSchemaEditing.FindColumn(LocalSchemaEditing.FindTable(file, table), column);
+            if (c == null)
+                return "(no column " + table + "." + column + ")";
+            var values = new List<string>();
+            if (c.AllowedValues != null)
+                foreach (LocalAllowedValue v in c.AllowedValues)
+                    values.Add(v.Value);
+            return Joined(values);
+        }
+
+        private static string RelationContext(LocalSchemaFile file, string table, string constraint)
+        {
+            LocalSchemaTable t = LocalSchemaEditing.FindTable(file, table);
+            LocalSchemaForeignKey fk = t != null ? t.ForeignKeys.Find(f => f.ConstraintName == constraint) : null;
+            return fk != null ? fk.RelationshipContext : "(no relation " + constraint + ")";
+        }
+
+        private static string Catalog(LocalSchemaFile file)
+        {
+            var result = new List<string>();
+            foreach (LocalSchemaTable t in file.Tables)
+            {
+                var columns = new List<string>();
+                foreach (LocalSchemaColumn c in t.Columns)
+                    columns.Add(c.Name + (c.IsPrimaryKey ? "*" : ""));
+                int database = t.ForeignKeys.FindAll(fk => !LocalSchemaEditing.IsWritten(fk)).Count;
+                result.Add(t.Name + "(" + string.Join(",", columns) + ")" + database.ToString());
+            }
+            return Joined(result);
+        }
+
+        private const string ShopCatalogText = "ORDERS(ID*,STATUS,X,CUSTOMER_ID)1|CUSTOMERS(ID*,Y)0|PRODUCTS(ID*)0";
+
+        // X.6 Merge: Sales (from F: only ORDERS), Mine (kept), New; added 2, replaced 1; ORDERS "F orders", CUSTOMERS
+        // "D customers"; STATUS [B, C]; both relations by hand; the exclusion; skipped GHOST and ORDERS.NOPE
+        private static void TestImportAllMerge(LocalSchemaLog log)
+        {
+            LocalSchemaFile d = ShopD();
+            LocalSchemaImportAllResult result = d.ImportAll(LocalSchemaFile.Parse(ShopF()), false);
+            log.Check(SchemaNames(d) == "Sales|Mine|New", "Sales replaced in place, Mine kept, New at the end: " + SchemaNames(d));
+            log.Check(result.Added == 2 && result.Replaced == 1, "added 2, replaced 1: " + result.Added.ToString() + ", " + result.Replaced.ToString());
+            log.Check(Joined(result.Subschemas) == "Sales|New", "the subschemas imported, in the order of the file: " + Joined(result.Subschemas));
+            LocalSubschema sales = LocalSchemaStore.FindSubschema(d, "Sales");
+            log.Check(sales != null && Joined(sales.Tables) == "ORDERS" && sales.Description == "F sales",
+                "Sales is the file's, with ORDERS only: " + (sales != null ? Joined(sales.Tables) : "(none)"));
+            log.Check(sales != null && Columns(d, sales, "ORDERS") == "ID|STATUS", "its columns that are here: " + (sales != null ? Columns(d, sales, "ORDERS") : ""));
+            LocalSubschema mine = LocalSchemaStore.FindSubschema(d, "Mine");
+            log.Check(mine != null && Joined(mine.Tables) == "PRODUCTS", "Mine stays");
+            LocalSubschema added = LocalSchemaStore.FindSubschema(d, "New");
+            log.Check(added != null && Joined(added.Tables) == "CUSTOMERS", "New, its table as this file spells it: " + (added != null ? Joined(added.Tables) : "(none)"));
+            log.Check(Context(d, "ORDERS") == "F orders" && Context(d, "CUSTOMERS") == "D customers",
+                "ORDERS takes F's description, CUSTOMERS keeps D's: " + Context(d, "ORDERS") + " / " + Context(d, "CUSTOMERS"));
+            log.Check(ColumnContext(d, "ORDERS", "ID") == "D id", "a column description F does not have stays");
+            log.Check(AllowedValues(d, "ORDERS", "STATUS") == "B|C", "STATUS takes F's whole list: " + AllowedValues(d, "ORDERS", "STATUS"));
+            log.Check(Written(d, "ORDERS") == "X>PRODUCTS.ID=D: its product" && Written(d, "CUSTOMERS") == "Y>ORDERS.ID=F: by hand",
+                "both relations by hand: " + Written(d, "ORDERS") + " / " + Written(d, "CUSTOMERS"));
+            log.Check(RelationContext(d, "ORDERS", "FK_ORDERS_CUSTOMERS") == "F: who ordered", "the relation of the database takes F's description");
+            log.Check(Entries(d.ExcludedRelations) == "ORDERS.CUSTOMER_ID>CUSTOMERS.ID", "the exclusion of ORDERS, not the one of GHOST: " +
+                Entries(d.ExcludedRelations));
+            log.Check(Sorted(result.Skipped) == "GHOST|ORDERS.NOPE", "skipped GHOST and ORDERS.NOPE: " + Joined(result.Skipped));
+            log.Check(Catalog(d) == ShopCatalogText, "the catalog does not change: " + Catalog(d));
+            log.Check(d.Alias == "SHOP", "nor the alias");
+
+            // Imported again: nothing twice
+            result = d.ImportAll(LocalSchemaFile.Parse(ShopF()), false);
+            log.Check(SchemaNames(d) == "Sales|Mine|New" && result.Added == 2 && result.Replaced == 2, "imported again, both replace: " + SchemaNames(d));
+            log.Check(Written(d, "ORDERS") == "X>PRODUCTS.ID=D: its product" && Written(d, "CUSTOMERS") == "Y>ORDERS.ID=F: by hand" &&
+                Entries(d.ExcludedRelations) == "ORDERS.CUSTOMER_ID>CUSTOMERS.ID", "no relation nor exclusion twice");
+        }
+
+        // X.6 Replace: Sales and New only; CUSTOMERS without description; only F's relation by hand
+        private static void TestImportAllReplace(LocalSchemaLog log)
+        {
+            LocalSchemaFile d = ShopD();
+            LocalSchemaImportAllResult result = d.ImportAll(LocalSchemaFile.Parse(ShopF()), true);
+            log.Check(SchemaNames(d) == "Sales|New", "Sales and New only: " + SchemaNames(d));
+            log.Check(result.Added == 2 && result.Replaced == 0, "added 2, none replaced (D's were gone): " + result.Added.ToString() + ", " +
+                result.Replaced.ToString());
+            log.Check(Context(d, "CUSTOMERS") == "" && Context(d, "ORDERS") == "F orders", "CUSTOMERS without description, ORDERS F's: «" +
+                Context(d, "CUSTOMERS") + "» / " + Context(d, "ORDERS"));
+            log.Check(ColumnContext(d, "ORDERS", "ID") == "", "D's column descriptions go");
+            log.Check(Written(d, "ORDERS") == "" && Written(d, "CUSTOMERS") == "Y>ORDERS.ID=F: by hand",
+                "only F's relation by hand: " + Written(d, "ORDERS") + " / " + Written(d, "CUSTOMERS"));
+            log.Check(AllowedValues(d, "ORDERS", "STATUS") == "B|C", "STATUS [B, C]: " + AllowedValues(d, "ORDERS", "STATUS"));
+            log.Check(RelationContext(d, "ORDERS", "FK_ORDERS_CUSTOMERS") == "F: who ordered", "the relation of the database, F's description");
+            log.Check(Entries(d.ExcludedRelations) == "ORDERS.CUSTOMER_ID>CUSTOMERS.ID", "F's exclusion: " + Entries(d.ExcludedRelations));
+            log.Check(Sorted(result.Skipped) == "GHOST|ORDERS.NOPE", "skipped GHOST and ORDERS.NOPE: " + Joined(result.Skipped));
+            log.Check(Catalog(d) == ShopCatalogText, "the catalog does not change (its relation of the database stays): " + Catalog(d));
+
+            // Without anything written, merge and replace give the same file
+            LocalSchemaFile merged = ShopCatalog();
+            merged.ImportAll(LocalSchemaFile.Parse(ShopF()), false);
+            LocalSchemaFile replaced = ShopCatalog();
+            replaced.ImportAll(LocalSchemaFile.Parse(ShopF()), true);
+            log.Check(LocalSchemaStore.ToJson(merged) == LocalSchemaStore.ToJson(replaced), "into a fresh catalog merge and replace are the same");
+        }
+
+        // X.6 Has content: D yes; a fresh catalog no; each thing written alone, yes
+        private static void TestImportAllHasContent(LocalSchemaLog log)
+        {
+            log.Check(ShopD().HasContent(), "D has content");
+            log.Check(!ShopCatalog().HasContent(), "a fresh catalog has none");
+            log.Check(!LocalSchemaFile.Parse(LocalSchemaStore.ToJson(ShopCatalog())).HasContent(), "nor once saved and read");
+            Func<Action<LocalSchemaFile>, bool> with = change =>
+            {
+                LocalSchemaFile file = ShopCatalog();
+                change(file);
+                return file.HasContent();
+            };
+            log.Check(with(f => f.Schemas.Add(NewSubschema("Empty"))), "a subschema, even empty");
+            log.Check(with(f => f.ExcludedRelations = new List<LocalRelationRef> { NewEntry("ORDERS", "CUSTOMER_ID", "CUSTOMERS", "ID") }),
+                "a relation left out of every subschema");
+            log.Check(with(f => LocalSchemaEditing.FindTable(f, "ORDERS").ForeignKeys.Add(NewRelation("", "PRODUCTS", "X", "ID", ""))),
+                "a relation written by hand, without description");
+            log.Check(with(f => LocalSchemaEditing.FindTable(f, "CUSTOMERS").Context = "x"), "a table description");
+            log.Check(with(f => LocalSchemaEditing.FindColumn(LocalSchemaEditing.FindTable(f, "CUSTOMERS"), "Y").Context = "x"), "a column description");
+            log.Check(with(f => LocalSchemaEditing.FindColumn(LocalSchemaEditing.FindTable(f, "ORDERS"), "STATUS").AllowedValues = NewValues("A")),
+                "allowed values");
+            log.Check(with(f => LocalSchemaEditing.FindTable(f, "ORDERS").ForeignKeys[0].RelationshipContext = "x"),
+                "a description of a relation of the database");
+            log.Check(!with(f => LocalSchemaEditing.FindTable(f, "CUSTOMERS").Context = "  "), "only spaces is no description");
+        }
+
+        private static bool ParseThrows(string json)
+        {
+            try
+            {
+                LocalSchemaFile.Parse(json);
+                return false;
+            }
+            catch (System.Text.Json.JsonException)
+            {
+                return true;
+            }
+        }
+
+        // X.6 Not a whole file: a subschema export and the web's format are refused, D unchanged
+        private static void TestImportAllNotWholeFile(LocalSchemaLog log, string folder)
+        {
+            LocalSchemaFile d = ShopD();
+            string before = LocalSchemaStore.ToJson(d);
+            string subschema = LocalSchemaEditing.ExportJson(d, LocalSchemaStore.FindSubschema(d, "Sales"));
+            log.Check(!LocalSchemaFile.IsWholeFileJson(subschema) && !LocalSchemaFile.IsWholeFileJson(LocalSchemaEditing.ExportJson(d, null)),
+                "a subschema exported with Export (and all the tables) is not a whole file");
+            log.Check(!LocalSchemaFile.IsWholeFileJson("{\"name\":\"x\",\"schemaTables\":[]}") &&
+                !LocalSchemaFile.IsWholeFileJson("{\"Name\":\"x\",\"SchemaTables\":[]}"), "nor the web's format");
+            log.Check(!LocalSchemaFile.IsWholeFileJson("not json") && !LocalSchemaFile.IsWholeFileJson("") && !LocalSchemaFile.IsWholeFileJson(null) &&
+                !LocalSchemaFile.IsWholeFileJson("[]") && !LocalSchemaFile.IsWholeFileJson("{\"tables\":{}}") &&
+                !LocalSchemaFile.IsWholeFileJson("{\"tables\":[]"), "nor anything else");
+            log.Check(LocalSchemaFile.IsWholeFileJson(before) && LocalSchemaFile.IsWholeFileJson("\uFEFF{\"tables\":[]}") &&
+                LocalSchemaFile.IsWholeFileJson("{\"version\":2,\"Tables\":[],}"), "a whole file is, with a BOM, any case, a trailing comma");
+            log.Check(LocalSchemaFile.IsWholeFileJson(File.ReadAllText(Path.Combine(folder, "dbxschemas-v2.json"), Encoding.UTF8)),
+                "a dbxschemas file copied as it is");
+            log.Check(ParseThrows("[]") && ParseThrows("not json") && ParseThrows("{\"tables\":[1]}"), "reading something else throws");
+            log.Check(LocalSchemaStore.ToJson(d) == before, "D is not changed");
+        }
+
+        // X.6 Export all writes what Save writes; importing it into an empty file of the same catalog gives the same file
+        private static void TestExportAllRoundTrip(LocalSchemaLog log)
+        {
+            LocalSchemaFile d = ShopD();
+            d.ExcludedRelations = new List<LocalRelationRef> { NewEntry("ORDERS", "CUSTOMER_ID", "CUSTOMERS", "ID") };
+            LocalSubschema sales = LocalSchemaStore.FindSubschema(d, "Sales");
+            sales.Description = "D sales";
+            sales.Columns = new Dictionary<string, List<string>> { { "ORDERS", new List<string> { "ID", "STATUS" } } };
+            sales.ExcludedRelations = new List<LocalRelationRef> { NewEntry("ORDERS", "X", "PRODUCTS", "ID") };
+            // A relation by hand being written (no columns yet): not saved, so not exported either; the screen keeps it
+            LocalSchemaEditing.FindTable(d, "PRODUCTS").ForeignKeys.Add(new LocalSchemaForeignKey { ConstraintName = "", TargetTable = "ORDERS" });
+            string onScreen = LocalSchemaStore.ToJson(d);
+            string exported = LocalSchemaEditing.ExportAllJson(d);
+            log.Check(LocalSchemaStore.ToJson(d) == onScreen, "exporting does not change the screen");
+            log.Check(LocalSchemaEditing.WholeFileName(d.Alias) == "SHOP.json" && LocalSchemaEditing.WholeFileName("a/b") == "A_B.json",
+                "the name proposed, the one of the file: " + LocalSchemaEditing.WholeFileName(d.Alias));
+            log.Check(LocalSchemaFile.IsWholeFileJson(exported), "it is a whole file");
+
+            string dir = Path.Combine(Path.GetTempPath(), "rplocalschema-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                LocalSchemaFile saved = LocalSchemaFile.Parse(onScreen);
+                foreach (KeyValuePair<LocalSchemaTable, LocalSchemaForeignKey> pair in LocalSchemaEditing.IncompleteWrittenRelations(saved))
+                    pair.Key.ForeignKeys.Remove(pair.Value);
+                string path = LocalSchemaStore.PathFor(dir, "SHOP");
+                LocalSchemaStore.Save(saved, path);
+                log.Check(File.ReadAllText(path, Encoding.UTF8) == exported, "what Save writes");
+            }
+            finally
+            {
+                try { Directory.Delete(dir, true); } catch { }
+            }
+
+            LocalSchemaFile fresh = ShopCatalog();
+            log.Check(!fresh.HasContent(), "an empty file of the same catalog");
+            LocalSchemaImportAllResult result = fresh.ImportAll(LocalSchemaFile.Parse(exported), false);
+            log.Check(result.Added == 2 && result.Replaced == 0 && result.Skipped.Count == 0, "two subschemas, nothing skipped: " +
+                result.Added.ToString() + ", " + result.Replaced.ToString() + ", " + Joined(result.Skipped));
+            log.Check(LocalSchemaStore.ToJson(fresh) == exported, "the same subschemas and dictionary: the same file");
+        }
+
+        // X.3 step 4: a relation of the database is found by its constraint name (any case), else by its ends; its empty
+        // description leaves the one here; one that is not here is ignored. Step 5: a relation by hand with an end that is
+        // not here is ignored, and not said
+        private static void TestImportAllDatabaseRelations(LocalSchemaLog log)
+        {
+            Func<LocalSchemaForeignKey, LocalSchemaFile> import = fk =>
+            {
+                LocalSchemaFile f = ShopCatalog();
+                LocalSchemaTable orders = LocalSchemaEditing.FindTable(f, "ORDERS");
+                orders.ForeignKeys.Clear();
+                orders.ForeignKeys.Add(fk);
+                LocalSchemaFile d = ShopCatalog();
+                LocalSchemaEditing.FindTable(d, "ORDERS").ForeignKeys[0].RelationshipContext = "D: who";
+                LocalSchemaImportAllResult result = d.ImportAll(LocalSchemaFile.Parse(LocalSchemaStore.ToJson(f)), false);
+                log.Check(result.Skipped.Count == 0 && Catalog(d) == ShopCatalogText, fk.ConstraintName + ": nothing skipped, the catalog the same: " +
+                    Joined(result.Skipped) + " " + Catalog(d));
+                return d;
+            };
+            LocalSchemaFile file = import(NewRelation("fk_orders_customers", "CUSTOMERS", "CUSTOMER_ID", "ID", "By name"));
+            log.Check(RelationContext(file, "ORDERS", "FK_ORDERS_CUSTOMERS") == "By name", "by its constraint name, any case");
+            file = import(NewRelation("OTHER_NAME", "customers", "customer_id", "id", "By ends"));
+            log.Check(RelationContext(file, "ORDERS", "FK_ORDERS_CUSTOMERS") == "By ends", "else by its ends");
+            file = import(NewRelation("FK_ORDERS_CUSTOMERS", "CUSTOMERS", "CUSTOMER_ID", "ID", ""));
+            log.Check(RelationContext(file, "ORDERS", "FK_ORDERS_CUSTOMERS") == "D: who", "an empty description leaves the one here");
+            file = import(NewRelation("FK_GONE", "PRODUCTS", "X", "ID", "Nowhere"));
+            log.Check(RelationContext(file, "ORDERS", "FK_ORDERS_CUSTOMERS") == "D: who" && Written(file, "ORDERS") == "",
+                "one that is not here is ignored");
+            file = import(NewRelation("", "CUSTOMERS", "STATUS", "NOPE", "Half here"));
+            log.Check(Written(file, "ORDERS") == "", "a relation by hand with an end that is not here is ignored");
+            file = import(NewRelation("", "customers", "status", "y", "Spelled here"));
+            log.Check(Written(file, "ORDERS") == "STATUS>CUSTOMERS.Y=Spelled here", "a relation by hand, as this file spells it: " + Written(file, "ORDERS"));
+        }
+
+        // X.2 Large catalog: the tables of the file whose columns this one has not read are read first; one the file did not
+        // read either (in no subschema) is not
+        private static void TestImportAllLargeCatalog(LocalSchemaLog log)
+        {
+            LocalSchemaFile f = LocalSchemaFile.Parse(ShopF());
+            Func<LocalSchemaFile> large = () =>
+            {
+                LocalSchemaFile file = ShopCatalog();
+                foreach (LocalSchemaTable t in file.Tables)
+                {
+                    if (t.Name == "ORDERS")
+                        continue;
+                    t.Columns.Clear();
+                    t.ForeignKeys.Clear();
+                    t.ColumnsRead = false;
+                }
+                return file;
+            };
+            LocalSchemaFile d = large();
+            string before = LocalSchemaStore.ToJson(d);
+            log.Check(Joined(d.UnreadTablesOf(f)) == "CUSTOMERS", "CUSTOMERS, not read here: " + Joined(d.UnreadTablesOf(f)));
+            log.Check(LocalSchemaStore.ToJson(d) == before, "finding them changes nothing");
+            log.Check(ShopCatalog().UnreadTablesOf(f).Count == 0 && d.UnreadTablesOf(null).Count == 0, "none when every table was read");
+
+            // The file did not read CUSTOMERS either: nothing to read for it, unless a subschema of the file has it
+            LocalSchemaFile notRead = LocalSchemaFile.Parse(ShopF());
+            LocalSchemaTable customers = LocalSchemaEditing.FindTable(notRead, "CUSTOMERS");
+            customers.Columns.Clear();
+            customers.ForeignKeys.Clear();
+            customers.ColumnsRead = false;
+            log.Check(Joined(d.UnreadTablesOf(notRead)) == "CUSTOMERS", "a table of a subschema of the file is read");
+            notRead.Schemas.RemoveAll(s => s.Name == "New");
+            log.Check(d.UnreadTablesOf(notRead).Count == 0, "one the file did not read and no subschema has, not: " + Joined(d.UnreadTablesOf(notRead)));
+            // The target of a relation by hand of the file is read
+            notRead = LocalSchemaFile.Parse(ShopF());
+            notRead.Schemas.Clear();
+            LocalSchemaEditing.FindTable(notRead, "ORDERS").ForeignKeys.Add(NewRelation("", "products", "X", "ID", ""));
+            LocalSchemaEditing.FindTable(notRead, "CUSTOMERS").ColumnsRead = false;
+            LocalSchemaEditing.FindTable(notRead, "CUSTOMERS").ForeignKeys.Clear();
+            log.Check(Joined(d.UnreadTablesOf(notRead)) == "PRODUCTS", "the target of a relation by hand: " + Joined(d.UnreadTablesOf(notRead)));
+
+            // Read (the catalog's columns merged), the import is the one over the whole catalog
+            LocalSchemaFile catalog = ShopCatalog();
+            var read = new List<LocalSchemaTable>();
+            foreach (string name in d.UnreadTablesOf(f))
+                read.Add(LocalSchemaEditing.FindTable(catalog, name));
+            log.Check(Joined(LocalSchemaStore.MergeColumns(d, read)) == "CUSTOMERS", "CUSTOMERS is read");
+            LocalSchemaImportAllResult result = d.ImportAll(f, false);
+            LocalSchemaFile whole = ShopCatalog();
+            LocalSchemaImportAllResult expected = whole.ImportAll(LocalSchemaFile.Parse(ShopF()), false);
+            log.Check(Sorted(result.Skipped) == Sorted(expected.Skipped) && Written(d, "CUSTOMERS") == Written(whole, "CUSTOMERS") &&
+                SchemaNames(d) == SchemaNames(whole), "the same import: " + Joined(result.Skipped) + " / " + Written(d, "CUSTOMERS"));
+            log.Check(!LocalSchemaStore.IsRead(LocalSchemaEditing.FindTable(d, "PRODUCTS")), "a table it does not use stays unread");
+        }
+
+        // X.5: the strings of the buttons, the question and the result
+        private static void TestImportAllStrings(LocalSchemaLog log)
+        {
+            for (int i = 2043; i <= 2053; i++)
+            {
+                string text = DesignerText.Tr(i);
+                log.Check(text.Length > 0 && text != "XXXXXXX", "the string " + i.ToString() + ": " + text);
+            }
+            log.Check(DesignerText.Format(2047, "3", "5").Contains("3") && DesignerText.Format(2047, "3", "5").Contains("5") &&
+                !DesignerText.Format(2047, "3", "5").Contains("%"), "the question with its two numbers: " + DesignerText.Format(2047, "3", "5"));
+            log.Check(!DesignerText.Format(2052, "2", "1").Contains("%"), "the result with its two numbers: " + DesignerText.Format(2052, "2", "1"));
         }
 
         // 6. Names that are in the database as they are: as before

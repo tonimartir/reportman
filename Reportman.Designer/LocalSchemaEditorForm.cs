@@ -86,6 +86,10 @@ namespace Reportman.Designer
     /// thread, with a progress window when it takes a while and Cancel; a read cancelled changes nothing, and a first
     /// opening whose catalog read is cancelled closes the dialog (<see cref="RunReadAsync{T}"/>).
     /// </para>
+    /// <para>
+    /// Export and Import move one subschema in the format of the Reportman AI web; Export all and Import all move the whole
+    /// file of the connection to another installation (<see cref="LocalSchemaFile.ImportAll"/>: merge or replace).
+    /// </para>
     /// </summary>
     public partial class LocalSchemaEditorForm : Form
     {
@@ -126,6 +130,8 @@ namespace Reportman.Designer
         private Button _btnDelete;
         private Button _btnExport;
         private Button _btnImport;
+        private Button _btnExportAll;
+        private Button _btnImportAll;
         private Button _btnLibrary;
         private TextBox _txtSchemaDescription;
         private Label _lblTablesCounter;
@@ -423,13 +429,11 @@ namespace Reportman.Designer
             _listSchemas.DrawItem += ListSchemas_DrawItem;
             _listSchemas.SelectedIndexChanged += ListSchemas_SelectedIndexChanged;
 
-            var buttons = new TableLayoutPanel { Dock = DockStyle.Bottom, ColumnCount = 2, RowCount = 4, Height = 128 };
+            var buttons = new TableLayoutPanel { Dock = DockStyle.Bottom, ColumnCount = 2, RowCount = 5, Height = 160 };
             buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
-            buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 25f));
+            for (int row = 0; row < 5; row++)
+                buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 20f));
             _btnAdd = new Button { Text = Tr(149) + "...", Dock = DockStyle.Fill };
             _btnAdd.Click += (s, e) => AddSubschema();
             _btnDuplicate = new Button { Text = Tr(1847), Dock = DockStyle.Fill };
@@ -443,11 +447,18 @@ namespace Reportman.Designer
             _btnExport.Click += (s, e) => ExportSubschema();
             _btnImport = new Button { Text = Tr(1932), Dock = DockStyle.Fill };
             _btnImport.Click += (s, e) => ImportSubschema();
+            // The whole file of the connection: every subschema, description and relation, to another installation
+            _btnExportAll = new Button { Text = Tr(2043), Dock = DockStyle.Fill };
+            _btnExportAll.Click += (s, e) => ExportAllSchemas();
+            _btnImportAll = new Button { Text = Tr(2044), Dock = DockStyle.Fill };
+            _btnImportAll.Click += (s, e) => ImportAllSchemas();
             // The same import from the schema library of Reportman AI instead of a file
             _btnLibrary = new Button { Text = Tr(1986), Dock = DockStyle.Fill };
             _btnLibrary.Click += (s, e) => ImportFromLibrary();
             _toolTip.SetToolTip(_btnExport, Tr(1933));
             _toolTip.SetToolTip(_btnImport, Tr(1934));
+            _toolTip.SetToolTip(_btnExportAll, Tr(2045));
+            _toolTip.SetToolTip(_btnImportAll, Tr(2046));
             _toolTip.SetToolTip(_btnLibrary, Tr(1987));
             buttons.Controls.Add(_btnAdd, 0, 0);
             buttons.Controls.Add(_btnDuplicate, 1, 0);
@@ -455,7 +466,9 @@ namespace Reportman.Designer
             buttons.Controls.Add(_btnDelete, 1, 1);
             buttons.Controls.Add(_btnExport, 0, 2);
             buttons.Controls.Add(_btnImport, 1, 2);
-            buttons.Controls.Add(_btnLibrary, 0, 3);
+            buttons.Controls.Add(_btnExportAll, 0, 3);
+            buttons.Controls.Add(_btnImportAll, 1, 3);
+            buttons.Controls.Add(_btnLibrary, 0, 4);
             buttons.SetColumnSpan(_btnLibrary, 2);
 
             var description = new Panel { Dock = DockStyle.Bottom, Height = 110, Padding = new Padding(0, 6, 0, 0) };
@@ -701,6 +714,8 @@ namespace Reportman.Designer
             // Export works with all the tables too (the whole catalog); import always makes a new subschema
             _btnExport.Enabled = hasFile;
             _btnImport.Enabled = hasFile;
+            _btnExportAll.Enabled = hasFile;
+            _btnImportAll.Enabled = hasFile;
             _btnLibrary.Enabled = hasFile;
             _txtSchemaDescription.Enabled = _current != null;
             _btnRefresh.Enabled = !_busy && _createConnection != null;
@@ -1557,6 +1572,204 @@ namespace Reportman.Designer
                 message += Environment.NewLine + Environment.NewLine + TrFormat(1937, LocalSchemaEditing.ShortList(result.Skipped, 12));
             MessageBox.Show(this, message, title, MessageBoxButtons.OK,
                 result.Skipped.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+        }
+
+        // ===== Export all and Import all: the whole file of the connection, to another installation (SPEC X) =====
+
+        /// <summary>
+        /// Saves the whole file of the connection as it is on screen (saved or not), in the format of the file, where the
+        /// user chooses: <c>&lt;ALIAS&gt;.json</c> by default. Another installation brings it with Import all.
+        /// </summary>
+        private void ExportAllSchemas()
+        {
+            if (_file == null || _busy)
+                return;
+            CommitEdits();
+            string title = Caption(2043);
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Title = title;
+                dialog.Filter = SchemaFileFilter;
+                dialog.DefaultExt = "json";
+                dialog.AddExtension = true;
+                dialog.OverwritePrompt = true;
+                dialog.FileName = LocalSchemaEditing.WholeFileName(_alias);
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                    return;
+                try
+                {
+                    // UTF-8 without BOM, as Save writes the file
+                    File.WriteAllText(dialog.FileName, LocalSchemaEditing.ExportAllJson(_file), new UTF8Encoding(false));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                SetStatus(TrFormat(1935, dialog.FileName));
+            }
+        }
+
+        /// <summary>
+        /// Brings the subschemas, descriptions, allowed values and relations of a whole file (Export all of another
+        /// installation) into the one shown (<see cref="LocalSchemaFile.ImportAll"/>): when this one has something written,
+        /// the user chooses first to merge, to replace or to cancel. A large catalog reads first the columns of the tables
+        /// the file uses (cancelled, nothing is imported). The result stays unsaved, with the first subschema of the file
+        /// selected, and what the database does not have is said.
+        /// </summary>
+        private async void ImportAllSchemas()
+        {
+            if (_file == null || _busy)
+                return;
+            CommitEdits();
+            string title = Caption(2044);
+            string path;
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Title = title;
+                dialog.Filter = SchemaFileFilter;
+                dialog.CheckFileExists = true;
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                    return;
+                path = dialog.FileName;
+            }
+            LocalSchemaFile imported = null;
+            try
+            {
+                string json = File.ReadAllText(path, Encoding.UTF8);
+                if (LocalSchemaFile.IsWholeFileJson(json))
+                    imported = LocalSchemaFile.Parse(json);
+            }
+            catch (System.Text.Json.JsonException)
+            {
+                // An array tables whose items are not tables: not a file of local schemas either
+                imported = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // A subschema exported with Export, the web's format, anything else: refused, nothing changes
+            if (imported == null)
+            {
+                MessageBox.Show(this, Tr(2053), title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            bool replace = false;
+            if (_file.HasContent())
+            {
+                DialogResult answer = AskImportAll(title, Number(_file.Schemas.Count), Number(imported.Schemas.Count));
+                if (answer != DialogResult.Yes && answer != DialogResult.No)
+                    return;
+                replace = answer == DialogResult.No;
+            }
+            // The tables whose columns the import needs and a large catalog has not read: read first
+            if (!await ReadColumnsAsync(_file.UnreadTablesOf(imported), true) || IsDisposed || _file == null)
+                return;
+            LocalSchemaImportAllResult result;
+            try
+            {
+                result = _file.ImportAll(imported, replace);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            ShowImportedAll(result, title);
+        }
+
+        /// <summary>
+        /// The result of Import all on screen: modified and unsaved, the list of subschemas filled again with the first one of
+        /// the file selected (all the tables when it brings none), saying how many came in and what the database does not have.
+        /// </summary>
+        private void ShowImportedAll(LocalSchemaImportAllResult result, string title)
+        {
+            LocalSubschema first = result.Subschemas.Count > 0 ? LocalSchemaStore.FindSubschema(_file, result.Subschemas[0]) : null;
+            // The subschemas may be new objects (replaced) and the relations written by hand gone (Replace)
+            _relation = null;
+            StructureChanged();
+            FillAll(first);
+            string done = TrFormat(2052, Number(result.Added), Number(result.Replaced));
+            SetStatus(done);
+            string message = done;
+            if (result.Skipped.Count > 0)
+                message += Environment.NewLine + Environment.NewLine + TrFormat(1937, LocalSchemaEditing.ShortList(result.Skipped, 12));
+            MessageBox.Show(this, message, title, MessageBoxButtons.OK,
+                result.Skipped.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Asks what to do with a whole file when the connection has local schemas already: Merge (Yes), Replace (No) or
+        /// Cancel (Cancel, also closing the dialog), with what each one does.
+        /// </summary>
+        /// <param name="title">The title of the dialog.</param>
+        /// <param name="current">The subschemas of the connection.</param>
+        /// <param name="brought">The subschemas of the file.</param>
+        private DialogResult AskImportAll(string title, string current, string brought)
+        {
+            using (var form = new Form())
+            {
+                form.Text = title;
+                form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.MinimizeBox = false;
+                form.MaximizeBox = false;
+                form.ShowInTaskbar = false;
+                form.ShowIcon = false;
+                form.AutoScaleMode = AutoScaleMode.Font;
+                form.Font = new Font("Segoe UI", 9f);
+                form.AutoSize = true;
+                form.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                var layout = new TableLayoutPanel
+                {
+                    ColumnCount = 1,
+                    RowCount = 4,
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    Padding = new Padding(12, 12, 12, 10)
+                };
+                for (int row = 0; row < 4; row++)
+                    layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                // The texts wrap in the width of the dialog
+                var maximum = new Size(460, 0);
+                var question = new Label
+                {
+                    Text = TrFormat(2047, current, brought),
+                    AutoSize = true,
+                    MaximumSize = maximum,
+                    Font = new Font(form.Font, FontStyle.Bold),
+                    Margin = new Padding(0, 0, 0, 10)
+                };
+                var merge = new Label { Text = Tr(2050), AutoSize = true, MaximumSize = maximum, Margin = new Padding(0, 0, 0, 8) };
+                var replace = new Label { Text = Tr(2051), AutoSize = true, MaximumSize = maximum, Margin = new Padding(0, 0, 0, 12) };
+                var buttons = new FlowLayoutPanel
+                {
+                    Anchor = AnchorStyles.Right,
+                    FlowDirection = FlowDirection.RightToLeft,
+                    WrapContents = false,
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    Margin = new Padding(0)
+                };
+                var cancel = new Button { Text = Tr(94), DialogResult = DialogResult.Cancel, AutoSize = true, MinimumSize = new Size(80, 0) };
+                var btnReplace = new Button { Text = Tr(2049), DialogResult = DialogResult.No, AutoSize = true, MinimumSize = new Size(80, 0) };
+                var btnMerge = new Button { Text = Tr(2048), DialogResult = DialogResult.Yes, AutoSize = true, MinimumSize = new Size(80, 0) };
+                buttons.Controls.Add(cancel);
+                buttons.Controls.Add(btnReplace);
+                buttons.Controls.Add(btnMerge);
+                layout.Controls.Add(question, 0, 0);
+                layout.Controls.Add(merge, 0, 1);
+                layout.Controls.Add(replace, 0, 2);
+                layout.Controls.Add(buttons, 0, 3);
+                form.Controls.Add(layout);
+                // Merge, which keeps what is here, is the default
+                form.AcceptButton = btnMerge;
+                form.CancelButton = cancel;
+                form.ActiveControl = btnMerge;
+                return form.ShowDialog(this);
+            }
         }
 
         /// <summary>A one line text prompt; null when cancelled.</summary>
