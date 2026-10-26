@@ -14,7 +14,7 @@ namespace Reportman.Designer
     public static class AssetsManager
     {
         private const string MonacoAssetsVersion = "3";
-        private const string WebMarkdownAssetsVersion = "5";
+        private const string WebMarkdownAssetsVersion = "6";
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         private static extern IntPtr LoadLibrary(string lpFileName);
