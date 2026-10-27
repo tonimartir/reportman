@@ -94,19 +94,35 @@ namespace Reportman.Drawing
             int index = 0;
             foreach (System.Drawing.Image nimage in images)
             {
-                if (index == 0)
-                {
-                    nmetafile.CustomX = nimage.Width * 1440 / dpi;
-                    nmetafile.CustomY = nimage.Height * 1440 / dpi;
-                }
-                Reportman.Drawing.MetaPage npage = new Reportman.Drawing.MetaPage(nmetafile);
-                npage.PageDetail.Custom = true;
-                npage.PageDetail.CustomWidth = nimage.Width * 1440 / dpi;
-                npage.PageDetail.CustomHeight = nimage.Height * 1440 / dpi;
-                nmetafile.Pages.Add(npage);
-
                 int pwidth = nimage.Width * 1440 / dpi;
                 int pheight = nimage.Height * 1440 / dpi;
+                if (index == 0)
+                {
+                    nmetafile.CustomX = pwidth;
+                    nmetafile.CustomY = pheight;
+                }
+                // Each page takes the size and orientation of its own image. The PDF driver
+                // reads PageDetail only when UpdatedPageSize is set: without it every page
+                // got the size of the first image and a landscape one was clipped
+                Reportman.Drawing.MetaPage npage = new Reportman.Drawing.MetaPage(nmetafile);
+                npage.UpdatedPageSize = true;
+                npage.PageDetail.Custom = true;
+                if (pwidth > pheight)
+                {
+                    npage.Orientation = OrientationType.Landscape;
+                    npage.PageDetail.CustomWidth = pheight;
+                    npage.PageDetail.CustomHeight = pwidth;
+                }
+                else
+                {
+                    npage.Orientation = OrientationType.Portrait;
+                    npage.PageDetail.CustomWidth = pwidth;
+                    npage.PageDetail.CustomHeight = pheight;
+                }
+                npage.PageDetail.PhysicWidth = npage.PageDetail.CustomWidth;
+                npage.PageDetail.PhysicHeight = npage.PageDetail.CustomHeight;
+                nmetafile.Pages.Add(npage);
+
                 using (System.IO.MemoryStream mstream = new System.IO.MemoryStream())
                 {
                     if ((nformat == System.Drawing.Imaging.ImageFormat.Gif) || (nformat == System.Drawing.Imaging.ImageFormat.Bmp))
