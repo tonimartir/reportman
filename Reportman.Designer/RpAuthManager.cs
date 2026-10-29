@@ -653,13 +653,27 @@ namespace Reportman.Designer
         }
 
         /// <summary>
+        /// The credit bag: a paid tier whose day is spent spends its piggy bank (FreeRemaining, bought credits
+        /// that never expire), which the Reportman AI API spends after the day. The gauge then shows the bag,
+        /// in violet.
+        /// </summary>
+        public bool UsingBag
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Profile.Email) && Profile.TierId > 2 &&
+                    Profile.DailyMax - Profile.DailyConsumed <= 0 && Profile.FreeRemaining > 0;
+            }
+        }
+
+        /// <summary>
         /// Returns the fraction of the applicable credit allowance that has been consumed,
-        /// in the range 0 to 1 (0 when no allowance is defined).
+        /// in the range 0 to 1 (0 when no allowance is defined): the free credits or the bag, else the day.
         /// </summary>
         public double GetCreditsRatio()
         {
             long max, consumed;
-            if (UsesFreeCredits)
+            if (UsesFreeCredits || UsingBag)
             {
                 max = Profile.FreeInitial;
                 consumed = Profile.FreeInitial - Profile.FreeRemaining;

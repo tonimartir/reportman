@@ -22,6 +22,8 @@ namespace Reportman.Designer
         private Panel _panelGauge;
         private ColumnStyle _gaugeColumnStyle;
         private int _creditPercent = 0;
+        /// <summary>Spending the credit bag: the arc is violet (never read as the day's green..red).</summary>
+        private bool _usingBag;
         private ToolTip _gaugeTooltip;
 
         // Inference progress mode controls
@@ -468,7 +470,8 @@ namespace Reportman.Designer
             if (_creditPercent > 0)
             {
                 Color arcColor;
-                if (_creditPercent < 50) arcColor = Color.FromArgb(0x4C, 0xAF, 0x50); // Green
+                if (_usingBag) arcColor = Color.FromArgb(0x7E, 0x57, 0xC2); // Violet: the credit bag
+                else if (_creditPercent < 50) arcColor = Color.FromArgb(0x4C, 0xAF, 0x50); // Green
                 else if (_creditPercent < 75) arcColor = Color.FromArgb(0xFF, 0xB3, 0x00); // Amber
                 else if (_creditPercent < 90) arcColor = Color.FromArgb(0xFF, 0x98, 0x00); // Orange
                 else arcColor = Color.FromArgb(0xF4, 0x43, 0x36); // Red
@@ -680,6 +683,7 @@ namespace Reportman.Designer
         {
             var auth = RpAuthManager.Instance;
             int pct = (int)(auth.GetCreditsRatio() * 100);
+            _usingBag = auth.UsingBag;
             SetCreditPercent(pct);
             if (_gaugeTooltip != null)
                 _gaugeTooltip.SetToolTip(_panelGauge, BuildGaugeTooltip(auth));
@@ -694,7 +698,10 @@ namespace Reportman.Designer
             // The texts of the Delphi designer's gauge hint
             var profile = auth.Profile;
             string text;
-            if (auth.UsesFreeCredits)
+            if (auth.UsingBag)
+                text = DesignerText.Tr(2054, "Credit bag") + Environment.NewLine +
+                    DesignerText.Format(1835, profile.FreeRemaining.ToString("N0"), profile.FreeInitial.ToString("N0"));
+            else if (auth.UsesFreeCredits)
                 text = DesignerText.Tr(1524) + Environment.NewLine +
                     DesignerText.Format(1835, profile.FreeRemaining.ToString("N0"), profile.FreeInitial.ToString("N0"));
             else

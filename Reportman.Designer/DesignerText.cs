@@ -16,6 +16,16 @@ namespace Reportman.Designer
         }
 
         /// <summary>
+        /// The resource string <paramref name="index"/>, or <paramref name="fallback"/> (English) while it is not in
+        /// the reportmanres.* yet, as the Delphi designer's TranslateStr(index, default).
+        /// </summary>
+        public static string Tr(int index, string fallback)
+        {
+            string text = Tr(index);
+            return string.IsNullOrEmpty(text) || text == "XXXXXXX" ? fallback : text;
+        }
+
+        /// <summary>
         /// A translated text with its %s and %d filled in order with <paramref name="args"/>, as the Delphi
         /// designer's Format does with the same resource strings (%% is a percent sign).
         /// </summary>
