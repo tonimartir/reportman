@@ -466,27 +466,29 @@ namespace Reportman.Designer
             using (var bgPen = new Pen(Color.FromArgb(220, 220, 220), 3f))
                 g.DrawEllipse(bgPen, rect);
 
+            Color arcColor;
+            if (_usingBag) arcColor = Color.FromArgb(0x7E, 0x57, 0xC2); // Violet: the credit bag
+            else if (_creditPercent < 50) arcColor = Color.FromArgb(0x4C, 0xAF, 0x50); // Green
+            else if (_creditPercent < 75) arcColor = Color.FromArgb(0xFF, 0xB3, 0x00); // Amber
+            else if (_creditPercent < 90) arcColor = Color.FromArgb(0xFF, 0x98, 0x00); // Orange
+            else arcColor = Color.FromArgb(0xF4, 0x43, 0x36); // Red
+
             // Credit arc
             if (_creditPercent > 0)
             {
-                Color arcColor;
-                if (_usingBag) arcColor = Color.FromArgb(0x7E, 0x57, 0xC2); // Violet: the credit bag
-                else if (_creditPercent < 50) arcColor = Color.FromArgb(0x4C, 0xAF, 0x50); // Green
-                else if (_creditPercent < 75) arcColor = Color.FromArgb(0xFF, 0xB3, 0x00); // Amber
-                else if (_creditPercent < 90) arcColor = Color.FromArgb(0xFF, 0x98, 0x00); // Orange
-                else arcColor = Color.FromArgb(0xF4, 0x43, 0x36); // Red
-
                 float sweepAngle = _creditPercent * 3.6f;
                 using (var arcPen = new Pen(arcColor, 3f))
                     g.DrawArc(arcPen, rect, -90, sweepAngle);
             }
 
-            // Center text
-            string pctText = $"{_creditPercent}%";
+            // Center text: the used percentage (no % sign), as the Delphi designer draws it, in the colour of
+            // the arc; grey at 0 except while spending the credit bag, so its start shows as a violet 0
+            string pctText = _creditPercent.ToString();
             using (var font = new Font("Segoe UI", 7f, FontStyle.Bold))
+            using (var textBrush = new SolidBrush(_creditPercent > 0 || _usingBag ? arcColor : Color.DimGray))
             {
                 var textSize = g.MeasureString(pctText, font);
-                g.DrawString(pctText, font, Brushes.DimGray,
+                g.DrawString(pctText, font, textBrush,
                     x + (size - textSize.Width) / 2,
                     y + (size - textSize.Height) / 2);
             }
