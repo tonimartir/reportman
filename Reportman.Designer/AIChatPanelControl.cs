@@ -644,6 +644,23 @@ namespace Reportman.Designer
             AppendLog("Inference cancelled by user.");
         }
 
+        /// <summary>
+        /// Gets or sets the text of the input box of the copilot, not sent: the request a sample of the
+        /// welcome window suggests.
+        /// </summary>
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public string PromptText
+        {
+            get { return _txtPrompt.Text; }
+            set
+            {
+                _txtPrompt.Text = value ?? "";
+                _txtPrompt.SelectionStart = _txtPrompt.TextLength;
+                UpdateButtons();
+            }
+        }
+
         // ===== Logging =====
 
         /// <summary>

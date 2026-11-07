@@ -52,8 +52,8 @@ namespace Reportman.Designer
         /// <summary>Gets or sets the AI tier: Standard, Precision or LocalAgent.</summary>
         public string Tier { get; set; } = "Standard";
 
-        /// <summary>Gets or sets the AI mode: Fast or Reasoning.</summary>
-        public string Mode { get; set; } = "Fast";
+        /// <summary>Gets or sets the AI mode: Fast or Reasoning (the default of the AI selection).</summary>
+        public string Mode { get; set; } = "Reasoning";
 
         /// <summary>Gets or sets the secret of the Agent that runs the AI (LocalAgent only).</summary>
         public string AgentSecret { get; set; } = "";

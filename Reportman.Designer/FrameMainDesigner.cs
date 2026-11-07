@@ -555,12 +555,14 @@ namespace Reportman.Designer
                 return;
             WelcomeAction action;
             string samplePath;
+            string samplePrompt;
             using (WelcomeForm form = new WelcomeForm())
             {
                 form.ShowAtStartup = showAtStartup;
                 form.ShowDialog(FindForm());
                 action = form.DialogResult == DialogResult.OK ? form.Action : WelcomeAction.None;
                 samplePath = form.SamplePath;
+                samplePrompt = form.SamplePrompt;
                 if (form.ShowAtStartup != showAtStartup)
                 {
                     inif.WriteBool(PreferencesSectionName, ShowWelcomePreferenceKey, form.ShowAtStartup);
@@ -572,7 +574,7 @@ namespace Reportman.Designer
                 switch (action)
                 {
                     case WelcomeAction.OpenSample:
-                        OpenFile(samplePath);
+                        OpenSample(samplePath, samplePrompt);
                         break;
                     case WelcomeAction.NewReport:
                         ButtonNewBlankClick(this, EventArgs.Empty);
@@ -586,6 +588,26 @@ namespace Reportman.Designer
             {
                 ShowExecutionError(ex);
             }
+        }
+
+        /// <summary>
+        /// Opens a sample report and leaves in the input box of the copilot, not sent, the request the
+        /// sample suggests (<see cref="SampleReportInfo.Prompt"/>): a change of its dataset and of the
+        /// report that works, for a first try of the AI. Nothing is prefilled when it has none.
+        /// </summary>
+        /// <param name="samplePath">The report file (the working copy of the sample).</param>
+        /// <param name="prompt">The request to the copilot, in English; empty for none.</param>
+        public void OpenSample(string samplePath, string prompt)
+        {
+            OpenFile(samplePath);
+            if (!string.IsNullOrWhiteSpace(prompt) && FAIChatControl != null)
+                FAIChatControl.PromptText = prompt.Trim();
+        }
+
+        /// <summary>The text of the input box of the copilot (the self-tests).</summary>
+        internal string AIChatPromptText
+        {
+            get { return FAIChatControl != null ? FAIChatControl.PromptText : ""; }
         }
 
         private void ApplyAIChatPanelVisibility()

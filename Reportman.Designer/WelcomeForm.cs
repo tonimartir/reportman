@@ -23,6 +23,12 @@ namespace Reportman.Designer
         public string Description = "";
         /// <summary>Picture of the first page, relative to the samples folder (may be empty).</summary>
         public string Thumbnail = "";
+        /// <summary>
+        /// A request to the copilot that changes the dataset and the report, in English (key Prompt, never
+        /// translated): the input box of the copilot gets it when the sample is opened from the welcome
+        /// window. Empty when the index has none.
+        /// </summary>
+        public string Prompt = "";
     }
 
     /// <summary>
@@ -145,6 +151,9 @@ namespace Reportman.Designer
                 values.TryGetValue("Thumbnail", out current.Thumbnail);
                 if (current.Thumbnail == null)
                     current.Thumbnail = "";
+                values.TryGetValue("Prompt", out current.Prompt);
+                if (current.Prompt == null)
+                    current.Prompt = "";
                 if (File.Exists(Path.Combine(folder, current.FileName)))
                     result.Add(current);
             };
@@ -223,6 +232,12 @@ namespace Reportman.Designer
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string SamplePath { get; private set; } = "";
+
+        /// <summary>
+        /// The request to the copilot of the sample chosen (<see cref="SampleReportInfo.Prompt"/>), when the
+        /// action is <see cref="WelcomeAction.OpenSample"/>; empty otherwise.
+        /// </summary>
+        public string SamplePrompt { get; private set; } = "";
         /// <summary>The "do not show at startup" check box, the inverse of this value.</summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
@@ -478,6 +493,7 @@ namespace Reportman.Designer
             SampleReportInfo sample = listSamples.SelectedItem as SampleReportInfo;
             if (sample == null)
                 return;
+            SamplePrompt = sample.Prompt ?? "";
             string working = SampleReports.WorkingFolder();
             try
             {

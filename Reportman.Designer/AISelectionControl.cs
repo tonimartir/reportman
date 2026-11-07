@@ -146,7 +146,9 @@ namespace Reportman.Designer
             _lblMode = new Label { Text = DesignerText.Tr(1517).ToUpper(), AutoSize = true, Font = new Font("Segoe UI", 8f) };
             _comboMode = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };
             _comboMode.Items.AddRange(new object[] { DesignerText.Tr(1520), DesignerText.Tr(1521) });
-            _comboMode.SelectedIndex = 0;
+            // Reasoning by default: Fast changed the data right, but laid out a new column over another
+            // one (the onboarding test of 07-11-2026); a mode the user chose stays (SelectedMode)
+            _comboMode.SelectedIndex = 1;
 
             // Credit gauge panel (custom painted circle)
             _panelGauge = new Panel

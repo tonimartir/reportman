@@ -95,6 +95,21 @@ namespace designer
                     return;
                 }
 
+                // designer.exe /sampleprompttest [/samples <dir>] [/out <txt>] -> headless checks of the first try of the
+                // AI with a sample: Reasoning by default, the request of the sample (Prompt of samples.ini) in the input
+                // box of the copilot when the welcome window opens it; the exit code is 1 when one fails
+                if (HasArg(args, "/sampleprompttest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sampleprompttest.txt");
+                    int failed;
+                    System.IO.File.WriteAllText(outFile,
+                        Reportman.Designer.DesignerSelfTestSamplePrompt.Run(GetArgValue(args, "/samples"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
+
                 // designer.exe /exampletest [/shots <dir>] [/out <txt>] -> headless checks of the example databases of
                 // the Hub (a fake Hub, and the real one read-only); the exit code is 1 when one fails
                 if (HasArg(args, "/exampletest"))
