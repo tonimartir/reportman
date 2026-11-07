@@ -45,12 +45,18 @@ namespace Reportman.Designer
         public const string ConnectionAlias = "SAMPLES";
         private const string SchemasFolderName = LocalSchemaStore.FolderName;
 
+        /// <summary>The description of the subschema Fishes as it was installed before 07-11-2026 (GRAPHIC out).</summary>
+        public const string OldFishesDescription = "The classic fishes sample, without the pictures.";
+        /// <summary>The description of the subschema Fishes with GRAPHIC in it.</summary>
+        public const string NewFishesDescription =
+            "The classic fishes sample; GRAPHIC is the picture of each fish, printed by the report.";
+
         /// <summary>
         /// The local schema of the samples (dbxschemas\SAMPLES.json of the installed samples, made with
         /// the local schema editor) into the dbxschemas folder of the designer, where the copilot and the
         /// editor look for it, when it is not there yet: a new installation asks the copilot for a report
-        /// on the samples at once. An existing file is never replaced (it may have been changed). Returns
-        /// the file installed, or an empty string.
+        /// on the samples at once. An existing file is never replaced (it may have been changed), only
+        /// brought up to date (<see cref="UpgradeSchema"/>). Returns the file installed, or an empty string.
         /// </summary>
         public static string InstallSchema()
         {
@@ -64,7 +70,10 @@ namespace Reportman.Designer
                     return "";
                 string target = LocalSchemaStore.PathFor(LocalSchemaEditorForm.DesignerFolder(), ConnectionAlias);
                 if (File.Exists(target))
+                {
+                    UpgradeSchema(target);
                     return "";
+                }
                 Directory.CreateDirectory(Path.GetDirectoryName(target));
                 File.Copy(source, target, false);
                 File.SetAttributes(target, File.GetAttributes(target) & ~FileAttributes.ReadOnly);
@@ -130,6 +139,41 @@ namespace Reportman.Designer
                 // A copy from Program Files is read only when the installed file is
                 File.SetAttributes(target, File.GetAttributes(target) & ~FileAttributes.ReadOnly);
             }
+        }
+
+        /// <summary>
+        /// Brings an installed local schema of the samples up to date (rpsamplesutil UpgradeSamplesSchema of
+        /// the Delphi designer). The subschema Fishes installed before left GRAPHIC out, and the AI then dropped
+        /// it from the dataset of fishes.rep, which no longer printed ("unknown identifier FISH.GRAPHIC"). Only
+        /// that subschema as it was installed (its old description, its FISHES columns without GRAPHIC) gets
+        /// GRAPHIC and the new description; a subschema the user changed is left alone. True when the file was
+        /// written; nothing to do the second time.
+        /// </summary>
+        /// <param name="path">The installed SAMPLES.json.</param>
+        public static bool UpgradeSchema(string path)
+        {
+            LocalSchemaFile file = LocalSchemaStore.Load(path);
+            if (file == null)
+                return false;
+            foreach (LocalSubschema schema in file.Schemas)
+            {
+                if (!string.Equals(schema.Name, "Fishes", StringComparison.OrdinalIgnoreCase) ||
+                    schema.Description != OldFishesDescription || schema.Columns == null)
+                    continue;
+                // A table that is not in Columns goes whole: GRAPHIC already travels
+                List<string> columns = null;
+                foreach (KeyValuePair<string, List<string>> pair in schema.Columns)
+                    if (string.Equals(pair.Key, "FISHES", StringComparison.OrdinalIgnoreCase))
+                        columns = pair.Value;
+                if (columns == null ||
+                    columns.Exists(c => string.Equals(c, "GRAPHIC", StringComparison.OrdinalIgnoreCase)))
+                    continue;
+                columns.Add("GRAPHIC");
+                schema.Description = NewFishesDescription;
+                LocalSchemaStore.Save(file, path);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

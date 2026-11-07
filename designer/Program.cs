@@ -95,9 +95,11 @@ namespace designer
                     return;
                 }
 
-                // designer.exe /sampleprompttest [/samples <dir>] [/out <txt>] -> headless checks of the first try of the
-                // AI with a sample: Reasoning by default, the request of the sample (Prompt of samples.ini) in the input
-                // box of the copilot when the welcome window opens it; the exit code is 1 when one fails
+                // designer.exe /sampleprompttest [/samples <dir>] [/oldschema <SAMPLES.json>] [/installedschema <SAMPLES.json>]
+                // [/out <txt>] -> headless checks of the first try of the AI with a sample: Reasoning by default, the
+                // request of the sample (Prompt of samples.ini) in the input box of the copilot when the welcome window
+                // opens it, an installed local schema of the samples brought up to date (on copies only); the exit code
+                // is 1 when one fails
                 if (HasArg(args, "/sampleprompttest"))
                 {
                     string outFile = GetArgValue(args, "/out");
@@ -105,7 +107,8 @@ namespace designer
                         outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sampleprompttest.txt");
                     int failed;
                     System.IO.File.WriteAllText(outFile,
-                        Reportman.Designer.DesignerSelfTestSamplePrompt.Run(GetArgValue(args, "/samples"), out failed));
+                        Reportman.Designer.DesignerSelfTestSamplePrompt.Run(GetArgValue(args, "/samples"),
+                            GetArgValue(args, "/oldschema"), GetArgValue(args, "/installedschema"), out failed));
                     Environment.ExitCode = failed > 0 ? 1 : 0;
                     return;
                 }
