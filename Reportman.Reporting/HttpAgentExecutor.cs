@@ -5,6 +5,8 @@ using System.Data;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using Reportman.Drawing;
 
 namespace Reportman.Reporting
@@ -72,6 +74,17 @@ namespace Reportman.Reporting
             if (position >= 0)
                 message = message.Substring(0, position) + (alias ?? "") + message.Substring(position + 2);
             return message;
+        }
+
+        /// <summary>
+        /// The clear error of a connection without a Hub database (resource string 1824 with its alias): the Hub can
+        /// not route its requests.
+        /// </summary>
+        /// <param name="connectionName">The connection (alias) of the report.</param>
+        public static NamedException NotConfiguredException(string connectionName)
+        {
+            return new NamedException(AgentMessage(AgentNotConfiguredText, AgentNotConfiguredDefault, connectionName),
+                connectionName ?? "");
         }
 
         /// <summary>
@@ -145,6 +158,15 @@ namespace Reportman.Reporting
         /// </summary>
         private DataTable ExecuteSql(string sql, List<DbParameterInfo> parameters)
         {
+            return ExecuteSqlAsync(sql, parameters, CancellationToken.None).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Executes SQL through api/agent/execute and returns a DataTable, stopping when
+        /// <paramref name="cancellationToken"/> is cancelled (the ADO.NET commands of <see cref="HubAgentConnection"/>).
+        /// </summary>
+        internal async Task<DataTable> ExecuteSqlAsync(string sql, List<DbParameterInfo> parameters, CancellationToken cancellationToken)
+        {
             if (string.IsNullOrEmpty(BaseUrl))
                 throw new InvalidOperationException("BaseUrl is not configured for HttpAgent");
             // Without it the Hub can not route the request: say what is missing. Without an API key nor a
@@ -166,17 +188,104 @@ namespace Reportman.Reporting
             ApplyHeaders();
 
             var url = BaseUrl.TrimEnd('/') + "/api/agent/execute";
-            var response = _httpClient.PostAsync(url, content).GetAwaiter().GetResult();
+            var response = await _httpClient.PostAsync(url, content, cancellationToken).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {
-                var error = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var error = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 CheckNoCredentialsRefusal((int)response.StatusCode, ApiKey, Token, ConnectionName);
                 throw new Exception($"HttpAgent error {response.StatusCode}: {error}");
             }
 
-            var json = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return DeserializeDataTable(json);
+        }
+
+        /// <summary>
+        /// A request of the catalog of the Hub database (POST api/agent/readtables, readcolumns or readforeignkeys,
+        /// what app.reportman.es/database-config reads): the array <paramref name="field"/> of the data of the
+        /// answer ({"success":true,"data":{field:[...]}}), empty when it has none. Throws the clear errors of
+        /// <see cref="Open"/>, and the error of the Hub when it says success false.
+        /// </summary>
+        /// <param name="action">The action, as "api/agent/readcolumns".</param>
+        /// <param name="tableName">The table of the request, or null for none.</param>
+        /// <param name="field">The array of the data: "tables", "columns" or "foreignKeys".</param>
+        /// <param name="cancellationToken">Stops the request.</param>
+        internal async Task<JsonElement> ReadCatalogAsync(string action, string tableName, string field,
+            CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrEmpty(BaseUrl))
+                throw new InvalidOperationException("BaseUrl is not configured for HttpAgent");
+            if (HubDatabaseId <= 0)
+                throw new NamedException(AgentMessage(AgentNotConfiguredText, AgentNotConfiguredDefault,
+                    ConnectionName), ConnectionName ?? "");
+            object body = tableName == null
+                ? (object)new { hubDatabaseId = HubDatabaseId }
+                : new { hubDatabaseId = HubDatabaseId, tableName = tableName };
+            var content = new StringContent(JsonSerializer.Serialize(body, _jsonOptions), Encoding.UTF8, "application/json");
+            ApplyHeaders();
+            var response = await _httpClient.PostAsync(BaseUrl.TrimEnd('/') + "/" + action, content, cancellationToken)
+                .ConfigureAwait(false);
+            string json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            if (!response.IsSuccessStatusCode)
+            {
+                CheckNoCredentialsRefusal((int)response.StatusCode, ApiKey, Token, ConnectionName);
+                throw new Exception($"HttpAgent error {response.StatusCode}: {json}");
+            }
+            using (var doc = JsonDocument.Parse(json))
+            {
+                JsonElement root = doc.RootElement;
+                if (root.ValueKind == JsonValueKind.Object && root.TryGetProperty("success", out var success) &&
+                    success.ValueKind == JsonValueKind.False)
+                {
+                    string error = ReadText(root, "error");
+                    throw new Exception(error.Length > 0 ? error : action + " failed");
+                }
+                // The envelope of the API, or the data alone
+                JsonElement data = root;
+                if (root.ValueKind == JsonValueKind.Object && root.TryGetProperty("data", out var dataProp) &&
+                    dataProp.ValueKind == JsonValueKind.Object)
+                    data = dataProp;
+                if (data.ValueKind == JsonValueKind.Object && data.TryGetProperty(field, out var array) &&
+                    array.ValueKind == JsonValueKind.Array)
+                    return array.Clone();
+                using (var empty = JsonDocument.Parse("[]"))
+                    return empty.RootElement.Clone();
+            }
+        }
+
+        /// <summary>
+        /// The dialect of the Hub database ("dialect" of its item of GET api/agent/databases, as "Firebird5"), with the
+        /// same credentials; "" when the Hub does not say it.
+        /// </summary>
+        internal async Task<string> ReadDialectAsync(CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrEmpty(BaseUrl) || HubDatabaseId <= 0)
+                return "";
+            ApplyHeaders();
+            var response = await _httpClient.GetAsync(BaseUrl.TrimEnd('/') + "/api/agent/databases", cancellationToken)
+                .ConfigureAwait(false);
+            if (!response.IsSuccessStatusCode)
+                return "";
+            string json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            using (var doc = JsonDocument.Parse(json))
+            {
+                if (doc.RootElement.ValueKind != JsonValueKind.Object ||
+                    !doc.RootElement.TryGetProperty("databases", out var databases) || databases.ValueKind != JsonValueKind.Array)
+                    return "";
+                foreach (JsonElement item in databases.EnumerateArray())
+                {
+                    if (item.ValueKind != JsonValueKind.Object || !item.TryGetProperty("hubDatabaseId", out var id))
+                        continue;
+                    long value;
+                    if (!long.TryParse(id.GetRawText().Trim('"'), out value) || value != HubDatabaseId)
+                        continue;
+                    string dialect = ReadText(item, "dialect").Trim();
+                    if (dialect.Length > 0)
+                        return dialect;
+                }
+            }
+            return "";
         }
 
         /// <summary>

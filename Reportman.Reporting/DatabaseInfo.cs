@@ -620,12 +620,29 @@ namespace Reportman.Reporting
         /// Creates a new connection, not opened, with the provider factory and connection string
         /// <see cref="Connect"/> uses (including the report's ADOCONNECTIONSTRING parameters). It is
         /// owned by the caller, so it can read the database outside the report's own transaction,
-        /// for example its catalog. Not available for HttpAgent or Mybase connections.
+        /// for example its catalog. For an HttpAgent connection (also one the connections file maps to the
+        /// Agent) a <see cref="HubAgentConnection"/> with its Hub database and credentials (the API key, or the
+        /// session of the host): its SQL and its catalog go through the API. Not available for Mybase connections.
         /// </summary>
         /// <returns>A closed connection with its connection string assigned.</returns>
         public DbConnection CreateDbConnection()
         {
-            if (Driver == DriverType.HttpAgent || Driver == DriverType.Mybase)
+            ResolveHttpAgentDriverFromConfig();
+            if (Driver == DriverType.HttpAgent)
+            {
+                LoadHttpAgentConnectionParams();
+                ApplyHttpAgentSession();
+                return new HubAgentConnection
+                {
+                    BaseUrl = HttpAgentBaseUrl ?? "",
+                    ApiKey = HttpAgentApiKey ?? "",
+                    Token = HttpAgentToken ?? "",
+                    InstallId = HttpAgentInstallId ?? "",
+                    HubDatabaseId = HttpAgentHubDatabaseId,
+                    ConnectionName = Alias ?? ""
+                };
+            }
+            if (Driver == DriverType.Mybase)
                 throw new NamedException("The connection " + Alias + " has no database provider", Alias);
             string UsedConnectionString = ConnectionString;
             if (Report != null)

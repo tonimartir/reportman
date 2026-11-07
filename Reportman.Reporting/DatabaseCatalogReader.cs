@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -257,10 +258,13 @@ namespace Reportman.Reporting
         // The names of a filtered catalog query go in batches of this many (TABLE_NAME IN (...))
         private const int FilterBatch = 200;
 
-        private enum Family { Other, Firebird, PostgreSQL, SQLite, SQLServer, MySQL, Oracle }
+        // Hub: a Reportman AI Agent connection (HubAgentConnection), its catalog read through the API
+        private enum Family { Other, Firebird, PostgreSQL, SQLite, SQLServer, MySQL, Oracle, Hub }
 
         private static Family FamilyOf(DbConnection connection)
         {
+            if (connection is HubAgentConnection)
+                return Family.Hub;
             string name = connection.GetType().FullName ?? "";
             if (name.StartsWith("FirebirdSql.", StringComparison.Ordinal))
                 return Family.Firebird;
@@ -305,9 +309,60 @@ namespace Reportman.Reporting
                     return "MySQL";
                 case Family.Oracle:
                     return "Oracle";
+                case Family.Hub:
+                    // The one the Hub keeps for the database ("dialect" of api/agent/databases)
+                    return ((HubAgentConnection)connection).Dialect;
                 default:
                     return "Default";
             }
+        }
+
+        /// <summary>
+        /// The Reportman AI column type of a type name of the database, as the information schema says it: an integer
+        /// type, NUMBER with no scale (Oracle) or a SERIAL is Integer, MONEY Currency, a decimal or floating type
+        /// Numeric, DATE Date, a time or timestamp TimeStamp, a boolean or BIT Boolean, a text, CLOB or BLOB TextLong,
+        /// anything else String. The same as the Delphi engine (rplocalschemas CloudTypeOfSqlType), so the two engines
+        /// write the same file for the catalog of a Hub database.
+        /// </summary>
+        /// <param name="typeName">The declared type ("INTEGER", "varchar", "NUMERIC").</param>
+        /// <param name="scale">Its numeric scale.</param>
+        public static string CloudTypeOfSqlType(string typeName, int scale)
+        {
+            string t = (typeName ?? "").Trim().ToLowerInvariant();
+            if (t.Contains("int") || t == "serial" || t == "bigserial" || t == "smallserial")
+                return "Integer";
+            if (t == "number")
+                return scale == 0 ? "Integer" : "Numeric";
+            if (t.Contains("money"))
+                return "Currency";
+            if (t.Contains("numeric") || t.Contains("decimal") || t.Contains("float") || t.Contains("double") ||
+                t.Contains("real") || t.Contains("binary_"))
+                return "Numeric";
+            if (t == "date")
+                return "Date";
+            if (t.Contains("time"))
+                return "TimeStamp";
+            if (t.Contains("bool") || t == "bit")
+                return "Boolean";
+            if (t.Contains("text") || t.Contains("clob") || t.Contains("blob"))
+                return "TextLong";
+            return "String";
+        }
+
+        /// <summary>
+        /// The detected type of a column as the information schema describes it: the type in capitals with its length
+        /// ("VARCHAR(100)") or, without one, its precision and scale when it has a scale ("NUMERIC(15,2)"). The same as
+        /// the Delphi engine (rplocalschemas SqlTypeText).
+        /// </summary>
+        public static string SqlTypeText(string typeName, int length, int precision, int scale)
+        {
+            string result = (typeName ?? "").ToUpperInvariant();
+            if (length > 0)
+                return result + "(" + length.ToString(System.Globalization.CultureInfo.InvariantCulture) + ")";
+            if (precision > 0 && scale > 0)
+                return result + "(" + precision.ToString(System.Globalization.CultureInfo.InvariantCulture) + "," +
+                    scale.ToString(System.Globalization.CultureInfo.InvariantCulture) + ")";
+            return result;
         }
 
         /// <summary>The Reportman AI column type for a .NET type.</summary>
@@ -524,6 +579,8 @@ namespace Reportman.Reporting
         private static Task<List<CatalogName>> TableNamesAsync(DbConnection connection, Family family, DatabaseReadTracker tracker,
             CancellationToken cancellationToken)
         {
+            if (family == Family.Hub)
+                return HubTableNamesAsync((HubAgentConnection)connection, tracker, cancellationToken);
             if (family == Family.SQLite)
                 return SqliteTableNamesAsync(connection, tracker, cancellationToken);
             return Task.FromResult(CatalogTableNames(connection, family, tracker, cancellationToken));
@@ -554,6 +611,11 @@ namespace Reportman.Reporting
         {
             if (details.Count == 0)
                 return;
+            if (family == Family.Hub)
+            {
+                await HubDetailsAsync((HubAgentConnection)connection, details, tracker, cancellationToken).ConfigureAwait(false);
+                return;
+            }
             DbProviderFactory factory = null;
             try { factory = DbProviderFactories.GetFactory(connection); } catch { }
             List<string> filter = filtered ? NamesOf(details) : null;
@@ -878,6 +940,113 @@ namespace Reportman.Reporting
             }
             result.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
             return result;
+        }
+
+        /// <summary>The tables of a Hub database (api/agent/readtables), sorted by name as the other catalogs.</summary>
+        private static async Task<List<CatalogName>> HubTableNamesAsync(HubAgentConnection connection, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            tracker.Executing();
+            List<string> names = await connection.ReadTableNamesAsync(cancellationToken).ConfigureAwait(false);
+            tracker.Fetched(names.Count);
+            var result = new List<CatalogName>(names.Count);
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (string name in names)
+                if (seen.Add(name))
+                    result.Add(new CatalogName { Name = name });
+            result.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
+            return result;
+        }
+
+        /// <summary>
+        /// The columns, primary key and foreign keys of the tables of a Hub database, a request of each per table
+        /// (api/agent/readcolumns and readforeignkeys), with the types as the information schema says them
+        /// (<see cref="CloudTypeOfSqlType"/>, <see cref="SqlTypeText"/>). A failure is the error of the request (the
+        /// Agent, the credentials): it is the same for every table.
+        /// </summary>
+        private static async Task HubDetailsAsync(HubAgentConnection connection, List<KeyValuePair<CatalogName, LocalSchemaTable>> details,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
+        {
+            foreach (KeyValuePair<CatalogName, LocalSchemaTable> pair in details)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                LocalSchemaTable table = pair.Value;
+                tracker.Executing();
+                JsonElement columns = await connection.ReadColumnsAsync(table.Name, cancellationToken).ConfigureAwait(false);
+                tracker.Fetched(columns.GetArrayLength());
+                foreach (JsonElement item in columns.EnumerateArray())
+                {
+                    if (item.ValueKind != JsonValueKind.Object)
+                        continue;
+                    string name = HubText(item, "name");
+                    if (name.Length == 0)
+                        continue;
+                    int scale = HubInt(item, "numericScale");
+                    string declared = HubText(item, "declaredDbType");
+                    table.Columns.Add(new LocalSchemaColumn
+                    {
+                        Name = name,
+                        DataType = CloudTypeOfSqlType(declared, scale),
+                        DetectedType = SqlTypeText(declared, HubInt(item, "size"), HubInt(item, "numericPrecision"), scale),
+                        IsPrimaryKey = HubFlag(item, "isPrimaryKey")
+                    });
+                }
+                cancellationToken.ThrowIfCancellationRequested();
+                tracker.Executing();
+                JsonElement keys = await connection.ReadForeignKeysAsync(table.Name, cancellationToken).ConfigureAwait(false);
+                tracker.Fetched(keys.GetArrayLength());
+                foreach (JsonElement item in keys.EnumerateArray())
+                {
+                    if (item.ValueKind != JsonValueKind.Object)
+                        continue;
+                    JsonElement source, target;
+                    if (!item.TryGetProperty("sourceColumns", out source) || source.ValueKind != JsonValueKind.Array ||
+                        !item.TryGetProperty("targetColumns", out target) || target.ValueKind != JsonValueKind.Array)
+                        continue;
+                    var fk = new LocalSchemaForeignKey
+                    {
+                        ConstraintName = HubText(item, "constraintName"),
+                        TargetTable = HubText(item, "targetTable")
+                    };
+                    int count = Math.Min(source.GetArrayLength(), target.GetArrayLength());
+                    for (int i = 0; i < count; i++)
+                    {
+                        fk.SourceColumns.Add(ValueText(source[i]));
+                        fk.TargetColumns.Add(ValueText(target[i]));
+                    }
+                    if (count > 0)
+                        table.ForeignKeys.Add(fk);
+                }
+            }
+        }
+
+        private static string ValueText(JsonElement value)
+        {
+            return value.ValueKind == JsonValueKind.String ? (value.GetString() ?? "").Trim() :
+                value.ValueKind == JsonValueKind.Null ? "" : value.GetRawText().Trim();
+        }
+
+        private static string HubText(JsonElement item, string name)
+        {
+            JsonElement value;
+            return item.TryGetProperty(name, out value) ? ValueText(value) : "";
+        }
+
+        private static int HubInt(JsonElement item, string name)
+        {
+            int value;
+            return int.TryParse(HubText(item, name), System.Globalization.NumberStyles.Integer,
+                System.Globalization.CultureInfo.InvariantCulture, out value) ? value : 0;
+        }
+
+        private static bool HubFlag(JsonElement item, string name)
+        {
+            JsonElement value;
+            if (!item.TryGetProperty(name, out value))
+                return false;
+            return value.ValueKind == JsonValueKind.True ||
+                (value.ValueKind == JsonValueKind.String && string.Equals(value.GetString(), "true", StringComparison.OrdinalIgnoreCase));
         }
 
         private static async Task<List<CatalogName>> SqliteTableNamesAsync(DbConnection connection, DatabaseReadTracker tracker,
