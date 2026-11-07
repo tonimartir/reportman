@@ -63,21 +63,23 @@ namespace Reportman.Designer
             };
             bschemas.DropDownItems.Add(mlocalschemas);
             bschemas.DropDownItems.Add(mcloudschemas);
-            // The local schema only for a connection that runs SQL on this computer
+            // The local schema of any connection but an in-memory one (an Agent one is read through the API)
             bschemas.DropDownOpening += (s, e) => mlocalschemas.Enabled = SelectedDirectConnection() != null;
             TopBar.Items.Insert(TopBar.Items.IndexOf(bconnect) + 1, bschemas);
         }
 
-        /// <summary>The selected connection when it is a direct one (not an Agent, not MyBase), else null.</summary>
+        /// <summary>
+        /// The selected connection when it can have a local schema (a direct one, or a Reportman AI Agent one, whose
+        /// catalog is read through the API; not MyBase), else null.
+        /// </summary>
         private DatabaseInfo SelectedDirectConnection()
         {
             TreeNode nnode = FindSelectedNode();
             DatabaseInfo dbinfo = nnode != null ? nnode.Tag as DatabaseInfo : null;
             if (dbinfo == null)
                 return null;
-            // A connection the connections file maps to the Agent is not direct
             dbinfo.ResolveHttpAgentConnectionParamsFromConfig();
-            if (dbinfo.Driver == DriverType.HttpAgent || dbinfo.Driver == DriverType.Mybase)
+            if (dbinfo.Driver == DriverType.Mybase)
                 return null;
             return dbinfo;
         }

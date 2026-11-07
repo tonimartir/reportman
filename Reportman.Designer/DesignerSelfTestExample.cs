@@ -68,6 +68,9 @@ namespace Reportman.Designer
             RunCheck(log, "engine: the session of the designer without an API key", TestSession);
             RunCheck(log, "schema list: the DEMO chip and its hint", f => TestSchemaList(f, shotFolder));
             RunCheck(log, "connection assistant: the note and the example (real Hub)", f => TestAssistant(f, shotFolder));
+            RunCheck(log, "local schemas of an Agent connection: the catalog through the API", TestHubCatalog);
+            RunCheck(log, "local schemas of an Agent connection: the schema list", TestAgentSchemaList);
+            RunCheck(log, "local schemas of an Agent connection: the example (real Hub)", TestHubCatalogOnline);
             failed = log.Failed;
             return log.ToString();
         }
@@ -292,13 +295,30 @@ namespace Reportman.Designer
                         end++;
                     id = text.Substring(start, end - start);
                 }
+                string tableName = "";
+                int tableAt = text.IndexOf("\"tableName\":\"", StringComparison.Ordinal);
+                if (tableAt >= 0)
+                {
+                    int start = tableAt + "\"tableName\":\"".Length;
+                    int end = text.IndexOf('"', start);
+                    if (end > start)
+                        tableName = text.Substring(start, end - start);
+                }
                 lock (Requests)
-                    Requests.Add(path + "|" + id + "|" + apiKey + "|" + authorization);
+                    Requests.Add(path + "|" + id + (tableName.Length > 0 ? "/" + tableName : "") + "|" + apiKey + "|" + authorization);
 
                 int status;
                 string answer;
                 bool test = path == "/api/agent/testconnection";
-                if (path != "/api/agent/execute" && !test)
+                bool catalog = path == "/api/agent/readtables" || path == "/api/agent/readcolumns" ||
+                    path == "/api/agent/readforeignkeys";
+                if (path == "/api/agent/databases")
+                {
+                    status = 200;
+                    answer = "{\"databases\":[{\"hubDatabaseId\":7,\"hubSchemaId\":21,\"name\":\"Example\"," +
+                        "\"displayName\":\"Example - Example\",\"isExample\":true,\"dialect\":\"Firebird5\"}]}";
+                }
+                else if (path != "/api/agent/execute" && !test && !catalog)
                 {
                     status = 404;
                     answer = "{}";
@@ -307,6 +327,11 @@ namespace Reportman.Designer
                 {
                     status = 403;
                     answer = "No access to this database. Valid API Key or Login required.";
+                }
+                else if (catalog)
+                {
+                    status = 200;
+                    answer = CatalogAnswer(path, tableName);
                 }
                 else if (test)
                 {
@@ -333,6 +358,50 @@ namespace Reportman.Designer
             {
                 FStop = true;
                 try { FListener.Stop(); } catch { }
+            }
+
+            /// <summary>The catalog of the example, as the Agent answers it (the names not sorted).</summary>
+            private static string CatalogAnswer(string path, string table)
+            {
+                string data;
+                if (path == "/api/agent/readtables")
+                    data = "\"tables\":[\"SALES\",\"CUSTOMERS\",\"PRODUCTS\"]";
+                else if (path == "/api/agent/readcolumns")
+                {
+                    string columns;
+                    if (table == "CUSTOMERS")
+                        columns = Column("CUSTOMERID", "System.Int32", "INTEGER", true, 4, 0, 0) + "," +
+                            Column("CUSTOMERNAME", "System.String", "VARCHAR", false, 100, 0, 0);
+                    else if (table == "PRODUCTS")
+                        columns = Column("PRODUCTID", "System.Int32", "INTEGER", true, 4, 0, 0) + "," +
+                            Column("PRICE", "System.Decimal", "NUMERIC", false, 0, 15, 2) + "," +
+                            Column("NOTES", "System.String", "BLOB SUB_TYPE TEXT", false, 0, 0, 0) + "," +
+                            Column("CREATED", "System.DateTime", "TIMESTAMP", false, 8, 0, 0) + "," +
+                            Column("LAUNCHED", "System.DateTime", "DATE", false, 4, 0, 0);
+                    else if (table == "SALES")
+                        columns = Column("DOCID", "System.Int32", "INTEGER", true, 4, 0, 0) + "," +
+                            Column("CUSTOMERID", "System.Int32", "INTEGER", false, 4, 0, 0) + "," +
+                            Column("PRODUCTID", "System.Int32", "INTEGER", false, 4, 0, 0);
+                    else
+                        columns = "";
+                    data = "\"columns\":[" + columns + "]";
+                }
+                else if (table == "SALES")
+                    data = "\"foreignKeys\":[{\"constraintName\":\"FK_SALES_CUST\",\"sourceTable\":\"SALES\"," +
+                        "\"sourceColumns\":[\"CUSTOMERID\"],\"targetTable\":\"CUSTOMERS\",\"targetColumns\":[\"CUSTOMERID\"]}," +
+                        "{\"constraintName\":\"FK_SALES_PROD\",\"sourceTable\":\"SALES\",\"sourceColumns\":[\"PRODUCTID\"]," +
+                        "\"targetTable\":\"PRODUCTS\",\"targetColumns\":[\"PRODUCTID\"]}]";
+                else
+                    data = "\"foreignKeys\":[]";
+                return "{\"success\":true,\"data\":{" + data + "},\"error\":null}";
+            }
+
+            private static string Column(string name, string netType, string declared, bool key, int size, int precision, int scale)
+            {
+                return "{\"name\":\"" + name + "\",\"detectedNetType\":\"" + netType + "\",\"declaredDbType\":\"" + declared +
+                    "\",\"isPrimaryKey\":" + (key ? "true" : "false") + ",\"isNullable\":true,\"isAutoIncrement\":false," +
+                    "\"ordinalPosition\":0,\"size\":" + size + ",\"numericPrecision\":" + precision + ",\"numericScale\":" + scale +
+                    ",\"suggestedDataType\":1}";
             }
         }
 
@@ -473,6 +542,241 @@ namespace Reportman.Designer
             {
                 DatabaseInfo.HttpAgentSessionToken = savedToken;
                 DatabaseInfo.HttpAgentSessionInstallId = savedInstall;
+            }
+        }
+
+        // ===== The local schemas of an Agent connection =====
+
+        private static LocalSchemaTable FindTable(LocalSchemaFile file, string name)
+        {
+            return file.Tables.Find(t => string.Equals(t.Name, name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private static string ColumnText(LocalSchemaTable table, string name)
+        {
+            LocalSchemaColumn c = table == null ? null : table.Columns.Find(x => x.Name == name);
+            return c == null ? "(none)" : c.DataType + " " + c.DetectedType + (c.IsPrimaryKey ? " PK" : "");
+        }
+
+        private static void TestHubCatalog(ExampleLog log)
+        {
+            Func<string> savedToken = DatabaseInfo.HttpAgentSessionToken;
+            DatabaseInfo.HttpAgentSessionToken = null;
+            try
+            {
+                using (var hub = new FakeHub())
+                {
+                    // DatabaseInfo gives the connection of the Agent, with its alias, Hub database and credentials
+                    DatabaseInfo info = AgentConnection("EXAMPLE", hub.BaseUrl, 7);
+                    var connection = info.CreateDbConnection() as HubAgentConnection;
+                    log.Check(connection != null && connection.HubDatabaseId == 7 && connection.ConnectionName == "EXAMPLE",
+                        "CreateDbConnection of an Agent connection: a HubAgentConnection");
+                    if (connection == null)
+                        return;
+                    log.Equal("Firebird5", DatabaseCatalogReader.DialectOf(connection), "the dialect the Hub keeps for it");
+
+                    lock (hub.Requests) hub.Requests.Clear();
+                    LocalSchemaFile file = LocalSchemaStore.GenerateAsync(connection, "example", null,
+                        DatabaseCatalogReader.LargeCatalogThreshold, null, CancellationToken.None).GetAwaiter().GetResult();
+                    log.Equal("EXAMPLE", file.Alias, "the alias of the file");
+                    log.Equal("Firebird5", file.Dialect, "the dialect of the file");
+                    var names = new List<string>();
+                    foreach (LocalSchemaTable t in file.Tables)
+                        names.Add(t.Name);
+                    log.Equal("CUSTOMERS,PRODUCTS,SALES", string.Join(",", names), "the tables, sorted");
+                    LocalSchemaTable customers = FindTable(file, "CUSTOMERS");
+                    LocalSchemaTable products = FindTable(file, "PRODUCTS");
+                    LocalSchemaTable sales = FindTable(file, "SALES");
+                    // As the information schema, the same as the Delphi engine (CloudTypeOfSqlType, SqlTypeText)
+                    log.Equal("Integer INTEGER(4) PK", ColumnText(customers, "CUSTOMERID"), "an integer key");
+                    log.Equal("String VARCHAR(100)", ColumnText(customers, "CUSTOMERNAME"), "a varchar with its length");
+                    log.Equal("Numeric NUMERIC(15,2)", ColumnText(products, "PRICE"), "a numeric with its precision and scale");
+                    log.Equal("TextLong BLOB SUB_TYPE TEXT", ColumnText(products, "NOTES"), "a text blob");
+                    log.Equal("TimeStamp TIMESTAMP(8)", ColumnText(products, "CREATED"), "a timestamp");
+                    log.Equal("Date DATE(4)", ColumnText(products, "LAUNCHED"), "a date");
+                    log.Check(sales != null && sales.ForeignKeys.Count == 2 && sales.ForeignKeys[0].ConstraintName == "FK_SALES_CUST" &&
+                        sales.ForeignKeys[0].TargetTable == "CUSTOMERS" && sales.ForeignKeys[0].SourceColumns[0] == "CUSTOMERID" &&
+                        sales.ForeignKeys[0].TargetColumns[0] == "CUSTOMERID", "the foreign keys of SALES");
+                    log.Check(customers != null && customers.ForeignKeys.Count == 0, "CUSTOMERS has none");
+                    string requests;
+                    lock (hub.Requests) requests = string.Join(";", hub.Requests);
+                    log.Check(requests.StartsWith("/api/agent/readtables|7||;/api/agent/readcolumns|7/CUSTOMERS||;" +
+                        "/api/agent/readforeignkeys|7/CUSTOMERS||;", StringComparison.Ordinal), "a request of each per table, without credentials (" +
+                        requests + ")");
+
+                    // A large catalog: the names first, the columns of a table when it is used
+                    LocalSchemaFile large = LocalSchemaStore.GenerateAsync(connection, "EXAMPLE", null, 2, null, CancellationToken.None)
+                        .GetAwaiter().GetResult();
+                    LocalSchemaTable largeSales = FindTable(large, "SALES");
+                    log.Check(large.Tables.Count == 3 && largeSales != null && largeSales.ColumnsRead == false && largeSales.Columns.Count == 0,
+                        "a large catalog: the names only");
+                    List<LocalSchemaTable> details = DatabaseCatalogReader.ReadTableDetailsAsync(connection, new[] { "sales" }, null,
+                        CancellationToken.None).GetAwaiter().GetResult();
+                    log.Check(details.Count == 1 && details[0].Name == "SALES" && details[0].Columns.Count == 3 && details[0].ForeignKeys.Count == 2,
+                        "the columns of a table read when it is used");
+
+                    // The preview: its SQL through api/agent/execute
+                    DataTable preview = LocalSchemaEditing.ReadPreviewAsync(() => info.CreateDbConnection(), file.Dialect, "CUSTOMERS", 5, null,
+                        CancellationToken.None).GetAwaiter().GetResult();
+                    log.Check(preview.Rows.Count == 1 && Convert.ToInt32(preview.Rows[0][0]) == 50, "the preview through the Agent");
+                    log.Check(hub.LastRequest == "/api/agent/execute|7||", "the preview runs on the Hub database (" + hub.LastRequest + ")");
+
+                    // Cancelled
+                    bool cancelled = false;
+                    using (var cts = new CancellationTokenSource())
+                    {
+                        cts.Cancel();
+                        try
+                        {
+                            LocalSchemaStore.GenerateAsync(connection, "EXAMPLE", null, 0, null, cts.Token).GetAwaiter().GetResult();
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            cancelled = true;
+                        }
+                    }
+                    log.Check(cancelled, "a read cancelled");
+
+                    // Another database without credentials: the clear error
+                    string message = "";
+                    try
+                    {
+                        LocalSchemaStore.GenerateAsync(AgentConnection("NOKEY", hub.BaseUrl, 17).CreateDbConnection(), "NOKEY", null, 0,
+                            null, CancellationToken.None).GetAwaiter().GetResult();
+                    }
+                    catch (NamedException ex)
+                    {
+                        message = ex.Message;
+                    }
+                    log.Equal(Expected(1825, "NOKEY"), message, "refused without credentials: the clear error");
+                }
+            }
+            finally
+            {
+                DatabaseInfo.HttpAgentSessionToken = savedToken;
+            }
+        }
+
+        private static object PrivateValue(object target, string field)
+        {
+            System.Reflection.FieldInfo info = target.GetType().GetField(field, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+            return info == null ? null : info.GetValue(target);
+        }
+
+        private static void TestAgentSchemaList(ExampleLog log)
+        {
+            string folder = Path.Combine(Path.GetTempPath(), "rm_exampletest_" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(folder);
+            try
+            {
+                var file = new LocalSchemaFile { Alias = "EXAMPLE", Dialect = "Firebird5" };
+                var customers = new LocalSchemaTable { Name = "CUSTOMERS" };
+                customers.Columns.Add(new LocalSchemaColumn { Name = "CUSTOMERID", DataType = "Integer", IsPrimaryKey = true });
+                customers.Columns.Add(new LocalSchemaColumn { Name = "CUSTOMERNAME", DataType = "String" });
+                file.Tables.Add(customers);
+                var subschema = new LocalSubschema { Name = "Sales" };
+                subschema.Tables.Add("CUSTOMERS");
+                file.Schemas.Add(subschema);
+                LocalSchemaStore.Save(file, LocalSchemaStore.PathFor(folder, "EXAMPLE"));
+
+                using (var form = new Form())
+                {
+                    form.StartPosition = FormStartPosition.Manual;
+                    form.Location = new Point(-3000, -3000);
+                    var selector = new AISchemaSelectorControl { Dock = DockStyle.Top, LocalSchemaFolder = folder };
+                    selector.LocalSchemaEditRequested += (s, e) => { };
+                    form.Controls.Add(selector);
+                    form.Show();
+                    Application.DoEvents();
+                    var agents = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase) { { "EXAMPLE", 7 } };
+                    selector.ApplySchemas(HubSchema.ListFromJson(ExamplesJson, ""));
+                    selector.SetPreferredConnection(7, "");
+                    // The report has its Hub schema: it stays selected, the local subschema is offered
+                    selector.SetDirectConnections(new[] { "EXAMPLE" }, "EXAMPLE", false, null, agents);
+                    var combo = (ComboBox)PrivateValue(selector, "_comboSchema");
+                    bool listed = false;
+                    foreach (object item in combo.Items)
+                        if (item.ToString().Contains("EXAMPLE · Sales"))
+                            listed = true;
+                    log.Check(listed, "the local subschema of the Agent connection is listed");
+                    log.Check(selector.HubDatabaseId == 7 && !selector.IsLocalSchemaSelected, "its Hub schema stays selected");
+                    log.Equal("", selector.MissingSchemaAlias, "an Agent connection never misses a subschema");
+
+                    selector.SelectLocalSchema("EXAMPLE", "Sales");
+                    log.Check(selector.IsLocalSchemaSelected && selector.LocalAlias == "EXAMPLE" && selector.LocalSubschema == "Sales",
+                        "its local subschema selected");
+                    object newLocal = PrivateValue(selector, "_newLocalAction");
+                    object newCloud = PrivateValue(selector, "_newCloudAction");
+                    log.Check((bool)PrivateValue(newLocal, "Enabled"), "New local schema... for an Agent connection");
+                    log.Check((bool)PrivateValue(newCloud, "Enabled"), "New cloud schema... on its Hub database");
+                    log.Equal("", (string)PrivateValue(newCloud, "Reason"), "no «not in the Hub» for an Agent connection");
+                    Dictionary<string, object> inline;
+                    string message;
+                    log.Check(selector.PrepareSchemaToSend("Standard", out inline, out message, null) && inline != null,
+                        "the local subschema travels inline (" + message + ")");
+                    object dialect;
+                    log.Check(inline != null && inline.TryGetValue("dialect", out dialect) && Convert.ToString(dialect) == "Firebird5",
+                        "with the dialect of its file");
+
+                    // An Agent connection without a local file, local preferred and no Hub schema asked for: its Hub
+                    // schema, not nothing
+                    selector.SetPreferredConnection(0, "");
+                    selector.SetHubContext(0, 0, "");
+                    var agent2 = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase) { { "AGENT2", 7 } };
+                    selector.SetDirectConnections(new[] { "AGENT2" }, "AGENT2", true, "", agent2);
+                    log.Check(selector.HubDatabaseId == 7, "an Agent connection without subschemas: its Hub schema");
+                    // A direct connection without subschemas (a selector of its own: this one keeps what it selected): nothing,
+                    // the copilot asks for one, as before
+                    var direct = new AISchemaSelectorControl { Dock = DockStyle.Top, LocalSchemaFolder = folder };
+                    direct.LocalSchemaEditRequested += (s, e) => { };
+                    form.Controls.Add(direct);
+                    // As the designer: the connections and the context of the report, then the list of the Hub arrives
+                    direct.SetDirectConnections(new[] { "DIRECT" }, "DIRECT", true, "", null);
+                    direct.SetHubContext(0, 0, "");
+                    direct.ApplySchemas(HubSchema.ListFromJson(ExamplesJson, ""));
+                    log.Check(direct.HubDatabaseId == 0 && direct.MissingSchemaAlias == "DIRECT",
+                        "a direct connection without subschemas: none, and the copilot asks");
+                    log.Equal(DesignerText.Tr(1842), (string)PrivateValue(PrivateValue(direct, "_newCloudAction"), "Reason"),
+                        "«not in the Hub» for a direct connection");
+                    form.Close();
+                }
+            }
+            finally
+            {
+                try { Directory.Delete(folder, true); } catch { }
+            }
+        }
+
+        private static void TestHubCatalogOnline(ExampleLog log)
+        {
+            Func<string> savedToken = DatabaseInfo.HttpAgentSessionToken;
+            DatabaseInfo.HttpAgentSessionToken = null;
+            try
+            {
+                DatabaseInfo info = AgentConnection("EXAMPLE", RpAuthManager.HUB_API_URL, 7);
+                LocalSchemaFile file;
+                try
+                {
+                    file = LocalSchemaStore.GenerateAsync(info.CreateDbConnection(), "EXAMPLE", null,
+                        DatabaseCatalogReader.LargeCatalogThreshold, null, CancellationToken.None).GetAwaiter().GetResult();
+                }
+                catch (Exception ex) when (ex is System.Net.Http.HttpRequestException || ex is TaskCanceledException)
+                {
+                    log.Skip("the Hub does not answer: " + ex.Message);
+                    return;
+                }
+                log.Equal("Firebird5", file.Dialect, "the dialect of the example");
+                LocalSchemaTable customers = FindTable(file, "CUSTOMERS");
+                LocalSchemaTable sales = FindTable(file, "SALES");
+                log.Check(customers != null && customers.Columns.Exists(c => c.Name == "CUSTOMERID" && c.IsPrimaryKey && c.DataType == "Integer"),
+                    "CUSTOMERS and its key");
+                log.Check(sales != null && sales.ForeignKeys.Exists(fk => fk.TargetTable == "CUSTOMERS"), "SALES and its relation to CUSTOMERS");
+                log.Note(file.Tables.Count + " tables, " + (customers != null ? customers.Columns.Count : 0) + " columns in CUSTOMERS: " +
+                    ColumnText(customers, "CUSTOMERNAME"));
+            }
+            finally
+            {
+                DatabaseInfo.HttpAgentSessionToken = savedToken;
             }
         }
 

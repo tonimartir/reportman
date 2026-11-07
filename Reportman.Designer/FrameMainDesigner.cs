@@ -762,7 +762,8 @@ namespace Reportman.Designer
                 out long hubSchemaId, out string schemaApiKey);
             // The report's direct connections: the copilot can work with their local schema and run
             // the SQL it writes with them. Without a Hub schema of the report, that is the default.
-            List<string> directAliases = ResolveDirectConnectionAliases(out string preferredDirectAlias);
+            List<string> directAliases = ResolveDirectConnectionAliases(out string preferredDirectAlias,
+                out Dictionary<string, long> agentHubDatabaseIds);
             bool preferLocal = hubDatabaseId == 0 && hubSchemaId == 0;
             // A report just opened selects the subschema its datasets were made with (DataInfo.SchemaName);
             // the same report assigned again (the copilot changed it) keeps the current choice.
@@ -775,7 +776,7 @@ namespace Reportman.Designer
                 if (fromFirstDataset)
                     preferLocal = true;
             }
-            FAIChatControl.SetDirectConnections(directAliases, preferredDirectAlias, preferLocal, reportSubschema);
+            FAIChatControl.SetDirectConnections(directAliases, preferredDirectAlias, preferLocal, reportSubschema, agentHubDatabaseIds);
             FAIChatControl.SetHubContext(hubDatabaseId, hubSchemaId, schemaApiKey);
         }
 
@@ -821,13 +822,16 @@ namespace Reportman.Designer
         }
 
         /// <summary>
-        /// The aliases of the report's connections that are not HTTP Agent (nor in-memory) ones, and the
-        /// one of the first dataset when it uses one of them (else the first of them).
+        /// The aliases of the report's connections that can have local schemas: every one but the in-memory ones
+        /// (a Reportman AI Agent connection too: its catalog is read through the API), the Agent ones in
+        /// <paramref name="agentHubDatabaseIds"/> with their Hub database; and the one of the first dataset when it
+        /// uses one of them (else the first of them).
         /// </summary>
-        private List<string> ResolveDirectConnectionAliases(out string preferredAlias)
+        private List<string> ResolveDirectConnectionAliases(out string preferredAlias, out Dictionary<string, long> agentHubDatabaseIds)
         {
             var aliases = new List<string>();
             preferredAlias = "";
+            agentHubDatabaseIds = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase);
             if (FReport == null)
                 return aliases;
             for (int index = 0; index < FReport.DatabaseInfo.Count; index++)
@@ -836,8 +840,10 @@ namespace Reportman.Designer
                 if (databaseInfo == null || string.IsNullOrWhiteSpace(databaseInfo.Alias))
                     continue;
                 databaseInfo.ResolveHttpAgentConnectionParamsFromConfig();
-                if (databaseInfo.Driver == DriverType.HttpAgent || databaseInfo.Driver == DriverType.Mybase)
+                if (databaseInfo.Driver == DriverType.Mybase)
                     continue;
+                if (databaseInfo.Driver == DriverType.HttpAgent)
+                    agentHubDatabaseIds[databaseInfo.Alias] = databaseInfo.HttpAgentHubDatabaseId;
                 aliases.Add(databaseInfo.Alias);
             }
             if (FReport.DataInfo.Count > 0)

@@ -285,7 +285,22 @@ namespace Reportman.Designer
         /// <param name="reportSubschema">The subschema the dataset was made with ("" when it says none).</param>
         public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal, string reportSubschema)
         {
-            _schemaSelector.SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema);
+            SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema, null);
+        }
+
+        /// <summary>
+        /// As <see cref="SetDirectConnections(IList{string}, string, bool, string)"/>, with the Reportman AI Agent
+        /// connections among <paramref name="aliases"/> and their Hub database (their local schemas too).
+        /// </summary>
+        /// <param name="aliases">Aliases of the connections with local schemas.</param>
+        /// <param name="preferredAlias">The connection to select by default.</param>
+        /// <param name="preferLocal">True when the local schema is selected by default.</param>
+        /// <param name="reportSubschema">The subschema the dataset was made with ("" when it says none).</param>
+        /// <param name="agentHubDatabaseIds">The Agent connections among <paramref name="aliases"/>; null for none.</param>
+        public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal, string reportSubschema,
+            IDictionary<string, long> agentHubDatabaseIds)
+        {
+            _schemaSelector.SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema, agentHubDatabaseIds);
             UpdateEffectiveSchemaContext();
         }
 

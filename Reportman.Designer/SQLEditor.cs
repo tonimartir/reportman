@@ -1,6 +1,7 @@
 ﻿using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -173,19 +174,29 @@ namespace Reportman.Designer
             if (monacoEditor == null)
                 return;
 
-            // A direct connection: both selectors offer the subschemas of its local schema, as the copilot,
-            // and start on the dataset's one (else the one chosen last, else the first one, else none)
-            if (!string.IsNullOrEmpty(sqlEditorContext.DirectAlias))
+            // A connection with local schemas (a direct one, or a Reportman AI Agent one): both selectors offer the
+            // subschemas of its local schema, as the copilot, and start on the dataset's one (else the one chosen
+            // last, else the first one, else none). An Agent connection starts on its Hub schema unless the dataset
+            // was made with a subschema.
+            string localAlias = sqlEditorContext.LocalAlias;
+            if (!string.IsNullOrEmpty(localAlias))
             {
-                string[] aliases = new string[] { sqlEditorContext.DirectAlias };
-                bool preferLocal = sqlEditorContext.HubSchemaId == 0;
+                string[] aliases = new string[] { localAlias };
+                bool direct = !string.IsNullOrEmpty(sqlEditorContext.DirectAlias);
+                bool preferLocal = sqlEditorContext.HubSchemaId == 0 && (direct || sqlEditorContext.SchemaName.Length > 0);
+                Dictionary<string, long> agents = null;
+                if (!direct)
+                {
+                    agents = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase);
+                    agents[localAlias] = sqlEditorContext.HubDatabaseId;
+                }
                 string folder = LocalSchemaEditorForm.DesignerFolder();
                 monacoEditor.LocalSchemaFolder = folder;
-                monacoEditor.SetDirectConnections(aliases, sqlEditorContext.DirectAlias, preferLocal, sqlEditorContext.SchemaName);
+                monacoEditor.SetDirectConnections(aliases, localAlias, preferLocal, sqlEditorContext.SchemaName, agents);
                 if (sqlChatPanel != null)
                 {
                     sqlChatPanel.LocalSchemaFolder = folder;
-                    sqlChatPanel.SetDirectConnections(aliases, sqlEditorContext.DirectAlias, preferLocal, sqlEditorContext.SchemaName);
+                    sqlChatPanel.SetDirectConnections(aliases, localAlias, preferLocal, sqlEditorContext.SchemaName, agents);
                 }
             }
 
@@ -272,6 +283,8 @@ namespace Reportman.Designer
             result.ApiKey = dbinfo.HttpAgentApiKey ?? "";
             result.RuntimeDb = ResolveNlToSqlRuntime(dbinfo);
             result.DirectAlias = direct ? dbinfo.Alias : "";
+            // Any connection but an in-memory one has local schemas (an Agent one, read through the API)
+            result.LocalAlias = dbinfo.Driver != DriverType.Mybase ? dbinfo.Alias : "";
             result.SchemaName = (dinfo.SchemaName ?? "").Trim();
             return result;
         }
@@ -360,7 +373,11 @@ namespace Reportman.Designer
                 dinfo.HubSchemaId = 0;
             }
             else
+            {
                 dinfo.HubSchemaId = chosenSchema.HubSchemaId;
+                // An Agent connection made with a Hub schema now: no local subschema
+                dinfo.SchemaName = "";
+            }
             int groupId = 0;
             if (FrameMainDesigner.AddUndoChanges(Report, state, ref groupId) && FrameMain != null)
                 FrameMain.RefreshUndoList();
@@ -420,6 +437,8 @@ namespace Reportman.Designer
             public string RuntimeDb;
             // The dataset's connection when it is a direct one, else ""
             public string DirectAlias;
+            // The dataset's connection when it can have local schemas (direct or Agent), else ""
+            public string LocalAlias;
             // The local subschema the dataset was made with, "" when it says none
             public string SchemaName;
         }

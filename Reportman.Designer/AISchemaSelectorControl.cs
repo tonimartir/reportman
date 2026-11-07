@@ -94,6 +94,10 @@ namespace Reportman.Designer
         private long _preferredConnectionHubDatabaseId;
         private string _preferredConnectionApiKey = "";
         private List<string> _directAliases = new List<string>();
+        // The Reportman AI Agent connections among _directAliases, with their Hub database: a local schema of an Agent
+        // connection travels inline as any other (with the dialect of its file), but without subschemas the
+        // connection has its schemas in the Hub, and "New cloud schema..." makes one on its database
+        private Dictionary<string, long> _agentAliases = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase);
         private string _defaultDirectAlias = "";
         private string _preferredLocalAlias = "";
         private string _preferredLocalSubschema = "";
@@ -140,7 +144,18 @@ namespace Reportman.Designer
         /// </summary>
         public string MissingSchemaAlias
         {
-            get { return IsLocalSchemaSelected || HubDatabaseId != 0 || HubSchemaId != 0 ? "" : TargetDirectAlias; }
+            get
+            {
+                // An Agent connection has its schemas in the Hub
+                string target = TargetDirectAlias;
+                return IsLocalSchemaSelected || HubDatabaseId != 0 || HubSchemaId != 0 || IsAgentAlias(target) ? "" : target;
+            }
+        }
+
+        /// <summary>True when <paramref name="alias"/> is one of the Reportman AI Agent connections of the list.</summary>
+        private bool IsAgentAlias(string alias)
+        {
+            return !string.IsNullOrEmpty(alias) && _agentAliases.ContainsKey(alias);
         }
 
         /// <summary>
@@ -320,6 +335,32 @@ namespace Reportman.Designer
         /// report's datasets of <paramref name="preferredAlias"/> were made with ("" when they say none).</param>
         public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal, string reportSubschema)
         {
+            SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema, null);
+        }
+
+        /// <summary>
+        /// Sets the connections of the report whose local schemas are offered (any connection: a direct one, or a
+        /// Reportman AI Agent one, whose catalog is read through the API), as
+        /// <see cref="SetDirectConnections(IList{string}, string, bool, string)"/>. The Agent connections among
+        /// <paramref name="aliases"/> come in <paramref name="agentHubDatabaseIds"/> with their Hub database: without
+        /// subschemas they select their schema in the Hub (not nothing, as a direct connection), the copilot does not ask
+        /// for a subschema for them, and "New cloud schema..." makes one on their database.
+        /// </summary>
+        /// <param name="aliases">Aliases of the report's connections with local schemas.</param>
+        /// <param name="preferredAlias">The connection the copilot should work with by default.</param>
+        /// <param name="preferLocal">True when the local schema should be selected rather than a Hub schema.</param>
+        /// <param name="reportSubschema">Null to keep the current choice; otherwise the subschema the report's datasets
+        /// of <paramref name="preferredAlias"/> were made with ("" when they say none).</param>
+        /// <param name="agentHubDatabaseIds">The Agent connections among <paramref name="aliases"/> and their Hub
+        /// database; null for none.</param>
+        public void SetDirectConnections(IList<string> aliases, string preferredAlias, bool preferLocal, string reportSubschema,
+            IDictionary<string, long> agentHubDatabaseIds)
+        {
+            _agentAliases = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase);
+            if (agentHubDatabaseIds != null)
+                foreach (KeyValuePair<string, long> pair in agentHubDatabaseIds)
+                    if (!string.IsNullOrWhiteSpace(pair.Key))
+                        _agentAliases[pair.Key.Trim()] = pair.Value;
             var list = new List<string>();
             if (aliases != null)
             {
@@ -895,8 +936,19 @@ namespace Reportman.Designer
             }
 
             // A direct connection without subschemas selects nothing, not a cloud schema of some other
-            // database: the copilot asks to choose or make one.
-            if (_preferredLocalAlias.Length > 0)
+            // database: the copilot asks to choose or make one. An Agent connection without subschemas has
+            // its schemas in the Hub, as before the local ones.
+            long agentHubDatabaseId;
+            if (_preferredLocalAlias.Length > 0 && _agentAliases.TryGetValue(_preferredLocalAlias, out agentHubDatabaseId))
+            {
+                if (agentHubDatabaseId > 0)
+                {
+                    index = FindHubDatabaseIndex(agentHubDatabaseId);
+                    if (index >= 0)
+                        return index;
+                }
+            }
+            else if (_preferredLocalAlias.Length > 0)
                 return -1;
 
             // As before the local schemas existed: the first Hub schema.
@@ -1063,7 +1115,11 @@ namespace Reportman.Designer
             {
                 if (HubDatabaseId > 0)
                     return HubDatabaseId;
-                return IsLocalSchemaSelected ? 0 : _preferredConnectionHubDatabaseId;
+                // A local schema of an Agent connection: its Hub database
+                long agentHubDatabaseId;
+                if (IsLocalSchemaSelected)
+                    return _agentAliases.TryGetValue(LocalAlias, out agentHubDatabaseId) ? agentHubDatabaseId : 0;
+                return _preferredConnectionHubDatabaseId;
             }
         }
 
@@ -1077,8 +1133,10 @@ namespace Reportman.Designer
             _newLocalAction.Enabled = CanEditLocalSchema;
             _newLocalAction.Reason = "";
             _newCloudAction.Enabled = TargetHubDatabaseId > 0;
-            // A direct connection is not in the Hub: there is nothing to create a cloud schema on
-            _newCloudAction.Reason = !_newCloudAction.Enabled && (IsLocalSchemaSelected || _directAliases.Count > 0) ? Tr(1842) : "";
+            // A direct connection is not in the Hub: there is nothing to create a cloud schema on (an Agent
+            // connection is)
+            bool direct = IsLocalSchemaSelected ? !IsAgentAlias(LocalAlias) : _directAliases.Exists(a => !IsAgentAlias(a));
+            _newCloudAction.Reason = !_newCloudAction.Enabled && direct ? Tr(1842) : "";
             _comboSchema.Invalidate();
         }
 

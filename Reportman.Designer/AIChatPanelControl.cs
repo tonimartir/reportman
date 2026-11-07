@@ -237,13 +237,29 @@ namespace Reportman.Designer
         public void SetDirectConnections(System.Collections.Generic.IList<string> aliases, string preferredAlias, bool preferLocal,
             string reportSubschema)
         {
+            SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema, null);
+        }
+
+        /// <summary>
+        /// Sets the connections of the report whose local schemas the copilot offers, direct ones and Reportman AI
+        /// Agent ones (<paramref name="agentHubDatabaseIds"/>, with their Hub database), as
+        /// <see cref="AISchemaSelectorControl.SetDirectConnections(System.Collections.Generic.IList{string}, string, bool, string, System.Collections.Generic.IDictionary{string, long})"/>.
+        /// </summary>
+        /// <param name="aliases">Aliases of the report's connections with local schemas.</param>
+        /// <param name="preferredAlias">The connection to select by default.</param>
+        /// <param name="preferLocal">True when the local schema is selected by default.</param>
+        /// <param name="reportSubschema">Null to keep the current choice (the same report again).</param>
+        /// <param name="agentHubDatabaseIds">The Agent connections among <paramref name="aliases"/>; null for none.</param>
+        public void SetDirectConnections(System.Collections.Generic.IList<string> aliases, string preferredAlias, bool preferLocal,
+            string reportSubschema, System.Collections.Generic.IDictionary<string, long> agentHubDatabaseIds)
+        {
             if (InvokeRequired)
             {
-                try { Invoke(new Action(() => SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema))); } catch { }
+                try { Invoke(new Action(() => SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema, agentHubDatabaseIds))); } catch { }
                 return;
             }
             _aiSchemaSelectorControl.LocalSchemaFolder = LocalSchemaFolder;
-            _aiSchemaSelectorControl.SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema);
+            _aiSchemaSelectorControl.SetDirectConnections(aliases, preferredAlias, preferLocal, reportSubschema, agentHubDatabaseIds);
         }
 
         /// <summary>A connection to the database of <paramref name="alias"/> as the report document defines it.</summary>
