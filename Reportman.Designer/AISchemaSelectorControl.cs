@@ -551,6 +551,7 @@ namespace Reportman.Designer
                         HubSchemaId = schema.HubSchemaId,
                         ApiKey = schema.ApiKey ?? "",
                         IsOnline = schema.IsOnline,
+                        Example = schema.IsExample,
                         Tables = schema.Tables,
                         WidestColumns = schema.WidestColumns
                     };
@@ -1178,6 +1179,9 @@ namespace Reportman.Designer
                 // Its Agent is not connected: the AI designs with the schema, the data waits for it
                 if (entry.Offline)
                     text = text.Length > 0 ? text + Environment.NewLine + Tr(2004) : Tr(2004);
+                // An example of the Hub: read-only, to try Reportman AI without signing in
+                if (entry.IsExample)
+                    text = text.Length > 0 ? text + Environment.NewLine + DemoChip.Hint : DemoChip.Hint;
                 if (text.Length == 0)
                     text = entry.Caption;
             }
@@ -1223,19 +1227,38 @@ namespace Reportman.Designer
                 using (var bold = new Font(font, FontStyle.Bold))
                     TextRenderer.DrawText(e.Graphics, header.Text, bold, bounds, color, flags);
             }
-            else if (entry != null && entry.Offline)
-                DrawOfflineEntry(e.Graphics, entry, font, bounds, color, flags, selected);
+            else if (entry != null)
+            {
+                // An example of the Hub: the «DEMO» chip after the name, which is cut before it
+                int chipSlot = entry.IsExample ? DemoChip.Slot(font) : 0;
+                var textBounds = new Rectangle(bounds.Left, bounds.Top, Math.Max(0, bounds.Width - chipSlot), bounds.Height);
+                int end = entry.Offline
+                    ? DrawOfflineEntry(e.Graphics, entry, font, textBounds, color, flags, selected)
+                    : DrawEntryText(e.Graphics, entry.Caption, font, textBounds, color, flags);
+                if (entry.IsExample)
+                    DemoChip.Draw(e.Graphics, font, end, bounds);
+            }
             else
                 TextRenderer.DrawText(e.Graphics, item.ToString(), font, bounds, color, flags);
             if (!plain)
                 e.DrawFocusRectangle();
         }
 
+        /// <summary>A text in a line of the list; returns where it ends.</summary>
+        private static int DrawEntryText(Graphics graphics, string text, Font font, Rectangle bounds, Color color,
+            TextFormatFlags flags)
+        {
+            TextRenderer.DrawText(graphics, text, font, bounds, color, flags);
+            int width = TextRenderer.MeasureText(graphics, text, font, bounds.Size, flags & ~TextFormatFlags.EndEllipsis).Width;
+            return bounds.Left + Math.Min(bounds.Width, width);
+        }
+
         /// <summary>
         /// A schema whose Agent is not connected: its icon (and plan warning), a small red dot, then its
-        /// name. On the highlight the dot is ringed with the text color so it still stands out.
+        /// name. On the highlight the dot is ringed with the text color so it still stands out. Returns
+        /// where the name ends.
         /// </summary>
-        private static void DrawOfflineEntry(Graphics graphics, SchemaEntry entry, Font font, Rectangle bounds,
+        private static int DrawOfflineEntry(Graphics graphics, SchemaEntry entry, Font font, Rectangle bounds,
             Color color, TextFormatFlags flags, bool selected)
         {
             string prefix = entry.Prefix;
@@ -1265,7 +1288,7 @@ namespace Reportman.Designer
                 graphics.SmoothingMode = smoothing;
             }
             left += slot;
-            TextRenderer.DrawText(graphics, entry.Text, font,
+            return DrawEntryText(graphics, entry.Text, font,
                 new Rectangle(left, bounds.Top, Math.Max(0, bounds.Right - left), bounds.Height), color, flags);
         }
 
@@ -1283,7 +1306,7 @@ namespace Reportman.Designer
 
         private void ComboSchema_DropDown(object sender, EventArgs e)
         {
-            // As wide as the longest entry (its red dot included): at least the combo, at most
+            // As wide as the longest entry (its red dot and its «DEMO» chip included): at least the combo, at most
             // MaxDropDownWidth or the screen
             int width = 0;
             foreach (object item in _comboSchema.Items)
@@ -1295,6 +1318,8 @@ namespace Reportman.Designer
                     SchemaEntry entry = item as SchemaEntry;
                     if (entry != null && entry.Offline)
                         itemWidth += OfflineDotSlot(font);
+                    if (entry != null && entry.IsExample)
+                        itemWidth += DemoChip.Slot(font);
                     width = Math.Max(width, itemWidth);
                 }
                 finally
@@ -1370,6 +1395,9 @@ namespace Reportman.Designer
             /// <summary>True when the Agent that serves it is not connected: a red dot goes before the name.</summary>
             public virtual bool Offline { get { return false; } }
 
+            /// <summary>True for an example database of the Hub: the «DEMO» chip goes after the name.</summary>
+            public virtual bool IsExample { get { return false; } }
+
             /// <summary>What goes before the name: the icon and, over the plan, the warning.</summary>
             public string Prefix
             {
@@ -1424,12 +1452,16 @@ namespace Reportman.Designer
             public string ApiKey = "";
             /// <summary>Whether its Agent is connected; null when the cloud does not say (no dot).</summary>
             public bool? IsOnline;
+            /// <summary>An example of the Hub (<see cref="HubSchema.IsExample"/>), read-only.</summary>
+            public bool Example;
 
             public override string Name { get { return DisplayName; } }
 
             public override string Icon { get { return CloudIcon; } }
 
             public override bool Offline { get { return IsOnline == false; } }
+
+            public override bool IsExample { get { return Example; } }
         }
     }
 }

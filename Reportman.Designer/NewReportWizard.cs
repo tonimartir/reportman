@@ -331,11 +331,13 @@ namespace Reportman.Designer
                 Close();
                 return;
             }
+            // An Agent connection needs its Hub database; the API key does not: with a session the connection
+            // uses it, and the example databases answer to everybody
             if (FPage == WizPage.Connection && FParams != null && FParams.IsHttpAgent &&
-                FParams.AgentApiKey.Trim().Length == 0)
+                FParams.AgentHubDatabaseId <= 0)
             {
-                MessageBox.Show(this, Translator.TranslateStr(1777), Translator.TranslateStr(1131),
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, DesignerText.Tr(1756, "Please choose a Reportman AI connection."),
+                    Translator.TranslateStr(1131), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             Commit();

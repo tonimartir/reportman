@@ -78,6 +78,21 @@ namespace designer
                     return;
                 }
 
+                // designer.exe /exampletest [/shots <dir>] [/out <txt>] -> headless checks of the example databases of
+                // the Hub (a fake Hub, and the real one read-only); the exit code is 1 when one fails
+                if (HasArg(args, "/exampletest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "exampletest.txt");
+                    int failed;
+                    Reportman.Designer.DesignerSelfTestExample.TracePath = GetArgValue(args, "/trace") ?? "";
+                    System.IO.File.WriteAllText(outFile,
+                        Reportman.Designer.DesignerSelfTestExample.RunExampleTests(GetArgValue(args, "/shots"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
+
                 Application.Run(new Reportman.Designer.MainForm());
             }
             catch(Exception ex)

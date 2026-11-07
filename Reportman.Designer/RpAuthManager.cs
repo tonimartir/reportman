@@ -115,6 +115,9 @@ namespace Reportman.Designer
         {
             InstallId = GenerateInstallId();
             LoadConfig();
+            // The Agent connections without an API key use the session, as in the Delphi designer
+            Reportman.Reporting.DatabaseInfo.HttpAgentSessionToken = () => Token;
+            Reportman.Reporting.DatabaseInfo.HttpAgentSessionInstallId = () => InstallId;
         }
 
         /// <summary>
@@ -1222,6 +1225,13 @@ namespace Reportman.Designer
         public string AgentName { get; set; } = "";
 
         /// <summary>
+        /// Gets or sets whether it is an example database of the Hub ("isExample"): the public ones, that
+        /// answer to everybody, without a login nor an API key, and read-only (their schema cannot be
+        /// changed). The lists mark them «DEMO», as Reportman.Web does.
+        /// </summary>
+        public bool IsExample { get; set; }
+
+        /// <summary>
         /// Gets the label of the schema in the lists: «schema - Agent»; without the Agent's name, the
         /// one of before (<see cref="DisplayName"/>).
         /// </summary>
@@ -1289,6 +1299,15 @@ namespace Reportman.Designer
                     schema.IsOnline = online.GetBoolean();
                 else if (online.ValueKind == JsonValueKind.String && bool.TryParse(online.GetString(), out value))
                     schema.IsOnline = value;
+            }
+            JsonElement example;
+            if (item.TryGetProperty("isExample", out example))
+            {
+                bool value;
+                if (example.ValueKind == JsonValueKind.True)
+                    schema.IsExample = true;
+                else if (example.ValueKind == JsonValueKind.String && bool.TryParse(example.GetString(), out value))
+                    schema.IsExample = value;
             }
             CountSchemaTables(item, out int tables, out int widestColumns);
             schema.Tables = tables;

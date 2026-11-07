@@ -40,6 +40,13 @@ namespace Reportman.Designer
         private Label lblResult;
         private Label lblDriver;
         private Label lblConn;
+        // Agent mode: the note under the driver (the session, the example connections) and "Log in"
+        private Panel pagent;
+        private TableLayoutPanel FRoot;
+        private RowStyle FAgentRow;
+        private Label lblAgentNote;
+        private Button btnAgentLogin;
+        private int FAgentListVersion;
 
         private DbConnectionStringBuilder FBuilder;
         private string FInvariant = "";
@@ -68,6 +75,27 @@ namespace Reportman.Designer
         {
             get { return (FAgentParams != null && FAgentParams.Database != null) ? FAgentParams.Database.Name : ""; }
         }
+
+        /// <summary>
+        /// True when the selected Hub database is an example of the Hub (<see cref="HubDatabaseRef.IsExample"/>):
+        /// it answers without a login nor an API key, and it is read-only.
+        /// </summary>
+        public bool AgentDatabaseIsExample
+        {
+            get { return FAgentParams != null && FAgentParams.Database != null && FAgentParams.Database.IsExample; }
+        }
+
+        /// <summary>The note of the agent mode (for diagnostics/screenshots).</summary>
+        public string AgentNoteText { get { return lblAgentNote != null ? lblAgentNote.Text : ""; } }
+
+        /// <summary>True when the "Log in" button of the agent mode is shown (no Reportman AI session).</summary>
+        public bool AgentLoginVisible { get { return pagent != null && pagent.Visible && btnAgentLogin.Visible; } }
+
+        /// <summary>
+        /// The task of the last load of the Hub databases of the agent mode (the first example selected when
+        /// there is no database yet), for the self-tests; null before the first one.
+        /// </summary>
+        public System.Threading.Tasks.Task AgentListLoad { get; private set; }
 
         /// <summary>Last test connection result message (for diagnostics/screenshots).</summary>
         public string LastResultText { get { return FLastMessage; } }
@@ -137,11 +165,15 @@ namespace Reportman.Designer
             Size = new Size(620, 460);
 
             TableLayoutPanel root = new TableLayoutPanel();
+            FRoot = root;
             root.Dock = DockStyle.Fill;
             root.ColumnCount = 1;
-            root.RowCount = 4;
+            root.RowCount = 5;
             root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             root.RowStyles.Add(new RowStyle(SizeType.AutoSize));   // driver row
+            // agent note: its height is set by FitAgentNote (an autosized row does not follow a text that wraps)
+            FAgentRow = new RowStyle(SizeType.Absolute, 0F);
+            root.RowStyles.Add(FAgentRow);
             root.RowStyles.Add(new RowStyle(SizeType.Percent, 100F)); // property grid
             root.RowStyles.Add(new RowStyle(SizeType.AutoSize));   // conn string
             root.RowStyles.Add(new RowStyle(SizeType.AutoSize));   // test row
@@ -165,6 +197,27 @@ namespace Reportman.Designer
             pdriver.Controls.Add(cmbProvider);
             root.Controls.Add(pdriver, 0, 0);
 
+            // --- Agent note: with a session the API key is optional; without one the list has the
+            // example connections, and "Log in" for the user's own; an example is read-only ---
+            // Its height is the one of the text at its width (FitAgentNote): an autosized label that wraps
+            // does not tell a table row its height
+            pagent = new Panel();
+            pagent.Dock = DockStyle.Fill;
+            pagent.Margin = new Padding(3, 2, 3, 4);
+            pagent.Visible = false;
+            btnAgentLogin = new Button();
+            btnAgentLogin.Text = DesignerText.Tr(1783, "Log in");
+            btnAgentLogin.AutoSize = true;
+            btnAgentLogin.Click += BtnAgentLogin_Click;
+            lblAgentNote = new Label();
+            lblAgentNote.AutoSize = false;
+            lblAgentNote.ForeColor = SystemColors.GrayText;
+            lblAgentNote.Padding = new Padding(0, 2, 8, 0);
+            pagent.Controls.Add(lblAgentNote);
+            pagent.Controls.Add(btnAgentLogin);
+            root.Resize += (s, e) => FitAgentNote();
+            root.Controls.Add(pagent, 0, 1);
+
             // --- Property grid (dynamic parameters) ---
             grid = new PropertyGrid();
             grid.Dock = DockStyle.Fill;
@@ -172,7 +225,7 @@ namespace Reportman.Designer
             grid.HelpVisible = true;
             grid.PropertySort = PropertySort.Categorized;
             grid.PropertyValueChanged += Grid_PropertyValueChanged;
-            root.Controls.Add(grid, 0, 1);
+            root.Controls.Add(grid, 0, 2);
 
             // --- Connection string preview/edit ---
             TableLayoutPanel pconn = new TableLayoutPanel();
@@ -193,7 +246,7 @@ namespace Reportman.Designer
             txtConn.Validated += TxtConn_Validated;
             pconn.Controls.Add(lblConn, 0, 0);
             pconn.Controls.Add(txtConn, 0, 1);
-            root.Controls.Add(pconn, 0, 2);
+            root.Controls.Add(pconn, 0, 3);
 
             // --- Test row ---
             FlowLayoutPanel ptest = new FlowLayoutPanel();
@@ -210,12 +263,39 @@ namespace Reportman.Designer
             lblResult.Margin = new Padding(8, 8, 3, 0);
             ptest.Controls.Add(btnTest);
             ptest.Controls.Add(lblResult);
-            root.Controls.Add(ptest, 0, 3);
+            root.Controls.Add(ptest, 0, 4);
 
             Controls.Add(root);
+            RpAuthManager.Instance.AuthChanged += AuthManager_AuthChanged;
 
             // Apply translated captions when available (fall back to English literals)
             TryTranslate();
+        }
+
+        /// <summary>Stops following the Reportman AI session.</summary>
+        /// <param name="disposing">True when called from Dispose.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                RpAuthManager.Instance.AuthChanged -= AuthManager_AuthChanged;
+            base.Dispose(disposing);
+        }
+
+        private void AuthManager_AuthChanged(bool success)
+        {
+            if (IsDisposed)
+                return;
+            if (InvokeRequired)
+            {
+                try { BeginInvoke(new Action(() => AuthManager_AuthChanged(success))); } catch { }
+                return;
+            }
+            if (FAgentMode)
+            {
+                UpdateAgentNote();
+                // The session sees other databases
+                StartAgentListLoad();
+            }
         }
 
         private void TryTranslate()
@@ -274,7 +354,9 @@ namespace Reportman.Designer
                     new ProviderItem { Invariant = DatabaseInfo.FIREBIRD_PROVIDER2, Display = Friendly(DatabaseInfo.FIREBIRD_PROVIDER2, null) });
 
             // Special HTTP Agent entry first (API key + Hub database, stored in dbxconnections.ini).
-            cmbProvider.Items.Add(new ProviderItem { Invariant = HTTP_AGENT, Display = DesignerText.Tr(1967) });
+            // Not 1967 ("— needs an API key"): without one the connection uses the session, and the example
+            // databases need neither
+            cmbProvider.Items.Add(new ProviderItem { Invariant = HTTP_AGENT, Display = "Reportman AI Agent (HTTP)" });
             foreach (ProviderItem it in items.Values)
                 cmbProvider.Items.Add(it);
         }
@@ -430,13 +512,132 @@ namespace Reportman.Designer
                 Environment.NewLine + DesignerText.Tr(1970) + ": " + DbxConnections.GetPath();
             FUpdating = false;
             SetResult(null, "");
+            pagent.Visible = true;
+            UpdateAgentNote();
+            FitAgentNote();
+            // The databases of the key, of the session or, without them, the examples: without a
+            // database yet the first example is selected, the connection works without anything else
+            StartAgentListLoad();
         }
 
         private void ExitAgentMode()
         {
             FAgentMode = false;
+            FAgentListVersion++;
+            pagent.Visible = false;
+            FitAgentNote();
             lblConn.Text = DesignerText.Tr(1099) + ":";
             txtConn.ReadOnly = false;
+        }
+
+        /// <summary>
+        /// The note of the agent mode: with a session the API key is optional (without it the connection uses
+        /// the session and the report cannot run unattended); without one the list has the example connections
+        /// and "Log in" is offered for the user's own. With an example selected, that it is read-only.
+        /// </summary>
+        private void UpdateAgentNote()
+        {
+            if (lblAgentNote == null)
+                return;
+            bool signedIn = RpAuthManager.Instance.IsLoggedIn;
+            string note = signedIn
+                ? DesignerText.Tr(1831, "You are signed in to Reportman AI: the API key is optional. Without it " +
+                    "the connection uses your session, and the report cannot run unattended on this computer " +
+                    "(printreptopdf, server, scheduled tasks).")
+                : DesignerText.Tr(2055, "You are not signed in to Reportman AI: the list has the example " +
+                    "connections. To use your own, log in or enter the API key.");
+            if (AgentDatabaseIsExample)
+                note += Environment.NewLine + DemoChip.Hint;
+            lblAgentNote.Text = note;
+            btnAgentLogin.Visible = !signedIn;
+            FitAgentNote();
+        }
+
+        /// <summary>
+        /// The note of the agent mode at the width it has: the text wrapped at its left, "Log in" at the top right,
+        /// and the height of the text (or of the button).
+        /// </summary>
+        private void FitAgentNote()
+        {
+            if (pagent == null || lblAgentNote == null || FRoot == null)
+                return;
+            if (!FAgentMode)
+            {
+                FAgentRow.Height = 0F;
+                return;
+            }
+            // The width of the column, not the one of the panel: it is laid out after its row
+            int width = FRoot.ClientSize.Width - FRoot.Padding.Horizontal - pagent.Margin.Horizontal;
+            Size button = btnAgentLogin.Visible ? btnAgentLogin.PreferredSize : Size.Empty;
+            int labelWidth = width - button.Width;
+            int textWidth = labelWidth - lblAgentNote.Padding.Horizontal;
+            if (textWidth < 50)
+                return;
+            Size text = TextRenderer.MeasureText(lblAgentNote.Text, lblAgentNote.Font, new Size(textWidth, 0),
+                TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl);
+            int height = Math.Max(text.Height + lblAgentNote.Padding.Vertical + 2, button.Height);
+            lblAgentNote.Bounds = new Rectangle(0, 0, labelWidth, height);
+            if (btnAgentLogin.Visible)
+                btnAgentLogin.Bounds = new Rectangle(labelWidth, 0, button.Width, button.Height);
+            float rowHeight = height + pagent.Margin.Vertical;
+            if (FAgentRow.Height != rowHeight)
+                FAgentRow.Height = rowHeight;
+        }
+
+        private void BtnAgentLogin_Click(object sender, EventArgs e)
+        {
+            using (var form = new AILoginForm())
+                form.ShowDialog(FindForm());
+            // AuthChanged updates the note and the list; again in case it was not raised
+            if (FAgentMode)
+            {
+                UpdateAgentNote();
+                StartAgentListLoad();
+            }
+        }
+
+        private void StartAgentListLoad()
+        {
+            AgentListLoad = LoadAgentListAsync();
+        }
+
+        /// <summary>
+        /// Reads the Hub databases of the key (or the session, or the examples) for the selected one: its name and
+        /// whether it is an example; without a database yet, the first example.
+        /// </summary>
+        private async System.Threading.Tasks.Task LoadAgentListAsync()
+        {
+            int version = ++FAgentListVersion;
+            string apiKey = AgentApiKey.Trim();
+            List<HubDatabaseRef> list;
+            try
+            {
+                list = await System.Threading.Tasks.Task.Run(() => HttpAgentParams.LoadDatabasesAsync(apiKey));
+            }
+            catch (Exception ex)
+            {
+                RpAuthManager.Instance.Log("Hub database list error: " + ex.Message);
+                return;
+            }
+            if (IsDisposed || !FAgentMode || version != FAgentListVersion || FAgentParams == null)
+                return;
+            FAgentParams.LastList = list;
+            HubDatabaseRef selected = null;
+            long id = AgentHubDatabaseId;
+            foreach (HubDatabaseRef item in list)
+            {
+                if (id > 0 ? item.Id == id : item.IsExample)
+                {
+                    selected = item;
+                    break;
+                }
+            }
+            if (selected != null)
+            {
+                FAgentParams.Database = selected;
+                grid.Refresh();
+            }
+            UpdateAgentNote();
         }
 
         private void TestAgent()
@@ -444,7 +645,7 @@ namespace Reportman.Designer
             string ak = AgentApiKey.Trim();
             if (ak.Length == 0)
             {
-                SetResult(false, DesignerText.Tr(1777));
+                TestAgentWithoutKey();
                 return;
             }
             Cursor old = Cursor.Current;
@@ -477,6 +678,46 @@ namespace Reportman.Designer
                     SetResult(false, DesignerText.Tr(2004));
                 else
                     SetResult(true, DesignerText.Format(1972, ids.Count.ToString()));
+            }
+            catch (Exception ex)
+            {
+                SetResult(false, ex.Message);
+            }
+            finally
+            {
+                Cursor.Current = old;
+            }
+        }
+
+        /// <summary>
+        /// The test of a connection without an API key, as it will run: with the session, or with nothing (the example
+        /// databases answer to everybody, the Hub refuses the others with the clear error of the engine).
+        /// </summary>
+        private void TestAgentWithoutKey()
+        {
+            if (AgentHubDatabaseId <= 0)
+            {
+                SetResult(false, DesignerText.Tr(1756, "Please choose a Reportman AI connection."));
+                return;
+            }
+            string name = AgentDatabaseName;
+            if (name.EndsWith(DemoChip.TextSuffix, StringComparison.Ordinal))
+                name = name.Substring(0, name.Length - DemoChip.TextSuffix.Length);
+            var executor = new HttpAgentExecutor
+            {
+                BaseUrl = AgentBaseUrl.Trim().Length > 0 ? AgentBaseUrl.Trim() : RpAuthManager.HUB_API_URL,
+                ApiKey = "",
+                Token = RpAuthManager.Instance.Token,
+                InstallId = RpAuthManager.Instance.InstallId,
+                HubDatabaseId = AgentHubDatabaseId,
+                ConnectionName = name
+            };
+            Cursor old = Cursor.Current;
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                System.Threading.Tasks.Task.Run(() => executor.TestConnection()).GetAwaiter().GetResult();
+                SetResult(true, DesignerText.Tr(1772, "Connection succeeded."));
             }
             catch (Exception ex)
             {
@@ -522,6 +763,14 @@ namespace Reportman.Designer
         {
             UpdateConnText();
             SetResult(null, "");
+            if (FAgentMode)
+            {
+                UpdateAgentNote();
+                // Another key sees other databases: the name of the selected one, and whether it is an example
+                if (e != null && e.ChangedItem != null && e.ChangedItem.PropertyDescriptor != null &&
+                    e.ChangedItem.PropertyDescriptor.Name == "ApiKey")
+                    StartAgentListLoad();
+            }
         }
 
         private void UpdateConnText()

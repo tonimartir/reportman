@@ -29,6 +29,11 @@ namespace Reportman.Designer
         public long Id;
         /// <summary>Display name of the Hub database.</summary>
         public string Name = "";
+        /// <summary>
+        /// True for an example database of the Hub (<see cref="HubSchema.IsExample"/>): it answers without a login
+        /// nor an API key, and it is read-only.
+        /// </summary>
+        public bool IsExample;
         /// <summary>Returns the display name of the database.</summary>
         public override string ToString() { return Name; }
         /// <summary>Compares two references for equality by their Hub database identifier.</summary>
@@ -43,7 +48,9 @@ namespace Reportman.Designer
 
     /// <summary>
     /// TypeConverter for the Hub database property: provides the dropdown values by
-    /// querying the agent with the current API key when the list is expanded.
+    /// querying the Hub with the current API key when the list is expanded; without
+    /// one, with the Reportman AI session, or with nothing: the example databases,
+    /// which answer to everybody.
     /// </summary>
     public sealed class HubDatabaseConverter : TypeConverter
     {
@@ -53,9 +60,9 @@ namespace Reportman.Designer
         public override bool GetStandardValuesExclusive(ITypeDescriptorContext context) { return false; }
 
         /// <summary>
-        /// Queries the agent with the current API key and returns the available Hub
-        /// databases as the dropdown's standard values, each «database - Agent» and
-        /// "(not connected)" after it while its Agent is not connected.
+        /// Queries the Hub with the current API key (without one: the session, or nothing) and returns
+        /// the available Hub databases as the dropdown's standard values, each «database - Agent»,
+        /// "(not connected)" after it while its Agent is not connected and " (DEMO)" for an example.
         /// </summary>
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
@@ -64,36 +71,20 @@ namespace Reportman.Designer
             if (inst != null)
             {
                 string apiKey = (inst.ApiKey ?? "").Trim();
-                if (apiKey.Length > 0)
+                Cursor old = Cursor.Current;
+                Cursor.Current = Cursors.WaitCursor;
+                try
                 {
-                    Cursor old = Cursor.Current;
-                    Cursor.Current = Cursors.WaitCursor;
-                    try
-                    {
-                        // Run off the UI thread to avoid a SynchronizationContext deadlock.
-                        List<HubSchema> schemas = Task.Run(() =>
-                            RpAuthManager.Instance.GetApiKeySchemasAsync(apiKey)).GetAwaiter().GetResult();
-                        var seen = new HashSet<long>();
-                        foreach (HubSchema schema in schemas)
-                        {
-                            if (schema.HubDatabaseId <= 0 || !seen.Add(schema.HubDatabaseId))
-                                continue;
-                            // «database - Agent»; this list cannot paint the red dot of an Agent that is
-                            // not connected, so it says it in words
-                            string name = schema.IsOnline == false
-                                ? schema.DatabaseLabel + " " + DesignerText.Tr(2005)
-                                : schema.DatabaseLabel;
-                            list.Add(new HubDatabaseRef { Id = schema.HubDatabaseId, Name = name });
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Hub database list error: " + ex.Message);
-                    }
-                    finally
-                    {
-                        Cursor.Current = old;
-                    }
+                    // Run off the UI thread to avoid a SynchronizationContext deadlock.
+                    list = Task.Run(() => HttpAgentParams.LoadDatabasesAsync(apiKey)).GetAwaiter().GetResult();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Hub database list error: " + ex.Message);
+                }
+                finally
+                {
+                    Cursor.Current = old;
                 }
                 inst.LastList = list;
             }
@@ -201,6 +192,43 @@ namespace Reportman.Designer
         /// <summary>Gets or sets the most recently queried Hub databases, used to resolve typed names.</summary>
         [Browsable(false)]
         public List<HubDatabaseRef> LastList { get; set; }
+
+        /// <summary>
+        /// The Hub databases <paramref name="apiKey"/> sees (with the session too) or, without a key, the
+        /// session sees, or without a session either the example databases, which answer to everybody: one
+        /// per database, «database - Agent», "(not connected)" after it while its Agent is not connected and
+        /// " (DEMO)" for an example (a property grid cannot draw the red dot nor the chip).
+        /// </summary>
+        /// <param name="apiKey">The API key of the connection, or "".</param>
+        public static async Task<List<HubDatabaseRef>> LoadDatabasesAsync(string apiKey)
+        {
+            string key = (apiKey ?? "").Trim();
+            List<HubSchema> schemas = key.Length > 0
+                ? await RpAuthManager.Instance.GetApiKeySchemasAsync(key).ConfigureAwait(false)
+                : await RpAuthManager.Instance.GetUserSchemasAsync().ConfigureAwait(false);
+            return DatabasesOf(schemas);
+        }
+
+        /// <summary>The Hub databases of a list of schemas (see <see cref="LoadDatabasesAsync"/>).</summary>
+        public static List<HubDatabaseRef> DatabasesOf(IEnumerable<HubSchema> schemas)
+        {
+            var list = new List<HubDatabaseRef>();
+            var seen = new HashSet<long>();
+            if (schemas == null)
+                return list;
+            foreach (HubSchema schema in schemas)
+            {
+                if (schema == null || schema.HubDatabaseId <= 0 || !seen.Add(schema.HubDatabaseId))
+                    continue;
+                string name = schema.DatabaseLabel;
+                if (schema.IsOnline == false)
+                    name += " " + DesignerText.Tr(2005);
+                if (schema.IsExample)
+                    name += DemoChip.TextSuffix;
+                list.Add(new HubDatabaseRef { Id = schema.HubDatabaseId, Name = name, IsExample = schema.IsExample });
+            }
+            return list;
+        }
 
         /// <summary>Initializes a new instance with empty values and an empty database selection.</summary>
         public HttpAgentParams()
