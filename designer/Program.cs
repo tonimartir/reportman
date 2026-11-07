@@ -78,6 +78,23 @@ namespace designer
                     return;
                 }
 
+                // designer.exe /onboardingtest [/rep <sample.rep>] [/mode Fast|Reasoning] [/installid repman-...]
+                // [/prompt <text>] [/save <rep>] [/noai] [/out <txt>] -> the onboarding headless: a sample opened as
+                // the welcome window does, its local schema inline and a request of the copilot against the real API
+                // as a guest of a new installation; the exit code is 1 when one check fails
+                if (HasArg(args, "/onboardingtest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "onboardingtest.txt");
+                    int failed;
+                    System.IO.File.WriteAllText(outFile, Reportman.Designer.DesignerSelfTestOnboarding.Run(
+                        GetArgValue(args, "/rep"), GetArgValue(args, "/installid"), GetArgValue(args, "/mode"),
+                        GetArgValue(args, "/prompt"), GetArgValue(args, "/save"), !HasArg(args, "/noai"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
+
                 // designer.exe /exampletest [/shots <dir>] [/out <txt>] -> headless checks of the example databases of
                 // the Hub (a fake Hub, and the real one read-only); the exit code is 1 when one fails
                 if (HasArg(args, "/exampletest"))
