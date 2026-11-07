@@ -45,6 +45,51 @@ namespace Reportman.Reporting
         public long HubDatabaseId { get; set; }
 
         /// <summary>
+        /// The connection (alias) of the report, for the errors that name it.
+        /// </summary>
+        public string ConnectionName { get; set; } = "";
+
+        // The texts of the Delphi engine (rpmdconsts), the same keys of reportmanres
+        private const int AgentNotConfiguredText = 1824;
+        private const int AgentNoCredentialsText = 1825;
+        private const string AgentNotConfiguredDefault = "The connection \"%s\" (Reportman AI Agent) is not configured " +
+            "on this computer: it has no Hub database. Define it in the connections file, for example with the " +
+            "connections dialog or the new report wizard.";
+        private const string AgentNoCredentialsDefault = "The connection \"%s\" (Reportman AI Agent) has no API key " +
+            "and there is no Reportman AI session. Log in from the designer, or add the API key of the connection " +
+            "to the connections file to run the report without a session (printreptopdf, server).";
+
+        /// <summary>
+        /// The message of the Delphi engine <paramref name="index"/> for the connection <paramref name="alias"/>
+        /// (its %s), or <paramref name="fallback"/> while the resource strings do not have it.
+        /// </summary>
+        private static string AgentMessage(int index, string fallback, string alias)
+        {
+            string message = Translator.TranslateStr(index);
+            if (string.IsNullOrEmpty(message) || message == "XXXXXXX")
+                message = fallback;
+            int position = message.IndexOf("%s", StringComparison.Ordinal);
+            if (position >= 0)
+                message = message.Substring(0, position) + (alias ?? "") + message.Substring(position + 2);
+            return message;
+        }
+
+        /// <summary>
+        /// Raises the clear error of an Agent request the Hub refused (403) when it went without an API key and
+        /// without a session: the database is not one of the examples, which need neither. Nothing otherwise.
+        /// </summary>
+        /// <param name="statusCode">The HTTP status of the answer.</param>
+        /// <param name="apiKey">The API key the request carried, or "".</param>
+        /// <param name="token">The Bearer token the request carried, or "".</param>
+        /// <param name="connectionName">The connection (alias) of the report.</param>
+        public static void CheckNoCredentialsRefusal(int statusCode, string apiKey, string token, string connectionName)
+        {
+            if (statusCode == 403 && string.IsNullOrEmpty(apiKey) && string.IsNullOrEmpty(token))
+                throw new NamedException(AgentMessage(AgentNoCredentialsText, AgentNoCredentialsDefault,
+                    connectionName), connectionName ?? "");
+        }
+
+        /// <summary>
         /// Initializes a new executor with an internal HttpClient and default JSON options.
         /// </summary>
         public HttpAgentExecutor()
@@ -102,6 +147,11 @@ namespace Reportman.Reporting
         {
             if (string.IsNullOrEmpty(BaseUrl))
                 throw new InvalidOperationException("BaseUrl is not configured for HttpAgent");
+            // Without it the Hub can not route the request: say what is missing. Without an API key nor a
+            // session the request goes: the example databases need neither, and the Hub refuses the others
+            if (HubDatabaseId <= 0)
+                throw new NamedException(AgentMessage(AgentNotConfiguredText, AgentNotConfiguredDefault,
+                    ConnectionName), ConnectionName ?? "");
 
             var request = new
             {
@@ -113,21 +163,7 @@ namespace Reportman.Reporting
             var jsonContent = JsonSerializer.Serialize(request, _jsonOptions);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            // Set authentication headers
-            _httpClient.DefaultRequestHeaders.Clear();
-            if (!string.IsNullOrEmpty(ApiKey))
-            {
-                _httpClient.DefaultRequestHeaders.Add("X-Reportman-ApiKey", ApiKey);
-            }
-            else if (!string.IsNullOrEmpty(Token))
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = 
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Token);
-            }
-            if (!string.IsNullOrEmpty(InstallId))
-            {
-                _httpClient.DefaultRequestHeaders.Add("X-Reportman-WebInstallId", InstallId);
-            }
+            ApplyHeaders();
 
             var url = BaseUrl.TrimEnd('/') + "/api/agent/execute";
             var response = _httpClient.PostAsync(url, content).GetAwaiter().GetResult();
@@ -135,11 +171,87 @@ namespace Reportman.Reporting
             if (!response.IsSuccessStatusCode)
             {
                 var error = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                CheckNoCredentialsRefusal((int)response.StatusCode, ApiKey, Token, ConnectionName);
                 throw new Exception($"HttpAgent error {response.StatusCode}: {error}");
             }
 
             var json = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             return DeserializeDataTable(json);
+        }
+
+        /// <summary>
+        /// The authentication headers of a request: the API key, or the Bearer token without one, and the install id;
+        /// nothing at all without them (the example databases of the Hub answer to everybody).
+        /// </summary>
+        private void ApplyHeaders()
+        {
+            _httpClient.DefaultRequestHeaders.Clear();
+            if (!string.IsNullOrEmpty(ApiKey))
+            {
+                _httpClient.DefaultRequestHeaders.Add("X-Reportman-ApiKey", ApiKey);
+            }
+            else if (!string.IsNullOrEmpty(Token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Token);
+            }
+            if (!string.IsNullOrEmpty(InstallId))
+            {
+                _httpClient.DefaultRequestHeaders.Add("X-Reportman-WebInstallId", InstallId);
+            }
+        }
+
+        /// <summary>
+        /// Tests the connection (POST api/agent/testconnection): its Agent and the database behind it. Returns the
+        /// message of the Hub ("Agent Connection: Success ..."), or "". Throws as <see cref="Open"/> does: the clear
+        /// errors of a missing Hub database and of a request without credentials the Hub refused, the error of the
+        /// Hub otherwise.
+        /// </summary>
+        public string TestConnection()
+        {
+            if (string.IsNullOrEmpty(BaseUrl))
+                throw new InvalidOperationException("BaseUrl is not configured for HttpAgent");
+            if (HubDatabaseId <= 0)
+                throw new NamedException(AgentMessage(AgentNotConfiguredText, AgentNotConfiguredDefault,
+                    ConnectionName), ConnectionName ?? "");
+            var content = new StringContent(JsonSerializer.Serialize(new { hubDatabaseId = HubDatabaseId }, _jsonOptions),
+                Encoding.UTF8, "application/json");
+            ApplyHeaders();
+            var response = _httpClient.PostAsync(BaseUrl.TrimEnd('/') + "/api/agent/testconnection", content)
+                .GetAwaiter().GetResult();
+            string json = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            if (!response.IsSuccessStatusCode)
+            {
+                CheckNoCredentialsRefusal((int)response.StatusCode, ApiKey, Token, ConnectionName);
+                throw new Exception($"HttpAgent error {response.StatusCode}: {json}");
+            }
+            // { success, data: { agentConnectionSuccess, databaseConnectionSuccess, databaseError, message }, error }
+            using (var doc = JsonDocument.Parse(json))
+            {
+                JsonElement root = doc.RootElement;
+                JsonElement data = root;
+                if (root.ValueKind == JsonValueKind.Object && root.TryGetProperty("data", out var dataProp) &&
+                    dataProp.ValueKind == JsonValueKind.Object)
+                    data = dataProp;
+                string message = ReadText(data, "message");
+                if ((root.ValueKind == JsonValueKind.Object && root.TryGetProperty("success", out var success) &&
+                    success.ValueKind == JsonValueKind.False) ||
+                    (data.ValueKind == JsonValueKind.Object && data.TryGetProperty("databaseConnectionSuccess", out var dbOk) &&
+                    dbOk.ValueKind == JsonValueKind.False))
+                {
+                    string error = ReadText(data, "databaseError");
+                    if (error.Length == 0)
+                        error = ReadText(root, "error");
+                    throw new Exception(error.Length > 0 ? error : message.Length > 0 ? message : "HttpAgent test failed");
+                }
+                return message;
+            }
+        }
+
+        private static string ReadText(JsonElement item, string name)
+        {
+            return item.ValueKind == JsonValueKind.Object && item.TryGetProperty(name, out var value) &&
+                value.ValueKind == JsonValueKind.String ? value.GetString() ?? "" : "";
         }
 
         /// <summary>

@@ -47,6 +47,9 @@ namespace Reportman.Reporting
         /// <summary>Identifier of the database on the Hub side.</summary>
         public long HubDatabaseId { get; set; }
 
+        /// <summary>The connection (alias) of the report, for the errors that name it.</summary>
+        public string ConnectionName { get; set; } = "";
+
         /// <summary>
         /// Global kill-switch. Setting this to <c>false</c> at runtime makes
         /// every <see cref="Open"/> call go straight to HTTP, no negotiation
@@ -335,6 +338,7 @@ namespace Reportman.Reporting
             _inner.Token = Token;
             _inner.InstallId = InstallId;
             _inner.HubDatabaseId = HubDatabaseId;
+            _inner.ConnectionName = ConnectionName;
         }
 
         private static DataTable DeserializeFastSerializerDataTable(byte[] payload)

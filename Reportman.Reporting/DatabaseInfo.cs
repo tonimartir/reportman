@@ -307,6 +307,16 @@ namespace Reportman.Reporting
         /// </summary>
         public string HttpAgentInstallId { get; set; }
         /// <summary>
+        /// The Reportman AI session of the host (the designer's login), for the HttpAgent connections that have
+        /// neither an API key nor a token: it returns the Bearer token, or "" without a session. Null (printreport,
+        /// a server) is no session. Without key nor session the request goes without credentials: the example
+        /// databases of the Hub answer to everybody, the Hub refuses the others with a clear error, as the
+        /// Delphi engine does.
+        /// </summary>
+        public static Func<string> HttpAgentSessionToken { get; set; }
+        /// <summary>The install id the token of <see cref="HttpAgentSessionToken"/> is bound to; null for none.</summary>
+        public static Func<string> HttpAgentSessionInstallId { get; set; }
+        /// <summary>
         /// Hub Database Id for HttpAgent - identifies the database on the remote agent
         /// </summary>
         public long HttpAgentHubDatabaseId { get; set; }
@@ -529,6 +539,25 @@ namespace Reportman.Reporting
         }
 
         /// <summary>
+        /// Without an API key nor a token, the session of the host (<see cref="HttpAgentSessionToken"/>) and the
+        /// install id it is bound to, as the Delphi engine uses the session of the designer.
+        /// </summary>
+        private void ApplyHttpAgentSession()
+        {
+            if (!string.IsNullOrWhiteSpace(HttpAgentApiKey) || !string.IsNullOrWhiteSpace(HttpAgentToken))
+                return;
+            Func<string> tokenProvider = HttpAgentSessionToken;
+            string token = tokenProvider != null ? tokenProvider() : "";
+            if (string.IsNullOrWhiteSpace(token))
+                return;
+            HttpAgentToken = token;
+            Func<string> installIdProvider = HttpAgentSessionInstallId;
+            string installId = installIdProvider != null ? installIdProvider() : "";
+            if (!string.IsNullOrWhiteSpace(installId))
+                HttpAgentInstallId = installId;
+        }
+
+        /// <summary>
         /// Reads agent connection parameters (API key, base URL, database ID) from the configuration ini file, resolving them for this connection alias.
         /// </summary>
         public void ResolveHttpAgentConnectionParamsFromConfig()
@@ -662,6 +691,7 @@ namespace Reportman.Reporting
             if (Driver == DriverType.HttpAgent)
             {
                 LoadHttpAgentConnectionParams();
+                ApplyHttpAgentSession();
 #if NET8_0_OR_GREATER
                 SqlExecuter = new DirectAgentExecutor
                 {
@@ -669,7 +699,8 @@ namespace Reportman.Reporting
                     ApiKey = HttpAgentApiKey,
                     Token = HttpAgentToken,
                     InstallId = HttpAgentInstallId,
-                    HubDatabaseId = HttpAgentHubDatabaseId
+                    HubDatabaseId = HttpAgentHubDatabaseId,
+                    ConnectionName = Alias ?? ""
                 };
 #else
                 SqlExecuter = new HttpAgentExecutor
@@ -678,7 +709,8 @@ namespace Reportman.Reporting
                     ApiKey = HttpAgentApiKey,
                     Token = HttpAgentToken,
                     InstallId = HttpAgentInstallId,
-                    HubDatabaseId = HttpAgentHubDatabaseId
+                    HubDatabaseId = HttpAgentHubDatabaseId,
+                    ConnectionName = Alias ?? ""
                 };
 #endif
                 return;
