@@ -104,7 +104,14 @@ namespace Reportman.Reporting
         public int NumColumns { get; set; }
         /// <summary>Gets or sets the number of data rows used for PDF417 barcodes.</summary>
         public int NumRows { get; set; }
-        /// <summary>Gets or sets the error-correction level; a value of -1 selects an automatic level.</summary>
+        /// <summary>Gets or sets the error-correction level of the 2D barcodes (PDF417 and QR): -1 is Auto, 0 to 8 are Level 0 to Level 8.</summary>
+        /// <remarks>
+        /// PDF417: Auto chooses the level by the amount of data (2 below 41 data codewords, 3 below 161,
+        /// 4 below 321, 5 above); 0 to 8 is that PDF417 level, with 2^(level+1) error-correction codewords.
+        /// A receipt printer that draws the PDF417 itself gets the level as it is, and 2 for Auto.
+        /// QR, in this engine: 3 = M, 4 = Q, 5 = H, any other value (Auto included) = L. The Delphi
+        /// engine reads it differently (1 = M, 2 = Q, 3 = H, any other value = L): see refbarcode.html.
+        /// </remarks>
         public int ECCLevel { get; set; }
         /// <summary>Indicates whether the truncated PDF417 variant is used.</summary>
         public bool Truncated;
