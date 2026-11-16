@@ -623,7 +623,9 @@ namespace Reportman.Drawing
             {
                 adata = new TTFontData();
                 adata.Embedded = false;
-                adata.ObjectName = FFont.GetFontFamilyKey() + FFont.Style.ToString();
+                // The resource name (/F + it), the same text as Type1FontTopdfFontName, as a valid
+                // PDF name: the family comes from the report as it is
+                adata.ObjectName = PDFFile.PDFNameOf(FFont.GetFontFamilyKey() + FFont.Style.ToString());
                 FFontData.Add(searchname, adata);
                 adata.Embedded = (FFont.Name == PDFFontType.Embedded) || (PDFConformance == PDFConformanceType.PDF_A_3);
                 if (adata.Embedded)
@@ -883,7 +885,10 @@ namespace Reportman.Drawing
                     (Type1Font == PDFFontType.Embedded) || PDFConformance == PDFConformanceType.PDF_A_3)
             {
                 searchname = WFontName + FontStyle.ToString();
-                aresult = searchname;
+                // A valid PDF name, the same as TTFontData.ObjectName (GetTTFontData): a family
+                // saved as "[FontFamily: Name=Arial]" gave /F[FontFamily:Name=Arial]1, which
+                // readers cannot parse
+                aresult = PDFFile.PDFNameOf(searchname);
             }
             else
             {
@@ -2721,7 +2726,6 @@ namespace Reportman.Drawing
                                 maskStream.Write(bytesLength, 0, bytesLength.Length);
                                 lengthPositionMask = maskStream.Position;
                                 SWriteLine(maskStream, "             ");
-                                SWriteLine(maskStream, "/Length1 " + imageMaskStream.Length.ToString());
                                 SWriteLine(maskStream, "/Filter [/FlateDecode]");
                             }
                             else
@@ -2801,7 +2805,6 @@ namespace Reportman.Drawing
                                 astream.Write(bytesLength, 0, bytesLength.Length);
                                 lengthPosition = astream.Position;
                                 SWriteLine(astream, "             ");
-                                SWriteLine(astream, "/Length1 " + fimagestream.Length.ToString());
                                 SWriteLine(astream, "/Filter [/FlateDecode]");
                             }
                             else
@@ -3380,6 +3383,10 @@ namespace Reportman.Drawing
         private long FOutputIntentObject;
         private long FColorSpaceObject;
         private DateTime FInternalFDocCreationDate = System.DateTime.Now;
+        // The creation and modification dates of the document, once (ComputeDocDates):
+        // as PDF dates for the Info dictionary and as ISO 8601 for the XMP metadata
+        private string FInfoCreationDate, FInfoModDate;
+        private string FXMPCreateDate, FXMPModifyDate;
         private long PageObjNum;
         private Strings FPages;
         private MemoryStream FSTempStream;
@@ -3474,11 +3481,13 @@ namespace Reportman.Drawing
         /// </summary>
         public string DocXMPContent;
         /// <summary>
-        /// Document creation date in PDF date format.
+        /// Document creation date, as ISO 8601 (2024-10-02T15:29:15+02:00) or as a PDF date
+        /// (D:20241002152915+02'00'). Empty, or not a date, means now in the local time zone.
         /// </summary>
         public string DocCreationDate;
         /// <summary>
-        /// Document modification date in PDF date format.
+        /// Document modification date, in the same formats as <see cref="DocCreationDate"/>.
+        /// Empty, or not a date, means the creation date.
         /// </summary>
         public string DocModificationDate;
 
@@ -3759,7 +3768,14 @@ namespace Reportman.Drawing
                     FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                    adata.FontProgramIsSubset = false;
                     MemoryStream fontcontent = Canvas.InfoProvider.GetFontStream(adata);
+                    // A subset carries a tag of six capital letters and + before its name (ISO
+                    // 32000-1, 9.6.4) in /FontName and /BaseFont; a whole font program does not
+                    if (adata.FontProgramIsSubset)
+                        adata.SubsetTag = SubsetTagOf(adata.PostcriptName, i);
+                    else
+                        adata.SubsetTag = "";
 
                     System.IO.MemoryStream fontcontentstream = new MemoryStream();
 
@@ -3772,21 +3788,17 @@ namespace Reportman.Drawing
                     byte[] programa = fontcontent?.ToArray();
                     adata.CFFOpenType = !adata.Type1 && (adata.GlyphMap == null || adata.GlyphMap.Count == 0)
                         && PDFCanvas.SfntIsCFF(programa, 0) && PDFCanvas.CFFGlyphsAreCIDs(programa, 0);
+                    // A font file stream has no /Type (ISO 32000-1, 9.9)
                     if (adata.CFFOpenType)
                     {
                         SWriteLine(FTempStream, "<< /Subtype /OpenType");
-                    }
-                    else
-                    if (PDFConformance == PDFConformanceType.PDF_A_3)
-                    {
-                        SWriteLine(FTempStream, "<< /Type /FontFile2");
                     }
                     else
                     {
                         SWriteLine(FTempStream, "<<");
                     }
                     fontcontent.Seek(0, SeekOrigin.Begin);
-                    WriteStream(fontcontent, FTempStream);
+                    WriteStream(fontcontent, FTempStream, !adata.CFFOpenType);
                     adata.ObjectIndex = FObjectCount;
                     fontcontent.Seek(0, System.IO.SeekOrigin.Begin);
                     SWriteLine(FTempStream, "endobj");
@@ -3797,6 +3809,7 @@ namespace Reportman.Drawing
                 else
                 {
                     adata.ObjectIndex = 0;
+                    adata.SubsetTag = "";
                 }
                 // Writes font descriptor
                 FObjectCount = FObjectCount + 1;
@@ -3806,11 +3819,11 @@ namespace Reportman.Drawing
                 SWriteLine(FTempStream, "<< /Type /FontDescriptor");
                 if (adata.IsUnicode)
                 {
-                    SWriteLine(FTempStream, "/FontName /" + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/FontName /" + PDFNameOf(adata.SubsetTag + adata.PostcriptName));
                     SWriteLine(FTempStream, "/FontFamily(" + adata.FontFamily + ")");
                 }
                 else
-                    SWriteLine(FTempStream, "/FontName /" + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/FontName /" + PDFNameOf(adata.SubsetTag + adata.PostcriptName));
                 SWriteLine(FTempStream, "/Flags " + adata.Flags.ToString());
                 SWriteLine(FTempStream, "/FontBBox [" +
                     adata.FontBBox.Left.ToString() + " " +
@@ -4061,7 +4074,7 @@ namespace Reportman.Drawing
                     SWriteLine(FTempStream, "<< /Type /Font");
                     SWriteLine(FTempStream, "/Subtype /Type0");
                     SWriteLine(FTempStream, "/Name /F" + adata.ObjectName);
-                    SWriteLine(FTempStream, "/BaseFont /" + CONS_UNICODEPREDIX + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/BaseFont /" + PDFNameOf(adata.SubsetTag + CONS_UNICODEPREDIX + adata.PostcriptName));
                     SWriteLine(FTempStream, "/Encoding /Identity-H");
                     SWriteLine(FTempStream, "/DescendantFonts [ " + (FObjectCount + 1).ToString() + " 0 R ]");
                     SWriteLine(FTempStream, "/ToUnicode " +
@@ -4083,7 +4096,7 @@ namespace Reportman.Drawing
                         SWriteLine(FTempStream, "/Subtype /CIDFontType0");
                     else
                         SWriteLine(FTempStream, "/Subtype /CIDFontType2");
-                    SWriteLine(FTempStream, "/BaseFont /" + CONS_UNICODEPREDIX + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/BaseFont /" + PDFNameOf(adata.SubsetTag + CONS_UNICODEPREDIX + adata.PostcriptName));
                     SWriteLine(FTempStream, "/FontDescriptor " +
                         adata.DescriptorIndex.ToString() + " 0 R");
                     SWriteLine(FTempStream, "/FontFamily(" + adata.FontFamily + ")");
@@ -4178,7 +4191,7 @@ namespace Reportman.Drawing
                     else
                         SWriteLine(FTempStream, "/Subtype /TrueType");
                     SWriteLine(FTempStream, "/Name /F" + adata.ObjectName);
-                    SWriteLine(FTempStream, "/BaseFont /" + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/BaseFont /" + PDFNameOf(adata.SubsetTag + adata.PostcriptName));
                     SWriteLine(FTempStream, "/FirstChar " + adata.FirstLoaded.ToString());
                     SWriteLine(FTempStream, "/LastChar " + adata.LastLoaded.ToString());
                     awidths = "[";
@@ -4377,48 +4390,39 @@ namespace Reportman.Drawing
             if (PDFConformance == PDFConformanceType.PDF_1_4)
             {
                 SWriteLine(FMainPDF, PDF_HEADER_1_4);
-                AddToOffset(PDF_HEADER_1_4.Length);
             }
             else
             {
                 SWriteLine(FMainPDF, PDF_HEADER_A3);
+                // The comment of binary characters (%äüöß) that PDF/A asks for after the header
                 byte[] checkArray = { 37, 228, 252, 246, 223, 13, 10 };
                 FMainPDF.Write(checkArray, 0, 7);
-                AddToOffset(7 + PDF_HEADER_A3.Length);
             }
-            // Writes Doc info
+            // The first object starts after the header as written: counting its characters
+            // left out the end of line, and every entry of the xref table pointed one byte
+            // (PDF/A-3, LF) or two (PDF 1.4, CR LF) before its object
+            AddToOffset(FMainPDF.Length);
+            ComputeDocDates();
+            // Writes Doc info. Every entry has its XMP twin in PDF/A-3 (SetXMPMetadata):
+            // Title dc:title, Author dc:creator, Subject dc:description, Keywords pdf:Keywords,
+            // Creator xmp:CreatorTool, Producer pdf:Producer, the dates xmp:CreateDate and
+            // xmp:ModifyDate. PDF/A is declared in the XMP only (pdfaid): /GTS_PDFXVersion,
+            // written here before, is a PDF/X key
             FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
             SWriteLine(FTempStream, "<<");
-            SWriteLine(FTempStream, "/Producer " + EncodePDFText(DocProducer));
+            if (!string.IsNullOrEmpty(DocProducer))
+                SWriteLine(FTempStream, "/Producer " + EncodePDFText(DocProducer));
             SWriteLine(FTempStream, "/Author " + EncodePDFText(DocAuthor));
-            if ((DocCreationDate == null) || (DocCreationDate.Length == 0))
-            {
-                SWriteLine(FTempStream, "/CreationDate (D:" + DateUtil.DateToISO8601(FInternalFDocCreationDate, false) + ")");
-            }
-            else
-            {
-                SWriteLine(FTempStream, "/CreationDate (D:" + DocCreationDate + ")");
-            }
-            if (PDFConformance != PDFConformanceType.PDF_A_3)
+            SWriteLine(FTempStream, "/CreationDate (" + FInfoCreationDate + ")");
+            if (!string.IsNullOrEmpty(DocCreator))
                 SWriteLine(FTempStream, "/Creator " + EncodePDFText(DocCreator));
             if ((DocKeywords != null) && (DocKeywords.Length > 0))
                 SWriteLine(FTempStream, "/Keywords " + EncodePDFText(DocKeywords));
             SWriteLine(FTempStream, "/Subject " + EncodePDFText(DocSubject));
             SWriteLine(FTempStream, "/Title " + EncodePDFText(DocTitle));
-            if ((DocModificationDate == null) || (DocModificationDate.Length == 0))
-            {
-                // SWriteLine(FTempStream,'/ModDate (D:'+  DateToISO8601(FInternalFDocCreationDate)+')');
-            }
-            else
-            {
-                // SWriteLine(FTempStream,'/ModDate (D:'+  FDocModificationDate+')');
-            }
-            if (PDFConformance == PDFConformanceType.PDF_A_3)
-            {
-                SWriteLine(FTempStream, "/GTS_PDFXVersion (PDF/A-3B)");
-            }
+            SWriteLine(FTempStream, "/ModDate (" + FInfoModDate + ")");
             SWriteLine(FTempStream, ">>");
             SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
@@ -4432,6 +4436,248 @@ namespace Reportman.Drawing
             }
             StartStream();
         }
+        /// <summary>
+        /// Splits a date as the report gives it, ISO 8601 (2024-10-02T15:29:15+02:00, the format
+        /// the designer asks for) or a PDF date (D:20241002152915+02'00'), into its digits
+        /// (yyyyMMddHHmmss or the first ones of them) and its time zone (Z, +hh:mm, -hh:mm or
+        /// empty). False when the text is neither. The Info dictionary needs the PDF form
+        /// (ISO 32000-1, 7.9.4) and the XMP metadata the ISO one, of the same date.
+        /// </summary>
+        private static bool SplitDocDate(string text, out string digits, out string zone)
+        {
+            digits = "";
+            zone = "";
+            if (text == null)
+                return false;
+            string s = text.Trim();
+            if (s.StartsWith("D:", StringComparison.Ordinal))
+                s = s.Substring(2);
+            StringBuilder d = new StringBuilder();
+            string z = "";
+            int i = 0;
+            while (i < s.Length)
+            {
+                char c = s[i];
+                int n = d.Length;
+                if ((c >= '0') && (c <= '9'))
+                {
+                    if (n >= 14)
+                        return false;
+                    d.Append(c);
+                }
+                else if ((c == '-') && ((n == 4) || (n == 6)))
+                {
+                    // A date separator of ISO 8601
+                }
+                else if (((c == 'T') || (c == ' ')) && (n == 8))
+                {
+                }
+                else if ((c == ':') && ((n == 10) || (n == 12)))
+                {
+                }
+                else if (((c == '.') || (c == ',')) && (n == 14))
+                {
+                    // The fraction of a second: not kept
+                    while ((i + 1 < s.Length) && (s[i + 1] >= '0') && (s[i + 1] <= '9'))
+                        i++;
+                }
+                else if (((c == 'Z') || (c == 'z')) && (n >= 8))
+                {
+                    // A PDF date may follow the Z with its offset, which can only be zero:
+                    // D:20261106102628Z00'00' (ISO 32000-1, 7.9.4)
+                    int zeros = 0;
+                    i++;
+                    while (i < s.Length)
+                    {
+                        if (s[i] == '0')
+                            zeros++;
+                        else if ((s[i] != ':') && (s[i] != '\''))
+                            return false;
+                        i++;
+                    }
+                    if ((zeros != 0) && (zeros != 2) && (zeros != 4))
+                        return false;
+                    z = "Z";
+                }
+                else if (((c == '+') || (c == '-')) && (n >= 8))
+                {
+                    StringBuilder zonedigits = new StringBuilder();
+                    i++;
+                    while (i < s.Length)
+                    {
+                        if ((s[i] >= '0') && (s[i] <= '9'))
+                            zonedigits.Append(s[i]);
+                        else if ((s[i] != ':') && (s[i] != '\''))
+                            return false;
+                        i++;
+                    }
+                    if ((zonedigits.Length != 2) && (zonedigits.Length != 4))
+                        return false;
+                    if (zonedigits.Length == 2)
+                        zonedigits.Append("00");
+                    string zd = zonedigits.ToString();
+                    if ((int.Parse(zd.Substring(0, 2), CultureInfo.InvariantCulture) > 23) ||
+                        (int.Parse(zd.Substring(2, 2), CultureInfo.InvariantCulture) > 59))
+                        return false;
+                    z = c + zd.Substring(0, 2) + ":" + zd.Substring(2, 2);
+                }
+                else
+                    return false;
+                i++;
+            }
+            string dg = d.ToString();
+            int len = dg.Length;
+            if (!((len == 4) || (len == 6) || (len == 8) || (len == 10) || (len == 12) || (len == 14)))
+                return false;
+            // An hour alone: ISO 8601 and XMP ask for its minutes
+            if (len == 10)
+                dg = dg + "00";
+            if ((len >= 6) && ((DatePart(dg, 4) < 1) || (DatePart(dg, 4) > 12)))
+                return false;
+            if ((len >= 8) && ((DatePart(dg, 6) < 1) || (DatePart(dg, 6) > 31)))
+                return false;
+            if ((len >= 10) && (DatePart(dg, 8) > 23))
+                return false;
+            if ((len >= 12) && (DatePart(dg, 10) > 59))
+                return false;
+            if ((len >= 14) && (DatePart(dg, 12) > 59))
+                return false;
+            // A time zone needs a time
+            if (dg.Length < 10)
+                z = "";
+            digits = dg;
+            zone = z;
+            return true;
+        }
+
+        private static int DatePart(string digits, int start)
+        {
+            return int.Parse(digits.Substring(start, 2), CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// D:yyyyMMddHHmmss followed by Z or +hh'mm'.
+        /// </summary>
+        private static string PDFDateOf(string digits, string zone)
+        {
+            string result = "D:" + digits;
+            if (zone == "Z")
+                result = result + "Z";
+            else if (zone.Length == 6)
+                result = result + zone[0] + zone.Substring(1, 2) + "'" + zone.Substring(4, 2) + "'";
+            return result;
+        }
+
+        /// <summary>
+        /// yyyy-MM-ddTHH:mm:ss followed by Z or +hh:mm (or the first parts of it).
+        /// </summary>
+        private static string ISODateOf(string digits, string zone)
+        {
+            string result = digits.Substring(0, 4);
+            if (digits.Length >= 6)
+                result = result + "-" + digits.Substring(4, 2);
+            if (digits.Length >= 8)
+                result = result + "-" + digits.Substring(6, 2);
+            if (digits.Length >= 12)
+            {
+                result = result + "T" + digits.Substring(8, 2) + ":" + digits.Substring(10, 2);
+                if (digits.Length >= 14)
+                    result = result + ":" + digits.Substring(12, 2);
+                result = result + zone;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// The PDF date of a text date, empty when it is not a date.
+        /// </summary>
+        private static string PDFDateOfText(string text)
+        {
+            string digits, zone;
+            if (SplitDocDate(text, out digits, out zone))
+                return PDFDateOf(digits, zone);
+            return "";
+        }
+
+        /// <summary>
+        /// The time zone of the computer at a local date, as Z or +hh:mm.
+        /// </summary>
+        private static string LocalZoneOf(DateTime date)
+        {
+            int minutes = (int)Math.Round(TimeZoneInfo.Local.GetUtcOffset(date).TotalMinutes);
+            if (minutes == 0)
+                return "Z";
+            string sign = minutes < 0 ? "-" : "+";
+            minutes = Math.Abs(minutes);
+            return sign + (minutes / 60).ToString("00", CultureInfo.InvariantCulture) + ":" +
+                (minutes % 60).ToString("00", CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// The tag of a font subset: six capital letters and + (ISO 32000-1, 9.6.4), from the
+        /// name of the font and its place in the document (FNV-1a, as rppdffile.pas), so that
+        /// two subsets of a document do not share it and the same document gets the same tags
+        /// every time.
+        /// </summary>
+        private static string SubsetTagOf(string name, int index)
+        {
+            ulong h = 2166136261;
+            foreach (char ch in name ?? "")
+                h = ((h ^ ch) * 16777619) & 0xFFFFFFFF;
+            h = ((h ^ (uint)index) * 16777619) & 0xFFFFFFFF;
+            StringBuilder result = new StringBuilder();
+            for (int k = 0; k < 6; k++)
+            {
+                result.Append((char)('A' + (int)(h % 26)));
+                h = h / 26;
+            }
+            result.Append('+');
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// A text as a PDF name (without the leading /): the characters a name cannot hold
+        /// as they are, white space, the delimiters ( ) &lt; &gt; [ ] { } / %, the # and
+        /// anything outside ! to ~, go as #xx of their UTF-8 bytes (ISO 32000-1, 7.3.5).
+        /// A font saved as "[FontFamily: Name=Arial]" gave /[FontFamily:Name=Arial],Bold,
+        /// a name that readers cannot parse.
+        /// </summary>
+        internal static string PDFNameOf(string name)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (byte b in Encoding.UTF8.GetBytes(name ?? ""))
+            {
+                if ((b < 0x21) || (b > 0x7E) || ("()<>[]{}/%#".IndexOf((char)b) >= 0))
+                    result.Append('#').Append(b.ToString("X2", CultureInfo.InvariantCulture));
+                else
+                    result.Append((char)b);
+            }
+            return result.ToString();
+        }
+
+        private void ComputeDocDates()
+        {
+            string digits, zone, moddigits, modzone;
+            // The local time with its zone: the date of now was written as D: plus an ISO 8601
+            // date before, which is not a PDF date
+            if (!SplitDocDate(DocCreationDate, out digits, out zone))
+            {
+                FInternalFDocCreationDate = DateTime.Now;
+                digits = FInternalFDocCreationDate.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                zone = LocalZoneOf(FInternalFDocCreationDate);
+            }
+            // A new document: modified when it was created, unless the report says otherwise
+            if (!SplitDocDate(DocModificationDate, out moddigits, out modzone))
+            {
+                moddigits = digits;
+                modzone = zone;
+            }
+            FInfoCreationDate = PDFDateOf(digits, zone);
+            FInfoModDate = PDFDateOf(moddigits, modzone);
+            FXMPCreateDate = ISODateOf(digits, zone);
+            FXMPModifyDate = ISODateOf(moddigits, modzone);
+        }
+
         private void SetXMPMetadata()
         {
             using (var xmpStream = new MemoryStream())
@@ -4484,20 +4730,23 @@ namespace Reportman.Drawing
                     SWriteLine(xmpStream, "      </rdf:Alt>");
                     SWriteLine(xmpStream, "    </dc:description>");
 
-                    // Fecha de creación
-                    if (string.IsNullOrEmpty(DocCreationDate))
-                    {
-                        SWriteLine(xmpStream, "    <xmp:CreateDate>" + DateUtil.DateToISO8601(FInternalFDocCreationDate, false) + "</xmp:CreateDate>");
-                    }
-                    else
-                    {
-                        SWriteLine(xmpStream, "    <xmp:CreateDate>" + StringUtil.EscapeXML(DocCreationDate) + "</xmp:CreateDate>");
-                    }
+                    // Fechas de creación y modificación: las mismas que el diccionario Info (BeginDoc)
+                    SWriteLine(xmpStream, "    <xmp:CreateDate>" + FXMPCreateDate + "</xmp:CreateDate>");
+                    SWriteLine(xmpStream, "    <xmp:ModifyDate>" + FXMPModifyDate + "</xmp:ModifyDate>");
 
-                    // Productor
+                    // Creador y productor: xmp:CreatorTool es el gemelo de /Creator (era el productor)
+                    // y pdf:Producer el de /Producer; pdf:Keywords el de /Keywords
+                    if (!string.IsNullOrEmpty(DocCreator))
+                    {
+                        SWriteLine(xmpStream, "    <xmp:CreatorTool>" + StringUtil.EscapeXML(DocCreator) + "</xmp:CreatorTool>");
+                    }
                     if (!string.IsNullOrEmpty(DocProducer))
                     {
-                        SWriteLine(xmpStream, "    <xmp:CreatorTool>" + StringUtil.EscapeXML(DocProducer) + "</xmp:CreatorTool>");
+                        SWriteLine(xmpStream, "    <pdf:Producer>" + StringUtil.EscapeXML(DocProducer) + "</pdf:Producer>");
+                    }
+                    if (!string.IsNullOrEmpty(DocKeywords))
+                    {
+                        SWriteLine(xmpStream, "    <pdf:Keywords>" + StringUtil.EscapeXML(DocKeywords) + "</pdf:Keywords>");
                     }
 
                     // Otros metadatos
@@ -4544,8 +4793,11 @@ namespace Reportman.Drawing
                 }
             }
         }
-        private void WriteStream(Stream stream, Stream dest)
+        // The rest of a stream object, from its /Length on. /Length1, the length of the
+        // decoded program, belongs to the TrueType font files only (ISO 32000-1, 9.9, table 125)
+        private void WriteStream(Stream stream, Stream dest, bool fontProgram = false)
         {
+            string length1 = fontProgram ? " /Length1 " + stream.Length.ToString() : "";
 #if REPMAN_ZLIB
             if (Compressed)
             {
@@ -4553,8 +4805,7 @@ namespace Reportman.Drawing
                 try
                 {
                     StreamUtil.CompressStream(stream, fmem);
-                    SWriteLine(dest, " /Length " + fmem.Length.ToString() + " /Length1 " +
-                      stream.Length.ToString());
+                    SWriteLine(dest, " /Length " + fmem.Length.ToString() + length1);
                     SWriteLine(dest, "/Filter [/FlateDecode]");
                     SWriteLine(dest, ">>");
                     SWriteLine(dest, "stream");
@@ -4569,7 +4820,7 @@ namespace Reportman.Drawing
             else
 #endif
             {
-                SWriteLine(dest, " /Length " + stream.Length.ToString());
+                SWriteLine(dest, " /Length " + stream.Length.ToString() + length1);
                 SWriteLine(dest, ">>");
                 SWriteLine(dest, "stream");
                 stream.Seek(0, SeekOrigin.Begin);
@@ -4642,17 +4893,24 @@ namespace Reportman.Drawing
                 FTempStream.SetLength(0);
                 SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                 SWriteLine(FTempStream, "<< /Type /EmbeddedFile ");
+                // The MIME type of the embedded file stream is its /Subtype (a /MimeType key
+                // does not exist)
                 if ((efile.MimeType != null) && (efile.MimeType.Length > 0))
                 {
                     SWriteLine(FTempStream, "   /Subtype /" + efile.MimeType.Replace("/", "#2F"));
-                    SWriteLine(FTempStream, "   /MimeType " + EncodePDFText(efile.MimeType));
                 }
-                if (efile.ModificationDate.Length > 0)
-                {
-                    SWriteLine(FTempStream, "   /Params <<");
-                    SWriteLine(FTempStream, "   /ModDate (D:" + (efile.ModificationDate) + ")");
-                    SWriteLine(FTempStream, "   >>");
-                }
+                // The parameters of the file (ISO 32000-1, 7.11.4, table 46: Size, CreationDate,
+                // ModDate) belong to the embedded file stream, not to the file specification.
+                // The dates are PDF dates
+                SWriteLine(FTempStream, "   /Params <<");
+                SWriteLine(FTempStream, "   /Size " + efile.Stream.Length.ToString());
+                string efileCreationDate = PDFDateOfText(efile.CreationDate);
+                if (efileCreationDate.Length > 0)
+                    SWriteLine(FTempStream, "   /CreationDate (" + efileCreationDate + ")");
+                string efileModDate = PDFDateOfText(efile.ModificationDate);
+                if (efileModDate.Length > 0)
+                    SWriteLine(FTempStream, "   /ModDate (" + efileModDate + ")");
+                SWriteLine(FTempStream, "   >>");
                 efile.Stream.Seek(0, SeekOrigin.Begin);
                 WriteStream(efile.Stream, FTempStream);
                 SWriteLine(FTempStream, "endobj");
@@ -4669,25 +4927,10 @@ namespace Reportman.Drawing
 
                 SWriteLine(FTempStream, "   /Desc " + EncodePDFText(efile.Description));
                 SWriteLine(FTempStream, "   /UF " + EncodePDFText(efile.FileName));
-                SWriteLine(FTempStream, "   /EF << /F " + ResourceStream.ToString() + " 0 R >>");
+                SWriteLine(FTempStream, "   /EF << /F " + ResourceStream.ToString() + " 0 R /UF " +
+                    ResourceStream.ToString() + " 0 R >>");
 
                 SWriteLine(FTempStream, "   /AFRelationship /" + efile.AFRelationShipToString());
-                SWriteLine(FTempStream, "/Params <<");
-                SWriteLine(FTempStream, "  /Size " + efile.Stream.Length.ToString());
-                if ((efile.MimeType != null) && (efile.MimeType.Length > 0))
-                {
-                    SWriteLine(FTempStream, "  /MIMEType " + EncodePDFText(efile.MimeType));
-                }
-                if ((efile.CreationDate != null) && (efile.CreationDate.Length > 0))
-                {
-                    SWriteLine(FTempStream, "  /CreationDate (D:" + efile.CreationDate + ")");
-                }
-                if ((efile.ModificationDate != null) && (efile.ModificationDate.Length > 0))
-                {
-                    SWriteLine(FTempStream, "  /ModificationDate (D:" + efile.ModificationDate + ")");
-                }
-
-                SWriteLine(FTempStream, "  >>");
                 SWriteLine(FTempStream, ">>");
                 SWriteLine(FTempStream, "endobj");
                 AddToOffset(FTempStream.Length);
@@ -4943,7 +5186,9 @@ namespace Reportman.Drawing
             {
                 string guidString = Guid.NewGuid().ToString();
                 guidString = guidString.Replace("-", "");
-                SWriteLine(FTempStream, "/ID [<" + guidString + "> <1234567890abcdef1234567890abcdef>]");
+                // A new document: the permanent and the changing identifier are the same
+                // (ISO 32000-1, 14.4); the second was a test literal
+                SWriteLine(FTempStream, "/ID [<" + guidString + "> <" + guidString + ">]");
             }
             SWriteLine(FTempStream, ">>");
             SWriteLine(FTempStream, "startxref");

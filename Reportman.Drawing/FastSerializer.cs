@@ -198,11 +198,36 @@ namespace Reportman.Drawing
         }
 
         /// <summary>
+        /// Rows processed between clock checks when reporting progress; checking on every row
+        /// would mean millions of calls that almost always do nothing.
+        /// </summary>
+        private const int ROWS_BETWEEN_PROGRESS_CHECKS = 4096;
+
+        /// <summary>Minimum milliseconds between two progress notifications.</summary>
+        private const int MILLISECONDS_BETWEEN_PROGRESS = 1000;
+
+        /// <summary>
         /// Serializes a DataSet structure and its row records to a binary Stream.
         /// </summary>
         /// <param name="ndata">The DataSet to serialize.</param>
         /// <param name="nstream">The output Stream.</param>
         public static void SerializeDataSetToStream(DataSet ndata,Stream nstream)
+        {
+            SerializeDataSetToStream(ndata, nstream, null);
+        }
+
+        /// <summary>
+        /// Serializes a DataSet structure and its row records to a binary Stream, reporting progress.
+        /// </summary>
+        /// <param name="ndata">The DataSet to serialize.</param>
+        /// <param name="nstream">The output Stream.</param>
+        /// <param name="progress">
+        /// Optional (null = no notifications). Called at most once per second with
+        /// (rows done, total rows) of the table being written, plus a final call when the table
+        /// ends, only if it was notified before: fast tables stay silent.
+        /// </param>
+        public static void SerializeDataSetToStream(DataSet ndata, Stream nstream,
+            Action<long, long> progress)
         {
             BinaryWriter nwriter = new BinaryWriter(nstream);
             nstream.Write(signature, 0, 4);
@@ -248,6 +273,12 @@ namespace Reportman.Drawing
                 if (!hasprimary)
                     WriteInteger(nstream, 0);
                 WriteInteger(nstream, ntable.Rows.Count);
+                long totalrows = ntable.Rows.Count;
+                long rowsdone = 0;
+                System.Diagnostics.Stopwatch watch = progress != null
+                    ? System.Diagnostics.Stopwatch.StartNew() : null;
+                long lastnotify = 0;
+                bool notified = false;
                 foreach (DataRow xrow in ntable.Rows)
                 {
                     for (i = 0; i < colcount; i++)
@@ -255,6 +286,23 @@ namespace Reportman.Drawing
                         object nvalue = xrow[i];
                         WriteValue(nstream, nwriter, coltypes[i], nvalue);
                     }
+                    rowsdone++;
+                    if (watch != null && (rowsdone % ROWS_BETWEEN_PROGRESS_CHECKS) == 0)
+                    {
+                        long elapsed = watch.ElapsedMilliseconds;
+                        if (elapsed - lastnotify >= MILLISECONDS_BETWEEN_PROGRESS)
+                        {
+                            lastnotify = elapsed;
+                            notified = true;
+                            progress(rowsdone, totalrows);
+                        }
+                    }
+                }
+                // Notifications are time based, so the last one lands anywhere (58 %, 70 %...);
+                // close at 100 % or a progress bar stays stuck there.
+                if (notified)
+                {
+                    progress(rowsdone, totalrows);
                 }
             }
 
@@ -266,8 +314,18 @@ namespace Reportman.Drawing
         /// <returns>A MemoryStream containing the serialized binary representation.</returns>
         public static MemoryStream SerializeDataSet(DataSet ndata)
         {
+            return SerializeDataSet(ndata, null);
+        }
+        /// <summary>
+        /// Serializes a DataSet into a custom binary layout held in a MemoryStream, reporting progress.
+        /// </summary>
+        /// <param name="ndata">The DataSet to serialize.</param>
+        /// <param name="progress">Optional, see SerializeDataSetToStream.</param>
+        /// <returns>A MemoryStream containing the serialized binary representation.</returns>
+        public static MemoryStream SerializeDataSet(DataSet ndata, Action<long, long> progress)
+        {
             MemoryStream nstream = new MemoryStream();
-            SerializeDataSetToStream(ndata, nstream);
+            SerializeDataSetToStream(ndata, nstream, progress);
             return nstream;
         }
         private static void WriteValue(Stream nstream, BinaryWriter nwriter, TypeData ntype, object nvalue)
@@ -630,6 +688,20 @@ namespace Reportman.Drawing
         /// <returns>The reconstructed DataSet.</returns>
         public static DataSet DeSerializeDataSet(byte[] nbytes)
         {
+            return DeSerializeDataSet(nbytes, null);
+        }
+
+        /// <summary>
+        /// Deserializes a DataSet from a FastSerializer byte array payload, reporting progress.
+        /// </summary>
+        /// <param name="nbytes">The byte array payload to deserialize.</param>
+        /// <param name="progress">
+        /// Optional, same criteria as SerializeDataSetToStream; the row count comes in each
+        /// table header, so the total is known before reading.
+        /// </param>
+        /// <returns>The reconstructed DataSet.</returns>
+        public static DataSet DeSerializeDataSet(byte[] nbytes, Action<long, long> progress)
+        {
             BinaryReader nreader = new BinaryReader(new MemoryStream(nbytes));
             DataSet ndataset = new DataSet();
             int index = 0;
@@ -678,6 +750,10 @@ namespace Reportman.Drawing
                     object[] rowvalues = new object[colcount];
                     //for (int acol = 0; acol < colcount; acol++)
                     //rowvalues[acol] = DBNull.Value;
+                    System.Diagnostics.Stopwatch watch = progress != null
+                        ? System.Diagnostics.Stopwatch.StartNew() : null;
+                    long lastnotify = 0;
+                    bool notified = false;
                     for (int rowindex = 0; rowindex < rowcount; rowindex++)
                     {
                         for (int colindex = 0; colindex < colcount; colindex++)
@@ -685,6 +761,20 @@ namespace Reportman.Drawing
                             rowvalues[colindex] = ReadValue(nbytes, nreader, coltypes[colindex], ref index);
                         }
                         newtable.Rows.Add(rowvalues);
+                        if (watch != null && ((rowindex + 1) % ROWS_BETWEEN_PROGRESS_CHECKS) == 0)
+                        {
+                            long elapsed = watch.ElapsedMilliseconds;
+                            if (elapsed - lastnotify >= MILLISECONDS_BETWEEN_PROGRESS)
+                            {
+                                lastnotify = elapsed;
+                                notified = true;
+                                progress(rowindex + 1, rowcount);
+                            }
+                        }
+                    }
+                    if (notified)
+                    {
+                        progress(rowcount, rowcount);
                     }
                 }
                 if (colprim.Length > 0)
@@ -782,13 +872,16 @@ namespace Reportman.Drawing
                     byte seconds = 0;
                     if (nlen > 6)
                         seconds = nreader.ReadByte();
+                    // Same lengths as the byte[] reader: 7 = hh:mm:ss without milliseconds,
+                    // 8 = one millisecond byte (WriteValue trims the zero high byte), 9 = two.
+                    // Testing 7 / >7 here read one byte too many and shifted every following value.
                     short Millisecond = 0;
-                    if (nlen == 7)
+                    if (nlen == 8)
                     {
                         Millisecond = nreader.ReadByte();
                     }
                     else
-                        if (nlen > 7)
+                        if (nlen > 8)
                     {
                         nbytes = nreader.ReadBytes(2);
                         Millisecond = StreamUtil.ByteArrayToShort(nbytes, 0, 2);
@@ -845,6 +938,17 @@ namespace Reportman.Drawing
         /// <returns>The reconstructed DataSet.</returns>
         public static DataSet DeSerializeDataSet(Stream nsource)
         {
+            return DeSerializeDataSet(nsource, null);
+        }
+
+        /// <summary>
+        /// Deserializes a DataSet from a binary Stream layout representation, reporting progress.
+        /// </summary>
+        /// <param name="nsource">The source Stream to read from.</param>
+        /// <param name="progress">Optional, same criteria as DeSerializeDataSet(byte[], progress).</param>
+        /// <returns>The reconstructed DataSet.</returns>
+        public static DataSet DeSerializeDataSet(Stream nsource, Action<long, long> progress)
+        {
             BinaryReader nreader = new BinaryReader(nsource);
             byte[] nbytes = nreader.ReadBytes(4);
             DataSet ndataset = new DataSet();
@@ -893,8 +997,22 @@ namespace Reportman.Drawing
                 if (rowcount > 0)
                 {
                     object[] rowvalues = new object[colcount];
+                    System.Diagnostics.Stopwatch watch = progress != null
+                        ? System.Diagnostics.Stopwatch.StartNew() : null;
+                    long lastnotify = 0;
+                    bool notified = false;
                     for (int rowindex = 0; rowindex < rowcount; rowindex++)
                     {
+                        if (watch != null && ((rowindex + 1) % ROWS_BETWEEN_PROGRESS_CHECKS) == 0)
+                        {
+                            long elapsed = watch.ElapsedMilliseconds;
+                            if (elapsed - lastnotify >= MILLISECONDS_BETWEEN_PROGRESS)
+                            {
+                                lastnotify = elapsed;
+                                notified = true;
+                                progress(rowindex + 1, rowcount);
+                            }
+                        }
                         for (int colindex = 0; colindex < colcount; colindex++)
                         {
                             rowvalues[colindex] = ReadValue(nreader, coltypes[colindex]);
@@ -916,6 +1034,10 @@ namespace Reportman.Drawing
                                     break;
                             }
                         }
+                    }
+                    if (notified)
+                    {
+                        progress(rowcount, rowcount);
                     }
                 }
                 if (colprim.Length > 0)

@@ -249,6 +249,15 @@ namespace Reportman.Drawing
         /// </summary>
         public bool Embedded;
         /// <summary>
+        /// Set by <see cref="FontInfoProvider.GetFontStream"/>: the font program holds only the
+        /// glyphs used. Its PDF name then carries a subset tag (ISO 32000-1, 9.6.4).
+        /// </summary>
+        public bool FontProgramIsSubset;
+        /// <summary>
+        /// The subset tag ("ABCDEF+") the PDF writer puts before the name of a subset, empty otherwise.
+        /// </summary>
+        public string SubsetTag = "";
+        /// <summary>
         /// Raw font file bytes and table-directory offset.
         /// </summary>
         public AdvFontData FontData;

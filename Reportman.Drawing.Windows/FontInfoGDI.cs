@@ -82,6 +82,7 @@ namespace Reportman.Drawing
                 data.PostcriptName, data.FontData.Data,
                 glyps, data.FontData.DirectoryOffset);
             byte[] nresult = subset.Execute();
+            data.FontProgramIsSubset = subset.Subsetted;
 
             return new MemoryStream(nresult);
         }
@@ -185,7 +186,11 @@ namespace Reportman.Drawing
         public override void FillFontData(PDFFont pdfFont, TTFontData fontData)
         {
             SelectFont(pdfFont);
-            fontData.PostcriptName = pdfFont.WFontName.Replace(" ", "");
+            // The family GDI+ selected, as rpinfoprovgdi.pas (otmpFamilyName), not the name the
+            // report asks for: a name it does not know, such as "[FontFamily: Name=Arial]" saved by
+            // the old designer, selects another family (Microsoft Sans Serif), and its program is
+            // the one embedded
+            fontData.PostcriptName = font.FontFamily.Name.Replace(" ", "");
             if (pdfFont.Bold)
             {
                 if (pdfFont.Italic)

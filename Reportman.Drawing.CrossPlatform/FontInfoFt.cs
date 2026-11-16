@@ -1728,6 +1728,8 @@ namespace Reportman.Drawing
             if (porHarfBuzz != null)
             {
                 data.GlyphMap = mapa;
+                // The instance holds only the glyphs used
+                data.FontProgramIsSubset = true;
                 return new MemoryStream(porHarfBuzz);
             }
             data.GlyphMap = null;
@@ -1743,6 +1745,7 @@ namespace Reportman.Drawing
             TrueTypeFontSubSet subset = new TrueTypeFontSubSet(data.PostcriptName, data.FontData.Data,
                 glyps, 0);
             byte[] nresult = subset.Execute();
+            data.FontProgramIsSubset = subset.Subsetted;
             return new MemoryStream(nresult);
         }
 

@@ -179,8 +179,14 @@ namespace Reportman.Drawing
             CreateNewGlyphTables();
             LocaTobytes();
             AssembleFont();
+            Subsetted = true;
             return outFont;
         }
+
+        /// <summary>
+        /// False when <see cref="Execute"/> returned the whole font instead of a subset.
+        /// </summary>
+        public bool Subsetted { get; private set; }
 
         /// <summary>
         /// Assembles the final subset font into <see cref="outFont"/>, writing the table directory and copying
