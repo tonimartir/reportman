@@ -160,7 +160,7 @@ namespace Reportman.Designer
             };
             _panelGauge.Paint += PanelGauge_Paint;
             _gaugeTooltip = new ToolTip();
-            _gaugeTooltip.SetToolTip(_panelGauge, DesignerText.Tr(1524));
+            _gaugeTooltip.SetToolTip(_panelGauge, DesignerText.Tr(2054, "Credit bag"));
 
             gridAI.Controls.Add(_lblProvider, 0, 0);
             gridAI.Controls.Add(_comboProvider, 0, 1);
@@ -706,7 +706,7 @@ namespace Reportman.Designer
                 text = DesignerText.Tr(2054, "Credit bag") + Environment.NewLine +
                     DesignerText.Format(1835, profile.FreeRemaining.ToString("N0"), profile.FreeInitial.ToString("N0"));
             else if (auth.UsesFreeCredits)
-                text = DesignerText.Tr(1524) + Environment.NewLine +
+                text = DesignerText.Tr(2054, "Credit bag") + Environment.NewLine +
                     DesignerText.Format(1835, profile.FreeRemaining.ToString("N0"), profile.FreeInitial.ToString("N0"));
             else
                 text = DesignerText.Tr(1525) + Environment.NewLine +
