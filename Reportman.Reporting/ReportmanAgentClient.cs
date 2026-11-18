@@ -629,6 +629,52 @@ namespace Reportman.Reporting
             return await StreamJsonRequestAsync("NlToSql/AnalyzeSchemaStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// One call of «Generate with AI» (NlToSql/GenerateSchemaStream, docs/generar-esquema-con-ia-plan.md): the AI
+        /// explores the database and proposes a schema of <paramref name="domain"/>. With a direct connection
+        /// (<paramref name="clientExecutes"/>) the answer may be <c>NeedsClientResults</c>, with the reads it wants
+        /// (<c>clientRequests</c>) and a <c>continuation</c>: the next call sends both back with what was read. With a Hub
+        /// database (<see cref="HubDatabaseId"/>) the cloud reads it itself. <see cref="SchemaGenerationLoop"/> does the rounds.
+        /// </summary>
+        /// <param name="domain">What the user wants («ventas», «compras», «todo»...).</param>
+        /// <param name="schemaName">The name of the schema; empty for the AI's.</param>
+        /// <param name="mode">Fast or Reasoning.</param>
+        /// <param name="languageCodeIso">The language of the descriptions and of the progress («es»).</param>
+        /// <param name="dialect">The dialect of the direct connection, for the AI to know the engine.</param>
+        /// <param name="clientExecutes">True when this client reads the database (a direct connection).</param>
+        /// <param name="initialTables">The names of the tables, when the client has them (the first call): a turn less; null otherwise.</param>
+        /// <param name="continuation">The continuation of the previous answer; empty to start.</param>
+        /// <param name="clientResults">What was read for the previous answer; null to start.</param>
+        /// <param name="sender">The object raising the request.</param>
+        /// <param name="onProgress">Progress notification callback handler.</param>
+        /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        public async Task<JsonDocument> GenerateSchemaTurnAsync(string domain, string schemaName, string mode, string languageCodeIso,
+            string dialect, bool clientExecutes, IList<string> initialTables, string continuation, IList<Dictionary<string, object>> clientResults,
+            object sender, ProgressEventHandler onProgress, CancellationToken cancellationToken)
+        {
+            var fields = new Dictionary<string, object>
+            {
+                { "mode", string.IsNullOrWhiteSpace(mode) ? "Fast" : mode },
+                { "domain", domain ?? "" },
+                { "schemaName", schemaName ?? "" },
+                { "languageCodeIso", languageCodeIso ?? "" },
+                { "clientExecutes", clientExecutes },
+                { "simplifiedPrompt", string.Equals(AITier, "LocalAgent", StringComparison.OrdinalIgnoreCase) }
+            };
+            // A direct connection: the engine only, not the schema being edited (the generator reads the catalog)
+            if (clientExecutes)
+                fields["config"] = new Dictionary<string, object> { { "name", "" }, { "dialect", LocalSchemaStore.CloudDialect(dialect) } };
+            if (initialTables != null && string.IsNullOrEmpty(continuation))
+                fields["initialTables"] = initialTables;
+            if (!string.IsNullOrEmpty(continuation))
+                fields["continuation"] = continuation;
+            if (clientResults != null)
+                fields["clientResults"] = clientResults;
+            var requestBody = BuildBaseRequest(fields);
+
+            return await StreamJsonRequestAsync("NlToSql/GenerateSchemaStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
+        }
+
         // Additional endpoints (ExplainSql, ModifyReport, etc.) can be similarly implemented...
     }
 }

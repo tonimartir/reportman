@@ -69,6 +69,62 @@ namespace Reportman.Designer
         public string AILanguage { get; set; } = "English";
 
         /// <summary>
+        /// The AI of the local schemas screen («Analyze with AI» and «Generate with AI»): its own choice, kept apart from
+        /// the copilot's, in the <c>[SchemaAI]</c> section of reportman_auth.ini, the same the Delphi designer reads
+        /// (docs/generar-esquema-con-ia-plan.md §2.3.1). Precision by default.
+        /// </summary>
+        public string SchemaAITier { get; private set; } = "Precision";
+
+        /// <summary>The mode of <see cref="SchemaAITier"/>: Fast (the default) or Reasoning.</summary>
+        public string SchemaAIMode { get; private set; } = "Fast";
+
+        /// <summary>The AI of the user's Agent when <see cref="SchemaAITier"/> is LocalAgent; 0 otherwise.</summary>
+        public long SchemaAgentAiId { get; private set; }
+
+        /// <summary>
+        /// Keeps the AI of the local schemas screen (<see cref="SchemaAITier"/>) in reportman_auth.ini, in its own section,
+        /// without touching the rest of the file.
+        /// </summary>
+        /// <param name="tier">Standard, Precision or LocalAgent.</param>
+        /// <param name="mode">Fast or Reasoning.</param>
+        /// <param name="agentAiId">The AI of the Agent for LocalAgent; 0 otherwise.</param>
+        public void SaveSchemaAI(string tier, string mode, long agentAiId)
+        {
+            SchemaAITier = string.IsNullOrWhiteSpace(tier) ? "Precision" : tier.Trim();
+            SchemaAIMode = string.IsNullOrWhiteSpace(mode) ? "Fast" : mode.Trim();
+            SchemaAgentAiId = string.Equals(SchemaAITier, "LocalAgent", StringComparison.OrdinalIgnoreCase) ? agentAiId : 0;
+            try
+            {
+                string path = GetConfigFilePath();
+                var lines = File.Exists(path) ? new List<string>(File.ReadAllLines(path)) : new List<string>();
+                RemoveSection(lines, SchemaAISection);
+                while (lines.Count > 0 && lines[lines.Count - 1].Trim().Length == 0)
+                    lines.RemoveAt(lines.Count - 1);
+                if (lines.Count > 0)
+                    lines.Add("");
+                lines.AddRange(SchemaAILines());
+                File.WriteAllLines(path, lines, new UTF8Encoding(false));
+            }
+            catch (Exception ex)
+            {
+                Log("SaveSchemaAI Error: " + ex.Message);
+            }
+        }
+
+        private const string SchemaAISection = "SchemaAI";
+
+        private List<string> SchemaAILines()
+        {
+            return new List<string>
+            {
+                "[" + SchemaAISection + "]",
+                "Tier=" + SchemaAITier,
+                "Mode=" + SchemaAIMode,
+                "AgentAiId=" + SchemaAgentAiId.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            };
+        }
+
+        /// <summary>
         /// Gets the two-letter code of <see cref="AILanguage"/> (for example "es"), sent as
         /// Accept-Language so the cloud writes its messages in that language.
         /// </summary>
@@ -844,6 +900,8 @@ namespace Reportman.Designer
                     "AIEnabled=" + (AIEnabled ? "1" : "0"),
                     "AILanguage=" + AILanguage
                 };
+                // The sections this does not write ([SchemaAI], the Delphi designer's) stay
+                lines.AddRange(OtherSections(GetConfigFilePath()));
                 // Write without BOM — Delphi's TIniFile uses ANSI/no-BOM
                 File.WriteAllLines(GetConfigFilePath(), lines, new UTF8Encoding(false));
             }
@@ -881,6 +939,9 @@ namespace Reportman.Designer
 
                 AIEnabled = GetIniValue(values, "Preferences", "AIEnabled", "1") != "0";
                 AILanguage = GetIniValue(values, "Preferences", "AILanguage", AILanguage);
+                SchemaAITier = GetIniValue(values, SchemaAISection, "Tier", SchemaAITier);
+                SchemaAIMode = GetIniValue(values, SchemaAISection, "Mode", SchemaAIMode);
+                SchemaAgentAiId = long.TryParse(GetIniValue(values, SchemaAISection, "AgentAiId", "0"), out var schemaAgent) ? schemaAgent : 0;
 
                 IsLoggedIn = !string.IsNullOrEmpty(Token);
                 if (IsLoggedIn)
@@ -908,11 +969,59 @@ namespace Reportman.Designer
                     "AIEnabled=" + (AIEnabled ? "1" : "0"),
                     "AILanguage=" + AILanguage
                 };
+                lines.AddRange(OtherSections(GetConfigFilePath()));
                 File.WriteAllLines(GetConfigFilePath(), lines, new UTF8Encoding(false));
             }
             catch (Exception ex)
             {
                 Log("ClearConfig Error: " + ex.Message);
+            }
+        }
+
+        // The sections SaveConfig and ClearConfig write; any other one of the file is kept as it is
+        private static readonly string[] OwnSections = { "Auth", "Profile", "Preferences" };
+
+        /// <summary>
+        /// The lines of the sections of the file at <paramref name="path"/> that <see cref="SaveConfig"/> does not write
+        /// (the AI of the schemas screen, what the Delphi designer keeps), each preceded by an empty line: rewriting the
+        /// session must not lose them.
+        /// </summary>
+        internal static List<string> OtherSections(string path)
+        {
+            var result = new List<string>();
+            if (!File.Exists(path))
+                return result;
+            bool keep = false;
+            foreach (string raw in File.ReadAllLines(path))
+            {
+                string line = raw.Trim();
+                if (line.StartsWith("[") && line.EndsWith("]"))
+                {
+                    string section = line.Substring(1, line.Length - 2);
+                    keep = Array.FindIndex(OwnSections, s => string.Equals(s, section, StringComparison.OrdinalIgnoreCase)) < 0;
+                    if (keep)
+                        result.Add("");
+                }
+                if (keep && line.Length > 0)
+                    result.Add(raw);
+            }
+            return result;
+        }
+
+        /// <summary>Removes the section <paramref name="section"/> (its header and its lines) from <paramref name="lines"/>.</summary>
+        internal static void RemoveSection(List<string> lines, string section)
+        {
+            int i = 0;
+            bool inside = false;
+            while (i < lines.Count)
+            {
+                string line = lines[i].Trim();
+                if (line.StartsWith("[") && line.EndsWith("]"))
+                    inside = string.Equals(line.Substring(1, line.Length - 2), section, StringComparison.OrdinalIgnoreCase);
+                if (inside)
+                    lines.RemoveAt(i);
+                else
+                    i++;
             }
         }
 

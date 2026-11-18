@@ -1467,6 +1467,63 @@ namespace Reportman.Reporting
             return true;
         }
 
+        private static readonly System.Text.RegularExpressions.Regex PlainIdentifier =
+            new System.Text.RegularExpressions.Regex("^[A-Za-z_][A-Za-z0-9_$]*$", System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+
+        /// <summary>
+        /// A name for the SQL of the dialect: as it is when it needs no quotes (a plain identifier in the case
+        /// the database folds to), else quoted as the dialect quotes.
+        /// </summary>
+        public static string QuoteIdentifier(string dialect, string name)
+        {
+            string d = CloudDialect(dialect);
+            name = name ?? "";
+            bool plain = PlainIdentifier.IsMatch(name);
+            if (d.StartsWith("Firebird", StringComparison.Ordinal) || d == "Oracle")
+            {
+                // Firebird dialect 1 has no quoted identifiers at all
+                if ((plain && name == name.ToUpperInvariant()) || d == "Firebird2Dialect1")
+                    return name;
+                return "\"" + name.Replace("\"", "\"\"") + "\"";
+            }
+            if (d == "PostgreSQL")
+                return plain && name == name.ToLowerInvariant() ? name : "\"" + name.Replace("\"", "\"\"") + "\"";
+            if (plain)
+                return name;
+            if (d == "SQLServer")
+                return "[" + name.Replace("]", "]]") + "]";
+            if (d == "MySQL")
+                return "`" + name.Replace("`", "``") + "`";
+            return "\"" + name.Replace("\"", "\"\"") + "\"";
+        }
+
+        /// <summary>
+        /// The SQL that reads the first <paramref name="rows"/> rows of a table in a dialect;
+        /// <paramref name="limited"/> is false when the dialect is not known and the reader must stop by itself.
+        /// </summary>
+        public static string PreviewSql(string dialect, string table, int rows, out bool limited)
+        {
+            string d = CloudDialect(dialect);
+            string name = QuoteIdentifier(d, table);
+            string count = rows.ToString(CultureInfo.InvariantCulture);
+            limited = true;
+            if (d.StartsWith("Firebird", StringComparison.Ordinal))
+                return "SELECT FIRST " + count + " * FROM " + name;
+            switch (d)
+            {
+                case "SQLServer":
+                    return "SELECT TOP " + count + " * FROM " + name;
+                case "PostgreSQL":
+                case "MySQL":
+                case "SQLite":
+                    return "SELECT * FROM " + name + " LIMIT " + count;
+                case "Oracle":
+                    return "SELECT * FROM " + name + " WHERE ROWNUM <= " + count;
+            }
+            limited = false;
+            return "SELECT * FROM " + name;
+        }
+
         /// <summary>
         /// A Reportman AI dialect name for whatever the file says: the exact names pass, a plain
         /// "Firebird" (or another family name written by hand) becomes the closest one, anything else Default.

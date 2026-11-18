@@ -37,8 +37,6 @@ namespace Reportman.Designer
     /// </summary>
     internal static class LocalSchemaEditing
     {
-        private static readonly Regex PlainIdentifier = new Regex("^[A-Za-z_][A-Za-z0-9_$]*$", RegexOptions.CultureInvariant);
-
         /// <summary>The table of the catalog with that name (ignoring case), or null.</summary>
         public static LocalSchemaTable FindTable(LocalSchemaFile file, string name)
         {
@@ -1417,25 +1415,8 @@ namespace Reportman.Designer
         /// </summary>
         public static string QuoteIdentifier(string dialect, string name)
         {
-            string d = LocalSchemaStore.CloudDialect(dialect);
-            name = name ?? "";
-            bool plain = PlainIdentifier.IsMatch(name);
-            if (d.StartsWith("Firebird", StringComparison.Ordinal) || d == "Oracle")
-            {
-                // Firebird dialect 1 has no quoted identifiers at all
-                if ((plain && name == name.ToUpperInvariant()) || d == "Firebird2Dialect1")
-                    return name;
-                return "\"" + name.Replace("\"", "\"\"") + "\"";
-            }
-            if (d == "PostgreSQL")
-                return plain && name == name.ToLowerInvariant() ? name : "\"" + name.Replace("\"", "\"\"") + "\"";
-            if (plain)
-                return name;
-            if (d == "SQLServer")
-                return "[" + name.Replace("]", "]]") + "]";
-            if (d == "MySQL")
-                return "`" + name.Replace("`", "``") + "`";
-            return "\"" + name.Replace("\"", "\"\"") + "\"";
+            // In Reportman.Reporting since the schema generator reads rows too (it runs in the Server as well)
+            return LocalSchemaStore.QuoteIdentifier(dialect, name);
         }
 
         /// <summary>
@@ -1444,25 +1425,7 @@ namespace Reportman.Designer
         /// </summary>
         public static string PreviewSql(string dialect, string table, int rows, out bool limited)
         {
-            string d = LocalSchemaStore.CloudDialect(dialect);
-            string name = QuoteIdentifier(d, table);
-            string count = rows.ToString(CultureInfo.InvariantCulture);
-            limited = true;
-            if (d.StartsWith("Firebird", StringComparison.Ordinal))
-                return "SELECT FIRST " + count + " * FROM " + name;
-            switch (d)
-            {
-                case "SQLServer":
-                    return "SELECT TOP " + count + " * FROM " + name;
-                case "PostgreSQL":
-                case "MySQL":
-                case "SQLite":
-                    return "SELECT * FROM " + name + " LIMIT " + count;
-                case "Oracle":
-                    return "SELECT * FROM " + name + " WHERE ROWNUM <= " + count;
-            }
-            limited = false;
-            return "SELECT * FROM " + name;
+            return LocalSchemaStore.PreviewSql(dialect, table, rows, out limited);
         }
 
         /// <summary>

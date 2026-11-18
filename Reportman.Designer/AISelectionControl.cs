@@ -51,6 +51,10 @@ namespace Reportman.Designer
         /// Occurs when the selected provider changes (<see cref="SelectedTier"/> may be different).
         /// </summary>
         public event EventHandler ProviderChanged;
+        /// <summary>
+        /// Occurs when the selected mode changes (<see cref="SelectedMode"/>): a screen that keeps its own choice saves it.
+        /// </summary>
+        public event EventHandler ModeChanged;
 
         private sealed class ProgressTokenEntry
         {
@@ -149,6 +153,7 @@ namespace Reportman.Designer
             // Reasoning by default: Fast changed the data right, but laid out a new column over another
             // one (the onboarding test of 07-11-2026); a mode the user chose stays (SelectedMode)
             _comboMode.SelectedIndex = 1;
+            _comboMode.SelectedIndexChanged += (s, e) => ModeChanged?.Invoke(this, EventArgs.Empty);
 
             // Credit gauge panel (custom painted circle)
             _panelGauge = new Panel

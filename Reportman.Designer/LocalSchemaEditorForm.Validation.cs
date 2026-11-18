@@ -57,7 +57,12 @@ namespace Reportman.Designer
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
-            _aiSelection.ProviderChanged += (s, e) => PlanLimitsChanged();
+            _aiSelection.ProviderChanged += (s, e) =>
+            {
+                PlanLimitsChanged();
+                KeepSchemaAI(_aiSelection);
+            };
+            _aiSelection.ModeChanged += (s, e) => KeepSchemaAI(_aiSelection);
             var aiRow = new TableLayoutPanel
             {
                 Dock = DockStyle.Top,

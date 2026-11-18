@@ -133,6 +133,7 @@ namespace Reportman.Designer
         private Button _btnExportAll;
         private Button _btnImportAll;
         private Button _btnLibrary;
+        private Button _btnGenerate;
         private TextBox _txtSchemaDescription;
         private Label _lblTablesCounter;
         private Label _lblColumnsCounter;
@@ -255,15 +256,17 @@ namespace Reportman.Designer
             _createConnection = createConnection;
             _ai = analysis ?? new LocalSchemaAnalysisSettings();
             InitializeComponent();
-            _aiSelection.RestoreProviderSelection(_ai.Tier, _ai.AgentAiId);
-            _aiSelection.SelectedMode = _ai.Mode;
+            // The AI of this screen is its own choice, not the panel's that opened it ([SchemaAI] of reportman_auth.ini,
+            // Precision and Fast by default): «Analyze with AI» and «Generate with AI» share it
+            // (docs/generar-esquema-con-ia-plan.md §2.3.1)
+            RestoreSchemaAI(_aiSelection);
             RpAuthManager.Instance.AuthChanged += OnAuthChanged;
             Shown += async (s, e) =>
             {
                 // The user's Agents for the AI of the analysis (its Agent, when it came selected), while
                 // the file is read
                 _aiSelection.RefreshState();
-                _ = _aiSelection.LoadUserAgentsAsync(_ai.Tier, _ai.AgentAiId);
+                _ = LoadSchemaAIAgentsAsync(_aiSelection);
                 await LoadFileAsync();
                 // Opened to add a subschema: the name is asked as soon as the tables are known
                 if (_startAdding && !IsDisposed)
@@ -455,6 +458,10 @@ namespace Reportman.Designer
             // The same import from the schema library of Reportman AI instead of a file
             _btnLibrary = new Button { Text = Tr(1986), Dock = DockStyle.Fill };
             _btnLibrary.Click += (s, e) => ImportFromLibrary();
+            // A new subschema written by the AI from what it reads of the database
+            _btnGenerate = new Button { Text = Tr(2057), Dock = DockStyle.Fill };
+            _btnGenerate.Click += (s, e) => GenerateWithAi();
+            _toolTip.SetToolTip(_btnGenerate, Tr(2059));
             _toolTip.SetToolTip(_btnExport, Tr(1933));
             _toolTip.SetToolTip(_btnImport, Tr(1934));
             _toolTip.SetToolTip(_btnExportAll, Tr(2045));
@@ -469,7 +476,7 @@ namespace Reportman.Designer
             buttons.Controls.Add(_btnExportAll, 0, 3);
             buttons.Controls.Add(_btnImportAll, 1, 3);
             buttons.Controls.Add(_btnLibrary, 0, 4);
-            buttons.SetColumnSpan(_btnLibrary, 2);
+            buttons.Controls.Add(_btnGenerate, 1, 4);
 
             var description = new Panel { Dock = DockStyle.Bottom, Height = 110, Padding = new Padding(0, 6, 0, 0) };
             var lblDescription = new Label { Text = Tr(197), Dock = DockStyle.Top, Height = 20 };
@@ -717,6 +724,7 @@ namespace Reportman.Designer
             _btnExportAll.Enabled = hasFile;
             _btnImportAll.Enabled = hasFile;
             _btnLibrary.Enabled = hasFile;
+            _btnGenerate.Enabled = hasFile && _createConnection != null;
             _txtSchemaDescription.Enabled = _current != null;
             _btnRefresh.Enabled = !_busy && _createConnection != null;
             UpdateTablesButtons();

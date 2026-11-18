@@ -128,6 +128,25 @@ namespace designer
                     return;
                 }
 
+                // designer.exe /generateschematest [/sqlite <copy of a .db>] [/fbini <connections ini with [FBEXAMPLE]>]
+                // [/tokenfile <file> /installid <id>] [/tier Standard|Precision] [/mode Fast|Reasoning] [/domain <text>]
+                // [/out <txt>] -> headless checks of «Generate with AI» of the local schemas: the reads of the generator on
+                // a SQLite database made here and, with a token, the whole generation against the API and its import in a
+                // temporary folder; the exit code is 1 when one fails
+                if (HasArg(args, "/generateschematest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generateschematest.txt");
+                    int failed;
+                    System.IO.File.WriteAllText(outFile, Reportman.Designer.DesignerSelfTestGenerateSchema.Run(
+                        GetArgValue(args, "/sqlite"), GetArgValue(args, "/fbini"), GetArgValue(args, "/tokenfile"),
+                        GetArgValue(args, "/installid"), GetArgValue(args, "/tier"), GetArgValue(args, "/mode"),
+                        GetArgValue(args, "/domain"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
+
                 Application.Run(new Reportman.Designer.MainForm());
             }
             catch(Exception ex)

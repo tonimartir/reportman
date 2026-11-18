@@ -576,6 +576,144 @@ namespace Reportman.Reporting
             return result;
         }
 
+        /// <summary>
+        /// The names of the user tables and views of an open connection, as the catalog spells them and in its order,
+        /// without their columns: the first thing the schema generator asks for (docs/generar-esquema-con-ia-plan.md).
+        /// </summary>
+        /// <param name="connection">The connection (opened here when it is closed).</param>
+        /// <param name="cancellationToken">Stops the read.</param>
+        public static Task<List<string>> ReadTableNamesAsync(DbConnection connection, CancellationToken cancellationToken)
+        {
+            if (connection == null)
+                throw new ArgumentNullException("connection");
+            var tracker = new DatabaseReadTracker(null);
+            return RunAsync(tracker, cancellationToken, async () =>
+            {
+                await tracker.OpenAsync(connection, cancellationToken).ConfigureAwait(false);
+                List<CatalogName> names = await TableNamesAsync(connection, FamilyOf(connection), tracker, cancellationToken).ConfigureAwait(false);
+                var result = new List<string>(names.Count);
+                foreach (CatalogName name in names)
+                    result.Add(name.Name);
+                return result;
+            });
+        }
+
+        /// <summary>
+        /// Every foreign key in which one of <paramref name="tables"/> takes part, as its source OR as its target (the
+        /// relations of the schema generator: a table of invoices is understood by the lines that point to it too), each
+        /// once, with its source table. Firebird, SQLite and the INFORMATION_SCHEMA family (PostgreSQL, SQL Server, MySQL)
+        /// read the keys of the whole database and keep those; any other provider (and a Hub connection) gives only the keys
+        /// going out of the tables, and says so with <see cref="CatalogRelations.IncludesIncoming"/> false.
+        /// </summary>
+        /// <param name="connection">The connection (opened here when it is closed).</param>
+        /// <param name="tables">The names of the tables (ignoring case).</param>
+        /// <param name="cancellationToken">Stops the read.</param>
+        public static Task<CatalogRelations> ReadRelationsAsync(DbConnection connection, IEnumerable<string> tables,
+            CancellationToken cancellationToken)
+        {
+            if (connection == null)
+                throw new ArgumentNullException("connection");
+            var tracker = new DatabaseReadTracker(null);
+            return RunAsync(tracker, cancellationToken, () => ReadRelationsCoreAsync(connection, tables, tracker, cancellationToken));
+        }
+
+        private static async Task<CatalogRelations> ReadRelationsCoreAsync(DbConnection connection, IEnumerable<string> tables,
+            DatabaseReadTracker tracker, CancellationToken cancellationToken)
+        {
+            var result = new CatalogRelations();
+            var wanted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            if (tables != null)
+                foreach (string name in tables)
+                    if (!string.IsNullOrWhiteSpace(name))
+                        wanted.Add(name.Trim());
+            if (wanted.Count == 0)
+                return result;
+            await tracker.OpenAsync(connection, cancellationToken).ConfigureAwait(false);
+            Family family = FamilyOf(connection);
+
+            // Every foreign key of the database by source table, where one query (or one per table in SQLite) gives them
+            Dictionary<string, List<LocalSchemaForeignKey>> all = null;
+            if (family == Family.PostgreSQL || family == Family.MySQL || family == Family.SQLServer)
+                all = await InformationSchemaForeignKeysAsync(connection, family, null, tracker, cancellationToken).ConfigureAwait(false);
+            else if (family == Family.Firebird)
+                all = FirebirdAllForeignKeys(connection, tracker, cancellationToken);
+            else if (family == Family.SQLite)
+            {
+                all = new Dictionary<string, List<LocalSchemaForeignKey>>(StringComparer.OrdinalIgnoreCase);
+                foreach (CatalogName name in await TableNamesAsync(connection, family, tracker, cancellationToken).ConfigureAwait(false))
+                {
+                    var table = new LocalSchemaTable { Name = name.Name };
+                    try { await SqliteForeignKeysAsync(connection, table, tracker, cancellationToken).ConfigureAwait(false); }
+                    catch (Exception) when (!cancellationToken.IsCancellationRequested) { continue; }
+                    if (table.ForeignKeys.Count > 0)
+                        all[name.Name] = table.ForeignKeys;
+                }
+            }
+
+            if (all != null)
+            {
+                result.IncludesIncoming = true;
+                foreach (KeyValuePair<string, List<LocalSchemaForeignKey>> pair in all)
+                    foreach (LocalSchemaForeignKey fk in pair.Value)
+                        if (wanted.Contains(pair.Key) || wanted.Contains(fk.TargetTable))
+                            result.Add(pair.Key, fk);
+                return result;
+            }
+
+            // Only the keys going out of each table, as the screen reads them
+            foreach (LocalSchemaTable table in await ReadTableDetailsCoreAsync(connection, wanted, tracker, cancellationToken).ConfigureAwait(false))
+                foreach (LocalSchemaForeignKey fk in table.ForeignKeys)
+                    result.Add(table.Name, fk);
+            result.IncludesIncoming = false;
+            return result;
+        }
+
+        /// <summary>Every foreign key of a Firebird database by source table (the provider's collection without restrictions).</summary>
+        private static Dictionary<string, List<LocalSchemaForeignKey>> FirebirdAllForeignKeys(DbConnection connection, DatabaseReadTracker tracker,
+            CancellationToken cancellationToken)
+        {
+            var result = new Dictionary<string, List<LocalSchemaForeignKey>>(StringComparer.OrdinalIgnoreCase);
+            DataTable rows = Collection(connection, "ForeignKeyColumns", null, tracker, cancellationToken);
+            var groups = new Dictionary<string, List<DataRow>>(StringComparer.OrdinalIgnoreCase);
+            var order = new List<string>();
+            foreach (DataRow r in rows.Rows)
+            {
+                string key = (Convert.ToString(r["TABLE_NAME"]) ?? "").Trim() + "\u0001" + (Convert.ToString(r["CONSTRAINT_NAME"]) ?? "").Trim();
+                List<DataRow> list;
+                if (!groups.TryGetValue(key, out list))
+                {
+                    list = new List<DataRow>();
+                    groups.Add(key, list);
+                    order.Add(key);
+                }
+                list.Add(r);
+            }
+            foreach (string key in order)
+            {
+                List<DataRow> list = groups[key];
+                list.Sort((a, b) => Convert.ToInt32(a["ORDINAL_POSITION"]).CompareTo(Convert.ToInt32(b["ORDINAL_POSITION"])));
+                string source = (Convert.ToString(list[0]["TABLE_NAME"]) ?? "").Trim();
+                var fk = new LocalSchemaForeignKey
+                {
+                    ConstraintName = (Convert.ToString(list[0]["CONSTRAINT_NAME"]) ?? "").Trim(),
+                    TargetTable = (Convert.ToString(list[0]["REFERENCED_TABLE_NAME"]) ?? "").Trim()
+                };
+                foreach (DataRow r in list)
+                {
+                    fk.SourceColumns.Add((Convert.ToString(r["COLUMN_NAME"]) ?? "").Trim());
+                    fk.TargetColumns.Add((Convert.ToString(r["REFERENCED_COLUMN_NAME"]) ?? "").Trim());
+                }
+                List<LocalSchemaForeignKey> keys;
+                if (!result.TryGetValue(source, out keys))
+                {
+                    keys = new List<LocalSchemaForeignKey>();
+                    result.Add(source, keys);
+                }
+                keys.Add(fk);
+            }
+            return result;
+        }
+
         private static Task<List<CatalogName>> TableNamesAsync(DbConnection connection, Family family, DatabaseReadTracker tracker,
             CancellationToken cancellationToken)
         {
