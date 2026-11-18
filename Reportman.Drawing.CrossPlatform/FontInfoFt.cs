@@ -1691,18 +1691,23 @@ namespace Reportman.Drawing
         /// <summary>Whether the face of a font file (lower 16 bits of the index in a collection) has CFF outlines (sfnt 'OTTO').</summary>
         private static bool CaraConContornosCFF(byte[] datos, int indiceCara)
         {
+            long dir = DirectorioDeCara(datos, indiceCara);
+            return dir >= 0 && PDFCanvas.SfntIsCFF(datos, dir);
+        }
+        /// <summary>The offset of the table directory of a face (lower 16 bits of the index in a collection), -1 when it cannot be read.</summary>
+        private static long DirectorioDeCara(byte[] datos, int indiceCara)
+        {
             if (datos == null || datos.Length < 16)
-                return false;
+                return -1;
             long dir = 0;
             if (datos[0] == 't' && datos[1] == 't' && datos[2] == 'c' && datos[3] == 'f')
             {
                 long rec = 12 + (long)(indiceCara & 0xFFFF) * 4;
                 if (rec + 4 > datos.Length)
-                    return false;
+                    return -1;
                 dir = ((long)datos[rec] << 24) | ((long)datos[rec + 1] << 16) | ((long)datos[rec + 2] << 8) | datos[rec + 3];
             }
-            return dir + 4 <= datos.Length && datos[dir] == 'O' && datos[dir + 1] == 'T'
-                && datos[dir + 2] == 'T' && datos[dir + 3] == 'O';
+            return dir;
         }
         /// <summary>Builds a subsetted TrueType font stream containing only the glyphs used in <paramref name="data"/>.</summary>
         /// <param name="data">The metric container holding the used glyphs and the source font bytes.</param>
@@ -1722,9 +1727,20 @@ namespace Reportman.Drawing
             //
             // NOT FOR CFF OUTLINES (12-10-2026): the PDF declares them as a CIDFontType0, which has
             // no /CIDToGIDMap and takes the CID as the glyph number, so they keep their numbers.
+            // Except a CID-keyed CFF whose CIDs are its glyph numbers (18-11-2026): it is renumbered
+            // without a map, its charset keeps the CIDs (HbSubset, CFFKeepsCIDs).
             SortedList<int, int> mapa;
+            bool cff = CaraConContornosCFF(data.FontData.Data, caraSubset);
+            bool cffConservaCids = false;
+            if (cff)
+            {
+                bool porCid;
+                cffConservaCids = PDFCanvas.CFFGlyphsAreCIDs(data.FontData.Data,
+                    DirectorioDeCara(data.FontData.Data, caraSubset), out porCid) && porCid;
+            }
             byte[] porHarfBuzz = HbSubset.Subset(data.FontData.Data, caraSubset, data.Glyphs.Values,
-                compacto: !CaraConContornosCFF(data.FontData.Data, caraSubset), out mapa);
+                !cff, cffConservaCids, !data.IsUnicode, out mapa);
+            data.CFFKeepsCIDs = porHarfBuzz != null && cffConservaCids;
             if (porHarfBuzz != null)
             {
                 data.GlyphMap = mapa;

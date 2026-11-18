@@ -88,6 +88,17 @@ namespace PdfCompactSubsetTest
             return total;
         }
 
+        static List<string> Tables(byte[] font)
+        {
+            List<string> result = new List<string>();
+            if (font == null || font.Length < 12)
+                return result;
+            int count = (font[4] << 8) | font[5];
+            for (int i = 0; i < count && 12 + i * 16 + 4 <= font.Length; i++)
+                result.Add(Encoding.ASCII.GetString(font, 12 + i * 16, 4));
+            return result;
+        }
+
         static string Payload(string pdf)
         {
             return string.Join("|", Regex.Matches(pdf, @"<([0-9A-Fa-f]+)>\s*Tj").Cast<Match>().Select(m => m.Groups[1].Value));
@@ -120,6 +131,14 @@ namespace PdfCompactSubsetTest
                     "New glyph indices are small and distinct", map == null ? "" : string.Join(",", map.Select(kv => kv.Key + "->" + kv.Value)));
                 Check(compact != null && retained != null && compact.Length < retained.Length,
                     "Compact subset is smaller than the retained one", (compact == null ? -1 : compact.Length) + " vs " + (retained == null ? -1 : retained.Length));
+                // Only the tables a PDF reads (ISO 32000-1, 9.9), in both kinds of subset
+                string[] pdfTables = { "glyf", "loca", "head", "hhea", "hmtx", "maxp", "cvt ", "fpgm", "prep" };
+                foreach (byte[] sub in new[] { compact, retained })
+                {
+                    List<string> tags = Tables(sub);
+                    Check(tags.Count > 0 && tags.All(t => pdfTables.Contains(t)) && tags.Contains("glyf") && tags.Contains("hmtx"),
+                        "The subset holds only the tables a PDF reads", string.Join(",", tags));
+                }
 
                 // --- 2..5. Through the PDF driver ---
                 string pdfCompact = Encoding.Latin1.GetString(Pdf(true));
