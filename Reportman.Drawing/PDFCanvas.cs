@@ -5234,10 +5234,15 @@ namespace Reportman.Drawing
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, "xref");
             SWriteLine(FTempStream, "0 " + FObjectCount.ToString());
-            SWriteLine(FTempStream, "0000000000 65535 f");
+            // Every entry is exactly 20 bytes: its end of line is two characters (ISO 32000-1,
+            // 7.5.4). With the lone line feed of PDF/A the entries were 19 bytes, and a reader that
+            // seeks entry n at 20*n bytes reads the wrong offsets; a space goes before it. PDF 1.4
+            // already ends them with CR LF and is written as before.
+            string finEntrada = PDFConformance == PDFConformanceType.PDF_1_4 ? "" : " ";
+            SWriteLine(FTempStream, "0000000000 65535 f" + finEntrada);
 
             for (i = 0; i <= FObjectCount - 2; i++)
-                SWriteLine(FTempStream, GetOffsetNumber(FObjectOffsets[i].ToString()) + " 00000 n");
+                SWriteLine(FTempStream, GetOffsetNumber(FObjectOffsets[i].ToString()) + " 00000 n" + finEntrada);
 
             SWriteLine(FTempStream, "trailer");
             SWriteLine(FTempStream, "<< /Size " + FObjectCount.ToString());
