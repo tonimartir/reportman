@@ -62,6 +62,42 @@ namespace Reportman.Drawing
         // numero fue a parar cada glifo — el escritor de PDF traduce con un /CIDToGIDMap.
         private const uint HB_SUBSET_FLAGS_RETAIN_GIDS = 2;
         private const uint HB_MAP_VALUE_INVALID = 0xFFFFFFFF;
+        // hb_subset_sets_t: the set of the tables the subset leaves out
+        private const int HB_SUBSET_SETS_DROP_TABLE_TAG = 3;
+
+        // ONLY THE TABLES A PDF READS (18-11-2026, as rpHarfBuzz.pas RpHBDropTablesForPDF). hb-subset
+        // keeps every table of the font it knows how to subset: GSUB, GPOS, GDEF, name, post, OS/2,
+        // cmap, hdmx, VDMX, vhea/vmtx, MATH... A PDF shapes nothing and reads none of them, and they
+        // took a quarter to a half of every embedded font (Arial: hdmx alone, 83 KB of 160 KB). A
+        // TrueType font program keeps the tables of ISO 32000-1, 9.9, the ones TrueTypeFontSubSet
+        // writes, plus cmap for a simple font, which selects its glyphs through it. A font with CFF
+        // outlines keeps the CFF and the tables every OpenType font has.
+        private static readonly uint[] TablasTrueType =
+        {
+            0x676C7966, // glyf
+            0x6C6F6361, // loca
+            0x68656164, // head
+            0x68686561, // hhea
+            0x686D7478, // hmtx
+            0x6D617870, // maxp
+            0x63767420, // 'cvt '
+            0x6670676D, // fpgm
+            0x70726570, // prep
+        };
+        private static readonly uint[] TablasCFF =
+        {
+            0x43464620, // 'CFF '
+            0x68656164, // head
+            0x68686561, // hhea
+            0x686D7478, // hmtx
+            0x6D617870, // maxp
+            0x636D6170, // cmap
+            0x6E616D65, // name
+            0x4F532F32, // OS/2
+            0x706F7374, // post
+        };
+        private const uint TAG_CFF = 0x43464620;
+        private const uint TAG_CMAP = 0x636D6170;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr BlobCreate(IntPtr data, uint length, uint mode, IntPtr userData, IntPtr destroy);
@@ -85,6 +121,14 @@ namespace Reportman.Drawing
         private delegate IntPtr PlanCreate(IntPtr face, IntPtr input);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate uint MapGet(IntPtr map, uint key);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr InputSet(IntPtr input, int setType);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint GetTableTags(IntPtr face, uint startOffset, ref uint tableCount, [Out] uint[] tags);
+
+        // Optional (HarfBuzz 2.9.1): without them every table is kept, as before
+        private static InputSet hb_subset_input_set;
+        private static GetTableTags hb_face_get_table_tags;
 
         // La API de plan (HarfBuzz >= 4.0): el mismo subset en dos pasos, con el mapa de
         // glifos viejo -> nuevo a la vista entre uno y otro.
@@ -188,10 +232,27 @@ namespace Reportman.Drawing
         public static byte[] Subset(byte[] fuente, int caraIndice, IEnumerable<int> glifos,
             bool compacto, out SortedList<int, int> mapa)
         {
+            return Subset(fuente, caraIndice, glifos, compacto, false, false, out mapa);
+        }
+
+        /// <summary>
+        /// The same, with two more choices. <paramref name="renumeraConservandoCids"/>: a CID-keyed
+        /// CFF font whose CIDs are its glyph numbers (Noto Sans CJK, Source Han) is renumbered with no
+        /// map at all (18-11-2026): its subset keeps every glyph's CID in the charset, and a
+        /// CIDFontType0 selects glyphs by CID, so the content stream still draws the right ones — and
+        /// keeping the numbers took the whole CharStrings INDEX and hmtx (Noto Sans CJK JP with 34
+        /// glyphs: 155 KB compressed instead of 7 KB). <paramref name="conservaCmap"/>: a simple font
+        /// selects its glyphs through the cmap; a CID font does not need it.
+        /// </summary>
+        public static byte[] Subset(byte[] fuente, int caraIndice, IEnumerable<int> glifos,
+            bool compacto, bool renumeraConservandoCids, bool conservaCmap, out SortedList<int, int> mapa)
+        {
             mapa = null;
             Init();
             if (!Available || fuente == null || fuente.Length == 0)
                 return null;
+            if (renumeraConservandoCids)
+                compacto = false;
             bool conPlan = compacto && CompactSubsets && hb_subset_plan_create_or_fail != null
                 && hb_subset_plan_execute_or_fail != null
                 && hb_subset_plan_old_to_new_glyph_mapping != null
@@ -213,8 +274,9 @@ namespace Reportman.Drawing
                 input = hb_subset_input_create_or_fail();
                 if (input == IntPtr.Zero) return null;
                 PinVariableAxes(input, face, (uint)caraIndice >> 16);
+                QuitaTablasQueElPdfNoLee(input, face, conservaCmap);
 
-                if (!conPlan && hb_subset_input_set_flags != null)
+                if (!conPlan && !renumeraConservandoCids && hb_subset_input_set_flags != null)
                     hb_subset_input_set_flags(input, HB_SUBSET_FLAGS_RETAIN_GIDS);
                 IntPtr conjunto = hb_subset_input_glyph_set(input);
                 if (conjunto == IntPtr.Zero) return null;
@@ -318,6 +380,33 @@ namespace Reportman.Drawing
                 hb_subset_input_pin_axis_location(input, face, axes[i].Tag, coords[i]);
         }
 
+        /// <summary>Adds to the subset's drop set every table of the face a PDF does not read.</summary>
+        private static void QuitaTablasQueElPdfNoLee(IntPtr input, IntPtr face, bool conservaCmap)
+        {
+            if (hb_subset_input_set == null || hb_face_get_table_tags == null)
+                return;
+            uint cuantas = 256;
+            uint[] tags = new uint[cuantas];
+            hb_face_get_table_tags(face, 0, ref cuantas, tags);
+            if (cuantas == 0)
+                return;
+            IntPtr fuera = hb_subset_input_set(input, HB_SUBSET_SETS_DROP_TABLE_TAG);
+            if (fuera == IntPtr.Zero)
+                return;
+            bool cff = false;
+            for (int i = 0; i < cuantas; i++)
+                if (tags[i] == TAG_CFF)
+                    cff = true;
+            uint[] seQuedan = cff ? TablasCFF : TablasTrueType;
+            for (int i = 0; i < cuantas; i++)
+            {
+                if (conservaCmap && tags[i] == TAG_CMAP)
+                    continue;
+                if (Array.IndexOf(seQuedan, tags[i]) < 0)
+                    hb_set_add(fuera, tags[i]);
+            }
+        }
+
         private static uint TableLength(IntPtr face, uint tag)
         {
             IntPtr table = hb_face_reference_table(face, tag);
@@ -375,6 +464,9 @@ namespace Reportman.Drawing
             hb_subset_input_pin_axis_location = Bind<PinAxisLocation>("hb_subset_input_pin_axis_location");
             hb_face_reference_table = Bind<FaceReferenceTable>("hb_face_reference_table");
             hb_blob_get_length = Bind<BlobGetLength>("hb_blob_get_length");
+            // Only the tables a PDF reads: optional, as the plan API
+            hb_subset_input_set = Bind<InputSet>("hb_subset_input_set");
+            hb_face_get_table_tags = Bind<GetTableTags>("hb_face_get_table_tags");
 
             // `set_flags` es opcional (no esta en las HarfBuzz mas viejas); el resto no.
             return hb_blob_create != null && hb_blob_destroy != null && hb_blob_get_data != null

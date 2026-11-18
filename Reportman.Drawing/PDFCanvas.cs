@@ -1487,11 +1487,37 @@ namespace Reportman.Drawing
             return code;
         }
         /// <summary>Whether the font at <paramref name="baseOffset"/> has CFF outlines (sfnt version 'OTTO').</summary>
-        internal static bool SfntIsCFF(byte[] datos, long baseOffset)
+        public static bool SfntIsCFF(byte[] datos, long baseOffset)
         {
             return datos != null && baseOffset >= 0 && baseOffset + 4 <= datos.Length
                 && datos[baseOffset] == 'O' && datos[baseOffset + 1] == 'T'
                 && datos[baseOffset + 2] == 'T' && datos[baseOffset + 3] == 'O';
+        }
+        /// <summary>The 'CFF ' table of the font at <paramref name="baseOffset"/>, alone; null when it has none or cannot be read.</summary>
+        internal static byte[] SfntCFFTable(byte[] datos, long baseOffset)
+        {
+            if (datos == null || baseOffset < 0 || baseOffset + 12 > datos.Length)
+                return null;
+            int tables = (datos[baseOffset + 4] << 8) | datos[baseOffset + 5];
+            for (int i = 0; i < tables; i++)
+            {
+                long rec = baseOffset + 12 + (long)i * 16;
+                if (rec + 16 > datos.Length)
+                    return null;
+                if (datos[rec] == 'C' && datos[rec + 1] == 'F' && datos[rec + 2] == 'F' && datos[rec + 3] == ' ')
+                {
+                    long offset = ((long)datos[rec + 8] << 24) | ((long)datos[rec + 9] << 16)
+                        | ((long)datos[rec + 10] << 8) | datos[rec + 11];
+                    long len = ((long)datos[rec + 12] << 24) | ((long)datos[rec + 13] << 16)
+                        | ((long)datos[rec + 14] << 8) | datos[rec + 15];
+                    if (len <= 0 || offset + len > datos.Length)
+                        return null;
+                    byte[] tabla = new byte[len];
+                    Array.Copy(datos, offset, tabla, 0, len);
+                    return tabla;
+                }
+            }
+            return null;
         }
         /// <summary>
         /// Whether the glyph numbers of the CFF font at <paramref name="baseOffset"/> are its CIDs, as a
@@ -1501,8 +1527,15 @@ namespace Reportman.Drawing
         /// as CFF when its charset is the identity (Adobe Identity: Noto Sans CJK, Source Han); false
         /// when it is not or cannot be read.
         /// </summary>
-        internal static bool CFFGlyphsAreCIDs(byte[] datos, long baseOffset)
+        public static bool CFFGlyphsAreCIDs(byte[] datos, long baseOffset)
         {
+            bool cidKeyed;
+            return CFFGlyphsAreCIDs(datos, baseOffset, out cidKeyed);
+        }
+        /// <summary>The same, and whether the font is CID-keyed (ROS in its Top DICT).</summary>
+        public static bool CFFGlyphsAreCIDs(byte[] datos, long baseOffset, out bool cidKeyedFont)
+        {
+            cidKeyedFont = false;
             if (datos == null)
                 return false;
             long size = datos.Length;
@@ -1593,6 +1626,7 @@ namespace Reportman.Drawing
                     else if (b0 >= 251 && b0 <= 254) { operand = -(b0 - 251) * 256 - U8(p + 1) - 108; p += 2; }
                     else p++;
                 }
+                cidKeyedFont = cidKeyed;
                 if (!cidKeyed)
                     return true;
                 // A CID-keyed font: its charset must give each glyph its own number as CID
@@ -3769,6 +3803,7 @@ namespace Reportman.Drawing
                     FTempStream.SetLength(0);
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                     adata.FontProgramIsSubset = false;
+                    adata.CFFKeepsCIDs = false;
                     MemoryStream fontcontent = Canvas.InfoProvider.GetFontStream(adata);
                     // A subset carries a tag of six capital letters and + before its name (ISO
                     // 32000-1, 9.6.4) in /FontName and /BaseFont; a whole font program does not
@@ -3785,11 +3820,37 @@ namespace Reportman.Drawing
                     // goes as /FontFile3 /OpenType with a CIDFontType0 when its glyph numbers are its
                     // CIDs (CFFGlyphsAreCIDs) and its glyphs were not renumbered (a CIDFontType0 has
                     // no CIDToGIDMap); otherwise it stays as it was.
+                    // A SUBSET THAT RENUMBERED THE GLYPHS of a CID-keyed font whose CIDs are its glyph
+                    // numbers (CFFKeepsCIDs, 18-11-2026) keeps the CID of every glyph in its charset.
+                    // It goes as its CFF alone, /FontFile3 /CIDFontType0C: a CIDFontType0 selects the
+                    // glyph of a CID through that charset (ISO 32000-1, 9.7.4.2), and FreeType, so
+                    // Poppler, only applies it to a bare CFF; inside an OpenType font it takes the CID
+                    // as the glyph number.
                     byte[] programa = fontcontent?.ToArray();
-                    adata.CFFOpenType = !adata.Type1 && (adata.GlyphMap == null || adata.GlyphMap.Count == 0)
-                        && PDFCanvas.SfntIsCFF(programa, 0) && PDFCanvas.CFFGlyphsAreCIDs(programa, 0);
+                    bool cffSolo = false;
+                    adata.CFFOpenType = false;
+                    if (!adata.Type1 && (adata.GlyphMap == null || adata.GlyphMap.Count == 0)
+                        && PDFCanvas.SfntIsCFF(programa, 0))
+                    {
+                        bool porCid;
+                        adata.CFFOpenType = PDFCanvas.CFFGlyphsAreCIDs(programa, 0, out porCid);
+                        if (!adata.CFFOpenType && adata.CFFKeepsCIDs && porCid)
+                        {
+                            byte[] tabla = PDFCanvas.SfntCFFTable(programa, 0);
+                            if (tabla != null)
+                            {
+                                fontcontent = new MemoryStream(tabla);
+                                cffSolo = true;
+                                adata.CFFOpenType = true;
+                            }
+                        }
+                    }
                     // A font file stream has no /Type (ISO 32000-1, 9.9)
-                    if (adata.CFFOpenType)
+                    if (cffSolo)
+                    {
+                        SWriteLine(FTempStream, "<< /Subtype /CIDFontType0C");
+                    }
+                    else if (adata.CFFOpenType)
                     {
                         SWriteLine(FTempStream, "<< /Subtype /OpenType");
                     }

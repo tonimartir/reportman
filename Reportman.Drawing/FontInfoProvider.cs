@@ -410,9 +410,17 @@ namespace Reportman.Drawing
         public int GlyphCount = -1;
         /// <summary>
         /// Whether the embedded font program is an OpenType font with CFF outlines declared as such
-        /// (/FontFile3 /OpenType, CIDFontType0), set by the PDF writer when it embeds it.
+        /// (/FontFile3 /OpenType, CIDFontType0), set by the PDF writer when it embeds it. A subset
+        /// with renumbered glyphs (<see cref="CFFKeepsCIDs"/>) goes as its CFF alone, /CIDFontType0C.
         /// </summary>
         public bool CFFOpenType;
+        /// <summary>
+        /// Set by <see cref="FontInfoProvider.GetFontStream"/> (18-11-2026): the font program is the
+        /// subset of a CID-keyed CFF font whose CIDs are its glyph numbers, with its glyphs renumbered.
+        /// Its charset still gives every glyph the CID the content stream writes, and a CIDFontType0
+        /// selects glyphs by CID, so no /CIDToGIDMap is needed (a CIDFontType0 has none).
+        /// </summary>
+        public bool CFFKeepsCIDs;
         /// <summary>
         /// Maps characters to their advance widths.
         /// </summary>
