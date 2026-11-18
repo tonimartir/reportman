@@ -1001,6 +1001,56 @@ namespace Reportman.Reporting
             return aresult;
         }
         /// <summary>
+        /// Reads the text of a number plus a text as a number, as the Delphi engine reads it (the
+        /// variant conversion of the locale): the separators of the current culture, thousands
+        /// included, spaces around it, a sign or parentheses and an exponent. A decimal, as the
+        /// Currency that Delphi gives.
+        /// </summary>
+        private static bool TryTextAsNumber(string text, out Variant number)
+        {
+            number = new Variant();
+            if (string.IsNullOrEmpty(text))
+                return false;
+            System.Globalization.NumberStyles styles = System.Globalization.NumberStyles.Float |
+                System.Globalization.NumberStyles.AllowThousands |
+                System.Globalization.NumberStyles.AllowParentheses;
+            System.Globalization.CultureInfo culture = System.Globalization.CultureInfo.CurrentCulture;
+            if (decimal.TryParse(text, styles, culture, out decimal dvalue))
+            {
+                number = dvalue;
+                return true;
+            }
+            if (double.TryParse(text, styles, culture, out double fvalue))
+            {
+                number = fvalue;
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// The + of an expression, as SumTRpValue in the Delphi engine. A number plus a text is the
+        /// sum when the text is a number (10+'7' is 17), as Delphi converts it, and otherwise both
+        /// texts joined, the number written as STR() writes it: POSTEN+UPOS is '10a', as
+        /// STR(POSTEN)+UPOS. Anything else is the + of two variants, so booleans and dates with a
+        /// text still raise its error. The aggregates add with the + of two variants, as in Delphi.
+        /// </summary>
+        public static Variant ExpressionSum(Variant avalue1, Variant avalue2)
+        {
+            if (avalue1.IsNumber() && avalue2.FVarType == VariantType.String)
+            {
+                if (TryTextAsNumber(avalue2.FString, out Variant number2))
+                    return avalue1 + number2;
+                return avalue1.ToString() + avalue2.FString;
+            }
+            if (avalue1.FVarType == VariantType.String && avalue2.IsNumber())
+            {
+                if (TryTextAsNumber(avalue1.FString, out Variant number1))
+                    return number1 + avalue2;
+                return avalue1.FString + avalue2.ToString();
+            }
+            return avalue1 + avalue2;
+        }
+        /// <summary>
         /// Binary add arithmetic operator
         /// </summary>
         public static Variant operator +(Variant avalue1, Variant avalue2)

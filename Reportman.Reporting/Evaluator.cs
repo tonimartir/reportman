@@ -619,7 +619,8 @@ namespace Reportman.Reporting
                     FParser.NextToken();
                     auxiliar2 = FValue;
                     mul_div(ref auxiliar);
-                    FValue = auxiliar2 + auxiliar;
+                    // A number plus a text that is not a number joins both texts
+                    FValue = Variant.ExpressionSum(auxiliar2, auxiliar);
                 }
                 else
                     if (aoperator == "-")
