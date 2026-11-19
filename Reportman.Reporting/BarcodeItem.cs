@@ -20,7 +20,9 @@
 
 using Reportman.Drawing;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 
 #if OMIT_ZXING
 #else
@@ -632,6 +634,14 @@ namespace Reportman.Reporting
             modules[1] = (int)Math.Round(Modul * Ratio);
             modules[2] = (modules[1] * 3) / 2;
             modules[3] = modules[1] * 2;
+            // Code 128 bars and spaces are 1, 2, 3 or 4 modules: the Ratio does not apply
+            if (BarType == BarcodeType.Code128 || BarType == BarcodeType.Code128A
+                || BarType == BarcodeType.Code128B || BarType == BarcodeType.Code128C)
+            {
+                modules[1] = Modul * 2;
+                modules[2] = Modul * 3;
+                modules[3] = Modul * 4;
+            }
         }
 
         private string GetEAN(string nr)
@@ -658,109 +668,28 @@ namespace Reportman.Reporting
         }
         private string Code_128()
         {
-            int achecksum = 0;
-            string startcode = "";
-            string aresult = "";
-            int i = 0;
-            string cadc;
-            int idx;
-            BarcodeType btyp;
-            string text = CurrentText;
-            while (i < text.Length)
-            {
-                btyp = BarType;
-                if (btyp == BarcodeType.Code128)
-                    btyp = Code128.FindNewType(text, i);
-                switch (btyp)
-                {
-                    case BarcodeType.Code128A:
-                        achecksum = 103;
-                        startcode = Code128.StartA;
-                        break;
-                    case BarcodeType.Code128B:
-                        achecksum = 104;
-                        startcode = Code128.StartB;
-                        break;
-                    case BarcodeType.Code128C:
-                        achecksum = 105;
-                        startcode = Code128.StartC;
-                        break;
-                }
-                // Start code
-                if (i == 0)
-                    aresult = aresult + DoConvert(startcode);
-                // Look for EAN control
-                int idxC = 1;
-
-                if (text[i] == (char)0xBF)
-                {
-                    aresult = aresult + DoConvert("411131");
-                    achecksum = achecksum + 102 * (i + 1);
-                    i++;
-                    idxC++;
-                    if (i >= text.Length)
-                        break;
-                }
-                switch (btyp)
-                {
-                    case BarcodeType.Code128A:
-                    case BarcodeType.Code128B:
-                        while (i < text.Length)
-                        {
-                            idx = Code128.FindCodeAB(btyp, text[i]);
-                            if (idx < 0)
-                                idx = Code128.FindCodeAB(btyp, ' ');
-                            aresult = aresult + DoConvert(Code128.table[idx].data);
-                            achecksum = achecksum + idx * (i + 1);
-                            i++;
-                            // Look for EAN control
-                            if (i < text.Length)
-                                if (text[i] == (char)0xBF)
-                                {
-                                    aresult = aresult + DoConvert("411131");
-                                    achecksum = achecksum + 102 * (i + 1);
-                                    i++;
-                                    continue;
-                                }
-                        }
-                        break;
-                    case BarcodeType.Code128C:
-                        cadc = "";
-                        while (i < text.Length)
-                        {
-                            cadc = cadc + text[i];
-                            if (cadc.Length > 1)
-                            {
-                                idx = Code128.FindCodeC(cadc);
-                                if (idx < 0)
-                                {
-                                    idx = Code128.FindCodeC("00");
-                                }
-                                achecksum = achecksum + idx * idxC;
-                                idxC++;
-                                aresult = aresult + DoConvert(Code128.table[idx].data);
-                                cadc = "";
-                            }
-                            i++;
-                            // Look for EAN control
-                            if (i < text.Length)
-                                if (text[i] == (char)0xBF)
-                                {
-                                    aresult = aresult + DoConvert("411131");
-                                    achecksum = achecksum + 102 * idxC;
-                                    idxC++;
-                                    i++;
-                                    continue;
-                                }
-                        }
-                        break;
-                }
-
-            }
+            int[] values = Code128.Encode(CurrentText ?? "", BarType);
+            if (values.Length == 0)
+                return "";
+            int achecksum = values[0];
+            for (int i = 1; i < values.Length; i++)
+                achecksum += values[i] * i;
             achecksum = achecksum % 103;
-            aresult = aresult + DoConvert(Code128.table[achecksum].data);
-            aresult = aresult + DoConvert(Code128.Stop);
-            return aresult;
+            StringBuilder aresult = new StringBuilder();
+            foreach (int v in values)
+            {
+                if (v == 103)
+                    aresult.Append(DoConvert(Code128.StartA));
+                else if (v == 104)
+                    aresult.Append(DoConvert(Code128.StartB));
+                else if (v == 105)
+                    aresult.Append(DoConvert(Code128.StartC));
+                else
+                    aresult.Append(DoConvert(Code128.table[v].data));
+            }
+            aresult.Append(DoConvert(Code128.table[achecksum].data));
+            aresult.Append(DoConvert(Code128.Stop));
+            return aresult.ToString();
         }
         private string Code_MSI()
         {
@@ -1366,31 +1295,195 @@ namespace Reportman.Reporting
                 }
                 return aresult;
             }
-            public static BarcodeType FindNewType(string text, int i)
+            private const int FNC1 = -1;
+            private const int Infinite = int.MaxValue / 4;
+            private const int SetA = 0;
+            private const int SetB = 1;
+            private const int SetC = 2;
+
+            /// <summary>
+            /// Code 128 symbol values for <paramref name="text"/>: the start code first and then the
+            /// data, without the check value and the stop pattern. The ¿ character (U+00BF) is FNC1,
+            /// for GS1-128.
+            /// <para>Code128A and Code128B write the whole text in that code set (a character the set
+            /// does not have is written as a space). Code128C writes the digits in pairs; a character
+            /// that does not make a pair goes in code set B and the symbol switches back to C after it.
+            /// Code128 chooses the code sets that give the shortest symbol, switching between A, B and
+            /// C as often as it pays off: GS1-128 data such as (00)...(10)L2511 needs C and B in the
+            /// same symbol, and choosing one code set for all of it lost digits.</para>
+            /// </summary>
+            public static int[] Encode(string text, BarcodeType btype)
             {
-                BarcodeType btype = BarcodeType.Code128B;
-                if (text[i] == (char)0xBF)
-                    i++;
-                string acopy = text.Substring(i);
-                int index = acopy.IndexOf((char)0xBF);
-                if (index >= 0)
+                int n = text.Length;
+                if (n == 0)
+                    return new int[0];
+                int[] codes = new int[n];
+                for (int i = 0; i < n; i++)
                 {
-                    acopy = acopy.Substring(0, index);
+                    int c = text[i];
+                    codes[i] = c == 0xBF ? FNC1 : c > 127 ? 32 : c;
                 }
-                // Look for 128C
-                if ((acopy.Length % 2) == 0)
+                List<int> values = new List<int>(n + 8);
+                switch (btype)
                 {
-                    btype = BarcodeType.Code128C;
-                    foreach (char c in acopy)
+                    case BarcodeType.Code128A:
+                        values.Add(103);
+                        EncodeFixed(codes, SetA, values);
+                        break;
+                    case BarcodeType.Code128B:
+                        values.Add(104);
+                        EncodeFixed(codes, SetB, values);
+                        break;
+                    case BarcodeType.Code128C:
+                        values.Add(105);
+                        EncodeFixed(codes, SetC, values);
+                        break;
+                    default:
+                        EncodeShortest(codes, values);
+                        break;
+                }
+                return values.ToArray();
+            }
+
+            // The value of a character in code set A or B, or -1 if the set does not have it
+            private static int ValueIn(int aset, int c)
+            {
+                if (c == FNC1)
+                    return 102;
+                if (aset == SetA)
+                {
+                    if (c >= 0 && c < 32) return c + 64;
+                    if (c >= 32 && c <= 95) return c - 32;
+                }
+                else if (aset == SetB)
+                {
+                    if (c >= 32 && c <= 127) return c - 32;
+                }
+                return -1;
+            }
+
+            private static bool IsDigitAt(int[] codes, int p)
+            {
+                return p < codes.Length && codes[p] >= '0' && codes[p] <= '9';
+            }
+
+            // Symbols needed to write codes[p..] being in aset, writing codes[p] in aset
+            private static int CostIn(int[] codes, int[,] cost, int aset, int p)
+            {
+                if (codes[p] == FNC1)
+                    return 1 + cost[p + 1, aset];
+                if (aset == SetC)
+                    return IsDigitAt(codes, p) && IsDigitAt(codes, p + 1) ? 1 + cost[p + 2, aset] : Infinite;
+                return ValueIn(aset, codes[p]) >= 0 ? 1 + cost[p + 1, aset] : Infinite;
+            }
+
+            // Writes codes[p] (the digit pair at p in code set C) and returns the next position
+            private static int WriteAt(int[] codes, int aset, int p, List<int> values)
+            {
+                if (codes[p] == FNC1)
+                {
+                    values.Add(102);
+                    return p + 1;
+                }
+                if (aset == SetC)
+                {
+                    values.Add((codes[p] - '0') * 10 + (codes[p + 1] - '0'));
+                    return p + 2;
+                }
+                values.Add(ValueIn(aset, codes[p]));
+                return p + 1;
+            }
+
+            private static void SwitchTo(int aset, List<int> values)
+            {
+                values.Add(aset == SetA ? 101 : aset == SetB ? 100 : 99);
+            }
+
+            private static void EncodeFixed(int[] codes, int aset, List<int> values)
+            {
+                int current = aset;
+                int p = 0;
+                while (p < codes.Length)
+                {
+                    if (codes[p] == FNC1)
+                        p = WriteAt(codes, current, p, values);
+                    else if (aset != SetC)
                     {
-                        if (!StringUtil.IsDigit(c))
+                        if (ValueIn(aset, codes[p]) < 0)
+                            codes[p] = 32;
+                        p = WriteAt(codes, aset, p, values);
+                    }
+                    else if (IsDigitAt(codes, p) && IsDigitAt(codes, p + 1))
+                    {
+                        if (current != SetC)
                         {
-                            btype = BarcodeType.Code128B;
-                            break;
+                            SwitchTo(SetC, values);
+                            current = SetC;
                         }
+                        p = WriteAt(codes, SetC, p, values);
+                    }
+                    else
+                    {
+                        if (current != SetB)
+                        {
+                            SwitchTo(SetB, values);
+                            current = SetB;
+                        }
+                        p = WriteAt(codes, SetB, p, values);
                     }
                 }
-                return btype;
+            }
+
+            private static void EncodeShortest(int[] codes, List<int> values)
+            {
+                int n = codes.Length;
+                // From the end: the fewest symbols for the rest of the text in each code set
+                int[,] cost = new int[n + 2, 3];
+                int[,] choice = new int[n + 2, 3];
+                for (int p = n - 1; p >= 0; p--)
+                {
+                    for (int aset = SetA; aset <= SetC; aset++)
+                    {
+                        int best = CostIn(codes, cost, aset, p);
+                        choice[p, aset] = aset;
+                        for (int other = SetC; other >= SetA; other--)
+                        {
+                            if (other == aset)
+                                continue;
+                            int cand = CostIn(codes, cost, other, p);
+                            if (cand < Infinite && cand + 1 < best)
+                            {
+                                best = cand + 1;
+                                choice[p, aset] = other;
+                            }
+                        }
+                        cost[p, aset] = best;
+                    }
+                }
+                // The start code set: the cheapest (B on a tie, then C)
+                int startset = SetB;
+                int beststart = CostIn(codes, cost, SetB, 0);
+                int c2 = CostIn(codes, cost, SetC, 0);
+                if (c2 < beststart)
+                {
+                    beststart = c2;
+                    startset = SetC;
+                }
+                if (CostIn(codes, cost, SetA, 0) < beststart)
+                    startset = SetA;
+                values.Add(103 + startset);
+                int current = startset;
+                int pos = 0;
+                while (pos < n)
+                {
+                    int other = choice[pos, current];
+                    if (other != current)
+                    {
+                        SwitchTo(other, values);
+                        current = other;
+                    }
+                    pos = WriteAt(codes, current, pos, values);
+                }
             }
             public static Code128[] table = new Code128[103]  {
                 new Code128(' ',' ',"00","212222"),
