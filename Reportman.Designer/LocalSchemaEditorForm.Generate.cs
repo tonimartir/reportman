@@ -74,7 +74,7 @@ namespace Reportman.Designer
         /// <summary>
         /// Asks the domain and the AI (<see cref="GenerateSchemaForm"/>), and imports the schema it proposes as a new
         /// subschema, as Import does with a file: the tables read first in a large catalog, the descriptions and coded values
-        /// in the dictionary, the subschema selected and unsaved. The summary of the AI and its warnings go to the Validation
+        /// in the dictionary where it has none (what is written there is kept), the subschema selected and unsaved. The summary of the AI and its warnings go to the Validation
         /// tab and to the message that says how it went.
         /// </summary>
         private async void GenerateWithAi()
@@ -100,8 +100,9 @@ namespace Reportman.Designer
             {
                 if (!await ReadColumnsAsync(LocalSchemaEditing.ImportTables(_file, outcome.SchemaJson, null), true) || IsDisposed)
                     return;
-                result = LocalSchemaEditing.Import(_file, outcome.SchemaJson, "", ReservedNames,
-                    name.Length > 0 ? name : outcome.SchemaName, null);
+                // What the dictionary has written is kept: the AI only fills what is empty
+                result = LocalSchemaEditing.ImportGenerated(_file, outcome.SchemaJson, ReservedNames,
+                    name.Length > 0 ? name : outcome.SchemaName);
             }
             catch (Exception ex)
             {

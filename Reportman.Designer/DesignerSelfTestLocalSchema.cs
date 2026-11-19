@@ -91,6 +91,7 @@ namespace Reportman.Designer
             RunCheck(log, "library: a table name resolved", f => TestResolve(f, folder));
             RunCheck(log, "library: relations between templates", f => TestRelations(f, folder));
             RunCheck(log, "library 6: exact names as before", f => TestExactNames(f, folder));
+            RunCheck(log, "generate with AI: what is written is kept", f => TestImportGenerated(f, folder));
             RunCheck(log, "filter: the shared cases", TestFilter);
             RunCheck(log, "filter: case and accents", TestFold);
             RunCheck(log, "large catalog: the merge of the columns read", TestMergeColumns);
@@ -1352,6 +1353,46 @@ namespace Reportman.Designer
             log.Check(DesignerText.Format(2047, "3", "5").Contains("3") && DesignerText.Format(2047, "3", "5").Contains("5") &&
                 !DesignerText.Format(2047, "3", "5").Contains("%"), "the question with its two numbers: " + DesignerText.Format(2047, "3", "5"));
             log.Check(!DesignerText.Format(2052, "2", "1").Contains("%"), "the result with its two numbers: " + DesignerText.Format(2052, "2", "1"));
+        }
+
+        // «Generate with AI»: the schema of the AI keeps what the dictionary has written and only fills what is empty;
+        // a plain import of the same text wins, as before
+        private static void TestImportGenerated(LocalSchemaLog log, string folder)
+        {
+            LocalSchemaFile file = LocalSchemaStore.Load(Path.Combine(folder, "dbxschemas-v2.json"));
+            log.Check(file != null, "dbxschemas-v2.json is read");
+            if (file == null)
+                return;
+            // What the person wrote: the descriptions of the Desktop (SALEID has none)
+            LocalSchemaEditing.Import(file, DesktopFile, "desktop.json", null);
+            const string generated = "{\"name\":\"Sales by the AI\",\"schemaTables\":[" +
+                "{\"name\":\"SALES\",\"context\":\"Guess of the AI\",\"columns\":[" +
+                "{\"name\":\"SALEID\",\"context\":\"Number of the sale\"},{\"name\":\"TOTAL\",\"context\":\"Guess of the AI\"}]," +
+                "\"foreignKeys\":[{\"targetTable\":\"CUSTOMERS\",\"sourceColumns\":[\"CUSTOMERID\"],\"targetColumns\":[\"CUSTOMERID\"]," +
+                "\"relationshipContext\":\"Guess of the AI\"}]}," +
+                "{\"name\":\"CUSTOMERS\",\"columns\":[{\"name\":\"STATE\",\"allowedValues\":[{\"value\":\"A\",\"label\":\"Guess\"}]}]}]}";
+            LocalSchemaImportResult result = LocalSchemaEditing.ImportGenerated(file, generated, null, "");
+            log.Check(result != null && result.Subschema != null && result.Subschema.Name == "Sales by the AI" &&
+                Joined(result.Subschema.Tables) == "CUSTOMERS|SALES", "a new subschema with the tables of the AI: " +
+                (result != null && result.Subschema != null ? result.Subschema.Name + " " + Joined(result.Subschema.Tables) : "(none)"));
+            LocalSchemaTable sales = LocalSchemaEditing.FindTable(file, "SALES");
+            LocalSchemaColumn state = LocalSchemaEditing.FindColumn(LocalSchemaEditing.FindTable(file, "CUSTOMERS"), "STATE");
+            log.Check(sales.Context == "Sales of the old Desktop", "the description of a table that was written is kept: " + sales.Context);
+            log.Check(LocalSchemaEditing.FindColumn(sales, "TOTAL").Context == "Total amount",
+                "the one of a column too: " + LocalSchemaEditing.FindColumn(sales, "TOTAL").Context);
+            log.Check(LocalSchemaEditing.FindColumn(sales, "SALEID").Context == "Number of the sale",
+                "an empty one, the AI fills it: " + LocalSchemaEditing.FindColumn(sales, "SALEID").Context);
+            log.Check(state.AllowedValues != null && state.AllowedValues.Count == 1 && state.AllowedValues[0].Value == "X",
+                "the allowed values that were there are kept");
+            log.Check(sales.ForeignKeys.Count == 1 && sales.ForeignKeys[0].RelationshipContext == "From the Desktop",
+                "and the description of the relation: " + (sales.ForeignKeys.Count > 0 ? sales.ForeignKeys[0].RelationshipContext : "(none)"));
+
+            // Importing the same text as a file: what is imported wins
+            LocalSchemaEditing.Import(file, generated, "", null, "");
+            log.Check(sales.Context == "Guess of the AI" && LocalSchemaEditing.FindColumn(sales, "TOTAL").Context == "Guess of the AI" &&
+                state.AllowedValues != null && state.AllowedValues.Count == 1 && state.AllowedValues[0].Value == "A" &&
+                sales.ForeignKeys.Count == 1 && sales.ForeignKeys[0].RelationshipContext == "Guess of the AI",
+                "an import of a file still wins, as before");
         }
 
         // 6. Names that are in the database as they are: as before

@@ -316,7 +316,7 @@ namespace Reportman.Designer
                 List<string> tables = LocalSchemaEditing.ImportTables(file, outcome.SchemaJson, null);
                 using (DbConnection connection = create())
                     LocalSchemaStore.ReadColumns(file, connection, tables);
-                LocalSchemaImportResult result = LocalSchemaEditing.Import(file, outcome.SchemaJson, "", null, outcome.SchemaName);
+                LocalSchemaImportResult result = LocalSchemaEditing.ImportGenerated(file, outcome.SchemaJson, null, outcome.SchemaName);
                 log.Check(result != null && result.Subschema != null, "imported as a subschema");
                 if (result == null || result.Subschema == null)
                     return;

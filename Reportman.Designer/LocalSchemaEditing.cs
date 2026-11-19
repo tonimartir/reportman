@@ -577,6 +577,32 @@ namespace Reportman.Designer
         public static LocalSchemaImportResult Import(LocalSchemaFile file, string json, string fileName, IEnumerable<string> reservedNames,
             string subschemaName, IDictionary<string, string> templateValues)
         {
+            return Import(file, json, fileName, reservedNames, subschemaName, templateValues, false);
+        }
+
+        /// <summary>
+        /// Imports the schema «Generate with AI» proposes as <see cref="Import(LocalSchemaFile, string, string, IEnumerable{string}, string)"/>
+        /// does, but what the dictionary already has written is kept: a description of a table, of a column or of a
+        /// relation, or the allowed values of a column, comes from the AI only when the dictionary has none. What the
+        /// person wrote is not lost to a guess of the AI.
+        /// </summary>
+        /// <param name="file">The local schema file.</param>
+        /// <param name="json">The schema the AI proposed.</param>
+        /// <param name="reservedNames">Names a subschema cannot take (all the tables), or null.</param>
+        /// <param name="subschemaName">The name of the new subschema; empty for the one the text says.</param>
+        public static LocalSchemaImportResult ImportGenerated(LocalSchemaFile file, string json, IEnumerable<string> reservedNames,
+            string subschemaName)
+        {
+            return Import(file, json, "", reservedNames, subschemaName, null, true);
+        }
+
+        /// <summary>
+        /// The import of every overload: <paramref name="keepWritten"/> keeps what the dictionary has written (a
+        /// description, the allowed values) and only fills what is empty; else what is imported wins.
+        /// </summary>
+        private static LocalSchemaImportResult Import(LocalSchemaFile file, string json, string fileName, IEnumerable<string> reservedNames,
+            string subschemaName, IDictionary<string, string> templateValues, bool keepWritten)
+        {
             if (file == null)
                 throw new ArgumentNullException("file");
             JsonDocument document = ParseSchemaJson(json);
@@ -624,7 +650,7 @@ namespace Reportman.Designer
                         order.Add(table);
                     }
                     string context = JsonText(item, "context");
-                    if (!string.IsNullOrWhiteSpace(context))
+                    if (!string.IsNullOrWhiteSpace(context) && (!keepWritten || string.IsNullOrWhiteSpace(table.Context)))
                         table.Context = context;
                     foreach (JsonElement c in JsonArray(item, "columns"))
                     {
@@ -640,14 +666,14 @@ namespace Reportman.Designer
                         if (!ContainsName(columns, column.Name))
                             columns.Add(column.Name);
                         string columnContext = JsonText(c, "context");
-                        if (!string.IsNullOrWhiteSpace(columnContext))
+                        if (!string.IsNullOrWhiteSpace(columnContext) && (!keepWritten || string.IsNullOrWhiteSpace(column.Context)))
                             column.Context = columnContext;
                         List<LocalAllowedValue> values = JsonAllowedValues(c);
-                        if (values != null)
+                        if (values != null && (!keepWritten || column.AllowedValues == null || column.AllowedValues.Count == 0))
                             column.AllowedValues = values;
                     }
                     foreach (JsonElement fk in JsonArray(item, "foreignKeys"))
-                        ImportRelation(file, table, fk, filled);
+                        ImportRelation(file, table, fk, filled, keepWritten);
                 }
                 // None of its tables is in this database: it was written for another one, and an empty
                 // subschema would be of no use. Nothing is created (and, with no table found, nothing was
@@ -753,8 +779,10 @@ namespace Reportman.Designer
         /// A relation of an imported table into the dictionary, as the catalog spells it, when its ends are there:
         /// the same one the dictionary has takes its description (when it has one); a new one is written here. Its
         /// target is found as the tables of the schema are (<see cref="ResolveTable(LocalSchemaFile, string, IDictionary{string, string})"/>).
+        /// With <paramref name="keepWritten"/> the one the dictionary has keeps its description when it has one.
         /// </summary>
-        private static void ImportRelation(LocalSchemaFile file, LocalSchemaTable source, JsonElement item, IDictionary<string, string> values)
+        private static void ImportRelation(LocalSchemaFile file, LocalSchemaTable source, JsonElement item, IDictionary<string, string> values,
+            bool keepWritten)
         {
             LocalSchemaTable target = ResolveTable(file, JsonText(item, "targetTable"), values);
             if (target == null)
@@ -774,7 +802,8 @@ namespace Reportman.Designer
             LocalSchemaForeignKey same = source.ForeignKeys.Find(fk => LocalSchemaStore.SameRelation(fk, relation));
             if (same == null)
                 source.ForeignKeys.Add(relation);
-            else if (!string.IsNullOrWhiteSpace(relation.RelationshipContext))
+            else if (!string.IsNullOrWhiteSpace(relation.RelationshipContext) &&
+                (!keepWritten || string.IsNullOrWhiteSpace(same.RelationshipContext)))
                 same.RelationshipContext = relation.RelationshipContext;
         }
 
