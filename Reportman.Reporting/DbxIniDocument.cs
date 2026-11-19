@@ -35,7 +35,7 @@ namespace Reportman.Reporting
     /// (the .Net engine and designer, Reportman.Server, Reportman AI, the Delphi and FPC designers):
     /// <list type="bullet">
     /// <item><b>Encoding.</b> A file that starts with the UTF-8 BOM (EF BB BF) is UTF-8 and is written back with its
-    /// BOM. Without it: on Windows the ANSI code page of the system (<c>TextInfo.ANSICodePage</c> of the current culture,
+    /// BOM. Without it: on Windows the ANSI code page of the system (<c>GetACP</c>, as Delphi,
     /// 1252 in Spain; <c>Encoding.Default</c> in .Net Framework), on Linux and macOS UTF-8 (the convention of
     /// FPC/Lazarus).</item>
     /// <item><b>Surgical writing.</b> Each line keeps its original bytes and its line ending (CRLF, LF or CR); only the
@@ -88,6 +88,11 @@ namespace Reportman.Reporting
         /// <summary>
         /// The encoding of a file without BOM: on Windows the ANSI code page of the system, elsewhere UTF-8.
         /// </summary>
+#if !NETFRAMEWORK
+        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        private static extern int GetACP();
+#endif
+
         public static Encoding WithoutBomEncoding()
         {
             if (!IsWindows)
@@ -97,7 +102,9 @@ namespace Reportman.Reporting
 #else
             try
             {
-                int codePage = CultureInfo.CurrentCulture.TextInfo.ANSICodePage;
+                // The SYSTEM's ANSI code page (GetACP), as Delphi and .Net Framework (Encoding.Default) use: the user's culture
+                // could be another one
+                int codePage = GetACP();
                 if (codePage > 0)
                     return Encoding.GetEncoding(codePage);
             }
