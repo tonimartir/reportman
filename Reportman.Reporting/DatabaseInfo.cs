@@ -345,37 +345,107 @@ namespace Reportman.Reporting
             TransIsolation = System.Data.IsolationLevel.RepeatableRead;
         }
 
-        private static IEnumerable<string> GetDbxConnectionConfigCandidates()
-        {
-            string publicProfile = Environment.GetEnvironmentVariable("PUBLIC");
-            if (!string.IsNullOrWhiteSpace(publicProfile))
-                yield return Path.Combine(publicProfile, "dbxconnections.ini");
-
-            string systemDrive = Environment.GetEnvironmentVariable("SystemDrive");
-            if (!string.IsNullOrWhiteSpace(systemDrive))
-                yield return Path.Combine(systemDrive + Path.DirectorySeparatorChar, "Users", "Public", "dbxconnections.ini");
-
-            string commonApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            if (!string.IsNullOrWhiteSpace(commonApplicationData))
-                yield return Path.Combine(commonApplicationData, "dbxconnections.ini");
-
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            if (!string.IsNullOrWhiteSpace(baseDirectory))
-                yield return Path.Combine(baseDirectory, "dbxconnections.ini");
-        }
-
         private string GetDbxConnectionConfigFilename()
         {
             if (!string.IsNullOrWhiteSpace(ConfigFile))
                 return ConfigFile;
+            // The shared file (or the one of a self-test, DbxDirectConnections.OverridePath)
+            return DbxDirectConnections.ExistingPath();
+        }
 
-            foreach (string candidate in GetDbxConnectionConfigCandidates())
+        /// <summary>
+        /// The password of a connection of this computer (<see cref="DbxDirectConnections"/>) that cannot be deciphered
+        /// here: ciphered by another Windows user, or outside Windows. The host asks the user and returns it, or null
+        /// to cancel (the connection then fails saying it needs its password). Once the connection opens with it, it
+        /// is saved ciphered for this Windows user in the same section, so it is asked only the first time. Null (no
+        /// host that can ask: printreport, a server) opens the connection without it.
+        /// </summary>
+        public static Func<DbxPasswordRequest, string> DirectConnectionPassword { get; set; }
+
+        // The passwords asked in this process that could not be saved ciphered (outside Windows): asked once
+        private static readonly Dictionary<string, string> AskedPasswords = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// The connection of this computer this connection stands for: a report connection that only keeps its alias
+        /// (no provider factory nor connection string, as the designer saves one chosen from the connections file) and
+        /// a <c>DriverName=ADO.NET</c> section of the connections file with that name. Null otherwise.
+        /// </summary>
+        public DbxDirectConnection FindDirectConnectionFromConfig()
+        {
+            if (!LoadParams || string.IsNullOrWhiteSpace(Alias))
+                return null;
+            if (Driver == DriverType.HttpAgent || Driver == DriverType.Mybase || Driver == DriverType.IBX)
+                return null;
+            if (!string.IsNullOrEmpty(ProviderFactory) || !string.IsNullOrEmpty(ConnectionString))
+                return null;
+            string configFilename = GetDbxConnectionConfigFilename();
+            if (string.IsNullOrWhiteSpace(configFilename) || !File.Exists(configFilename))
+                return null;
+            return DbxDirectConnections.FindDirect(Alias, configFilename);
+        }
+
+        // The password the user gives for a ciphered one this Windows user cannot read
+        private string AskDirectPassword(DbxDirectConnection direct, string name, List<KeyValuePair<string, string>> toSave)
+        {
+            string key = direct.FileName + "|" + direct.Alias + "|" + name;
+            lock (AskedPasswords)
             {
-                if (File.Exists(candidate))
-                    return candidate;
+                string known;
+                if (AskedPasswords.TryGetValue(key, out known))
+                    return known;
             }
+            Func<DbxPasswordRequest, string> ask = DirectConnectionPassword;
+            if (ask == null)
+                return null;
+            string password = ask(new DbxPasswordRequest
+            {
+                Alias = direct.Alias,
+                ParameterName = name,
+                ProviderFactory = direct.ProviderFactory,
+                FileName = direct.FileName
+            });
+            if (password == null)
+            {
+                // "The connection %s needs its password."
+                string message = Translator.TranslateStr(2075);
+                if (string.IsNullOrEmpty(message) || message == "XXXXXXX")
+                    message = "The connection %s needs its password.";
+                throw new NamedException(message.Replace("%s", direct.Alias), Alias);
+            }
+            string secret = DbxDirectConnections.Protect(password);
+            if (secret != null)
+                toSave.Add(new KeyValuePair<string, string>(name, secret));
+            else
+                lock (AskedPasswords)
+                    AskedPasswords[key] = password;
+            return password;
+        }
 
-            return "";
+        // Saved once the provider accepted it (a mistyped password is asked again, not kept)
+        private static void SaveAskedPasswordsOnOpen(DbConnection connection, DbxDirectConnection direct,
+            List<KeyValuePair<string, string>> toSave)
+        {
+            if (toSave.Count == 0)
+                return;
+            StateChangeEventHandler handler = null;
+            handler = delegate (object sender, StateChangeEventArgs e)
+            {
+                if (e.CurrentState != ConnectionState.Open)
+                    return;
+                connection.StateChange -= handler;
+                foreach (KeyValuePair<string, string> secret in toSave)
+                {
+                    try
+                    {
+                        DbxDirectConnections.WriteSecret(direct.FileName, direct.Alias, secret.Key, secret.Value);
+                    }
+                    catch
+                    {
+                        // A file this user cannot write: the password is asked again next time
+                    }
+                }
+            };
+            connection.StateChange += handler;
         }
 
         private static long ReadInt64(IniFile iniFile, string sectionName, string valueName, long defaultValue)
@@ -660,12 +730,20 @@ namespace Reportman.Reporting
             // The SQLite connection of a Delphi report (the samples) goes through Microsoft.Data.Sqlite,
             // without changing the report
             string usedFactory = ProviderFactory;
+            // A connection of this computer: the report keeps only its alias, the connections file the rest
+            DbxDirectConnection direct = null;
             if (IsEngineSqlite())
             {
                 usedFactory = SQLITECORE_PROVIDER;
                 DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
                 builder["Data Source"] = ReportDbParam("DATABASE");
                 UsedConnectionString = builder.ConnectionString;
+            }
+            else if (usedFactory.Length == 0)
+            {
+                direct = FindDirectConnectionFromConfig();
+                if (direct != null)
+                    usedFactory = direct.ProviderFactory ?? "";
             }
             if (usedFactory.Length == 0)
                 throw new UnNamedException("Provider factory not supplied");
@@ -680,11 +758,33 @@ namespace Reportman.Reporting
 #endif
             if (afactory == null)
                 throw new NamedException("System.Data.Common.DbProviderFactories Factory not found:" + usedFactory, DotNetDriver.ToString());
+            // Its string with its password (deciphered, or asked to the host once), never kept in the report;
+            // the report parameters ADOCONNECTIONSTRING still win
+            List<KeyValuePair<string, string>> passwordsToSave = new List<KeyValuePair<string, string>>();
+            if (direct != null && string.IsNullOrEmpty(UsedConnectionString))
+                UsedConnectionString = DbxDirectConnections.BuildConnectionString(direct, afactory,
+                    name => AskDirectPassword(direct, name, passwordsToSave));
             if (usedFactory == SQLITECORE_PROVIDER || usedFactory == SQLITE_PROVIDER)
                 UsedConnectionString = ResolveSqliteDataSource(UsedConnectionString);
             DbConnection aconnection = afactory.CreateConnection();
             aconnection.ConnectionString = UsedConnectionString;
+            if (direct != null)
+                SaveAskedPasswordsOnOpen(aconnection, direct, passwordsToSave);
             return aconnection;
+        }
+
+        // A password asked in this process (outside Windows) that did not open the connection is asked again
+        private void ForgetAskedPasswords()
+        {
+            lock (AskedPasswords)
+            {
+                List<string> keys = new List<string>();
+                foreach (string key in AskedPasswords.Keys)
+                    if (key.IndexOf("|" + Alias + "|", StringComparison.OrdinalIgnoreCase) >= 0)
+                        keys.Add(key);
+                foreach (string key in keys)
+                    AskedPasswords.Remove(key);
+            }
         }
         /// <summary>
         /// Connect to the database
@@ -741,7 +841,16 @@ namespace Reportman.Reporting
                 return;
             }
             DbConnection aconnection = CreateDbConnection();
-            aconnection.Open();
+            try
+            {
+                aconnection.Open();
+            }
+            catch
+            {
+                ForgetAskedPasswords();
+                aconnection.Dispose();
+                throw;
+            }
             FConnection = aconnection;
             if (Transaction == null)
                 IntTransaction = FConnection.BeginTransaction(TransIsolation);
