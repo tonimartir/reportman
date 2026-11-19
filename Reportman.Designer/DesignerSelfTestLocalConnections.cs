@@ -32,7 +32,9 @@ namespace Reportman.Designer
     /// with DPAPI (the blobs of ProtectedData, as Reportman AI writes them), the alias of a report resolved by the
     /// engine to the string with its password, a password this user cannot read asked once and saved ciphered without
     /// touching any other byte of the file, a real query through the alias, and the driver list, the new report wizard
-    /// and the connection editor of the designer keeping only the alias. Nothing is shown.
+    /// and the connection editor of the designer keeping only the alias. Also the encoding rule of the file and the
+    /// surgical writing of WriteAgent and of the passwords in an ANSI file with CRLF, a UTF-8 one with BOM and without a
+    /// final line ending, and an ANSI one with LF. Nothing is shown.
     /// </summary>
     public static class DesignerSelfTestLocalConnections
     {
@@ -79,6 +81,7 @@ namespace Reportman.Designer
                 RunCheck(log, "engine: a password asked, saved ciphered once it opens", l => TestAsk(l, ini));
                 RunCheck(log, "engine: cancelling the password", TestCancel);
                 RunCheck(log, "engine: a secret added at the end of a file without a last line ending", l => TestWriteSecretAppend(l, dir));
+                RunCheck(log, "file: the encoding rule and the surgical writing (ANSI CRLF, UTF-8 BOM, LF)", l => TestEncodings(l, dir));
                 RunCheck(log, "engine: the Agent, Delphi and the report's own connection as before", TestNotBroken);
                 RunCheck(log, "engine: a real query through the alias", l => TestQuery(l, db));
                 // From here no password may be asked: the designer would show its dialog
@@ -342,7 +345,8 @@ namespace Reportman.Designer
             File.WriteAllBytes(file, new UTF8Encoding(false).GetBytes(text));
             DbxDirectConnections.WriteSecret(file, "last", "Password", "dpapi:QUJD");
             string after = new UTF8Encoding(false).GetString(File.ReadAllBytes(file));
-            log.Check(after == text + "\nSecret.Password=dpapi:QUJD\n", "added after its last line, with the file's LF: " + after.Replace("\n", "\\n"));
+            // The file keeps ending without a line ending: the line that was last gets one, the new one goes without it
+            log.Check(after == text + "\nSecret.Password=dpapi:QUJD", "added after its last line, with the file's LF: " + after.Replace("\n", "\\n"));
             bool refused = false;
             try
             {
@@ -353,6 +357,158 @@ namespace Reportman.Designer
                 refused = true;
             }
             log.Check(refused, "never in a section of Delphi");
+        }
+
+        // ---- the encoding rule and the surgical writing, in three files ----
+
+        // A Delphi section with accents and comments, the Agent's and a connection of this computer with accents
+        private static List<string> EncodingFileLines()
+        {
+            return new List<string>
+            {
+                "; Conexiones de Reportman (Delphi) \u2014 prueba",
+                "[CONTABILIDAD]",
+                "DriverName=FireDAC",
+                "; conexi\u00F3n de contabilidad, a\u00F1o 2026",
+                "Database=C:\\datos\\a\u00F1o.fdb",
+                "User_Name=SYSDBA",
+                "",
+                "[AGENTDB]",
+                "DriverName=Reportman AI Agent",
+                "ApiKey=KEY-1",
+                "HubDatabaseId=42",
+                "",
+                "[VENTAS]",
+                "DriverName=ADO.NET",
+                "ProviderFactory=SQLiteCore",
+                "Param.DataSource=C:\\datos\\a\u00F1o.db",
+                "ConnectionString=Data Source=C:\\datos\\a\u00F1o.db",
+                "Delphi.Database=C:\\datos\\a\u00F1o.db"
+            };
+        }
+
+        private static byte[] EncodeFile(List<string> lines, string newline, bool finalEnding, Encoding encoding, bool bom)
+        {
+            string text = string.Join(newline, lines.ToArray()) + (finalEnding ? newline : "");
+            byte[] content = encoding.GetBytes(text);
+            if (!bom)
+                return content;
+            byte[] result = new byte[content.Length + 3];
+            result[0] = 0xEF;
+            result[1] = 0xBB;
+            result[2] = 0xBF;
+            Array.Copy(content, 0, result, 3, content.Length);
+            return result;
+        }
+
+        private static void TestEncodings(Log log, string dir)
+        {
+            Encoding ansi = DbxIniDocument.WithoutBomEncoding();
+            log.Info("without BOM this computer reads the code page " + ansi.CodePage + " (" + ansi.WebName + ")");
+            log.Check(ansi.CodePage == System.Globalization.CultureInfo.CurrentCulture.TextInfo.ANSICodePage,
+                "without BOM on Windows: the ANSI code page of the culture (" + ansi.CodePage + ")");
+            TestEncodingFile(log, dir, "ansi-crlf.ini", "\r\n", true, ansi, false);
+            TestEncodingFile(log, dir, "utf8bom-crlf-noending.ini", "\r\n", false, new UTF8Encoding(false), true);
+            TestEncodingFile(log, dir, "ansi-lf.ini", "\n", true, ansi, false);
+
+            // A new file: without BOM, the line endings of the platform, ending with one
+            string file = Path.Combine(dir, "new", "dbxconnections.ini");
+            string previous = DbxDirectConnections.OverridePath;
+            DbxDirectConnections.OverridePath = file;
+            try
+            {
+                DbxConnections.WriteAgent("MYAGENT", "KEY-N", 5, "");
+                string text = ansi.GetString(File.ReadAllBytes(file));
+                log.Check(text == "[MYAGENT]\r\nDriverName=Reportman AI Agent\r\nApiKey=KEY-N\r\nHubDatabaseId=5\r\n",
+                    "a new file written by WriteAgent: " + text.Replace("\r\n", "\\r\\n"));
+            }
+            finally
+            {
+                DbxDirectConnections.OverridePath = previous;
+            }
+        }
+
+        private static void TestEncodingFile(Log log, string dir, string name, string newline, bool finalEnding,
+            Encoding encoding, bool bom)
+        {
+            string file = Path.Combine(dir, name);
+            List<string> lines = EncodingFileLines();
+            byte[] original = EncodeFile(lines, newline, finalEnding, encoding, bom);
+            File.WriteAllBytes(file, original);
+            string previous = DbxDirectConnections.OverridePath;
+            DbxDirectConnections.OverridePath = file;
+            try
+            {
+                // Read by the rule: the accents as they were written
+                DbxDirectConnection ventas = DbxDirectConnections.FindDirect("VENTAS", file);
+                log.Check(ventas != null && ventas.Parameters["DataSource"] == "C:\\datos\\a\u00F1o.db",
+                    name + ": the accent of a connection of this computer read well: " + (ventas == null ? "-" : ventas.Parameters["DataSource"]));
+                log.Check(DbxIniDocument.Load(file).GetValue("CONTABILIDAD", "Database", "") == "C:\\datos\\a\u00F1o.fdb",
+                    name + ": the accent of the Delphi section read well");
+                log.Check(string.Join(",", DbxConnections.GetConnectionNames().ToArray()) == "CONTABILIDAD,AGENTDB,VENTAS",
+                    name + ": the designer lists the three sections");
+                log.Check(DbxIniDocument.Load(file).HasBom == bom, name + ": BOM " + bom);
+
+                // Nothing changes: the file is not written again
+                DbxConnections.WriteAgent("AGENTDB", "KEY-1", 42, "");
+                log.Check(Same(original, File.ReadAllBytes(file)), name + ": an Agent connection that does not change leaves the file as it was");
+
+                // The Agent's key changed, a new Agent connection, a password saved
+                DbxConnections.WriteAgent("AGENTDB", "KEY-2", 42, "");
+                DbxConnections.WriteAgent("AGENTX", "KEY-X", 7, "");
+                DbxDirectConnections.WriteSecret(file, "VENTAS", "Password", "dpapi:QUJD");
+
+                List<string> expected = EncodingFileLines();
+                expected[expected.IndexOf("ApiKey=KEY-1")] = "ApiKey=KEY-2";
+                expected.Insert(expected.IndexOf("Delphi.Database=C:\\datos\\a\u00F1o.db") + 1, "Secret.Password=dpapi:QUJD");
+                expected.Add("");
+                expected.Add("[AGENTX]");
+                expected.Add("DriverName=Reportman AI Agent");
+                expected.Add("ApiKey=KEY-X");
+                expected.Add("HubDatabaseId=7");
+                byte[] after = File.ReadAllBytes(file);
+                log.Check(Same(EncodeFile(expected, newline, finalEnding, encoding, bom), after),
+                    name + ": only the lines of the Agent and of the password changed; the rest byte for byte (encoding, BOM, " +
+                    (newline == "\r\n" ? "CRLF" : "LF") + ", " + (finalEnding ? "final line ending" : "no final line ending") + ")");
+                log.Info(name + ": " + original.Length + " bytes before, " + after.Length + " after");
+
+                string apiKey, url;
+                long hub;
+                DbxConnections.ReadAgent("AGENTX", out apiKey, out hub, out url);
+                log.Check(apiKey == "KEY-X" && hub == 7, name + ": the new Agent connection read back");
+                DatabaseInfo agent = AliasOnly("AGENTDB");
+                agent.ResolveHttpAgentConnectionParamsFromConfig();
+                log.Check(agent.Driver == DriverType.HttpAgent && agent.HttpAgentApiKey == "KEY-2", name + ": the engine reads the changed key");
+
+                // A value with accents written: in the encoding of the file
+                DbxIniDocument document = DbxIniDocument.Load(file);
+                document.SetValues("CONTABILIDAD", new KeyValuePair<string, string>[]
+                {
+                    new KeyValuePair<string, string>("Database", "C:\\datos\\se\u00F1al.fdb")
+                });
+                document.Save();
+                byte[] written = File.ReadAllBytes(file);
+                byte[] accent = encoding.GetBytes("se\u00F1al");
+                log.Check(IndexOf(written, accent) >= 0 && DbxIniDocument.Load(file).GetValue("CONTABILIDAD", "Database", "") == "C:\\datos\\se\u00F1al.fdb",
+                    name + ": an accent written in the encoding of the file (" + accent.Length + " bytes for «señal») and read back");
+            }
+            finally
+            {
+                DbxDirectConnections.OverridePath = previous;
+            }
+        }
+
+        private static int IndexOf(byte[] haystack, byte[] needle)
+        {
+            for (int i = 0; i + needle.Length <= haystack.Length; i++)
+            {
+                bool found = true;
+                for (int j = 0; j < needle.Length && found; j++)
+                    found = haystack[i + j] == needle[j];
+                if (found)
+                    return i;
+            }
+            return -1;
         }
 
         private static void TestNotBroken(Log log)

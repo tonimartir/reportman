@@ -448,9 +448,9 @@ namespace Reportman.Reporting
             connection.StateChange += handler;
         }
 
-        private static long ReadInt64(IniFile iniFile, string sectionName, string valueName, long defaultValue)
+        private static long ReadInt64(DbxIniDocument iniFile, string sectionName, string valueName, long defaultValue)
         {
-            string textValue = iniFile.ReadString(sectionName, valueName, "");
+            string textValue = iniFile.GetValue(sectionName, valueName, "");
             if (string.IsNullOrWhiteSpace(textValue))
                 return defaultValue;
 
@@ -573,8 +573,9 @@ namespace Reportman.Reporting
             if (string.IsNullOrWhiteSpace(configFilename) || !File.Exists(configFilename))
                 return;
 
-            IniFile iniFile = new IniFile(configFilename);
-            string driverName = iniFile.ReadString(Alias, "DriverName", "").Trim();
+            // The encoding of the file by the rule of DbxIniDocument (UTF-8 with BOM, or ANSI on Windows)
+            DbxIniDocument iniFile = DbxIniDocument.Load(configFilename);
+            string driverName = iniFile.GetValue(Alias, "DriverName", "").Trim();
             if (IsHttpAgentDriverName(driverName))
                 Driver = DriverType.HttpAgent;
         }
@@ -588,12 +589,12 @@ namespace Reportman.Reporting
             if (string.IsNullOrWhiteSpace(configFilename) || !File.Exists(configFilename))
                 return;
 
-            IniFile iniFile = new IniFile(configFilename);
-            string apiKey = iniFile.ReadString(Alias, "ApiKey", "").Trim();
-            string token = iniFile.ReadString(Alias, "Token", "").Trim();
-            string baseUrl = iniFile.ReadString(Alias, "Url", "").Trim();
+            DbxIniDocument iniFile = DbxIniDocument.Load(configFilename);
+            string apiKey = iniFile.GetValue(Alias, "ApiKey", "").Trim();
+            string token = iniFile.GetValue(Alias, "Token", "").Trim();
+            string baseUrl = iniFile.GetValue(Alias, "Url", "").Trim();
             if (string.IsNullOrWhiteSpace(baseUrl))
-                baseUrl = iniFile.ReadString(Alias, "HttpAgentBaseUrl", "").Trim();
+                baseUrl = iniFile.GetValue(Alias, "HttpAgentBaseUrl", "").Trim();
 
             if (string.IsNullOrWhiteSpace(HttpAgentApiKey) && !string.IsNullOrWhiteSpace(apiKey))
                 HttpAgentApiKey = apiKey;

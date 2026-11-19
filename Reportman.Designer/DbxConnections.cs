@@ -13,11 +13,11 @@
 */
 #endregion
 
+using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Text;
 
 namespace Reportman.Designer
 {
@@ -27,6 +27,9 @@ namespace Reportman.Designer
     /// it keeps the sensitive data (API key, selected Hub database) here instead of in
     /// the report, exactly like Delphi. Path resolution and section/key names are kept
     /// compatible with Delphi (see Reportman.Reporting.DatabaseInfo dbx config reader).
+    /// The file is read and written by the rules of <see cref="DbxIniDocument"/> (UTF-8
+    /// with its BOM, or the ANSI code page on Windows; only the lines that change are
+    /// written again).
     /// </summary>
     public static class DbxConnections
     {
@@ -125,70 +128,28 @@ namespace Reportman.Designer
             return p.Length == 0 ? "(not available)" : p;
         }
 
-        private static string[] ReadLines(string path)
+        // The file by the rule of the engine (DbxIniDocument): UTF-8 with its BOM, or the ANSI code page on Windows
+        private static DbxIniDocument Read(string path)
         {
             try
             {
-                if (File.Exists(path))
-                    return File.ReadAllLines(path);
+                if (!string.IsNullOrEmpty(path) && File.Exists(path))
+                    return DbxIniDocument.Load(path);
             }
             catch { }
-            return new string[0];
-        }
-
-        private static bool IsSectionHeader(string line, out string name)
-        {
-            name = "";
-            string t = line.Trim();
-            if (t.Length >= 2 && t[0] == '[' && t[t.Length - 1] == ']')
-            {
-                name = t.Substring(1, t.Length - 2).Trim();
-                return true;
-            }
-            return false;
+            return DbxIniDocument.Parse(new byte[0]);
         }
 
         /// <summary>All connection (section) names in the file.</summary>
         public static List<string> GetConnectionNames()
         {
-            var result = new List<string>();
-            foreach (string line in ReadLines(ResolveExistingPath()))
-            {
-                string name;
-                if (IsSectionHeader(line, out name) && name.Length > 0)
-                    result.Add(name);
-            }
-            return result;
-        }
-
-        private static string GetValue(string[] lines, string section, string key, string def)
-        {
-            bool inSection = false;
-            foreach (string line in lines)
-            {
-                string secName;
-                if (IsSectionHeader(line, out secName))
-                {
-                    inSection = string.Equals(secName, section, StringComparison.OrdinalIgnoreCase);
-                    continue;
-                }
-                if (!inSection)
-                    continue;
-                int eq = line.IndexOf('=');
-                if (eq > 0)
-                {
-                    string k = line.Substring(0, eq).Trim();
-                    if (string.Equals(k, key, StringComparison.OrdinalIgnoreCase))
-                        return line.Substring(eq + 1).Trim();
-                }
-            }
-            return def;
+            return Read(ResolveExistingPath()).SectionNames();
         }
 
         /// <summary>True if the section's DriverName is a Reportman agent driver.</summary>
         public static bool IsAgentConnection(string alias)
         {
-            return IsAgentDriver(GetValue(ReadLines(ResolveExistingPath()), alias, "DriverName", ""));
+            return IsAgentDriver(Read(ResolveExistingPath()).GetValue(alias, "DriverName", ""));
         }
 
         private static bool IsAgentDriver(string driver)
@@ -206,14 +167,12 @@ namespace Reportman.Designer
         public static List<string> GetAgentApiKeys()
         {
             var result = new List<string>();
-            string[] lines = ReadLines(ResolveExistingPath());
-            foreach (string line in lines)
+            DbxIniDocument document = Read(ResolveExistingPath());
+            foreach (string alias in document.SectionNames())
             {
-                string alias;
-                if (!IsSectionHeader(line, out alias) || alias.Length == 0 ||
-                    !IsAgentDriver(GetValue(lines, alias, "DriverName", "")))
+                if (!IsAgentDriver(document.GetValue(alias, "DriverName", "")))
                     continue;
-                string apiKey = GetValue(lines, alias, "ApiKey", "").Trim();
+                string apiKey = document.GetValue(alias, "ApiKey", "").Trim();
                 if (apiKey.Length > 0 && !result.Contains(apiKey))
                     result.Add(apiKey);
             }
@@ -223,18 +182,20 @@ namespace Reportman.Designer
         /// <summary>Read the HTTP Agent parameters stored for a connection alias.</summary>
         public static void ReadAgent(string alias, out string apiKey, out long hubDatabaseId, out string baseUrl)
         {
-            string[] lines = ReadLines(ResolveExistingPath());
-            apiKey = GetValue(lines, alias, "ApiKey", "");
-            baseUrl = GetValue(lines, alias, "Url", "");
+            DbxIniDocument document = Read(ResolveExistingPath());
+            apiKey = document.GetValue(alias, "ApiKey", "");
+            baseUrl = document.GetValue(alias, "Url", "");
             if (baseUrl.Length == 0)
-                baseUrl = GetValue(lines, alias, "HttpAgentBaseUrl", "");
-            long.TryParse(GetValue(lines, alias, "HubDatabaseId", "0"), NumberStyles.Integer,
+                baseUrl = document.GetValue(alias, "HttpAgentBaseUrl", "");
+            long.TryParse(document.GetValue(alias, "HubDatabaseId", "0"), NumberStyles.Integer,
                 CultureInfo.InvariantCulture, out hubDatabaseId);
         }
 
         /// <summary>
-        /// Write/update the HTTP Agent parameters for a connection alias, preserving all
-        /// other sections and lines (so a shared Delphi/.Net file stays intact).
+        /// Write/update the HTTP Agent parameters for a connection alias, touching only its lines: the keys that
+        /// change get their new value where they are, the missing ones are added at the end of the section, and a new
+        /// section goes at the end of the file. Every other byte of the shared Delphi/.Net file stays as it was (its
+        /// encoding and BOM, its line endings, the accents of the Delphi sections, the comments).
         /// </summary>
         public static void WriteAgent(string alias, string apiKey, long hubDatabaseId, string baseUrl)
         {
@@ -242,70 +203,17 @@ namespace Reportman.Designer
             if (path.Length == 0)
                 throw new Exception("No writable dbxconnections.ini location found.");
 
-            var lines = new List<string>(ReadLines(path));
-            SetKey(lines, alias, "DriverName", AGENT_DRIVER_NAME);
-            SetKey(lines, alias, "ApiKey", apiKey ?? "");
-            SetKey(lines, alias, "HubDatabaseId", hubDatabaseId.ToString(CultureInfo.InvariantCulture));
+            DbxIniDocument document = DbxIniDocument.Load(path);
+            bool changed = document.SetValues(alias, new KeyValuePair<string, string>[]
+            {
+                new KeyValuePair<string, string>("DriverName", AGENT_DRIVER_NAME),
+                new KeyValuePair<string, string>("ApiKey", apiKey ?? ""),
+                new KeyValuePair<string, string>("HubDatabaseId", hubDatabaseId.ToString(CultureInfo.InvariantCulture))
+            });
             // Note: the agent base URL is environment-determined (build) and not stored
             // here on purpose, so a shared file works for both dev and prod.
-
-            string dir = Path.GetDirectoryName(path);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-            File.WriteAllLines(path, lines, new UTF8Encoding(false));
-        }
-
-        private static int FindSection(List<string> lines, string section)
-        {
-            for (int i = 0; i < lines.Count; i++)
-            {
-                string name;
-                if (IsSectionHeader(lines[i], out name) &&
-                    string.Equals(name, section, StringComparison.OrdinalIgnoreCase))
-                    return i;
-            }
-            return -1;
-        }
-
-        private static void SetKey(List<string> lines, string section, string key, string value)
-        {
-            int secStart = FindSection(lines, section);
-            if (secStart < 0)
-            {
-                if (lines.Count > 0 && lines[lines.Count - 1].Trim().Length > 0)
-                    lines.Add("");
-                lines.Add("[" + section + "]");
-                lines.Add(key + "=" + value);
-                return;
-            }
-            int secEnd = lines.Count;
-            for (int i = secStart + 1; i < lines.Count; i++)
-            {
-                string ignore;
-                if (IsSectionHeader(lines[i], out ignore))
-                {
-                    secEnd = i;
-                    break;
-                }
-            }
-            for (int i = secStart + 1; i < secEnd; i++)
-            {
-                int eq = lines[i].IndexOf('=');
-                if (eq > 0)
-                {
-                    string k = lines[i].Substring(0, eq).Trim();
-                    if (string.Equals(k, key, StringComparison.OrdinalIgnoreCase))
-                    {
-                        lines[i] = key + "=" + value;
-                        return;
-                    }
-                }
-            }
-            // insert at the end of the section (skip trailing blank lines)
-            int insertAt = secEnd;
-            while (insertAt - 1 > secStart && lines[insertAt - 1].Trim().Length == 0)
-                insertAt--;
-            lines.Insert(insertAt, key + "=" + value);
+            if (changed || !File.Exists(path))
+                document.Save(path);
         }
     }
 }

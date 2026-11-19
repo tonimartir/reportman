@@ -146,43 +146,31 @@ namespace Reportman.Reporting
             List<DbxDirectConnection> result = new List<DbxDirectConnection>();
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
                 return result;
-            string[] lines = SplitLines(Decode(File.ReadAllBytes(path)));
-            DbxDirectConnection current = null;
-            bool direct = false;
-            foreach (string raw in lines)
+            // The encoding of the file by the rule of DbxIniDocument (UTF-8 with BOM, or ANSI on Windows)
+            foreach (DbxIniSection section in DbxIniDocument.Load(path).Sections())
             {
-                string line = raw.Trim();
-                string section;
-                if (IsSectionHeader(line, out section))
+                DbxDirectConnection current = new DbxDirectConnection { Alias = section.Name, FileName = path };
+                bool direct = false;
+                foreach (KeyValuePair<string, string> pair in section.Keys)
                 {
-                    if (current != null && direct)
-                        result.Add(current);
-                    current = new DbxDirectConnection { Alias = section, FileName = path };
-                    direct = false;
-                    continue;
+                    string key = pair.Key;
+                    string value = pair.Value;
+                    if (string.Equals(key, "DriverName", StringComparison.OrdinalIgnoreCase))
+                        direct = string.Equals(value, DirectDriverName, StringComparison.OrdinalIgnoreCase);
+                    else if (string.Equals(key, "ProviderFactory", StringComparison.OrdinalIgnoreCase))
+                        current.ProviderFactory = value;
+                    else if (string.Equals(key, "ConnectionString", StringComparison.OrdinalIgnoreCase))
+                        current.ConnectionString = value;
+                    else if (key.StartsWith(ParamPrefix, StringComparison.OrdinalIgnoreCase))
+                        current.Parameters[key.Substring(ParamPrefix.Length)] = value;
+                    else if (key.StartsWith(SecretPrefix, StringComparison.OrdinalIgnoreCase))
+                        current.Secrets[key.Substring(SecretPrefix.Length)] = value;
+                    else
+                        current.Extra.Add(new KeyValuePair<string, string>(key, value));
                 }
-                if (current == null || line.Length == 0 || line[0] == ';' || line[0] == '#')
-                    continue;
-                int eq = line.IndexOf('=');
-                if (eq <= 0)
-                    continue;
-                string key = line.Substring(0, eq).Trim();
-                string value = line.Substring(eq + 1).Trim();
-                if (string.Equals(key, "DriverName", StringComparison.OrdinalIgnoreCase))
-                    direct = string.Equals(value, DirectDriverName, StringComparison.OrdinalIgnoreCase);
-                else if (string.Equals(key, "ProviderFactory", StringComparison.OrdinalIgnoreCase))
-                    current.ProviderFactory = value;
-                else if (string.Equals(key, "ConnectionString", StringComparison.OrdinalIgnoreCase))
-                    current.ConnectionString = value;
-                else if (key.StartsWith(ParamPrefix, StringComparison.OrdinalIgnoreCase))
-                    current.Parameters[key.Substring(ParamPrefix.Length)] = value;
-                else if (key.StartsWith(SecretPrefix, StringComparison.OrdinalIgnoreCase))
-                    current.Secrets[key.Substring(SecretPrefix.Length)] = value;
-                else
-                    current.Extra.Add(new KeyValuePair<string, string>(key, value));
+                if (direct)
+                    result.Add(current);
             }
-            if (current != null && direct)
-                result.Add(current);
             return result;
         }
 
@@ -309,8 +297,9 @@ namespace Reportman.Reporting
         /// <summary>
         /// Writes <c>Secret.<paramref name="name"/>=<paramref name="value"/></c> in the section <paramref name="alias"/>
         /// (it must be a <c>DriverName=ADO.NET</c> one): the line that has it gets the new value, or one is added after
-        /// the last line of the section. EVERY OTHER BYTE OF THE FILE STAYS AS IT WAS: the other keys and sections, the
-        /// comments, the blank lines, the line endings and the encoding (an ANSI file of Delphi too).
+        /// the last line of the section (<see cref="DbxIniDocument.SetValues"/>). EVERY OTHER BYTE OF THE FILE STAYS AS
+        /// IT WAS: the other keys and sections, the comments, the blank lines, the line endings, the BOM and the
+        /// encoding (an ANSI file of Delphi too).
         /// </summary>
         public static void WriteSecret(string path, string alias, string name, string value)
         {
@@ -319,140 +308,14 @@ namespace Reportman.Reporting
             if (string.IsNullOrWhiteSpace(alias) || string.IsNullOrWhiteSpace(name) || value == null ||
                 value.IndexOfAny(new char[] { '\r', '\n' }) >= 0)
                 throw new ArgumentException("Invalid secret for the connection " + alias);
-            // Latin-1 maps each byte to one char and back: what is not changed is written byte for byte
-            Encoding latin1 = Encoding.GetEncoding(28591);
-            string text = latin1.GetString(File.ReadAllBytes(path));
-            List<string> lines = new List<string>();      // each one with its line ending
-            int start = 0;
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (text[i] == '\n' || (text[i] == '\r' && (i + 1 >= text.Length || text[i + 1] != '\n')))
-                {
-                    lines.Add(text.Substring(start, i + 1 - start));
-                    start = i + 1;
-                }
-            }
-            if (start < text.Length)
-                lines.Add(text.Substring(start));
-            string newline = text.IndexOf("\r\n", StringComparison.Ordinal) >= 0 ? "\r\n"
-                : (text.IndexOf('\n') >= 0 ? "\n" : "\r\n");
-
-            int sectionStart = -1;
-            for (int i = 0; i < lines.Count; i++)
-            {
-                string section;
-                string content = Content(lines[i], i == 0);
-                if (IsSectionHeader(content, out section) && string.Equals(section, alias.Trim(), StringComparison.OrdinalIgnoreCase))
-                {
-                    sectionStart = i;
-                    break;
-                }
-            }
-            if (sectionStart < 0)
+            DbxIniDocument document = DbxIniDocument.Load(path);
+            if (!document.HasSection(alias))
                 throw new InvalidOperationException("The connection " + alias + " is not in " + path);
-            int sectionEnd = lines.Count;
-            for (int i = sectionStart + 1; i < lines.Count; i++)
-            {
-                string ignored;
-                if (IsSectionHeader(Content(lines[i], false), out ignored))
-                {
-                    sectionEnd = i;
-                    break;
-                }
-            }
-            string driver = "";
-            int secretLine = -1;
-            int lastContent = sectionStart;
-            for (int i = sectionStart + 1; i < sectionEnd; i++)
-            {
-                string content = Content(lines[i], false);
-                if (content.Length == 0)
-                    continue;
-                lastContent = i;
-                if (content[0] == ';' || content[0] == '#')
-                    continue;
-                int eq = content.IndexOf('=');
-                if (eq <= 0)
-                    continue;
-                string key = content.Substring(0, eq).Trim();
-                if (string.Equals(key, "DriverName", StringComparison.OrdinalIgnoreCase))
-                    driver = content.Substring(eq + 1).Trim();
-                else if (string.Equals(key, SecretPrefix + name, StringComparison.OrdinalIgnoreCase))
-                    secretLine = i;
-            }
+            string driver = document.GetValue(alias, "DriverName", "");
             if (!string.Equals(driver, DirectDriverName, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidOperationException("The connection " + alias + " is not a connection of this computer (" + DirectDriverName + ")");
-
-            if (secretLine >= 0)
-            {
-                // Its key as it is (spaces, case), its value replaced
-                string line = lines[secretLine];
-                string ending = Ending(line);
-                string content = line.Substring(0, line.Length - ending.Length);
-                lines[secretLine] = content.Substring(0, content.IndexOf('=') + 1) + value + ending;
-            }
-            else
-            {
-                if (Ending(lines[lastContent]).Length == 0)
-                    lines[lastContent] = lines[lastContent] + newline;
-                lines.Insert(lastContent + 1, SecretPrefix + name + "=" + value + newline);
-            }
-            File.WriteAllBytes(path, latin1.GetBytes(string.Concat(lines.ToArray())));
-        }
-
-        // The text of a line without its ending (and without the UTF-8 BOM of the first one, as Latin-1 chars)
-        private static string Content(string line, bool first)
-        {
-            string content = line.Substring(0, line.Length - Ending(line).Length);
-            if (first && content.StartsWith("\u00EF\u00BB\u00BF", StringComparison.Ordinal))
-                content = content.Substring(3);
-            return content.Trim();
-        }
-
-        private static string Ending(string line)
-        {
-            if (line.EndsWith("\r\n", StringComparison.Ordinal))
-                return "\r\n";
-            if (line.EndsWith("\n", StringComparison.Ordinal) || line.EndsWith("\r", StringComparison.Ordinal))
-                return line.Substring(line.Length - 1);
-            return "";
-        }
-
-        private static bool IsSectionHeader(string line, out string name)
-        {
-            name = "";
-            if (line.Length >= 2 && line[0] == '[' && line[line.Length - 1] == ']')
-            {
-                name = line.Substring(1, line.Length - 2).Trim();
-                return true;
-            }
-            return false;
-        }
-
-        // UTF-8 (the .Net programs write it so), or the ANSI of an old Delphi file
-        private static string Decode(byte[] bytes)
-        {
-            if (bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF)
-                return new UTF8Encoding(false).GetString(bytes, 3, bytes.Length - 3);
-            if (bytes.Length >= 2 && bytes[0] == 0xFF && bytes[1] == 0xFE)
-                return Encoding.Unicode.GetString(bytes, 2, bytes.Length - 2);
-            try
-            {
-                return new UTF8Encoding(false, true).GetString(bytes);
-            }
-            catch (DecoderFallbackException)
-            {
-#if NETFRAMEWORK
-                return Encoding.Default.GetString(bytes);
-#else
-                return Encoding.GetEncoding(28591).GetString(bytes);
-#endif
-            }
-        }
-
-        private static string[] SplitLines(string text)
-        {
-            return text.Replace("\r\n", "\n").Replace('\r', '\n').Split('\n');
+            if (document.SetValues(alias, new KeyValuePair<string, string>[] { new KeyValuePair<string, string>(SecretPrefix + name, value) }))
+                document.Save();
         }
 
         // ---- DPAPI (crypt32 directly: no package for the engine, the same blobs as ProtectedData) ----
