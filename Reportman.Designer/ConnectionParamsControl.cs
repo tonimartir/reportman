@@ -30,6 +30,9 @@ namespace Reportman.Designer
     /// (works for ANY registered provider), shows the resulting connection string
     /// and tests the connection. The only persisted value is the connection string
     /// plus the provider factory invariant name (no JSON).
+    /// The list also offers the Reportman AI Agent and the connections of this computer
+    /// (the <c>DriverName=ADO.NET</c> sections of dbxconnections.ini): for those only
+    /// the alias goes to the report.
     /// </summary>
     public class ConnectionParamsControl : UserControl
     {
@@ -58,9 +61,43 @@ namespace Reportman.Designer
         public const string HTTP_AGENT = "__HTTPAGENT__";
         private HttpAgentParams FAgentParams;
         private bool FAgentMode;
+        // A connection of this computer (a DriverName=ADO.NET section of dbxconnections.ini) is selected
+        private bool FLocalMode;
+        private string FLocalAlias = "";
 
         /// <summary>True when the HTTP Agent "driver" is selected.</summary>
         public bool IsHttpAgent { get { return FAgentMode; } }
+
+        /// <summary>
+        /// True when a connection of this computer is selected (a <c>DriverName=ADO.NET</c> section of
+        /// dbxconnections.ini, written by Reportman.Server or Reportman AI): the report keeps only its alias.
+        /// </summary>
+        public bool IsLocal { get { return FLocalMode; } }
+
+        /// <summary>The alias of the selected connection of this computer ("" when none is).</summary>
+        public string LocalAlias { get { return FLocalMode ? FLocalAlias : ""; } }
+
+        /// <summary>Raised when a connection of this computer is selected or left.</summary>
+        public event EventHandler LocalModeChanged;
+
+        /// <summary>What the parameter grid shows (for the self-tests).</summary>
+        internal object GridSelectedObject { get { return grid.SelectedObject; } }
+
+        /// <summary>The aliases of the connections of this computer the driver list offers, in its order.</summary>
+        public List<string> LocalAliases
+        {
+            get
+            {
+                List<string> result = new List<string>();
+                foreach (object item in cmbProvider.Items)
+                {
+                    ProviderItem it = item as ProviderItem;
+                    if (it != null && it.LocalAlias != null)
+                        result.Add(it.LocalAlias);
+                }
+                return result;
+            }
+        }
         /// <summary>Agent API key (only meaningful in agent mode).</summary>
         public string AgentApiKey { get { return FAgentParams != null ? (FAgentParams.ApiKey ?? "") : ""; } }
         /// <summary>Agent base URL (only meaningful in agent mode).</summary>
@@ -140,7 +177,8 @@ namespace Reportman.Designer
         {
             get
             {
-                if (FAgentMode)
+                // Neither the Agent's nor the one of a connection of this computer go to the report
+                if (FAgentMode || FLocalMode)
                     return "";
                 if (FBuilder != null)
                 {
@@ -156,6 +194,8 @@ namespace Reportman.Designer
         /// </summary>
         public ConnectionParamsControl()
         {
+            // The test of a connection of this computer may ask its password
+            LocalConnectionPassword.Install();
             BuildUi();
             LoadProviders();
         }
@@ -308,6 +348,8 @@ namespace Reportman.Designer
         {
             public string Invariant;
             public string Display;
+            // The alias of a connection of this computer (null for a driver)
+            public string LocalAlias;
             public override string ToString() { return Display; }
         }
 
@@ -357,8 +399,33 @@ namespace Reportman.Designer
             // Not 1967 ("— needs an API key"): without one the connection uses the session, and the example
             // databases need neither
             cmbProvider.Items.Add(new ProviderItem { Invariant = HTTP_AGENT, Display = "Reportman AI Agent (HTTP)" });
+            // The connections of this computer (dbxconnections.ini, DriverName=ADO.NET): chosen by their alias
+            foreach (DbxDirectConnection connection in DbxConnections.GetDirectConnections())
+            {
+                string provider;
+                if (!FriendlyNames.TryGetValue(connection.ProviderFactory ?? "", out provider))
+                    provider = connection.ProviderFactory ?? "";
+                cmbProvider.Items.Add(new ProviderItem
+                {
+                    Invariant = connection.ProviderFactory ?? "",
+                    LocalAlias = connection.Alias,
+                    Display = DesignerText.Tr(2071, "Connection of this computer: %s").Replace("%s", connection.Alias) +
+                        (provider.Length > 0 ? "  (" + provider + ")" : "")
+                });
+            }
             foreach (ProviderItem it in items.Values)
                 cmbProvider.Items.Add(it);
+        }
+
+        private int IndexOfLocalItem(string alias)
+        {
+            for (int i = 0; i < cmbProvider.Items.Count; i++)
+            {
+                ProviderItem it = cmbProvider.Items[i] as ProviderItem;
+                if (it != null && it.LocalAlias != null && string.Equals(it.LocalAlias, alias, StringComparison.OrdinalIgnoreCase))
+                    return i;
+            }
+            return -1;
         }
 
         private int IndexOfAgentItem()
@@ -414,12 +481,17 @@ namespace Reportman.Designer
             string inv = providerInvariant;
             if (string.IsNullOrEmpty(inv))
                 inv = DatabaseInfo.FIREBIRD_PROVIDER2;
+            // A driver: neither the Agent nor a connection of this computer any more
+            if (FAgentMode)
+                ExitAgentMode();
+            if (FLocalMode)
+                ExitLocalMode();
 
             int found = -1;
             for (int i = 0; i < cmbProvider.Items.Count; i++)
             {
                 ProviderItem it = (ProviderItem)cmbProvider.Items[i];
-                if (string.Equals(it.Invariant, inv, StringComparison.OrdinalIgnoreCase))
+                if (it.LocalAlias == null && string.Equals(it.Invariant, inv, StringComparison.OrdinalIgnoreCase))
                 {
                     found = i;
                     break;
@@ -450,12 +522,108 @@ namespace Reportman.Designer
                 EnterAgentMode();
                 return;
             }
+            if (it.LocalAlias != null)
+            {
+                EnterLocalMode(it.LocalAlias);
+                return;
+            }
             bool wasAgent = FAgentMode;
+            bool wasLocal = FLocalMode;
             if (FAgentMode)
                 ExitAgentMode();
+            if (FLocalMode)
+                ExitLocalMode();
             // Preserve already entered values when switching provider.
-            string keep = wasAgent ? "" : ConnectionString;
+            string keep = wasAgent || wasLocal ? "" : ConnectionString;
             LoadProvider(it.Invariant, keep);
+        }
+
+        // ---------------- Connections of this computer ----------------
+
+        /// <summary>
+        /// Selects the connection of this computer <paramref name="alias"/> (a <c>DriverName=ADO.NET</c> section of
+        /// dbxconnections.ini). False when the list does not have it.
+        /// </summary>
+        public bool SelectLocal(string alias)
+        {
+            int index = IndexOfLocalItem(alias ?? "");
+            if (index < 0)
+                return false;
+            FUpdating = true;
+            cmbProvider.SelectedIndex = index;
+            FUpdating = false;
+            return EnterLocalMode(((ProviderItem)cmbProvider.Items[index]).LocalAlias);
+        }
+
+        // Its parameters read-only (Reportman.Server or Reportman AI define it), where it is stored, and its test
+        private bool EnterLocalMode(string alias)
+        {
+            DbxDirectConnection connection = DbxConnections.FindDirectConnection(alias);
+            if (connection == null)
+                return false;
+            if (FAgentMode)
+                ExitAgentMode();
+            FLocalMode = true;
+            FLocalAlias = connection.Alias;
+            FInvariant = connection.ProviderFactory ?? "";
+            FBuilder = null;
+            string provider;
+            if (!FriendlyNames.TryGetValue(FInvariant, out provider))
+                provider = FInvariant;
+            grid.SelectedObject = new LocalConnectionView(connection, provider);
+            try { grid.ExpandAllGridItems(); }
+            catch { }
+            lblConn.Text = DesignerText.Tr(1968) + ":";
+            FUpdating = true;
+            txtConn.ReadOnly = true;
+            txtConn.Text = DesignerText.Tr(2072, "A connection of this computer, defined in the connections file (Reportman " +
+                "Server, Reportman AI). The report only keeps its name; its password is stored ciphered for your Windows user.") +
+                Environment.NewLine + DesignerText.Tr(1970) + ": " + DbxConnections.GetPath();
+            FUpdating = false;
+            SetResult(null, "");
+            if (LocalModeChanged != null)
+                LocalModeChanged(this, EventArgs.Empty);
+            return true;
+        }
+
+        private void ExitLocalMode()
+        {
+            FLocalMode = false;
+            FLocalAlias = "";
+            lblConn.Text = DesignerText.Tr(1099) + ":";
+            txtConn.ReadOnly = false;
+            if (LocalModeChanged != null)
+                LocalModeChanged(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// The test of a connection of this computer, as a report opens it: by its alias, with the password
+        /// deciphered (or asked, and then saved ciphered for this Windows user).
+        /// </summary>
+        private void TestLocal()
+        {
+            Cursor old = Cursor.Current;
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                DatabaseInfo info = new DatabaseInfo();
+                info.Alias = FLocalAlias;
+                info.Driver = DriverType.DotNet2;
+                using (DbConnection connection = info.CreateDbConnection())
+                {
+                    connection.Open();
+                    connection.Close();
+                }
+                SetResult(true, DesignerText.Tr(1772));
+            }
+            catch (Exception ex)
+            {
+                SetResult(false, ex.Message);
+            }
+            finally
+            {
+                Cursor.Current = old;
+            }
         }
 
         // ---------------- HTTP Agent mode ----------------
@@ -497,6 +665,8 @@ namespace Reportman.Designer
 
         private void EnterAgentMode()
         {
+            if (FLocalMode)
+                ExitLocalMode();
             FAgentMode = true;
             FInvariant = "";
             FBuilder = null;
@@ -806,6 +976,11 @@ namespace Reportman.Designer
             if (FAgentMode)
             {
                 TestAgent();
+                return;
+            }
+            if (FLocalMode)
+            {
+                TestLocal();
                 return;
             }
             string cs = ConnectionString;

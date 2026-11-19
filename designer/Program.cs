@@ -77,6 +77,21 @@ namespace designer
                     Environment.ExitCode = failed > 0 ? 1 : 0;
                     return;
                 }
+                // designer.exe /localconnectionstest [/samples <samples.db>] [/out <txt>] -> headless checks of the
+                // connections of this computer (DriverName=ADO.NET sections of dbxconnections.ini) in a temporary folder:
+                // the alias resolved with its ciphered password, a password asked and saved, the driver list, the new
+                // report wizard and the connection editor; the exit code is 1 when one fails
+                if (HasArg(args, "/localconnectionstest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "localconnectionstest.txt");
+                    int failed;
+                    System.IO.File.WriteAllText(outFile,
+                        Reportman.Designer.DesignerSelfTestLocalConnections.Run(GetArgValue(args, "/samples"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
 
                 // designer.exe /onboardingtest [/rep <sample.rep>] [/mode Fast|Reasoning] [/installid repman-...]
                 // [/prompt <text>] [/save <rep>] [/noai] [/out <txt>] -> the onboarding headless: a sample opened as

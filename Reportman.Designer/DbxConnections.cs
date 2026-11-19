@@ -33,8 +33,46 @@ namespace Reportman.Designer
         /// <summary>Driver name written for agent connections (same literal Delphi uses).</summary>
         public const string AGENT_DRIVER_NAME = "Reportman AI Agent";
 
-        /// <summary>Test-only override of the file path (used by the wizard self-test so the shared file is not touched).</summary>
-        public static string OverridePath = null;
+        /// <summary>
+        /// Test-only override of the file path (used by the self-tests so the shared file is not touched). It is the
+        /// engine's <see cref="Reportman.Reporting.DbxDirectConnections.OverridePath"/>: the reports run against the
+        /// same file the designer writes.
+        /// </summary>
+        public static string OverridePath
+        {
+            get { return Reportman.Reporting.DbxDirectConnections.OverridePath; }
+            set { Reportman.Reporting.DbxDirectConnections.OverridePath = value; }
+        }
+
+        /// <summary>
+        /// The connections of this computer (<c>DriverName=ADO.NET</c> sections, written by Reportman.Server, the
+        /// Reportman AI Desktop and the chat), in the order of the file. A report that uses one keeps only its alias.
+        /// </summary>
+        public static List<Reportman.Reporting.DbxDirectConnection> GetDirectConnections()
+        {
+            string path = ResolveExistingPath();
+            if (path.Length == 0)
+                return new List<Reportman.Reporting.DbxDirectConnection>();
+            try
+            {
+                return Reportman.Reporting.DbxDirectConnections.ReadDirect(path);
+            }
+            catch
+            {
+                return new List<Reportman.Reporting.DbxDirectConnection>();
+            }
+        }
+
+        /// <summary>The connection of this computer <paramref name="alias"/>, or null.</summary>
+        public static Reportman.Reporting.DbxDirectConnection FindDirectConnection(string alias)
+        {
+            if (string.IsNullOrWhiteSpace(alias))
+                return null;
+            foreach (Reportman.Reporting.DbxDirectConnection connection in GetDirectConnections())
+                if (string.Equals(connection.Alias, alias.Trim(), StringComparison.OrdinalIgnoreCase))
+                    return connection;
+            return null;
+        }
 
         /// <summary>Candidate paths in the same order as DatabaseInfo's dbx config reader.</summary>
         public static IEnumerable<string> Candidates()

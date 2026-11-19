@@ -189,6 +189,22 @@ namespace Reportman.Designer
                 OnReportChange(FReport, new EventArgs());
         }
         /// <summary>
+        /// The node of <paramref name="item"/> (a connection, a dataset or a parameter) shows its alias again, without
+        /// rebuilding the tree nor changing the selection.
+        /// </summary>
+        /// <param name="item">The renamed item.</param>
+        public void UpdateItemText(ReportItem item)
+        {
+            string alias = item is DatabaseInfo ? ((DatabaseInfo)item).Alias
+                : item is DataInfo ? ((DataInfo)item).Alias
+                : item is Param ? ((Param)item).Alias : null;
+            if (alias == null)
+                return;
+            foreach (TreeNode node in GetAllNodes())
+                if (node.Tag == item)
+                    node.Text = alias;
+        }
+        /// <summary>
         /// Debugging entry point to preview this layout inside a standalone Windows Form.
         /// </summary>
         /// <param name="filename">Optional report filename context.</param>

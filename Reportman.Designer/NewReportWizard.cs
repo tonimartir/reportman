@@ -30,6 +30,9 @@ namespace Reportman.Designer
     /// Direct connections store the connection string in the report; agent
     /// connections store the API key + Hub database in dbxconnections.ini (the
     /// report only keeps the alias + HttpAgent driver), exactly like Delphi.
+    /// The direct route also lists the connections of this computer (the
+    /// <c>DriverName=ADO.NET</c> sections of dbxconnections.ini): chosen one, the
+    /// report keeps only its alias, as with the Agent.
     /// </summary>
     public class NewReportWizard : Form
     {
@@ -278,7 +281,10 @@ namespace Reportman.Designer
             FEdAlias = ed;
 
             if (FParams == null)
+            {
                 FParams = new ConnectionParamsControl();
+                FParams.LocalModeChanged += delegate { SyncLocalAlias(); };
+            }
             FParams.Dock = DockStyle.Fill;
             FParams.Margin = new Padding(0, 6, 0, 0);
 
@@ -298,6 +304,21 @@ namespace Reportman.Designer
                 if (FParams.IsHttpAgent || string.IsNullOrEmpty(FParams.ProviderInvariant))
                     FParams.Populate(DatabaseInfo.FIREBIRD_PROVIDER2, "");
             }
+            SyncLocalAlias();
+        }
+
+        // A connection of this computer is used by its alias: the name of the report connection is that one
+        private void SyncLocalAlias()
+        {
+            if (FEdAlias == null || FParams == null)
+                return;
+            if (FParams.IsLocal)
+            {
+                FEdAlias.Text = FParams.LocalAlias;
+                FEdAlias.ReadOnly = true;
+            }
+            else
+                FEdAlias.ReadOnly = false;
         }
 
         // ---------------- Navigation ----------------
@@ -371,6 +392,17 @@ namespace Reportman.Designer
                 it.Report = FReport;
                 it.Alias = alias;
                 it.Driver = DriverType.HttpAgent;
+                it.ProviderFactory = "";
+                it.ConnectionString = "";
+                FReport.DatabaseInfo.Add(it);
+            }
+            else if (FParams != null && FParams.IsLocal)
+            {
+                // A connection of this computer: only its alias, the engine reads the rest from dbxconnections.ini
+                DatabaseInfo it = new DatabaseInfo();
+                it.Report = FReport;
+                it.Alias = FParams.LocalAlias;
+                it.Driver = DriverType.DotNet2;
                 it.ProviderFactory = "";
                 it.ConnectionString = "";
                 FReport.DatabaseInfo.Add(it);
@@ -465,6 +497,30 @@ namespace Reportman.Designer
             }
             w.Dispose();
             return s;
+        }
+
+        /// <summary>
+        /// Self-test (designer.exe /localconnectionstest), without showing the wizard: the direct route with the
+        /// connection of this computer <paramref name="alias"/> chosen in the driver list, and the report it commits.
+        /// </summary>
+        internal static Report SelfTestLocal(string alias, out bool selected, out string aliasText, out bool aliasReadOnly,
+            out bool aliasReadOnlyAfterDriver)
+        {
+            Report r = new Report();
+            r.CreateNew();
+            using (NewReportWizard w = new NewReportWizard(r))
+            {
+                w.FRoute = Route.Direct;
+                w.GoToPage(WizPage.Connection);
+                selected = w.FParams.SelectLocal(alias);
+                aliasText = w.FEdAlias.Text;
+                aliasReadOnly = w.FEdAlias.ReadOnly;
+                w.Commit();
+                // A driver again: the name of the connection can be written again
+                w.FParams.Populate(DatabaseInfo.FIREBIRD_PROVIDER2, "");
+                aliasReadOnlyAfterDriver = w.FEdAlias.ReadOnly;
+            }
+            return r;
         }
 
         private static string SelfTestAgent()

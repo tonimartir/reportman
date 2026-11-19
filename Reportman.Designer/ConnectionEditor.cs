@@ -28,6 +28,9 @@ namespace Reportman.Designer
     /// wizard. For a .Net provider the connection string is stored in the report;
     /// for the HTTP Agent driver the API key + Hub database are stored in
     /// dbxconnections.ini (Delphi-compatible) and the report only keeps the alias.
+    /// A connection of this computer (a <c>DriverName=ADO.NET</c> section of
+    /// dbxconnections.ini, written by Reportman.Server or Reportman AI) is chosen
+    /// from the driver list and, as the Agent's, the report only keeps its alias.
     /// </summary>
     public partial class ConnectionEditor : UserControl
     {
@@ -50,6 +53,13 @@ namespace Reportman.Designer
             public string AgentBaseUrl;
             /// <summary>Gets the HTTP Agent Hub database identifier.</summary>
             public long AgentHubDatabaseId;
+            /// <summary>
+            /// Gets a value indicating whether a connection of this computer was chosen (a <c>DriverName=ADO.NET</c>
+            /// section of dbxconnections.ini): the report keeps only its alias.
+            /// </summary>
+            public bool IsLocal;
+            /// <summary>Gets the alias of the connection of this computer.</summary>
+            public string LocalAlias;
         }
 
         /// <summary>
@@ -128,12 +138,29 @@ namespace Reportman.Designer
             if (prefillAgent)
                 DbxConnections.ReadAgent(datainfotalias, out ak, out hubid, out url);
             string provider = dbinfo != null ? dbinfo.ProviderFactory : "";
+            // A connection of this computer: the report keeps only its alias, the connections file the rest
+            string localAlias = null;
+            if (!prefillAgent && dbinfo != null && string.IsNullOrEmpty(provider) && string.IsNullOrEmpty(sql) &&
+                DbxConnections.FindDirectConnection(datainfotalias) != null)
+                localAlias = datainfotalias;
 
             ConnResult res;
-            if (!Edit(provider, sql, prefillAgent, ak, url, hubid, framemain.FindForm(), out res))
+            if (!Edit(provider, sql, prefillAgent, ak, url, hubid, localAlias, framemain.FindForm(), out res))
                 return false;
 
-            if (res.IsAgent)
+            if (res.IsLocal)
+            {
+                string error;
+                if (!ApplyLocal(framemain.Report, dbinfo, res.LocalAlias, out error))
+                {
+                    MessageBox.Show(framemain.FindForm(), error, Translator.TranslateStr(1979),
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                sql = "";
+                framemain.RefreshDataItem(dbinfo);
+            }
+            else if (res.IsAgent)
             {
                 if (dbinfo != null)
                 {
@@ -173,6 +200,55 @@ namespace Reportman.Designer
             string agentApiKey, string agentBaseUrl, long agentHubDbId,
             IWin32Window owner, out ConnResult result)
         {
+            return Edit(provider, connstr, prefillAgent, agentApiKey, agentBaseUrl, agentHubDbId, null, owner, out result);
+        }
+
+        /// <summary>
+        /// The report connection <paramref name="dbinfo"/> becomes the connection of this computer
+        /// <paramref name="localAlias"/>: only its alias stays in the report (driver Dot Net 2, no provider factory nor
+        /// connection string), and the engine reads the rest from dbxconnections.ini. A connection with another alias
+        /// is renamed, and its datasets follow it. False (with the reason) when the report already has another
+        /// connection with that alias.
+        /// </summary>
+        public static bool ApplyLocal(Report report, DatabaseInfo dbinfo, string localAlias, out string error)
+        {
+            error = "";
+            if (dbinfo == null || string.IsNullOrWhiteSpace(localAlias))
+                return false;
+            string oldAlias = dbinfo.Alias ?? "";
+            if (!string.Equals(oldAlias, localAlias, StringComparison.Ordinal))
+            {
+                if (report != null)
+                {
+                    foreach (DatabaseInfo other in report.DatabaseInfo)
+                    {
+                        if (other != dbinfo && string.Equals(other.Alias, localAlias, StringComparison.OrdinalIgnoreCase))
+                        {
+                            error = Translator.TranslateStr(505).TrimEnd(':', ' ') + ": " + localAlias;
+                            return false;
+                        }
+                    }
+                    foreach (DataInfo dataset in report.DataInfo)
+                        if (string.Equals(dataset.DatabaseAlias, oldAlias, StringComparison.OrdinalIgnoreCase))
+                            dataset.DatabaseAlias = localAlias;
+                }
+                dbinfo.Alias = localAlias;
+            }
+            dbinfo.Driver = DriverType.DotNet2;
+            dbinfo.ProviderFactory = "";
+            dbinfo.ConnectionString = "";
+            return true;
+        }
+
+        /// <summary>
+        /// Generic entry point: shows the assistant and returns the user's choices. When
+        /// <paramref name="prefillAgent"/> is true the dialog opens in HTTP Agent mode with the given parameters;
+        /// with <paramref name="localAlias"/>, on that connection of this computer.
+        /// </summary>
+        public static bool Edit(string provider, string connstr, bool prefillAgent,
+            string agentApiKey, string agentBaseUrl, long agentHubDbId, string localAlias,
+            IWin32Window owner, out ConnResult result)
+        {
             result = new ConnResult();
             using (Form newform = new Form())
             {
@@ -187,12 +263,14 @@ namespace Reportman.Designer
                 newform.Controls.Add(dia);
                 if (prefillAgent)
                     dia.FParams.PopulateHttpAgent(agentApiKey, agentBaseUrl, agentHubDbId, "");
-                else
+                else if (string.IsNullOrEmpty(localAlias) || !dia.FParams.SelectLocal(localAlias))
                     dia.FParams.Populate(provider, connstr);
 
                 if (newform.ShowDialog(owner) != DialogResult.OK)
                     return false;
 
+                result.IsLocal = dia.FParams.IsLocal;
+                result.LocalAlias = dia.FParams.LocalAlias;
                 result.IsAgent = dia.FParams.IsHttpAgent;
                 result.ProviderInvariant = dia.FParams.ProviderInvariant;
                 result.ConnectionString = dia.FParams.ConnectionString;

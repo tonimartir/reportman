@@ -289,6 +289,8 @@ namespace Reportman.Designer
         public FrameMainDesigner()
         {
             InitializeComponent();
+            // The password of a connection of this computer this Windows user cannot decipher is asked here
+            LocalConnectionPassword.Install();
 
             // AI Copilot Chat Integration
             FAIChatControl = new AIChatPanelControl { Dock = DockStyle.Right, Width = DefaultAIChatPanelWidth };
@@ -688,6 +690,18 @@ namespace Reportman.Designer
             FReport.Modified = true;
             Report = FReport;
             FReport.Modified = true;
+        }
+        /// <summary>
+        /// The node of a connection, dataset or parameter of the data tab shows its alias again (renamed outside the
+        /// tree, as the connection editor does when it chooses a connection of this computer).
+        /// </summary>
+        internal void RefreshDataItem(ReportItem item)
+        {
+            if (item == null)
+                return;
+            fdatadef.UpdateItemText(item);
+            if (FReport != null)
+                FReport.Modified = true;
         }
         /// <summary>
         /// Gets or sets the report currently open in the designer. Assigning a report
