@@ -9,8 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc -b packages/reportman-node",
-    "clean": "tsc -b --clean packages/reportman-node",
+    "build": "tsc -b packages/reportman-node packages/reportman-driver-postgres packages/reportman-driver-firebird",
+    "clean": "tsc -b --clean packages/reportman-node packages/reportman-driver-postgres packages/reportman-driver-firebird",
     "test": "vitest run",
     "check:pure-js": "node tools/check-pure-js.mjs"
   },

@@ -10,6 +10,8 @@ const packages = [
   'reportman-pdf',
   'reportman-engine',
   'reportman-node',
+  'reportman-driver-postgres',
+  'reportman-driver-firebird',
 ];
 
 export default defineConfig({

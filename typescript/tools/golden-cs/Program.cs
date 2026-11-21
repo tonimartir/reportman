@@ -26,6 +26,13 @@ using Reportman.Reporting.Design.Json;
 //       Runs the report measured and printed with PrintOutPDFStandard (standard 14 fonts, no
 //       FreeType) and writes the metafile as JSON. Connections without a provider factory are
 //       opened as SQLite (SQLiteCore) on the --sqlite file, read only.
+//       --connection ALIAS=Provider|ConnectionString opens that report connection with an
+//       ADO.NET provider instead (Provider: SQLiteCore, PostgreSQL, FirebirdSql.Data.FirebirdClient,
+//       MySQLConnector or SQLServer, the names Reportman.Server registers); it wins over --sqlite.
+//
+//   golden-cs sql <Provider|ConnectionString> <sql> [out.json]
+//       Runs a query with the provider and writes its schema (ColumnName, DataType name,
+//       ColumnSize, DataTypeName) and rows as JSON: how the C# engine sees a database's types.
 class Program
 {
     static int Main(string[] args)
@@ -43,6 +50,7 @@ class Program
                 case "eval": return Eval(args);
                 case "run": return Run(args);
                 case "culture-json": return CultureJson(args);
+                case "sql": return Sql(args);
                 case "text-extent": return TextExtent(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
@@ -133,14 +141,29 @@ class Program
     {
         SetCulture(args);
         string sqlite = Option(args, "--sqlite");
-        DatabaseInfo.CustomProviderFactories["SQLiteCore"] = Microsoft.Data.Sqlite.SqliteFactory.Instance;
+        RegisterProviders();
+        var connections = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
+        for (int i = 0; i < args.Length - 1; i++)
+        {
+            if (args[i] != "--connection")
+                continue;
+            string[] pair = args[i + 1].Split(new[] { '=' }, 2);
+            connections[pair[0]] = pair[1].Split(new[] { '|' }, 2);
+        }
 
         var report = new Report();
         report.LoadFromFile(args[1]);
         report.ConvertToDotNet();
         foreach (DatabaseInfo db in report.DatabaseInfo)
         {
-            if (string.IsNullOrEmpty(db.ProviderFactory) && sqlite != null)
+            if (connections.TryGetValue(db.Alias, out string[] conn))
+            {
+                db.Driver = DriverType.DotNet2;
+                db.LoadParams = false;
+                db.ProviderFactory = conn[0];
+                db.ConnectionString = conn[1];
+            }
+            else if (string.IsNullOrEmpty(db.ProviderFactory) && sqlite != null)
             {
                 db.Driver = DriverType.DotNet2;
                 db.LoadParams = false;
@@ -168,6 +191,68 @@ class Program
 
         Output(MetaFileJson(report.MetaFile).ToString(Formatting.Indented), args[2]);
         Console.WriteLine("pages=" + report.MetaFile.Pages.Count);
+        return 0;
+    }
+
+    // The ADO.NET providers of Reportman.Server (DirectProviders.cs), by the same invariant names.
+    static void RegisterProviders()
+    {
+        DatabaseInfo.CustomProviderFactories["SQLiteCore"] = Microsoft.Data.Sqlite.SqliteFactory.Instance;
+        DatabaseInfo.CustomProviderFactories["PostgreSQL"] = Npgsql.NpgsqlFactory.Instance;
+        DatabaseInfo.CustomProviderFactories["FirebirdSql.Data.FirebirdClient"] = FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance;
+        DatabaseInfo.CustomProviderFactories["MySQLConnector"] = MySqlConnector.MySqlConnectorFactory.Instance;
+        DatabaseInfo.CustomProviderFactories["SQLServer"] = Microsoft.Data.SqlClient.SqlClientFactory.Instance;
+    }
+
+    static int Sql(string[] args)
+    {
+        SetCulture(args);
+        RegisterProviders();
+        string[] conn = args[1].Split(new[] { '|' }, 2);
+        System.Data.Common.DbProviderFactory factory = DatabaseInfo.CustomProviderFactories[conn[0]];
+        using (System.Data.Common.DbConnection connection = factory.CreateConnection())
+        {
+            connection.ConnectionString = conn[1];
+            connection.Open();
+            using (System.Data.Common.DbCommand command = connection.CreateCommand())
+            {
+                command.CommandText = args[2];
+                using (System.Data.Common.DbDataReader reader = command.ExecuteReader())
+                {
+                    var result = new JObject();
+                    var columns = new JArray();
+                    System.Data.DataTable schema = reader.GetSchemaTable();
+                    foreach (System.Data.DataRow row in schema.Rows)
+                    {
+                        columns.Add(new JObject
+                        {
+                            ["columnName"] = row["ColumnName"]?.ToString(),
+                            ["dataType"] = (row["DataType"] as Type)?.Name,
+                            ["columnSize"] = row["ColumnSize"] == DBNull.Value ? null : JToken.FromObject(row["ColumnSize"]),
+                            ["dataTypeName"] = schema.Columns.Contains("DataTypeName") ? row["DataTypeName"]?.ToString() : null,
+                        });
+                    }
+                    result["columns"] = columns;
+                    var rows = new JArray();
+                    while (reader.Read())
+                    {
+                        var jr = new JArray();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            object v = reader.GetValue(i);
+                            if (v == DBNull.Value) jr.Add(JValue.CreateNull());
+                            else if (v is byte[] b) jr.Add(Convert.ToBase64String(b));
+                            else if (v is DateTime d) jr.Add(d.ToString("yyyy-MM-ddTHH:mm:ss.fffffff", CultureInfo.InvariantCulture));
+                            else if (v is decimal m) jr.Add(m.ToString(CultureInfo.InvariantCulture));
+                            else jr.Add(new JValue(v.GetType().Name + ":" + Convert.ToString(v, CultureInfo.InvariantCulture)));
+                        }
+                        rows.Add(jr);
+                    }
+                    result["rows"] = rows;
+                    Output(result.ToString(Formatting.Indented), args.Length > 3 ? args[3] : null);
+                }
+            }
+        }
         return 0;
     }
 

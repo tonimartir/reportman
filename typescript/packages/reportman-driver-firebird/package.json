@@ -1,0 +1,33 @@
+{
+  "name": "reportman-driver-firebird",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Firebird for Report Manager in Node.js (node-firebird, pure JavaScript), with the behaviour of FirebirdSql.Data.FirebirdClient, the provider of the C# engine.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonimartir/reportman",
+    "directory": "typescript/packages/reportman-driver-firebird"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "node-firebird": "^2.0.0",
+    "reportman-engine": "0.0.1"
+  }
+}
