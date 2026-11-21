@@ -1,0 +1,50 @@
+{
+  "columns": [
+    {
+      "columnName": "A",
+      "dataType": "Int64",
+      "columnSize": 2,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "B",
+      "dataType": "String",
+      "columnSize": 2,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "D",
+      "dataType": "String",
+      "columnSize": 2,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "@C",
+      "dataType": "Int64",
+      "columnSize": 2,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "G",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "I",
+      "dataType": "Int64",
+      "columnSize": 2,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int64:1",
+      "String:@B",
+      "String:@D",
+      "Int64:2",
+      "String:'@G",
+      "Int64:3"
+    ]
+  ]
+}

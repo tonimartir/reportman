@@ -1,0 +1,81 @@
+{
+  "reports": [
+    { "name": "customers", "report": "../../../../samples/customers.rep" },
+    { "name": "invoices", "report": "fixtures/reports/invoices.rep" },
+    { "name": "invoices-range", "report": "fixtures/reports/invoices.rep", "params": { "FIRST_ORDER": "7", "LAST_ORDER": "9" } },
+    { "name": "labels", "report": "../../../../samples/labels.rep" },
+    { "name": "product-catalog", "report": "../../../../samples/product-catalog.rep" },
+    { "name": "monthly-sales", "report": "fixtures/reports/monthly-sales.rep" },
+    {
+      "name": "sales-by-category",
+      "report": "fixtures/reports/sales-by-category.rep",
+      "golden": "fixtures/reports/sales-by-category.split.rep",
+      "connections": ["SAMPLES2"]
+    },
+    { "name": "fishes", "report": "../../../../samples/fishes.rep" },
+    {
+      "name": "syn-params",
+      "report": "fixtures/reports/syn-params.rep",
+      "golden": "fixtures/reports/syn-params.split.rep",
+      "connections": ["SAMPLES2"]
+    },
+    {
+      "name": "syn-params-values",
+      "report": "fixtures/reports/syn-params.rep",
+      "golden": "fixtures/reports/syn-params.split.rep",
+      "connections": ["SAMPLES2"],
+      "params": { "FROMID": "10", "MAXVAT": "21", "COUNTRY": "'Spain'", "PATTERN": "%a%", "FLAG": "False" }
+    },
+    {
+      "name": "syn-masterdetail",
+      "report": "fixtures/reports/syn-masterdetail.rep",
+      "golden": "fixtures/reports/syn-masterdetail.split.rep",
+      "connections": ["SAMPLES2", "SAMPLES3", "SAMPLES4"]
+    },
+    { "name": "syn-getvalue", "report": "fixtures/reports/syn-getvalue.rep" }
+  ],
+  "queries": [
+    { "name": "types", "sql": "SELECT * FROM TYPES ORDER BY ID" },
+    { "name": "tiny-as-int", "sql": "SELECT ID, T_TINYINT, T_BOOL, T_UBOOL FROM TYPES ORDER BY ID", "options": "TreatTinyAsBoolean=False" },
+    { "name": "guid-none", "sql": "SELECT ID, T_GUID, T_GUID32, T_BINARY16 FROM TYPES ORDER BY ID", "options": "GuidFormat=None" },
+    { "name": "guid-char32", "sql": "SELECT ID, T_GUID, T_GUID32, T_BINARY16 FROM TYPES ORDER BY ID", "options": "GuidFormat=Char32" },
+    { "name": "guid-binary16", "sql": "SELECT ID, T_GUID, T_GUID32, T_BINARY16, T_VARBINARY FROM TYPES ORDER BY ID", "options": "GuidFormat=Binary16" },
+    { "name": "guid-timeswap", "sql": "SELECT ID, T_BINARY16 FROM TYPES ORDER BY ID", "options": "GuidFormat=TimeSwapBinary16" },
+    { "name": "guid-oldguids", "sql": "SELECT ID, T_GUID, T_BINARY16 FROM TYPES ORDER BY ID", "options": "Old Guids=true" },
+    { "name": "zero-date", "sql": "SELECT * FROM ZERODATES ORDER BY ID" },
+    { "name": "zero-part-date", "sql": "SELECT D FROM ZERODATES WHERE ID = 2" },
+    { "name": "zero-dates-convert", "sql": "SELECT * FROM ZERODATES WHERE ID <> 2 ORDER BY ID", "options": "ConvertZeroDateTime=True" },
+    { "name": "zero-dates-allow", "sql": "SELECT * FROM ZERODATES ORDER BY ID", "options": "AllowZeroDateTime=True" },
+    { "name": "types-allow-zero", "sql": "SELECT ID, T_DATE, T_DATETIME6, T_TIMESTAMP3 FROM TYPES ORDER BY ID", "options": "Allow Zero DateTime=yes" },
+    {
+      "name": "expressions",
+      "sql": "SELECT COUNT(*) AS N, SUM(T_INT) AS S_INT, SUM(T_BIGINT) AS S_BIG, SUM(T_UBIGINT) AS S_UBIG, AVG(T_DEC5_2) AS A_DEC, SUM(T_FLOAT) AS S_FLT, MAX(T_DOUBLE) AS M_DBL, MIN(T_TINYINT) AS M_TINY, MAX(T_BOOL) AS M_BOOL, MAX(T_DATE) AS M_DATE, MAX(T_TIME) AS M_TIME, MAX(T_CHAR) AS M_CHAR, GROUP_CONCAT(ID ORDER BY ID) AS IDS, 'lit' AS LIT, NULL AS NUL, CAST(NULL AS CHAR(5)) AS NUL_CHAR, 1 = 1 AS EQ, TRUE AS T, CAST(1 AS UNSIGNED) AS U, CAST(-1 AS SIGNED) AS S, 1.5 AS D, 1e2 AS F, 7 DIV 2 AS IDIV, 7 / 2 AS FDIV, YEAR(MAX(T_DATE)) AS Y, SUM(T_DEC65_30) AS S65 FROM TYPES WHERE ID < 4"
+    },
+    {
+      "name": "literals",
+      "sql": "SELECT DATE '2024-02-29' AS D, TIME '23:59:59.999999' AS T, TIMESTAMP '2024-02-29 23:59:59.999999' AS TS, X'C0FFEE' AS B, _utf8mb4'ñ' AS U, CAST(12.30 AS DECIMAL(6,2)) AS N, CAST('{\"x\": 1}' AS JSON) AS J, b'101' AS BITS, 0x41 AS HEX, CAST(18446744073709551615 AS UNSIGNED) AS UMAX, CAST(1.5 AS FLOAT) AS FL, CAST(1.5 AS DOUBLE) AS DB, CONVERT('abc' USING latin1) AS L1, CAST('abc' AS BINARY) AS BIN, CAST('00112233-4455-6677-8899-aabbccddeeff' AS CHAR(36)) AS C36, -0.0 AS NZ, CAST(-0.0 AS DOUBLE) AS NZD, 'a' COLLATE utf8mb4_bin AS COLL, ST_GeomFromText('POINT(1 1)') AS P, CAST(5 AS YEAR) AS YR, TIMEDIFF('2024-01-01 00:00:00', '2024-01-03 12:30:00.5') AS TD"
+    },
+    { "name": "comments", "sql": "SELECT 1 AS A /* @E */, '@B' AS B, \"@D\" AS D, 2 AS `@C`, '\\'@G' AS G -- @H\n, 3 AS I # @F" },
+    { "name": "system-variables", "sql": "SELECT @@max_allowed_packet AS M, @@session.autocommit AS A, @@character_set_results AS R, @@collation_connection AS C, @@sql_mode AS S" },
+    { "name": "user-variable", "sql": "SELECT @X AS X" },
+    { "name": "user-variable-allowed", "sql": "SELECT @X AS X, @`Y z` AS Y", "options": "AllowUserVariables=True" },
+    { "name": "positional", "sql": "SELECT ? AS X" },
+    { "name": "multi-statement", "sql": "SELECT 1 AS A; SELECT 'two' AS B" },
+    { "name": "do-then-select", "sql": "DO 1; SELECT 2 AS B" },
+    {
+      "name": "mariadb-types",
+      "sql": "SELECT CAST('00112233-4455-6677-8899-AABBCCDDEEFF' AS UUID) AS U, CAST('::1' AS INET6) AS I6, CAST('10.0.0.1' AS INET4) AS I4, VEC_FromText('[1,2,3]') AS V, JSON_OBJECT('a', 1) AS J"
+    },
+    { "name": "json-functions", "sql": "SELECT JSON_OBJECT('a', 1, 'b', JSON_ARRAY(1, 'x')) AS J, JSON_EXTRACT('{\"k\": [10, 20]}', '$.k[1]') AS E, JSON_TYPE('[]') AS T" },
+    { "name": "no-rows", "sql": "SELECT ID, T_JSON FROM TYPES WHERE 1 = 0" },
+    { "name": "unknown-table", "sql": "SELECT * FROM NOSUCHTABLE" },
+    { "name": "syntax-error", "sql": "SELECT FROM WHERE" },
+    { "name": "decimal-overflow", "sql": "SELECT CAST('99999999999999999999999999999999' AS DECIMAL(32,0)) AS BIG" },
+    { "name": "bad-guid", "sql": "SELECT G FROM BADGUIDS" },
+    { "name": "unknown-column", "sql": "SELECT NOSUCHCOLUMN FROM TYPES" },
+    { "name": "wrong-password", "sql": "SELECT 1", "options": "Password=not-the-password" },
+    { "name": "unknown-database", "sql": "SELECT 1", "options": "Database=nosuchdb" },
+    { "name": "unknown-option", "sql": "SELECT 1", "options": "Frobnicate=1" },
+    { "name": "bad-option-value", "sql": "SELECT 1", "options": "TreatTinyAsBoolean=maybe" }
+  ]
+}

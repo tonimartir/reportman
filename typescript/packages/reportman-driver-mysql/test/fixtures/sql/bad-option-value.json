@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "Invalid value 'maybe' for 'Treat Tiny As Boolean' connection string option."
+}

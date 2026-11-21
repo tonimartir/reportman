@@ -1,0 +1,57 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "D",
+      "dataType": "MySqlDateTime",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DT",
+      "dataType": "MySqlDateTime",
+      "columnSize": 19,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "TS",
+      "dataType": "MySqlDateTime",
+      "columnSize": 19,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "Y",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "MySqlDateTime:0000-00-00",
+      "MySqlDateTime:0000-00-00",
+      "MySqlDateTime:0000-00-00",
+      "Int32:0"
+    ],
+    [
+      "Int32:2",
+      "MySqlDateTime:0000-00-00",
+      "MySqlDateTime:0000-00-00",
+      null,
+      null
+    ],
+    [
+      "Int32:3",
+      "MySqlDateTime:02/29/2024 00:00:00",
+      "MySqlDateTime:02/29/2024 13:45:30",
+      "MySqlDateTime:02/29/2024 13:45:30",
+      "Int32:2024"
+    ]
+  ]
+}

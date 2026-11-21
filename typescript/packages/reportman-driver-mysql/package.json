@@ -29,5 +29,8 @@
   "dependencies": {
     "mysql2": "^3.24.6",
     "reportman-engine": "0.0.1"
+  },
+  "devDependencies": {
+    "reportman-node": "0.0.1"
   }
 }

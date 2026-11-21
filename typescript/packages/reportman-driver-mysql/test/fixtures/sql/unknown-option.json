@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "Option 'frobnicate' not supported."
+}

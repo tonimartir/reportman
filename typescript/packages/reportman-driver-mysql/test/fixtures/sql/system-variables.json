@@ -1,0 +1,43 @@
+{
+  "columns": [
+    {
+      "columnName": "M",
+      "dataType": "UInt64",
+      "columnSize": 21,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "A",
+      "dataType": "Int64",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "R",
+      "dataType": "String",
+      "columnSize": 21845,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "C",
+      "dataType": "String",
+      "columnSize": 21845,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S",
+      "dataType": "String",
+      "columnSize": 21845,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "UInt64:67108864",
+      "Int64:1",
+      "String:utf8mb4",
+      "String:utf8mb4_0900_ai_ci",
+      "String:ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+    ]
+  ]
+}

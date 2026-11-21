@@ -1,0 +1,155 @@
+{
+  "columns": [
+    {
+      "columnName": "D",
+      "dataType": "DateTime",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T",
+      "dataType": "TimeSpan",
+      "columnSize": 17,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "TS",
+      "dataType": "DateTime",
+      "columnSize": 26,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "B",
+      "dataType": "Byte[]",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "U",
+      "dataType": "String",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "N",
+      "dataType": "Decimal",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "J",
+      "dataType": "String",
+      "columnSize": 1073741823,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "BITS",
+      "dataType": "Byte[]",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "HEX",
+      "dataType": "Byte[]",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "UMAX",
+      "dataType": "UInt64",
+      "columnSize": 21,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "FL",
+      "dataType": "Single",
+      "columnSize": 23,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DB",
+      "dataType": "Double",
+      "columnSize": 23,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "L1",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "BIN",
+      "dataType": "Byte[]",
+      "columnSize": 12,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "C36",
+      "dataType": "String",
+      "columnSize": 36,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "NZ",
+      "dataType": "Decimal",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "NZD",
+      "dataType": "Double",
+      "columnSize": 23,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "COLL",
+      "dataType": "String",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "P",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "YR",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "TD",
+      "dataType": "TimeSpan",
+      "columnSize": 12,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "2024-02-29T00:00:00.0000000",
+      "TimeSpan:23:59:59.9999990",
+      "2024-02-29T23:59:59.9999990",
+      "wP/u",
+      "String:ñ",
+      "12.30",
+      "String:{\"x\": 1}",
+      "BQ==",
+      "QQ==",
+      "UInt64:18446744073709551615",
+      "Single:1.5",
+      "Double:1.5",
+      "String:abc",
+      "YWJj",
+      "String:00112233-4455-6677-8899-aabbccddeeff",
+      "0.0",
+      "Double:0",
+      "String:a",
+      "AAAAAAEBAAAAAAAAAAAA8D8AAAAAAADwPw==",
+      "Int32:2005",
+      "TimeSpan:-2.12:30:00.5000000"
+    ]
+  ]
+}

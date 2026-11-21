@@ -1,0 +1,54 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_GUID",
+      "dataType": "String",
+      "columnSize": 36,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_GUID32",
+      "dataType": "String",
+      "columnSize": 32,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BINARY16",
+      "dataType": "Byte[]",
+      "columnSize": 16,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "String:00112233-4455-6677-8899-AABBCCDDEEFF",
+      "String:00112233445566778899aabbccddeeff",
+      "ABEiM0RVZneImaq7zN3u/w=="
+    ],
+    [
+      "Int32:2",
+      "String:00000000-0000-0000-0000-000000000000",
+      "String:ffffffffffffffffffffffffffffffff",
+      "/////////////////////w=="
+    ],
+    [
+      "Int32:3",
+      "String:ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "String:0123456789ABCDEF0123456789ABCDEF",
+      "AQIDBAUGBwgJCgsMDQ4PEA=="
+    ],
+    [
+      "Int32:4",
+      null,
+      null,
+      null
+    ]
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "D",
+      "dataType": "DateTime",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DT",
+      "dataType": "DateTime",
+      "columnSize": 19,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "TS",
+      "dataType": "DateTime",
+      "columnSize": 19,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "Y",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "0001-01-01T00:00:00.0000000",
+      "0001-01-01T00:00:00.0000000",
+      "0001-01-01T00:00:00.0000000",
+      "Int32:0"
+    ],
+    [
+      "Int32:3",
+      "2024-02-29T00:00:00.0000000",
+      "2024-02-29T13:45:30.0000000",
+      "2024-02-29T13:45:30.0000000",
+      "Int32:2024"
+    ]
+  ]
+}

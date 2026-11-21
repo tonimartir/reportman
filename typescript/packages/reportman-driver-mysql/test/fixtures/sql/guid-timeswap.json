@@ -1,0 +1,34 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BINARY16",
+      "dataType": "Guid",
+      "columnSize": 16,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "Guid:44556677-2233-0011-8899-aabbccddeeff"
+    ],
+    [
+      "Int32:2",
+      "Guid:ffffffff-ffff-ffff-ffff-ffffffffffff"
+    ],
+    [
+      "Int32:3",
+      "Guid:05060708-0304-0102-090a-0b0c0d0e0f10"
+    ],
+    [
+      "Int32:4",
+      null
+    ]
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "columns": [
+    {
+      "columnName": "X",
+      "dataType": "Byte[]",
+      "columnSize": 65532,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "Y",
+      "dataType": "Byte[]",
+      "columnSize": 65532,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      null,
+      null
+    ]
+  ]
+}

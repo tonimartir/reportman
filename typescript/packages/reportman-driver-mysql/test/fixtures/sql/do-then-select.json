@@ -1,0 +1,15 @@
+{
+  "columns": [
+    {
+      "columnName": "B",
+      "dataType": "Int64",
+      "columnSize": 2,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int64:2"
+    ]
+  ]
+}

@@ -1,0 +1,6 @@
+[
+  "SET NAMES utf8mb4",
+  "set session transaction isolation level repeatable read",
+  "start transaction",
+  "SELECT ORDER_ID FROM ORDERS WHERE ORDER_ID < 3"
+]

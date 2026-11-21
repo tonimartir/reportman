@@ -1,0 +1,54 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TINYINT",
+      "dataType": "SByte",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BOOL",
+      "dataType": "SByte",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UBOOL",
+      "dataType": "Byte",
+      "columnSize": 1,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "SByte:12",
+      "SByte:1",
+      "Byte:1"
+    ],
+    [
+      "Int32:2",
+      "SByte:-128",
+      "SByte:0",
+      "Byte:0"
+    ],
+    [
+      "Int32:3",
+      "SByte:127",
+      "SByte:5",
+      "Byte:255"
+    ],
+    [
+      "Int32:4",
+      null,
+      null,
+      null
+    ]
+  ]
+}

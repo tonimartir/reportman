@@ -1,0 +1,17 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_JSON",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": null
+    }
+  ],
+  "rows": []
+}

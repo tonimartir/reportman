@@ -1,0 +1,7 @@
+[
+  "SET NAMES utf8mb4",
+  "set session transaction isolation level repeatable read",
+  "start transaction",
+  "SELECT CODE, COMPANY_NAME, CONTACT_NAME, CITY, COUNTRY, PHONE, CUSTOMER_SINCE FROM CUSTOMERS ORDER BY COUNTRY, COMPANY_NAME",
+  "commit"
+]

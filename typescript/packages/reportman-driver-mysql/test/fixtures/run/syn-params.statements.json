@@ -1,0 +1,12 @@
+[
+  "SET NAMES utf8mb4",
+  "set session transaction isolation level repeatable read",
+  "start transaction",
+  "SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, VAT_RATE FROM (SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, VAT_RATE, ROW_NUMBER() OVER (ORDER BY ORDER_DATE DESC, ORDER_ID) AS RN FROM ORDERS WHERE ORDER_ID BETWEEN 5 AND 60 AND ORDER_DATE >= timestamp('2024-02-01 00:00:00.000000') AND VAT_RATE <= 21.5 AND (true = 1 OR VAT_RATE > 0) AND ORDER_ID <> 40 AND ORDER_ID NOT IN (7,9) AND ORDER_ID > 6) T WHERE RN <= 2+18 ORDER BY RN",
+  "SET NAMES utf8mb4",
+  "set session transaction isolation level repeatable read",
+  "start transaction",
+  "SELECT COMPANY_NAME, COUNTRY FROM CUSTOMERS WHERE COUNTRY = 'France' AND COMPANY_NAME LIKE 'L%' ORDER BY COMPANY_NAME",
+  "commit",
+  "commit"
+]

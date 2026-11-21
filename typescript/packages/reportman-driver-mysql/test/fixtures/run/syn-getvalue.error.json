@@ -1,0 +1,4 @@
+{
+  "error": "ReportException",
+  "message": "The transaction associated with this command is not the connection's active transaction; see https://mysqlconnector.net/trans\nTRpExpression1 Prop:Expression"
+}

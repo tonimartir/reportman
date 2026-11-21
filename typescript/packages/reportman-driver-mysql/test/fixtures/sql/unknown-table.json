@@ -1,0 +1,4 @@
+{
+  "error": "MySqlException",
+  "message": "Table 'samples.NOSUCHTABLE' doesn't exist"
+}

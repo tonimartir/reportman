@@ -1,0 +1,584 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TINYINT",
+      "dataType": "SByte",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UTINYINT",
+      "dataType": "Byte",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BOOL",
+      "dataType": "Boolean",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UBOOL",
+      "dataType": "Byte",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_SMALLINT",
+      "dataType": "Int16",
+      "columnSize": 6,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_USMALLINT",
+      "dataType": "UInt16",
+      "columnSize": 5,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_MEDIUMINT",
+      "dataType": "Int32",
+      "columnSize": 9,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UMEDIUMINT",
+      "dataType": "UInt32",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_INT",
+      "dataType": "Int32",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UINT",
+      "dataType": "UInt32",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BIGINT",
+      "dataType": "Int64",
+      "columnSize": 20,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UBIGINT",
+      "dataType": "UInt64",
+      "columnSize": 20,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BIT1",
+      "dataType": "UInt64",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BIT5",
+      "dataType": "UInt64",
+      "columnSize": 5,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BIT64",
+      "dataType": "UInt64",
+      "columnSize": 64,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DEC5_2",
+      "dataType": "Decimal",
+      "columnSize": 7,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DEC18_4",
+      "dataType": "Decimal",
+      "columnSize": 20,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DEC29_0",
+      "dataType": "Decimal",
+      "columnSize": 30,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DEC38_10",
+      "dataType": "Decimal",
+      "columnSize": 40,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DEC65_30",
+      "dataType": "Decimal",
+      "columnSize": 67,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UDEC",
+      "dataType": "Decimal",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_FLOAT",
+      "dataType": "Single",
+      "columnSize": 12,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DOUBLE",
+      "dataType": "Double",
+      "columnSize": 22,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_CHAR",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_VARCHAR",
+      "dataType": "String",
+      "columnSize": 20,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UNICODE",
+      "dataType": "String",
+      "columnSize": 30,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_LATIN1",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_ASCII",
+      "dataType": "String",
+      "columnSize": 5,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UTF8MB3",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UCS2",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BINCOLL",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TINYTEXT",
+      "dataType": "String",
+      "columnSize": 255,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TEXT",
+      "dataType": "String",
+      "columnSize": 65535,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_MEDIUMTEXT",
+      "dataType": "String",
+      "columnSize": 16777215,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_LONGTEXT",
+      "dataType": "String",
+      "columnSize": 1073741823,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_GUID",
+      "dataType": "Guid",
+      "columnSize": 36,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_GUID32",
+      "dataType": "String",
+      "columnSize": 32,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BINARY",
+      "dataType": "Byte[]",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BINARY16",
+      "dataType": "Byte[]",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_VARBINARY",
+      "dataType": "Byte[]",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TINYBLOB",
+      "dataType": "Byte[]",
+      "columnSize": 255,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BLOB",
+      "dataType": "Byte[]",
+      "columnSize": 65535,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_MEDIUMBLOB",
+      "dataType": "Byte[]",
+      "columnSize": 16777215,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_LONGBLOB",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DATE",
+      "dataType": "DateTime",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DATETIME",
+      "dataType": "DateTime",
+      "columnSize": 19,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DATETIME6",
+      "dataType": "DateTime",
+      "columnSize": 26,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIMESTAMP",
+      "dataType": "DateTime",
+      "columnSize": 19,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIMESTAMP3",
+      "dataType": "DateTime",
+      "columnSize": 23,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIME",
+      "dataType": "TimeSpan",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIME6",
+      "dataType": "TimeSpan",
+      "columnSize": 17,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_YEAR",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_JSON",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_ENUM",
+      "dataType": "String",
+      "columnSize": 6,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_SET",
+      "dataType": "String",
+      "columnSize": 5,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_POINT",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "SByte:12",
+      "Byte:200",
+      "Boolean:True",
+      "Byte:1",
+      "Int16:1234",
+      "UInt16:60000",
+      "Int32:123456",
+      "UInt32:16000000",
+      "Int32:123456789",
+      "UInt32:4000000000",
+      "Int64:1234567890123",
+      "UInt64:18000000000000000000",
+      "UInt64:1",
+      "UInt64:21",
+      "UInt64:9223372036854775809",
+      "123.45",
+      "12345678901234.5678",
+      "12345678901234567890123456789",
+      "1234567890123456789012345678.1",
+      "0.1234567890123456789012345679",
+      "99.99",
+      "Single:1.1",
+      "Double:3.141592653589793",
+      "String:abc",
+      "String:Hello, world",
+      "String:日本語 Ελληνικά עברית",
+      "String:café",
+      "String:ascii",
+      "String:ñandú",
+      "String:Ωμέγα",
+      "String:MixedCase",
+      "String:tiny text",
+      "String:A text with ünïcödé and a line\nbreak",
+      "String:medium text",
+      "String:long text 😀",
+      "Guid:00112233-4455-6677-8899-aabbccddeeff",
+      "String:00112233445566778899aabbccddeeff",
+      "AQIDBA==",
+      "ABEiM0RVZneImaq7zN3u/w==",
+      "3q2+7w==",
+      "AA==",
+      "AAEC/w==",
+      "wP/u",
+      "/w==",
+      "2024-02-29T00:00:00.0000000",
+      "2024-02-29T13:45:30.0000000",
+      "2024-02-29T13:45:30.1234560",
+      "2024-02-29T13:45:30.0000000",
+      "2024-02-29T13:45:30.1230000",
+      "TimeSpan:13:45:30",
+      "TimeSpan:13:45:30.1234000",
+      "Int32:2024",
+      "String:{\"a\": 1, \"b\": [true, null, \"x\"], \"c\": \"ñ\"}",
+      "String:medium",
+      "String:a,c",
+      "AAAAAAEBAAAAAAAAAAAA8D8AAAAAAAAAQA=="
+    ],
+    [
+      "Int32:2",
+      "SByte:-128",
+      "Byte:0",
+      "Boolean:False",
+      "Byte:0",
+      "Int16:-32768",
+      "UInt16:0",
+      "Int32:-8388608",
+      "UInt32:0",
+      "Int32:-2147483648",
+      "UInt32:0",
+      "Int64:-9223372036854775808",
+      "UInt64:0",
+      "UInt64:0",
+      "UInt64:0",
+      "UInt64:0",
+      "-999.99",
+      "-99999999999999.9999",
+      "-79228162514264337593543950335",
+      "-0.0000000001",
+      "0.0000000000000000000000000000",
+      "0.00",
+      "Single:-3.40282E+38",
+      "Double:-1.7976931348623157E+308",
+      "String:",
+      "String:",
+      "String:x",
+      "String:",
+      "String:",
+      "String:",
+      "String:",
+      "String:",
+      "String:",
+      "String:",
+      "String:",
+      "String:",
+      "Guid:00000000-0000-0000-0000-000000000000",
+      "String:ffffffffffffffffffffffffffffffff",
+      "AAAAAA==",
+      "/////////////////////w==",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "1000-01-01T00:00:00.0000000",
+      "1000-01-01T00:00:00.0000000",
+      "1000-01-01T00:00:00.0000000",
+      "1970-01-01T00:00:01.0000000",
+      "1970-01-01T00:00:01.0000000",
+      "TimeSpan:-34.22:59:59",
+      "TimeSpan:-00:00:00.0000010",
+      "Int32:1901",
+      "String:[]",
+      "String:small",
+      "String:",
+      "AAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    ],
+    [
+      "Int32:3",
+      "SByte:127",
+      "Byte:255",
+      "Boolean:True",
+      "Byte:255",
+      "Int16:32767",
+      "UInt16:65535",
+      "Int32:8388607",
+      "UInt32:16777215",
+      "Int32:2147483647",
+      "UInt32:4294967295",
+      "Int64:9223372036854775807",
+      "UInt64:18446744073709551615",
+      "UInt64:1",
+      "UInt64:31",
+      "UInt64:18446744073709551615",
+      "999.99",
+      "99999999999999.9999",
+      "79228162514264337593543950335",
+      "10000000000000000000000000000",
+      "12345.123456789012345678901235",
+      "99999999.99",
+      "Single:3.40282E+38",
+      "Double:1.7976931348623157E+308",
+      "String:padded",
+      "String:trailing  ",
+      "String:tab\tinside",
+      "String:ÿÆ",
+      "String:~",
+      "String:ü",
+      "String:Ω",
+      "String:Z",
+      "String:x",
+      "String:quote ' and backslash \\",
+      "String:y",
+      "String:z",
+      "Guid:ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "String:0123456789ABCDEF0123456789ABCDEF",
+      "f39/fw==",
+      "AQIDBAUGBwgJCgsMDQ4PEA==",
+      "Jw==",
+      "XA==",
+      "ACcAXA==",
+      "gA==",
+      "AA==",
+      "9999-12-31T00:00:00.0000000",
+      "9999-12-31T23:59:59.0000000",
+      "9999-12-31T23:59:59.9999990",
+      "2038-01-19T03:14:07.0000000",
+      "2038-01-19T03:14:07.9990000",
+      "TimeSpan:34.22:59:59",
+      "TimeSpan:34.22:59:59",
+      "Int32:2155",
+      "String:\"text\"",
+      "String:large",
+      "String:a,b,c",
+      "AAAAAAEBAAAAAAAAAAAA+L8AAAAAAAACQA=="
+    ],
+    [
+      "Int32:4",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ]
+}

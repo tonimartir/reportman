@@ -1,0 +1,4 @@
+{
+  "error": "MySqlException",
+  "message": "Unknown column 'NOSUCHCOLUMN' in 'field list'"
+}

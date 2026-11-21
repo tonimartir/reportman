@@ -1,0 +1,190 @@
+{
+  "columns": [
+    {
+      "columnName": "N",
+      "dataType": "Int64",
+      "columnSize": 21,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S_INT",
+      "dataType": "Decimal",
+      "columnSize": 33,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S_BIG",
+      "dataType": "Decimal",
+      "columnSize": 42,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S_UBIG",
+      "dataType": "Decimal",
+      "columnSize": 43,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "A_DEC",
+      "dataType": "Decimal",
+      "columnSize": 11,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S_FLT",
+      "dataType": "Double",
+      "columnSize": 23,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_DBL",
+      "dataType": "Double",
+      "columnSize": 22,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_TINY",
+      "dataType": "SByte",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_BOOL",
+      "dataType": "SByte",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_DATE",
+      "dataType": "DateTime",
+      "columnSize": 40,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_TIME",
+      "dataType": "TimeSpan",
+      "columnSize": 40,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_CHAR",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "IDS",
+      "dataType": "String",
+      "columnSize": 16384,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "LIT",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "NUL",
+      "dataType": "Object",
+      "columnSize": 0,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "NUL_CHAR",
+      "dataType": "String",
+      "columnSize": 5,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "EQ",
+      "dataType": "Int64",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T",
+      "dataType": "Int64",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "U",
+      "dataType": "UInt64",
+      "columnSize": 21,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S",
+      "dataType": "Int64",
+      "columnSize": 21,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "D",
+      "dataType": "Decimal",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "F",
+      "dataType": "Double",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "IDIV",
+      "dataType": "Int64",
+      "columnSize": 2,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "FDIV",
+      "dataType": "Decimal",
+      "columnSize": 7,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "Y",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S65",
+      "dataType": "Decimal",
+      "columnSize": 89,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int64:3",
+      "123456788",
+      "1234567890122",
+      "36446744073709551615",
+      "41.150000",
+      "Double:0",
+      "Double:1.7976931348623157E+308",
+      "SByte:-128",
+      "SByte:5",
+      "9999-12-31T00:00:00.0000000",
+      "TimeSpan:34.22:59:59",
+      "String:padded",
+      "String:1,2,3",
+      "String:lit",
+      null,
+      null,
+      "Int64:1",
+      "Int64:1",
+      "UInt64:1",
+      "Int64:-1",
+      "1.5",
+      "Double:100",
+      "Int64:3",
+      "3.5000",
+      "Int32:9999",
+      "12345.246913578024691357802469"
+    ]
+  ]
+}

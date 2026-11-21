@@ -27,6 +27,8 @@
     "node": ">=22"
   },
   "dependencies": {
+    "bidi-js": "^1.1.0",
+    "fontkit": "^3.0.0",
     "reportman-metafile": "0.0.1"
   }
 }

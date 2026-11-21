@@ -1,0 +1,4 @@
+{
+  "error": "MySqlException",
+  "message": "Access denied for user 'rmtest'@'%' to database 'nosuchdb'"
+}

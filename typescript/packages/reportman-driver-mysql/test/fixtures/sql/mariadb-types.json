@@ -1,0 +1,4 @@
+{
+  "error": "MySqlException",
+  "message": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UUID) AS U, CAST('::1' AS INET6) AS I6, CAST('10.0.0.1' AS INET4) AS I4, VEC_Fro' at line 1"
+}

@@ -1,0 +1,4 @@
+{
+  "error": "MySqlException",
+  "message": "Parameter '@X' must be defined. To use this as a variable, set 'Allow User Variables=true' in the connection string."
+}
