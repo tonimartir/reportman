@@ -1352,15 +1352,12 @@ namespace Reportman.Reporting
             int index = DatabaseInfo.IndexOf(connectionname.ToUpper());
             if (index < 0)
                 throw new NamedException("Connection name not found:" + connectionname, connectionname);
-            IDataReader adatareader =
-                DatabaseInfo[index].GetDataReaderFromSQL(SQL, "", Params, false);
             Variant aresult = new Variant();
-            if (adatareader != null)
+            // Closed at once: an open reader would keep the connection busy for the next command
+            using (IDataReader adatareader = DatabaseInfo[index].GetDataReaderFromSQL(SQL, "", Params, false))
             {
-                if (adatareader.Read())
-                {
+                if (adatareader != null && adatareader.Read())
                     aresult.AssignFromObject(adatareader[0]);
-                }
             }
             return aresult;
         }

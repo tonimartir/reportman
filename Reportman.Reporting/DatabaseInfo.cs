@@ -991,8 +991,12 @@ namespace Reportman.Reporting
         {
             IDataReader adatareader = null;
             Connect();
-            IDbCommand Command = Connection.CreateCommand();
-            Command.Transaction = Transaction;
+            // As the commands of the datasets (DataInfo.Connect): through the Agent executor when the
+            // connection is an Agent one, and inside the transaction of the connection (the implicit one
+            // Connect began, or the external one); a command without it is refused by the providers
+            // while that transaction is pending
+            IDbCommand Command = SqlExecuter == null ? Connection.CreateCommand() : SqlExecuter.CreateCommand();
+            Command.Transaction = CurrentTransaction;
 
             // Assign parameters, string substitution only
             for (int i = 0; i < aparams.Count; i++)
@@ -1045,6 +1049,8 @@ namespace Reportman.Reporting
                     }
                 }
             }
+            if (SqlExecuter != null)
+                return SqlExecuter.Open(Command).CreateDataReader();
             adatareader = Command.ExecuteReader();
             return adatareader;
         }
