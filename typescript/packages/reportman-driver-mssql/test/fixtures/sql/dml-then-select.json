@@ -1,0 +1,18 @@
+{
+  "columns": [
+    {
+      "columnName": "a",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1"
+    ],
+    [
+      "Int32:2"
+    ]
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "error": "ReportException",
+  "message": "ExecuteReader requires the command to have a transaction when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.\nTRpExpression1 Prop:Expression"
+}

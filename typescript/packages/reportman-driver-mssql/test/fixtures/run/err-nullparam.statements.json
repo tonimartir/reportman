@@ -1,0 +1,4 @@
+[
+  "SELECT 1 AS A WHERE 1 = 0",
+  "exec sp_executesql N'SELECT CAST(@A AS NVARCHAR(10)) AS V',N'@A int',@A=default"
+]

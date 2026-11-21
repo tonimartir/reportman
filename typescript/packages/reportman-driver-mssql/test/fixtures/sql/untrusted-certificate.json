@@ -1,0 +1,4 @@
+{
+  "error": "SqlException",
+  "message": "A connection was successfully established with the server, but then an error occurred during the login process. (provider: SSL Provider, error: 0 - La cadena de certificaci�n fue emitida por una entidad en la que no se conf�a.)"
+}

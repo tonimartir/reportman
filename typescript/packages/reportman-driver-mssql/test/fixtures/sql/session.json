@@ -1,0 +1,78 @@
+{
+  "columns": [
+    {
+      "columnName": "O",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "T",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "DF",
+      "dataType": "Byte",
+      "columnSize": 1,
+      "dataTypeName": "tinyint"
+    },
+    {
+      "columnName": "L",
+      "dataType": "String",
+      "columnSize": 128,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "LT",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "date_format",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "deadlock_priority",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "program_name",
+      "dataType": "String",
+      "columnSize": 128,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "host_name",
+      "dataType": "String",
+      "columnSize": 128,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "encrypt_option",
+      "dataType": "String",
+      "columnSize": 40,
+      "dataTypeName": "nvarchar"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:5432",
+      "Int32:-1",
+      "Byte:7",
+      "String:us_english",
+      "Int32:-1",
+      "String:mdy",
+      "Int32:0",
+      "String:Core Microsoft SqlClient Data Provider",
+      "String:NS3241398",
+      "String:TRUE"
+    ]
+  ]
+}

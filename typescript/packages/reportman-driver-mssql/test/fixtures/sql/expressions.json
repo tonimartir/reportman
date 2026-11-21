@@ -1,0 +1,169 @@
+{
+  "columns": [
+    {
+      "columnName": "I",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "D",
+      "dataType": "Decimal",
+      "columnSize": 17,
+      "dataTypeName": "decimal"
+    },
+    {
+      "columnName": "F",
+      "dataType": "Double",
+      "columnSize": 8,
+      "dataTypeName": "float"
+    },
+    {
+      "columnName": "N",
+      "dataType": "String",
+      "columnSize": 1,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "V",
+      "dataType": "String",
+      "columnSize": 1,
+      "dataTypeName": "varchar"
+    },
+    {
+      "columnName": "NI",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "NU",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "Q",
+      "dataType": "Decimal",
+      "columnSize": 17,
+      "dataTypeName": "decimal"
+    },
+    {
+      "columnName": "B",
+      "dataType": "Boolean",
+      "columnSize": 1,
+      "dataTypeName": "bit"
+    },
+    {
+      "columnName": "ZD",
+      "dataType": "DateTime",
+      "columnSize": 8,
+      "dataTypeName": "datetime"
+    },
+    {
+      "columnName": "SO",
+      "dataType": "DateTimeOffset",
+      "columnSize": 10,
+      "dataTypeName": "datetimeoffset"
+    },
+    {
+      "columnName": "C",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "S",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "A",
+      "dataType": "Decimal",
+      "columnSize": 17,
+      "dataTypeName": "decimal"
+    },
+    {
+      "columnName": "MD",
+      "dataType": "DateTime",
+      "columnSize": 3,
+      "dataTypeName": "date"
+    },
+    {
+      "columnName": "MT",
+      "dataType": "TimeSpan",
+      "columnSize": 5,
+      "dataTypeName": "time"
+    },
+    {
+      "columnName": "G0",
+      "dataType": "Guid",
+      "columnSize": 16,
+      "dataTypeName": "uniqueidentifier"
+    },
+    {
+      "columnName": "M",
+      "dataType": "Decimal",
+      "columnSize": 8,
+      "dataTypeName": "money"
+    },
+    {
+      "columnName": "CK",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "DT",
+      "dataType": "DateTime",
+      "columnSize": 3,
+      "dataTypeName": "date"
+    },
+    {
+      "columnName": "NM",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "BM",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": "varbinary"
+    },
+    {
+      "columnName": "VT",
+      "dataType": "String",
+      "columnSize": 20,
+      "dataTypeName": "nvarchar"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "1.5",
+      "Double:2.5",
+      "String:n",
+      "String:v",
+      null,
+      null,
+      "0.333333",
+      "Boolean:True",
+      "2024-01-01T00:00:00.0000000",
+      "DateTimeOffset:02/29/2024 13:45:00 +01:00",
+      "Int32:3",
+      "Int32:123456788",
+      "41.150000",
+      "9999-12-31T00:00:00.0000000",
+      "TimeSpan:00:00:00",
+      "Guid:6f9619ff-8b86-d011-b42d-00c04fc964ff",
+      "24.6912",
+      "Int32:1",
+      "2024-02-29T00:00:00.0000000",
+      "String:x",
+      "AQ==",
+      "String:nvarchar"
+    ]
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "error": "SqlException",
+  "message": "The parameterized query '(@A int)SELECT CAST(@A AS NVARCHAR(10)) AS V' expects the parameter '@A', which was not supplied."
+}

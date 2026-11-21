@@ -1,0 +1,430 @@
+%PDF-1.4
+1 0 obj
+<<
+/Author (Synthetic)
+/CreationDate (D:20261121102655+01'00')
+/Creator (Report Manager)
+/Subject ()
+/Title (Synthetic)
+/ModDate (D:20261121102655+01'00')
+>>
+endobj
+2 0 obj
+<< /Length 3 0 R
+ >>
+stream
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 10 Tf
+28.70 803.20 Td
+(1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 797.20 Td
+(int 10 0 4 123456789) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 797.20 Td
+(numeric 38 4 9 12345678901234.5678) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 797.20 Td
+(nvarchar 0 0 36 ??? ???????? ?????) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 787.70 Td
+(datetime 23 3 8 2024-02-29 13:45:30.997) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 787.70 Td
+(varbinary 0 0 4 0xDEADBEEF) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 787.70 Td
+(bit 1 0 1 1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 778.20 Td
+(bigint 19 0 8 1234567890123) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 778.20 Td
+(float 53 0 8 3.14159) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 778.20 Td
+(tinyint 3 0 1 12) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 10 Tf
+28.70 758.70 Td
+(2) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 752.70 Td
+(int 10 0 4 -2147483648) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 752.70 Td
+(numeric 38 4 9 -99999999999999.9999) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 752.70 Td
+(nvarchar 0 0 2) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 743.20 Td
+(datetime 23 3 8 1753-01-01 00:00:00.000) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 743.20 Td
+(varbinary 0 0 1 0x) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 743.20 Td
+(bit 1 0 1 0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 733.70 Td
+(bigint 19 0 8 -9223372036854775808) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 733.70 Td
+(float 53 0 8 -1.79769e+308) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 733.70 Td
+(tinyint 3 0 1 0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 10 Tf
+28.70 714.20 Td
+(3) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 708.20 Td
+(int 10 0 4 2147483647) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 708.20 Td
+(numeric 38 4 9 99999999999999.9999) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 708.20 Td
+(nvarchar 0 0 6 O??) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 698.70 Td
+(datetime 23 3 8 9999-12-31 23:59:59.997) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 698.70 Td
+(varbinary 0 0 1 0x00) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 698.70 Td
+(bit 1 0 1 1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 689.20 Td
+(bigint 19 0 8 9223372036854775807) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+207.00 689.20 Td
+(float 53 0 8 1.79769e+308) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+385.30 689.20 Td
+(tinyint 3 0 1 255) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 10 Tf
+28.70 669.70 Td
+(4) Tj
+ET
+
+endstream
+endobj
+3 0 obj
+3165
+endobj
+4 0 obj
+<< /Type /Outlines
+/Count 0
+>>
+endobj
+5 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+>>
+endobj
+6 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+7 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F3
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+8 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F4
+/BaseFont /Helvetica-BoldOblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+9 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F5
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+>>
+endobj
+10 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F6
+/BaseFont /Courier-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+11 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F7
+/BaseFont /Courier-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+12 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F8
+/BaseFont /Courier-BoldOblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+13 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F9
+/BaseFont /Times-Roman
+/Encoding /WinAnsiEncoding
+>>
+endobj
+14 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F10
+/BaseFont /Times-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+15 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F11
+/BaseFont /Times-Italic
+/Encoding /WinAnsiEncoding
+>>
+endobj
+16 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F12
+/BaseFont /Times-BoldItalic
+/Encoding /WinAnsiEncoding
+>>
+endobj
+17 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F13
+/BaseFont /Symbol
+/Encoding /WinAnsiEncoding
+>>
+endobj
+18 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F14
+/BaseFont /ZapfDingbats
+/Encoding /WinAnsiEncoding
+>>
+endobj
+19 0 obj
+<< /Type /Pages
+/Kids [
+21 0 R
+]
+/Count 1
+>>
+endobj
+20 0 obj
+<< /ProcSet [ /PDF /Text /ImageC]
+/Font << 
+/F1 5 0 R 
+/F2 6 0 R 
+/F3 7 0 R 
+/F4 8 0 R 
+/F5 9 0 R 
+/F6 10 0 R 
+/F7 11 0 R 
+/F8 12 0 R 
+/F9 13 0 R 
+/F10 14 0 R 
+/F11 15 0 R 
+/F12 16 0 R 
+/F13 17 0 R 
+/F14 18 0 R 
+>>
+>>
+endobj
+21 0 obj
+<< /Type /Page
+/Parent 19 0 R
+/MediaBox [ 0 0 595.30 841.90]
+/Contents 2 0 R
+/Resources 20 0 R
+>>
+endobj
+22 0 obj
+<< /Type /Catalog
+/Pages 19 0 R
+/Outlines 4 0 R
+>>
+endobj
+xref
+0 23
+0000000000 65535 f
+0000000010 00000 n
+0000000193 00000 n
+0000003418 00000 n
+0000003441 00000 n
+0000003492 00000 n
+0000003607 00000 n
+0000003727 00000 n
+0000003850 00000 n
+0000003977 00000 n
+0000004090 00000 n
+0000004209 00000 n
+0000004331 00000 n
+0000004457 00000 n
+0000004575 00000 n
+0000004693 00000 n
+0000004813 00000 n
+0000004937 00000 n
+0000005051 00000 n
+0000005171 00000 n
+0000005240 00000 n
+0000005494 00000 n
+0000005616 00000 n
+trailer
+<< /Size 23
+/Root 22 0 R
+/Info 1 0 R
+>>
+startxref
+5689
+%%EOF

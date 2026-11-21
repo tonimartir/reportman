@@ -1,0 +1,4 @@
+{
+  "error": "SqlException",
+  "message": "Conversion failed when converting the varchar value 'abc' to data type int."
+}

@@ -1,0 +1,22 @@
+{
+  "columns": [
+    {
+      "columnName": "X",
+      "dataType": "Decimal",
+      "columnSize": 17,
+      "dataTypeName": "decimal"
+    },
+    {
+      "columnName": "Y",
+      "dataType": "Decimal",
+      "columnSize": 17,
+      "dataTypeName": "decimal"
+    }
+  ],
+  "rows": [
+    [
+      "7922816251426433759354395033.5",
+      "99999999999999999999999999.99"
+    ]
+  ]
+}

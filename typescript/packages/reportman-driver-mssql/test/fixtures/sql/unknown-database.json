@@ -1,0 +1,4 @@
+{
+  "error": "SqlException",
+  "message": "Cannot open database \"nosuchdb\" requested by the login. The login failed.\nLogin failed for user 'sa'."
+}

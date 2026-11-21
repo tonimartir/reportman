@@ -1,0 +1,15 @@
+{
+  "columns": [
+    {
+      "columnName": "C",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:3"
+    ]
+  ]
+}

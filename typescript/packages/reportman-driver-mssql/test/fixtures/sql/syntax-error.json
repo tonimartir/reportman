@@ -1,0 +1,4 @@
+{
+  "error": "SqlException",
+  "message": "Incorrect syntax near the keyword 'FROM'."
+}

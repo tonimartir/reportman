@@ -1,0 +1,22 @@
+{
+  "columns": [
+    {
+      "columnName": "A",
+      "dataType": "String",
+      "columnSize": 128,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "H",
+      "dataType": "String",
+      "columnSize": 128,
+      "dataTypeName": "nvarchar"
+    }
+  ],
+  "rows": [
+    [
+      "String:Reports",
+      "String:WS1"
+    ]
+  ]
+}

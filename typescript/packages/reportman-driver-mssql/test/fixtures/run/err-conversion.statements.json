@@ -1,0 +1,3 @@
+[
+  "SELECT CAST('abc' AS INT) AS A"
+]

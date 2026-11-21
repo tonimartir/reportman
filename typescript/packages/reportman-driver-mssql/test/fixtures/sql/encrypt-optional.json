@@ -1,0 +1,15 @@
+{
+  "columns": [
+    {
+      "columnName": "encrypt_option",
+      "dataType": "String",
+      "columnSize": 40,
+      "dataTypeName": "nvarchar"
+    }
+  ],
+  "rows": [
+    [
+      "String:FALSE"
+    ]
+  ]
+}

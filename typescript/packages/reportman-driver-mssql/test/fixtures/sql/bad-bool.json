@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "Invalid value for key 'Multiple Active Result Sets'."
+}

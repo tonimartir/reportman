@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "Keyword not supported: 'frobnicate'."
+}

@@ -1,0 +1,15 @@
+{
+  "columns": [
+    {
+      "columnName": "X",
+      "dataType": "Decimal",
+      "columnSize": 17,
+      "dataTypeName": "decimal"
+    }
+  ],
+  "rows": [
+    [
+      "1.5000000000000000000000000000"
+    ]
+  ]
+}

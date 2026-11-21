@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "Invalid 'Packet Size'.  The value must be an integer >= 512 and <= 32768."
+}

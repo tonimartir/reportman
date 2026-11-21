@@ -1,0 +1,4 @@
+{
+  "error": "SqlTypeException",
+  "message": "Invalid numeric precision/scale."
+}

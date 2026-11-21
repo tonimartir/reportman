@@ -1,0 +1,29 @@
+{
+  "columns": [
+    {
+      "columnName": "L",
+      "dataType": "String",
+      "columnSize": 128,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "DF",
+      "dataType": "Byte",
+      "columnSize": 1,
+      "dataTypeName": "tinyint"
+    },
+    {
+      "columnName": "F",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": "nvarchar"
+    }
+  ],
+  "rows": [
+    [
+      "String:Español",
+      "Byte:1",
+      "String:dmy"
+    ]
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "columns": [
+    {
+      "columnName": "",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": "varchar"
+    },
+    {
+      "columnName": "C",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "String:two",
+      "Int32:3"
+    ]
+  ]
+}

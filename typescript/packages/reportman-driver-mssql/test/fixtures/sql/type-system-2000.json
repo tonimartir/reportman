@@ -1,0 +1,78 @@
+{
+  "columns": [
+    {
+      "columnName": "D",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "T",
+      "dataType": "String",
+      "columnSize": 16,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "D2",
+      "dataType": "String",
+      "columnSize": 27,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "DO",
+      "dataType": "String",
+      "columnSize": 34,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "NM",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": "ntext"
+    },
+    {
+      "columnName": "VM",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": "text"
+    },
+    {
+      "columnName": "X",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": "ntext"
+    },
+    {
+      "columnName": "VB",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": "image"
+    },
+    {
+      "columnName": "V",
+      "dataType": "Object",
+      "columnSize": 8009,
+      "dataTypeName": "sql_variant"
+    },
+    {
+      "columnName": "NT",
+      "dataType": "String",
+      "columnSize": 1073741823,
+      "dataTypeName": "ntext"
+    }
+  ],
+  "rows": [
+    [
+      "String:2024-02-29",
+      "String:13:45:30.1230000",
+      "String:2024-02-29 13:45:00.0000000",
+      "String:2024-02-29 13:45:00.0000000 +01:00",
+      "String:x",
+      "String:y",
+      "String:<a />",
+      "AQ==",
+      "Int32:42",
+      "String:ntext ünïcödé"
+    ]
+  ]
+}

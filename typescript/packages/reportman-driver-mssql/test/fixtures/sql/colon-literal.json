@@ -1,0 +1,36 @@
+{
+  "columns": [
+    {
+      "columnName": "A",
+      "dataType": "String",
+      "columnSize": 2,
+      "dataTypeName": "varchar"
+    },
+    {
+      "columnName": "B",
+      "dataType": "String",
+      "columnSize": 4,
+      "dataTypeName": "varchar"
+    },
+    {
+      "columnName": "C",
+      "dataType": "String",
+      "columnSize": 2,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "D",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    }
+  ],
+  "rows": [
+    [
+      "String::X",
+      "String:[:Y]",
+      "String:@Z",
+      "Int32:4"
+    ]
+  ]
+}

@@ -1,0 +1,920 @@
+%PDF-1.4
+1 0 obj
+<<
+/Author (Synthetic)
+/CreationDate (D:20261121102651+01'00')
+/Creator (Report Manager)
+/Subject ()
+/Title (Synthetic)
+/ModDate (D:20261121102651+01'00')
+>>
+endobj
+2 0 obj
+<< /Length 3 0 R
+ >>
+stream
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 807.20 Td
+(PSTR) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 807.20 Td
+(nvarchar) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 807.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 807.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 807.20 Td
+(6) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 807.20 Td
+(abc) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 807.20 Td
+(6) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 791.70 Td
+(PEMPTY) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 791.70 Td
+(nvarchar) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 791.70 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 791.70 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 791.70 Td
+(8000) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 791.70 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 776.20 Td
+(PLONG) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 776.20 Td
+(xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 776.20 Td
+(9000) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 760.70 Td
+(PINT) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 760.70 Td
+(int) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 760.70 Td
+(10) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 760.70 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 760.70 Td
+(4) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 760.70 Td
+(7) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 760.70 Td
+(4) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 745.20 Td
+(PDBL) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 745.20 Td
+(float) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 745.20 Td
+(53) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 745.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 745.20 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 745.20 Td
+(21.5) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 745.20 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 729.70 Td
+(PDATE) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 729.70 Td
+(datetime) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 729.70 Td
+(23) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 729.70 Td
+(3) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 729.70 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 729.70 Td
+(2024-02-01 00:00:00.000) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 729.70 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 714.20 Td
+(PTIME) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 714.20 Td
+(datetime) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 714.20 Td
+(23) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 714.20 Td
+(3) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 714.20 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 714.20 Td
+(1899-12-30 09:45:30.000) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 714.20 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 698.70 Td
+(PDT) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 698.70 Td
+(datetime) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 698.70 Td
+(23) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 698.70 Td
+(3) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 698.70 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 698.70 Td
+(2025-06-15 18:30:00.000) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 698.70 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 683.20 Td
+(PCUR) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 683.20 Td
+(float) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 683.20 Td
+(53) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 683.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 683.20 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 683.20 Td
+(1234.5) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 683.20 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 667.70 Td
+(PBOOL) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 667.70 Td
+(bit) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 667.70 Td
+(1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 667.70 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 667.70 Td
+(1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 667.70 Td
+(1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 667.70 Td
+(1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 652.20 Td
+(PEXSTR) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 652.20 Td
+(nvarchar) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 652.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 652.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 652.20 Td
+(4) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 652.20 Td
+(xy) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 652.20 Td
+(4) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 636.70 Td
+(PINDEC) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 636.70 Td
+(decimal) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 636.70 Td
+(2) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 636.70 Td
+(1) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 636.70 Td
+(5) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 636.70 Td
+(1.5) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 636.70 Td
+(5) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 621.20 Td
+(PSMALLDEC) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 621.20 Td
+(decimal) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 621.20 Td
+(2) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 621.20 Td
+(2) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 621.20 Td
+(5) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 621.20 Td
+(0.05) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 621.20 Td
+(5) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 605.70 Td
+(PINLONG) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 605.70 Td
+(bigint) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 605.70 Td
+(19) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 605.70 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 605.70 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 605.70 Td
+(12345678901) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 605.70 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 590.20 Td
+(PLIST) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+105.10 590.20 Td
+(nvarchar) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+181.50 590.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+257.90 590.20 Td
+(0) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+334.30 590.20 Td
+(16) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+410.70 590.20 Td
+('France') Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+487.10 590.20 Td
+(16) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 6 Tf
+28.70 574.70 Td
+(PNULL) Tj
+ET
+
+endstream
+endobj
+3 0 obj
+8564
+endobj
+4 0 obj
+<< /Type /Outlines
+/Count 0
+>>
+endobj
+5 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+>>
+endobj
+6 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+7 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F3
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+8 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F4
+/BaseFont /Helvetica-BoldOblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+9 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F5
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+>>
+endobj
+10 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F6
+/BaseFont /Courier-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+11 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F7
+/BaseFont /Courier-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+12 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F8
+/BaseFont /Courier-BoldOblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+13 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F9
+/BaseFont /Times-Roman
+/Encoding /WinAnsiEncoding
+>>
+endobj
+14 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F10
+/BaseFont /Times-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+15 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F11
+/BaseFont /Times-Italic
+/Encoding /WinAnsiEncoding
+>>
+endobj
+16 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F12
+/BaseFont /Times-BoldItalic
+/Encoding /WinAnsiEncoding
+>>
+endobj
+17 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F13
+/BaseFont /Symbol
+/Encoding /WinAnsiEncoding
+>>
+endobj
+18 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F14
+/BaseFont /ZapfDingbats
+/Encoding /WinAnsiEncoding
+>>
+endobj
+19 0 obj
+<< /Type /Pages
+/Kids [
+21 0 R
+]
+/Count 1
+>>
+endobj
+20 0 obj
+<< /ProcSet [ /PDF /Text /ImageC]
+/Font << 
+/F1 5 0 R 
+/F2 6 0 R 
+/F3 7 0 R 
+/F4 8 0 R 
+/F5 9 0 R 
+/F6 10 0 R 
+/F7 11 0 R 
+/F8 12 0 R 
+/F9 13 0 R 
+/F10 14 0 R 
+/F11 15 0 R 
+/F12 16 0 R 
+/F13 17 0 R 
+/F14 18 0 R 
+>>
+>>
+endobj
+21 0 obj
+<< /Type /Page
+/Parent 19 0 R
+/MediaBox [ 0 0 595.30 841.90]
+/Contents 2 0 R
+/Resources 20 0 R
+>>
+endobj
+22 0 obj
+<< /Type /Catalog
+/Pages 19 0 R
+/Outlines 4 0 R
+>>
+endobj
+xref
+0 23
+0000000000 65535 f
+0000000010 00000 n
+0000000193 00000 n
+0000008817 00000 n
+0000008840 00000 n
+0000008891 00000 n
+0000009006 00000 n
+0000009126 00000 n
+0000009249 00000 n
+0000009376 00000 n
+0000009489 00000 n
+0000009608 00000 n
+0000009730 00000 n
+0000009856 00000 n
+0000009974 00000 n
+0000010092 00000 n
+0000010212 00000 n
+0000010336 00000 n
+0000010450 00000 n
+0000010570 00000 n
+0000010639 00000 n
+0000010893 00000 n
+0000011015 00000 n
+trailer
+<< /Size 23
+/Root 22 0 R
+/Info 1 0 R
+>>
+startxref
+11088
+%%EOF

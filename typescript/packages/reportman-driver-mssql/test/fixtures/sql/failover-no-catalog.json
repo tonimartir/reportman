@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "Use of key 'Failover Partner' requires the key 'Initial Catalog' to be present."
+}

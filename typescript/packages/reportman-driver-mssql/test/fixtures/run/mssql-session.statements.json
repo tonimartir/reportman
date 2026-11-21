@@ -1,0 +1,3 @@
+[
+  "SELECT @@OPTIONS AS O, @@TEXTSIZE AS T, @@DATEFIRST AS DF, @@LANGUAGE AS L, s.date_format AS F, s.transaction_isolation_level AS I, @@TRANCOUNT AS C FROM sys.dm_exec_sessions s WHERE s.session_id = @@SPID"
+]

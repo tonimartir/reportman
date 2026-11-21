@@ -1,0 +1,42 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "H",
+      "dataType": "String",
+      "columnSize": 4000,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "G",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": "nvarchar"
+    },
+    {
+      "columnName": "GG",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": "varbinary"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "String:/1/2/",
+      "String:POINT (1 2)",
+      "5hAAAAEMMzMzMzPTR0D2KFyPwpVewA=="
+    ],
+    [
+      "Int32:2",
+      null,
+      null,
+      null
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": "int"
+    },
+    {
+      "columnName": "H",
+      "dataType": "Byte[]",
+      "columnSize": 892,
+      "dataTypeName": "varbinary"
+    },
+    {
+      "columnName": "G",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": "image"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "W0A=",
+      "AAAAAAEMAAAAAAAA8D8AAAAAAAAAQA=="
+    ],
+    [
+      "Int32:2",
+      null,
+      null
+    ]
+  ]
+}

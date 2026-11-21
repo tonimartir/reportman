@@ -1,0 +1,4 @@
+{
+  "error": "SqlException",
+  "message": "Divide by zero error encountered."
+}

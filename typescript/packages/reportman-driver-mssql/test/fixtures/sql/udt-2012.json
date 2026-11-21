@@ -1,0 +1,4 @@
+{
+  "error": "FileNotFoundException",
+  "message": "Could not load file or assembly 'Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91'. El sistema no puede encontrar el archivo especificado."
+}
