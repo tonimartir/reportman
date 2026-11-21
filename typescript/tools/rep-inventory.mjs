@@ -58,8 +58,12 @@ import {
 } from 'reportman-lib';
 import { Evaluator, EvalParser, TokenType, createContext } from 'reportman-engine';
 
-/** The identifiers a report adds to its evaluator (ReportRuntime, reportman-engine report/report.ts). */
+/**
+ * The identifiers a report adds to its evaluator (ReportRuntime, reportman-engine report/report.ts),
+ * and PAGECOUNT, which the expression items resolve themselves (a second pass, report/items.ts).
+ */
 export const REPORT_IDENTIFIERS = [
+  'PAGECOUNT',
   'PAGE', 'PAGINA', 'LANGUAGE', 'PAGENUM', 'PAGEWIDTH', 'PAGEHEIGHT', 'FREE_SPACE_CMS', 'FREE_SPACE_INCH',
   'FREE_SPACE_TWIPS', 'CURRENTGROUP', 'CURRENTPOSX', 'CURRENTPOSY', 'FIRSTSECTION', 'EOF', 'SETLANGUAGE',
   'REOPEN', 'GRAPHICOP', 'IMAGEOP', 'BARCODEOP', 'TEXTOP', 'TEXTHEIGHT', 'PARAMINFO', 'SETPAGESOURCE',
