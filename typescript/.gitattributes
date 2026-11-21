@@ -1,0 +1,4 @@
+# Reports and PDFs are compared byte for byte with the C# engine: never convert their line ends.
+*.rep binary
+*.pdf binary
+*.rpmf binary
