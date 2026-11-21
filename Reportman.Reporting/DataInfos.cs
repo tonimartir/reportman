@@ -39,6 +39,19 @@ namespace Reportman.Reporting
                     break;
                 }
             }
+            // Ignoring the case, as Delphi (TRpDataInfoList.IndexOf): a subreport may name its dataset
+            // in other case than the dataset itself
+            if ((aresult < 0) && (avalue != null))
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    if (string.Equals(this[i].Alias, avalue, StringComparison.OrdinalIgnoreCase))
+                    {
+                        aresult = i;
+                        break;
+                    }
+                }
+            }
             return aresult;
         }
         /// <summary>

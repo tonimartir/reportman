@@ -182,22 +182,32 @@ export class PdfDevice extends PrintOut {
       this.fPageRealHeight = meta.customY;
     }
     for (const efile of meta.embeddedFiles) this.fPDFFile.embeddedFiles.push(efile.clone());
-    // Printer fonts Recalculate asks for the shaped measurement (not supported: it fails)
-    if (meta.printerFonts === PrinterFontsType.Recalculate) this.forceComplexShaping = true;
+    // Printer fonts Recalculate asks for the shaped measurement
+    if (this.recalculates(meta)) this.forceComplexShaping = true;
     this.fPDFFile.calculateOnly = this.calculateOnly;
     this.fPDFFile.beginDoc();
   }
 
   /** The shaper is forced for printer fonts Recalculate before the layout too. */
   override preparePrint(meta: MetaFile): boolean {
-    if (meta.printerFonts === PrinterFontsType.Recalculate) this.forceComplexShaping = true;
+    if (this.recalculates(meta)) this.forceComplexShaping = true;
     return super.preparePrint(meta);
+  }
+
+  /**
+   * Printer fonts Recalculate: the C# devices measure and draw every text with the TrueType provider
+   * (the standard Type1 fonts linked), to give the positions of the GDI redraw. With the TrueType
+   * fonts option this device does the same; with the standard 14 fonts only it lays out with their
+   * metrics and writes them, as the PDF export of the Delphi engine does with this report setting.
+   */
+  private recalculates(meta: MetaFile): boolean {
+    return meta.printerFonts === PrinterFontsType.Recalculate && this.fontProvider !== null;
   }
 
   private syncForceShaping(): void {
     if (this.fPDFFile.canvas.forceComplexShaping) return;
     const nmeta = this.currentMetafile ?? this.metaFile;
-    if (nmeta !== null && nmeta.printerFonts === PrinterFontsType.Recalculate) this.fPDFFile.canvas.forceComplexShaping = true;
+    if (nmeta !== null && this.recalculates(nmeta)) this.fPDFFile.canvas.forceComplexShaping = true;
   }
 
   /** Completes the PDF document. */

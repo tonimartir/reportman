@@ -135,14 +135,14 @@ function isBoundary(s: string, i: number): boolean {
   if (i <= 0 || i >= s.length) return true;
   const prev = s.charCodeAt(i - 1);
   const cur = s.charCodeAt(i);
-  if (prev === 13 && cur === 10) return false;
+  // (CR LF is no unit: the C# engine finds "\n" inside "\r\n", as Delphi's Pos)
   if (prev >= 0xd800 && prev <= 0xdbff && cur >= 0xdc00 && cur <= 0xdfff) return false;
   return !EXTEND.test(String.fromCodePoint(s.codePointAt(i)!));
 }
 
 /**
  * String.IndexOf(string) with the current culture, as .NET 5+ does it with ICU: a match starts and
- * ends on a grapheme boundary (so "\n" is not found inside "\r\n" and "e" not inside "e" + U+0301),
+ * ends on a grapheme boundary (so "e" is not found inside "e" + U+0301; "\n" is found inside "\r\n"),
  * and the characters the collation ignores (NUL and other controls, the soft hyphen, zero width
  * characters) are skipped, so an ignorable-only value is found at 0. Case and accents count.
  * Canonical equivalence (a precomposed "\u00e9" against "e" + U+0301) is not applied.

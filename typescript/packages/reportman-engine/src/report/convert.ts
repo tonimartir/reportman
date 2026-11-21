@@ -8,7 +8,7 @@
 import { DatasetType, DriverType } from 'reportman-lib';
 import { toUpperNet } from '../util/chars.js';
 import { ReportParam } from '../params/param.js';
-import { Variant } from '../variant/variant.js';
+import { ParamType, Variant } from '../variant/variant.js';
 import { ExpressionItem } from './items.js';
 import type { ReportRuntime } from './report.js';
 
@@ -34,6 +34,24 @@ function ensureParam(rp: ReportRuntime, alias: string): ReportParam {
   return nparam;
 }
 
+/**
+ * The search texts (upper case) of the parameters that substitute text in the SQL of a dataset:
+ * Subst, SubstExpre, SubsExpreList and Multiple, the types Delphi replaces before it runs the SQL.
+ */
+function substitutionSearches(rp: ReportRuntime, alias: string): Set<string> {
+  const searches = new Set<string>();
+  for (const p of rp.params) {
+    const pt = p.paramType;
+    if (
+      (pt === ParamType.Subst || pt === ParamType.SubstExpre || pt === ParamType.SubsExpreList || pt === ParamType.Multiple) &&
+      p.datasets.indexOf(alias) >= 0 &&
+      p.search.length > 0
+    )
+      searches.add(toUpperNet(p.search));
+  }
+  return searches;
+}
+
 /** BaseReport.ConvertToDotNet: converts only when a connection is not .Net, Mybase nor engine SQLite. */
 export function convertToDotNet(rp: ReportRuntime): boolean {
   let doconvert = false;
@@ -44,7 +62,14 @@ export function convertToDotNet(rp: ReportRuntime): boolean {
     }
   }
   if (!doconvert) return false;
+  // Before the conversion changes the drivers: a connection of a driver only the Delphi engine has.
+  // The Reportman Agent (HttpAgent) is in both engines, keeps its driver and is converted each time
+  // the report is loaded, so it does not tell where the report was designed
+  const fromDelphi = rp.databases.some(
+    (db) => db.driver !== DriverType.DotNet2 && db.driver !== DriverType.Mybase && db.driver !== DriverType.HttpAgent && !db.isEngineSqlite(),
+  );
   readerConvertToDotNet(rp, DriverType.DotNet2, '');
+  if (fromDelphi) rp.convertedFromDelphi = true;
   return true;
 }
 
@@ -80,6 +105,9 @@ function readerConvertToDotNet(rp: ReportRuntime, driver: DriverType, providerFa
         }
       }
     }
+    // The search texts of the substitution parameters of the dataset (":ORDEM"): the engine replaces
+    // them in the SQL before it runs (as Delphi, ignoring the case), they are not SQL parameters
+    const substitutions = substitutionSearches(rp, dinfo.alias);
     let sql = dinfo.sql;
     let index = sql.indexOf(':');
     while (index >= 0) {
@@ -93,6 +121,10 @@ function readerConvertToDotNet(rp: ReportRuntime, driver: DriverType, providerFa
         index2++;
       }
       const aparam = toUpperNet(paramname);
+      if (substitutions.has(':' + aparam)) {
+        index = sql.indexOf(':', index + 1);
+        continue;
+      }
       const nparam = ensureParam(rp, aparam);
       if (nparam.datasets.indexOf(dinfo.alias) < 0) nparam.datasets.push(dinfo.alias);
       // Replace ':' with '@'

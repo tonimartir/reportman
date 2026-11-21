@@ -169,14 +169,15 @@ export class EvalParser {
       }
       resulttype = TokenType.Operator;
     } else if (e[p] === '#' || e[p] === "'") {
-      // C# parity: I (the #nn character code) is not reset between two #nn: #65#66 is "A" and
-      // the character 6566. The code wraps as a C# int and is cut to 16 bits by (char)I.
+      // Each #nn is a character, as in Delphi: #13#10 is CR LF (the code starts again at each #;
+      // it wraps as a C# int and is cut to 16 bits by (char)I)
       let j = 0;
       let i = 0;
       let str = '';
       while (p < e.length) {
         if (e[p] === '#') {
           p++;
+          i = 0;
           while (p < e.length) {
             if (isDigit(e[p]!)) {
               i = (i * 10 + (e.charCodeAt(p) - 48)) | 0;

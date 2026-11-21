@@ -194,7 +194,7 @@ describe('PdfDevice', () => {
     const z = latin1(renderPdf(meta, { clock: fixedClock, compressed: true }));
     expect(z).toContain('/Filter [/FlateDecode]');
   });
-  it('fails for a PDF/A-3 text without fonts, right to left text and printer fonts Recalculate', () => {
+  it('fails for a PDF/A-3 text without fonts and right to left text', () => {
     // PDF/A-3 embeds every font: the standard 14 fonts cannot draw its texts
     const a3 = simpleMeta();
     a3.pdfConformance = PDFConformanceType.PDF_A_3;
@@ -202,9 +202,11 @@ describe('PdfDevice', () => {
     const rtl = simpleMeta();
     (rtl.pages.get(0).objects[0] as MetaObjectText).rightToLeft = true;
     expect(() => renderPdf(rtl)).toThrow(ShaperNotSupportedError);
+  });
+  it('writes printer fonts Recalculate with the standard 14 fonts when it has no TrueType fonts, as Delphi', () => {
     const rec = simpleMeta();
     rec.printerFonts = PrinterFontsType.Recalculate;
-    expect(() => renderPdf(rec)).toThrow(ShaperNotSupportedError);
+    expect(latin1(renderPdf(rec, { clock: fixedClock }))).toBe(latin1(renderPdf(simpleMeta(), { clock: fixedClock })));
   });
   it('writes PDF/A-3B: header, XMP metadata, sRGB output intent, associated files, 20 byte xref entries, /ID', () => {
     const meta = new MetaFile();

@@ -917,7 +917,8 @@ namespace Reportman.Reporting
         protected override Variant GetValue()
         {
             Variant aresult = new Variant();
-            if (!Params[0].IsNumber())
+            // As Delphi (TIdenVal): a number is itself, a text is converted (Val('12') is 12)
+            if (Params[0].IsNumber())
             {
                 aresult = Params[0];
                 return aresult;

@@ -605,8 +605,12 @@ export class Evaluator {
   }
 }
 
-/** Evaluator.CoerceOperands: VariantCoercion.Coercion when the types differ. */
+/**
+ * Evaluator.CoerceOperands: VariantCoercion.Coercion when the types differ, but a date and a number,
+ * which Variant.compare compares as numbers (as Delphi compares a TDateTime).
+ */
 function coerceOperands(a: Variant, b: Variant, ctx: VariantContext): [Variant, Variant] {
+  if ((a.varType === VariantType.DateTime && b.isNumber()) || (b.varType === VariantType.DateTime && a.isNumber())) return [a, b];
   if (a.varType !== b.varType) {
     const c = coercionOf(a, b, ctx);
     if (c !== null) return c;

@@ -158,6 +158,30 @@ function dateTimeMicros(d: RpDateTime): bigint {
   return (ticks - PG_EPOCH_TICKS) / 10n;
 }
 
+/** Whether Npgsql writes a value of that .NET type to a parameter of that PostgreSQL type. */
+function accepts(oid: number, clr: string): boolean {
+  switch (oid) {
+    case 21:
+    case 23:
+    case 20:
+    case 1700:
+      return clr === 'System.Byte' || clr === 'System.Int32' || clr === 'System.Int64' || clr === 'System.Decimal' || clr === 'System.Double';
+    case 701:
+    case 700:
+      return clr === 'System.Double';
+    case 16:
+      return clr === 'System.Boolean';
+    case 25:
+      return clr === 'System.String' || clr === 'System.Char' || clr === 'System.Byte[]';
+    case 17:
+      return clr === 'System.Byte[]';
+    case 1114:
+      return clr === 'System.DateTime' || clr === 'System.Int64';
+    default:
+      return true;
+  }
+}
+
 /** The parameter as Npgsql writes it. */
 export function bindParameter(p: QueryParameter): WireParameter {
   const clr = clrType(p);
@@ -176,6 +200,13 @@ export function bindParameter(p: QueryParameter): WireParameter {
     const t = inferred(clr, p.value);
     if (t === null) throw writingNotSupported(clr, null);
     dbType = t;
+  }
+  // A value its type cannot take goes with the type of the value (ParameterDbType.For on Npgsql),
+  // as Delphi binds it: an evaluated list or expression parameter typed String by the report gives
+  // an integer, and Npgsql refused it. The values it takes keep their type (and conversions)
+  if (clr !== 'System.DBNull' && !accepts(DBTYPE_PG[dbType]!.oid, clr)) {
+    const t = inferred(clr, p.value);
+    if (t !== null) dbType = t;
   }
   const pg = DBTYPE_PG[dbType]!;
   if (clr === 'System.DBNull') return { oid: pg.oid, value: null };

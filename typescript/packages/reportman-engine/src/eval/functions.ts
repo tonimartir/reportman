@@ -468,9 +468,8 @@ class IdenVal extends BuiltinFunction {
     super(e, 'Val', 1, 'function Val(s:string):double');
   }
   protected getValue(): Variant {
-    // C# parity: anything that is not a number is returned as it is (VAL('12') is the text
-    // '12'), and a number raises the type error below.
-    if (!this.params[0]!.isNumber()) return this.params[0]!;
+    // As Delphi (TIdenVal): a number is itself, a text is converted (VAL('12') is 12)
+    if (this.params[0]!.isNumber()) return this.params[0]!;
     if (!this.params[0]!.isString()) throw this.typeError('Val');
     const astring = notNull(this.str(0));
     if (astring.length < 1) return Variant.fromInteger(0);

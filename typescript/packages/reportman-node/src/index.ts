@@ -18,5 +18,7 @@ export {
   NoDataToPrintException,
   NotSupportedYetError,
   ReportException,
+  SynchronousDataRequiredError,
+  isSynchronousDataRequired,
 } from 'reportman-engine';
 export type { ParameterDescription, ParameterInput, ParameterOption } from 'reportman-engine';

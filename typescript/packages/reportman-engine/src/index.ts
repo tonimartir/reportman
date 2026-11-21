@@ -98,7 +98,7 @@ export {
   decodeError,
 } from './data/transfer.js';
 export type { Op, MaybePromise } from './data/op.js';
-export { runAsync, runSync, SynchronousDataRequiredError } from './data/op.js';
+export { isSynchronousDataRequired, runAsync, runSync, SynchronousDataRequiredError } from './data/op.js';
 export { NotSupportedYetError } from './data/errors.js';
 export { ReportDataset, ResultReader, ResultView, DatasetRow } from './data/reportdataset.js';
 export type { DataColumn, StoredValue } from './data/columns.js';

@@ -141,6 +141,17 @@ namespace Reportman.Reporting
 
                     }
                 }
+                // The search texts of the substitution parameters of the dataset (":ORDEM"): the engine
+                // replaces them in the SQL before it runs (as Delphi, ignoring the case), they are not
+                // SQL parameters
+                System.Collections.Generic.HashSet<string> substitutions = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (Param sparam in rp.Params)
+                {
+                    if (((sparam.ParamType == ParamType.Subst) || (sparam.ParamType == ParamType.SubstExpre) ||
+                        (sparam.ParamType == ParamType.SubsExpreList) || (sparam.ParamType == ParamType.Multiple)) &&
+                        (sparam.Datasets.IndexOf(dinfo.Alias) >= 0) && (sparam.Search.Length > 0))
+                        substitutions.Add(sparam.Search);
+                }
                 string sql = dinfo.SQL;
                 int index = sql.IndexOf(':');
                 while (index >= 0)
@@ -158,6 +169,11 @@ namespace Reportman.Reporting
                         index2++;
                     }
                     string aparam = paramname.ToString().ToUpper();
+                    if (substitutions.Contains(":" + aparam))
+                    {
+                        index = sql.IndexOf(':', index + 1);
+                        continue;
+                    }
                     index2 = rp.Params.IndexOf(aparam);
                     // The param must exist
                     Param nparam;
@@ -753,6 +769,7 @@ namespace Reportman.Reporting
         private void ResetReportState()
         {
             areport.UndoCue = null;
+            areport.ConvertedFromDelphi = false;
             areport.DatabaseInfo.Clear();
             areport.DataInfo.Clear();
             areport.Params.Clear();

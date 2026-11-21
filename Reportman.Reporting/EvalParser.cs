@@ -251,6 +251,8 @@ namespace Reportman.Reporting
                     if (FExpression[P] == '#')
                     {
                         P++;
+                        // Each #nn is a character, as in Delphi (TRpParser): #13#10 is CR LF
+                        I = 0;
                         while (P < FExpression.Length)
                         {
                             if (Char.IsDigit(FExpression[P]))

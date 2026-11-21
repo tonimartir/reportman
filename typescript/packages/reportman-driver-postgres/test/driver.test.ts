@@ -134,12 +134,14 @@ describe('Npgsql parameter binding', () => {
     expect(() => bindParameter(p('A', 'Int64', 3000000000n, 'Int32'))).toThrow('Arithmetic operation resulted in an overflow.');
   });
 
-  it('refuses the values its type cannot take, as Npgsql', () => {
-    expect(() => bindParameter(p('A', 'Int32', 7, 'String'))).toThrow(
-      "Writing values of 'System.Int32' is not supported for parameters having DataTypeName 'text'.",
-    );
-    expect(() => bindParameter(p('A', 'Int32', 7, 'Double'))).toThrow("DataTypeName 'double precision'");
-    expect(() => bindParameter(p('A', 'String', '7', 'Int32'))).toThrow("Writing values of 'System.String'");
+  it('sends a value its type cannot take with the type of the value, as ParameterDbType.For', () => {
+    expect(bindParameter(p('A', 'Int32', 7, 'String'))).toEqual({ oid: 23, value: '7' });
+    expect(bindParameter(p('A', 'Int32', 7, 'Double'))).toEqual({ oid: 23, value: '7' });
+    expect(bindParameter(p('A', 'String', '7', 'Int32'))).toEqual({ oid: 25, value: '7' });
+    expect(bindParameter(p('A', 'Boolean', true, 'Int32'))).toEqual({ oid: 16, value: 't' });
+  });
+
+  it('refuses the values it cannot send, as Npgsql', () => {
     expect(() => bindParameter(p('@A', 'Object', 7, 'Int32'))).toThrow("Writing values of 'Reportman.Reporting.Variant'");
     expect(() => bindParameter(p('A', 'Null', undefined, 'Int32'))).toThrow("Parameter 'A' cannot be null, DBNull.Value should be used instead.");
     expect(() => bindParameter(p('A', 'Null', undefined, 'Object'))).toThrow(
@@ -213,8 +215,8 @@ describe.skipIf(!available)('a PostgreSQL report connection', () => {
 
   it('checks every parameter, used or not, and leaves unknown placeholders to the server', async () => {
     const c = await factory(request());
-    await expect(Promise.resolve(c.query(command('SELECT 1 AS a', [p('X', 'Int32', 1, 'String')])))).rejects.toThrow(
-      "Writing values of 'System.Int32' is not supported",
+    await expect(Promise.resolve(c.query(command('SELECT 1 AS a', [p('X', 'Object', 1, 'Int32')])))).rejects.toThrow(
+      "Writing values of 'Reportman.Reporting.Variant' is not supported",
     );
     const e = await Promise.resolve(c.query(command('SELECT :Y AS a', [p('X', 'Int32', 1, 'Int32')]))).catch((err: unknown) => err);
     expect(e).toBeInstanceOf(PostgresException);

@@ -52,17 +52,31 @@ export async function runAsync<T>(op: Op<T>): Promise<T> {
   }
 }
 
+const SYNCHRONOUS_DATA_REQUIRED =
+  ' needs the data while an expression is being evaluated, and the data host answered asynchronously (it ' +
+  'returned a promise).';
+
 /** The error of an operation that needs a synchronous host and got a promise. */
 export class SynchronousDataRequiredError extends Error {
   constructor(what: string) {
     super(
       what +
-        ' needs the data while an expression is being evaluated, and the data host answered asynchronously (it ' +
-        'returned a promise). Open the dataset before printing (OpenOnStart), or give a data host whose connect ' +
-        'and query return their results directly.',
+        SYNCHRONOUS_DATA_REQUIRED +
+        ' Open the dataset before printing (OpenOnStart), or give a data host whose connect and query return ' +
+        'their results directly.',
     );
     this.name = 'SynchronousDataRequiredError';
   }
+}
+
+/**
+ * Whether a run failed because the report needs a synchronous data host: the error itself, or the
+ * error of the report item that was evaluating (a ReportException keeps only its message, as in C#).
+ * A host can then run the report again with a synchronous driver.
+ */
+export function isSynchronousDataRequired(error: unknown): boolean {
+  if (error instanceof SynchronousDataRequiredError) return true;
+  return error instanceof Error && error.message.includes(SYNCHRONOUS_DATA_REQUIRED);
 }
 
 /** Runs an Op synchronously; a promise from the host fails with SynchronousDataRequiredError. */

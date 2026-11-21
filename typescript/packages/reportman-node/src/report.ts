@@ -38,6 +38,12 @@ export interface OpenReportOptions extends DataSources {
    * subset, HTML text, right to left and complex scripts, PDF/A-3.
    */
   fonts?: FontOptions | FontLibrary | false;
+  /**
+   * Called with the fresh copy of the report model each step runs (describeParameters,
+   * executeToPdf, executeToMetafile), before the engine prepares it: the host can adjust the
+   * report as its old host did, e.g. its language (`model.language = 4`) or a parameter default.
+   */
+  beforeRun?: (model: Report) => void;
 }
 
 /** Options of a PDF. */
@@ -128,7 +134,9 @@ export class NodeReport {
         : fontsOption instanceof FontLibrary
           ? fontsOption
           : fontLibrary(fontsOption);
-    return prepareReport(readReportXml(this.bytes), {
+    const model = readReportXml(this.bytes);
+    if (this.options.beforeRun !== undefined) this.options.beforeRun(model);
+    return prepareReport(model, {
       device: new PdfDevice({ clock, fonts }),
       data: createDataHost(this.options),
       culture: this.options.culture ?? 'en-US',

@@ -183,6 +183,11 @@ export class ReportRuntime {
    * with (null: that device draws them, with its drawChart or else the vector chart).
    */
   chartingDriver: PrintOut | null = null;
+  /**
+   * Whether convertToDotNet converted the report from data drivers only the Delphi engine has
+   * (Zeos, IBX, FireDAC, BDE...): its parameters keep the meaning they have in Delphi.
+   */
+  convertedFromDelphi = false;
 
   // BaseReport state
   metaFile: MetaFile;
@@ -439,7 +444,11 @@ export class ReportRuntime {
 
   /** DataInfos.IndexOf: by alias, case-sensitive. */
   dataInfoIndexOf(alias: string): number {
+    // Ignoring the case, as Delphi (TRpDataInfoList.IndexOf): a subreport may name its dataset in
+    // other case than the dataset itself
     for (let i = 0; i < this.dataInfos.length; i++) if (this.dataInfos[i]!.alias === alias) return i;
+    const upper = toUpperNet(alias);
+    for (let i = 0; i < this.dataInfos.length; i++) if (toUpperNet(this.dataInfos[i]!.alias) === upper) return i;
     return -1;
   }
 
@@ -586,7 +595,15 @@ export class ReportRuntime {
       ) {
         const paramname = aparam.alias;
         if (aparam.value.varType !== VariantType.Null) {
-          if (doeval) {
+          if (doeval && this.convertedFromDelphi && aparam.paramType === ParamType.SubsExpreList) {
+            // A report of the Delphi engine, as Delphi (TRpBaseReport.UpdateParamsBeforeOpen): the value
+            // chosen in the list is the text to substitute, a string is quoted before it is evaluated
+            // ('N' stays 'N'). A report of this engine evaluates the value itself, as it always did
+            const v = aparam.value;
+            const text = v.varType === VariantType.String ? "'" + v.toString(ctx).split("'").join("''") + "'" : v.toString(ctx);
+            this.evaluator.evaluateText('M.' + paramname + ':=(' + text + ')');
+            aparam.lastValue = this.evaluator.evaluateText('M.' + paramname);
+          } else if (doeval) {
             const oldvalue = aparam.lastValue;
             this.evaluator.evaluateText('M.' + paramname + ':=(' + aparam.value.toString(ctx) + ')');
             aparam.lastValue = oldvalue;

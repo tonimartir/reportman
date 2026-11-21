@@ -427,6 +427,13 @@ namespace Reportman.Reporting
         [Newtonsoft.Json.JsonIgnore]
 
         public bool Modified;
+        /// <summary>
+        /// <see cref="ConvertToDotNet"/> converted the report from data drivers only the Delphi engine has
+        /// (Zeos, IBX, FireDAC, BDE...): its parameters keep the meaning they have in Delphi
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public bool ConvertedFromDelphi;
 
 
         /// <summary>
@@ -1062,7 +1069,19 @@ namespace Reportman.Reporting
             }
             if (!doconvert)
                 return;
+            // Before the conversion changes the drivers: a connection of a driver only the Delphi engine
+            // has. The Reportman Agent (HttpAgent) is in both engines, keeps its driver and is converted
+            // each time the report is loaded, so it does not tell where the report was designed
+            bool fromDelphi = false;
+            foreach (DatabaseInfo dbinfo in DatabaseInfo)
+            {
+                if ((dbinfo.Driver != DriverType.DotNet2) && (dbinfo.Driver != DriverType.Mybase) &&
+                    (dbinfo.Driver != DriverType.HttpAgent) && !dbinfo.IsEngineSqlite())
+                    fromDelphi = true;
+            }
             ReportReader.ConvertToDotNet((Report)this, DriverType.DotNet2, "");
+            if (fromDelphi)
+                ConvertedFromDelphi = true;
         }
         /// <summary>
         /// Loads a report from a stream using the given read buffer size.
@@ -1821,7 +1840,19 @@ namespace Reportman.Reporting
                         paramname = aparam.Alias;
                         if (aparam.Value.VarType != VariantType.Null)
                         {
-                            if (doeval)
+                            if (doeval && ConvertedFromDelphi && (aparam.ParamType == ParamType.SubsExpreList))
+                            {
+                                // A report of the Delphi engine, as Delphi (TRpBaseReport.UpdateParamsBeforeOpen): the
+                                // value chosen in the list is the text to substitute, a string is quoted before it is
+                                // evaluated ('N' stays 'N'). A report of this engine evaluates the value itself, as it
+                                // always did
+                                string text = aparam.Value.AsString;
+                                if (aparam.Value.VarType == VariantType.String)
+                                    text = "'" + text.Replace("'", "''") + "'";
+                                Evaluator.EvaluateText("M." + paramname + ":=(" + text + ")");
+                                aparam.LastValue = Evaluator.EvaluateText("M." + paramname);
+                            }
+                            else if (doeval)
                             {
                                 Variant oldvalue = aparam.LastValue;
                                 Evaluator.EvaluateText("M." + paramname + ":=(" + aparam.Value.AsString + ")");

@@ -946,6 +946,9 @@ namespace Reportman.Reporting
                             {
                                 aresult = true;
                                 param.Value = master.CurrentRow[paramname];
+                                // The type of the master column's value where Npgsql would refuse it
+                                if ((param.Value != null) && !(param.Value is DBNull))
+                                    param.DbType = ParameterDbType.For(ncommand, param.DbType, param.Value);
                             }
                         }
                     }

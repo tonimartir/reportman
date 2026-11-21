@@ -721,6 +721,10 @@ namespace Reportman.Reporting
         }
         private static void CoerceOperands(ref Variant value1, ref Variant value2)
         {
+            // A date and a number are compared as numbers by Variant.CompareTo (as Delphi compares a TDateTime)
+            if (((value1.VarType == VariantType.DateTime) && value2.IsNumber()) ||
+                ((value2.VarType == VariantType.DateTime) && value1.IsNumber()))
+                return;
             if (value1.VarType != value2.VarType)
                 VariantCoercion.Coercion(ref value1, ref value2);
         }

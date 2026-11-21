@@ -524,10 +524,15 @@ export class Variant {
     }
   }
 
-  /** DisplayText: a date at midnight without its time, a decimal without trailing zeros (G29). */
+  /**
+   * DisplayText: a date at midnight without its time, a time without a date (day 0001-01-01, a
+   * time column) without its date, a decimal without trailing zeros (G29). Midnight of day
+   * 0001-01-01 is also DateTime.MinValue, a date: it keeps printing as a date.
+   */
   private displayText(ctx: VariantContext): string {
     switch (this.varType) {
       case VariantType.DateTime:
+        if (this.dt.days === 0 && this.dt.tickOfDay !== 0) return formatDateTime(this.dt, 'T', ctx.culture, ctx.timeZone);
         return this.dt.tickOfDay === 0 ? formatDateTime(this.dt, 'd', ctx.culture, ctx.timeZone) : this.toString(ctx);
       case VariantType.Decimal:
         return formatDecimal(this.d, 'G29', ctx.culture.number);
@@ -610,6 +615,10 @@ export class Variant {
         if (displayformat[0] === '*') return formatDouble(value.toDouble(ctx), displayformat.substring(1), ctx.culture.number);
         return formatDouble(value.toDouble(ctx), displayformat, ctx.culture.number);
       case VariantType.DateTime: {
+        // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
+        // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
+        if (displayformat.length === 0 && paramtype !== ParamType.Date && value.dt.days === 0 && value.dt.tickOfDay !== 0)
+          displayformat = ctx.culture.date.longTimePattern;
         if (displayformat.length === 0) displayformat = Variant.defaultDateTimeFormat(ctx, paramtype);
         return formatDateTime(value.dt, dateFormatMask(displayformat), ctx.culture, ctx.timeZone);
       }
@@ -630,6 +639,10 @@ export class Variant {
 
   /** Variant.CompareTo(Variant): coerces different types first (VariantCoercion). */
   static compare(a: Variant, b: Variant, ctx: VariantContext): number {
+    // A date and a number compare as numbers (the date by its OLE value), as Delphi compares a
+    // TDateTime: a time without a date (a time column) is a time of 30/12/1899, greater than 0
+    if (a.varType === VariantType.DateTime && b.isNumber()) return compareDoubles(a.dt.toOADate(), b.toDouble(ctx));
+    if (b.varType === VariantType.DateTime && a.isNumber()) return compareDoubles(a.toDouble(ctx), b.dt.toOADate());
     if (a.varType !== b.varType) {
       const c = coercion(a, b, ctx);
       if (c !== null) return Variant.compare(c[0], c[1], ctx);

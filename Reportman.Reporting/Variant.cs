@@ -888,6 +888,12 @@ namespace Reportman.Reporting
         /// </summary>
         public int CompareTo(Variant obj)
         {
+            // A date and a number compare as numbers (the date by its OLE value), as Delphi compares a
+            // TDateTime: a time without a date (a time column) is a time of 30/12/1899, greater than 0
+            if ((FVarType == VariantType.DateTime) && obj.IsNumber())
+                return FDateTime.ToOADate().CompareTo((double)obj);
+            if ((obj.FVarType == VariantType.DateTime) && IsNumber())
+                return ((double)this).CompareTo(obj.FDateTime.ToOADate());
             Variant avalue = this;
             if (CoerceIfNeeded(ref avalue, ref obj))
                 return avalue.CompareTo(obj);
@@ -2277,14 +2283,18 @@ namespace Reportman.Reporting
         }
         /// <summary>
         /// A value printed with no display format, as Delphi writes it (VarToStr, the designer's
-        /// reference): a date at midnight without its time, a decimal without the trailing zeros
-        /// its scale keeps (a sum of 380.5 and 5802 is 6182.5, but 17669.0 prints 17669).
+        /// reference): a date at midnight without its time, a time without a date (day 0001-01-01,
+        /// a time column) without its date, a decimal without the trailing zeros its scale keeps
+        /// (a sum of 380.5 and 5802 is 6182.5, but 17669.0 prints 17669). Midnight of day 0001-01-01
+        /// is also DateTime.MinValue, a date: it keeps printing as a date.
         /// </summary>
         private string DisplayText()
         {
             switch (VarType)
             {
                 case VariantType.DateTime:
+                    if ((FDateTime.Date == DateTime.MinValue.Date) && (FDateTime.TimeOfDay != TimeSpan.Zero))
+                        return FDateTime.ToLongTimeString();
                     return FDateTime.TimeOfDay == TimeSpan.Zero ? FDateTime.ToShortDateString() : FDateTime.ToString();
                 case VariantType.Decimal:
                     return FDecimal.ToString("G29");
@@ -2429,9 +2439,14 @@ namespace Reportman.Reporting
                     }
                     break;
                 case VariantType.DateTime:
+                    DateTime dvalue = Value;
+                    // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
+                    // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
+                    if ((displayformat.Length == 0) && (paramtype != ParamType.Date) && (dvalue.Date == DateTime.MinValue.Date) &&
+                        (dvalue.TimeOfDay != TimeSpan.Zero))
+                        displayformat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern;
                     if (displayformat.Length == 0)
                         displayformat = DefaultDateTimeFormat(paramtype);
-                    DateTime dvalue = Value;
                     aresult = dvalue.ToString(DateFormatMask(displayformat));
                     break;
                 case VariantType.String:
