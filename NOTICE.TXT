@@ -1,0 +1,19 @@
+Report Manager for .NET and TypeScript
+Copyright (c) 1994 - 2026 Toni Martir (toni@reportman.es)
+
+This repository is licensed under the Mozilla Public License, v. 2.0: see LICENSE.TXT, or
+https://mozilla.org/MPL/2.0/. The MPL 2.0 is compatible with the GNU GPL (v2 or later), LGPL
+(v2.1 or later) and AGPL (v3 or later), its "Secondary Licenses".
+
+Until 21-11-2026 the files of this repository were distributed under the Mozilla Public
+License 1.1, with the GPL as an alternative, as the Delphi version of Report Manager still is.
+
+Contributors to the original code of Report Manager (the Delphi version):
+
+  PDF export base: K. Nishita
+  ZLib compression: Jean-loup Gailly, Mark Adler, Jacques Nomssi Nzali
+  Barcode codebase: Andreas Schmidt and friends
+
+Code by others, under its own terms (written in the file):
+
+  Reportman.Drawing.Forms/DateTimePickerAdvanced.cs: Copyright 2013 by Peter Ringering

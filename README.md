@@ -127,6 +127,12 @@ Reportman is organized into several **modular libraries**, each with a specific 
 
 ---
 
+## License
+
+[Mozilla Public License 2.0](LICENSE.TXT): the NuGet and npm packages and the code of this
+repository. The MPL 2.0 can be combined with GPL, LGPL and AGPL code (its Secondary Licenses).
+Copyright, credits and earlier licensing: [NOTICE.TXT](NOTICE.TXT).
+
 ## Project Links
 
 * Project homepage, downloadable designer and tools, including .net and native: [https://reportman.es](https://reportman.es)

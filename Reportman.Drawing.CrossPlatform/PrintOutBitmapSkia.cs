@@ -2,11 +2,9 @@
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
- *     The contents of this file are subject to the MPL License
- *     with optional use of GPL or LGPL licenses.
- *     You may not use this file except in compliance with the
- *     Licenses. You may obtain copies of the Licenses at:
- *     http://reportman.sourceforge.net/license
+ *     This Source Code Form is subject to the terms of the Mozilla
+ *     Public License, v. 2.0. If a copy of the MPL was not distributed
+ *     with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  *     Software is distributed on an "AS IS" basis,
  *     WITHOUT WARRANTY OF ANY KIND, either
