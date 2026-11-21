@@ -42,6 +42,8 @@ class Program
                 case "model-json": return ModelJson(args);
                 case "eval": return Eval(args);
                 case "run": return Run(args);
+                case "culture-json": return CultureJson(args);
+                case "text-extent": return TextExtent(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -166,6 +168,107 @@ class Program
 
         Output(MetaFileJson(report.MetaFile).ToString(Formatting.Indented), args[2]);
         Console.WriteLine("pages=" + report.MetaFile.Pages.Count);
+        return 0;
+    }
+
+    // golden-cs culture-json <culture>[,<culture>...] [out.json]
+    //     The .NET number and date format data of each culture, so the TypeScript port can format
+    //     exactly as the C# engine does under Thread.CurrentCulture.
+    static int CultureJson(string[] args)
+    {
+        var result = new JObject();
+        foreach (string name in args[1].Split(','))
+        {
+            CultureInfo ci = CultureInfo.GetCultureInfo(name);
+            NumberFormatInfo nf = ci.NumberFormat;
+            DateTimeFormatInfo df = ci.DateTimeFormat;
+            var j = new JObject();
+            j["name"] = ci.Name;
+            j["twoLetterISOLanguageName"] = ci.TwoLetterISOLanguageName;
+            j["number"] = JObject.FromObject(new
+            {
+                nf.NumberDecimalSeparator, nf.NumberGroupSeparator, nf.NumberGroupSizes,
+                nf.NumberDecimalDigits, nf.NumberNegativePattern,
+                nf.CurrencyDecimalSeparator, nf.CurrencyGroupSeparator, nf.CurrencyGroupSizes,
+                nf.CurrencyDecimalDigits, nf.CurrencySymbol, nf.CurrencyPositivePattern,
+                nf.CurrencyNegativePattern,
+                nf.PercentDecimalSeparator, nf.PercentGroupSeparator, nf.PercentGroupSizes,
+                nf.PercentDecimalDigits, nf.PercentSymbol, nf.PerMilleSymbol,
+                nf.PercentPositivePattern, nf.PercentNegativePattern,
+                nf.NegativeSign, nf.PositiveSign, nf.NaNSymbol,
+                nf.PositiveInfinitySymbol, nf.NegativeInfinitySymbol
+            });
+            j["date"] = JObject.FromObject(new
+            {
+                df.ShortDatePattern, df.LongDatePattern, df.ShortTimePattern, df.LongTimePattern,
+                df.FullDateTimePattern, df.MonthDayPattern, df.YearMonthPattern,
+                df.DateSeparator, df.TimeSeparator, df.AMDesignator, df.PMDesignator,
+                df.FirstDayOfWeek, df.DayNames, df.AbbreviatedDayNames, df.MonthNames,
+                df.AbbreviatedMonthNames, df.MonthGenitiveNames, df.AbbreviatedMonthGenitiveNames
+            });
+            result[ci.Name] = j;
+        }
+        Output(result.ToString(Formatting.Indented), args.Length > 2 ? args[2] : null);
+        return 0;
+    }
+
+    // golden-cs text-extent <cases.json> [out.json]
+    //     cases.json: [{ "text": "...", "fontSize": 10, "fontStyle": 0, "type1Font": 0,
+    //     "wordWrap": true, "alignment": 0, "cutText": false, "width": 2000, "height": 0 }, ...]
+    //     For each case, PrintOutPDFStandard.TextExtent (twips) and the LineInfo list.
+    static int TextExtent(string[] args)
+    {
+        SetCulture(args);
+        JArray cases = JArray.Parse(File.ReadAllText(args[1]));
+        var printer = new PrintOutPDFStandard();
+        printer.FileName = "";
+        var meta = new MetaFile();
+        printer.NewDocument(meta);
+        var results = new JArray();
+        foreach (JObject c in cases)
+        {
+            var t = new TextObjectStruct();
+            t.Text = (string)c["text"];
+            t.LFontName = (string)c["lFontName"] ?? "Helvetica";
+            t.WFontName = (string)c["wFontName"] ?? "Arial";
+            t.FontSize = (short)((int?)c["fontSize"] ?? 10);
+            t.FontStyle = (short)((int?)c["fontStyle"] ?? 0);
+            t.FontRotation = (short)((int?)c["fontRotation"] ?? 0);
+            t.Type1Font = (PDFFontType)((int?)c["type1Font"] ?? 0);
+            t.WordWrap = (bool?)c["wordWrap"] ?? false;
+            t.CutText = (bool?)c["cutText"] ?? false;
+            t.Alignment = (int?)c["alignment"] ?? 0;
+            t.RightToLeft = false;
+            t.IsHtml = false;
+            var extent = new System.Drawing.Point((int?)c["width"] ?? 0, (int?)c["height"] ?? 0);
+            var r = new JObject();
+            r["case"] = c;
+            try
+            {
+                var extent2 = extent;
+                List<LineInfo> lines = printer.TextExtentLineInfo(t, ref extent2);
+                var extent1 = printer.TextExtent(t, extent);
+                r["extent"] = new JArray(extent1.X, extent1.Y);
+                r["lineExtent"] = new JArray(extent2.X, extent2.Y);
+                var jl = new JArray();
+                if (lines != null)
+                    foreach (LineInfo li in lines)
+                        jl.Add(new JObject
+                        {
+                            ["position"] = li.Position, ["size"] = li.Size, ["width"] = li.Width,
+                            ["height"] = li.Height, ["topPos"] = li.TopPos,
+                            ["lastLine"] = li.LastLine, ["lineHeight"] = li.LineHeight,
+                            ["text"] = li.Text
+                        });
+                r["lines"] = jl;
+            }
+            catch (Exception e)
+            {
+                r["error"] = e.GetType().Name + ": " + e.Message;
+            }
+            results.Add(r);
+        }
+        Output(results.ToString(Formatting.Indented), args.Length > 2 ? args[2] : null);
         return 0;
     }
 
