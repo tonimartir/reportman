@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   MetaFile,
@@ -17,15 +20,15 @@ import {
   TextAlignVerticalType,
   newTextObjectStruct,
 } from 'reportman-metafile';
-import { StandardTextMeasurer, ShaperNotSupportedError } from 'reportman-text';
+import { PDFA3_NO_FONT_PROVIDER, StandardTextMeasurer, ShaperNotSupportedError } from 'reportman-text';
 import {
-  PDFA3_NOT_SUPPORTED,
   PDFFile,
   PdfDevice,
   formatFixed2,
   intToHex,
   pdfDateOf,
   pdfDateOfText,
+  randomDocumentId,
   renderPdf,
   splitDocDate,
   zoneOfOffset,
@@ -191,16 +194,78 @@ describe('PdfDevice', () => {
     const z = latin1(renderPdf(meta, { clock: fixedClock, compressed: true }));
     expect(z).toContain('/Filter [/FlateDecode]');
   });
-  it('fails for PDF/A-3, right to left text and printer fonts Recalculate', () => {
+  it('fails for a PDF/A-3 text without fonts, right to left text and printer fonts Recalculate', () => {
+    // PDF/A-3 embeds every font: the standard 14 fonts cannot draw its texts
     const a3 = simpleMeta();
     a3.pdfConformance = PDFConformanceType.PDF_A_3;
-    expect(() => renderPdf(a3)).toThrow(PDFA3_NOT_SUPPORTED);
+    expect(() => renderPdf(a3)).toThrow(PDFA3_NO_FONT_PROVIDER);
     const rtl = simpleMeta();
     (rtl.pages.get(0).objects[0] as MetaObjectText).rightToLeft = true;
     expect(() => renderPdf(rtl)).toThrow(ShaperNotSupportedError);
     const rec = simpleMeta();
     rec.printerFonts = PrinterFontsType.Recalculate;
     expect(() => renderPdf(rec)).toThrow(ShaperNotSupportedError);
+  });
+  it('writes PDF/A-3B: header, XMP metadata, sRGB output intent, associated files, 20 byte xref entries, /ID', () => {
+    const meta = new MetaFile();
+    meta.customX = 11906;
+    meta.customY = 16838;
+    meta.pdfConformance = PDFConformanceType.PDF_A_3;
+    meta.docTitle = 'PDF/A <test>';
+    meta.docAuthor = "O'Brien & Co";
+    meta.docSubject = 'Subject';
+    meta.docKeywords = ' one , two';
+    meta.docCreator = 'Creator';
+    meta.docProducer = 'Producer';
+    meta.docXMPContent = '    <xmp:Label>extra</xmp:Label>';
+    const page = new MetaPage(meta);
+    page.drawShape(100, 100, 400, 200, ShapeType.Rectangle, 0, 0, 0, 0, 0);
+    meta.pages.add(page);
+    meta.newEmbeddedFile('data.xml', 'text/xml', PDFAFRelationShip.Data, 'Data', '2024-10-02T15:29:15+02:00', '', new Uint8Array([60, 97, 62]));
+    meta.newEmbeddedFile('notes.txt', 'text/plain', PDFAFRelationShip.Supplement, 'Notes', '', '', new Uint8Array([120]));
+    const bytes = renderPdf(meta, { clock: fixedClock, documentId: () => '0123456789abcdef0123456789abcdef' });
+    const pdf = latin1(bytes);
+    expect([...bytes.subarray(0, 16)]).toEqual([...Buffer.from('%PDF-1.7\n', 'latin1'), 37, 228, 252, 246, 223, 13, 10]);
+    expect(pdf).not.toContain('obj\r\n');
+    // The XMP metadata: its /Length leaves out the last line feed, as C# writes it
+    const xmp = /\/Type \/Metadata\n {3}\/Subtype \/XML\n {3}\/Length (\d+)\n>>\nstream\n([^]*?)endstream/.exec(pdf);
+    expect(xmp).not.toBeNull();
+    expect(Number(xmp![1])).toBe(xmp![2]!.length - 1);
+    expect(xmp![2]).toContain('<rdf:li>O&apos;Brien &amp; Co</rdf:li>');
+    expect(xmp![2]).toContain('<rdf:li xml:lang="x-default">PDF/A &lt;test&gt;</rdf:li>');
+    expect(xmp![2]).toContain('        <rdf:li>one</rdf:li>\n        <rdf:li>two</rdf:li>');
+    expect(xmp![2]).toContain('<xmp:CreateDate>2026-11-21T01:31:17+01:00</xmp:CreateDate>');
+    expect(xmp![2]).toContain('<pdf:Keywords> one , two</pdf:Keywords>');
+    expect(xmp![2]).toContain('<pdfaid:part>3</pdfaid:part>\n    <pdfaid:conformance>B</pdfaid:conformance>\n    <xmp:Label>extra</xmp:Label>\n');
+    // The ICC profile is the resource of the C# engine
+    const icc = /3 0 obj\n<< \/N 3 \/Alternate \/DeviceRGB \n \/Length (\d+)\n>>\nstream\n/.exec(pdf);
+    expect(icc).not.toBeNull();
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    const resource = fs.readFileSync(path.resolve(here, '../../../../Reportman.Drawing/Resources/sRGB.icm'));
+    const start = icc!.index + icc![0].length;
+    expect(Buffer.from(bytes.subarray(start, start + Number(icc![1]))).equals(resource)).toBe(true);
+    expect(pdf).toContain('4 0 obj\n<< /Type /OutputIntent\n  /S /GTS_PDFA1\n  /OutputConditionIdentifier (sRGB IEC61966-2.1) \n');
+    expect(pdf).toContain('  /DestOutputProfile 3 0 R\n');
+    expect(pdf).toContain('5 0 obj\n<<  /Type /ColorSpace\n    /ColorSpace [/ICCBased 3 0 R] >>\n');
+    expect(pdf).toContain('<< /ProcSet [/PDF]\n/Font << \n>>\n/ColorSpace << \n     /CS1 5 0 R\n  >>\n>>');
+    // No standard fonts in PDF/A
+    expect(pdf).not.toContain('/BaseFont /Helvetica');
+    const catalog = /<< \/Type \/Catalog\n[^]*?\n>>\nendobj/.exec(pdf)![0];
+    expect(catalog).toMatch(/\/Metadata 2 0 R\n\/OutputIntents \[4 0 R\]\n\/Names <<\n {2}\/EmbeddedFiles << \/Names \[\(data\.xml\) (\d+) 0 R\(notes\.txt\) (\d+) 0 R\] >>\n>>\n\/AF \[ \1 0 R \2 0 R\]/);
+    expect(pdf).toContain('/AFRelationship /Supplement');
+    // The cross reference table: 20 bytes an entry, each at its object
+    const xref = /xref\n0 (\d+)\n([^]*?)trailer/.exec(pdf)!;
+    const entries = xref[2]!.match(/.*\n/g)!;
+    expect(entries.length).toBe(Number(xref[1]));
+    expect(entries.every((e) => e.length === 20)).toBe(true);
+    entries.slice(1).forEach((e, i) => expect(pdf.startsWith(String(i + 1) + ' 0 obj\n', parseInt(e, 10))).toBe(true));
+    expect(pdf).toContain('/Info 1 0 R\n/ID [<0123456789abcdef0123456789abcdef> <0123456789abcdef0123456789abcdef>]\n>>\nstartxref\n');
+    expect(() => renderPdf(meta, { documentId: () => 'not hex' })).toThrow('hexadecimal');
+  });
+  it('makes a random version 4 GUID for each PDF/A-3 document (Guid.NewGuid)', () => {
+    const a = randomDocumentId();
+    expect(a).toMatch(/^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$/);
+    expect(randomDocumentId()).not.toBe(a);
   });
   it('does not draw polygons, export data and barcodes (as the C# device)', () => {
     const meta = simpleMeta();

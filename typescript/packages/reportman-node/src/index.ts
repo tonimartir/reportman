@@ -7,6 +7,8 @@ export type { ConnectionFactory, DatasetSource, DataSources } from './host.js';
 export { sqlite } from './sqlite.js';
 export type { SqliteOptions } from './sqlite.js';
 export { renderParametersForm } from './form.js';
+export { fontLibrary, fontDirectories, fontFiles, diskFontFile, currentFontPlatform } from './fonts.js';
+export type { FontOptions } from './fonts.js';
 export type { ParametersFormOptions } from './form.js';
 
 // What a host needs from the engine to handle the results and errors of a run

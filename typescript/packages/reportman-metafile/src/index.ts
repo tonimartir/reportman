@@ -25,3 +25,5 @@ export { newTextObjectStruct, textObjectFromMetaObjectText, newLineInfo } from '
 export type { TextObjectStruct, LineInfo } from './textobject.js';
 export { PrintOut } from './printout.js';
 export type { TextExtentLines, DevicePageSize } from './printout.js';
+export { HtmlTextParser, normalizeSupportedHtml } from './htmltext.js';
+export type { HtmlFormatRun } from './htmltext.js';

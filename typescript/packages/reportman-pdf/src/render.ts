@@ -11,9 +11,10 @@ export interface RenderPdfOptions extends PdfDeviceOptions {
 }
 
 /**
- * Writes a metafile as a PDF with the standard 14 fonts and returns its bytes (a PdfDevice
- * printing the metafile). Fails when the metafile has fewer pages than fromPage, where the C#
- * device leaves an incomplete document.
+ * Writes a metafile as a PDF and returns its bytes (a PdfDevice printing the metafile): with the
+ * standard 14 fonts, or with the embedded TrueType fonts of a font library (options.fonts). Fails
+ * when the metafile has fewer pages than fromPage, where the C# device leaves an incomplete
+ * document.
  */
 export function renderPdf(meta: MetaFile, options: RenderPdfOptions = {}): Uint8Array {
   const device = new PdfDevice(options);

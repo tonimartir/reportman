@@ -5,7 +5,7 @@ export { PdfDevice } from './pdfdevice.js';
 export type { PdfDeviceOptions } from './pdfdevice.js';
 export { renderPdf } from './render.js';
 export type { RenderPdfOptions } from './render.js';
-export { PDFFile, systemClock, PDFA3_NOT_SUPPORTED, POINTS_PER_INCH } from './pdffile.js';
+export { PDFFile, systemClock, randomDocumentId, POINTS_PER_INCH } from './pdffile.js';
 export type { PDFAnnotation, PdfClock } from './pdffile.js';
 export {
   PDFCanvas,

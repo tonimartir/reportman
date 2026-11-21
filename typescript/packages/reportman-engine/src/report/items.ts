@@ -12,11 +12,14 @@ import type {
 } from 'reportman-lib';
 import {
   AlignmentFlags,
+  HtmlTextParser,
+  roundHalfEven,
   MetaFile,
   MetaFileVersion,
   MetaObjectDraw,
   MetaObjectText,
   MetaObjectType,
+  type HtmlFormatRun,
   type MetaObject,
   type MetaPage,
   type Point,
@@ -314,9 +317,48 @@ export class PrintItemText extends PrintPosItem {
     return aresult;
   }
 
-  protected checkHtml(): void {
-    // The HTML text needs the HTML layout and the shaper of the PDF writer, not ported yet
-    if (this.isHtml) throw new NotSupportedYetError('HTML text (the item ' + this.name + ')');
+  /**
+   * HTML text needs a device that lays it out (the TrueType provider of the PDF device: the
+   * FreeType driver); with the standard 14 fonts it fails clearly, where the C# standard driver
+   * fails with a NullReferenceException.
+   */
+  protected checkHtml(adriver: PrintOut | null = null): void {
+    if (!this.isHtml) return;
+    const driver = this.report.driver ?? adriver;
+    if (driver === null || !driver.supportsHtmlText()) throw new NotSupportedYetError('HTML text (the item ' + this.name + ')');
+  }
+
+  /**
+   * Replaces the {{expression}} placeholders of an HTML text with their values
+   * (EvaluateHtmlExpressions); a placeholder that fails to evaluate is kept as it is.
+   */
+  protected evaluateHtmlExpressions(text: string): string {
+    if (text === '') return text;
+    const ev = this.report.evaluator;
+    let sb = '';
+    let pos = 0;
+    while (pos < text.length) {
+      const start = text.indexOf('{{', pos);
+      if (start < 0) {
+        sb += text.substring(pos);
+        break;
+      }
+      const end = text.indexOf('}}', start + 2);
+      if (end < 0) {
+        sb += text.substring(pos);
+        break;
+      }
+      sb += text.substring(pos, start);
+      const expr = trimNet(text.substring(start + 2, end));
+      try {
+        const result = ev.evaluateText(expr);
+        sb += result.toString(ev.context);
+      } catch {
+        sb += text.substring(start, end + 2);
+      }
+      pos = end + 2;
+    }
+    return sb;
   }
 
   protected textObject(text: string): TextObjectStruct {
@@ -370,11 +412,11 @@ export class LabelItem extends PrintItemText {
     partialPrint: PartialRef,
   ): void {
     super.doPrint(adriver, aposx, aposy, newwidth, newheight, metafile, maxExtent, partialPrint);
-    this.checkHtml();
+    this.checkHtml(adriver);
     const apage = metafile.pages.get(metafile.currentPage);
     const metaobj = new MetaObjectText();
     this.fillAnnotation(metaobj, apage);
-    const finalText = this.text;
+    const finalText = this.isHtml ? this.evaluateHtmlExpressions(this.text) : this.text;
     metaobj.textP = apage.addString(finalText);
     metaobj.textS = finalText.length;
     metaobj.lFontNameP = apage.addString(this.lFontName);
@@ -404,8 +446,8 @@ export class LabelItem extends PrintItemText {
   }
 
   override getExtension(adriver: PrintOut, maxExtent: Point, forcePartial: boolean): Point {
-    this.checkHtml();
-    const atext = this.textObject(this.text);
+    this.checkHtml(adriver);
+    const atext = this.textObject(this.isHtml ? this.evaluateHtmlExpressions(this.text) : this.text);
     let aresult = super.getExtension(adriver, maxExtent, forcePartial);
     aresult = adriver.textExtent(atext, aresult);
     this.lastExtent = { ...aresult };
@@ -440,6 +482,8 @@ export class ExpressionItem extends PrintItemText {
   // that does not fit an empty page) is not printed partially.
   private fForcedPartial = false;
   private fOldString = '';
+  /** The rest of an HTML text that continues on the next page (FHtmlPartialText). */
+  private fHtmlPartialText: string | null = null;
   private fUpdated = false;
   private fDataCount = 0;
   private fSumValue: Variant = Variant.null;
@@ -527,10 +571,13 @@ export class ExpressionItem extends PrintItemText {
     try {
       this.evaluate();
       aresult = this.value.toFormatString(this.report.evaluator.context, this.displayFormat, this.dataType, this.printNulls);
+      if (this.isHtml) aresult = this.evaluateHtmlExpressions(aresult);
     } catch (e) {
       if (e instanceof ReportException) throw e;
       throw new ReportException(messageOf(e) + '\n' + this.name + ' Prop:Expression', this.name, 'Expression');
     }
+    // The rest of an HTML text that continues on this page
+    if (this.isHtml && this.fIsPartial && this.fHtmlPartialText !== null) return this.fHtmlPartialText;
     if (this.isPartial) {
       if (this.partialPos < aresult.length && (aresult.charAt(this.partialPos) === ' ' || aresult.charCodeAt(this.partialPos) === 10))
         this.partialPos++;
@@ -564,18 +611,34 @@ export class ExpressionItem extends PrintItemText {
     this.fOldString = textObj.text;
     if (this.multiPage || this.fForcedPartial) {
       const extent = { ...maxExtent, x: this.printWidth };
-      const driver = this.report.driver;
-      if (driver === null) throw new Error('Object reference not set to an instance of an object.');
-      const newposition = MetaFile.calcTextExtent(driver, extent, textObj);
-      if (newposition < textObj.text.length) {
-        if (!this.fIsPartial) this.partialPos = 0;
-        this.fIsPartial = true;
-        partialPrint.value = true;
-        this.partialPos = this.partialPos + newposition;
-        textObj.text = textObj.text.substring(0, newposition);
+      if (this.isHtml) {
+        let split = this.trySplitHtmlForMultipage(adriver, textObj, extent);
+        if (split === null) split = { current: textObj.text, remaining: '' };
+        textObj.text = split.current;
+        if (split.remaining !== '') {
+          this.fIsPartial = true;
+          partialPrint.value = true;
+          this.fHtmlPartialText = split.remaining;
+        } else {
+          this.fIsPartial = false;
+          this.fForcedPartial = false;
+          this.fHtmlPartialText = null;
+        }
       } else {
-        this.fIsPartial = false;
-        this.fForcedPartial = false;
+        this.fHtmlPartialText = null;
+        const driver = this.report.driver;
+        if (driver === null) throw new Error('Object reference not set to an instance of an object.');
+        const newposition = MetaFile.calcTextExtent(driver, extent, textObj);
+        if (newposition < textObj.text.length) {
+          if (!this.fIsPartial) this.partialPos = 0;
+          this.fIsPartial = true;
+          partialPrint.value = true;
+          this.partialPos = this.partialPos + newposition;
+          textObj.text = textObj.text.substring(0, newposition);
+        } else {
+          this.fIsPartial = false;
+          this.fForcedPartial = false;
+        }
       }
     }
     const apage = metafile.pages.get(metafile.currentPage);
@@ -631,6 +694,7 @@ export class ExpressionItem extends PrintItemText {
       case SubReportEvent.Start:
         this.fIsPartial = false;
         this.fForcedPartial = false;
+        this.fHtmlPartialText = null;
         this.fOldString = '';
         this.fUpdated = false;
         this.fDataCount = 0;
@@ -639,6 +703,7 @@ export class ExpressionItem extends PrintItemText {
       case SubReportEvent.SubReportStart:
         this.fIsPartial = false;
         this.fForcedPartial = false;
+        this.fHtmlPartialText = null;
         this.fOldString = '';
         this.fUpdated = false;
         this.fDataCount = 0;
@@ -647,6 +712,7 @@ export class ExpressionItem extends PrintItemText {
       case SubReportEvent.DataChange:
         this.fIsPartial = false;
         this.fForcedPartial = false;
+        this.fHtmlPartialText = null;
         this.fUpdated = false;
         this.fDataCount++;
         if (this.aggregate !== Aggregate.None) {
@@ -694,6 +760,7 @@ export class ExpressionItem extends PrintItemText {
       case SubReportEvent.GroupChange:
         this.fIsPartial = false;
         this.fForcedPartial = false;
+        this.fHtmlPartialText = null;
         this.fUpdated = false;
         this.fOldString = '';
         if (this.aggregate === Aggregate.Group) {
@@ -712,6 +779,7 @@ export class ExpressionItem extends PrintItemText {
       case SubReportEvent.InvalidateValue:
         this.fIsPartial = false;
         this.fForcedPartial = false;
+        this.fHtmlPartialText = null;
         this.fOldString = '';
         this.fUpdated = false;
         break;
@@ -728,15 +796,167 @@ export class ExpressionItem extends PrintItemText {
     let aresult = super.getExtension(adriver, maxExtent, forcePartial);
     if (this.multiPage || forcePartial) {
       const extent = { ...maxExtent, x: aresult.x };
-      const aposition = MetaFile.calcTextExtent(adriver, extent, atext);
-      if (aposition < atext.text.length) isPartial = true;
-      atext.text = atext.text.substring(0, aposition);
-      aresult = adriver.textExtent(atext, aresult);
-      if (isPartial) aresult.y = extent.y;
+      if (this.isHtml) {
+        let split = this.trySplitHtmlForMultipage(adriver, atext, extent);
+        if (split === null) split = { current: atext.text, remaining: '' };
+        isPartial = split.remaining !== '';
+        atext.text = split.current;
+        aresult = adriver.textExtent(atext, aresult);
+        if (isPartial) aresult.y = extent.y;
+      } else {
+        const aposition = MetaFile.calcTextExtent(adriver, extent, atext);
+        if (aposition < atext.text.length) isPartial = true;
+        atext.text = atext.text.substring(0, aposition);
+        aresult = adriver.textExtent(atext, aresult);
+        if (isPartial) aresult.y = extent.y;
+      }
     } else aresult = adriver.textExtent(atext, aresult);
     this.lastExtent = { ...aresult };
     return aresult;
   }
+
+  /**
+   * The part of an HTML text that fits the height of the extent and the rest (TrySplitHtmlForMultipage):
+   * the lines of the layout that fit give the length of plain text that fits, the runs are split
+   * there, a blank at the start of the rest is skipped and both parts are written again as HTML.
+   * Null when the text cannot be split (the whole text then goes on this page).
+   */
+  private trySplitHtmlForMultipage(adriver: PrintOut, textObj: TextObjectStruct, maxExtent: Point): { current: string; remaining: string } | null {
+    const all = { current: textObj.text, remaining: '' };
+    if (textObj.text === '' || maxExtent.y <= 0) return all;
+    const measureExtent = { ...maxExtent };
+    if (measureExtent.x <= 0) measureExtent.x = this.printWidth;
+    const lines = adriver.textExtentLineInfo(textObj, measureExtent).lines;
+    if (lines === null || lines.length === 0) return null;
+    let visibleLength = 0;
+    let consumedHeight = 0;
+    for (const line of lines) {
+      const lineHeight = line.height > 0 ? line.height : roundHalfEven(line.lineHeight);
+      if (lineHeight <= 0) continue;
+      if (consumedHeight + lineHeight > maxExtent.y) break;
+      consumedHeight += lineHeight;
+      const lineEnd = line.position + line.size;
+      if (lineEnd > visibleLength) visibleLength = lineEnd;
+    }
+    if (visibleLength <= 0) return null;
+    const runs = HtmlTextParser.parse(textObj.text, this.wFontName);
+    let totalPlainLength = 0;
+    for (const run of runs) totalPlainLength += run.text.length;
+    if (totalPlainLength <= 0) return all;
+    if (visibleLength >= totalPlainLength) return all;
+    const currentRuns: HtmlFormatRun[] = [];
+    const remainingRuns: HtmlFormatRun[] = [];
+    let remainingVisible = visibleLength;
+    for (const run of runs) {
+      const runText = run.text;
+      if (remainingVisible <= 0) {
+        if (runText.length > 0) remainingRuns.push({ ...run });
+        continue;
+      }
+      if (runText.length <= remainingVisible) {
+        if (runText.length > 0) currentRuns.push({ ...run });
+        remainingVisible -= runText.length;
+        continue;
+      }
+      currentRuns.push({ ...run, text: runText.substring(0, remainingVisible) });
+      remainingRuns.push({ ...run, text: runText.substring(remainingVisible) });
+      remainingVisible = 0;
+    }
+    // A blank at the start of the rest is skipped
+    for (let index = 0; index < remainingRuns.length; index++) {
+      const run = remainingRuns[index] as HtmlFormatRun;
+      if (run.text === '') continue;
+      const first = run.text.charAt(0);
+      if (first === ' ' || first === '\n') {
+        run.text = run.text.substring(1);
+        if (run.text === '') remainingRuns.splice(index, 1);
+      }
+      break;
+    }
+    if (!hasPrintableHtmlContent(remainingRuns)) return all;
+    const current = buildHtmlFromRuns(currentRuns);
+    const remaining = buildHtmlFromRuns(remainingRuns);
+    if (current === '' || remaining === '') return null;
+    return { current, remaining };
+  }
+}
+
+/** Whether runs have a character that is not white space (HasPrintableHtmlContent). */
+function hasPrintableHtmlContent(runs: HtmlFormatRun[]): boolean {
+  for (const run of runs) {
+    for (const ch of run.text) {
+      const c = ch.charCodeAt(0);
+      const white = c === 0x20 || (c >= 0x09 && c <= 0x0d) || c === 0x85 || c === 0xa0 || c === 0x1680 || (c >= 0x2000 && c <= 0x200a) || c === 0x2028 || c === 0x2029 || c === 0x202f || c === 0x205f || c === 0x3000;
+      if (!white && c !== 0xa0) return true;
+    }
+  }
+  return false;
+}
+
+function hex2(v: number): string {
+  return (v & 0xff).toString(16).toUpperCase().padStart(2, '0');
+}
+
+/** The HTML of styled runs (BuildHtmlFromRuns). */
+function buildHtmlFromRuns(runs: HtmlFormatRun[]): string {
+  let builder = '';
+  for (const run of runs) {
+    if (run.text === '') continue;
+    let segment = encodeHtmlText(run.text);
+    if (segment === '') continue;
+    if (run.hasColor) segment = '<font color="#' + hex2(run.color) + hex2(run.color >> 8) + hex2(run.color >> 16) + '">' + segment + '</font>';
+    if (run.hasFontSize) segment = '<span style="font-size:' + formatSize(run.fontSize) + 'pt">' + segment + '</span>';
+    if (run.fontFamily !== null && run.fontFamily !== '') segment = '<font face="' + encodeHtmlAttribute(run.fontFamily) + '">' + segment + '</font>';
+    if (run.strikeOut) segment = '<strike>' + segment + '</strike>';
+    if (run.underline) segment = '<u>' + segment + '</u>';
+    if (run.italic) segment = '<i>' + segment + '</i>';
+    if (run.bold) segment = '<b>' + segment + '</b>';
+    builder += segment;
+  }
+  return builder;
+}
+
+/** float.ToString("0.##"): at most two decimals, rounded half away from zero, no trailing zeros. */
+function formatSize(v: number): string {
+  const r = Math.round(Math.abs(v) * 100) / 100;
+  let s = r.toFixed(2).replace(/\.?0+$/, '');
+  if (v < 0 && s !== '0') s = '-' + s;
+  return s;
+}
+
+function encodeHtmlText(text: string): string {
+  let b = '';
+  for (const ch of text) {
+    switch (ch) {
+      case '&':
+        b += '&amp;';
+        break;
+      case '<':
+        b += '&lt;';
+        break;
+      case '>':
+        b += '&gt;';
+        break;
+      case '"':
+        b += '&quot;';
+        break;
+      case '\r':
+        break;
+      case '\n':
+        b += '<br>';
+        break;
+      case ' ':
+        b += '&nbsp;';
+        break;
+      default:
+        b += ch;
+    }
+  }
+  return b;
+}
+
+function encodeHtmlAttribute(value: string): string {
+  return value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
 /** ShapeItem: a rectangle, an ellipse, a line... */

@@ -1,0 +1,17 @@
+[
+  { "name": "customers", "report": "../../../../samples/customers.rep" },
+  { "name": "invoices", "report": "../../../../samples/invoices.rep" },
+  { "name": "labels", "report": "../../../../samples/labels.rep" },
+  { "name": "product-catalog", "report": "../../../../samples/product-catalog.rep" },
+  { "name": "monthly-sales", "report": "../../../../samples/monthly-sales.rep" },
+  { "name": "sales-by-category", "report": "../../../../samples/sales-by-category.rep" },
+  { "name": "fishes", "report": "../../../../samples/fishes.rep" },
+  { "name": "letter", "report": "../../../../samples/letter.rep" },
+  { "name": "international", "report": "../../../../samples/international.rep" },
+  { "name": "ft-fonts", "report": "fixtures/freetype/ft-fonts.rep" },
+  { "name": "ft-fallback", "report": "fixtures/freetype/ft-fallback.rep" },
+  { "name": "ft-html", "report": "fixtures/freetype/ft-html.rep" },
+  { "name": "ft-html-multipage", "report": "fixtures/freetype/ft-html-multipage.rep" },
+  { "name": "ft-rtl", "report": "fixtures/freetype/ft-rtl.rep" },
+  { "name": "ft-pdfa", "report": "fixtures/freetype/ft-pdfa.rep" }
+]

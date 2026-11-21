@@ -6,10 +6,13 @@ import {
   CONS_PDFRES,
   ShaperNotSupportedError,
   TextCanvas,
+  sfntGlyphCount,
   type1FontToPdfFontName,
   unicodeToWin1252,
 } from 'reportman-text';
+import type { FontInfoProvider, TGlyphPos, TTFontData } from 'reportman-text';
 import { formatFixed2, intToHex } from './netformat.js';
+import { encodePDFText } from './pdfstrings.js';
 import type { PDFFile } from './pdffile.js';
 
 /** Underline position factor, relative to the font size (PDFFile.CONS_UNDERLINEPOS). */
@@ -24,10 +27,25 @@ function neg(x: number): number {
   return -x | 0;
 }
 
+/** List.BinarySearch of C#: the index of a value in a sorted list, or a negative number. */
+function binarySearch(list: readonly number[], value: number): number {
+  let lo = 0;
+  let hi = list.length - 1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    const v = list[mid] as number;
+    if (v === value) return mid;
+    if (v < value) lo = mid + 1;
+    else hi = mid - 1;
+  }
+  return ~lo;
+}
+
 /**
- * The PDF drawing surface (PDFCanvas) for the standard 14 fonts: it writes the operators of the
- * content stream of the current page of its PDFFile, in twips converted to points. Text is
- * measured and broken in lines by the TextCanvas it extends.
+ * The PDF drawing surface (PDFCanvas): it writes the operators of the content stream of the
+ * current page of its PDFFile, in twips converted to points. Text is measured and broken in lines
+ * by the TextCanvas it extends: with the standard 14 fonts, or shaped with a font provider (the
+ * TrueType fonts of the FreeType driver, written glyph by glyph).
  */
 export class PDFCanvas extends TextCanvas {
   /** The PDF document the canvas writes to. */
@@ -48,6 +66,15 @@ export class PDFCanvas extends TextCanvas {
   savedPenColor = 0;
   savedBrushColor = 0;
   private translatedy = false;
+
+  constructor(infoProvider: FontInfoProvider | null = null) {
+    super(infoProvider);
+  }
+
+  /** A text as a PDF string (PDFFile.EncodePDFText). */
+  static encodePDFText(text: string | null | undefined): string {
+    return encodePDFText(text);
+  }
 
   /** The end of line of the conformance level. */
   eol(): string {
@@ -145,11 +172,6 @@ export class PDFCanvas extends TextCanvas {
       this.swl(this.rgbToFloats(newColor) + ' rg');
       this.oldBrushColor = newColor;
     }
-  }
-
-  /** The font data of the current font: always none without a font provider (UpdateFonts). */
-  updateFonts(): null {
-    return null;
   }
 
   private fillOperator(): void {
@@ -259,10 +281,20 @@ export class PDFCanvas extends TextCanvas {
   }
 
   /**
-   * A text as a PDF literal string for a standard font (PDFCompatibleText without font data):
-   * ( ) and \ escaped, € (U+20AC) as the WinAnsi 0x80.
+   * A text as a PDF string (PDFCompatibleText): with the font data of a Unicode (embedded) font,
+   * the hexadecimal glyph numbers of its characters; otherwise a literal string, ( ) and \ escaped,
+   * € (U+20AC) as the WinAnsi 0x80.
    */
-  static pdfCompatibleText(astring: string): string {
+  static pdfCompatibleText(astring: string, adata: TTFontData | null = null): string {
+    const isunicode = adata !== null && adata.isUnicode;
+    if (isunicode) {
+      let hex = '<';
+      for (let i = 0; i < astring.length; i++) {
+        const info = adata.cacheWidths.get(astring.charCodeAt(i));
+        if (info !== undefined) hex += intToHex(info.glyph);
+      }
+      return hex + '>';
+    }
     let result = '(';
     for (let i = 0; i < astring.length; i++) {
       const c = astring.charAt(i);
@@ -282,8 +314,198 @@ export class PDFCanvas extends TextCanvas {
   }
 
   /**
-   * One line of text at a position (TextOut): the text, then the underline or the strikeout. Y is
-   * the top of the line; the leading of the font is added.
+   * The text each shaped glyph stands for, when it is not a single character (TextoDeCadaGlifo):
+   * a ligature gets its characters, a character split in several glyphs belongs to the glyph that
+   * carries its cluster and the others are silent (callar). Null where nothing can be said.
+   */
+  private static textOfEachGlyph(lInfo: LineInfo): { texts: (string | null)[]; silent: boolean[] } {
+    const glifos = (lInfo.glyphs ?? []) as TGlyphPos[];
+    const texto = lInfo.text;
+    const salida: (string | null)[] = new Array<string | null>(glifos.length).fill(null);
+    const callar: boolean[] = new Array<boolean>(glifos.length).fill(false);
+    if (texto === null || texto === '') return { texts: salida, silent: callar };
+    const limites: number[] = [];
+    const cuantos = new Map<number, number>();
+    const primero = new Map<number, number>();
+    const ultimo = new Map<number, number>();
+    for (let i = 0; i < glifos.length; i++) {
+      const c = (glifos[i] as TGlyphPos).lineCluster;
+      if (c < 0 || c >= texto.length) continue;
+      const n = cuantos.get(c);
+      if (n !== undefined) cuantos.set(c, n + 1);
+      else {
+        cuantos.set(c, 1);
+        limites.push(c);
+        primero.set(c, i);
+      }
+      ultimo.set(c, i);
+    }
+    limites.sort((a, b) => a - b);
+    const elegido = new Map<number, number>();
+    for (const [c, f] of primero) {
+      const l = ultimo.get(c) as number;
+      const rtl =
+        (l < glifos.length - 1 && (glifos[l + 1] as TGlyphPos).lineCluster >= 0 && (glifos[l + 1] as TGlyphPos).lineCluster < c) ||
+        (f > 0 && (glifos[f - 1] as TGlyphPos).lineCluster > c);
+      elegido.set(c, rtl ? l : f);
+    }
+    for (let i = 0; i < glifos.length; i++) {
+      const g = glifos[i] as TGlyphPos;
+      const c = g.lineCluster;
+      if (c < 0 || c >= texto.length) continue;
+      const pos = binarySearch(limites, c);
+      const fin = pos >= 0 && pos + 1 < limites.length ? (limites[pos + 1] as number) : texto.length;
+      const largo = fin - c;
+      if (largo < 1 || largo > 4 || texto.charCodeAt(c) !== g.charCode) continue;
+      let limpio = true;
+      for (let k = c; k < fin; k++) if (texto.charCodeAt(k) <= 0x20) limpio = false;
+      if (!limpio) continue;
+      const count = cuantos.get(c) as number;
+      if (largo === 1 && count > 1 && elegido.get(c) !== i) {
+        callar[i] = true;
+        continue;
+      }
+      if (largo > 1 && count > 1) {
+        if (count === largo) {
+          const k = elegido.get(c) === ultimo.get(c) ? (ultimo.get(c) as number) - i : i - (primero.get(c) as number);
+          if (k >= 0 && k < largo) {
+            salida[i] = texto.charAt(c + k);
+            continue;
+          }
+        }
+        if (elegido.get(c) !== i) {
+          callar[i] = true;
+          continue;
+        }
+      }
+      salida[i] = texto.substring(c, c + largo);
+    }
+    return { texts: salida, silent: callar };
+  }
+
+  /**
+   * The code a shaped glyph is written with (ShapedGlyphCode): its glyph number for the first text
+   * it is drawn for, a code of its own (from the number of glyphs of the font up) for another text,
+   * so the /ToUnicode CMap can give each its text. A CFF font or one whose glyphs cannot be counted
+   * keeps the glyph number.
+   */
+  private static shapedGlyphCode(adata: TTFontData, glyph: number, texto: string): number {
+    const reclamado = adata.cidClaim.get(glyph);
+    if (reclamado === undefined) {
+      adata.cidClaim.set(glyph, texto);
+      return glyph;
+    }
+    if (reclamado === texto || adata.type1) return glyph;
+    if (adata.glyphCount < 0) {
+      const gc = sfntGlyphCount(adata.fontData);
+      adata.glyphCount = gc.cff ? 0 : gc.count;
+    }
+    if (adata.glyphCount <= glyph) return glyph;
+    const clave = String(glyph) + '|' + texto;
+    const known = adata.cidExtra.get(clave);
+    if (known !== undefined) return known;
+    const code = adata.glyphCount + adata.cidExtraGlyph.length;
+    if (code > 65535) return glyph;
+    adata.cidExtra.set(clave, code);
+    adata.cidExtraGlyph.push(glyph);
+    adata.cidExtraText.push(texto);
+    return code;
+  }
+
+  /**
+   * The text operators of a shaped line, glyph by glyph (PDFCompatibleTextShaping): each glyph
+   * placed with its own text matrix, the font and color switched when an HTML run or a fallback
+   * face changes them, every glyph registered in the subset of the face it was shaped with.
+   */
+  pdfCompatibleTextShaping(adataIn: TTFontData | null, posX: number, posY: number, fontSize: number, lInfo: LineInfo): string {
+    const provider = this.infoProvider;
+    if (provider === null) throw new ShaperNotSupportedError('Shaped text');
+    let adata = adataIn;
+    const font = this.font;
+    const eol = this.eol();
+    let result = '';
+    let cursor = 0.0;
+    const originalFontFamily = font.getFontFamily();
+    let actualFontFamily = originalFontFamily;
+    const originalBold = font.bold;
+    let actualBold = originalBold;
+    const originalItalic = font.italic;
+    let actualItalic = originalItalic;
+    const originalFontSize = fontSize;
+    let actualFontSize = originalFontSize;
+    const originalColor = font.color;
+    let actualColor = originalColor;
+    let recursoEmitido = type1FontToPdfFontName(font.name, font.italic, font.bold, font.getFontFamilyKey(), font.style, this.file.pdfConformance);
+    let tamanoEmitido = font.size;
+    const glyphs = (lInfo.glyphs ?? []) as TGlyphPos[];
+    const textOf = PDFCanvas.textOfEachGlyph(lInfo);
+    for (let i = 0; i < glyphs.length; i++) {
+      const g = glyphs[i] as TGlyphPos;
+      const newFontFamily = g.fontFamily === null || g.fontFamily === '' ? originalFontFamily : g.fontFamily;
+      const newBold = originalBold || g.bold;
+      const newItalic = originalItalic || g.italic;
+      const newFontSize = g.hasFontSize ? g.fontSize : originalFontSize;
+      if (actualFontFamily !== newFontFamily || actualBold !== newBold || actualItalic !== newItalic || actualFontSize !== newFontSize) {
+        font.wFontName = newFontFamily;
+        font.lFontName = newFontFamily;
+        font.bold = newBold;
+        font.italic = newItalic;
+        font.style = (newBold ? 1 : 0) + (newItalic ? 2 : 0) + (font.underline ? 4 : 0) + (font.strikeOut ? 8 : 0);
+        font.size = Math.trunc(newFontSize);
+        this.updateFonts();
+        adata = this.getTTFontData();
+        actualFontFamily = newFontFamily;
+        actualBold = newBold;
+        actualItalic = newItalic;
+        actualFontSize = newFontSize;
+      }
+      let faceData: TTFontData | null = null;
+      if (adata !== null && g.faceKey !== null && g.faceKey !== '' && g.faceKey !== adata.faceKey) faceData = this.dataForFace(g.faceKey);
+      const glyphData = faceData ?? adata;
+      const recursoDelGlifo =
+        faceData !== null
+          ? faceData.objectName
+          : type1FontToPdfFontName(font.name, font.italic, font.bold, font.getFontFamilyKey(), font.style, this.file.pdfConformance);
+      if (recursoDelGlifo !== recursoEmitido || font.size !== tamanoEmitido) {
+        result += '/F' + recursoDelGlifo + ' ' + String(font.size) + ' Tf' + eol;
+        recursoEmitido = recursoDelGlifo;
+        tamanoEmitido = font.size;
+      }
+      const newColor = g.hasColor ? g.color : originalColor;
+      if (newColor !== actualColor) {
+        result += this.rgbToFloats(newColor) + ' rg' + eol;
+        actualColor = newColor;
+      }
+      if (glyphData === null) throw new TypeError('Object reference not set to an instance of an object.');
+      provider.getCharWidth(font, glyphData, g.charCode);
+      provider.getGlyphWidth(font, glyphData, g.glyphIndex, g.charCode, g.faceKey);
+      let code = g.glyphIndex;
+      const own = textOf.texts[i];
+      const textoAqui = own !== null && own !== undefined ? own : textOf.silent[i] ? '' : String.fromCharCode(g.charCode);
+      code = PDFCanvas.shapedGlyphCode(glyphData, g.glyphIndex, textoAqui);
+      const absY = posY - g.yOffset;
+      const absX = posX + cursor + g.xOffset;
+      result += '1 0 0 1 ' + this.unitsToTextX(absX) + ' ' + this.unitsToTextY(absY) + ' Tm <' + intToHex(code) + '> Tj' + eol;
+      cursor += g.xAdvance;
+    }
+    if (actualFontFamily !== originalFontFamily || actualBold !== originalBold || actualItalic !== originalItalic || actualFontSize !== originalFontSize) {
+      font.wFontName = originalFontFamily;
+      font.lFontName = originalFontFamily;
+      font.bold = originalBold;
+      font.italic = originalItalic;
+      font.style = (originalBold ? 1 : 0) + (originalItalic ? 2 : 0) + (font.underline ? 4 : 0) + (font.strikeOut ? 8 : 0);
+      font.size = Math.trunc(originalFontSize);
+      this.updateFonts();
+      adata = this.getTTFontData();
+    }
+    if (actualColor !== originalColor) result += this.rgbToFloats(originalColor) + ' rg' + eol;
+    return result;
+  }
+
+  /**
+   * One line of text at a position (TextOut): the text, plain or glyph by glyph (right to left,
+   * HTML, the FreeType provider), then the underline or the strikeout (per glyph run for HTML). Y
+   * is the top of the line; the leading of the font is added.
    */
   textOut(
     X: number,
@@ -296,15 +518,20 @@ export class PDFCanvas extends TextCanvas {
     isHtml = false,
   ): void {
     this.normalizeFontForProvider();
-    this.getTTFontData();
-    const spacing = this.getStdLineSpacing();
+    const adata = this.getTTFontData();
+    const spacing =
+      adata !== null ? { lineSpacing: adata.ascent - adata.descent + adata.leading, leading: adata.leading } : this.getStdLineSpacing();
     const fnt = this.font;
     const leading = toInt32(roundHalfEven((spacing.leading / 100000.0) * this.fResolution * fnt.size * 1.25));
     Y = (Y + leading) | 0;
-    // Per glyph (shaped) output: right to left, HTML, or forced shaping with shaped glyphs
+    // Per glyph (shaped) output: right to left, HTML, the FreeType provider, or forced shaping with shaped glyphs
     const shapedOutput =
-      rightToLeft || isHtml || (this.forceComplexShaping && lInfo.glyphs !== null && lInfo.glyphs.length > 0);
-    if (shapedOutput) throw new ShaperNotSupportedError(rightToLeft ? 'Right to left text' : isHtml ? 'HTML text' : 'Shaped text');
+      rightToLeft ||
+      isHtml ||
+      this.infoProvider?.providerName === 'FontInfoFt' ||
+      (this.forceComplexShaping && lInfo.glyphs !== null && lInfo.glyphs.length > 0);
+    if (shapedOutput && this.infoProvider === null)
+      throw new ShaperNotSupportedError(rightToLeft ? 'Right to left text' : isHtml ? 'HTML text' : 'Shaped text');
     this.file.checkPrinting();
     if (rotation !== 0) this.saveGraph();
     try {
@@ -318,6 +545,8 @@ export class PDFCanvas extends TextCanvas {
           String(fnt.size) +
           ' Tf',
       );
+      if (shapedOutput)
+        this.swl('/Span << /ActualText ' + PDFCanvas.encodePDFText(isHtml && lInfo.text !== null ? lInfo.text : text) + ' >> BDC');
       if (rotation !== 0) {
         this.swl('1 0 0 1 ' + this.unitsToTextX(X) + ' ' + this.unitsToTextText(Y, fnt.size) + ' cm');
         const rotrad = (rotation / 10) * ((2 * Math.PI) / 360);
@@ -326,25 +555,89 @@ export class PDFCanvas extends TextCanvas {
             formatFixed2(Math.cos(rotrad)) + ' 0 0 cm',
         );
       } else this.swl(this.unitsToTextX(X) + ' ' + this.unitsToTextText(Y, fnt.size) + ' Td');
-      this.swl(PDFCanvas.pdfCompatibleText(text) + ' Tj');
+      if (shapedOutput) this.swl(this.pdfCompatibleTextShaping(adata, X, Y, fnt.size, lInfo));
+      else this.swl(PDFCanvas.pdfCompatibleText(text, adata) + ' Tj');
+      if (shapedOutput) this.swl('EMC');
       this.swl('ET');
     } finally {
       if (rotation !== 0) this.restoreGraph();
     }
     const sizeTw = (fnt.size / CONS_PDFRES) * this.fResolution;
-    // Underline and strikeout (one of them: C# parity, a text with both gets the underline)
-    if (fnt.underline) {
+    if (isHtml && lInfo.glyphs !== null && lInfo.glyphs.length > 0) {
+      // Per glyph decorations of HTML text (grouped runs)
+      const glyphs = lInfo.glyphs as TGlyphPos[];
+      let decCursor = 0.0;
+      let inUnderline = false;
+      let inStrikeOut = false;
+      let ulStartX = 0;
+      let soStartX = 0;
+      let ulFontSize = fnt.size;
+      let soFontSize = fnt.size;
+      const fontSizeOffset = toInt32(roundHalfEven((fnt.size / CONS_PDFRES) * this.fResolution));
+      for (let i = 0; i <= glyphs.length; i++) {
+        const isLast = i === glyphs.length;
+        let gUnderline = false;
+        let gStrikeOut = false;
+        let gFontSize = fnt.size;
+        if (!isLast) {
+          const g = glyphs[i] as TGlyphPos;
+          gUnderline = g.underline;
+          gStrikeOut = g.strikeOut;
+          gFontSize = g.hasFontSize ? g.fontSize : fnt.size;
+        }
+        if (gUnderline && !inUnderline) {
+          inUnderline = true;
+          ulStartX = X + decCursor;
+          ulFontSize = gFontSize;
+        } else if ((!gUnderline || isLast) && inUnderline) {
+          let ulEndX = X + decCursor;
+          if (gUnderline && isLast) ulEndX = X + decCursor + (glyphs[i - 1] as TGlyphPos).xAdvance;
+          this.penStyle = 0;
+          this.penWidth = toInt32(roundHalfEven((ulFontSize / CONS_PDFRES) * this.fResolution * CONS_UNDERLINEWIDTH));
+          this.penColor = fnt.color;
+          const posLine = toInt32(roundHalfEven(CONS_UNDERLINEPOS * ((ulFontSize / CONS_PDFRES) * this.fResolution)));
+          this.line(toInt32(ulStartX), (Y - fontSizeOffset + posLine) | 0, toInt32(ulEndX), (Y - fontSizeOffset + posLine) | 0);
+          inUnderline = gUnderline;
+          if (gUnderline) {
+            ulStartX = X + decCursor;
+            ulFontSize = gFontSize;
+          }
+        }
+        if (gStrikeOut && !inStrikeOut) {
+          inStrikeOut = true;
+          soStartX = X + decCursor;
+          soFontSize = gFontSize;
+        } else if ((!gStrikeOut || isLast) && inStrikeOut) {
+          let soEndX = X + decCursor;
+          if (gStrikeOut && isLast) soEndX = X + decCursor + (glyphs[i - 1] as TGlyphPos).xAdvance;
+          this.penStyle = 0;
+          this.penWidth = toInt32(roundHalfEven((soFontSize / CONS_PDFRES) * this.fResolution * CONS_UNDERLINEWIDTH));
+          this.penColor = fnt.color;
+          const posLine = toInt32(roundHalfEven(CONS_STRIKEOUTPOS * ((soFontSize / CONS_PDFRES) * this.fResolution)));
+          this.line(toInt32(soStartX), (Y - fontSizeOffset + posLine) | 0, toInt32(soEndX), (Y - fontSizeOffset + posLine) | 0);
+          inStrikeOut = gStrikeOut;
+          if (gStrikeOut) {
+            soStartX = X + decCursor;
+            soFontSize = gFontSize;
+          }
+        }
+        if (!isLast) decCursor += (glyphs[i] as TGlyphPos).xAdvance;
+      }
+    } else if (fnt.underline) {
+      // Underline and strikeout (one of them: C# parity, a text with both gets the underline)
       this.penStyle = 0;
       this.penWidth = toInt32(roundHalfEven(sizeTw * CONS_UNDERLINEWIDTH));
       this.penColor = fnt.color;
       if (rotation === 0) {
         const posLine = toInt32(roundHalfEven(CONS_UNDERLINEPOS * sizeTw));
-        const nliney = (Y + posLine) | 0;
+        let nliney = (Y + posLine) | 0;
+        // The shaped output places the text with Tm at Y, the plain one with Td at Y less the size
+        if (shapedOutput) nliney = (nliney - toInt32(roundHalfEven((fnt.size / CONS_PDFRES) * this.fResolution))) | 0;
         this.line(X, nliney, (X + lineWidth) | 0, nliney);
       } else {
         Y = (Y + toInt32(roundHalfEven(CONS_UNDERLINEPOS * sizeTw))) | 0;
         const rotrad = (rotation / 10) * ((2 * Math.PI) / 360);
-        const fsize = (((CONS_UNDERLINEPOS * fnt.size) / CONS_PDFRES) * this.fResolution) - sizeTw;
+        const fsize = ((CONS_UNDERLINEPOS * fnt.size) / CONS_PDFRES) * this.fResolution - sizeTw;
         const posLineX1 = neg(toInt32(roundHalfEven(fsize * Math.cos(rotrad))));
         const posLineY1 = neg(toInt32(roundHalfEven(fsize * Math.sin(rotrad))));
         const posLineX2 = toInt32(roundHalfEven(lineWidth * Math.cos(rotrad)));
@@ -358,12 +651,13 @@ export class PDFCanvas extends TextCanvas {
       this.penColor = fnt.color;
       if (rotation === 0) {
         const posLine = toInt32(roundHalfEven(CONS_STRIKEOUTPOS * sizeTw));
-        const nliney = (Y + posLine) | 0;
+        let nliney = (Y + posLine) | 0;
+        if (shapedOutput) nliney = (nliney - toInt32(roundHalfEven((fnt.size / CONS_PDFRES) * this.fResolution))) | 0;
         this.line(X, nliney, (X + lineWidth) | 0, nliney);
       } else {
         Y = (Y + toInt32(roundHalfEven(CONS_UNDERLINEPOS * sizeTw))) | 0;
         const rotrad = (rotation / 10) * ((2 * Math.PI) / 360);
-        let fsize = (((CONS_UNDERLINEPOS * fnt.size) / CONS_PDFRES) * this.fResolution) - sizeTw;
+        let fsize = ((CONS_UNDERLINEPOS * fnt.size) / CONS_PDFRES) * this.fResolution - sizeTw;
         let posLineX1 = neg(toInt32(roundHalfEven(fsize * Math.cos(rotrad))));
         let posLineY1 = neg(toInt32(roundHalfEven(fsize * Math.sin(rotrad))));
         let posLineX2 = toInt32(roundHalfEven(lineWidth * Math.cos(rotrad)));
@@ -419,12 +713,14 @@ export class PDFCanvas extends TextCanvas {
       font.name = PDFFontType.Embedded;
       text = text === '' ? '' : text.normalize('NFC');
     }
-    // A text outside WinAnsi would be promoted to an embedded font; without a font provider the
-    // font is only normalized
+    // A text outside WinAnsi is promoted to an embedded font (with a font provider; without one the
+    // font is only normalized)
     this.promoteToUnicodeFontIfNeeded(text);
+    // The shaped path is decided before the WinAnsi conversion below
     if (this.usesShaper(rightToLeft, isHtml)) font.name = PDFFontType.Embedded;
-    this.getTTFontData();
-    text = unicodeToWin1252(text);
+    const adata = this.getTTFontData();
+    const isunicode = adata !== null && adata.isUnicode;
+    if (!isunicode) text = unicodeToWin1252(text);
     this.file.checkPrinting();
     // Rotated text keeps the legacy pipeline: forced shaping is suspended
     let suspendedForceShaping = false;

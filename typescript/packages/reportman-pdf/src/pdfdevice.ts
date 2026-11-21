@@ -27,10 +27,10 @@ import type {
   TextExtentLines,
   TextObjectStruct,
 } from 'reportman-metafile';
-import { StandardTextMeasurer } from 'reportman-text';
+import { FontInfoFt, StandardTextMeasurer, type FontInfoProvider, type FontLibrary } from 'reportman-text';
 import { getBitmapInfo, getJpegInfo } from './bitmaputil.js';
 import { bitmapInfoOf } from './imagecodec.js';
-import { PDFA3_NOT_SUPPORTED, PDFFile, POINTS_PER_INCH, systemClock } from './pdffile.js';
+import { PDFFile, POINTS_PER_INCH, randomDocumentId, systemClock } from './pdffile.js';
 import type { PdfClock } from './pdffile.js';
 
 const RECTANGLE_RADIUS = 160;
@@ -48,17 +48,32 @@ export interface PdfDeviceOptions {
   compressed?: boolean;
   /** The clock for the dates of a document without them (the host's clock by default). */
   clock?: PdfClock;
+  /**
+   * The TrueType fonts: with a font library the device is the FreeType driver of the C# engine
+   * (PrintOutPDFFreeType): every text is shaped and drawn glyph by glyph with an embedded, subset
+   * TrueType or OpenType font, with bidi, complex scripts, HTML text and PDF/A-3. Without it, the
+   * standard 14 PDF fonts (PrintOutPDFStandard).
+   */
+  fonts?: FontLibrary;
+  /**
+   * The identifier of each PDF/A-3 document, the /ID of its trailer (hexadecimal digits): a random
+   * GUID by default, as the C# engine writes it (Guid.NewGuid).
+   */
+  documentId?: () => string;
 }
 
 /**
- * The PDF device with the standard 14 fonts (PrintOutPDFBase with the PrintOutPDFStandard
- * providers): the layout device the report engine measures through, and the device that writes a
- * metafile as a PDF. Text is measured with the width tables of reportman-text; there is no font
- * provider, so Linked and Embedded fonts become Helvetica and nothing is embedded.
+ * The PDF device (PrintOutPDFBase): the layout device the report engine measures through, and the
+ * device that writes a metafile as a PDF.
+ *
+ * Without a font library it is the device of the standard 14 fonts (PrintOutPDFStandard): text is
+ * measured with the width tables of reportman-text, Linked and Embedded fonts become Helvetica and
+ * nothing is embedded; the texts that need the shaper (right to left, HTML, printer fonts
+ * Recalculate) fail with ShaperNotSupportedError, and a PDF/A-3 text, which needs embedded fonts,
+ * with PDFA3_NO_FONT_PROVIDER. With a font library it is the FreeType device (PrintOutPDFFreeType).
  *
  * Images are embedded as the C# device does (JPEG, BMP, PNG and GIF; WebP, ICO and WBMP fail with
- * ImageFormatNotSupportedError). Not ported yet, and failing with a clear error: PDF/A-3, and the
- * texts that need the shaper (right to left, HTML, printer fonts Recalculate).
+ * ImageFormatNotSupportedError).
  */
 export class PdfDevice extends PrintOut {
   private fPDFFile: PDFFile;
@@ -70,25 +85,37 @@ export class PdfDevice extends PrintOut {
   private metaFile: MetaFile | null = null;
   private fPDFConformance: PDFConformanceType = PDFConformanceType.PDF_1_4;
   private readonly measurer: StandardTextMeasurer;
+  /** The font provider of the TrueType fonts (FontInfoProv), null for the standard 14 fonts. */
+  readonly fontProvider: FontInfoProvider | null;
   /** The PDF is not generated, but every size is calculated. */
   calculateOnly = false;
   /** Flate compress the content streams. */
   compressed: boolean;
   /** The clock for the dates of the document. */
   clock: PdfClock;
+  /** The identifier of each PDF/A-3 document. */
+  documentId: () => string;
 
   constructor(options: PdfDeviceOptions = {}) {
     super();
     this.compressed = options.compressed ?? false;
     this.clock = options.clock ?? systemClock;
-    this.fPDFFile = new PDFFile();
+    this.documentId = options.documentId ?? randomDocumentId;
+    this.fontProvider = options.fonts !== undefined ? new FontInfoFt(options.fonts) : null;
+    this.fPDFFile = new PDFFile(this.fontProvider);
     this.fPDFFile.clock = this.clock;
+    this.fPDFFile.documentId = this.documentId;
     this.fPageRealWidth = this.fPageWidth;
     this.fPageRealHeight = this.fPageHeight;
     this.measurer = new StandardTextMeasurer(
       () => this.fPDFFile.canvas,
       () => this.syncForceShaping(),
     );
+  }
+
+  /** HTML text is laid out with the TrueType provider (the FreeType driver) only. */
+  override supportsHtmlText(): boolean {
+    return this.fontProvider !== null;
   }
 
   /** The PDF document being written (a new one for each newDocument). */
@@ -128,9 +155,9 @@ export class PdfDevice extends PrintOut {
   /** Starts the PDF document of a metafile: its metadata, page size and orientation. */
   override newDocument(meta: MetaFile): void {
     this.metaFile = meta;
-    if (meta.pdfConformance !== PDFConformanceType.PDF_1_4) throw new Error(PDFA3_NOT_SUPPORTED);
-    this.fPDFFile = new PDFFile();
+    this.fPDFFile = new PDFFile(this.fontProvider);
     this.fPDFFile.clock = this.clock;
+    this.fPDFFile.documentId = this.documentId;
     this.fPDFFile.compressed = this.compressed;
     this.fPDFFile.pdfConformance = meta.pdfConformance;
     this.fPDFFile.docTitle = meta.docTitle;

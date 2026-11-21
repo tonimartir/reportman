@@ -12,6 +12,8 @@ import {
   type ReportRun,
 } from 'reportman-engine';
 import { createDataHost, type DataSources } from './host.js';
+import { fontLibrary, type FontOptions } from './fonts.js';
+import { FontLibrary } from 'reportman-text';
 
 /** Options of openReport. */
 export interface OpenReportOptions extends DataSources {
@@ -29,6 +31,13 @@ export interface OpenReportOptions extends DataSources {
    * (false by default: a report does not see the disk).
    */
   allowFileAccess?: boolean;
+  /**
+   * The fonts of the PDF. By default (or false) the standard 14 PDF fonts, as PrintOutPDFStandard.
+   * With font options (system folders, extra folders) or a FontLibrary, the TrueType fonts of the
+   * machine, as PrintOutPDFFreeType (Reportman.Server): every text shaped, its font embedded and
+   * subset, HTML text, right to left and complex scripts, PDF/A-3.
+   */
+  fonts?: FontOptions | FontLibrary | false;
 }
 
 /** Options of a PDF. */
@@ -112,8 +121,15 @@ export class NodeReport {
       // The bytes of the image file an image expression names (FileInfo.Exists: a file, not a directory)
       readFile: (path) => (allowFileAccess && isFile(path) ? new Uint8Array(readFileSync(path)) : undefined),
     };
+    const fontsOption = this.options.fonts;
+    const fonts =
+      fontsOption === undefined || fontsOption === false
+        ? undefined
+        : fontsOption instanceof FontLibrary
+          ? fontsOption
+          : fontLibrary(fontsOption);
     return prepareReport(readReportXml(this.bytes), {
-      device: new PdfDevice({ clock }),
+      device: new PdfDevice({ clock, fonts }),
       data: createDataHost(this.options),
       culture: this.options.culture ?? 'en-US',
       host,

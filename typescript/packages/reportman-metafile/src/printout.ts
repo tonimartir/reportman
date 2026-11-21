@@ -97,6 +97,14 @@ export abstract class PrintOut {
   /** The extent of a text in twips, measured inside an extent (its width wraps the text). */
   abstract textExtent(aobj: TextObjectStruct, extent: Point): Point;
 
+  /**
+   * The device lays out HTML text (a text object with IsHtml): the PDF device with a TrueType font
+   * provider. The engine fails clearly with HTML text on a device that does not.
+   */
+  supportsHtmlText(): boolean {
+    return false;
+  }
+
   /** The lines of a text and its extent; a device that does not report lines gives null. */
   textExtentLineInfo(_aobj: TextObjectStruct, extent: Point): TextExtentLines {
     return { lines: null, extent: { ...extent } };

@@ -6,8 +6,28 @@ of the C# engine, and gives the same PDF.
 
 Status: prototype, not published. Supported today: labels, expressions, shapes, images (JPEG,
 PNG, BMP, GIF), barcodes (1D, PDF417, QR), charts, sections and groups, subreports,
-master/detail, parameters, the standard 14 PDF fonts. HTML text, embedded TrueType fonts and
-PDF/A fail with a clear "not supported yet" error.
+master/detail, parameters, the standard 14 PDF fonts and, with the `fonts` option, embedded
+TrueType and OpenType fonts with HTML text, right to left and complex scripts, and PDF/A-3B.
+
+## Fonts
+
+```ts
+const report = await openReport('letter.rep', {
+  connections: { SAMPLES: sqlite('samples.db') },
+  fonts: { folders: ['./fonts'] },   // the system font folders and these, scanned once
+});
+```
+
+- Without `fonts` (or `fonts: false`) the PDF uses the standard 14 PDF fonts, as the C# device
+  `PrintOutPDFStandard`: HTML text, right to left text and PDF/A-3 fail with a clear error.
+- With `fonts` the PDF is the one of the C# FreeType device (`PrintOutPDFFreeType`): each font is
+  chosen by the report's font name and style (`WFontName` on Windows, `LFontName` elsewhere, or
+  `platform`), a character the font lacks takes a font that has it, every text is shaped
+  (ligatures, kerning, marks, Arabic, Hebrew, Devanagari, Thai) and laid out with the Unicode
+  bidirectional algorithm, and the fonts are embedded as subsets. A `FontLibrary` of
+  `reportman-text` can be given instead, for fonts that are not files on the disk.
+- The fonts are read with fontkit: TrueType, OpenType CFF and collections. Type 1 fonts (`.pfb`)
+  are not read, and a CFF2 (variable OpenType) font fails with a clear error.
 
 ## The two steps
 

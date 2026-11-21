@@ -1,8 +1,12 @@
 import * as fs from 'node:fs';
+import * as os from 'node:os';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
+  fontDirectories,
+  fontFiles,
+  fontLibrary,
   openReport,
   sqlite,
   renderParametersForm,
@@ -140,5 +144,40 @@ describe('reportman-node: data sources', () => {
   it('refuses a Delphi DFM report with a clear message', async () => {
     const dfm = new TextEncoder().encode('object TRpReport\n  PageHeight = 8120\nend\n');
     await expect(openReport(dfm)).rejects.toThrow(/Delphi DFM format; save it as XML/);
+  });
+});
+
+describe('reportman-node: the fonts option', () => {
+  it('lists the font folders of each platform, the extra ones first', () => {
+    expect(fontDirectories('windows', ['X:/extra'], false)).toEqual(['X:/extra']);
+    const mac = fontDirectories('macos', ['/extra']);
+    expect(mac[0]).toBe('/extra');
+    expect(mac).toContain('/Library/Fonts');
+    expect(mac).toContain('/System/Library/Fonts');
+  });
+
+  it('finds the font files of a folder as the C# scan does: by kind, each folder before its subfolders', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'rm-fonts-'));
+    fs.mkdirSync(path.join(dir, 'sub'));
+    for (const name of ['b.ttf', 'a.otf', 'c.ttc', 'notes.txt', path.join('sub', 'd.TTF')]) fs.writeFileSync(path.join(dir, name), '');
+    expect(fontFiles([dir]).map((p) => path.relative(dir, p))).toEqual(['b.ttf', path.join('sub', 'd.TTF'), 'c.ttc', 'a.otf']);
+  });
+
+  const windowsFonts = path.join(process.env.SystemRoot ?? 'C:\\Windows', 'Fonts');
+  const arial = ['arial.ttf', 'arialbd.ttf', 'ariali.ttf', 'arialbi.ttf'].map((n) => path.join(windowsFonts, n));
+  it.skipIf(!arial.every((p) => fs.existsSync(p)))('runs an HTML report with the fonts of a folder, embedded (the FreeType device)', async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'rm-fonts-'));
+    for (const p of arial) fs.copyFileSync(p, path.join(dir, path.basename(p)));
+    const fonts = { systemFolders: false, folders: [dir], platform: 'windows' as const };
+    expect(fontLibrary(fonts).keys().length).toBeGreaterThanOrEqual(4);
+    const letter = path.join(samples, 'letter.rep');
+    // Without fonts HTML text needs the shaper the standard 14 fonts do not have
+    const standard = await openReport(letter, { connections: { SAMPLES: sqlite(samplesDb) } });
+    await expect(standard.executeToPdf({})).rejects.toThrow(/HTML text .* is not supported yet/);
+    const report = await openReport(letter, { connections: { SAMPLES: sqlite(samplesDb) }, fonts });
+    const pdf = latin1(await report.executeToPdf({}, { compressed: false }));
+    expect(pdf).toMatch(/\/BaseFont \/[A-Z]{6}\+Arial/);
+    expect(pdf).toContain('/Subtype /CIDFontType2');
+    expect(pdf).toContain('/FontFile2 ');
   });
 });

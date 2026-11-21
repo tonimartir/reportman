@@ -14,10 +14,19 @@ the Delphi repository (`tonimartir/reportmandelphi`).
 |---|---|---|
 | `reportman-lib` | The report model (the camelCase JSON of the engine model, shared with the web designer), its undo history, and the `.rep` XML reader | browser, Node |
 | `reportman-metafile` | The metafile: the device-independent pages a report is laid out into, and the layout device contract (measure text, draw a page) | browser, Node |
-| `reportman-text` | Text measurement: the standard 14 PDF font metrics and the engine's line breaking | browser, Node |
-| `reportman-pdf` | Metafile → PDF; also the layout device that measures text while the report is laid out | browser, Node |
-| `reportman-engine` | Expressions, parameters, datasets, and the layout of a report into a metafile | browser, Node |
-| `reportman-node` | Node.js host: open a `.rep`, describe its parameters (step 1), run it to PDF (step 2) | Node |
+| `reportman-text` | Text measurement: the standard 14 PDF fonts, and TrueType/OpenType fonts with fontkit (shaping, fallback, bidi with bidi-js), HTML text, the engine's line breaking | browser, Node |
+| `reportman-pdf` | Metafile → PDF (standard fonts, or embedded font subsets; images; PDF/A-3B); also the layout device that measures text while the report is laid out | browser, Node |
+| `reportman-engine` | Expressions, parameters (two steps), datasets, and the layout of a report into a metafile: sections, groups, subreports, images, barcodes, charts | browser, Node |
+| `reportman-node` | Node.js host: open a `.rep`, describe its parameters (step 1), run it to PDF (step 2); SQLite (`node:sqlite`), system fonts, CLI `reportman-pdf` | Node |
+| `reportman-driver-postgres` | PostgreSQL (`pg`), as Npgsql | Node |
+| `reportman-driver-firebird` | Firebird (`node-firebird`), as FirebirdClient | Node |
+| `reportman-driver-mysql` | MySQL and MariaDB (`mysql2`), as MySqlConnector | Node |
+| `reportman-driver-http` | The Reportman AI Agent through the Hub HTTP API (`fetch`), as HttpAgentExecutor | browser, Node |
+
+The nine reports of `../samples` give the same metafile as the C# engine: with the standard fonts
+the PDFs are byte-identical (seven samples; `letter` and `international` need fonts), and with
+`fonts` every sample matches the C# FreeType device except the bytes of the embedded font subsets.
+Not ported yet: Mybase unions, the `.rpmf` format, SQL Server, declarative REST datasets.
 
 ## Rules
 
@@ -39,6 +48,7 @@ npm install
 npm run build        # tsc -b
 npm test             # vitest, against the sources
 npm run check:pure-js
+npm run check:dist   # the builds in plain Node, and the CLI on the samples
 ```
 
 Reference outputs of the C# engine (needs the .NET 10 SDK):

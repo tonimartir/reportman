@@ -104,10 +104,11 @@ export function rasterDifference(a: GrayPage, b: GrayPage, threshold = 0): numbe
 export function contentStreams(pdf: Uint8Array): Uint8Array[] {
   const src = Buffer.from(pdf).toString('latin1');
   const result: Uint8Array[] = [];
-  const re = /(\d+) 0 obj\r\n<< \/Length (\d+) 0 R\r\n(\/Filter \[\/FlateDecode\]\r\n)? >>\r\nstream\r\n/g;
+  // CR LF ends the lines of PDF 1.4, LF those of PDF/A-3
+  const re = /(\d+) 0 obj\r?\n<< \/Length (\d+) 0 R\r?\n(\/Filter \[\/FlateDecode\]\r?\n)? >>\r?\nstream\r?\n/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(src)) !== null) {
-    const lengthObj = new RegExp('\\r\\n' + (m[2] as string) + ' 0 obj\\r\\n(\\d+)\\r\\nendobj').exec(src);
+    const lengthObj = new RegExp('\\n' + (m[2] as string) + ' 0 obj\\r?\\n(\\d+)\\r?\\nendobj').exec(src);
     if (lengthObj === null) throw new Error('No length object ' + (m[2] as string));
     const length = parseInt(lengthObj[1] as string, 10);
     const start = m.index + m[0].length;
@@ -120,8 +121,8 @@ export function contentStreams(pdf: Uint8Array): Uint8Array[] {
 
 /** The first difference of two content streams, line by line, or null. */
 export function firstLineDifference(a: Uint8Array, b: Uint8Array): string | null {
-  const la = Buffer.from(a).toString('latin1').split('\r\n');
-  const lb = Buffer.from(b).toString('latin1').split('\r\n');
+  const la = Buffer.from(a).toString('latin1').split(/\r\n|\n/);
+  const lb = Buffer.from(b).toString('latin1').split(/\r\n|\n/);
   const n = Math.max(la.length, lb.length);
   for (let i = 0; i < n; i++)
     if (la[i] !== lb[i]) return `line ${i + 1}: got ${JSON.stringify(la[i])}, want ${JSON.stringify(lb[i])}`;

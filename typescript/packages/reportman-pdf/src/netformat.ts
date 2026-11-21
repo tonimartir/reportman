@@ -71,3 +71,63 @@ export function intToHex(value: number): string {
 export function byteToHex2(b: number): string {
   return (b & 0xff).toString(16).toUpperCase().padStart(2, '0');
 }
+
+/**
+ * double.ToString("#0.0") (leadingZero) or ToString("#.0") of .NET Core, with a dot: 15
+ * significant digits correctly rounded, then rounded half up to one decimal.
+ */
+export function formatFixed1(value: number, leadingZero = true): string {
+  const two = formatFixedDigits(value, 1);
+  if (!leadingZero && two.startsWith('0.')) return two.substring(1);
+  if (!leadingZero && two.startsWith('-0.')) return '-' + two.substring(2);
+  return two;
+}
+
+function formatFixedDigits(value: number, decimals: number): string {
+  if (Number.isNaN(value)) return 'NaN';
+  const negative = value < 0;
+  const abs = Math.abs(value);
+  let digits: number[] = [];
+  let scale = 0;
+  if (abs !== 0) {
+    const p = abs.toPrecision(15);
+    const e = p.indexOf('e');
+    if (e >= 0) {
+      digits = Array.from(p.slice(0, e).replace('.', ''), (c) => c.charCodeAt(0) - 48);
+      scale = parseInt(p.slice(e + 1), 10) + 1;
+    } else {
+      const dot = p.indexOf('.');
+      const intPart = dot >= 0 ? p.slice(0, dot) : p;
+      const all = intPart + (dot >= 0 ? p.slice(dot + 1) : '');
+      let lead = 0;
+      while (lead < all.length && all.charAt(lead) === '0') lead++;
+      digits = Array.from(all.slice(lead), (c) => c.charCodeAt(0) - 48);
+      scale = intPart.length - lead;
+    }
+    const keep = scale + decimals;
+    if (keep < 0) digits = [];
+    else if (keep < digits.length) {
+      const roundUp = (digits[keep] as number) >= 5;
+      digits = digits.slice(0, keep);
+      if (roundUp) {
+        let i = keep - 1;
+        while (i >= 0 && digits[i] === 9) {
+          digits[i] = 0;
+          i--;
+        }
+        if (i < 0) {
+          digits.unshift(1);
+          scale += 1;
+        } else digits[i] = (digits[i] as number) + 1;
+      }
+    }
+  }
+  const dig = (k: number): number => (k >= 0 && k < digits.length ? (digits[k] as number) : 0);
+  let intStr = '';
+  for (let k = 0; k < scale; k++) intStr += String(dig(k));
+  if (intStr === '') intStr = '0';
+  let frac = '';
+  for (let k = 0; k < decimals; k++) frac += String(dig(scale + k));
+  const allZero = /^[0.]*$/.test(intStr + frac);
+  return (negative && !allZero ? '-' : negative ? '-' : '') + intStr + '.' + frac;
+}
