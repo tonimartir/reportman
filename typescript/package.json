@@ -13,7 +13,9 @@
     "clean": "tsc -b --clean packages/reportman-node packages/reportman-driver-postgres packages/reportman-driver-firebird packages/reportman-driver-mysql packages/reportman-driver-http packages/reportman-driver-mssql",
     "test": "vitest run",
     "check:pure-js": "node tools/check-pure-js.mjs",
-    "check:dist": "node tools/check-dist.mjs"
+    "check:dist": "node tools/check-dist.mjs",
+    "ci": "node tools/ci.mjs",
+    "inventory": "node tools/rep-inventory.mjs"
   },
   "engines": {
     "node": ">=22"

@@ -52,6 +52,34 @@ npm run check:pure-js
 npm run check:dist   # the builds in plain Node, and the CLI on the samples
 ```
 
+### Continuous integration, on this computer
+
+`npm run ci` (`tools/ci.mjs`) copies the working tree (the files git tracks or would track in
+`typescript/` and `samples/`, uncommitted changes included, never a `node_modules` or a `dist`) and
+runs `npm ci`, build, tests, `check:pure-js` and `check:dist` on it:
+
+- on Windows, with the Node of the computer (when it runs on Windows);
+- on Linux, in Docker — inside WSL when it runs on Windows — once on `node:22` and once on
+  `node:24` (Debian bookworm slim), with the host network, so the driver tests reach the test
+  databases when they are up, and the time zone of the computer, the one of the fixtures.
+
+`--windows` or `--linux` runs one system only, `--node 24` other Linux versions, `--distro` another
+WSL distribution, `--keep` leaves the copies. It prints one line per step and keeps the logs.
+
+The fixtures of the C# engine come from Windows: where .NET answers per system (`Environment.NewLine`
+in SQL Server xml values, `Environment.MachineName`) the tests expect the answer of the system they run
+on, and the FreeType parity cases run only with the Windows fonts they were written with.
+
+### What a set of reports uses
+
+`npm run inventory -- <report.rep | folder>... [--md out.md] [--json out.json]`
+(`tools/rep-inventory.mjs`, after `npm run build`) reads each report with the XML reader (a Delphi DFM
+file is listed apart, to save as XML from the designer) and counts the classes, sections, connections by
+driver, datasets (SQL, master/detail, unions), parameters, the functions, report variables, fields and
+parameters of the expressions (and the functions the engine does not know), fonts, display formats,
+images, and the properties set to other values than the defaults. It never writes a connection
+string, an SQL sentence or a parameter value.
+
 Reference outputs of the C# engine (needs the .NET 10 SDK):
 
 ```bash
