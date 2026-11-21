@@ -1,0 +1,1 @@
+ERROR System.InvalidCastException: Writing values of 'System.DateOnly' is not supported for parameters having DataTypeName 'timestamp without time zone'.

@@ -1,0 +1,64 @@
+{
+  "columns": [
+    {
+      "columnName": "id",
+      "dataType": "Int32",
+      "columnSize": -1,
+      "dataTypeName": "integer"
+    },
+    {
+      "columnName": "c_numrange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "numrange"
+    },
+    {
+      "columnName": "c_daterange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "daterange"
+    },
+    {
+      "columnName": "c_tsrange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "tsrange"
+    },
+    {
+      "columnName": "c_tstzrange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "tstzrange"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "NpgsqlRange`1:[1,5,2,25)",
+      "NpgsqlRange`1:[1/1/2024,1/2/2024)",
+      "NpgsqlRange`1:[1/1/2024 10:00:00,1/1/2024 12:30:15)",
+      "NpgsqlRange`1:[1/1/2024 10:00:00,2/1/2024 0:00:00)"
+    ],
+    [
+      "Int32:2",
+      "NpgsqlRange`1:(,5,5]",
+      "NpgsqlRange`1:[1/1/2024,)",
+      "NpgsqlRange`1:(,1/1/2024 0:00:00]",
+      "NpgsqlRange`1:[31/5/2024 22:00:00,)"
+    ],
+    [
+      "Int32:3",
+      "NpgsqlRange`1:empty",
+      "NpgsqlRange`1:(,2/3/2024)",
+      "NpgsqlRange`1:empty",
+      "NpgsqlRange`1:empty"
+    ],
+    [
+      "Int32:4",
+      null,
+      null,
+      null,
+      null
+    ]
+  ]
+}

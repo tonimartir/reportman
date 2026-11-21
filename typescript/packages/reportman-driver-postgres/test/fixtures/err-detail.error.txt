@@ -1,0 +1,4 @@
+ERROR Npgsql.PostgresException: 22P02: malformed array literal: "{1"
+
+POSITION: 8
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.

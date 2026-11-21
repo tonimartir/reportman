@@ -1,0 +1,3 @@
+ERROR Npgsql.PostgresException: 42601: syntax error at or near ":"
+
+POSITION: 8

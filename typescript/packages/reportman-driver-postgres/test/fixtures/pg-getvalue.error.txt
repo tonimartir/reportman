@@ -1,0 +1,1 @@
+ERROR Npgsql.NpgsqlOperationInProgressException: A command is already in progress: SELECT COUNT(*) FROM customers

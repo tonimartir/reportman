@@ -1,0 +1,944 @@
+{
+  "columns": [
+    {
+      "columnName": "id",
+      "dataType": "Int32",
+      "columnSize": -1,
+      "dataTypeName": "integer"
+    },
+    {
+      "columnName": "c_int2",
+      "dataType": "Int16",
+      "columnSize": -1,
+      "dataTypeName": "smallint"
+    },
+    {
+      "columnName": "c_int4",
+      "dataType": "Int32",
+      "columnSize": -1,
+      "dataTypeName": "integer"
+    },
+    {
+      "columnName": "c_int8",
+      "dataType": "Int64",
+      "columnSize": -1,
+      "dataTypeName": "bigint"
+    },
+    {
+      "columnName": "c_numeric",
+      "dataType": "Decimal",
+      "columnSize": -1,
+      "dataTypeName": "numeric"
+    },
+    {
+      "columnName": "c_numeric_10_2",
+      "dataType": "Decimal",
+      "columnSize": -1,
+      "dataTypeName": "numeric"
+    },
+    {
+      "columnName": "c_float4",
+      "dataType": "Single",
+      "columnSize": -1,
+      "dataTypeName": "real"
+    },
+    {
+      "columnName": "c_float8",
+      "dataType": "Double",
+      "columnSize": -1,
+      "dataTypeName": "double precision"
+    },
+    {
+      "columnName": "c_money",
+      "dataType": "Decimal",
+      "columnSize": -1,
+      "dataTypeName": "money"
+    },
+    {
+      "columnName": "c_text",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "text"
+    },
+    {
+      "columnName": "c_varchar",
+      "dataType": "String",
+      "columnSize": 20,
+      "dataTypeName": "character varying"
+    },
+    {
+      "columnName": "c_char",
+      "dataType": "String",
+      "columnSize": 5,
+      "dataTypeName": "character"
+    },
+    {
+      "columnName": "c_name",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "name"
+    },
+    {
+      "columnName": "c_citext",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "public.citext"
+    },
+    {
+      "columnName": "c_bool",
+      "dataType": "Boolean",
+      "columnSize": -1,
+      "dataTypeName": "boolean"
+    },
+    {
+      "columnName": "c_bit1",
+      "dataType": "Object",
+      "columnSize": 1,
+      "dataTypeName": "bit"
+    },
+    {
+      "columnName": "c_bit3",
+      "dataType": "Object",
+      "columnSize": 3,
+      "dataTypeName": "bit"
+    },
+    {
+      "columnName": "c_varbit",
+      "dataType": "Object",
+      "columnSize": -1,
+      "dataTypeName": "bit varying"
+    },
+    {
+      "columnName": "c_date",
+      "dataType": "DateOnly",
+      "columnSize": -1,
+      "dataTypeName": "date"
+    },
+    {
+      "columnName": "c_date2",
+      "dataType": "DateOnly",
+      "columnSize": -1,
+      "dataTypeName": "date"
+    },
+    {
+      "columnName": "c_time",
+      "dataType": "TimeOnly",
+      "columnSize": -1,
+      "dataTypeName": "time without time zone"
+    },
+    {
+      "columnName": "c_time3",
+      "dataType": "TimeOnly",
+      "columnSize": -1,
+      "dataTypeName": "time without time zone"
+    },
+    {
+      "columnName": "c_timetz",
+      "dataType": "DateTimeOffset",
+      "columnSize": -1,
+      "dataTypeName": "time with time zone"
+    },
+    {
+      "columnName": "c_timestamp",
+      "dataType": "DateTime",
+      "columnSize": -1,
+      "dataTypeName": "timestamp without time zone"
+    },
+    {
+      "columnName": "c_timestamp2",
+      "dataType": "DateTime",
+      "columnSize": -1,
+      "dataTypeName": "timestamp without time zone"
+    },
+    {
+      "columnName": "c_timestamptz",
+      "dataType": "DateTime",
+      "columnSize": -1,
+      "dataTypeName": "timestamp with time zone"
+    },
+    {
+      "columnName": "c_timestamptz2",
+      "dataType": "DateTime",
+      "columnSize": -1,
+      "dataTypeName": "timestamp with time zone"
+    },
+    {
+      "columnName": "c_interval",
+      "dataType": "TimeSpan",
+      "columnSize": -1,
+      "dataTypeName": "interval"
+    },
+    {
+      "columnName": "c_interval2",
+      "dataType": "TimeSpan",
+      "columnSize": -1,
+      "dataTypeName": "interval"
+    },
+    {
+      "columnName": "c_bytea",
+      "dataType": "Byte[]",
+      "columnSize": -1,
+      "dataTypeName": "bytea"
+    },
+    {
+      "columnName": "c_uuid",
+      "dataType": "Guid",
+      "columnSize": -1,
+      "dataTypeName": "uuid"
+    },
+    {
+      "columnName": "c_json",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "json"
+    },
+    {
+      "columnName": "c_jsonb",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "jsonb"
+    },
+    {
+      "columnName": "c_xml",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "xml"
+    },
+    {
+      "columnName": "c_inet",
+      "dataType": "IPAddress",
+      "columnSize": -1,
+      "dataTypeName": "inet"
+    },
+    {
+      "columnName": "c_cidr",
+      "dataType": "IPNetwork",
+      "columnSize": -1,
+      "dataTypeName": "cidr"
+    },
+    {
+      "columnName": "c_macaddr",
+      "dataType": "PhysicalAddress",
+      "columnSize": -1,
+      "dataTypeName": "macaddr"
+    },
+    {
+      "columnName": "c_macaddr8",
+      "dataType": "PhysicalAddress",
+      "columnSize": -1,
+      "dataTypeName": "macaddr8"
+    },
+    {
+      "columnName": "c_point",
+      "dataType": "NpgsqlPoint",
+      "columnSize": -1,
+      "dataTypeName": "point"
+    },
+    {
+      "columnName": "c_line",
+      "dataType": "NpgsqlLine",
+      "columnSize": -1,
+      "dataTypeName": "line"
+    },
+    {
+      "columnName": "c_lseg",
+      "dataType": "NpgsqlLSeg",
+      "columnSize": -1,
+      "dataTypeName": "lseg"
+    },
+    {
+      "columnName": "c_box",
+      "dataType": "NpgsqlBox",
+      "columnSize": -1,
+      "dataTypeName": "box"
+    },
+    {
+      "columnName": "c_path",
+      "dataType": "NpgsqlPath",
+      "columnSize": -1,
+      "dataTypeName": "path"
+    },
+    {
+      "columnName": "c_polygon",
+      "dataType": "NpgsqlPolygon",
+      "columnSize": -1,
+      "dataTypeName": "polygon"
+    },
+    {
+      "columnName": "c_circle",
+      "dataType": "NpgsqlCircle",
+      "columnSize": -1,
+      "dataTypeName": "circle"
+    },
+    {
+      "columnName": "c_int4range",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "int4range"
+    },
+    {
+      "columnName": "c_int8range",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "int8range"
+    },
+    {
+      "columnName": "c_numrange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "numrange"
+    },
+    {
+      "columnName": "c_daterange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "daterange"
+    },
+    {
+      "columnName": "c_tsrange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "tsrange"
+    },
+    {
+      "columnName": "c_tstzrange",
+      "dataType": "NpgsqlRange`1",
+      "columnSize": -1,
+      "dataTypeName": "tstzrange"
+    },
+    {
+      "columnName": "c_int4multirange",
+      "dataType": "NpgsqlRange`1[]",
+      "columnSize": -1,
+      "dataTypeName": "int4multirange"
+    },
+    {
+      "columnName": "c_tsvector",
+      "dataType": "NpgsqlTsVector",
+      "columnSize": -1,
+      "dataTypeName": "tsvector"
+    },
+    {
+      "columnName": "c_tsquery",
+      "dataType": "NpgsqlTsQuery",
+      "columnSize": -1,
+      "dataTypeName": "tsquery"
+    },
+    {
+      "columnName": "c_oid",
+      "dataType": "UInt32",
+      "columnSize": -1,
+      "dataTypeName": "oid"
+    },
+    {
+      "columnName": "c_xid",
+      "dataType": "UInt32",
+      "columnSize": -1,
+      "dataTypeName": "xid"
+    },
+    {
+      "columnName": "c_cid",
+      "dataType": "UInt32",
+      "columnSize": -1,
+      "dataTypeName": "cid"
+    },
+    {
+      "columnName": "c_xid8",
+      "dataType": "UInt64",
+      "columnSize": -1,
+      "dataTypeName": "xid8"
+    },
+    {
+      "columnName": "c_regtype",
+      "dataType": "UInt32",
+      "columnSize": -1,
+      "dataTypeName": "regtype"
+    },
+    {
+      "columnName": "c_pg_lsn",
+      "dataType": "NpgsqlLogSequenceNumber",
+      "columnSize": -1,
+      "dataTypeName": "pg_lsn"
+    },
+    {
+      "columnName": "c_tid",
+      "dataType": "NpgsqlTid",
+      "columnSize": -1,
+      "dataTypeName": "tid"
+    },
+    {
+      "columnName": "c_char1",
+      "dataType": "Char",
+      "columnSize": -1,
+      "dataTypeName": "char"
+    },
+    {
+      "columnName": "c_enum",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "public.mood"
+    },
+    {
+      "columnName": "c_domain",
+      "dataType": "Int32",
+      "columnSize": -1,
+      "dataTypeName": "integer"
+    },
+    {
+      "columnName": "c_vdomain",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": "character varying"
+    },
+    {
+      "columnName": "c_hstore",
+      "dataType": "Dictionary`2",
+      "columnSize": -1,
+      "dataTypeName": "public.hstore"
+    },
+    {
+      "columnName": "c_ltree",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "public.ltree"
+    },
+    {
+      "columnName": "c_cube",
+      "dataType": "NpgsqlCube",
+      "columnSize": -1,
+      "dataTypeName": "public.cube"
+    },
+    {
+      "columnName": "c_jsonpath",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "jsonpath"
+    },
+    {
+      "columnName": "c_refcursor",
+      "dataType": "String",
+      "columnSize": -1,
+      "dataTypeName": "refcursor"
+    },
+    {
+      "columnName": "c_int4_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "integer[]"
+    },
+    {
+      "columnName": "c_int4_arr2",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "integer[]"
+    },
+    {
+      "columnName": "c_text_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "text[]"
+    },
+    {
+      "columnName": "c_varchar_arr",
+      "dataType": "Array",
+      "columnSize": 4,
+      "dataTypeName": "character varying[]"
+    },
+    {
+      "columnName": "c_numeric_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "numeric[]"
+    },
+    {
+      "columnName": "c_float8_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "double precision[]"
+    },
+    {
+      "columnName": "c_bool_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "boolean[]"
+    },
+    {
+      "columnName": "c_date_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "date[]"
+    },
+    {
+      "columnName": "c_timestamp_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "timestamp without time zone[]"
+    },
+    {
+      "columnName": "c_interval_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "interval[]"
+    },
+    {
+      "columnName": "c_uuid_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "uuid[]"
+    },
+    {
+      "columnName": "c_bytea_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "bytea[]"
+    },
+    {
+      "columnName": "c_enum_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "public.mood[]"
+    },
+    {
+      "columnName": "c_json_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "json[]"
+    },
+    {
+      "columnName": "c_inet_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "inet[]"
+    },
+    {
+      "columnName": "c_char1_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "char[]"
+    },
+    {
+      "columnName": "c_point_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "point[]"
+    },
+    {
+      "columnName": "c_int4range_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "int4range[]"
+    },
+    {
+      "columnName": "c_bit1_arr",
+      "dataType": "Object",
+      "columnSize": 1,
+      "dataTypeName": "bit[]"
+    },
+    {
+      "columnName": "c_varbit_arr",
+      "dataType": "Object",
+      "columnSize": -1,
+      "dataTypeName": "bit varying[]"
+    },
+    {
+      "columnName": "c_oid_arr",
+      "dataType": "Array",
+      "columnSize": -1,
+      "dataTypeName": "oid[]"
+    },
+    {
+      "columnName": "c_int2vector",
+      "dataType": "Int16[]",
+      "columnSize": -1,
+      "dataTypeName": "int2vector"
+    },
+    {
+      "columnName": "c_oidvector",
+      "dataType": "UInt32[]",
+      "columnSize": -1,
+      "dataTypeName": "oidvector"
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "Int16:12",
+      "Int32:123456",
+      "Int64:1234567890123",
+      "1234.5678",
+      "99.95",
+      "Single:1.1",
+      "Double:3.141592653589793",
+      "1234.56",
+      "String:Hello, world",
+      "String:varchar",
+      "String:ab   ",
+      "String:pgname",
+      "String:CiText",
+      "Boolean:True",
+      "Boolean:True",
+      "BitArray:System.Collections.BitArray",
+      "BitArray:System.Collections.BitArray",
+      "DateOnly:03/15/2024",
+      "DateOnly:01/01/0001",
+      "TimeOnly:13:45",
+      "TimeOnly:13:45",
+      "DateTimeOffset:01/02/0001 13:45:30 +02:00",
+      "2024-03-15T13:45:30.1234560",
+      "0001-01-01T00:00:00.0000000",
+      "2024-03-15T11:45:30.5000000",
+      "0001-01-01T00:00:00.0000000",
+      "TimeSpan:3.04:05:06.7890000",
+      "TimeSpan:1000000.00:00:00",
+      "AAECA/8=",
+      "Guid:a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+      "String:{\"a\": [1, 2]}",
+      "String:{\"a\": \"x\", \"b\": 1}",
+      "String:<a>1</a>",
+      "IPAddress:192.168.1.10",
+      "IPNetwork:10.1.0.0/16",
+      "PhysicalAddress:08002B010203",
+      "PhysicalAddress:08002B0102030405",
+      "NpgsqlPoint:(1.5,-2)",
+      "NpgsqlLine:{1,-1,0}",
+      "NpgsqlLSeg:[(0,0),(1,1.5)]",
+      "NpgsqlBox:(1,1),(0,0)",
+      "NpgsqlPath:[(0,0),(1,1),(2,0)]",
+      "NpgsqlPolygon:((0,0),(1,1),(1,0))",
+      "NpgsqlCircle:<(0,0),2.5>",
+      "NpgsqlRange`1:[1,10)",
+      "NpgsqlRange`1:[2,101)",
+      "NpgsqlRange`1:[1.5,2.25)",
+      "NpgsqlRange`1:[1/1/2024,2/1/2024)",
+      "NpgsqlRange`1:[1/1/2024 10:00:00 AM,1/1/2024 12:30:15 PM)",
+      "NpgsqlRange`1:[1/1/2024 10:00:00 AM,1/2/2024 12:00:00 AM)",
+      "NpgsqlRange`1[]:NpgsqlTypes.NpgsqlRange`1[System.Int32][]",
+      "NpgsqlTsVector:'brown':2A 'fox' 'quick':1",
+      "NpgsqlTsQueryAnd:'quick' & !'fox'",
+      "UInt32:12345",
+      "UInt32:777",
+      "UInt32:5",
+      "UInt64:18446744073709551615",
+      "UInt32:1043",
+      "NpgsqlLogSequenceNumber:16/B374D848",
+      "NpgsqlTid:(3,7)",
+      "Char:x",
+      "String:happy",
+      "Int32:42",
+      "String:dom",
+      "Dictionary`2:System.Collections.Generic.Dictionary`2[System.String,System.String]",
+      "String:top.science.astronomy",
+      "NpgsqlCube:(1, 2, 3)",
+      "String:$.\"a\"[*]?(@ > 1)",
+      "String:cur1",
+      "Int32[]:System.Int32[]",
+      "Int32[,]:System.Int32[,]",
+      "String[]:System.String[]",
+      "String[]:System.String[]",
+      "Decimal[]:System.Decimal[]",
+      "Double[]:System.Double[]",
+      "Boolean[]:System.Boolean[]",
+      "DateOnly[]:System.DateOnly[]",
+      "DateTime[]:System.DateTime[]",
+      "TimeSpan[]:System.TimeSpan[]",
+      "Guid[]:System.Guid[]",
+      "Byte[][]:System.Byte[][]",
+      "String[]:System.String[]",
+      "String[]:System.String[]",
+      "IPAddress[]:System.Net.IPAddress[]",
+      "Char[]:System.Char[]",
+      "NpgsqlPoint[]:NpgsqlTypes.NpgsqlPoint[]",
+      "NpgsqlRange`1[]:NpgsqlTypes.NpgsqlRange`1[System.Int32][]",
+      "Boolean[]:System.Boolean[]",
+      "BitArray[]:System.Collections.BitArray[]",
+      "UInt32[]:System.UInt32[]",
+      "Int16[]:System.Int16[]",
+      "UInt32[]:System.UInt32[]"
+    ],
+    [
+      "Int32:2",
+      "Int16:-32768",
+      "Int32:2147483647",
+      "Int64:-9223372036854775808",
+      "79228162514264337593543950335",
+      "-0.01",
+      "Single:3.4028235E+38",
+      "Double:NaN",
+      "-92233720368547758.08",
+      "String:",
+      "String:12345678901234567890",
+      "String:     ",
+      "String:",
+      "String:",
+      "Boolean:False",
+      "Boolean:False",
+      "BitArray:System.Collections.BitArray",
+      "BitArray:System.Collections.BitArray",
+      "DateOnly:12/31/9999",
+      "DateOnly:12/31/9999",
+      "TimeOnly:00:00",
+      "TimeOnly:00:00",
+      "DateTimeOffset:01/02/0001 23:59:59 -12:00",
+      "9999-12-31T23:59:59.9999999",
+      "9999-12-31T23:59:59.9999990",
+      "9999-12-31T23:59:59.9999999",
+      "9999-12-31T23:59:59.9999990",
+      "TimeSpan:-21:56:56",
+      "TimeSpan:1.01:00:00",
+      "",
+      "Guid:00000000-0000-0000-0000-000000000000",
+      "String:null",
+      "String:[]",
+      "String:",
+      "IPAddress:::1",
+      "IPNetwork:2001:db8::/32",
+      "PhysicalAddress:000000000000",
+      "PhysicalAddress:0000000000000000",
+      "NpgsqlPoint:(1E+20,1E-07)",
+      "NpgsqlLine:{0.5,2,-3.25}",
+      "NpgsqlLSeg:[(1000000000000000,2),(3,4)]",
+      "NpgsqlBox:(2.5,3),(0,0)",
+      "NpgsqlPath:((0,0),(1,1),(2,0))",
+      "NpgsqlPolygon:((0.5,0.5))",
+      "NpgsqlCircle:<(1E-05,2),0>",
+      "NpgsqlRange`1:empty",
+      "NpgsqlRange`1:[5,)",
+      "NpgsqlRange`1:(,5.5]",
+      "NpgsqlRange`1:[1/1/2024,)",
+      "NpgsqlRange`1:(,1/1/2024 12:00:00 AM]",
+      "NpgsqlRange`1:[5/31/2024 10:00:00 PM,)",
+      "NpgsqlRange`1[]:NpgsqlTypes.NpgsqlRange`1[System.Int32][]",
+      "NpgsqlTsVector:",
+      "NpgsqlTsQueryOr:'a' | ( 'b' <-> 'c' )",
+      "UInt32:0",
+      "UInt32:0",
+      "UInt32:0",
+      "UInt64:0",
+      "UInt32:23",
+      "NpgsqlLogSequenceNumber:0/0",
+      "NpgsqlTid:(0,0)",
+      "Char:\u0000",
+      "String:sad",
+      "Int32:1",
+      "String:",
+      "Dictionary`2:System.Collections.Generic.Dictionary`2[System.String,System.String]",
+      "String:",
+      "NpgsqlCube:(1.5E+20),(2)",
+      "String:$",
+      "String:",
+      "Int32[]:System.Int32[]",
+      "Int32[]:System.Int32[]",
+      "String[]:System.String[]",
+      "String[]:System.String[]",
+      "Decimal[]:System.Decimal[]",
+      "Double[]:System.Double[]",
+      "Boolean[]:System.Boolean[]",
+      "DateOnly[]:System.DateOnly[]",
+      "DateTime[]:System.DateTime[]",
+      "TimeSpan[]:System.TimeSpan[]",
+      "Guid[]:System.Guid[]",
+      "Byte[][]:System.Byte[][]",
+      "String[]:System.String[]",
+      "String[]:System.String[]",
+      "IPAddress[]:System.Net.IPAddress[]",
+      "Char[]:System.Char[]",
+      "NpgsqlPoint[]:NpgsqlTypes.NpgsqlPoint[]",
+      "NpgsqlRange`1[]:NpgsqlTypes.NpgsqlRange`1[System.Int32][]",
+      "Boolean[]:System.Boolean[]",
+      "BitArray[]:System.Collections.BitArray[]",
+      "UInt32[]:System.UInt32[]",
+      "Int16[]:System.Int16[]",
+      "UInt32[]:System.UInt32[]"
+    ],
+    [
+      "Int32:3",
+      "Int16:32767",
+      "Int32:-2147483648",
+      "Int64:9223372036854775807",
+      "-0.0000000000000000000000000001",
+      "12345678.90",
+      "Single:-Infinity",
+      "Double:-1E-300",
+      "92233720368547758.07",
+      "String:tab\there ñandú €",
+      "String:",
+      "String:abcde",
+      "String:x",
+      "String:X",
+      "Boolean:True",
+      "Boolean:True",
+      "BitArray:System.Collections.BitArray",
+      "BitArray:System.Collections.BitArray",
+      "DateOnly:01/01/0001",
+      "DateOnly:02/29/2000",
+      "TimeOnly:23:59",
+      "TimeOnly:23:59",
+      "DateTimeOffset:01/02/0001 00:00:00 +14:00",
+      "0001-01-01T00:00:00.0000000",
+      "2024-02-29T00:00:00.0000010",
+      "0001-01-01T00:00:00.0000000",
+      "2024-07-01T05:00:00.0000000",
+      "TimeSpan:-00:00:00.0000010",
+      "TimeSpan:00:00:00",
+      "QQ==",
+      "Guid:ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "String:\"text\"",
+      "String:3.50",
+      "String:<b x=\"1\"/>",
+      "IPAddress:2001:db8::1",
+      "IPNetwork:192.168.0.1/32",
+      "PhysicalAddress:FFFFFFFFFFFF",
+      "PhysicalAddress:FFFFFFFFFFFFFFFF",
+      "NpgsqlPoint:(0,0)",
+      "NpgsqlLine:{1,0,5}",
+      "NpgsqlLSeg:[(-1,-1),(1,1)]",
+      "NpgsqlBox:(-1,-1),(-2,-2)",
+      "NpgsqlPath:[(1.25,2)]",
+      "NpgsqlPolygon:((1,2),(3,4),(5,6),(7,8))",
+      "NpgsqlCircle:<(-1,1),100>",
+      "NpgsqlRange`1:(,6)",
+      "NpgsqlRange`1:(,)",
+      "NpgsqlRange`1:empty",
+      "NpgsqlRange`1:(,3/2/2024)",
+      "NpgsqlRange`1:empty",
+      "NpgsqlRange`1:empty",
+      "NpgsqlRange`1[]:NpgsqlTypes.NpgsqlRange`1[System.Int32][]",
+      "NpgsqlTsVector:'a' 'b' 'c'",
+      "NpgsqlTsQueryLexeme:'x':*",
+      "UInt32:4294967295",
+      "UInt32:4294967295",
+      "UInt32:4294967295",
+      "UInt64:12345",
+      "UInt32:17826",
+      "NpgsqlLogSequenceNumber:FFFFFFFF/FFFFFFFF",
+      "NpgsqlTid:(4294967295,65535)",
+      "Char:Z",
+      "String:happy",
+      "Int32:2147483647",
+      "String:1234567890",
+      "Dictionary`2:System.Collections.Generic.Dictionary`2[System.String,System.String]",
+      "String:a",
+      "NpgsqlCube:(0)",
+      "String:strict $.\"x\"",
+      "String:c",
+      "Int32[]:System.Int32[]",
+      "Int32[,,]:System.Int32[,,]",
+      "String[]:System.String[]",
+      "String[]:System.String[]",
+      "Decimal[]:System.Decimal[]",
+      "Double[]:System.Double[]",
+      "Boolean[]:System.Boolean[]",
+      "DateOnly[]:System.DateOnly[]",
+      "DateTime[]:System.DateTime[]",
+      "TimeSpan[]:System.TimeSpan[]",
+      "Guid[]:System.Guid[]",
+      "Byte[][]:System.Byte[][]",
+      "String[]:System.String[]",
+      "String[]:System.String[]",
+      "IPAddress[]:System.Net.IPAddress[]",
+      "Char[]:System.Char[]",
+      "NpgsqlPoint[]:NpgsqlTypes.NpgsqlPoint[]",
+      "NpgsqlRange`1[]:NpgsqlTypes.NpgsqlRange`1[System.Int32][]",
+      "Boolean[]:System.Boolean[]",
+      "BitArray[]:System.Collections.BitArray[]",
+      "UInt32[]:System.UInt32[]",
+      "Int16[]:System.Int16[]",
+      "UInt32[]:System.UInt32[]"
+    ],
+    [
+      "Int32:4",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ]
+}

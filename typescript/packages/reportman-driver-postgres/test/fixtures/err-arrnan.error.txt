@@ -1,0 +1,1 @@
+ERROR System.InvalidCastException: Numeric NaN not supported by System.Decimal

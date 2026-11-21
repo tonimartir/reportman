@@ -1,0 +1,1 @@
+ERROR System.InvalidCastException: Cannot read a non-nullable collection of elements because the returned array contains nulls. Call GetFieldValue with a nullable collection type instead.

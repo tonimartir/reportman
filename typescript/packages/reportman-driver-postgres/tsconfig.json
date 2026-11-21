@@ -6,7 +6,8 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "types": [
       "node"
-    ]
+    ],
+    "rewriteRelativeImportExtensions": true
   },
   "include": [
     "src"

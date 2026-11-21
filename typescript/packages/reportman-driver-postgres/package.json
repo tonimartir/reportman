@@ -31,6 +31,7 @@
     "reportman-engine": "0.0.1"
   },
   "devDependencies": {
-    "@types/pg": "^8.23.1"
+    "@types/pg": "^8.23.1",
+    "reportman-node": "0.0.1"
   }
 }
