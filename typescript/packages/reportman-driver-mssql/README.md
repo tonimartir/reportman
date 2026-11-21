@@ -95,12 +95,13 @@ ColumnSize and DataTypeName are SqlClient's (decimal 17, nvarchar(30) 30, the ma
 - Server errors are SqlException with the messages, numbers, states and classes of the server; the client errors
   have SqlClient's messages (the ones of the operating system in English).
 
-Differences with C#, on purpose: without MultipleActiveResultSets a SqlConnection keeps one open reader, so the C#
-engine fails with `There is already an open DataReader associated with this Connection which must be closed
-first.` when a report keeps two datasets of one connection open (master/detail, two datasets of a section); this
-driver reads each result at once, and those reports run (with MultipleActiveResultSets=True they run in C# too,
-with the same output). A GETVALUEFROMSQL fails in both engines: in C# without MARS with that message, here with
-the one SqlClient gives with MARS (the command has no transaction). The engine keeps no Int16, Single, Guid,
+Differences with C#, on purpose: without MultipleActiveResultSets a SqlConnection keeps one open reader, and a
+report that keeps two datasets of one connection open (master/detail, two datasets of a section) needs it. The C#
+engine adds `MultipleActiveResultSets=True` to a connection string that does not set it, so both engines run those
+reports with the same output; only with an explicit `MultipleActiveResultSets=False` the C# engine fails with
+`There is already an open DataReader associated with this Connection which must be closed first.`, while this
+driver, which reads each result at once, still runs them. A GETVALUEFROMSQL fails in both engines with the error
+SqlClient gives with MARS (the command has no transaction); with MARS off, C# gives the open reader one instead. The engine keeps no Int16, Single, Guid,
 TimeSpan or DateTimeOffset value of a master: a detail parameter without a value of its own (sql_variant) takes
 them as int, float or nvarchar. A DateTimeOffset before 1900 takes the standard offset of the local zone (.NET
 applies the rules of Windows, JavaScript the local mean time).

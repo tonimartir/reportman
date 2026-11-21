@@ -1,4 +1,4 @@
 {
   "error": "ReportException",
-  "message": "There is already an open DataReader associated with this Connection which must be closed first.\nTRpExpression1 Prop:Expression"
+  "message": "ExecuteReader requires the command to have a transaction when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.\nTRpExpression1 Prop:Expression"
 }

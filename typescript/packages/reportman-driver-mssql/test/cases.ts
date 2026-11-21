@@ -43,12 +43,17 @@ export interface ReportCase {
 const sample = (name: string): string => 'samples/' + name + '.rep';
 const fixture = (name: string): string => 'fixtures/reports/' + name + '.rep';
 
-/** SqlClient without MARS keeps one open reader per connection: the C# engine needs MARS when a report keeps two datasets open. */
+/**
+ * SqlClient without MARS keeps one open reader per connection, and a report that keeps two datasets open needs it: the C# engine adds
+ * MultipleActiveResultSets=True to a SQL Server connection string that does not set it (DatabaseInfo.WithMultipleActiveResultSets).
+ * MARS sets it explicitly (kept as it is), NO_MARS turns it off (kept too: C# then fails).
+ */
 const MARS = 'MultipleActiveResultSets=True';
+const NO_MARS = 'MultipleActiveResultSets=False';
 
 const NO_MARS_WHY =
-  'SqlClient without MultipleActiveResultSets keeps one open reader per connection, and the C# engine keeps the reader of each dataset open ' +
-  'while it opens the next one on the same connection. The TypeScript engine reads each result whole.';
+  'With MultipleActiveResultSets=False SqlClient keeps one open reader per connection, and the C# engine keeps the reader of each dataset ' +
+  'open while it opens the next one on the same connection. The TypeScript engine reads each result whole.';
 
 export const CASES: ReportCase[] = [
   { name: 'customers', report: sample('customers') },
@@ -61,23 +66,25 @@ export const CASES: ReportCase[] = [
   { name: 'labels', report: sample('labels') },
   { name: 'product-catalog', report: sample('product-catalog') },
   { name: 'monthly-sales', report: fixture('monthly-sales') },
-  { name: 'sales-by-category', report: fixture('sales-by-category'), csOptions: MARS },
-  { name: 'sales-by-category-nomars', report: fixture('sales-by-category'), knownDifference: { error: 'There is already an open DataReader associated with this Connection which must be closed first.', why: NO_MARS_WHY } },
+  // the connection string of the host as it is: the C# engine turns MARS on
+  { name: 'sales-by-category', report: fixture('sales-by-category') },
+  { name: 'sales-by-category-nomars', report: fixture('sales-by-category'), csOptions: NO_MARS, knownDifference: { error: 'There is already an open DataReader associated with this Connection which must be closed first.', why: NO_MARS_WHY } },
   { name: 'fishes', report: sample('fishes') },
   { name: 'syn-params', report: fixture('syn-params'), csOptions: MARS },
-  { name: 'syn-masterdetail', report: fixture('syn-masterdetail'), csOptions: MARS },
-  { name: 'syn-masterdetail-nomars', report: fixture('syn-masterdetail'), knownDifference: { error: 'There is already an open DataReader associated with this Connection which must be closed first.', why: NO_MARS_WHY } },
+  { name: 'syn-masterdetail', report: fixture('syn-masterdetail') },
+  { name: 'syn-masterdetail-nomars', report: fixture('syn-masterdetail'), csOptions: NO_MARS, knownDifference: { error: 'There is already an open DataReader associated with this Connection which must be closed first.', why: NO_MARS_WHY } },
   // a dataset opened while an expression is evaluated: the synchronous driver
   { name: 'syn-ondemand', report: fixture('syn-ondemand'), csOptions: MARS, synchronous: true },
-  // GETVALUEFROMSQL: SqlClient refuses a command without the transaction (with MARS), or a second reader
-  { name: 'syn-getvalue-mars', report: fixture('syn-getvalue'), csOptions: MARS },
+  // GETVALUEFROMSQL: SqlClient refuses a command without the transaction (with MARS), or a second reader (without it)
+  { name: 'syn-getvalue', report: fixture('syn-getvalue') },
   {
-    name: 'syn-getvalue',
+    name: 'syn-getvalue-nomars',
     report: fixture('syn-getvalue'),
+    csOptions: NO_MARS,
     knownDifference: {
       error: 'There is already an open DataReader associated with this Connection which must be closed first.',
       tsError: 'ExecuteReader requires the command to have a transaction',
-      why: 'Both engines refuse GETVALUEFROMSQL; SqlClient without MARS sees the open reader of the dataset being printed first. The TypeScript engine has read that dataset whole, so the driver gives the error SqlClient gives with MARS.',
+      why: 'Both engines refuse GETVALUEFROMSQL; SqlClient with MultipleActiveResultSets=False sees the open reader of the dataset being printed first. The TypeScript engine has read that dataset whole, so the driver gives the error SqlClient gives with MARS.',
     },
   },
   { name: 'mssql-types', report: fixture('mssql-types') },

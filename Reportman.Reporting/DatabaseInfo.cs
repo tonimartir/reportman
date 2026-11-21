@@ -767,11 +767,44 @@ namespace Reportman.Reporting
                     name => AskDirectPassword(direct, name, passwordsToSave));
             if (usedFactory == SQLITECORE_PROVIDER || usedFactory == SQLITE_PROVIDER)
                 UsedConnectionString = ResolveSqliteDataSource(UsedConnectionString);
+            UsedConnectionString = WithMultipleActiveResultSets(afactory, UsedConnectionString);
             DbConnection aconnection = afactory.CreateConnection();
             aconnection.ConnectionString = UsedConnectionString;
             if (direct != null)
                 SaveAskedPasswordsOnOpen(aconnection, direct, passwordsToSave);
             return aconnection;
+        }
+
+        /// <summary>
+        /// The connection string a SQL Server connection of a report is opened with. Without
+        /// MultipleActiveResultSets SqlClient keeps one open reader per connection, and the engine keeps
+        /// the reader of a dataset open while it opens another one on the same connection (a detail, a
+        /// second dataset, a dataset opened on demand), which then fails with "There is already an open
+        /// DataReader associated with this Connection". So MultipleActiveResultSets=True is added when the
+        /// connection string does not set it; an explicit value, False included, is kept. Other providers
+        /// (and an empty connection string) are returned unchanged.
+        /// </summary>
+        /// <param name="factory">The provider factory the connection is created with.</param>
+        /// <param name="connectionString">The connection string of the report or of the host.</param>
+        /// <returns>The connection string to open the connection with.</returns>
+        public static string WithMultipleActiveResultSets(DbProviderFactory factory, string connectionString)
+        {
+            if (factory == null || string.IsNullOrWhiteSpace(connectionString))
+                return connectionString;
+            // Reportman.Reporting does not reference SqlClient: both providers are told by their factory
+            string factoryName = factory.GetType().FullName;
+            if (factoryName != "Microsoft.Data.SqlClient.SqlClientFactory" && factoryName != "System.Data.SqlClient.SqlClientFactory")
+                return connectionString;
+            DbConnectionStringBuilder builder = factory.CreateConnectionStringBuilder();
+            if (builder == null)
+                return connectionString;
+            builder.ConnectionString = connectionString;
+            // ShouldSerialize is true only for a keyword the string sets, under any of its synonyms
+            // ("MultipleActiveResultSets", "Multiple Active Result Sets")
+            if (builder.ShouldSerialize("MultipleActiveResultSets"))
+                return connectionString;
+            builder["MultipleActiveResultSets"] = true;
+            return builder.ConnectionString;
         }
 
         // A password asked in this process (outside Windows) that did not open the connection is asked again
