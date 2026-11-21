@@ -1,0 +1,4 @@
+{
+  "type": "System.Collections.Generic.KeyNotFoundException",
+  "message": "The given key 'NOSUCH' was not present in the dictionary."
+}

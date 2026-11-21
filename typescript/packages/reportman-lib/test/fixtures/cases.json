@@ -1,0 +1,172 @@
+[
+  {
+    "id": "samples-customers",
+    "rep": "../../../samples/customers.rep",
+    "json": "test/fixtures/json/samples-customers.json"
+  },
+  {
+    "id": "samples-fishes",
+    "rep": "../../../samples/fishes.rep",
+    "json": "test/fixtures/json/samples-fishes.json"
+  },
+  {
+    "id": "samples-international",
+    "rep": "../../../samples/international.rep",
+    "json": "test/fixtures/json/samples-international.json"
+  },
+  {
+    "id": "samples-invoices",
+    "rep": "../../../samples/invoices.rep",
+    "json": "test/fixtures/json/samples-invoices.json"
+  },
+  {
+    "id": "samples-labels",
+    "rep": "../../../samples/labels.rep",
+    "json": "test/fixtures/json/samples-labels.json"
+  },
+  {
+    "id": "samples-letter",
+    "rep": "../../../samples/letter.rep",
+    "json": "test/fixtures/json/samples-letter.json"
+  },
+  {
+    "id": "samples-monthly-sales",
+    "rep": "../../../samples/monthly-sales.rep",
+    "json": "test/fixtures/json/samples-monthly-sales.json"
+  },
+  {
+    "id": "samples-product-catalog",
+    "rep": "../../../samples/product-catalog.rep",
+    "json": "test/fixtures/json/samples-product-catalog.json"
+  },
+  {
+    "id": "samples-sales-by-category",
+    "rep": "../../../samples/sales-by-category.rep",
+    "json": "test/fixtures/json/samples-sales-by-category.json"
+  },
+  {
+    "id": "delphi-arab2wordwrap",
+    "rep": "test/fixtures/reports/delphi/arab2wordwrap.rep",
+    "json": "test/fixtures/json/delphi-arab2wordwrap.json"
+  },
+  {
+    "id": "delphi-bold",
+    "rep": "test/fixtures/reports/delphi/bold.rep",
+    "json": "test/fixtures/json/delphi-bold.json"
+  },
+  {
+    "id": "delphi-bold_nospecial",
+    "rep": "test/fixtures/reports/delphi/bold_nospecial.rep",
+    "json": "test/fixtures/json/delphi-bold_nospecial.json"
+  },
+  {
+    "id": "delphi-boldold",
+    "rep": "test/fixtures/reports/delphi/boldold.rep",
+    "json": "test/fixtures/json/delphi-boldold.json"
+  },
+  {
+    "id": "delphi-debugagentexample",
+    "rep": "test/fixtures/reports/delphi/debugagentexample.rep",
+    "json": "test/fixtures/json/delphi-debugagentexample.json"
+  },
+  {
+    "id": "delphi-htmltest",
+    "rep": "test/fixtures/reports/delphi/htmltest.rep",
+    "json": "test/fixtures/json/delphi-htmltest.json"
+  },
+  {
+    "id": "delphi-medianchart",
+    "rep": "test/fixtures/reports/delphi/medianchart.rep",
+    "json": "test/fixtures/json/delphi-medianchart.json"
+  },
+  {
+    "id": "delphi-testpdf417",
+    "rep": "test/fixtures/reports/delphi/testpdf417.rep",
+    "json": "test/fixtures/json/delphi-testpdf417.json"
+  },
+  {
+    "id": "synthetic-kitchen-sink",
+    "rep": "test/fixtures/reports/synthetic/kitchen-sink.rep",
+    "json": "test/fixtures/json/synthetic-kitchen-sink.json"
+  },
+  {
+    "id": "synthetic-defaults",
+    "rep": "test/fixtures/reports/synthetic/defaults.rep",
+    "json": "test/fixtures/json/synthetic-defaults.json"
+  },
+  {
+    "id": "synthetic-quirks",
+    "rep": "test/fixtures/reports/synthetic/quirks.rep",
+    "json": "test/fixtures/json/synthetic-quirks.json"
+  },
+  {
+    "id": "synthetic-error-unknown-report-property",
+    "rep": "test/fixtures/reports/synthetic/error-unknown-report-property.rep",
+    "error": "test/fixtures/json/synthetic-error-unknown-report-property.error.json"
+  },
+  {
+    "id": "synthetic-error-unknown-component-property",
+    "rep": "test/fixtures/reports/synthetic/error-unknown-component-property.rep",
+    "error": "test/fixtures/json/synthetic-error-unknown-component-property.error.json"
+  },
+  {
+    "id": "synthetic-error-unknown-class",
+    "rep": "test/fixtures/reports/synthetic/error-unknown-class.rep",
+    "error": "test/fixtures/json/synthetic-error-unknown-class.error.json"
+  },
+  {
+    "id": "synthetic-error-no-alias",
+    "rep": "test/fixtures/reports/synthetic/error-no-alias.rep",
+    "error": "test/fixtures/json/synthetic-error-no-alias.error.json"
+  },
+  {
+    "id": "synthetic-error-binary-size",
+    "rep": "test/fixtures/reports/synthetic/error-binary-size.rep",
+    "error": "test/fixtures/json/synthetic-error-binary-size.error.json"
+  },
+  {
+    "id": "synthetic-error-missing-parent",
+    "rep": "test/fixtures/reports/synthetic/error-missing-parent.rep",
+    "error": "test/fixtures/json/synthetic-error-missing-parent.error.json"
+  },
+  {
+    "id": "synthetic-error-not-a-subreport",
+    "rep": "test/fixtures/reports/synthetic/error-not-a-subreport.rep",
+    "error": "test/fixtures/json/synthetic-error-not-a-subreport.error.json"
+  },
+  {
+    "id": "synthetic-error-embedded-not-closed",
+    "rep": "test/fixtures/reports/synthetic/error-embedded-not-closed.rep",
+    "error": "test/fixtures/json/synthetic-error-embedded-not-closed.error.json"
+  },
+  {
+    "id": "synthetic-error-image-cachedimage",
+    "rep": "test/fixtures/reports/synthetic/error-image-cachedimage.rep",
+    "error": "test/fixtures/json/synthetic-error-image-cachedimage.error.json"
+  },
+  {
+    "id": "synthetic-error-integer-overflow",
+    "rep": "test/fixtures/reports/synthetic/error-integer-overflow.rep",
+    "error": "test/fixtures/json/synthetic-error-integer-overflow.error.json"
+  },
+  {
+    "id": "synthetic-error-no-report",
+    "rep": "test/fixtures/reports/synthetic/error-no-report.rep",
+    "error": "test/fixtures/json/synthetic-error-no-report.error.json"
+  },
+  {
+    "id": "synthetic-error-unclosed-tag",
+    "rep": "test/fixtures/reports/synthetic/error-unclosed-tag.rep",
+    "error": "test/fixtures/json/synthetic-error-unclosed-tag.error.json"
+  },
+  {
+    "id": "synthetic-zlib-customers",
+    "rep": "test/fixtures/reports/synthetic/zlib-customers.rep",
+    "json": "test/fixtures/json/synthetic-zlib-customers.json"
+  },
+  {
+    "id": "synthetic-zlib-kitchen-sink",
+    "rep": "test/fixtures/reports/synthetic/zlib-kitchen-sink.rep",
+    "json": "test/fixtures/json/synthetic-zlib-kitchen-sink.json"
+  }
+]

@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE REPORT_MANAGER_2>
+<REPORT>
+<SUBREPORT>
+<NAME type="String">S</NAME>
+<SECTION>
+<NAME type="String">X</NAME>
+<COMPONENT>
+<NAME type="String">I</NAME>
+<CLASSNAME type="String">TRPIMAGE</CLASSNAME>
+<CACHEDIMAGE type="Boolean">True</CACHEDIMAGE>
+</COMPONENT>
+</SECTION>
+</SUBREPORT>
+</REPORT>

@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE REPORT_MANAGER_2>
+<REPORT>
+<SUBREPORT>
+<NAME type="String">S</NAME>
+<PARENTSUBREPORT type="String">NOSUCH</PARENTSUBREPORT>
+</SUBREPORT>
+</REPORT>

@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE REPORT_MANAGER_2>
+<REPORT>
+<SUBREPORT>
+<NAME type="String">S</NAME>
+<SECTION>
+<NAME type="String">X</NAME>
+<COMPONENT>
+<NAME type="String">C</NAME>
+<CLASSNAME type="String">TRPMYITEM</CLASSNAME>
+</COMPONENT>
+</SECTION>
+</SUBREPORT>
+</REPORT>

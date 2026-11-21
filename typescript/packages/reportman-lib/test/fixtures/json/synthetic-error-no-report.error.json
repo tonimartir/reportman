@@ -1,0 +1,4 @@
+{
+  "type": "Reportman.Drawing.UnNamedException",
+  "message": "Report must begin with <REPORT\n<?xml version=\"1.0\" standalone=\"no\"?>\r\n<!DOCTYPE REPORT_MANAGER_2>\r\n<NOTAREPORT>\r\n</NOTAREPORT>\r"
+}

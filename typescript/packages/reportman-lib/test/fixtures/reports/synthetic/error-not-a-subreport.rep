@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE REPORT_MANAGER_2>
+<REPORT>
+<SUBREPORT>
+<NAME type="String">S</NAME>
+<SECTION>
+<NAME type="String">SEC</NAME>
+<CHILDSUBREPORT type="String">SEC</CHILDSUBREPORT>
+</SECTION>
+</SUBREPORT>
+</REPORT>

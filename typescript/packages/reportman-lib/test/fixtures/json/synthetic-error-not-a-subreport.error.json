@@ -1,0 +1,4 @@
+{
+  "type": "System.InvalidCastException",
+  "message": "Unable to cast object of type 'Reportman.Reporting.Section' to type 'Reportman.Reporting.SubReport'."
+}

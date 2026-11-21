@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE REPORT_MANAGER_2>
+<REPORT>
+<EMBEDDEDFILE>
+<FILENAME type="String">a</FILENAME>
+<MIMETYPE type="String">b
+</EMBEDDEDFILE>
+</REPORT>
