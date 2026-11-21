@@ -14,6 +14,7 @@ const packages = [
   'reportman-driver-firebird',
   'reportman-driver-mysql',
   'reportman-driver-http',
+  'reportman-driver-mssql',
 ];
 
 export default defineConfig({
