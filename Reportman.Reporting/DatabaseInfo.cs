@@ -1041,7 +1041,7 @@ namespace Reportman.Reporting
                      (aparam.ParamType != ParamType.SubstExpre) && (aparam.ParamType != ParamType.SubsExpreList))
                     {
                         System.Data.IDataParameter dbparam = Command.CreateParameter();
-                        dbparam.ParameterName = "@" + aparam.Alias;
+                        dbparam.ParameterName = "@" + DataInfo.SqlParameterName(sqlsentence, aparam.Alias);
                         dbparam.Direction = ParameterDirection.Input;
                         dbparam.DbType = ParameterDbType.For(Command, aparam.Value.GetDbType(), aparam.Value.AsObject());
                         dbparam.Value = aparam.Value;

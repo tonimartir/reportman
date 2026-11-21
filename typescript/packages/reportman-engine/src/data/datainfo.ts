@@ -259,7 +259,7 @@ export class ReportDataInfo {
             if (pt !== ParamType.Subst && pt !== ParamType.Multiple && pt !== ParamType.SubsExpreList && pt !== ParamType.SubstExpre) {
               const pvalue = variantParameterValue(aparam.lastValue);
               command.parameters.push({
-                name: aparam.alias,
+                name: sqlParameterName(sqlsentence, aparam.alias),
                 value: pvalue.value as StoredValue,
                 valueType: pvalue.valueType,
                 dbType: variantDbType(aparam.value),
@@ -450,6 +450,32 @@ export class ReportDataInfo {
   disConnectMem(): void {
     if (this.data.currentView !== null) this.data.currentView = null;
   }
+}
+
+/**
+ * DataInfo.SqlParameterName: the name of a parameter as the SQL writes it, the alias of the report parameter
+ * or its spelling in a placeholder of the SQL (":startDate" for the parameter STARTDATE) when the SQL writes
+ * it with other letter case (the Delphi engine matches the parameters without letter case, some providers
+ * only by the exact name).
+ */
+export function sqlParameterName(sql: string, alias: string): string {
+  if (sql.length === 0 || alias.length === 0) return alias;
+  const lowerSql = sql.toLowerCase();
+  const lowerAlias = alias.toLowerCase();
+  let found: string | null = null;
+  let index = 0;
+  while ((index = lowerSql.indexOf(lowerAlias, index)) >= 0) {
+    const end = index + alias.length;
+    const before = index > 0 ? sql[index - 1] : '';
+    const after = end < sql.length ? sql[end]! : '';
+    if ((before === ':' || before === '@') && (after === '' || !/[\p{L}\p{N}_]/u.test(after))) {
+      const spelled = sql.substring(index, end);
+      if (spelled === alias) return alias;
+      if (found === null) found = spelled;
+    }
+    index = end;
+  }
+  return found ?? alias;
 }
 
 /** ReadUnionSource: the rows of a dataset from its current row to its last one, with its columns. */

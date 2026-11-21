@@ -425,7 +425,7 @@ namespace Reportman.Reporting
                                 System.Data.IDataParameter dbparam = Command.CreateParameter();
                                 //dbparam.ParameterName = "@" + aparam.Alias;
                                 // SQL Server does not like "@" prefix
-                                dbparam.ParameterName = aparam.Alias;
+                                dbparam.ParameterName = SqlParameterName(sqlsentence, aparam.Alias);
                                 dbparam.Direction = ParameterDirection.Input;
                                 object pvalue = aparam.LastValue.AsObject();
                                 dbparam.DbType = ParameterDbType.For(Command, aparam.Value.GetDbType(), pvalue);
@@ -461,6 +461,36 @@ namespace Reportman.Reporting
                 connecting = false;
             }
         }
+        /// <summary>
+        /// The name of a parameter as the SQL writes it: the alias of the report parameter, or its spelling in a
+        /// placeholder of the SQL (":startDate" for the parameter STARTDATE) when the SQL writes it with other
+        /// letter case. The Delphi engine (FireDAC) matches the parameters of a SQL without letter case, and some
+        /// providers (Microsoft.Data.Sqlite) only by the exact name.
+        /// </summary>
+        public static string SqlParameterName(string sql, string alias)
+        {
+            if (string.IsNullOrEmpty(sql) || string.IsNullOrEmpty(alias))
+                return alias;
+            string found = null;
+            int index = 0;
+            while ((index = sql.IndexOf(alias, index, StringComparison.OrdinalIgnoreCase)) >= 0)
+            {
+                int end = index + alias.Length;
+                bool placeholder = index > 0 && (sql[index - 1] == ':' || sql[index - 1] == '@')
+                    && (end >= sql.Length || !(char.IsLetterOrDigit(sql[end]) || sql[end] == '_'));
+                if (placeholder)
+                {
+                    string spelled = sql.Substring(index, alias.Length);
+                    if (spelled == alias)
+                        return alias;
+                    if (found == null)
+                        found = spelled;
+                }
+                index = end;
+            }
+            return found ?? alias;
+        }
+
         /// <summary>
         /// The rows of a dataset of the MyBase connection made of other datasets of the report
         /// (<see cref="DataUnions"/>), as TRpDataInfoItem.Connect of the Delphi engine builds them:

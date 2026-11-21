@@ -44,7 +44,7 @@ import type { StoredValue } from '../data/columns.js';
 import type { CsDecimal } from '../util/decimal.js';
 import { DriverType } from 'reportman-lib';
 import { ReportDatabase } from '../data/databaseinfo.js';
-import { ReportDataInfo, variantDbType, variantParameterValue } from '../data/datainfo.js';
+import { ReportDataInfo, sqlParameterName, variantDbType, variantParameterValue } from '../data/datainfo.js';
 import { NotSupportedYetError } from '../data/errors.js';
 import type { DataHost, ParameterValueType, QueryParameter } from '../data/host.js';
 import { type Op, runSync, wait } from '../data/op.js';
@@ -1967,7 +1967,7 @@ export class ReportRuntime {
         if (t !== ParamType.Subst && t !== ParamType.Multiple && t !== ParamType.SubstExpre && t !== ParamType.SubsExpreList) {
           // C# parity: the value assigned is the Variant itself (no provider can bind it)
           const pv = variantParameterValue(aparam.value);
-          parameters.push({ name: '@' + aparam.alias, value: pv.value, valueType: 'Object', dbType: variantDbType(aparam.value) });
+          parameters.push({ name: '@' + sqlParameterName(sqlsentence, aparam.alias), value: pv.value, valueType: 'Object', dbType: variantDbType(aparam.value) });
         }
       }
     }
