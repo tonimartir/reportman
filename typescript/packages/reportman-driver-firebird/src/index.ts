@@ -12,13 +12,15 @@
 //   });
 //   const pdf = await report.executeToPdf({ FIRST_ORDER: 7 });
 
-import { CultureInfo, type ConnectionRequest, type DataConnection } from 'reportman-engine';
+import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from 'reportman-engine';
 import { FirebirdConnection } from './connection.js';
+import { SyncFirebirdConnection } from './sync.js';
 import { type ConnectionSettings, defaultSettings, parseConnectionString } from './connectionstring.js';
 
 export { FbException, type StatusEntry } from './errors.js';
 export { parseConnectionString, type ConnectionSettings } from './connectionstring.js';
 export { isolationTpb } from './connection.js';
+export { SyncFirebirdConnection } from './sync.js';
 export type { FirebirdColumnInfo } from './values.js';
 
 /** Where and how to connect: a FirebirdClient connection string, or its parts. */
@@ -50,6 +52,13 @@ export interface FirebirdOptions {
    * of openReport; pass the culture the report runs with.
    */
   culture?: CultureInfo | string;
+  /**
+   * Answer the engine synchronously: node-firebird runs in a worker thread and each call waits for
+   * it. Needed by the reports that read data while an expression is evaluated (GETVALUEFROMSQL, a
+   * dataset opened on demand, REOPEN), which the C# engine runs with FirebirdClient; this thread
+   * waits meanwhile. False by default (every call returns a promise).
+   */
+  synchronous?: boolean;
 }
 
 /** The settings of the options. */
@@ -74,10 +83,11 @@ export function resolveSettings(options: FirebirdOptions | string): ConnectionSe
  * the isolation level of the report connection, as the C# engine does with FirebirdClient. The
  * connection string of the .rep is not used: the host says where the data is.
  */
-export function firebird(options: FirebirdOptions | string): (request: ConnectionRequest) => Promise<DataConnection> {
+export function firebird(options: FirebirdOptions | string): (request: ConnectionRequest) => MaybePromise<DataConnection> {
   const settings = resolveSettings(options);
   const o = typeof options === 'string' ? {} : options;
   const culture = o.culture === undefined ? CultureInfo.get('en-US') : typeof o.culture === 'string' ? CultureInfo.get(o.culture) : o.culture;
   const invariant = CultureInfo.invariant;
+  if (o.synchronous === true) return (request) => SyncFirebirdConnection.open({ ...settings }, request, culture);
   return (request) => FirebirdConnection.open({ ...settings }, request, { culture, invariant });
 }

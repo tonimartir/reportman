@@ -33,6 +33,9 @@ const reachable = await isReachable();
 if (reachable) await loadDatabase();
 
 const connections = { SAMPLES: firebird(connectionString()) };
+const asyncConnections = connections;
+// node-firebird in a worker thread: the calls of the engine wait for it (synchronous: true)
+const syncConnections = { SAMPLES: firebird({ connectionString: connectionString(), synchronous: true }) };
 
 function request(isolationLevel: ConnectionRequest['isolationLevel'] = 'RepeatableRead'): ConnectionRequest {
   return {
@@ -73,6 +76,7 @@ describe.skipIf(!reachable)('report parity with golden-cs on Firebird', () => {
   describe.each(reports)('$name', (c) => {
     const reportFile = path.resolve(here, c.report);
     const errorFile = path.join(runFixtures, c.name + '.error.json');
+    const connections = c.synchronous === true ? syncConnections : asyncConnections;
     if (c.knownDifference !== undefined) {
       const known = c.knownDifference;
       it(`C# runs it, the TypeScript engine fails (${known.tsError})`, async () => {
@@ -490,6 +494,81 @@ describe.skipIf(!reachable)('transactions and connections', () => {
     } finally {
       await c.close(false);
     }
+  });
+});
+
+describe.skipIf(!reachable)('the synchronous connection (node-firebird in a worker thread)', () => {
+  const syncOpen = (level?: ConnectionRequest['isolationLevel']): DataConnection => {
+    const c = syncConnections.SAMPLES(request(level));
+    expect(c).not.toBeInstanceOf(Promise);
+    return c as DataConnection;
+  };
+
+  it('answers with the values the asynchronous connection reads', async () => {
+    for (const sql of ['SELECT * FROM TYPES ORDER BY ID', queries.find((q) => q.name === 'literals')!.sql]) {
+      const a = await connections.SAMPLES(request());
+      const expected = await a.query(command(sql));
+      await a.close(true);
+      const s = syncOpen();
+      try {
+        const result = s.query(command(sql));
+        expect(result).not.toBeInstanceOf(Promise);
+        expect(result).toEqual(expected);
+      } finally {
+        s.close(true);
+      }
+    }
+  });
+
+  it('gives the FbException of the server, as the asynchronous connection', async () => {
+    const a = await connections.SAMPLES(request());
+    const expected = await Promise.resolve(a.query(command('SELECT * FROM NOSUCHTABLE'))).then(
+      () => null,
+      (e: unknown) => e as Error & { netType?: string; errorCode?: number; errors?: unknown },
+    );
+    await a.close(true);
+    const s = syncOpen();
+    let error: (Error & { netType?: string; errorCode?: number; errors?: unknown }) | null = null;
+    try {
+      s.query(command('SELECT * FROM NOSUCHTABLE'));
+    } catch (e) {
+      error = e as Error & { netType?: string; errorCode?: number; errors?: unknown };
+    }
+    expect(error).not.toBeNull();
+    expect(error!.netType).toBe('FbException');
+    expect(error!.message).toBe(expected!.message);
+    expect(error!.errorCode).toBe(expected!.errorCode);
+    expect(error!.errors).toEqual(expected!.errors);
+    // the connection goes on
+    expect(s.query(command('SELECT 1 AS X FROM RDB$DATABASE')).rows).toEqual([[1]]);
+    s.close(true);
+  });
+
+  it('commits on close(true), rolls back on close(false) and refuses a command once closed', async () => {
+    const setup = await connections.SAMPLES(request());
+    await setup.query(command("EXECUTE BLOCK AS BEGIN IF (NOT EXISTS (SELECT 1 FROM RDB$RELATIONS WHERE RDB$RELATION_NAME = 'RM_TX')) THEN EXECUTE STATEMENT 'CREATE TABLE RM_TX (V INTEGER)'; END"));
+    await setup.close(true);
+    const clear = syncOpen();
+    clear.query(command('DELETE FROM RM_TX'));
+    clear.close(true);
+    const rolled = syncOpen();
+    rolled.query(command('INSERT INTO RM_TX (V) VALUES (3)'));
+    rolled.close(false);
+    const committed = syncOpen();
+    committed.query(command('INSERT INTO RM_TX (V) VALUES (4)'));
+    committed.close(true);
+    expect(() => committed.query(command('SELECT 1 FROM RDB$DATABASE'))).toThrow('Connection must be valid and open.');
+    const check = await connections.SAMPLES(request());
+    try {
+      expect((await check.query(command('SELECT V FROM RM_TX ORDER BY V'))).rows).toEqual([[4]]);
+    } finally {
+      await check.close(true);
+    }
+  });
+
+  it('reports a wrong password with the FirebirdClient message', () => {
+    const wrong = firebird({ connectionString: connectionString(), password: 'not-the-password', synchronous: true });
+    expect(() => wrong(request())).toThrow('Your user name and password are not defined.');
   });
 });
 

@@ -23,6 +23,8 @@ export interface ReportCase {
    * this driver, not of FirebirdClient).
    */
   knownDifference?: { tsError: string; why: string };
+  /** Run the TypeScript engine with the synchronous option of the driver (node-firebird in a worker). */
+  synchronous?: boolean;
 }
 
 export interface QueryCase {

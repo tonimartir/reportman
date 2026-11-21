@@ -72,7 +72,10 @@ function readBlob(reader: BlobReader, transaction: WireTransaction): Promise<Uin
 
 /** A parameter sent as a double (blr_double = 27), whatever its value. */
 class DoubleParam {
-  constructor(readonly value: number) {}
+  readonly value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
   encode(msg: { addDouble(v: number): void }): void {
     msg.addDouble(this.value);
   }

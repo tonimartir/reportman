@@ -35,12 +35,31 @@
     {
       "name": "syn-getvalue",
       "report": "fixtures/reports/syn-getvalue.rep",
+      "synchronous": true,
+      "knownDifference": {
+        "error": "This MySqlConnection is already in use",
+        "why": "A MySqlConnection keeps one open reader, and the C# engine keeps the reader of the dataset being printed open while GETVALUEFROMSQL runs its command on the same connection. This driver reads each result at once, and with the synchronous option it answers while the expression is evaluated."
+      }
+    },
+    {
+      "name": "syn-getvalue-async",
+      "report": "fixtures/reports/syn-getvalue.rep",
       "knownDifference": {
         "error": "This MySqlConnection is already in use",
         "tsError": "GETVALUEFROMSQL needs the data while an expression is being evaluated",
-        "why": "A MySqlConnection keeps one open reader, and the C# engine keeps the reader of the dataset being printed open while GETVALUEFROMSQL runs its command on the same connection. This driver reads each result at once, but it answers asynchronously (it has no synchronous mode), so the TypeScript engine cannot read the value while it evaluates the expression."
+        "why": "C# fails as above; without the synchronous option this driver answers asynchronously, so the TypeScript engine cannot read the value while it evaluates the expression."
       }
-    }
+    },
+    {
+      "name": "syn-ondemand",
+      "report": "fixtures/reports/syn-ondemand.rep",
+      "synchronous": true,
+      "knownDifference": {
+        "error": "This MySqlConnection is already in use",
+        "why": "A MySqlConnection keeps one open reader, and the C# engine keeps the reader of the dataset being printed open while it opens the other dataset on the same connection. This driver reads each result at once, and with the synchronous option it answers while the expression is evaluated."
+      }
+    },
+    { "name": "invoices-sync", "report": "fixtures/reports/invoices.rep", "synchronous": true }
   ],
   "queries": [
     { "name": "types", "sql": "SELECT * FROM TYPES ORDER BY ID" },

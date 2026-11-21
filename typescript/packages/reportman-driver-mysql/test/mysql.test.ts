@@ -55,6 +55,9 @@ const fixtureServer = (JSON.parse(fs.readFileSync(path.join(here, 'fixtures/serv
 const withFixtures = reachable && version === fixtureServer;
 
 const connections = { SAMPLES: mysql(connectionString()) };
+const asyncConnections = connections;
+// mysql2 in a worker thread: the calls of the engine wait for it (synchronous: true)
+const syncConnections = { SAMPLES: mysql({ connectionString: connectionString(), synchronous: true }) };
 const { reports, queries } = cases();
 
 function request(isolationLevel: ConnectionRequest['isolationLevel'] = 'RepeatableRead'): ConnectionRequest {
@@ -106,20 +109,28 @@ describe.skipIf(!withFixtures)(`report parity with golden-cs on ${version}`, () 
     const errorFile = path.join(runFixtures, c.name + '.error.json');
     const statementsFile = path.join(runFixtures, c.name + '.statements.json');
     const csStatements = JSON.parse(fs.readFileSync(statementsFile, 'utf8')) as LoggedStatement[];
+    const connections = c.synchronous === true ? syncConnections : asyncConnections;
     // A report whose datasets C# keeps open together runs there on a connection per dataset
     // (fixtures/reports/NAME.split.rep); here on one connection and on those
     const split = c.connections !== undefined;
     const files: [string, Record<string, ReturnType<typeof mysql>>][] = [[reportFile, connections]];
     if (split) {
       const all: Record<string, ReturnType<typeof mysql>> = { SAMPLES: connections.SAMPLES };
-      for (const alias of c.connections!) all[alias] = mysql(connectionString());
+      for (const alias of c.connections!) all[alias] = mysql({ connectionString: connectionString(), synchronous: c.synchronous === true });
       files.push([path.resolve(here, c.golden!), all]);
     }
 
     if (c.knownDifference !== undefined) {
       const known = c.knownDifference;
-      it(`C# fails (${known.error}), the TypeScript engine fails (${known.tsError})`, async () => {
+      const tsRuns = known.tsError === undefined;
+      it(`C# fails (${known.error}), the TypeScript engine ${tsRuns ? 'runs it' : 'fails (' + String(known.tsError) + ')'}`, async () => {
         expect((JSON.parse(fs.readFileSync(errorFile, 'utf8')) as { message: string }).message).toContain(known.error);
+        if (tsRuns) {
+          const report = await openReport(reportFile, { connections, culture: c.culture });
+          const pdf = await report.executeToPdf(c.params ?? {}, { compressed: false });
+          expect(Buffer.from(pdf.subarray(0, 5)).toString('latin1')).toBe('%PDF-');
+          return;
+        }
         const error = await errorOf(runLikeGolden(reportFile, createDataHost({ connections }), { params: c.params, culture: c.culture }));
         expect(error?.message).toContain(known.tsError);
       });
@@ -473,6 +484,78 @@ describe.skipIf(!reachable)('transactions and connections', () => {
     } finally {
       await c.close(false);
     }
+  });
+});
+
+describe.skipIf(!reachable)('the synchronous connection (mysql2 in a worker thread)', () => {
+  const syncOpen = (level?: ConnectionRequest['isolationLevel']): DataConnection => {
+    const c = syncConnections.SAMPLES(request(level));
+    expect(c).not.toBeInstanceOf(Promise);
+    return c as DataConnection;
+  };
+
+  it('answers with the values the asynchronous connection reads', async () => {
+    for (const q of queries.filter((x) => x.options === undefined && (x.name === 'types' || x.name === 'expressions'))) {
+      const a = await connections.SAMPLES(request());
+      const expected = await a.query(command(q.sql));
+      await a.close(true);
+      const s = syncOpen();
+      try {
+        const result = s.query(command(q.sql));
+        expect(result).not.toBeInstanceOf(Promise);
+        expect(result).toEqual(expected);
+      } finally {
+        s.close(true);
+      }
+    }
+  });
+
+  it('gives the MySqlException of the server, as the asynchronous connection', async () => {
+    const a = await connections.SAMPLES(request());
+    const expected = await Promise.resolve(a.query(command('SELECT * FROM NOSUCHTABLE'))).then(
+      () => null,
+      (e: unknown) => e as Error & { netType?: string; number?: number; sqlState?: string | null },
+    );
+    await a.close(true);
+    const s = syncOpen();
+    let error: (Error & { netType?: string; number?: number; sqlState?: string | null }) | null = null;
+    try {
+      s.query(command('SELECT * FROM NOSUCHTABLE'));
+    } catch (e) {
+      error = e as Error & { netType?: string; number?: number; sqlState?: string | null };
+    }
+    expect(error).not.toBeNull();
+    expect(error!.netType).toBe('MySqlException');
+    expect(error!.message).toBe(expected!.message);
+    expect(error!.number).toBe(expected!.number);
+    expect(error!.sqlState).toBe(expected!.sqlState);
+    // the connection goes on
+    expect(s.query(command('SELECT 1 AS X')).rows).toEqual([[1n]]);
+    s.close(true);
+  });
+
+  it('commits on close(true), rolls back on close(false) and refuses a command once closed', async () => {
+    const clear = syncOpen();
+    clear.query(command('DELETE FROM RM_TX'));
+    clear.close(true);
+    const rolled = syncOpen();
+    rolled.query(command('INSERT INTO RM_TX (V) VALUES (3)'));
+    rolled.close(false);
+    const committed = syncOpen();
+    committed.query(command('INSERT INTO RM_TX (V) VALUES (4)'));
+    committed.close(true);
+    expect(() => committed.query(command('SELECT 1'))).toThrow('Connection must be Open; current state is Closed');
+    const check = await connections.SAMPLES(request());
+    try {
+      expect((await check.query(command('SELECT V FROM RM_TX ORDER BY V'))).rows).toEqual([[4]]);
+    } finally {
+      await check.close(true);
+    }
+  });
+
+  it('reports a wrong password with the server message', () => {
+    const wrong = mysql({ connectionString: connectionString(), password: 'not-the-password', synchronous: true });
+    expect(() => wrong(request())).toThrow(/^Access denied for user 'rmtest'@'[^']+' \(using password: YES\)$/);
   });
 });
 

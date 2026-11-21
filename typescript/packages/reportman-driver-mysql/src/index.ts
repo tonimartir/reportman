@@ -13,14 +13,16 @@
 //   const pdf = await report.executeToPdf({ FIRST_ORDER: 7 });
 
 import type { SslOptions } from 'mysql2';
-import { CultureInfo, type ConnectionRequest, type DataConnection } from 'reportman-engine';
+import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from 'reportman-engine';
 import { MySqlConnection, startTransactionStatements } from './connection.js';
 import { type ConnectionSettings, defaultSettings, parseConnectionString } from './connectionstring.js';
+import { SyncMySqlConnection } from './sync.js';
 
 export { MySqlException } from './errors.js';
 export { parseConnectionString, type ConnectionSettings, type GuidFormat, type SslMode } from './connectionstring.js';
 export { startTransactionStatements };
 export { bindParameters, ParameterCollection } from './params.js';
+export { SyncMySqlConnection } from './sync.js';
 export type { MySqlColumnInfo } from './values.js';
 
 /** Where and how to connect: a MySqlConnector connection string, or its parts. */
@@ -52,6 +54,14 @@ export interface MySqlOptions {
    * default culture of openReport; pass the culture the report runs with.
    */
   culture?: CultureInfo | string;
+  /**
+   * Answer the engine synchronously: mysql2 runs in a worker thread and each call waits for it.
+   * Needed by the reports that read data while an expression is evaluated (GETVALUEFROMSQL, a
+   * dataset opened on demand, REOPEN); this thread waits meanwhile. The ssl options cannot hold
+   * functions then (they do not cross to the worker). False by default (every call returns a
+   * promise).
+   */
+  synchronous?: boolean;
 }
 
 /** The settings of the options. */
@@ -73,9 +83,10 @@ export function resolveSettings(options: MySqlOptions | string): ConnectionSetti
  * isolation level of the report connection, as the C# engine does with MySqlConnector. The
  * connection string of the .rep is not used: the host says where the data is.
  */
-export function mysql(options: MySqlOptions | string): (request: ConnectionRequest) => Promise<DataConnection> {
+export function mysql(options: MySqlOptions | string): (request: ConnectionRequest) => MaybePromise<DataConnection> {
   const settings = resolveSettings(options);
   const o = typeof options === 'string' ? {} : options;
   const culture = o.culture === undefined ? CultureInfo.get('en-US') : typeof o.culture === 'string' ? CultureInfo.get(o.culture) : o.culture;
+  if (o.synchronous === true) return (request) => SyncMySqlConnection.open({ ...settings, hosts: [...settings.hosts] }, request, culture, o.ssl);
   return (request) => MySqlConnection.open({ ...settings, hosts: [...settings.hosts] }, request, { culture, ssl: o.ssl });
 }

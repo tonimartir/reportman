@@ -41,10 +41,13 @@ export interface ReportCase {
   params?: Record<string, string>;
   culture?: string;
   /**
-   * Both engines fail, with other errors: the text the C# error contains, the one of the TypeScript
-   * engine, and why (a limitation of MySqlConnector or of this driver, not reproduced on purpose).
+   * C# fails: the text its error contains and why (a limitation of MySqlConnector or of this driver,
+   * not reproduced on purpose). With tsError the TypeScript engine fails too, with that text;
+   * without it the TypeScript engine runs the report.
    */
-  knownDifference?: { error: string; tsError: string; why: string };
+  knownDifference?: { error: string; tsError?: string; why: string };
+  /** Run the TypeScript engine with the synchronous option of the driver (mysql2 in a worker). */
+  synchronous?: boolean;
 }
 
 export interface QueryCase {

@@ -160,6 +160,12 @@ const ADAPTED: { name: string; source: string; sql: Record<string, string>; spli
     source: path.join(engineRun, 'syn-getvalue.rep'),
     sql: {},
   },
+  {
+    // A dataset opened while an expression is evaluated: runs unchanged
+    name: 'syn-ondemand',
+    source: path.join(engineRun, 'syn-ondemand.rep'),
+    sql: {},
+  },
 ];
 
 // ---------------------------------------------------------------------------------------------

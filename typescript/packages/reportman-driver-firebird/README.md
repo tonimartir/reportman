@@ -19,7 +19,7 @@ const pdf = await report.executeToPdf({ FIRST_ORDER: 7, LAST_ORDER: 9 });
 `firebird(options)` returns a connection factory for `connections`. `options` is a FirebirdClient
 connection string (its keys and synonyms, `host/port:path` in the database...) or an object with
 `connectionString`, `host`, `port`, `database`, `user`, `password`, `role`, `charset` (UTF8 by default),
-`wireCrypt` (`Enabled` by default), `connectionTimeout` (15 s) and `culture`. The connection string of the
+`wireCrypt` (`Enabled` by default), `connectionTimeout` (15 s), `culture` and `synchronous`. The connection string of the
 `.rep` is not used: the host says where the data is.
 
 `culture` is the culture of the run (`'en-US'` by default, as in openReport): FirebirdClient formats a few
@@ -57,8 +57,10 @@ sent to a text parameter).
 - The implicit transaction begins with the TPB FirebirdClient builds for the isolation level of the
   report connection (no wait, write); `close(true)` commits, `close(false)` rolls back. Every command
   runs inside it, the one of GETVALUEFROMSQL too.
-- Every call returns a promise: a report that reads data while an expression is evaluated
-  (GETVALUEFROMSQL, a dataset opened on demand, REOPEN), which the C# engine runs, fails here with the
+- Every call returns a promise by default. A report that reads data while an expression is evaluated
+  (GETVALUEFROMSQL, a dataset opened on demand, REOPEN), which the C# engine runs, needs
+  `synchronous: true`: node-firebird then runs in a worker thread and every call waits for it (this
+  thread does nothing else meanwhile). Without it such a report fails with the
   `SynchronousDataRequiredError` of the engine.
 - Server errors are FbException with FirebirdClient's lines (`Dynamic SQL Error\nSQL error code = -204\n...`).
 

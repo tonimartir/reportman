@@ -37,12 +37,16 @@ import type { SqlVar, XdrReader } from './wire.js';
 
 /** A raw wire value kept by the driver's decoders (see installRawDecoders). */
 export class RawValue {
-  constructor(
-    readonly a: number | bigint | Uint8Array,
-    readonly b = 0,
-    readonly c = 0,
-    readonly d: number | null = null,
-  ) {}
+  readonly a: number | bigint | Uint8Array;
+  readonly b: number;
+  readonly c: number;
+  readonly d: number | null;
+  constructor(a: number | bigint | Uint8Array, b = 0, c = 0, d: number | null = null) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+    this.d = d;
+  }
 }
 
 function nullFlag(data: XdrReader, lowerV13: boolean): boolean {

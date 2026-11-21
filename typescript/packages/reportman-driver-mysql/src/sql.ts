@@ -18,27 +18,28 @@ export interface SqlParserEvents {
 /** FinalParseStates. */
 export const FinalParseStates = { None: 0, Complete: 1, NeedsNewline: 2, NeedsSemicolon: 4 } as const;
 
-const enum State {
-  Beginning,
-  Statement,
-  SingleQuotedString,
-  SingleQuotedStringBackslash,
-  SingleQuotedStringSingleQuote,
-  DoubleQuotedString,
-  DoubleQuotedStringBackslash,
-  DoubleQuotedStringDoubleQuote,
-  BacktickQuotedString,
-  BacktickQuotedStringBacktick,
-  EndOfLineComment,
-  Hyphen,
-  SecondHyphen,
-  ForwardSlash,
-  CStyleComment,
-  CStyleCommentAsterisk,
-  QuestionMark,
-  AtSign,
-  NamedParameter,
-}
+const State = {
+  Beginning: 0,
+  Statement: 1,
+  SingleQuotedString: 2,
+  SingleQuotedStringBackslash: 3,
+  SingleQuotedStringSingleQuote: 4,
+  DoubleQuotedString: 5,
+  DoubleQuotedStringBackslash: 6,
+  DoubleQuotedStringDoubleQuote: 7,
+  BacktickQuotedString: 8,
+  BacktickQuotedStringBacktick: 9,
+  EndOfLineComment: 10,
+  Hyphen: 11,
+  SecondHyphen: 12,
+  ForwardSlash: 13,
+  CStyleComment: 14,
+  CStyleCommentAsterisk: 15,
+  QuestionMark: 16,
+  AtSign: 17,
+  NamedParameter: 18,
+} as const;
+type State = (typeof State)[keyof typeof State];
 
 function isWhitespace(ch: string): boolean {
   return ch === ' ' || ch === '\t' || ch === '\r' || ch === '\n';
@@ -68,8 +69,8 @@ export function parseSql(
   events: SqlParserEvents,
 ): number {
   let parameterStartIndex = -1;
-  let state = State.Beginning;
-  let beforeCommentState = State.Beginning;
+  let state: State = State.Beginning;
+  let beforeCommentState: State = State.Beginning;
   let isNamedParameter = false;
   const n = sql.length;
   for (let index = 0; index < n; index++) {

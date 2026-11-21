@@ -86,6 +86,17 @@ export type {
   NamedPlaceholder,
 } from './data/host.js';
 export { noDataHost, rewriteNamedParameters } from './data/host.js';
+export type { TransferValue, TransferCommand, TransferResult, TransferError } from './data/transfer.js';
+export {
+  encodeDataValue,
+  decodeDataValue,
+  encodeQueryCommand,
+  decodeQueryCommand,
+  encodeQueryResult,
+  decodeQueryResult,
+  encodeError,
+  decodeError,
+} from './data/transfer.js';
 export type { Op, MaybePromise } from './data/op.js';
 export { runAsync, runSync, SynchronousDataRequiredError } from './data/op.js';
 export { NotSupportedYetError } from './data/errors.js';

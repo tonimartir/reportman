@@ -1,0 +1,4 @@
+{
+  "error": "ReportException",
+  "message": "This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse\nTRpExpression1 Prop:Expression"
+}

@@ -33,33 +33,34 @@ export const SqlType = {
 } as const;
 
 /** FirebirdClient's DbDataType (the enum values name it in "Invalid data type: N."). */
-export enum DbDataType {
-  Array,
-  BigInt,
-  Binary,
-  Boolean,
-  Char,
-  Date,
-  Decimal,
-  Double,
-  Float,
-  Guid,
-  Integer,
-  Numeric,
-  SmallInt,
-  Text,
-  Time,
-  TimeStamp,
-  VarChar,
-  TimeStampTZ,
-  TimeStampTZEx,
-  TimeTZ,
-  TimeTZEx,
-  Dec16,
-  Dec34,
-  Int128,
-  Null,
-}
+export const DbDataType = {
+  Array: 0,
+  BigInt: 1,
+  Binary: 2,
+  Boolean: 3,
+  Char: 4,
+  Date: 5,
+  Decimal: 6,
+  Double: 7,
+  Float: 8,
+  Guid: 9,
+  Integer: 10,
+  Numeric: 11,
+  SmallInt: 12,
+  Text: 13,
+  Time: 14,
+  TimeStamp: 15,
+  VarChar: 16,
+  TimeStampTZ: 17,
+  TimeStampTZEx: 18,
+  TimeTZ: 19,
+  TimeTZEx: 20,
+  Dec16: 21,
+  Dec34: 22,
+  Int128: 23,
+  Null: 24,
+} as const;
+export type DbDataType = (typeof DbDataType)[keyof typeof DbDataType];
 
 /** A character set of FirebirdClient (Charset): its id, name, bytes per character and decoding. */
 export interface Charset {

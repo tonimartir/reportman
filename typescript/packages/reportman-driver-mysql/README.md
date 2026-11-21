@@ -20,7 +20,7 @@ const pdf = await report.executeToPdf({ FIRST_ORDER: 7, LAST_ORDER: 9 });
 `mysql(options)` returns a connection factory for `connections`. `options` is a MySqlConnector connection string
 or an object with `connectionString`, `host` (a comma-separated list is tried in order), `port` (3306),
 `database`, `user`, `password`, `connectionTimeout` (15 s), `ssl` (mysql2 TLS options instead of those of the
-connection string) and `culture`. The connection string of the `.rep` is not used: the host says where the data
+connection string), `culture` and `synchronous`. The connection string of the `.rep` is not used: the host says where the data
 is.
 
 The connection string is read as MySqlConnectionStringBuilder reads it: every key and synonym of MySqlConnector
@@ -79,15 +79,17 @@ of MySqlConnector has no DataTypeName, so no column is a declared date.
   `set session transaction isolation level ...;` and `start transaction;` (`with consistent snapshot` for
   Snapshot; Chaos is not supported), `close(true)` sends `commit`, `close(false)` `rollback`. Every command runs
   inside it, the one of GETVALUEFROMSQL too.
-- Every call returns a promise: a report that reads data while an expression is evaluated (GETVALUEFROMSQL, a
-  dataset opened on demand, REOPEN) fails with the `SynchronousDataRequiredError` of the engine.
+- Every call returns a promise by default. A report that reads data while an expression is evaluated
+  (GETVALUEFROMSQL, a dataset opened on demand, REOPEN) needs `synchronous: true`: mysql2 then runs in a worker
+  thread and every call waits for it (this thread does nothing else meanwhile; `ssl` cannot hold functions
+  then). Without it such a report fails with the `SynchronousDataRequiredError` of the engine.
 - Server errors are MySqlException with the server's message, number and SQLSTATE; the client errors have
   MySqlConnector's messages.
 
 Differences with C#, on purpose: a MySqlConnection keeps one open reader, so the C# engine fails with `This
 MySqlConnection is already in use` when a report keeps two datasets of one connection open (master/detail, two
 datasets of a section, or a GETVALUEFROMSQL while the dataset being printed is open); this driver reads each
-result at once and those reports run (GETVALUEFROMSQL would, with a synchronous answer). And MySqlConnector hands
+result at once and those reports run (GETVALUEFROMSQL and a dataset opened on demand with `synchronous: true`). And MySqlConnector hands
 out the same MySqlDataReader for every command of a connection, so C# sends a detail dataset twice when its
 master moves (the second time to load it); this driver sends it once.
 

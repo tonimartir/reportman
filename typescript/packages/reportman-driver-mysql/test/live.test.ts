@@ -110,7 +110,7 @@ describe.skipIf(!live)(`live parity with golden-cs on ${version}`, () => {
     await log?.truncate();
     const r = spawnSync(goldenExe, args, { encoding: 'utf8' });
     const csStatements = log === undefined ? undefined : await log.statements();
-    const connections = { SAMPLES: mysql(connectionString()) };
+    const connections = { SAMPLES: mysql({ connectionString: connectionString(), synchronous: c.synchronous === true }) };
     const reportFile = path.resolve(here, c.report);
     if (c.knownDifference !== undefined) {
       expect(r.status).not.toBe(0);
@@ -122,7 +122,8 @@ describe.skipIf(!live)(`live parity with golden-cs on ${version}`, () => {
         },
         (e: unknown) => (e as Error).message,
       );
-      expect(error).toContain(c.knownDifference.tsError);
+      if (c.knownDifference.tsError === undefined) expect(error).toBeNull();
+      else expect(error).toContain(c.knownDifference.tsError);
       return;
     }
     if (r.status !== 0) {
