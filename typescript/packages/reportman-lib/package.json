@@ -1,0 +1,33 @@
+{
+  "name": "reportman-lib",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Report Manager report model: the document (the camelCase JSON of the engine model), its undo history and the .rep XML reader.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonimartir/reportman",
+    "directory": "typescript/packages/reportman-lib"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "i18next": "^26.4.2"
+  }
+}

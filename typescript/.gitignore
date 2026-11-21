@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.tsbuildinfo
 out/
+
+# The repository .gitignore ignores every packages/ folder (NuGet); these are npm workspaces.
+!packages/
+!packages/*

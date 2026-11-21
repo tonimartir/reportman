@@ -1,0 +1,34 @@
+{
+  "name": "reportman-engine",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Report Manager report engine: expressions, parameters, datasets and the layout of a report into a metafile.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonimartir/reportman",
+    "directory": "typescript/packages/reportman-engine"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "decimal.js": "^10.6.0",
+    "reportman-lib": "0.0.1",
+    "reportman-metafile": "0.0.1"
+  }
+}
