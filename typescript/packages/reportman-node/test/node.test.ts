@@ -1,0 +1,144 @@
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { describe, expect, it } from 'vitest';
+import {
+  openReport,
+  sqlite,
+  renderParametersForm,
+  ParameterException,
+  type OpenReportOptions,
+} from 'reportman-node';
+import { pdfCreation } from '../../reportman-engine/test/golden-run.js';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const samples = path.resolve(here, '../../../../samples');
+const samplesDb = path.join(samples, 'samples.db');
+// The C# PDFs of the engine parity tests (golden-cs run: PrintOutPDFStandard, uncompressed)
+const goldenRun = path.resolve(here, '../../reportman-engine/test/fixtures/run');
+
+function csPdf(name: string): Uint8Array {
+  return new Uint8Array(fs.readFileSync(path.join(goldenRun, name + '.cs.pdf')));
+}
+
+/** The options that reproduce a golden-cs run: SQLite samples, the C# clock. */
+function goldenOptions(name: string, extra: OpenReportOptions = {}): OpenReportOptions {
+  return { connections: { SAMPLES: sqlite(samplesDb) }, clock: pdfCreation(csPdf(name)).clock, ...extra };
+}
+
+function latin1(bytes: Uint8Array): string {
+  return Buffer.from(bytes).toString('latin1');
+}
+
+describe('reportman-node: the two steps against the C# engine', () => {
+  it('runs customers.rep to the same PDF as C#, byte for byte', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'), goldenOptions('customers'));
+    const pdf = await report.executeToPdf({}, { compressed: false });
+    expect(Buffer.compare(Buffer.from(pdf), Buffer.from(csPdf('customers')))).toBe(0);
+  });
+
+  it('runs customers.rep in es-ES to the same PDF as C#', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'), goldenOptions('customers-es', { culture: 'es-ES' }));
+    const pdf = await report.executeToPdf(null, { compressed: false });
+    expect(Buffer.compare(Buffer.from(pdf), Buffer.from(csPdf('customers-es')))).toBe(0);
+  });
+
+  it('runs invoices.rep with its defaults and with a range of orders', async () => {
+    const report = await openReport(path.join(samples, 'invoices.rep'), goldenOptions('invoices'));
+    const pdf = await report.executeToPdf({}, { compressed: false });
+    expect(Buffer.compare(Buffer.from(pdf), Buffer.from(csPdf('invoices')))).toBe(0);
+
+    const ranged = await openReport(path.join(samples, 'invoices.rep'), goldenOptions('invoices-range'));
+    const pdf2 = await ranged.executeToPdf({ FIRST_ORDER: 7, LAST_ORDER: 9 }, { compressed: false });
+    expect(Buffer.compare(Buffer.from(pdf2), Buffer.from(csPdf('invoices-range')))).toBe(0);
+  });
+
+  it('runs labels.rep (detail in columns) to the same PDF as C#', async () => {
+    const report = await openReport(path.join(samples, 'labels.rep'), goldenOptions('labels'));
+    const pdf = await report.executeToPdf({}, { compressed: false });
+    expect(Buffer.compare(Buffer.from(pdf), Buffer.from(csPdf('labels')))).toBe(0);
+  });
+
+  it('compresses as the report asks by default', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'), goldenOptions('customers'));
+    expect(report.model.pdfCompressed).toBe(true);
+    const pdf = await report.executeToPdf();
+    expect(latin1(pdf)).toContain('/FlateDecode');
+    expect(pdf.length).toBeLessThan(csPdf('customers').length);
+  });
+});
+
+describe('reportman-node: step 1, the parameters', () => {
+  it('describes the parameters of invoices.rep as the .NET server does', async () => {
+    const report = await openReport(path.join(samples, 'invoices.rep'), goldenOptions('invoices'));
+    const json = await report.describeParametersJson();
+    expect(JSON.parse(json)).toEqual([
+      {
+        name: 'FIRST_ORDER', type: 1, typeName: 'Integer', description: 'From order number', hint: '',
+        errorMessage: '', value: 1, allowNulls: false, readOnly: false, freeText: false, editable: true,
+        options: [], selected: [], hasSearch: false,
+      },
+      {
+        name: 'LAST_ORDER', type: 1, typeName: 'Integer', description: 'To order number', hint: '',
+        errorMessage: '', value: 4, allowNulls: false, readOnly: false, freeText: false, editable: true,
+        options: [], selected: [], hasSearch: false,
+      },
+    ]);
+    const described = await report.describeParameters();
+    expect(described.map((p) => p.name)).toEqual(['FIRST_ORDER', 'LAST_ORDER']);
+  });
+
+  it('rejects a value of the wrong type in step 2, naming the parameter', async () => {
+    const report = await openReport(path.join(samples, 'invoices.rep'), goldenOptions('invoices'));
+    const error = await report.executeToPdf({ FIRST_ORDER: 'seven' }).catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(ParameterException);
+    expect((error as ParameterException).parameter).toBe('FIRST_ORDER');
+  });
+
+  it('draws a reference HTML form from the description', async () => {
+    const report = await openReport(path.join(samples, 'invoices.rep'), goldenOptions('invoices'));
+    const html = renderParametersForm(await report.describeParameters(), { action: '/print' });
+    expect(html).toContain('<form method="post" action="/print">');
+    expect(html).toContain('<label for="rp_FIRST_ORDER">From order number</label>');
+    expect(html).toContain('<input type="number" step="1" value="1" id="rp_FIRST_ORDER" name="FIRST_ORDER" required>');
+    expect(html).toContain('name="LAST_ORDER"');
+  });
+});
+
+describe('reportman-node: data sources', () => {
+  it('opens only the connections the host gives', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'));
+    await expect(report.executeToPdf()).rejects.toThrow(/The connection SAMPLES is not defined/);
+  });
+
+  it('prints rows the host gives for a dataset, without any database', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'), {
+      datasets: {
+        CUST: {
+          columns: [
+            { name: 'CODE', type: 'String' },
+            { name: 'COMPANY_NAME', type: 'String' },
+            { name: 'CONTACT_NAME', type: 'String' },
+            { name: 'CITY', type: 'String' },
+            { name: 'COUNTRY', type: 'String' },
+            { name: 'PHONE', type: 'String' },
+            { name: 'CUSTOMER_SINCE', type: 'String' },
+          ],
+          rows: [
+            ['C1', 'Blumenau Foods', 'Ana Souza', 'Blumenau', 'Brazil', '+55 47 0000 0000', '2020-01-01'],
+            ['C2', 'Porto Alegre Market', 'Rui Lima', 'Porto Alegre', 'Brazil', '+55 51 0000 0000', '2021-06-15'],
+          ],
+        },
+      },
+    });
+    const pdf = await report.executeToPdf({}, { compressed: false });
+    const text = latin1(pdf);
+    expect(text).toContain('(Blumenau Foods)');
+    expect(text).toContain('(Porto Alegre Market)');
+  });
+
+  it('refuses a Delphi DFM report with a clear message', async () => {
+    const dfm = new TextEncoder().encode('object TRpReport\n  PageHeight = 8120\nend\n');
+    await expect(openReport(dfm)).rejects.toThrow(/Delphi DFM format; save it as XML/);
+  });
+});

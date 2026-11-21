@@ -32,5 +32,8 @@
     "reportman-text": "0.0.1",
     "reportman-pdf": "0.0.1",
     "reportman-engine": "0.0.1"
+  },
+  "bin": {
+    "reportman-pdf": "./dist/cli.js"
   }
 }
