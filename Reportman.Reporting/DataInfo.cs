@@ -494,6 +494,10 @@ namespace Reportman.Reporting
                 {
                     client = CombineAddDataset(client, data, GroupUnion, indexFields, Alias);
                     originalFields = commonFields;
+                    // An in-memory dataset (another union) goes back to its first row, as CombineAddDataset of
+                    // the Delphi engine leaves it: a subreport on it prints it whole
+                    if (source.Data.CurrentView != null)
+                        source.GoFirstMem();
                 }
                 else
                 {
