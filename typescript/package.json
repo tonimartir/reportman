@@ -18,7 +18,7 @@
     "inventory": "node tools/rep-inventory.mjs"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

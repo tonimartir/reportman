@@ -41,6 +41,10 @@ Not ported yet: the `.rpmf` format, declarative REST datasets.
    compressed). A report saved by Delphi in DFM format is saved again as XML from the designer.
 4. **Same output as C#.** Each ported part is checked against the C# engine with
    `tools/golden-cs` (model JSON, expression results, metafile and PDF of a run).
+5. **ES modules only, Node 22.12 or later.** There is no CommonJS build: a CommonJS program loads
+   the packages with `require()` (Node's `require(esm)`), which `check:dist` tests for every
+   package. So the exports use the `default` condition and no module a package loads has a
+   top-level `await` (a worker file, loaded apart, may).
 
 ## Build and test
 

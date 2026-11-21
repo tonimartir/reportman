@@ -14,13 +14,27 @@ let failed = false;
 
 for (const name of readdirSync(packagesDir)) {
   const pkg = JSON.parse(readFileSync(join(packagesDir, name, 'package.json'), 'utf8'));
-  const entry = join(packagesDir, name, pkg.exports['.'].import);
+  const entry = join(packagesDir, name, pkg.exports['.'].default);
   try {
     const mod = await import(pathToFileURL(entry).href);
     console.log(`ok   ${name}: ${Object.keys(mod).length} exports`);
   } catch (e) {
     failed = true;
     console.error(`FAIL ${name}: ${e.message.split('\n')[0]}`);
+  }
+  // A CommonJS program requires the package by its name (require(esm), Node >= 22.12): the
+  // "default" condition of its exports and no top-level await in the modules it loads
+  try {
+    const out = execFileSync(
+      process.execPath,
+      ['--input-type=commonjs', '-e', `console.log(Object.keys(require(${JSON.stringify(pkg.name)})).length)`],
+      { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+    console.log(`ok   require('${pkg.name}') from CommonJS: ${out.trim()} exports`);
+  } catch (e) {
+    failed = true;
+    const text = (e.stderr?.toString() || e.message).split('\n').filter((l) => /Error|error/.test(l))[0] ?? e.message;
+    console.error(`FAIL require('${pkg.name}') from CommonJS: ${text}`);
   }
 }
 
