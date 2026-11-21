@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: Execute requires the command to have a transaction object when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.

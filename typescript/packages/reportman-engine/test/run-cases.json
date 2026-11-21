@@ -1,0 +1,23 @@
+[
+  { "name": "customers", "report": "../../../../samples/customers.rep" },
+  { "name": "invoices", "report": "../../../../samples/invoices.rep" },
+  { "name": "invoices-range", "report": "../../../../samples/invoices.rep", "params": {"FIRST_ORDER": "7", "LAST_ORDER": "9"} },
+  { "name": "labels", "report": "../../../../samples/labels.rep" },
+  { "name": "customers-es", "report": "../../../../samples/customers.rep", "culture": "es-ES" },
+  { "name": "syn-groups", "report": "fixtures/run/syn-groups.rep" },
+  { "name": "syn-masterdetail", "report": "fixtures/run/syn-masterdetail.rep" },
+  { "name": "syn-params", "report": "fixtures/run/syn-params.rep" },
+  { "name": "syn-params-values", "report": "fixtures/run/syn-params.rep", "params": {"FROMID": "10", "MAXVAT": "21", "COUNTRY": "'Spain'", "PATTERN": "%a%", "FLAG": "False"} },
+  { "name": "syn-layout", "report": "fixtures/run/syn-layout.rep" },
+  { "name": "syn-multipage", "report": "fixtures/run/syn-multipage.rep" },
+  { "name": "syn-twopass", "report": "fixtures/run/syn-twopass.rep" },
+  { "name": "syn-pagecount", "report": "fixtures/run/syn-pagecount.rep" },
+  { "name": "syn-columns", "report": "fixtures/run/syn-columns.rep" },
+  { "name": "syn-language", "report": "fixtures/run/syn-language.rep" },
+  { "name": "syn-convert", "report": "fixtures/run/syn-convert.rep" },
+  { "name": "syn-convert-param", "report": "fixtures/run/syn-convert.rep", "params": {"CUSTOMERID": "3"} },
+  { "name": "syn-nodata", "report": "fixtures/run/syn-nodata.rep" },
+  { "name": "syn-error", "report": "fixtures/run/syn-error.rep" },
+  { "name": "syn-ondemand", "report": "fixtures/run/syn-ondemand.rep" },
+  { "name": "syn-getvalue", "report": "fixtures/run/syn-getvalue.rep" }
+]

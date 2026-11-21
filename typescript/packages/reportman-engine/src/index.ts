@@ -67,3 +67,43 @@ export {
   doubleToSqlLiteral,
 } from './util/doubleutil.js';
 export { NetException, UnNamedException, NamedException, netTypeOf } from './util/netexception.js';
+
+// The report engine: data host contract, datasets, parameters and the layout of a report.
+export type {
+  DataHost,
+  DataConnection,
+  ConnectionRequest,
+  DatasetRequest,
+  QueryCommand,
+  QueryParameter,
+  QueryResult,
+  DataColumnInfo,
+  DataColumnType,
+  DataValue,
+  ParameterDbType,
+  ParameterValueType,
+  IsolationLevelName,
+  NamedPlaceholder,
+} from './data/host.js';
+export { noDataHost, rewriteNamedParameters } from './data/host.js';
+export type { Op, MaybePromise } from './data/op.js';
+export { runAsync, runSync, SynchronousDataRequiredError } from './data/op.js';
+export { NotSupportedYetError } from './data/errors.js';
+export { ReportDataset, ResultReader, ResultView, DatasetRow } from './data/reportdataset.js';
+export type { DataColumn, StoredValue } from './data/columns.js';
+export { ReportDataInfo } from './data/datainfo.js';
+export { ReportDatabase } from './data/databaseinfo.js';
+export { ReportParam, paramTypeOf, variantFromModel } from './params/param.js';
+export {
+  ParameterException,
+  ParameterProblem,
+  parameterDescriptionsToJson,
+  jsonString,
+} from './params/parameters.js';
+export type { ParameterDescription, ParameterOption, ParameterInput, ParameterJsonValue } from './params/parameters.js';
+export { ReportException, NoDataToPrintException } from './report/errors.js';
+export { ReportRuntime, MAX_PAGENUM } from './report/report.js';
+export type { ReportProgress, ReportRuntimeOptions } from './report/report.js';
+export { prepareReport, ReportRun } from './report/run.js';
+export type { PrepareReportOptions, ParametersOptions } from './report/run.js';
+export { convertToDotNet } from './report/convert.js';
