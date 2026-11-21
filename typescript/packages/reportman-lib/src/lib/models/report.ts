@@ -1100,7 +1100,8 @@ export class Report extends ReportItem {
     op.addProperty("bdeTable", PropertyType.String, undefined, item.bdeTable);
     op.addProperty("bdeType", PropertyType.Integer, undefined, item.bdeType);
     op.addProperty("dataSource", PropertyType.String, undefined, item.dataSource);
-    op.addProperty("dataUnions", PropertyType.StringArray, undefined, item.dataUnions);
+    // A copy, as the engine's CopyStrings: later edits of the dataset must not change this history.
+    op.addProperty("dataUnions", PropertyType.StringArray, undefined, item.dataUnions ? [...item.dataUnions] : item.dataUnions);
     op.addProperty("databaseAlias", PropertyType.String, undefined, item.databaseAlias);
     op.addProperty("groupUnion", PropertyType.Boolean, undefined, item.groupUnion);
     op.addProperty("myBaseFields", PropertyType.String, undefined, item.myBaseFields);
