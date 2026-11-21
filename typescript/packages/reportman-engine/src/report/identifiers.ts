@@ -327,7 +327,7 @@ export class IdenTextOp extends IdenFunctionReport {
   }
 }
 
-/** BARCODEOP: barcodes are not ported. */
+/** BARCODEOP: draws a barcode in the current page. */
 export class IdenBarcodeOp extends IdenFunctionReport {
   constructor(report: ReportRuntime) {
     super(report);
@@ -366,7 +366,22 @@ export class IdenBarcodeOp extends IdenFunctionReport {
           break;
       }
     }
-    throw new NotSupportedYetError('Barcodes (BARCODEOP)');
+    return Variant.fromBoolean(
+      this.report.barcodeOp(
+        this.int(0),
+        this.int(1),
+        this.int(2),
+        this.int(3),
+        this.str(4),
+        this.str(5),
+        this.int(6),
+        this.int(7),
+        this.dbl(8),
+        this.dbl(9),
+        this.bool(10),
+        this.int(11),
+      ),
+    );
   }
 }
 

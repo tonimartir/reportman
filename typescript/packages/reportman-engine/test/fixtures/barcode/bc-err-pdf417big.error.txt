@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: Barcode code too large:Error calculating barcode

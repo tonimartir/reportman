@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: Invalid codeword:Error calculating barcode

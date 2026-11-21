@@ -805,7 +805,7 @@ export class ShapeItem extends PrintPosItem {
 }
 
 /**
- * An item the TypeScript engine does not draw yet (images, barcodes, charts): the report fails
+ * An item the TypeScript engine does not draw yet (images, charts): the report fails
  * with a clear error when the item is measured or printed, instead of printing something else.
  */
 export class UnsupportedItem extends PrintPosItem {

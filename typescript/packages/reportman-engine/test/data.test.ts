@@ -177,8 +177,9 @@ describe('not supported yet', () => {
     await expect(run.execute()).rejects.toThrow(/Mybase DataUnions/);
   });
 
-  it.each(['fishes', 'monthly-sales', 'product-catalog', 'sales-by-category', 'letter'])(
-    'fails clearly for the sample %s (images, charts, barcodes, HTML text)',
+  // product-catalog (barcodes) runs: barcode-parity.test.ts
+  it.each(['fishes', 'monthly-sales', 'sales-by-category', 'letter'])(
+    'fails clearly for the sample %s (images, charts, HTML text)',
     async (name) => {
       const model = readReportXml(new Uint8Array(fs.readFileSync(path.resolve(here, '../../../../samples/' + name + '.rep'))));
       const run = await prepareReport(model, {

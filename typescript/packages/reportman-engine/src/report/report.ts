@@ -80,6 +80,8 @@ import {
 } from './items.js';
 import { SectionRuntime, SectionType, SkipType } from './section.js';
 import { SubReportRuntime } from './subreport.js';
+import { barcodeOp, BarcodeItem } from './barcode/barcodeitem.js';
+import type { BarcodeItem as BarcodeModel } from 'reportman-lib';
 
 /** BaseReport.MAX_PAGENUM. */
 export const MAX_PAGENUM = 100000;
@@ -334,7 +336,7 @@ export class ReportRuntime {
       case 'TRPIMAGE':
         return new UnsupportedItem(this, cm, 'Images');
       case 'TRPBARCODE':
-        return new UnsupportedItem(this, cm, 'Barcodes');
+        return new BarcodeItem(this, cm as BarcodeModel);
       case 'TRPCHART': {
         const identifier = (cm as unknown as { identifier?: string }).identifier ?? '';
         if (identifier.length > 0) this.chartIdentifiers.push({ identifier, name: cm.name });
@@ -1708,6 +1710,24 @@ export class ReportRuntime {
     }
     // C# parity: ImageOp returns false
     return false;
+  }
+
+  /** BarcodeOp (BARCODEOP): a barcode drawn in the current page (barcode/barcodeitem.ts). */
+  barcodeOp(
+    left: number,
+    top: number,
+    width: number,
+    height: number,
+    expression: string,
+    displayFormat: string,
+    barType: number,
+    modul: number,
+    ratio: number,
+    rotation: number,
+    calcChecksum: boolean,
+    brushColor: number,
+  ): boolean {
+    return barcodeOp(this, left, top, width, height, expression, displayFormat, barType, modul, ratio, rotation, calcChecksum, brushColor);
   }
 
   textOp(

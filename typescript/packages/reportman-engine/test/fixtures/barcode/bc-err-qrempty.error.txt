@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: Found empty contents:Error calculating barcode
