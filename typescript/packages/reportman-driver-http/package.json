@@ -1,0 +1,35 @@
+{
+  "name": "reportman-driver-http",
+  "version": "0.0.1",
+  "private": true,
+  "description": "The Reportman AI Agent for Report Manager (Hub HTTP API), in Node.js and the browser: the HttpAgent driver of the C# engine, with fetch only.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonimartir/reportman",
+    "directory": "typescript/packages/reportman-driver-http"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "reportman-engine": "0.0.1"
+  },
+  "devDependencies": {
+    "reportman-node": "0.0.1"
+  }
+}

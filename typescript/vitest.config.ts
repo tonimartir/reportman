@@ -13,6 +13,7 @@ const packages = [
   'reportman-driver-postgres',
   'reportman-driver-firebird',
   'reportman-driver-mysql',
+  'reportman-driver-http',
 ];
 
 export default defineConfig({
