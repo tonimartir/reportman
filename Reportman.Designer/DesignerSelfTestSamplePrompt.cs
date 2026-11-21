@@ -93,12 +93,17 @@ namespace Reportman.Designer
 
                 log("--- The samples of " + samplesFolder);
                 samples = SampleReports.Load(samplesFolder);
-                check(samples.Count == 9, "the nine samples of samples.ini");
+                check(samples.Count == 11, "the eleven samples of samples.ini");
+                // The union samples have no request yet: the AI does not see the unions of datasets
+                var withoutPrompt = new List<string> { "contacts.rep", "year-over-year.rep" };
                 string customersPrompt = "";
                 foreach (SampleReportInfo sample in samples)
                 {
                     log("  " + sample.FileName + ": " + sample.Prompt);
-                    check(sample.Prompt.Length > 0, sample.FileName + " has its request to the copilot");
+                    if (withoutPrompt.Contains(sample.FileName.ToLowerInvariant()))
+                        check(sample.Prompt.Length == 0, sample.FileName + " has no request to the copilot yet");
+                    else
+                        check(sample.Prompt.Length > 0, sample.FileName + " has its request to the copilot");
                     if (string.Equals(sample.FileName, "customers.rep", StringComparison.OrdinalIgnoreCase))
                         customersPrompt = sample.Prompt;
                 }

@@ -606,6 +606,12 @@ namespace Reportman.Designer
                 FAIChatControl.PromptText = prompt.Trim();
         }
 
+        /// <summary>The report the last preview printed, null before the first one (the self-tests).</summary>
+        internal Report PreviewedReport
+        {
+            get { return nprintdriver != null ? nprintdriver.Report : null; }
+        }
+
         /// <summary>The text of the input box of the copilot (the self-tests).</summary>
         internal string AIChatPromptText
         {

@@ -128,6 +128,22 @@ namespace designer
                     return;
                 }
 
+                // designer.exe /uniontest [/samples <dir>] [/shots <dir>] [/out <txt>] -> headless preview of the samples
+                // with unions of datasets (contacts.rep, year-over-year.rep), opened as the welcome window opens them
+                // and printed as the Preview button does; the exit code is 1 when one check fails
+                if (HasArg(args, "/uniontest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uniontest.txt");
+                    int failed;
+                    System.IO.File.WriteAllText(outFile,
+                        Reportman.Designer.DesignerSelfTestUnions.Run(GetArgValue(args, "/samples"),
+                            GetArgValue(args, "/shots"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
+
                 // designer.exe /exampletest [/shots <dir>] [/out <txt>] -> headless checks of the example databases of
                 // the Hub (a fake Hub, and the real one read-only); the exit code is 1 when one fails
                 if (HasArg(args, "/exampletest"))
