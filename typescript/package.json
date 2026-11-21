@@ -1,0 +1,25 @@
+{
+  "name": "reportman-typescript",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Report Manager in TypeScript: the npm packages of the report engine (pure JavaScript, no native code, no WebAssembly).",
+  "license": "MPL-2.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b packages/reportman-node",
+    "clean": "tsc -b --clean packages/reportman-node",
+    "test": "vitest run",
+    "check:pure-js": "node tools/check-pure-js.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}

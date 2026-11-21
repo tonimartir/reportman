@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Reference outputs of the C# engine for the TypeScript port: the report model as the designer's
+    camelCase JSON, expression results, and the metafile (as JSON) and PDF of a run measured with
+    the standard 14 PDF fonts. Test tooling only; it is not part of any npm package.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>golden-cs</AssemblyName>
+    <RootNamespace>Reportman.TypeScriptGolden</RootNamespace>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Reportman.Reporting\Reportman.Reporting.csproj" />
+    <ProjectReference Include="..\..\..\Reportman.Drawing.CrossPlatform\Reportman.Drawing.CrossPlatform.csproj" />
+    <ProjectReference Include="..\..\..\Reportman.Reporting.Design.Json\Reportman.Reporting.Design.Json.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" />
+  </ItemGroup>
+
+</Project>
