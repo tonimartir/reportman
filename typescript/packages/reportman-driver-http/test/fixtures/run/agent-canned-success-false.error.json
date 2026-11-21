@@ -1,0 +1,4 @@
+{
+  "error": "Exception",
+  "message": "HttpAgent execution failed: The Agent of this database is not connected"
+}

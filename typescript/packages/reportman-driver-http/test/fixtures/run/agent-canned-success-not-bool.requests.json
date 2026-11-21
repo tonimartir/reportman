@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"CANNED success-not-bool\",\"parameters\":[]}"
+  }
+]

@@ -1,0 +1,322 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT CUSTOMER_ID, CODE, COMPANY_NAME, COUNTRY FROM CUSTOMERS WHERE CUSTOMER_ID \\u003C= 9 ORDER BY CUSTOMER_ID\",\"parameters\":[]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":1,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":484,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":0,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":498,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":556,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":559,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":1,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":2,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":527,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":2,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":3,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":535,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":3,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":4,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":512,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":4,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":5,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":557,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":5,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":6,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":6,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":6,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":7,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":516,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":7,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":8,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":507,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":510,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":548,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":554,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":569,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":576,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":579,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":8,\"dbType\":16}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, ORDER_NUMBER, ORDER_DATE, CUSTOMER_ID FROM ORDERS WHERE CUSTOMER_ID = @CUSTOMER_ID AND ORDER_DATE \\u003E= \\u00272025-10-01\\u0027 ORDER BY ORDER_ID\",\"parameters\":[{\"name\":\"CUSTOMER_ID\",\"value\":9,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":489,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID, LINE_NO, PRODUCT_ID, QUANTITY, UNIT_PRICE FROM ORDER_LINES WHERE ORDER_ID = @ORDER_ID ORDER BY LINE_NO\",\"parameters\":[{\"name\":\"ORDER_ID\",\"value\":491,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) AS N, SUM(VAT_RATE) AS VAT FROM ORDERS WHERE CUSTOMER_ID = @CID\",\"parameters\":[{\"name\":\"CID\",\"value\":9,\"dbType\":16}]}"
+  }
+]

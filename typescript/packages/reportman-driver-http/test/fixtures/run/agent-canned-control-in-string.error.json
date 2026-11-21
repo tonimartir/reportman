@@ -1,0 +1,4 @@
+{
+  "error": "JsonReaderException",
+  "message": "'0x09' is invalid within a JSON string. The string should be correctly escaped. LineNumber: 0 | BytePositionInLine: 45."
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @PSTR AS PSTR, @PEMPTY AS PEMPTY, @PINT AS PINT, @PNEG AS PNEG, @PDBL AS PDBL, @PSMALL AS PSMALL, @PCUR AS PCUR, @PDATE AS PDATE, @PTIME AS PTIME, @PDT AS PDT, @PTRUE AS PTRUE, @PFALSE AS PFALSE, @PLONG AS PLONG, @PDIV AS PDIV, @PDEC AS PDEC, @PNULL AS PNULL, @PCHR AS PCHR, @PLIST AS PLIST\",\"parameters\":[{\"name\":\"PSTR\",\"value\":\"x\",\"dbType\":16},{\"name\":\"PEMPTY\",\"value\":\"\",\"dbType\":16},{\"name\":\"PINT\",\"value\":\"-7\",\"dbType\":16},{\"name\":\"PNEG\",\"value\":-42,\"dbType\":11},{\"name\":\"PDBL\",\"value\":\"1E300\",\"dbType\":16},{\"name\":\"PSMALL\",\"value\":1E-05,\"dbType\":8},{\"name\":\"PCUR\",\"value\":\"0.10\",\"dbType\":16},{\"name\":\"PDATE\",\"value\":\"2000-01-01\",\"dbType\":16},{\"name\":\"PTIME\",\"value\":\"1899-12-30T09:45:30\",\"dbType\":6},{\"name\":\"PDT\",\"value\":\"2025-06-15T18:30:15\",\"dbType\":6},{\"name\":\"PTRUE\",\"value\":\"False\",\"dbType\":16},{\"name\":\"PFALSE\",\"value\":false,\"dbType\":3},{\"name\":\"PLONG\",\"value\":8589934588,\"dbType\":16},{\"name\":\"PDIV\",\"value\":0.3333333333333333,\"dbType\":16},{\"name\":\"PDEC\",\"value\":1.5,\"dbType\":16},{\"name\":\"PNULL\",\"value\":{},\"dbType\":16},{\"name\":\"PCHR\",\"value\":\"x\",\"dbType\":16},{\"name\":\"PLIST\",\"value\":\"B\",\"dbType\":16}]}"
+  }
+]

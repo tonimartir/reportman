@@ -1,0 +1,4 @@
+{
+  "error": "DuplicateNameException",
+  "message": "A column named 'A' already belongs to this DataTable."
+}

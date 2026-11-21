@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "Type of value has a mismatch with column typeCouldn't store <not base64!> in B Column.  Expected type is Byte[]."
+}

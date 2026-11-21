@@ -1,0 +1,4 @@
+{
+  "error": "JsonReaderException",
+  "message": "'}' is invalid within a number, immediately after a sign character ('+' or '-'). Expected a digit ('0'-'9'). LineNumber: 0 | BytePositionInLine: 30."
+}

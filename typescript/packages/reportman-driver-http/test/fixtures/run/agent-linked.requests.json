@@ -1,0 +1,74 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"CANNED types\",\"parameters\":[]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @I16 AS I16, @I32 AS I32, @I64 AS I64, @DEC AS DEC, @DBL AS DBL, @BOOL AS BOOL, @DT AS DT, @BIN AS BIN, @STR AS STR, @GUID AS GUID\",\"parameters\":[{\"name\":\"I16\",\"value\":-32768,\"dbType\":11},{\"name\":\"I32\",\"value\":-2147483648,\"dbType\":11},{\"name\":\"I64\",\"value\":-9223372036854775808,\"dbType\":11},{\"name\":\"DEC\",\"value\":-79228162514264337593543950335,\"dbType\":11},{\"name\":\"DBL\",\"value\":-1.7976931348623157E+308,\"dbType\":11},{\"name\":\"BOOL\",\"value\":false,\"dbType\":11},{\"name\":\"DT\",\"value\":\"0001-01-01T00:00:00\",\"dbType\":11},{\"name\":\"BIN\",\"value\":\"\",\"dbType\":11},{\"name\":\"STR\",\"value\":\"\",\"dbType\":11},{\"name\":\"GUID\",\"value\":\"00000000-0000-0000-0000-000000000000\",\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @I16 AS I16, @I32 AS I32, @I64 AS I64, @DEC AS DEC, @DBL AS DBL, @BOOL AS BOOL, @DT AS DT, @BIN AS BIN, @STR AS STR, @GUID AS GUID\",\"parameters\":[{\"name\":\"I16\",\"value\":32767,\"dbType\":11},{\"name\":\"I32\",\"value\":2147483647,\"dbType\":11},{\"name\":\"I64\",\"value\":9223372036854775807,\"dbType\":11},{\"name\":\"DEC\",\"value\":79228162514264337593543950335,\"dbType\":11},{\"name\":\"DBL\",\"value\":1.7976931348623157E+308,\"dbType\":11},{\"name\":\"BOOL\",\"value\":true,\"dbType\":11},{\"name\":\"DT\",\"value\":\"9999-12-31T23:59:59.9999999\",\"dbType\":11},{\"name\":\"BIN\",\"value\":\"/w==\",\"dbType\":11},{\"name\":\"STR\",\"value\":\"\\u00F1 \\u0022 \\\\ \\n \\t \\u20AC \\uD83D\\uDE00\",\"dbType\":11},{\"name\":\"GUID\",\"value\":\"6f9619ff-8b86-d011-b42d-00c04fc964ff\",\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @I16 AS I16, @I32 AS I32, @I64 AS I64, @DEC AS DEC, @DBL AS DBL, @BOOL AS BOOL, @DT AS DT, @BIN AS BIN, @STR AS STR, @GUID AS GUID\",\"parameters\":[{\"name\":\"I16\",\"value\":0,\"dbType\":11},{\"name\":\"I32\",\"value\":0,\"dbType\":11},{\"name\":\"I64\",\"value\":9007199254740993,\"dbType\":11},{\"name\":\"DEC\",\"value\":0.1,\"dbType\":11},{\"name\":\"DBL\",\"value\":0.1,\"dbType\":11},{\"name\":\"BOOL\",\"value\":true,\"dbType\":11},{\"name\":\"DT\",\"value\":\"2024-02-29T00:00:00\",\"dbType\":11},{\"name\":\"BIN\",\"value\":\"AAECAwQFBgcICQ==\",\"dbType\":11},{\"name\":\"STR\",\"value\":\"plain\",\"dbType\":11},{\"name\":\"GUID\",\"value\":\"x\",\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @I16 AS I16, @I32 AS I32, @I64 AS I64, @DEC AS DEC, @DBL AS DBL, @BOOL AS BOOL, @DT AS DT, @BIN AS BIN, @STR AS STR, @GUID AS GUID\",\"parameters\":[{\"name\":\"I16\",\"value\":{},\"dbType\":11},{\"name\":\"I32\",\"value\":{},\"dbType\":11},{\"name\":\"I64\",\"value\":{},\"dbType\":11},{\"name\":\"DEC\",\"value\":{},\"dbType\":11},{\"name\":\"DBL\",\"value\":{},\"dbType\":11},{\"name\":\"BOOL\",\"value\":{},\"dbType\":11},{\"name\":\"DT\",\"value\":{},\"dbType\":11},{\"name\":\"BIN\",\"value\":{},\"dbType\":11},{\"name\":\"STR\",\"value\":{},\"dbType\":11},{\"name\":\"GUID\",\"value\":{},\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @I16 AS I16, @I32 AS I32, @I64 AS I64, @DEC AS DEC, @DBL AS DBL, @BOOL AS BOOL, @DT AS DT, @BIN AS BIN, @STR AS STR, @GUID AS GUID\",\"parameters\":[{\"name\":\"I16\",\"value\":1,\"dbType\":11},{\"name\":\"I32\",\"value\":2,\"dbType\":11},{\"name\":\"I64\",\"value\":3,\"dbType\":11},{\"name\":\"DEC\",\"value\":12.50,\"dbType\":11},{\"name\":\"DBL\",\"value\":1E-05,\"dbType\":11},{\"name\":\"BOOL\",\"value\":false,\"dbType\":11},{\"name\":\"DT\",\"value\":\"2024-02-29T13:45:00\",\"dbType\":11},{\"name\":\"BIN\",\"value\":\"AA==\",\"dbType\":11},{\"name\":\"STR\",\"value\":\"x\",\"dbType\":11},{\"name\":\"GUID\",\"value\":\"y\",\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @I16 AS I16, @I32 AS I32, @I64 AS I64, @DEC AS DEC, @DBL AS DBL, @BOOL AS BOOL, @DT AS DT, @BIN AS BIN, @STR AS STR, @GUID AS GUID\",\"parameters\":[{\"name\":\"I16\",\"value\":-1,\"dbType\":11},{\"name\":\"I32\",\"value\":-2,\"dbType\":11},{\"name\":\"I64\",\"value\":-3,\"dbType\":11},{\"name\":\"DEC\",\"value\":0.000,\"dbType\":11},{\"name\":\"DBL\",\"value\":5E-324,\"dbType\":11},{\"name\":\"BOOL\",\"value\":true,\"dbType\":11},{\"name\":\"DT\",\"value\":\"2024-02-29T13:45:30.1234567\",\"dbType\":11},{\"name\":\"BIN\",\"value\":\"QUJD\",\"dbType\":11},{\"name\":\"STR\",\"value\":\"\",\"dbType\":11},{\"name\":\"GUID\",\"value\":{},\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @I16 AS I16, @I32 AS I32, @I64 AS I64, @DEC AS DEC, @DBL AS DBL, @BOOL AS BOOL, @DT AS DT, @BIN AS BIN, @STR AS STR, @GUID AS GUID\",\"parameters\":[{\"name\":\"I16\",\"value\":100,\"dbType\":11},{\"name\":\"I32\",\"value\":100000,\"dbType\":11},{\"name\":\"I64\",\"value\":1234567890123,\"dbType\":11},{\"name\":\"DEC\",\"value\":1000,\"dbType\":11},{\"name\":\"DBL\",\"value\":1.2345678901234568E+20,\"dbType\":11},{\"name\":\"BOOL\",\"value\":false,\"dbType\":11},{\"name\":\"DT\",\"value\":\"2000-01-01T00:00:00.5\",\"dbType\":11},{\"name\":\"BIN\",\"value\":\"SGVsbG8gV29ybGQ=\",\"dbType\":11},{\"name\":\"STR\",\"value\":\"end\",\"dbType\":11},{\"name\":\"GUID\",\"value\":\"g\",\"dbType\":11}]}"
+  }
+]

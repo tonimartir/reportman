@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "The input string '12.5' was not in a correct format.Couldn't store <12.5> in N Column.  Expected type is Int32."
+}

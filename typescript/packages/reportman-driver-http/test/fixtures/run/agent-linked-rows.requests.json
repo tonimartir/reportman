@@ -1,0 +1,42 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"CANNED linked-rows\",\"parameters\":[]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @K AS K, @V AS V, @K * 10 AS K10\",\"parameters\":[{\"name\":\"K\",\"value\":1,\"dbType\":11},{\"name\":\"V\",\"value\":\"one\",\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @K AS K, @V AS V, @K * 10 AS K10\",\"parameters\":[{\"name\":\"K\",\"value\":2,\"dbType\":11},{\"name\":\"V\",\"value\":\"two\",\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT @K AS K, @V AS V, @K * 10 AS K10\",\"parameters\":[{\"name\":\"K\",\"value\":3,\"dbType\":11},{\"name\":\"V\",\"value\":\"three\",\"dbType\":11}]}"
+  }
+]

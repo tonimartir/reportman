@@ -1,0 +1,4 @@
+{
+  "error": "JsonReaderException",
+  "message": "'G' is not a hex digit following '\\u' within a JSON string. The string should be correctly escaped. LineNumber: 0 | BytePositionInLine: 33."
+}

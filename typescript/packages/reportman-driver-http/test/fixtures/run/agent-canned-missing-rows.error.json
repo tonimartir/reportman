@@ -1,0 +1,4 @@
+{
+  "error": "Exception",
+  "message": "Invalid response format: missing columns or rows"
+}

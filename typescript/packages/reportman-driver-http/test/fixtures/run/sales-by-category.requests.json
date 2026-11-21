@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT C.NAME AS CATEGORY, P.SKU, P.NAME AS PRODUCT, SUM(L.QUANTITY) AS UNITS, SUM(L.QUANTITY*L.UNIT_PRICE*(1-L.DISCOUNT/100.0)) AS SALES FROM ORDER_LINES L JOIN ORDERS O ON O.ORDER_ID = L.ORDER_ID JOIN PRODUCTS P ON P.PRODUCT_ID = L.PRODUCT_ID JOIN CATEGORIES C ON C.CATEGORY_ID = P.CATEGORY_ID WHERE CAST(strftime(\\u0027%Y\\u0027, O.ORDER_DATE) AS INTEGER) = @SALES_YEAR GROUP BY C.NAME, P.SKU, P.NAME ORDER BY C.NAME, SALES DESC\",\"parameters\":[{\"name\":\"SALES_YEAR\",\"value\":2025,\"dbType\":11}]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT C.NAME AS CATEGORY, SUM(L.QUANTITY) AS UNITS, SUM(L.QUANTITY*L.UNIT_PRICE*(1-L.DISCOUNT/100.0)) AS SALES, 100.0 * SUM(L.QUANTITY*L.UNIT_PRICE*(1-L.DISCOUNT/100.0)) / (SELECT SUM(L.QUANTITY*L.UNIT_PRICE*(1-L.DISCOUNT/100.0)) FROM ORDER_LINES L JOIN ORDERS O ON O.ORDER_ID = L.ORDER_ID JOIN PRODUCTS P ON P.PRODUCT_ID = L.PRODUCT_ID JOIN CATEGORIES C ON C.CATEGORY_ID = P.CATEGORY_ID WHERE CAST(strftime(\\u0027%Y\\u0027, O.ORDER_DATE) AS INTEGER) = @SALES_YEAR ) AS SHARE FROM ORDER_LINES L JOIN ORDERS O ON O.ORDER_ID = L.ORDER_ID JOIN PRODUCTS P ON P.PRODUCT_ID = L.PRODUCT_ID JOIN CATEGORIES C ON C.CATEGORY_ID = P.CATEGORY_ID WHERE CAST(strftime(\\u0027%Y\\u0027, O.ORDER_DATE) AS INTEGER) = @SALES_YEAR GROUP BY C.NAME ORDER BY SALES DESC\",\"parameters\":[{\"name\":\"SALES_YEAR\",\"value\":2025,\"dbType\":11}]}"
+  }
+]

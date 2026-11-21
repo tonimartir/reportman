@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT strftime(\\u0027%Y-%m\\u0027, O.ORDER_DATE) AS PERIOD, substr(\\u0027JanFebMarAprMayJunJulAugSepOctNovDec\\u0027, (CAST(strftime(\\u0027%m\\u0027, O.ORDER_DATE) AS INTEGER) - 1) * 3 \\u002B 1, 3) || \\u0027 \\u0027 || strftime(\\u0027%Y\\u0027, O.ORDER_DATE) AS MONTH_NAME, COUNT(DISTINCT O.ORDER_ID) AS ORDERS, SUM(L.QUANTITY) AS UNITS, SUM(L.QUANTITY*L.UNIT_PRICE*(1-L.DISCOUNT/100.0)) AS SALES FROM ORDERS O JOIN ORDER_LINES L ON L.ORDER_ID = O.ORDER_ID WHERE O.ORDER_DATE BETWEEN date(@FROM_DATE) AND date(@TO_DATE) GROUP BY 1, 2 ORDER BY 1\",\"parameters\":[{\"name\":\"FROM_DATE\",\"value\":\"2025-01-01T00:00:00\",\"dbType\":6},{\"name\":\"TO_DATE\",\"value\":\"2025-12-31T00:00:00\",\"dbType\":6}]}"
+  }
+]

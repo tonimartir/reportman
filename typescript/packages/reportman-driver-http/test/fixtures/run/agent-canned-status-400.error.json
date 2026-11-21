@@ -1,0 +1,4 @@
+{
+  "error": "Exception",
+  "message": "HttpAgent error BadRequest: {\"success\":false,\"error\":\"Missing sql\"}"
+}

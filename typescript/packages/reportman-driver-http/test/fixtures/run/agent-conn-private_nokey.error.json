@@ -1,0 +1,4 @@
+{
+  "error": "NamedException",
+  "message": "The connection \"PRIVATE_NOKEY\" (Reportman AI Agent) has no API key and there is no Reportman AI session. Log in from the designer, or add the API key of the connection to the connections file to run the report without a session (printreptopdf, server)."
+}

@@ -1,0 +1,4 @@
+{
+  "error": "NamedException",
+  "message": "The connection \"ZEROID\" (Reportman AI Agent) is not configured on this computer: it has no Hub database. Define it in the connections file, for example with the connections dialog or the new report wizard."
+}

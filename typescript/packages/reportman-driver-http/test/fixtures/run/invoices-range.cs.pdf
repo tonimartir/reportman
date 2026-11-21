@@ -1,0 +1,1469 @@
+%PDF-1.4
+1 0 obj
+<<
+/Author (Mare Nostrum Fine Foods)
+/CreationDate (D:20261121070955+01'00')
+/Creator (Report Manager)
+/Subject (One invoice per order: customer, lines, VAT and total)
+/Title (Invoices)
+/ModDate (D:20261121070955+01'00')
+>>
+endobj
+2 0 obj
+<< /Length 3 0 R
+ >>
+stream
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F2 18 Tf
+28.70 795.20 Td
+(Mare Nostrum Fine Foods) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 780.20 Td
+(Muelle de Levante 12 · 08039 Barcelona · Spain) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 768.70 Td
+(VAT ES-B00000000 · +34 930 000 000 · billing@marenostrum.example) Tj
+ET
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F2 22 Tf
+476.15 791.20 Td
+(INVOICE) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 740.20 Td
+(Invoice number) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+519.05 739.20 Td
+(2024/00007) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 725.70 Td
+(Date) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+521.55 724.70 Td
+(08/01/2024) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 711.20 Td
+(Customer code) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+540.10 710.20 Td
+(C0030) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 696.70 Td
+(Sales representative) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+512.10 695.70 Td
+(Daniel Costa) Tj
+ET
+[] 0 d
+0.05 w
+0.93 0.95 0.97 RG
+0.93 0.95 0.97 rg
+28.70 658.70 m
+28.70 745.20 l
+28.70 753.20 36.70 753.20 v
+310.70 753.20 l
+318.70 753.20 318.70 745.20 v
+318.70 658.70 l
+318.70 650.70 310.70 650.70 v
+36.70 650.70 l
+28.70 650.70 28.70 658.70 v
+B
+0.18 0.46 0.71 RG
+0.18 0.46 0.71 rg
+BT
+/F2 7 Tf
+41.20 739.70 Td
+(BILL TO) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 11 Tf
+41.20 723.20 Td
+(Lighthouse Gourmet Shop) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+41.20 707.70 Td
+(Attn. Lukas Silva) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+41.20 693.70 Td
+(47 River Walk) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+41.20 680.70 Td
+(04724 Coimbra) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+41.20 667.70 Td
+(PORTUGAL) Tj
+ET
+[] 0 d
+0.05 w
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+28.70 635.20 537.90 -20.00 re
+B
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+33.70 623.20 Td
+(#) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+51.20 623.20 Td
+(SKU) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+103.70 623.20 Td
+(Description) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+345.65 623.20 Td
+(Qty.) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+391.80 623.20 Td
+(Unit price) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+449.60 623.20 Td
+(Disc.) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+531.40 623.20 Td
+(Amount) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+33.70 596.70 Td
+(1) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+51.20 597.70 Td
+(MN-4020) Tj
+ET
+q
+103.70 606.70 210.00 -12.50 re
+h
+W
+n
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+103.70 597.70 Td
+(Cantabrian Anchovies) Tj
+ET
+Q
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 7 Tf
+103.70 587.70 Td
+(50 g can) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+351.20 596.70 Td
+(24) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+411.20 596.70 Td
+(6.80) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+534.10 596.70 Td
+(163.20) Tj
+ET
+[] 0 d
+0.05 w
+0.89 0.89 0.89 RG
+0.89 0.89 0.89 rg
+28.70 582.95 537.90 -0.50 re
+B
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+33.70 569.70 Td
+(2) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+51.20 570.70 Td
+(MN-7041) Tj
+ET
+q
+103.70 579.70 210.00 -12.50 re
+h
+W
+n
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+103.70 570.70 Td
+(Polvorones) Tj
+ET
+Q
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 7 Tf
+103.70 560.70 Td
+(400 g box) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+351.20 569.70 Td
+(12) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+411.20 569.70 Td
+(5.20) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+455.70 569.70 Td
+(5%) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+539.10 569.70 Td
+(59.28) Tj
+ET
+[] 0 d
+0.05 w
+0.89 0.89 0.89 RG
+0.89 0.89 0.89 rg
+28.70 555.95 537.90 -0.50 re
+B
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+428.60 536.20 Td
+(Subtotal) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+534.10 536.20 Td
+(222.48) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+423.60 521.20 Td
+(VAT 23%) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+539.10 521.20 Td
+(51.17) Tj
+ET
+[] 0 d
+0.05 w
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+346.60 513.20 220.00 -23.00 re
+B
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 11 Tf
+354.10 498.20 Td
+(TOTAL \(EUR\)) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 11 Tf
+527.95 498.20 Td
+(273.65) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 536.20 Td
+(Amounts in euros. Payment within 30 days by bank transfer.) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 523.70 Td
+(IBAN ES00 0000 0000 0000 0000 0000) Tj
+ET
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F3 11 Tf
+28.70 494.20 Td
+(Thank you for your business!) Tj
+ET
+[] 0 d
+0.05 w
+0.75 0.75 0.75 RG
+0.75 0.75 0.75 rg
+28.70 65.05 537.90 -0.75 re
+B
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 8 Tf
+28.70 51.55 Td
+(Report Manager sample report · data: samples.db \(SQLite\)) Tj
+ET
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 8 Tf
+541.25 51.55 Td
+(Page 1) Tj
+ET
+
+endstream
+endobj
+3 0 obj
+5572
+endobj
+4 0 obj
+<< /Length 5 0 R
+ >>
+stream
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F2 18 Tf
+28.70 795.20 Td
+(Mare Nostrum Fine Foods) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 780.20 Td
+(Muelle de Levante 12 · 08039 Barcelona · Spain) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 768.70 Td
+(VAT ES-B00000000 · +34 930 000 000 · billing@marenostrum.example) Tj
+ET
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F2 22 Tf
+476.15 791.20 Td
+(INVOICE) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 740.20 Td
+(Invoice number) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+519.05 739.20 Td
+(2024/00008) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 725.70 Td
+(Date) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+521.55 724.70 Td
+(09/01/2024) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 711.20 Td
+(Customer code) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+540.10 710.20 Td
+(C0006) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 696.70 Td
+(Sales representative) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+505.60 695.70 Td
+(Laura Navarro) Tj
+ET
+[] 0 d
+0.05 w
+0.93 0.95 0.97 RG
+0.93 0.95 0.97 rg
+28.70 658.70 m
+28.70 745.20 l
+28.70 753.20 36.70 753.20 v
+310.70 753.20 l
+318.70 753.20 318.70 745.20 v
+318.70 658.70 l
+318.70 650.70 310.70 650.70 v
+36.70 650.70 l
+28.70 650.70 28.70 658.70 v
+B
+0.18 0.46 0.71 RG
+0.18 0.46 0.71 rg
+BT
+/F2 7 Tf
+41.20 739.70 Td
+(BILL TO) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 11 Tf
+41.20 723.20 Td
+(Casa Verde Delicatessen) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+41.20 707.70 Td
+(Attn. Anna Ruiz) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+41.20 693.70 Td
+(22 High Street) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+41.20 680.70 Td
+(27056 Bilbao) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+41.20 667.70 Td
+(SPAIN) Tj
+ET
+[] 0 d
+0.05 w
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+28.70 635.20 537.90 -20.00 re
+B
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+33.70 623.20 Td
+(#) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+51.20 623.20 Td
+(SKU) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+103.70 623.20 Td
+(Description) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+345.65 623.20 Td
+(Qty.) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+391.80 623.20 Td
+(Unit price) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+449.60 623.20 Td
+(Disc.) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+531.40 623.20 Td
+(Amount) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+33.70 596.70 Td
+(1) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+51.20 597.70 Td
+(MN-2008) Tj
+ET
+q
+103.70 606.70 210.00 -12.50 re
+h
+W
+n
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+103.70 597.70 Td
+(Idiazabal Smoked Cheese) Tj
+ET
+Q
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 7 Tf
+103.70 587.70 Td
+(500 g piece) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+356.20 596.70 Td
+(6) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+406.20 596.70 Td
+(13.40) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+539.10 596.70 Td
+(80.40) Tj
+ET
+[] 0 d
+0.05 w
+0.89 0.89 0.89 RG
+0.89 0.89 0.89 rg
+28.70 582.95 537.90 -0.50 re
+B
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+33.70 569.70 Td
+(2) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+51.20 570.70 Td
+(MN-1006) Tj
+ET
+q
+103.70 579.70 210.00 -12.50 re
+h
+W
+n
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+103.70 570.70 Td
+(Lemon Infused Olive Oil) Tj
+ET
+Q
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 7 Tf
+103.70 560.70 Td
+(250 ml bottle) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+351.20 569.70 Td
+(24) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+411.20 569.70 Td
+(8.20) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+450.70 569.70 Td
+(10%) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+534.10 569.70 Td
+(177.12) Tj
+ET
+[] 0 d
+0.05 w
+0.89 0.89 0.89 RG
+0.89 0.89 0.89 rg
+28.70 555.95 537.90 -0.50 re
+B
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+428.60 536.20 Td
+(Subtotal) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+534.10 536.20 Td
+(257.52) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+423.60 521.20 Td
+(VAT 21%) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+539.10 521.20 Td
+(54.08) Tj
+ET
+[] 0 d
+0.05 w
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+346.60 513.20 220.00 -23.00 re
+B
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 11 Tf
+354.10 498.20 Td
+(TOTAL \(EUR\)) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 11 Tf
+527.95 498.20 Td
+(311.60) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 536.20 Td
+(Amounts in euros. Payment within 30 days by bank transfer.) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 523.70 Td
+(IBAN ES00 0000 0000 0000 0000 0000) Tj
+ET
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F3 11 Tf
+28.70 494.20 Td
+(Thank you for your business!) Tj
+ET
+[] 0 d
+0.05 w
+0.75 0.75 0.75 RG
+0.75 0.75 0.75 rg
+28.70 65.05 537.90 -0.75 re
+B
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 8 Tf
+28.70 51.55 Td
+(Report Manager sample report · data: samples.db \(SQLite\)) Tj
+ET
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 8 Tf
+541.25 51.55 Td
+(Page 2) Tj
+ET
+
+endstream
+endobj
+5 0 obj
+5592
+endobj
+6 0 obj
+<< /Length 7 0 R
+ >>
+stream
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F2 18 Tf
+28.70 795.20 Td
+(Mare Nostrum Fine Foods) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 780.20 Td
+(Muelle de Levante 12 · 08039 Barcelona · Spain) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 768.70 Td
+(VAT ES-B00000000 · +34 930 000 000 · billing@marenostrum.example) Tj
+ET
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F2 22 Tf
+476.15 791.20 Td
+(INVOICE) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 740.20 Td
+(Invoice number) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+519.05 739.20 Td
+(2024/00009) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 725.70 Td
+(Date) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+521.55 724.70 Td
+(10/01/2024) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 711.20 Td
+(Customer code) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+540.10 710.20 Td
+(C0045) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+336.60 696.70 Td
+(Sales representative) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+511.55 695.70 Td
+(Oliver Taylor) Tj
+ET
+[] 0 d
+0.05 w
+0.93 0.95 0.97 RG
+0.93 0.95 0.97 rg
+28.70 658.70 m
+28.70 745.20 l
+28.70 753.20 36.70 753.20 v
+310.70 753.20 l
+318.70 753.20 318.70 745.20 v
+318.70 658.70 l
+318.70 650.70 310.70 650.70 v
+36.70 650.70 l
+28.70 650.70 28.70 658.70 v
+B
+0.18 0.46 0.71 RG
+0.18 0.46 0.71 rg
+BT
+/F2 7 Tf
+41.20 739.70 Td
+(BILL TO) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 11 Tf
+41.20 723.20 Td
+(Old Mill Restaurant) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+41.20 707.70 Td
+(Attn. Noah Fischer) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+41.20 693.70 Td
+(92 Garden Row) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+41.20 680.70 Td
+(60760 London) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F2 9 Tf
+41.20 667.70 Td
+(UNITED KINGDOM) Tj
+ET
+[] 0 d
+0.05 w
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+28.70 635.20 537.90 -20.00 re
+B
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+33.70 623.20 Td
+(#) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+51.20 623.20 Td
+(SKU) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+103.70 623.20 Td
+(Description) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+345.65 623.20 Td
+(Qty.) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+391.80 623.20 Td
+(Unit price) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+449.60 623.20 Td
+(Disc.) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 8 Tf
+531.40 623.20 Td
+(Amount) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+33.70 596.70 Td
+(1) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+51.20 597.70 Td
+(MN-3014) Tj
+ET
+q
+103.70 606.70 210.00 -12.50 re
+h
+W
+n
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+103.70 597.70 Td
+(Chorizo from Leon) Tj
+ET
+Q
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 7 Tf
+103.70 587.70 Td
+(250 g piece) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+356.20 596.70 Td
+(8) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+411.20 596.70 Td
+(4.70) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+539.10 596.70 Td
+(37.60) Tj
+ET
+[] 0 d
+0.05 w
+0.89 0.89 0.89 RG
+0.89 0.89 0.89 rg
+28.70 582.95 537.90 -0.50 re
+B
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+33.70 569.70 Td
+(2) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+51.20 570.70 Td
+(MN-8042) Tj
+ET
+q
+103.70 579.70 210.00 -12.50 re
+h
+W
+n
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+103.70 570.70 Td
+(Rioja Crianza) Tj
+ET
+Q
+0.55 0.55 0.55 RG
+0.55 0.55 0.55 rg
+BT
+/F1 7 Tf
+103.70 560.70 Td
+(750 ml bottle) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+356.20 569.70 Td
+(4) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+406.20 569.70 Td
+(12.90) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+539.10 569.70 Td
+(51.60) Tj
+ET
+[] 0 d
+0.05 w
+0.89 0.89 0.89 RG
+0.89 0.89 0.89 rg
+28.70 555.95 537.90 -0.50 re
+B
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+428.60 536.20 Td
+(Subtotal) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+539.10 536.20 Td
+(89.20) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 9 Tf
+428.60 521.20 Td
+(VAT 0%) Tj
+ET
+0.00 0.00 0.00 RG
+0.00 0.00 0.00 rg
+BT
+/F1 9 Tf
+544.10 521.20 Td
+(0.00) Tj
+ET
+[] 0 d
+0.05 w
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+346.60 513.20 220.00 -23.00 re
+B
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 11 Tf
+354.10 498.20 Td
+(TOTAL \(EUR\)) Tj
+ET
+1.00 1.00 1.00 RG
+1.00 1.00 1.00 rg
+BT
+/F2 11 Tf
+534.10 498.20 Td
+(89.20) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 536.20 Td
+(Amounts in euros. Payment within 30 days by bank transfer.) Tj
+ET
+0.35 0.35 0.35 RG
+0.35 0.35 0.35 rg
+BT
+/F1 8 Tf
+28.70 523.70 Td
+(IBAN ES00 0000 0000 0000 0000 0000) Tj
+ET
+0.12 0.30 0.47 RG
+0.12 0.30 0.47 rg
+BT
+/F3 11 Tf
+28.70 494.20 Td
+(Thank you for your business!) Tj
+ET
+
+endstream
+endobj
+7 0 obj
+5184
+endobj
+8 0 obj
+<< /Type /Outlines
+/Count 0
+>>
+endobj
+9 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+>>
+endobj
+10 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+11 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F3
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+12 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F4
+/BaseFont /Helvetica-BoldOblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+13 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F5
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+>>
+endobj
+14 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F6
+/BaseFont /Courier-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+15 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F7
+/BaseFont /Courier-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+16 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F8
+/BaseFont /Courier-BoldOblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+17 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F9
+/BaseFont /Times-Roman
+/Encoding /WinAnsiEncoding
+>>
+endobj
+18 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F10
+/BaseFont /Times-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+19 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F11
+/BaseFont /Times-Italic
+/Encoding /WinAnsiEncoding
+>>
+endobj
+20 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F12
+/BaseFont /Times-BoldItalic
+/Encoding /WinAnsiEncoding
+>>
+endobj
+21 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F13
+/BaseFont /Symbol
+/Encoding /WinAnsiEncoding
+>>
+endobj
+22 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F14
+/BaseFont /ZapfDingbats
+/Encoding /WinAnsiEncoding
+>>
+endobj
+23 0 obj
+<< /Type /Pages
+/Kids [
+25 0 R
+26 0 R
+27 0 R
+]
+/Count 3
+>>
+endobj
+24 0 obj
+<< /ProcSet [ /PDF /Text /ImageC]
+/Font << 
+/F1 9 0 R 
+/F2 10 0 R 
+/F3 11 0 R 
+/F4 12 0 R 
+/F5 13 0 R 
+/F6 14 0 R 
+/F7 15 0 R 
+/F8 16 0 R 
+/F9 17 0 R 
+/F10 18 0 R 
+/F11 19 0 R 
+/F12 20 0 R 
+/F13 21 0 R 
+/F14 22 0 R 
+>>
+>>
+endobj
+25 0 obj
+<< /Type /Page
+/Parent 23 0 R
+/MediaBox [ 0 0 595.30 841.90]
+/Contents 2 0 R
+/Resources 24 0 R
+>>
+endobj
+26 0 obj
+<< /Type /Page
+/Parent 23 0 R
+/MediaBox [ 0 0 595.30 841.90]
+/Contents 4 0 R
+/Resources 24 0 R
+>>
+endobj
+27 0 obj
+<< /Type /Page
+/Parent 23 0 R
+/MediaBox [ 0 0 595.30 841.90]
+/Contents 6 0 R
+/Resources 24 0 R
+>>
+endobj
+28 0 obj
+<< /Type /Catalog
+/Pages 23 0 R
+/Outlines 8 0 R
+>>
+endobj
+xref
+0 29
+0000000000 65535 f
+0000000010 00000 n
+0000000259 00000 n
+0000005891 00000 n
+0000005914 00000 n
+0000011566 00000 n
+0000011589 00000 n
+0000016833 00000 n
+0000016856 00000 n
+0000016907 00000 n
+0000017022 00000 n
+0000017143 00000 n
+0000017267 00000 n
+0000017395 00000 n
+0000017509 00000 n
+0000017628 00000 n
+0000017750 00000 n
+0000017876 00000 n
+0000017994 00000 n
+0000018112 00000 n
+0000018232 00000 n
+0000018356 00000 n
+0000018470 00000 n
+0000018590 00000 n
+0000018675 00000 n
+0000018933 00000 n
+0000019055 00000 n
+0000019177 00000 n
+0000019299 00000 n
+trailer
+<< /Size 29
+/Root 28 0 R
+/Info 1 0 R
+>>
+startxref
+19372
+%%EOF

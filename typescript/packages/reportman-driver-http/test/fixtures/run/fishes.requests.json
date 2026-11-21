@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/data-session/start",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT SPECIES_NO, CATEGORY, COMMON_NAME, SPECIES_NAME, LENGTH_CM, LENGTH_IN, NOTES, GRAPHIC FROM FISHES ORDER BY CATEGORY, COMMON_NAME\",\"parameters\":[]}"
+  }
+]

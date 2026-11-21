@@ -1,0 +1,4 @@
+{
+  "error": "ArgumentException",
+  "message": "The string 'not a date' was not recognized as a valid DateTime. There is an unknown word starting at index '0'.Couldn't store <not a date> in D Column.  Expected type is DateTime."
+}
