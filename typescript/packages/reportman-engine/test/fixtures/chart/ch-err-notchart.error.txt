@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: Identifier: NOPE is not a grafic, calling GraphicNew

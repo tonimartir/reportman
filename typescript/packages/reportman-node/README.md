@@ -4,9 +4,10 @@ Run Report Manager `.rep` reports from Node.js to PDF, with JavaScript only: no 
 no WebAssembly, no external binaries. The report is laid out by `reportman-engine`, a translation
 of the C# engine, and gives the same PDF.
 
-Status: prototype, not published. Supported today: labels, expressions, shapes, sections and
-groups, subreports, master/detail, parameters, the standard 14 PDF fonts. Images, barcodes,
-charts, HTML text and embedded TrueType fonts fail with a clear "not supported yet" error.
+Status: prototype, not published. Supported today: labels, expressions, shapes, images (JPEG,
+PNG, BMP, GIF), barcodes (1D, PDF417, QR), charts, sections and groups, subreports,
+master/detail, parameters, the standard 14 PDF fonts. HTML text, embedded TrueType fonts and
+PDF/A fail with a clear "not supported yet" error.
 
 ## The two steps
 

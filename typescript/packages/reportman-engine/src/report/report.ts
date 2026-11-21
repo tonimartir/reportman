@@ -53,10 +53,8 @@ import { ReportParam } from '../params/param.js';
 import { NoDataToPrintException, ReportException } from './errors.js';
 import {
   IdenBarcodeOp,
-  IdenChartPlaceholder,
   IdenEof,
   IdenGetValueFromSQL,
-  IdenGraphicFunction,
   IdenGraphicOp,
   IdenImageOp,
   IdenOrientationOp,
@@ -76,7 +74,6 @@ import {
   pt,
   ShapeItem,
   SubReportEvent,
-  UnsupportedItem,
 } from './items.js';
 import { SectionRuntime, SectionType, SkipType } from './section.js';
 import { ImageItem } from './imageitem.js';
@@ -84,6 +81,17 @@ import type { ImageItem as ImageModel } from 'reportman-lib';
 import { SubReportRuntime } from './subreport.js';
 import { barcodeOp, BarcodeItem } from './barcode/barcodeitem.js';
 import type { BarcodeItem as BarcodeModel } from 'reportman-lib';
+import { ChartItem } from './chart/chartitem.js';
+import type { ChartItem as ChartModel } from 'reportman-lib';
+import {
+  IdenGraphicBounds,
+  IdenGraphicClear,
+  IdenGraphicColor,
+  IdenGraphicNew,
+  IdenGraphicNewFunction,
+  IdenGraphicNewXY,
+  IdenGraphicSerieColor,
+} from './chart/chartidens.js';
 
 /** BaseReport.MAX_PAGENUM. */
 export const MAX_PAGENUM = 100000;
@@ -169,7 +177,12 @@ export class ReportRuntime {
   readonly dataInfos: ReportDataInfo[] = [];
   readonly subReports: SubReportRuntime[] = [];
   private readonly expressionItems: ExpressionItem[] = [];
-  private readonly chartIdentifiers: { identifier: string; name: string }[] = [];
+  private readonly chartItems: ChartItem[] = [];
+  /**
+   * ChartingDriver: the device that draws the charts instead of the device the report prints
+   * with (null: that device draws them, with its drawChart or else the vector chart).
+   */
+  chartingDriver: PrintOut | null = null;
 
   // BaseReport state
   metaFile: MetaFile;
@@ -271,13 +284,13 @@ export class ReportRuntime {
       iden('SETPAGESOURCE', new IdenPageOp(this)),
       iden('SETPAGEORIENTATION', new IdenOrientationOp(this)),
       iden('GETVALUEFROMSQL', new IdenGetValueFromSQL(this)),
-      iden('GRAPHICNEW', new IdenGraphicFunction(this, 'GRAPHICNEW', 'snbss', 'function GraphicClear(gr:string;newvalue:double;changeserie:boolean;valuecaption:string;seriecaption:string):Boolean')),
-      iden('GRAPHICNEWXY', new IdenGraphicFunction(this, 'GRAPHICNEWXY', 'snnbss', 'function GraphicClear(gr:string;xvalue,yvalue:double;changeserie:boolean;valuecaption:string;seriecaption:string):Boolean')),
-      iden('GRAPHICNEWFUNCTION', new IdenGraphicFunction(this, 'GRAPHICNEWFUNCTION', 'ssss', 'function GraphicnewFunction(gr:string;functionName.string;functionParams:string;seriecaption:string):Boolean')),
-      iden('GRAPHICCLEAR', new IdenGraphicFunction(this, 'GRAPHICCLEAR', 's', 'function GraphicClear(gr:string):Boolean')),
-      iden('GRAPHICCOLOR', new IdenGraphicFunction(this, 'GRAPHICCOLOR', 'si', 'function GraphicColor(gr:string;Color:integer):Boolean')),
-      iden('GRAPHICSERIECOLOR', new IdenGraphicFunction(this, 'GRAPHICSERIECOLOR', 'si', 'function GraphicSerieColor(gr:string;Color:integer):Boolean')),
-      iden('GRAPHICBOUNDS', new IdenGraphicFunction(this, 'GRAPHICBOUNDS', 'sbbnnbnb', 'function (Gr:string; autol,autoh:boolean; low,high:double;log:boolean; logbase:double; inverted:boolean):Boolean')),
+      iden('GRAPHICNEW', new IdenGraphicNew(this)),
+      iden('GRAPHICNEWXY', new IdenGraphicNewXY(this)),
+      iden('GRAPHICNEWFUNCTION', new IdenGraphicNewFunction(this)),
+      iden('GRAPHICCLEAR', new IdenGraphicClear(this)),
+      iden('GRAPHICCOLOR', new IdenGraphicColor(this)),
+      iden('GRAPHICSERIECOLOR', new IdenGraphicSerieColor(this)),
+      iden('GRAPHICBOUNDS', new IdenGraphicBounds(this)),
     ];
     this.evalIdens = new EvalIdentifiers(options.culture.name);
     for (const [k, v] of idens) this.evalIdens.add(k, v);
@@ -340,9 +353,9 @@ export class ReportRuntime {
       case 'TRPBARCODE':
         return new BarcodeItem(this, cm as BarcodeModel);
       case 'TRPCHART': {
-        const identifier = (cm as unknown as { identifier?: string }).identifier ?? '';
-        if (identifier.length > 0) this.chartIdentifiers.push({ identifier, name: cm.name });
-        return new UnsupportedItem(this, cm, 'Charts');
+        const item = new ChartItem(this, cm as ChartModel);
+        this.chartItems.push(item);
+        return item;
       }
       default:
         throw new Error('Unknown report item class: ' + String(cm.className));
@@ -483,7 +496,7 @@ export class ReportRuntime {
         ev.addVariable(item.identifier, item.idenExpression);
       }
     }
-    for (const c of this.chartIdentifiers) ev.addVariable(c.identifier, new IdenChartPlaceholder(c.name));
+    for (const c of this.chartItems) if (c.identifier.length > 0) ev.addVariable(c.identifier, c.idenChart);
     for (const aname of this.evalIdens.keys) {
       const i = this.evalIdens.get(aname)!;
       if (aname !== 'EOF') ev.addVariable(aname, i);

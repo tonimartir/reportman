@@ -107,3 +107,7 @@ export type { ReportProgress, ReportRuntimeOptions } from './report/report.js';
 export { prepareReport, ReportRun } from './report/run.js';
 export type { PrepareReportOptions, ParametersOptions } from './report/run.js';
 export { convertToDotNet } from './report/convert.js';
+// Charts: the series a device with a chart support of its own receives (PrintOut.drawChart),
+// and the vector chart drawn for a device without one.
+export { Series, SeriesItem } from './report/chart/series.js';
+export { drawVectorChart, VECTOR_CHART_SERIES_COLORS } from './report/chart/vectorchart.js';

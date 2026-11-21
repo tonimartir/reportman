@@ -178,9 +178,10 @@ describe('not supported yet', () => {
   });
 
   // product-catalog (barcodes) runs: barcode-parity.test.ts; fishes (images) runs:
-  // image-parity.test.ts (img-fishes, without its chart)
-  it.each(['monthly-sales', 'sales-by-category', 'letter'])(
-    'fails clearly for the sample %s (images, charts, HTML text)',
+  // image-parity.test.ts (img-fishes, without its chart); monthly-sales, sales-by-category and
+  // fishes with its chart run: chart-parity.test.ts
+  it.each(['letter'])(
+    'fails clearly for the sample %s (HTML text)',
     async (name) => {
       const model = readReportXml(new Uint8Array(fs.readFileSync(path.resolve(here, '../../../../samples/' + name + '.rep'))));
       const run = await prepareReport(model, {

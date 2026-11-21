@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: Identifier: MON.N is not a grafic, calling GraphicClear

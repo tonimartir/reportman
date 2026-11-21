@@ -1,14 +1,13 @@
 // Ports of the report identifiers of Reportman.Reporting.BaseReport (IdenReportVar, IdenEof,
 // IdenSetLanguage, IdenTextHeight, IdenParamInfo, IdenGraphicOp, IdenTextOp, IdenImageOp,
-// IdenOrientationOp, IdenPageOp, IdenReOpen, IdenGetValueFromSQL and the chart functions) and of
-// EvalIdenExpression (an expression item read by its identifier).
+// IdenOrientationOp, IdenPageOp, IdenReOpen and IdenGetValueFromSQL; the chart functions are in
+// chart/chartidens.ts) and of EvalIdenExpression (an expression item read by its identifier).
 
 import { IdenFunction } from '../eval/identifiers.js';
 import type { Evaluator } from '../eval/evaluator.js';
 import { CsDecimal } from '../util/decimal.js';
 import { argumentOutOfRangeException, NamedException } from '../util/netexception.js';
 import { Variant, VariantType } from '../variant/variant.js';
-import { NotSupportedYetError } from '../data/errors.js';
 import type { ReportRuntime } from './report.js';
 
 /** Translator.TranslateStr: the identifiers are created before the evaluator, with no evaluator. */
@@ -190,46 +189,6 @@ export class IdenGraphicOp extends IdenFunctionReport {
         this.int(9),
       ),
     );
-  }
-}
-
-/** The chart functions: charts are not ported, so they fail as a report with a chart does. */
-export class IdenGraphicFunction extends IdenFunctionReport {
-  private readonly checks: readonly ('s' | 'n' | 'b' | 'i')[];
-
-  constructor(report: ReportRuntime, name: string, checks: string, model: string) {
-    super(report);
-    this.checks = checks.split('') as ('s' | 'n' | 'b' | 'i')[];
-    this.setParamCount(this.checks.length);
-    this.name = name;
-    this.fModel = model;
-  }
-
-  protected getValue(): Variant {
-    this.checks.forEach((c, i) => {
-      const p = this.params[i]!;
-      const ok = c === 's' ? p.isString() : c === 'n' ? p.isNumber() : c === 'b' ? p.isBoolean() : p.isInteger();
-      if (!ok) throw this.typeError(this.name);
-    });
-    const ident = this.params[0]!.toString(this.ctx);
-    const iden = this.report.evaluator.searchIdentifier(ident);
-    if (iden instanceof IdenChartPlaceholder) throw new NotSupportedYetError('The chart ' + ident + ' (' + this.name + ')');
-    const verb = this.name === 'GRAPHICCLEAR' ? 'GraphicClear' : this.name === 'GRAPHICCOLOR' ? 'GraphicColor' : this.name === 'GRAPHICSERIECOLOR' ? 'GraphicSerieColor' : 'GraphicNew';
-    throw new Error('Identifier: ' + ident + ' is not a grafic, calling ' + verb);
-  }
-}
-
-/** The identifier of a chart item: charts are not ported. */
-export class IdenChartPlaceholder extends IdenFunction {
-  private readonly itemName: string;
-
-  constructor(itemName: string) {
-    super(null);
-    this.itemName = itemName;
-  }
-
-  protected getValue(): Variant {
-    throw new NotSupportedYetError('The chart ' + this.itemName);
   }
 }
 
