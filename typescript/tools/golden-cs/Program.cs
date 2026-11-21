@@ -22,7 +22,7 @@ using Reportman.Reporting.Design.Json;
 //       type, ToString(), the formatted text when a format is given, or the error.
 //
 //   golden-cs run <report.rep> <out.metafile.json> [--pdf out.pdf] [--sqlite db]
-//                 [--param NAME=value]... [--culture xx-XX]
+//                 [--param NAME=value]... [--culture xx-XX] [--driver standard|freetype] [--fonts dir]
 //       Runs the report measured and printed with PrintOutPDFStandard (standard 14 fonts, no
 //       FreeType) and writes the metafile as JSON. Connections without a provider factory are
 //       opened as SQLite (SQLiteCore) on the --sqlite file, read only.
@@ -184,7 +184,7 @@ class Program
         report.AsyncExecution = false;
 
         string pdfPath = Option(args, "--pdf");
-        var printer = new PrintOutPDFStandard();
+        PrintOutPDFBase printer = CreatePrinter(args);
         printer.FileName = pdfPath ?? "";
         printer.Compressed = false;
         printer.Print(report.MetaFile);
@@ -192,6 +192,24 @@ class Program
         Output(MetaFileJson(report.MetaFile).ToString(Formatting.Indented), args[2]);
         Console.WriteLine("pages=" + report.MetaFile.Pages.Count);
         return 0;
+    }
+
+    // --driver standard (default): PrintOutPDFStandard, the 14 standard fonts, no font provider.
+    // --driver freetype: PrintOutPDFFreeType, the cross-platform driver of the C# engine (FreeType,
+    // HarfBuzz, ICU; fonts from the system font folders and --fonts <dir>), the one Reportman.Server
+    // uses: TrueType fonts embedded and subset, shaping, bidi, HTML text, PDF/A.
+    static PrintOutPDFBase CreatePrinter(string[] args)
+    {
+        string driver = Option(args, "--driver") ?? "standard";
+        string fonts = Option(args, "--fonts");
+        if (fonts != null)
+            FontInfoFt.ExtraFontDirectories.Add(Path.GetFullPath(fonts));
+        switch (driver)
+        {
+            case "standard": return new PrintOutPDFStandard();
+            case "freetype": return new PrintOutPDFFreeType();
+            default: throw new Exception("Unknown driver " + driver);
+        }
     }
 
     // The ADO.NET providers of Reportman.Server (DirectProviders.cs), by the same invariant names.
@@ -305,7 +323,7 @@ class Program
     {
         SetCulture(args);
         JArray cases = JArray.Parse(File.ReadAllText(args[1]));
-        var printer = new PrintOutPDFStandard();
+        PrintOutPDFBase printer = CreatePrinter(args);
         printer.FileName = "";
         var meta = new MetaFile();
         printer.NewDocument(meta);
