@@ -159,7 +159,7 @@ namespace Reportman.Reporting.Design
                         ValidateAddObject(workingReport, operation, index, result);
                         break;
                     case ReportBatchOperationType.RemoveObject:
-                        ValidateTargetExists(workingReport, operation, index, result);
+                        ValidateRemove(workingReport, operation, index, result);
                         break;
                     case ReportBatchOperationType.ModifyProperties:
                         ValidateModify(workingReport, operation, index, result);
@@ -190,6 +190,7 @@ namespace Reportman.Reporting.Design
             }
 
             ValidateReportStructureRules(workingReport, result);
+            ValidateUnionSources(report, workingReport, result);
 
             return result;
         }
@@ -545,6 +546,10 @@ namespace Reportman.Reporting.Design
                 var target = BaseReport.NewComponentByClassName(objectClass);
                 ValidatePropertiesAgainstTarget(target, operation.Properties, index, operation, result);
                 ValidateSemanticProperties(report, target, operation.Properties, index, operation, result);
+                if (target is DataInfo)
+                {
+                    ValidateMemoryDatasetSql(report, null, operation.Properties, index, operation, result);
+                }
             }
         }
 
@@ -559,6 +564,207 @@ namespace Reportman.Reporting.Design
             if (TryGetComponentByName(report, operation.TargetName) == null)
             {
                 result.Issues.Add(CreateIssue("target_not_found", "TargetName was not found in report.", index, operation));
+            }
+        }
+
+        private static void ValidateRemove(Report report, ReportBatchOperation operation, int index, ReportBatchValidationResult result)
+        {
+            ValidateTargetExists(report, operation, index, result);
+            if (HasIssuesForOperation(result, index))
+            {
+                return;
+            }
+
+            // A union reads its datasets when it opens: without one of them it fails at run time
+            var dataInfo = TryGetComponentByName(report, operation.TargetName) as DataInfo;
+            if (dataInfo == null || string.IsNullOrWhiteSpace(dataInfo.Alias))
+            {
+                return;
+            }
+
+            var readers = new List<string>();
+            foreach (var union in ReportDatasetUnions.FindUnionsReading(report, dataInfo.Alias))
+            {
+                if (!ReferenceEquals(union, dataInfo))
+                {
+                    readers.Add(string.IsNullOrWhiteSpace(union.Alias) ? union.Name : union.Alias);
+                }
+            }
+
+            if (readers.Count > 0)
+            {
+                result.Issues.Add(CreateIssue(
+                    "dataset_used_by_union",
+                    "Dataset '" + dataInfo.Alias + "' can not be removed: the union of datasets " + string.Join(", ", readers)
+                        + " reads it (DataUnions). Remove the union first, or keep the dataset.",
+                    index,
+                    operation));
+            }
+        }
+
+        /// <summary>
+        /// A dataset of an in-memory (Mybase) connection is a union of other datasets: it runs no SQL, so
+        /// an operation that leaves SQL on one (setting its SQL, or moving a dataset with SQL to such a
+        /// connection) is refused.
+        /// </summary>
+        private static void ValidateMemoryDatasetSql(Report report, DataInfo current, IList<ReportBatchProperty> properties, int index, ReportBatchOperation operation, ReportBatchValidationResult result)
+        {
+            if (properties == null || properties.Count == 0)
+            {
+                return;
+            }
+
+            var touched = false;
+            var databaseAlias = current == null ? string.Empty : current.DatabaseAlias;
+            var sql = current == null ? string.Empty : current.SQL;
+            foreach (var property in properties)
+            {
+                if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
+                {
+                    continue;
+                }
+
+                if (string.Equals(property.PropertyName, nameof(DataInfo.SQL), StringComparison.OrdinalIgnoreCase))
+                {
+                    sql = Convert.ToString(UnwrapTaggedValue(property.Value), CultureInfo.InvariantCulture) ?? string.Empty;
+                    touched = true;
+                }
+                else if (string.Equals(property.PropertyName, nameof(DataInfo.DatabaseAlias), StringComparison.OrdinalIgnoreCase))
+                {
+                    databaseAlias = Convert.ToString(UnwrapTaggedValue(property.Value), CultureInfo.InvariantCulture) ?? string.Empty;
+                    touched = true;
+                }
+            }
+
+            if (!touched || string.IsNullOrWhiteSpace(sql))
+            {
+                return;
+            }
+
+            var connection = ReportDatasetUnions.FindConnection(report, databaseAlias);
+            if (!ReportDatasetUnions.IsMemoryConnection(connection))
+            {
+                return;
+            }
+
+            var datasetName = current == null
+                ? (string.IsNullOrWhiteSpace(operation.TargetName) ? "(new dataset)" : operation.TargetName)
+                : (string.IsNullOrWhiteSpace(current.Alias) ? current.Name : current.Alias);
+            result.Issues.Add(CreateIssue(
+                "sql_on_memory_connection",
+                "Dataset '" + datasetName + "' would have SQL on the in-memory connection '" + connection.Alias
+                    + "' (driver Mybase): its datasets run no SQL, they are unions of other datasets (DataUnions). Use a SQL connection for a dataset with SQL.",
+                index,
+                operation));
+        }
+
+        /// <summary>
+        /// Every entry of the DataUnions of a union must name a dataset of the report. Only the references
+        /// the batch breaks are reported: a report that already had a broken one can still be edited.
+        /// </summary>
+        private static void ValidateUnionSources(Report originalReport, Report workingReport, ReportBatchValidationResult result)
+        {
+            var alreadyBroken = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var broken in FindBrokenUnionSources(originalReport))
+            {
+                alreadyBroken.Add(broken.Key);
+            }
+
+            foreach (var broken in FindBrokenUnionSources(workingReport))
+            {
+                if (alreadyBroken.Contains(broken.Key))
+                {
+                    continue;
+                }
+
+                result.Issues.Add(CreateIssue("invalid_union_source", broken.Value, null, null));
+            }
+        }
+
+        private static List<KeyValuePair<string, string>> FindBrokenUnionSources(Report report)
+        {
+            var broken = new List<KeyValuePair<string, string>>();
+            if (report == null || report.DataInfo == null)
+            {
+                return broken;
+            }
+
+            foreach (DataInfo union in report.DataInfo)
+            {
+                if (!ReportDatasetUnions.IsMemoryDataset(report, union))
+                {
+                    continue;
+                }
+
+                foreach (var sourceAlias in ReportDatasetUnions.GetSourceAliases(union))
+                {
+                    if (HasDataInfoWithAlias(report, sourceAlias))
+                    {
+                        continue;
+                    }
+
+                    var unionAlias = string.IsNullOrWhiteSpace(union.Alias) ? union.Name : union.Alias;
+                    broken.Add(new KeyValuePair<string, string>(
+                        union.Name + "|" + sourceAlias,
+                        "The union of datasets '" + unionAlias + "' reads the dataset '" + sourceAlias
+                            + "' (DataUnions), which does not exist in the report."));
+                }
+            }
+
+            return broken;
+        }
+
+        /// <summary>
+        /// A dataset whose Alias changes keeps being read by the unions that read it: their DataUnions
+        /// entries name the new alias (the "-FIELDS" part kept), each change in the undo history.
+        /// </summary>
+        private static void CascadeDatasetAliasRename(Report report, DataInfo renamed, string oldAlias, int groupId)
+        {
+            var newAlias = renamed.Alias ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(oldAlias) || string.IsNullOrWhiteSpace(newAlias)
+                || string.Equals(oldAlias, newAlias, StringComparison.Ordinal))
+            {
+                return;
+            }
+
+            foreach (DataInfo union in report.DataInfo)
+            {
+                if (union.DataUnions == null || union.DataUnions.Count == 0)
+                {
+                    continue;
+                }
+
+                Strings updated = null;
+                for (var entryIndex = 0; entryIndex < union.DataUnions.Count; entryIndex++)
+                {
+                    var entry = union.DataUnions[entryIndex];
+                    if (!ReportDatasetUnions.EntryReads(entry, oldAlias))
+                    {
+                        continue;
+                    }
+
+                    if (updated == null)
+                    {
+                        updated = (Strings)union.DataUnions.Clone();
+                    }
+
+                    updated[entryIndex] = ReportDatasetUnions.WithSourceAlias(entry.Trim(), newAlias);
+                }
+
+                if (updated == null)
+                {
+                    continue;
+                }
+
+                var undoOperation = new ChangeObjectOperation(OperationType.Modify, groupId)
+                {
+                    ComponentName = union.Name,
+                    ComponentClass = union.ClassName,
+                    ParentName = GetParentName(report, union)
+                };
+                undoOperation.AddProperty(nameof(DataInfo.DataUnions), PropertyType.StringArray, union.DataUnions.Clone(), updated.Clone());
+                union.DataUnions = updated;
+                report.UndoCue?.AddOperation(undoOperation, report);
             }
         }
 
@@ -592,6 +798,10 @@ namespace Reportman.Reporting.Design
                 {
                     ValidatePropertiesAgainstTarget(target, operation.Properties, index, operation, result);
                     ValidateSemanticProperties(report, target, operation.Properties, index, operation, result);
+                    if (target is DataInfo dataInfoTarget)
+                    {
+                        ValidateMemoryDatasetSql(report, dataInfoTarget, operation.Properties, index, operation, result);
+                    }
                 }
             }
         }
@@ -766,9 +976,15 @@ namespace Reportman.Reporting.Design
                 ParentName = GetParentName(report, target)
             };
 
+            var dataInfoTarget = target as DataInfo;
+            var oldDatasetAlias = dataInfoTarget == null ? null : dataInfoTarget.Alias;
             ApplyProperties(target, operation.Properties, undoOperation, recordUndo: true);
             SynchronizeGroupSectionChangeExpression(report, target as Section, operation.Properties, undoOperation, groupId);
             report.UndoCue.AddOperation(undoOperation, report);
+            if (dataInfoTarget != null)
+            {
+                CascadeDatasetAliasRename(report, dataInfoTarget, oldDatasetAlias, groupId);
+            }
         }
 
         private static void ApplyReorder(Report report, ReportBatchOperation operation, int groupId)
@@ -1407,11 +1623,12 @@ namespace Reportman.Reporting.Design
                     if (recordUndo)
                     {
                         var resolvedPropertyName = GetMemberName(member);
+                        // A list is recorded as copies: later edits of the item must not change the history
                         undoOperation.AddProperty(
                             resolvedPropertyName,
                             InferPropertyType(newValue, GetMemberType(member)),
-                            oldValue,
-                            newValue);
+                            CopyIfStrings(oldValue),
+                            CopyIfStrings(newValue));
                     }
                 }
             }
@@ -2400,7 +2617,8 @@ namespace Reportman.Reporting.Design
 
             if (value is string single)
             {
-                foreach (var piece in single.Split(','))
+                // Commas, or the line breaks a list keeps in the report (the .rep stores DataUnions one per line)
+                foreach (var piece in single.Split(new[] { ',', '\r', '\n' }))
                 {
                     var trimmed = piece.Trim();
                     if (trimmed.Length > 0) result.Add(trimmed);
@@ -2420,6 +2638,12 @@ namespace Reportman.Reporting.Design
 
             result.Add(Convert.ToString(value, CultureInfo.InvariantCulture) ?? string.Empty);
             return result;
+        }
+
+        private static object CopyIfStrings(object value)
+        {
+            var strings = value as Strings;
+            return strings == null ? value : strings.Clone();
         }
 
         private static T[] ConvertArray<T>(object value)
@@ -2457,7 +2681,9 @@ namespace Reportman.Reporting.Design
             {
                 return PropertyType.Date;
             }
-            if (type == typeof(string[]))
+            // A list of strings (DataUnions, the datasets of a parameter...) is a StringArray, as
+            // BaseReport records it and as the Delphi and Lazarus undo engines expect it
+            if (type == typeof(string[]) || type == typeof(Strings))
             {
                 return PropertyType.StringArray;
             }

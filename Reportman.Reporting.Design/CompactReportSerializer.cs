@@ -9,7 +9,8 @@ namespace Reportman.Reporting.Design
     /// <summary>
     /// Serializes a Report into a compact text DSL for LLM instance context.
     /// Only properties present in the schemaContext (ReportContextBuilder allowed properties)
-    /// are emitted, so the AI designer does not see properties it cannot edit.
+    /// are emitted, so the AI designer does not see properties it cannot edit, plus some
+    /// read-only context: the connections and the unions of datasets.
     /// Only non-default property values are emitted to reduce token usage.
     /// Font names are always included (Report Manager has no parent-font inheritance).
     /// </summary>
@@ -29,12 +30,14 @@ namespace Reportman.Reporting.Design
     ///   DocProducer, DocCreator, DocCreationDate, DocModificationDate, DocXMPContent,
     ///   StreamFormat, ActionBefore, ActionAfter, Language
     ///
-    /// DatabaseInfo: entire object type (not editable by the designer)
+    /// DatabaseInfo: not editable by the designer. Each connection is a read-only
+    ///   [CONNECTION "alias"] block with its Driver (and a Note for the in-memory Mybase driver,
+    ///   whose datasets are unions of other datasets); every other property is excluded.
     ///
-    /// DataInfo (extras): SQL, MyBaseFilename, MyBaseFields,
-    ///   MyBaseIndexFields, MyBaseMasterFields, BDEIndexFields, BDEIndexName, BDETable,
+    /// DataInfo (extras): SQL, MyBaseFilename, MyBaseFields, BDEIndexFields, BDEIndexName, BDETable,
     ///   BDEType, BDEFilter, BDEMasterFields, BDEFirstRange, BDELastRange, OpenOnStart,
-    ///   GroupUnion, ParallelUnion, HubSchemaId, SchemaName, DataUnions
+    ///   HubSchemaId, SchemaName. DataUnions, ParallelUnion, GroupUnion, MyBaseIndexFields and
+    ///   MyBaseMasterFields are emitted read-only, only for the datasets of a Mybase connection.
     ///
     /// Param (extras): ErrorMessage, IsReadOnly, NeverVisible,
     ///   AllowNulls, LookupDataset, SearchDataset, Search, SearchParam, Items, Values,
@@ -104,13 +107,22 @@ namespace Reportman.Reporting.Design
             Str(sb, i, nameof(Report.CustomPageWidth), report.CustomPageWidth > 0 ? Px(report.CustomPageWidth) : null, "");
             Str(sb, i, nameof(Report.CustomPageHeight), report.CustomPageHeight > 0 ? Px(report.CustomPageHeight) : null, "");
 
-            // DatabaseInfo is not exposed to the designer (entire type excluded)
+            // Connections are read-only context: the designer can not edit them
+            foreach (DatabaseInfo db in report.DatabaseInfo)
+            {
+                if (string.IsNullOrEmpty(db.Alias))
+                    continue;
+                sb.AppendLine();
+                sb.Append(i).Append("[CONNECTION \"").Append(Esc(db.Alias)).AppendLine("\"]");
+                WriteConnectionProps(sb, db, i + "  ");
+                sb.Append(i).AppendLine("[/CONNECTION]");
+            }
 
             foreach (DataInfo di in report.DataInfo)
             {
                 sb.AppendLine();
                 sb.Append(i).Append("[DATASET \"").Append(Esc(di.Name)).AppendLine("\"]");
-                WriteDatasetProps(sb, di, i + "  ");
+                WriteDatasetProps(sb, di, ReportDatasetUnions.IsMemoryDataset(report, di), i + "  ");
                 sb.Append(i).AppendLine("[/DATASET]");
             }
 
@@ -137,15 +149,38 @@ namespace Reportman.Reporting.Design
 
         #endregion
 
+        #region DatabaseInfo
+
+        private const string MemoryConnectionNote = "In-memory: its datasets run no SQL, each one is a union of other datasets of the report (DataUnions)";
+
+        private static void WriteConnectionProps(StringBuilder sb, DatabaseInfo db, string i)
+        {
+            // Read-only context: the driver tells an in-memory connection (unions) from a SQL one
+            sb.Append(i).Append("Driver=").Append(db.Driver).AppendLine();
+            if (ReportDatasetUnions.IsMemoryConnection(db))
+                AlwaysStr(sb, i, "Note", MemoryConnectionNote);
+        }
+
+        #endregion
+
         #region DataInfo
 
-        private static void WriteDatasetProps(StringBuilder sb, DataInfo di, string i)
+        private static void WriteDatasetProps(StringBuilder sb, DataInfo di, bool onMemoryConnection, string i)
         {
             // Schema-allowed: Alias, DatabaseAlias, DataSource
             // Context-only extras kept in DSL to reduce duplicated JSON prompt payload.
             Str(sb, i, "Alias", di.Alias, "");
             Str(sb, i, "DatabaseAlias", di.DatabaseAlias, "");
             Str(sb, i, "DataSource", di.DataSource, "");
+            if (onMemoryConnection)
+            {
+                // Read-only: what a union of datasets is made of
+                DatasetList(sb, i, "DataUnions", di.DataUnions);
+                Bool(sb, i, "ParallelUnion", di.ParallelUnion, false);
+                Bool(sb, i, "GroupUnion", di.GroupUnion, false);
+                Str(sb, i, "MyBaseIndexFields", di.MyBaseIndexFields, "");
+                Str(sb, i, "MyBaseMasterFields", di.MyBaseMasterFields, "");
+            }
             Str(sb, i, "SqlExplanation", di.SQLExplanation, "");
             Str(sb, i, "SqlExplanationError", di.SQLExplanationError, "");
         }
