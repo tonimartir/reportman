@@ -1,5 +1,5 @@
-import { AlignmentFlags, ByteBuffer, PDFConformanceType, PDFFontType, convertToInt32, intDiv, roundHalfEven, toInt32 } from 'reportman-metafile';
-import type { LineInfo, Rectangle } from 'reportman-metafile';
+import { AlignmentFlags, ByteBuffer, PDFConformanceType, PDFFontType, convertToInt32, intDiv, roundHalfEven, toInt32 } from '@reportman/metafile';
+import type { LineInfo, Rectangle } from '@reportman/metafile';
 import { getBitmapInfo, getJpegInfo } from './bitmaputil.js';
 import { decodeImageForPdf } from './imagecodec.js';
 import {
@@ -9,8 +9,8 @@ import {
   sfntGlyphCount,
   type1FontToPdfFontName,
   unicodeToWin1252,
-} from 'reportman-text';
-import type { FontInfoProvider, TGlyphPos, TTFontData } from 'reportman-text';
+} from '@reportman/text';
+import type { FontInfoProvider, TGlyphPos, TTFontData } from '@reportman/text';
 import { formatFixed2, intToHex } from './netformat.js';
 import { encodePDFText } from './pdfstrings.js';
 import type { PDFFile } from './pdffile.js';

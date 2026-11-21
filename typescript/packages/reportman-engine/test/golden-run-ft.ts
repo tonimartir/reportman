@@ -6,12 +6,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
-import { readReportXml } from 'reportman-lib';
-import type { MetaFile } from 'reportman-metafile';
-import { PdfDevice, type PdfClock } from 'reportman-pdf';
-import { NoDataToPrintException, prepareReport, RpDateTime, type EvalHost } from 'reportman-engine';
-import { fontDirectories, fontFiles, fontLibrary } from 'reportman-node';
-import { FontLibrary } from 'reportman-text';
+import { readReportXml } from '@reportman/lib';
+import type { MetaFile } from '@reportman/metafile';
+import { PdfDevice, type PdfClock } from '@reportman/pdf';
+import { NoDataToPrintException, prepareReport, RpDateTime, type EvalHost } from '@reportman/engine';
+import { fontDirectories, fontFiles, fontLibrary } from '@reportman/node';
+import { FontLibrary } from '@reportman/text';
 import { samplesDb } from './golden-run.js';
 import { sqliteHost } from './sqlite-host.js';
 

@@ -1,4 +1,4 @@
-import type { ParameterDescription } from 'reportman-engine';
+import type { ParameterDescription } from '@reportman/engine';
 
 /** Options of the reference parameters form. */
 export interface ParametersFormOptions {

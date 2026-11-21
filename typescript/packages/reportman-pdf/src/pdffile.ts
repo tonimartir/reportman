@@ -1,7 +1,7 @@
 import { zlibSync } from 'fflate';
-import { ByteBuffer, PDFConformanceType, TWIPS_PER_INCH, roundHalfEven } from 'reportman-metafile';
-import type { EmbeddedFile } from 'reportman-metafile';
-import { cffGlyphsAreCIDs, pdfNameOf, sfntCFFTable, sfntIsCFF, type FontInfoProvider, type TTFontData } from 'reportman-text';
+import { ByteBuffer, PDFConformanceType, TWIPS_PER_INCH, roundHalfEven } from '@reportman/metafile';
+import type { EmbeddedFile } from '@reportman/metafile';
+import { cffGlyphsAreCIDs, pdfNameOf, sfntCFFTable, sfntIsCFF, type FontInfoProvider, type TTFontData } from '@reportman/text';
 import { PDFCanvas } from './pdfcanvas.js';
 import { encodePDFText, escapeXml, trimNet } from './pdfstrings.js';
 import { formatFixed1, intToHex } from './netformat.js';

@@ -14,7 +14,7 @@ import {
   type DataValue,
   type ParameterValueType,
   type QueryParameter,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import {
   AgentConnection,
   createExecutor,
@@ -27,7 +27,7 @@ import {
   type FetchInit,
   type FetchLike,
   type ReportmanAgentOptions,
-} from 'reportman-driver-http';
+} from '@reportman/driver-http';
 import { elementToString, parseJson, toPlain, tryGetProperty } from '../src/json.js';
 import { executeBody, jsonDateTime, jsonDouble, jsonParameterValue } from '../src/request.js';
 import { readInt64 } from '../src/settings.js';

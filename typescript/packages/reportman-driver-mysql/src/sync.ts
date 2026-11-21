@@ -17,7 +17,7 @@ import {
   type QueryResult,
   type TransferError,
   type TransferResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import type { ConnectionSettings } from './connectionstring.js';
 import { invalidOperation, MySqlException } from './errors.js';
 import { ParameterCollection } from './params.js';

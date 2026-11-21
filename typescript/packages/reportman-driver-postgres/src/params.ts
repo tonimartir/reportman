@@ -5,7 +5,7 @@
 // (any number to an integer or numeric type, truncating) and refusing the others with an
 // InvalidCastException. Every parameter of the command is checked, used in the SQL or not.
 
-import { CsDecimal, DateTimeKind, RpDateTime, type QueryParameter } from 'reportman-engine';
+import { CsDecimal, DateTimeKind, RpDateTime, type QueryParameter } from '@reportman/engine';
 import { argumentException, invalidOperation, overflow, writingNotSupported } from './errors.js';
 import { clrTypeOfValue } from './values.js';
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PDFConformanceType, PDFFontType, newTextObjectStruct } from 'reportman-metafile';
+import { PDFConformanceType, PDFFontType, newTextObjectStruct } from '@reportman/metafile';
 import {
   HELVETICA_WIDTHS,
   PDFA3_NO_FONT_PROVIDER,
@@ -13,7 +13,7 @@ import {
   unicodeToWin1252,
   utf8Bytes,
   win1252Byte,
-} from 'reportman-text';
+} from '@reportman/text';
 
 describe('Windows-1252 (UnicodeToWin1252 of the C# engine)', () => {
   it('keeps ASCII and Latin-1, maps the 1252 specials and best fits the rest', () => {

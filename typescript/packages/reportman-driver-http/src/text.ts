@@ -3,7 +3,7 @@
 // (DbxIniDocument: UTF-8 with a BOM, else the ANSI code page of Windows). Written by hand so that the
 // package needs no TextDecoder.
 
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 
 type Decoder = (bytes: Uint8Array, start: number) => string;
 

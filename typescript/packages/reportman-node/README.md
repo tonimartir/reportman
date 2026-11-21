@@ -1,13 +1,24 @@
-# reportman-node
+# @reportman/node
 
 Run Report Manager `.rep` reports from Node.js to PDF, with JavaScript only: no native modules,
-no WebAssembly, no external binaries. The report is laid out by `reportman-engine`, a translation
+no WebAssembly, no external binaries. The report is laid out by `@reportman/engine`, a translation
 of the C# engine, and gives the same PDF.
 
-Status: prototype, not published. Supported today: labels, expressions, shapes, images (JPEG,
-PNG, BMP, GIF), barcodes (1D, PDF417, QR), charts, sections and groups, subreports,
-master/detail, parameters, the standard 14 PDF fonts and, with the `fonts` option, embedded
-TrueType and OpenType fonts with HTML text, right to left and complex scripts, and PDF/A-3B.
+Status: preview (`0.1.0-alpha.N`, npm tag `next`): the API may change until 1.0. Supported
+today: labels, expressions, shapes, images (JPEG, PNG, BMP, GIF), barcodes (1D, PDF417, QR),
+charts, sections and groups, subreports, master/detail, parameters, the standard 14 PDF fonts
+and, with the `fonts` option, embedded TrueType and OpenType fonts with HTML text, right to left
+and complex scripts, and PDF/A-3B.
+
+## Install
+
+```bash
+npm install @reportman/node@next
+npm install @reportman/driver-postgres@next   # or driver-firebird, driver-mysql, driver-mssql, driver-http
+```
+
+Node 22.12 or later. The packages are ES modules only; a CommonJS program loads them with
+`require('@reportman/node')` (Node's `require(esm)`).
 
 ## Fonts
 
@@ -25,14 +36,14 @@ const report = await openReport('letter.rep', {
   `platform`), a character the font lacks takes a font that has it, every text is shaped
   (ligatures, kerning, marks, Arabic, Hebrew, Devanagari, Thai) and laid out with the Unicode
   bidirectional algorithm, and the fonts are embedded as subsets. A `FontLibrary` of
-  `reportman-text` can be given instead, for fonts that are not files on the disk.
+  `@reportman/text` can be given instead, for fonts that are not files on the disk.
 - The fonts are read with fontkit: TrueType, OpenType CFF and collections. Type 1 fonts (`.pfb`)
   are not read, and a CFF2 (variable OpenType) font fails with a clear error.
 
 ## The two steps
 
 ```ts
-import { openReport, sqlite } from 'reportman-node';
+import { openReport, sqlite } from '@reportman/node';
 
 const report = await openReport('invoices.rep', {
   connections: { SAMPLES: sqlite('samples.db') },   // by report connection alias
@@ -51,6 +62,12 @@ const pdf = await report.executeToPdf({ FIRST_ORDER: 7, LAST_ORDER: 9 });
 - A report with nothing to print throws `NoDataToPrintException`.
 - `renderParametersForm(parameters)` draws a plain HTML form as a reference; a host usually draws
   its own from the same JSON.
+- `beforeRun(model)`, an option of `openReport`, adjusts the fresh copy of the report each step
+  runs, as an old host did before running it: the language (`model.language = 4`) or the value
+  of a hidden parameter (`CODEMP`), which `executeToPdf` does not take from the caller.
+- A report that reads data while it prints (GETVALUEFROMSQL, a dataset opened on demand) needs a
+  driver with `synchronous: true`. With an asynchronous one it fails, and
+  `isSynchronousDataRequired(error)` tells it apart, so a host can run it again synchronously.
 
 ## Data
 
@@ -71,4 +88,5 @@ reportman-pdf invoices.rep --describe --sqlite SAMPLES=samples.db
 ```
 
 Reports must be XML (plain or zlib compressed). A report saved by Delphi in DFM format is saved
-again as XML from the Report Manager designer.
+again as XML from the Report Manager designer, or with the `reptotxt -xml` command of Report
+Manager, which checks the conversion.

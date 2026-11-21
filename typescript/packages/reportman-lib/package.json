@@ -1,7 +1,6 @@
 {
-  "name": "reportman-lib",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@reportman/lib",
+  "version": "0.1.0-alpha.1",
   "description": "Report Manager report model: the document (the camelCase JSON of the engine model), its undo history and the .rep XML reader.",
   "license": "MPL-2.0",
   "type": "module",
@@ -25,6 +24,10 @@
   "sideEffects": false,
   "engines": {
     "node": ">=22.12"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
   },
   "dependencies": {
     "fflate": "^0.8.3",

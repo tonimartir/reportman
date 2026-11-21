@@ -18,7 +18,7 @@ import {
   type IsolationLevelName,
   type QueryCommand,
   type QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import type { ConnectionSettings } from './connectionstring.js';
 import { invalidOperation, MySqlException, mySqlException, notSupported, UNABLE_TO_CONNECT_TO_HOST } from './errors.js';
 import { type BindOptions, bindParameters, ParameterCollection } from './params.js';

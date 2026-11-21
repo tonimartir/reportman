@@ -16,7 +16,7 @@ import {
   setLanguage,
   stringifyReport,
   translateNum,
-} from "reportman-lib";
+} from "@reportman/lib";
 
 const packageDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const kitchenSink = () =>

@@ -11,7 +11,7 @@ import type {
   PrintPosItem as PrintPosModel,
   Report as ReportModel,
   ShapeItem as ShapeModel,
-} from 'reportman-lib';
+} from '@reportman/lib';
 import {
   type IntegerFormatter,
   MetaFile,
@@ -25,7 +25,7 @@ import {
   type Point,
   type PrintOut,
   type TotalPage,
-} from 'reportman-metafile';
+} from '@reportman/metafile';
 import { Evaluator, type EvalHost } from '../eval/evaluator.js';
 import { DatasetAlias } from '../eval/fields.js';
 import { type EvalIdentifier, EvalIdentifiers, IdenVariableParam } from '../eval/identifiers.js';
@@ -42,7 +42,7 @@ import type { VariantContext } from '../variant/context.js';
 import { ParamType, Variant, VariantType } from '../variant/variant.js';
 import type { StoredValue } from '../data/columns.js';
 import type { CsDecimal } from '../util/decimal.js';
-import { DriverType } from 'reportman-lib';
+import { DriverType } from '@reportman/lib';
 import { ReportDatabase } from '../data/databaseinfo.js';
 import { ReportDataInfo, sqlParameterName, variantDbType, variantParameterValue } from '../data/datainfo.js';
 import { NotSupportedYetError } from '../data/errors.js';
@@ -77,12 +77,12 @@ import {
 } from './items.js';
 import { SectionRuntime, SectionType, SkipType } from './section.js';
 import { ImageItem } from './imageitem.js';
-import type { ImageItem as ImageModel } from 'reportman-lib';
+import type { ImageItem as ImageModel } from '@reportman/lib';
 import { SubReportRuntime } from './subreport.js';
 import { barcodeOp, BarcodeItem } from './barcode/barcodeitem.js';
-import type { BarcodeItem as BarcodeModel } from 'reportman-lib';
+import type { BarcodeItem as BarcodeModel } from '@reportman/lib';
 import { ChartItem } from './chart/chartitem.js';
-import type { ChartItem as ChartModel } from 'reportman-lib';
+import type { ChartItem as ChartModel } from '@reportman/lib';
 import {
   IdenGraphicBounds,
   IdenGraphicClear,

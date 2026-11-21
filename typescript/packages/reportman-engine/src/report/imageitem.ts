@@ -3,8 +3,8 @@
 // way they get their stream (GetStream: the expression or the embedded image, decompressed when
 // it is a zlib stream, and the cache of a shared image).
 
-import type { ImageItem as ImageModel } from 'reportman-lib';
-import { MetaObjectImage, MetaObjectType, type MetaFile, type MetaPage, type Point, type PrintOut } from 'reportman-metafile';
+import type { ImageItem as ImageModel } from '@reportman/lib';
+import { MetaObjectImage, MetaObjectType, type MetaFile, type MetaPage, type Point, type PrintOut } from '@reportman/metafile';
 import { fromBase64String } from '../util/base64.js';
 import { inflateZlib } from '../util/inflate.js';
 import { type PartialRef, PrintPosItem, SubReportEvent } from './items.js';

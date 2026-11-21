@@ -2,8 +2,8 @@
 // report is prepared and printed (Value, LastValue, ListValue, the multiple selection, the
 // initial expressions, the lookup dataset and the texts of the current language).
 
-import type { Param, Variant as LibVariant } from 'reportman-lib';
-import { VariantType as LibVariantType } from 'reportman-lib';
+import type { Param, Variant as LibVariant } from '@reportman/lib';
+import { VariantType as LibVariantType } from '@reportman/lib';
 import type { ParamLike } from '../eval/identifiers.js';
 import { CsDecimal } from '../util/decimal.js';
 import { RpDateTime } from '../util/datetime.js';

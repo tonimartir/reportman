@@ -1,7 +1,7 @@
 // Port of the runtime part of Reportman.Reporting.SubReport: the sections of a subreport, its
 // groups (group breaks, group values) and the events it sends to its sections and items.
 
-import type { SubReport as SubReportModel } from 'reportman-lib';
+import type { SubReport as SubReportModel } from '@reportman/lib';
 import { messageOf, UnNamedException } from '../util/netexception.js';
 import { Variant } from '../variant/variant.js';
 import { ReportException } from './errors.js';

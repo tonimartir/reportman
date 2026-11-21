@@ -12,7 +12,7 @@ import {
   renderParametersForm,
   ParameterException,
   type OpenReportOptions,
-} from 'reportman-node';
+} from '@reportman/node';
 import { pdfCreation } from '../../reportman-engine/test/golden-run.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));

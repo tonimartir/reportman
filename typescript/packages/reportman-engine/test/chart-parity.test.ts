@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import zlib from 'node:zlib';
 import { describe, expect, it } from 'vitest';
-import type { MetaFile, MetaPage } from 'reportman-metafile';
+import type { MetaFile, MetaPage } from '@reportman/metafile';
 import { metaFileJson, pdfCreation, renderDrawn, runLikeGolden, here, type RunCase } from './golden-run.js';
 
 const fixtures = path.join(here, 'fixtures/chart');

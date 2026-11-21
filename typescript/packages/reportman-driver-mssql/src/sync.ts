@@ -5,7 +5,7 @@
 // this thread meanwhile.
 
 import { MessageChannel, Worker, receiveMessageOnPort, type MessagePort } from 'node:worker_threads';
-import type { ConnectionRequest, DataConnection, DataValue, QueryCommand, QueryResult } from 'reportman-engine';
+import type { ConnectionRequest, DataConnection, DataValue, QueryCommand, QueryResult } from '@reportman/engine';
 import type { ConnectionOptions, TypedResult } from './connection.js';
 import type { SqlSettings } from './connectionstring.js';
 import { clientSqlException, invalidOperation } from './errors.js';

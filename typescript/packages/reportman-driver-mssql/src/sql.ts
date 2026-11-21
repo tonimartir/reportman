@@ -4,7 +4,7 @@
 // rewritten to @NAME outside string literals, quoted identifiers ("...", [...]) and comments. A
 // :NAME that is no parameter is left to the server, as SqlClient leaves it.
 
-import { type QueryParameter, rewriteNamedParameters } from 'reportman-engine';
+import { type QueryParameter, rewriteNamedParameters } from '@reportman/engine';
 
 /** The SQL with each :NAME of a parameter of the command written @NAME. */
 export function rewritePlaceholders(sql: string, parameters: readonly QueryParameter[]): string {

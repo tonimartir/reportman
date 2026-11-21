@@ -1,4 +1,4 @@
-import { PDFFontType } from 'reportman-metafile';
+import { PDFFontType } from '@reportman/metafile';
 
 /**
  * The font of a canvas (PDFFont, FontInfoProvider.cs): the PDF font type, the family names,

@@ -7,7 +7,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { openReport, type OpenReportOptions } from 'reportman-node';
+import { openReport, type OpenReportOptions } from '@reportman/node';
 import { metaFileJson, pdfCreation } from '../../reportman-engine/test/golden-run.js';
 import { postgres } from '../src/index.js';
 import { CASES, type PgCase } from './cases.ts';

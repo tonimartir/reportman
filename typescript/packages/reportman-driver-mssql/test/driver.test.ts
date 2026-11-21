@@ -4,7 +4,7 @@
 // server receives them, and the synchronous connection (a worker thread).
 
 import { describe, expect, it } from 'vitest';
-import { CsDecimal, RpDateTime, type DataConnection, type IsolationLevelName, type QueryCommand, type QueryParameter } from 'reportman-engine';
+import { CsDecimal, RpDateTime, type DataConnection, type IsolationLevelName, type QueryCommand, type QueryParameter } from '@reportman/engine';
 import { MsSqlConnection, SqlException, SyncMsSqlConnection, mssql } from '../src/index.js';
 import { NO_SNAPSHOT_DATABASE, connectionString, isReachable, loadDatabase, mssqlTest, request, runBatch } from './database.ts';
 

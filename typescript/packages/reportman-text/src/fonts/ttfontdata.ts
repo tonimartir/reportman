@@ -224,7 +224,7 @@ export interface FontInfoProvider {
     fontSize: number,
     isHtml: boolean,
     rightToLeft: boolean,
-  ): import('reportman-metafile').LineInfo[];
+  ): import('@reportman/metafile').LineInfo[];
   getKerning(pdfFont: PDFFont, data: TTFontData, leftChar: number, rightChar: number): number;
   getFontStream(data: TTFontData): Uint8Array;
 }

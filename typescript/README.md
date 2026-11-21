@@ -5,24 +5,25 @@ The Report Manager engine as npm packages: run `.rep` reports from Node.js (and 
 translation of the C# engine in this repository; the two engines are meant to give the same output
 for the same report.
 
-Status: **prototype, not published**. The plan (in Spanish) is `docs/npm_typescript_plan.md` of
-the Delphi repository (`tonimartir/reportmandelphi`).
+Status: **preview**, versions `0.1.0-alpha.N` with the npm tag `next`
+(`npm install @reportman/node@next`); the API may change until 1.0. The plan (in Spanish) is
+`docs/npm_typescript_plan.md` of the Delphi repository (`tonimartir/reportmandelphi`).
 
 ## Packages
 
 | Package | What | Runs in |
 |---|---|---|
-| `reportman-lib` | The report model (the camelCase JSON of the engine model, shared with the web designer), its undo history, and the `.rep` XML reader | browser, Node |
-| `reportman-metafile` | The metafile: the device-independent pages a report is laid out into, and the layout device contract (measure text, draw a page) | browser, Node |
-| `reportman-text` | Text measurement: the standard 14 PDF fonts, and TrueType/OpenType fonts with fontkit (shaping, fallback, bidi with bidi-js), HTML text, the engine's line breaking | browser, Node |
-| `reportman-pdf` | Metafile → PDF (standard fonts, or embedded font subsets; images; PDF/A-3B); also the layout device that measures text while the report is laid out | browser, Node |
-| `reportman-engine` | Expressions, parameters (two steps), datasets, and the layout of a report into a metafile: sections, groups, subreports, images, barcodes, charts | browser, Node |
-| `reportman-node` | Node.js host: open a `.rep`, describe its parameters (step 1), run it to PDF (step 2); SQLite (`node:sqlite`), system fonts, CLI `reportman-pdf` | Node |
-| `reportman-driver-postgres` | PostgreSQL (`pg`), as Npgsql | Node |
-| `reportman-driver-firebird` | Firebird (`node-firebird`), as FirebirdClient | Node |
-| `reportman-driver-mysql` | MySQL and MariaDB (`mysql2`), as MySqlConnector | Node |
-| `reportman-driver-mssql` | SQL Server (`tedious`), as Microsoft.Data.SqlClient | Node |
-| `reportman-driver-http` | The Reportman AI Agent through the Hub HTTP API (`fetch`), as HttpAgentExecutor | browser, Node |
+| `@reportman/lib` | The report model (the camelCase JSON of the engine model, shared with the web designer), its undo history, and the `.rep` XML reader | browser, Node |
+| `@reportman/metafile` | The metafile: the device-independent pages a report is laid out into, and the layout device contract (measure text, draw a page) | browser, Node |
+| `@reportman/text` | Text measurement: the standard 14 PDF fonts, and TrueType/OpenType fonts with fontkit (shaping, fallback, bidi with bidi-js), HTML text, the engine's line breaking | browser, Node |
+| `@reportman/pdf` | Metafile → PDF (standard fonts, or embedded font subsets; images; PDF/A-3B); also the layout device that measures text while the report is laid out | browser, Node |
+| `@reportman/engine` | Expressions, parameters (two steps), datasets, and the layout of a report into a metafile: sections, groups, subreports, images, barcodes, charts | browser, Node |
+| `@reportman/node` | Node.js host: open a `.rep`, describe its parameters (step 1), run it to PDF (step 2); SQLite (`node:sqlite`), system fonts, CLI `@reportman/pdf` | Node |
+| `@reportman/driver-postgres` | PostgreSQL (`pg`), as Npgsql | Node |
+| `@reportman/driver-firebird` | Firebird (`node-firebird`), as FirebirdClient | Node |
+| `@reportman/driver-mysql` | MySQL and MariaDB (`mysql2`), as MySqlConnector | Node |
+| `@reportman/driver-mssql` | SQL Server (`tedious`), as Microsoft.Data.SqlClient | Node |
+| `@reportman/driver-http` | The Reportman AI Agent through the Hub HTTP API (`fetch`), as HttpAgentExecutor | browser, Node |
 
 The eleven reports of `../samples` give the same metafile as the C# engine: with the standard fonts
 the PDFs are byte-identical (nine samples; `letter` and `international` need fonts), and with
@@ -31,14 +32,15 @@ Not ported yet: the `.rpmf` format, declarative REST datasets.
 
 ## Rules
 
-1. **The core does no I/O.** Every package but `reportman-node` is compiled without DOM or Node
+1. **The core does no I/O.** Every package but `@reportman/node` is compiled without DOM or Node
    types (`lib: ES2023`, `types: []`): using `fs`, `window` or `fetch` there does not compile. The
    host gives report bytes, font bytes, data access, the clock and the locale.
 2. **Pure JavaScript.** Third-party dependencies are plain JavaScript: no `.node`, `.wasm`,
    `.so`/`.dll`, and no install scripts. `npm run check:pure-js` enforces it. Node's built-in
-   modules (`node:zlib`, `node:sqlite`) are allowed in `reportman-node`.
+   modules (`node:zlib`, `node:sqlite`) are allowed in `@reportman/node`.
 3. **Only XML reports.** Like the C# engine, the readers accept XML `.rep` files (plain or zlib
-   compressed). A report saved by Delphi in DFM format is saved again as XML from the designer.
+   compressed). A report saved by Delphi in DFM format is saved again as XML from the designer,
+   or with the `reptotxt -xml` command of Report Manager, which checks the conversion.
 4. **Same output as C#.** Each ported part is checked against the C# engine with
    `tools/golden-cs` (model JSON, expression results, metafile and PDF of a run).
 5. **ES modules only, Node 22.12 or later.** There is no CommonJS build: a CommonJS program loads

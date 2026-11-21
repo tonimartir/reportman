@@ -4,10 +4,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readReportXml } from 'reportman-lib';
-import type { MetaFile } from 'reportman-metafile';
-import { PdfDevice } from 'reportman-pdf';
-import { NoDataToPrintException, prepareReport, RpDateTime, type DataHost, type EvalHost, type ReportRun } from 'reportman-engine';
+import { readReportXml } from '@reportman/lib';
+import type { MetaFile } from '@reportman/metafile';
+import { PdfDevice } from '@reportman/pdf';
+import { NoDataToPrintException, prepareReport, RpDateTime, type DataHost, type EvalHost, type ReportRun } from '@reportman/engine';
 
 export const here = path.dirname(fileURLToPath(import.meta.url));
 export const runFixtures = path.join(here, 'fixtures/run');

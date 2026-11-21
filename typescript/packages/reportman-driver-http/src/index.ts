@@ -2,8 +2,8 @@
 // C# engine): the SQL of a report runs on a database behind a Reportman DB Agent, through the Hub API
 // (aiapi.reportman.es by default), with fetch only, in Node.js and in the browser.
 //
-//   import { openReport } from 'reportman-node';
-//   import { reportmanAgent } from 'reportman-driver-http';
+//   import { openReport } from '@reportman/node';
+//   import { reportmanAgent } from '@reportman/driver-http';
 //
 //   const report = await openReport('sales.rep', {
 //     connections: { SALES: reportmanAgent({ hubDatabaseId: 42, apiKey: process.env.RM_AGENT_KEY }) },
@@ -16,7 +16,7 @@
 // The WebRTC direct channel of the C# engine (DirectAgentExecutor, .NET 8+) is not part of this package:
 // every query goes over HTTP, as on the net48 build of the C# engine.
 
-import type { ConnectionRequest, DataConnection, MaybePromise, QueryCommand, QueryResult } from 'reportman-engine';
+import type { ConnectionRequest, DataConnection, MaybePromise, QueryCommand, QueryResult } from '@reportman/engine';
 import { HttpAgentExecutor, type ExecutorOptions } from './executor.js';
 import { type AgentSession, type HostValues, IniDocument, isAgentConnection, resolveSettings } from './settings.js';
 import { readIniText } from './text.js';

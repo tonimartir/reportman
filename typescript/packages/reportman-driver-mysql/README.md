@@ -1,4 +1,4 @@
-# reportman-driver-mysql
+# @reportman/driver-mysql
 
 MySQL and MariaDB for Report Manager in Node.js, through [mysql2](https://github.com/sidorares/node-mysql2)
 (the wire protocol in plain JavaScript), with the behaviour of MySqlConnector 2.5, the provider the C# engine
@@ -8,8 +8,8 @@ text of the command, and so does this driver), the same transactions and the sam
 the same metafile and the same PDF bytes in both engines.
 
 ```ts
-import { openReport } from 'reportman-node';
-import { mysql } from 'reportman-driver-mysql';
+import { openReport } from '@reportman/node';
+import { mysql } from '@reportman/driver-mysql';
 
 const report = await openReport('invoices.rep', {
   connections: { SAMPLES: mysql('Server=db.example.com;Database=sales;User ID=reports;Password=...') },

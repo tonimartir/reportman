@@ -1,4 +1,4 @@
-import { isWhiteSpaceNet } from 'reportman-text';
+import { isWhiteSpaceNet } from '@reportman/text';
 import { byteToHex2 } from './netformat.js';
 
 /** String.Trim(): without the Char.IsWhiteSpace characters of both ends. */

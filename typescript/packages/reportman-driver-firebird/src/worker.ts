@@ -24,14 +24,14 @@ const ext = import.meta.url.endsWith('.ts') ? '.ts' : '.js';
 // waits for an answer, it never sees an error of this thread)
 const modules = (async () => {
   const { FirebirdConnection } = (await import('./connection' + ext)) as typeof import('./connection.js');
-  const engine = await import('reportman-engine');
+  const engine = await import('@reportman/engine');
   return { FirebirdConnection, engine };
 })();
 modules.catch(() => undefined);
 
 type Request =
-  | { op: 'open'; settings: import('./connectionstring.js').ConnectionSettings; isolationLevel: import('reportman-engine').IsolationLevelName; culture: string }
-  | { op: 'query'; command: import('reportman-engine').TransferCommand }
+  | { op: 'open'; settings: import('./connectionstring.js').ConnectionSettings; isolationLevel: import('@reportman/engine').IsolationLevelName; culture: string }
+  | { op: 'query'; command: import('@reportman/engine').TransferCommand }
   | { op: 'close'; commit: boolean };
 
 const data = workerData as { port: MessagePort; flag: Int32Array };

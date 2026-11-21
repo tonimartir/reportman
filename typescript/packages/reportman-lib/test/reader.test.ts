@@ -20,7 +20,7 @@ import {
   loadReportXml,
   readComponentsXml,
   readReportXml,
-} from "reportman-lib";
+} from "@reportman/lib";
 import { readUndoCueJson } from "../src/lib/xml/undo-cue-json.js";
 
 const packageDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");

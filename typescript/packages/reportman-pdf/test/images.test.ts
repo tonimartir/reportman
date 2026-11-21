@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import zlib from 'node:zlib';
 import { describe, expect, it } from 'vitest';
-import { ImageDrawStyleType, MetaFile, MetaPage, OrientationType } from 'reportman-metafile';
+import { ImageDrawStyleType, MetaFile, MetaPage, OrientationType } from '@reportman/metafile';
 import {
   BitmapFormatError,
   ImageFormatNotSupportedError,
@@ -15,7 +15,7 @@ import {
   bitmapInfoOf,
   decodeImage,
   renderPdf,
-} from 'reportman-pdf';
+} from '@reportman/pdf';
 import { catalogue } from './images/catalogue.mjs';
 import { bmp, png } from './images/encoders.mjs';
 import { contentStreams } from './pdftools.js';

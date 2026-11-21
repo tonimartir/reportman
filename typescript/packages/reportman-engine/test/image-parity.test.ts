@@ -7,10 +7,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { readReportXml } from 'reportman-lib';
-import { MetaPage, type MetaFile, type MetaObject } from 'reportman-metafile';
-import { PdfDevice } from 'reportman-pdf';
-import { NoDataToPrintException, prepareReport, type EvalHost, type RpDateTime } from 'reportman-engine';
+import { readReportXml } from '@reportman/lib';
+import { MetaPage, type MetaFile, type MetaObject } from '@reportman/metafile';
+import { PdfDevice } from '@reportman/pdf';
+import { NoDataToPrintException, prepareReport, type EvalHost, type RpDateTime } from '@reportman/engine';
 import { metaFileJson, pdfCreation, renderDrawn, samplesDb, here } from './golden-run.js';
 import { sqliteHost } from './sqlite-host.js';
 

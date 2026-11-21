@@ -9,9 +9,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import mysql2 from 'mysql2';
 import { expect } from 'vitest';
-import { readReportXml } from 'reportman-lib';
-import type { MetaFile } from 'reportman-metafile';
-import { PdfDevice } from 'reportman-pdf';
+import { readReportXml } from '@reportman/lib';
+import type { MetaFile } from '@reportman/metafile';
+import { PdfDevice } from '@reportman/pdf';
 import {
   CsDecimal,
   type DataHost,
@@ -21,7 +21,7 @@ import {
   prepareReport,
   RpDateTime,
   type ReportRun,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { metaFileJson } from '../../reportman-engine/test/golden-run.js';
 import { mysqlTest } from './database.js';
 

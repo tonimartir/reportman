@@ -16,7 +16,7 @@ import {
   type DataColumnType,
   type DataValue,
   type QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { postgres } from '../src/index.js';
 import { loadFixture, serverAvailable, testConfig } from './fixture.ts';
 

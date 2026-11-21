@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { newTextObjectStruct, PDFFontType } from 'reportman-metafile';
-import { StandardTextMeasurer } from 'reportman-text';
+import { newTextObjectStruct, PDFFontType } from '@reportman/metafile';
+import { StandardTextMeasurer } from '@reportman/text';
 
 interface FixtureCase {
   case: {

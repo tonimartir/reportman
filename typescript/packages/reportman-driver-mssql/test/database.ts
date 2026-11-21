@@ -15,7 +15,7 @@
 import { DatabaseSync } from 'node:sqlite';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import type { ConnectionRequest } from 'reportman-engine';
+import type { ConnectionRequest } from '@reportman/engine';
 import tedious from 'tedious';
 
 const here = path.dirname(fileURLToPath(import.meta.url));

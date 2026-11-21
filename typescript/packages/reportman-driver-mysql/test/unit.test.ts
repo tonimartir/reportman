@@ -3,7 +3,7 @@
 // column definitions and text values, and the OK packet of a session that is already utf8mb4.
 
 import { describe, expect, it } from 'vitest';
-import { CsDecimal, CultureInfo, DateTimeKind, type QueryParameter, RpDateTime } from 'reportman-engine';
+import { CsDecimal, CultureInfo, DateTimeKind, type QueryParameter, RpDateTime } from '@reportman/engine';
 import { okReportsUtf8mb4, startTransactionStatements } from '../src/connection.js';
 import { parseConnectionString, parsePairs } from '../src/connectionstring.js';
 import { type BindOptions, bindParameters, binaryLiteral, ParameterCollection, parameterLiteral, timestampLiteral } from '../src/params.js';

@@ -6,7 +6,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { openReport, sqlite, type OpenReportOptions } from 'reportman-node';
+import { openReport, sqlite, type OpenReportOptions } from '@reportman/node';
 import { pdfCreation } from '../../reportman-engine/test/golden-run.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));

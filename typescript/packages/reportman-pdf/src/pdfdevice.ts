@@ -15,7 +15,7 @@ import {
   intDiv,
   roundHalfEven,
   toInt32,
-} from 'reportman-metafile';
+} from '@reportman/metafile';
 import type {
   DevicePageSize,
   LineInfo,
@@ -26,8 +26,8 @@ import type {
   Point,
   TextExtentLines,
   TextObjectStruct,
-} from 'reportman-metafile';
-import { FontInfoFt, StandardTextMeasurer, type FontInfoProvider, type FontLibrary } from 'reportman-text';
+} from '@reportman/metafile';
+import { FontInfoFt, StandardTextMeasurer, type FontInfoProvider, type FontLibrary } from '@reportman/text';
 import { getBitmapInfo, getJpegInfo } from './bitmaputil.js';
 import { bitmapInfoOf } from './imagecodec.js';
 import { PDFFile, POINTS_PER_INCH, randomDocumentId, systemClock } from './pdffile.js';

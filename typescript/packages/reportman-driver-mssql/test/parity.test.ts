@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { openReport, type OpenReportOptions } from 'reportman-node';
+import { openReport, type OpenReportOptions } from '@reportman/node';
 import { metaFileJson, pdfCreation } from '../../reportman-engine/test/golden-run.js';
 import { mssql } from '../src/index.js';
 import { CASES, type ReportCase, fixtures, reportFile } from './cases.ts';

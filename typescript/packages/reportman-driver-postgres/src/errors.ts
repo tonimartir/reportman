@@ -2,7 +2,7 @@
 // e.GetType().Name) and the same message, so a report fails with the same text in both engines.
 
 import { EOL } from 'node:os';
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 
 /** Detail of a server error when the connection string has no Include Error Detail=true. */
 const DETAIL_REDACTED =

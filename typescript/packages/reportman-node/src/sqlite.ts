@@ -18,7 +18,7 @@ import {
   formatDecimal,
   CultureInfo,
   rewriteNamedParameters,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import type { ConnectionFactory } from './host.js';
 
 /** An InvalidOperationException of the provider. */

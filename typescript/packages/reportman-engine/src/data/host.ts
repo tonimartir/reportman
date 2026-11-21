@@ -24,7 +24,7 @@
 // Host methods may return plain values or promises. A dataset opened from inside an expression
 // (a field of a dataset not open yet, REOPEN, GETVALUEFROMSQL) needs plain values: see op.ts.
 
-import type { DatabaseInfo, DataInfo } from 'reportman-lib';
+import type { DatabaseInfo, DataInfo } from '@reportman/lib';
 import type { CsDecimal } from '../util/decimal.js';
 import type { RpDateTime } from '../util/datetime.js';
 import type { MaybePromise } from './op.js';

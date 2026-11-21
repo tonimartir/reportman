@@ -17,7 +17,7 @@ import {
   type QueryResult,
   type TransferError,
   type TransferResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import type { ConnectionSettings } from './connectionstring.js';
 import { FbException, type StatusEntry } from './errors.js';
 

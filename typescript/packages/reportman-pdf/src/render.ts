@@ -1,4 +1,4 @@
-import type { MetaFile } from 'reportman-metafile';
+import type { MetaFile } from '@reportman/metafile';
 import { PdfDevice } from './pdfdevice.js';
 import type { PdfDeviceOptions } from './pdfdevice.js';
 

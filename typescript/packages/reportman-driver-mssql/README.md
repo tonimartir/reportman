@@ -1,4 +1,4 @@
-# reportman-driver-mssql
+# @reportman/driver-mssql
 
 SQL Server for Report Manager in Node.js, through [tedious](https://github.com/tediousjs/tedious) (the TDS
 protocol in plain JavaScript), with the behaviour of Microsoft.Data.SqlClient 6.1, the provider the C# engine
@@ -8,8 +8,8 @@ declarations SqlClient writes otherwise), the same transactions and the same err
 metafile and the same PDF bytes in both engines.
 
 ```ts
-import { openReport } from 'reportman-node';
-import { mssql } from 'reportman-driver-mssql';
+import { openReport } from '@reportman/node';
+import { mssql } from '@reportman/driver-mssql';
 
 const report = await openReport('invoices.rep', {
   connections: { SAMPLES: mssql('Server=db.example.com;Database=sales;User ID=reports;Password=...') },

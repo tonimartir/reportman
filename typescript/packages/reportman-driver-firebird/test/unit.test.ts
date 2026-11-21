@@ -3,7 +3,7 @@
 // node-firebird errors.
 
 import { describe, expect, it } from 'vitest';
-import { CsDecimal, CultureInfo, type QueryParameter, RpDateTime } from 'reportman-engine';
+import { CsDecimal, CultureInfo, type QueryParameter, RpDateTime } from '@reportman/engine';
 import { parseConnectionString } from '../src/connectionstring.js';
 import { isolationTpb } from '../src/connection.js';
 import { decFloatText, decodeDec16, decodeDec34 } from '../src/decfloat.js';

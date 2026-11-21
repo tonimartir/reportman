@@ -11,7 +11,7 @@
 
 import { createRequire } from 'node:module';
 import path from 'node:path';
-import { CsDecimal, type DataColumnInfo, type DataColumnType, type DataValue, DateTimeKind, RpDateTime } from 'reportman-engine';
+import { CsDecimal, type DataColumnInfo, type DataColumnType, type DataValue, DateTimeKind, RpDateTime } from '@reportman/engine';
 import { CONVERSION_OVERFLOWS, fileNotFound, invalidCast, notSupported, overflowException, sqlTypeException } from './errors.js';
 import { RawValue } from './raw.js';
 import { sqlXmlValue } from './xml.js';

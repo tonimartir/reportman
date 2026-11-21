@@ -33,8 +33,8 @@ import {
   roundHalfEven,
   textObjectFromMetaObjectText,
   twipsFromUnits,
-} from 'reportman-metafile';
-import type { DevicePageSize, MetaPage as MetaPageType, PageSizeDetail, Point, TextObjectStruct } from 'reportman-metafile';
+} from '@reportman/metafile';
+import type { DevicePageSize, MetaPage as MetaPageType, PageSizeDetail, Point, TextObjectStruct } from '@reportman/metafile';
 
 function newPage(meta = new MetaFile()): MetaPage {
   const page = new MetaPage(meta);

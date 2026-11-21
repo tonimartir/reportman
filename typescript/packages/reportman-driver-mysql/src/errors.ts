@@ -2,7 +2,7 @@
 // and SQLSTATE; its own messages for the errors of the client (unable to connect, a parameter that
 // is not defined...).
 
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 
 /** MySqlConnector's MySqlErrorCode of the client errors the driver raises. */
 export const UNABLE_TO_CONNECT_TO_HOST = 1042;

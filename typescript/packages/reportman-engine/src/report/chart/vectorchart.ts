@@ -20,8 +20,8 @@ import {
   ShapeType,
   type MetaFile,
   type MetaPage,
-} from 'reportman-metafile';
-import { AutoRangeAxis, ChartType } from 'reportman-lib';
+} from '@reportman/metafile';
+import { AutoRangeAxis, ChartType } from '@reportman/lib';
 import type { CultureInfo } from '../../util/culture.js';
 import { NetException } from '../../util/netexception.js';
 import { formatDouble } from '../../util/numberformat.js';

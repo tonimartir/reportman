@@ -2,7 +2,7 @@
 // values of the engine (CsDecimal and RpDateTime are classes, a structured clone would lose them),
 // the commands, the results and the exceptions with their .NET type.
 
-import { CsDecimal, NetException, RpDateTime, type DataValue, type DateTimeKind, type QueryCommand } from 'reportman-engine';
+import { CsDecimal, NetException, RpDateTime, type DataValue, type DateTimeKind, type QueryCommand } from '@reportman/engine';
 import { SqlException, type SqlError } from './errors.js';
 import type { NetCell, SqlColumnInfo } from './values.js';
 import type { TypedResult } from './connection.js';

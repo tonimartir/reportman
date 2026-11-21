@@ -20,7 +20,7 @@ import {
   type IsolationLevelName,
   type QueryCommand,
   type QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { type SqlSettings, parseDataSource } from './connectionstring.js';
 import { type SqlError, SqlException, clientSqlException, invalidOperation, notSupported } from './errors.js';
 import { bindParameters } from './params.js';

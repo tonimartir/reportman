@@ -5,7 +5,7 @@
 // and C, used only by FindCodeAB and FindCodeC, which the engine never calls; only the patterns
 // are ported.
 
-import { BarcodeType } from 'reportman-lib';
+import { BarcodeType } from '@reportman/lib';
 
 /** The bar and space widths (in modules) of the values 0 to 102. */
 export const CODE128_PATTERNS: readonly string[] = [

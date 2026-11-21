@@ -9,7 +9,7 @@ import type {
   PrintItemText as PrintItemTextModel,
   PrintPosItem as PrintPosModel,
   ShapeItem as ShapeModel,
-} from 'reportman-lib';
+} from '@reportman/lib';
 import {
   AlignmentFlags,
   HtmlTextParser,
@@ -25,7 +25,7 @@ import {
   type Point,
   type PrintOut,
   type TextObjectStruct,
-} from 'reportman-metafile';
+} from '@reportman/metafile';
 import { toUpperNet, trimNet } from '../util/chars.js';
 import { messageOf } from '../util/netexception.js';
 import { standardDeviation } from '../util/doubleutil.js';

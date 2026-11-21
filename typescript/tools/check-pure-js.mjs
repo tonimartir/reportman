@@ -46,7 +46,7 @@ function visit(name) {
 for (const pkgName of readdirSync(packagesDir)) {
   const pkg = JSON.parse(readFileSync(join(packagesDir, pkgName, 'package.json'), 'utf8'));
   for (const dep of Object.keys(pkg.dependencies ?? {})) {
-    if (dep.startsWith('reportman-')) continue;
+    if (dep.startsWith('@reportman/')) continue;
     visit(dep);
   }
 }

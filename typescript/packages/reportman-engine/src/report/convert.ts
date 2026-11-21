@@ -5,7 +5,7 @@
 // A connection already .Net, Mybase, or a SQLite connection of the Delphi engine leaves the report
 // as it is.
 
-import { DatasetType, DriverType } from 'reportman-lib';
+import { DatasetType, DriverType } from '@reportman/lib';
 import { toUpperNet } from '../util/chars.js';
 import { ReportParam } from '../params/param.js';
 import { ParamType, Variant } from '../variant/variant.js';

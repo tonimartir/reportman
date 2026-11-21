@@ -6,8 +6,8 @@ import {
   newLineInfo,
   roundHalfEven,
   toInt32,
-} from 'reportman-metafile';
-import type { LineInfo, Rectangle } from 'reportman-metafile';
+} from '@reportman/metafile';
+import type { LineInfo, Rectangle } from '@reportman/metafile';
 import { PDFFont } from './pdffont.js';
 import { getStdLineSpacing, pdfNameOf } from './stdfonts.js';
 import type { StdLineSpacing } from './stdfonts.js';

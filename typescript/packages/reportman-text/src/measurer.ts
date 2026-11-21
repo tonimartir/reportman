@@ -1,5 +1,5 @@
-import { AlignmentFlags, PDFFontType } from 'reportman-metafile';
-import type { LineInfo, Point, TextExtentLines, TextObjectStruct } from 'reportman-metafile';
+import { AlignmentFlags, PDFFontType } from '@reportman/metafile';
+import type { LineInfo, Point, TextExtentLines, TextObjectStruct } from '@reportman/metafile';
 import { TextCanvas } from './textcanvas.js';
 
 /**

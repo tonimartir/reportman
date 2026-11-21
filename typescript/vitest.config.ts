@@ -1,27 +1,27 @@
 import { defineConfig } from 'vitest/config';
 import { fileURLToPath } from 'node:url';
 
-// The tests run against the sources: each workspace package resolves to its src/index.ts, so
-// a test never needs a previous build.
+// The tests run against the sources: each workspace package (@reportman/X, in packages/reportman-X)
+// resolves to its src/index.ts, so a test never needs a previous build.
 const packages = [
-  'reportman-lib',
-  'reportman-metafile',
-  'reportman-text',
-  'reportman-pdf',
-  'reportman-engine',
-  'reportman-node',
-  'reportman-driver-postgres',
-  'reportman-driver-firebird',
-  'reportman-driver-mysql',
-  'reportman-driver-http',
-  'reportman-driver-mssql',
+  'lib',
+  'metafile',
+  'text',
+  'pdf',
+  'engine',
+  'node',
+  'driver-postgres',
+  'driver-firebird',
+  'driver-mysql',
+  'driver-http',
+  'driver-mssql',
 ];
 
 export default defineConfig({
   resolve: {
     alias: packages.map((name) => ({
-      find: new RegExp(`^${name}$`),
-      replacement: fileURLToPath(new URL(`./packages/${name}/src/index.ts`, import.meta.url)),
+      find: new RegExp(`^@reportman/${name}$`),
+      replacement: fileURLToPath(new URL(`./packages/reportman-${name}/src/index.ts`, import.meta.url)),
     })),
   },
   test: {

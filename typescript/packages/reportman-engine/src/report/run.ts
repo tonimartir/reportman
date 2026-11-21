@@ -6,8 +6,8 @@
 //   await run.applyParameters({ FIRST_ORDER: 3 });
 //   const meta = await run.execute();
 
-import type { Report } from 'reportman-lib';
-import type { MetaFile, PrintOut } from 'reportman-metafile';
+import type { Report } from '@reportman/lib';
+import type { MetaFile, PrintOut } from '@reportman/metafile';
 import { defaultHost, type EvalHost } from '../eval/evaluator.js';
 import { CultureInfo } from '../util/culture.js';
 import type { Translator } from '../util/translator.js';

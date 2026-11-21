@@ -5,10 +5,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readReportXml } from 'reportman-lib';
-import { MetaFile, MetaPage, OrientationType, PDFConformanceType, type MetaObject } from 'reportman-metafile';
-import { PdfDevice, renderPdf, type PdfClock } from 'reportman-pdf';
-import { NoDataToPrintException, prepareReport, RpDateTime, type EvalHost, type ReportRun } from 'reportman-engine';
+import { readReportXml } from '@reportman/lib';
+import { MetaFile, MetaPage, OrientationType, PDFConformanceType, type MetaObject } from '@reportman/metafile';
+import { PdfDevice, renderPdf, type PdfClock } from '@reportman/pdf';
+import { NoDataToPrintException, prepareReport, RpDateTime, type EvalHost, type ReportRun } from '@reportman/engine';
 import { sqliteHost } from './sqlite-host.js';
 
 export const here = path.dirname(fileURLToPath(import.meta.url));

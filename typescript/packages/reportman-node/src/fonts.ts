@@ -6,7 +6,7 @@
 import { closeSync, existsSync, openSync, readFileSync, readSync, readdirSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
-import { FontLibrary, type FontFileSource, type FontPlatform } from 'reportman-text';
+import { FontLibrary, type FontFileSource, type FontPlatform } from '@reportman/text';
 
 /** Which fonts the PDF of a report embeds (the FreeType driver of the C# engine). */
 export interface FontOptions {

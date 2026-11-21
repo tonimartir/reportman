@@ -21,7 +21,7 @@ import {
   formatDecimal,
   CultureInfo,
   rewriteNamedParameters,
-} from 'reportman-engine';
+} from '@reportman/engine';
 
 /** An InvalidOperationException of the provider. */
 class ProviderError extends Error {

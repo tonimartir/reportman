@@ -24,7 +24,7 @@ import {
   tryParseBoolean,
   tryParseDateTime,
   tryParseInt64,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { type Charset, charCount, DbDataType, dbDataType, decodeText, fieldCharset, invalidDataType, SqlType } from './types.js';
 import { describe } from './values.js';
 import type { SqlVar } from './wire.js';

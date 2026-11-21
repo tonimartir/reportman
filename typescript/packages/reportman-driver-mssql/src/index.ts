@@ -5,8 +5,8 @@
 // declarations), the same transactions and the same errors, so a report gives the same result in
 // both engines.
 //
-//   import { openReport } from 'reportman-node';
-//   import { mssql } from 'reportman-driver-mssql';
+//   import { openReport } from '@reportman/node';
+//   import { mssql } from '@reportman/driver-mssql';
 //
 //   const report = await openReport('invoices.rep', {
 //     connections: { SAMPLES: mssql('Server=db.example.com;Database=sales;User ID=reports;Password=...') },
@@ -15,7 +15,7 @@
 
 import type { SecureContextOptions } from 'node:tls';
 import type tedious from 'tedious';
-import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from 'reportman-engine';
+import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from '@reportman/engine';
 import { MsSqlConnection } from './connection.js';
 import { type SqlSettings, defaultSettings, parseConnectionString } from './connectionstring.js';
 import { SyncMsSqlConnection } from './sync.js';

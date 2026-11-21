@@ -19,7 +19,7 @@ import {
   Variant,
   VariantType,
   type ParamLike,
-} from 'reportman-engine';
+} from '@reportman/engine';
 
 const now = () => RpDateTime.create(2024, 2, 29, 13, 45, 30, 0, DateTimeKind.Local);
 const host = { now, fileExists: (p: string) => p === 'exists.txt' };

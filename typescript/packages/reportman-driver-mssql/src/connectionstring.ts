@@ -4,7 +4,7 @@
 // SqlClient (an unknown keyword fails as it fails there), its value conversions, checks and
 // defaults (Encrypt=Mandatory since SqlClient 4).
 
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 import { argumentException, notSupported } from './errors.js';
 
 /** SqlConnectionEncryptOption. */

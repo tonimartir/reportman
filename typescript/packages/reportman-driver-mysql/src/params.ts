@@ -12,7 +12,7 @@ import {
   NetException,
   type QueryParameter,
   RpDateTime,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import type { DateTimeKindName } from './connectionstring.js';
 import { MySqlException } from './errors.js';
 import { FinalParseStates, normalizeParameterName, ordinalIgnoreCaseKey, parseSql } from './sql.js';

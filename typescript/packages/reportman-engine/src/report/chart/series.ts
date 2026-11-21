@@ -3,7 +3,7 @@
 // settings it is drawn with. A device with a chart support of its own (PrintOut.drawChart)
 // receives a Series; the others draw it with the vector chart (vectorchart.ts).
 
-import { AutoRangeAxis, BarType, ChartType } from 'reportman-lib';
+import { AutoRangeAxis, BarType, ChartType } from '@reportman/lib';
 import type { RpDateTime } from '../../util/datetime.js';
 
 /** A chart's appearance, its value axis and the series it contains (Series). */

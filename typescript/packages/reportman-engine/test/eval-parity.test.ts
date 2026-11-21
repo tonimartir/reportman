@@ -15,7 +15,7 @@ import {
   RpDateTime,
   VariantType,
   type LocalTimeZone,
-} from 'reportman-engine';
+} from '@reportman/engine';
 
 interface Case {
   expr: string;

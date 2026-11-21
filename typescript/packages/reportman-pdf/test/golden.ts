@@ -11,7 +11,7 @@ import {
   MetaObjectText,
   MetaPage,
   OrientationType,
-} from 'reportman-metafile';
+} from '@reportman/metafile';
 
 export const fixturesDir = fileURLToPath(new URL('./fixtures/', import.meta.url));
 

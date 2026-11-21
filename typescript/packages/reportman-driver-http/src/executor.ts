@@ -15,7 +15,7 @@ import {
   Translator,
   type QueryParameter,
   type QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { parseJson, toPlain, tryGetProperty, type JsonElement } from './json.js';
 import { databaseBody, executeBody } from './request.js';
 import type { AgentSettings } from './settings.js';

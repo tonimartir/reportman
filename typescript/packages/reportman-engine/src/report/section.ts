@@ -2,8 +2,8 @@
 // items, grows and shrinks with them (AutoExpand, AutoContract), keeps the value of its group and
 // the page count references of GROUPPAGECOUNT.
 
-import type { Section as SectionModel } from 'reportman-lib';
-import type { MetaFile, Point, PrintOut, TotalPage } from 'reportman-metafile';
+import type { Section as SectionModel } from '@reportman/lib';
+import type { MetaFile, Point, PrintOut, TotalPage } from '@reportman/metafile';
 import { messageOf } from '../util/netexception.js';
 import { Variant } from '../variant/variant.js';
 import { ReportException } from './errors.js';

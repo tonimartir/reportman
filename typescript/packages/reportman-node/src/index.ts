@@ -20,5 +20,5 @@ export {
   ReportException,
   SynchronousDataRequiredError,
   isSynchronousDataRequired,
-} from 'reportman-engine';
-export type { ParameterDescription, ParameterInput, ParameterOption } from 'reportman-engine';
+} from '@reportman/engine';
+export type { ParameterDescription, ParameterInput, ParameterOption } from '@reportman/engine';

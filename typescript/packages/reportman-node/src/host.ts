@@ -5,7 +5,7 @@ import type {
   DatasetRequest,
   MaybePromise,
   QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 
 /**
  * Opens a report connection: receives what the engine knows of it (alias, driver, connection

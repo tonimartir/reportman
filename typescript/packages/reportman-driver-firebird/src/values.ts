@@ -17,7 +17,7 @@ import {
   formatDateTime,
   NetException,
   RpDateTime,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { decFloatText, decodeDec16, decodeDec34 } from './decfloat.js';
 import { FIRST_TIME_ZONE_ID, TIME_ZONE_NAMES } from './timezones.js';
 import {

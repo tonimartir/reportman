@@ -1,4 +1,4 @@
-# reportman-driver-firebird
+# @reportman/driver-firebird
 
 Firebird for Report Manager in Node.js, through [node-firebird](https://github.com/hgourvest/node-firebird)
 (the wire protocol in plain JavaScript), with the behaviour of FirebirdSql.Data.FirebirdClient 10.3, the
@@ -7,8 +7,8 @@ values, the same parameter binding, the same transactions and the same errors, s
 metafile and the same PDF bytes in both engines.
 
 ```ts
-import { openReport } from 'reportman-node';
-import { firebird } from 'reportman-driver-firebird';
+import { openReport } from '@reportman/node';
+import { firebird } from '@reportman/driver-firebird';
 
 const report = await openReport('invoices.rep', {
   connections: { SAMPLES: firebird('DataSource=db.example.com;Database=/data/sales.fdb;User=REPORTS;Password=...') },

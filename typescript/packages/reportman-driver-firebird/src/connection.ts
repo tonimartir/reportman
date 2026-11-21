@@ -15,7 +15,7 @@ import {
   type QueryCommand,
   type QueryParameter,
   type QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import type { ConnectionSettings } from './connectionstring.js';
 import { FbException, fbException } from './errors.js';
 import { bindParameter, type ParameterContext } from './params.js';

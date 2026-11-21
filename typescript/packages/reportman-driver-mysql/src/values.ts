@@ -20,7 +20,7 @@ import {
   NumberStyles,
   RpDateTime,
   tryParseDecimal,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { BINARY_COLLATION, bytesPerCharacter } from './charsets.js';
 import type { DateTimeKindName, GuidFormat } from './connectionstring.js';
 import { formatException, invalidCast, notSupported } from './errors.js';

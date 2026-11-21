@@ -17,7 +17,7 @@ import {
   type DataColumnType,
   type DataValue,
   type QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import {
   elementToString,
   enumerateArray,

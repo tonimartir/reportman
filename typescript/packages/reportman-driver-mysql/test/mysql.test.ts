@@ -24,9 +24,9 @@ import {
   type QueryParameter,
   type QueryResult,
   RpDateTime,
-} from 'reportman-engine';
-import { createDataHost, openReport } from 'reportman-node';
-import { mysql, type MySqlColumnInfo } from 'reportman-driver-mysql';
+} from '@reportman/engine';
+import { createDataHost, openReport } from '@reportman/node';
+import { mysql, type MySqlColumnInfo } from '@reportman/driver-mysql';
 import { pdfCreation } from '../../reportman-engine/test/golden-run.js';
 import { connectionString, isReachable, loadDatabase, mysqlTest, serverVersion } from './database.js';
 import {

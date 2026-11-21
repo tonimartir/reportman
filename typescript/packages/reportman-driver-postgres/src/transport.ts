@@ -5,7 +5,7 @@
 
 import { MessageChannel, Worker, receiveMessageOnPort, type MessagePort } from 'node:worker_threads';
 import type pg from 'pg';
-import type { MaybePromise } from 'reportman-engine';
+import type { MaybePromise } from '@reportman/engine';
 import { closeSession, openSession, rawError, runQuery, runSimple, type RawError, type RawQuery, type RawResult, type RawSession } from './raw.js';
 
 /** A failure of the transport, as plain data (see raw.ts). */

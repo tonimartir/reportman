@@ -10,7 +10,7 @@
 // Writing: JsonSerializer with JavaScriptEncoder.Default (Utf8JsonWriter): ASCII only, the HTML-sensitive
 // characters escaped as ", &, ', +, <, >, `.
 
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 
 export type JsonValueKind = 'Object' | 'Array' | 'String' | 'Number' | 'True' | 'False' | 'Null';
 

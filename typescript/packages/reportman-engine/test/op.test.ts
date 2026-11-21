@@ -1,6 +1,6 @@
 // The synchronous run of an Op and the error a host gets when the report needs synchronous data.
 import { describe, expect, it } from 'vitest';
-import { isSynchronousDataRequired, ReportException, runSync, SynchronousDataRequiredError, type Op } from 'reportman-engine';
+import { isSynchronousDataRequired, ReportException, runSync, SynchronousDataRequiredError, type Op } from '@reportman/engine';
 
 function* readsData(answer: unknown): Op<unknown> {
   return yield answer;

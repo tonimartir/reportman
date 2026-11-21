@@ -4,15 +4,15 @@
 // the same values, the same parameter binding and the same errors, so a report gives the same
 // result in both engines.
 //
-//   import { openReport } from 'reportman-node';
-//   import { firebird } from 'reportman-driver-firebird';
+//   import { openReport } from '@reportman/node';
+//   import { firebird } from '@reportman/driver-firebird';
 //
 //   const report = await openReport('invoices.rep', {
 //     connections: { SAMPLES: firebird('DataSource=db.example.com;Database=/data/sales.fdb;User=REPORTS;Password=...') },
 //   });
 //   const pdf = await report.executeToPdf({ FIRST_ORDER: 7 });
 
-import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from 'reportman-engine';
+import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from '@reportman/engine';
 import { FirebirdConnection } from './connection.js';
 import { SyncFirebirdConnection } from './sync.js';
 import { type ConnectionSettings, defaultSettings, parseConnectionString } from './connectionstring.js';

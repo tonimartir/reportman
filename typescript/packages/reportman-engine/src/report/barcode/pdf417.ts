@@ -3,7 +3,7 @@
 // compaction, the escapes of the text compaction), the symbol size, the Reed-Solomon error
 // correction and the drawing of the rows into the metafile, a filled rectangle per bar.
 
-import { BrushType, MetaObjectDraw, MetaObjectType, PenType, ShapeType, type MetaFile } from 'reportman-metafile';
+import { BrushType, MetaObjectDraw, MetaObjectType, PenType, ShapeType, type MetaFile } from '@reportman/metafile';
 import { substringNet } from '../../util/chars.js';
 import type { NumberFormatData } from '../../util/culture.js';
 import { NumberStyles, tryParseInt32 } from '../../util/numberparse.js';

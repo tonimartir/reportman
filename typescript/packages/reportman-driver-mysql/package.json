@@ -1,7 +1,6 @@
 {
-  "name": "reportman-driver-mysql",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@reportman/driver-mysql",
+  "version": "0.1.0-alpha.1",
   "description": "MySQL and MariaDB for Report Manager in Node.js (mysql2, pure JavaScript), with the behaviour of MySqlConnector, the provider of the C# engine.",
   "license": "MPL-2.0",
   "type": "module",
@@ -26,11 +25,15 @@
   "engines": {
     "node": ">=22.12"
   },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
   "dependencies": {
     "mysql2": "^3.24.6",
-    "reportman-engine": "0.0.1"
+    "@reportman/engine": "0.1.0-alpha.1"
   },
   "devDependencies": {
-    "reportman-node": "0.0.1"
+    "@reportman/node": "0.1.0-alpha.1"
   }
 }

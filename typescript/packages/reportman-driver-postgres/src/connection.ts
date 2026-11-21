@@ -16,7 +16,7 @@ import {
   type QueryCommand,
   type QueryParameter,
   type QueryResult,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import type pg from 'pg';
 import { PostgresException, invalidCast, invalidOperation, notSupported, npgsqlException } from './errors.js';
 import { bindParameter, type WireParameter } from './params.js';

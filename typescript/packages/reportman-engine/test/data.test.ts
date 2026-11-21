@@ -4,8 +4,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { DatabaseInfo, DataInfo, DriverType, LabelItem, Report, readReportXml, Section, SectionType, SubReport, ExpressionItem } from 'reportman-lib';
-import { PdfDevice } from 'reportman-pdf';
+import { DatabaseInfo, DataInfo, DriverType, LabelItem, Report, readReportXml, Section, SectionType, SubReport, ExpressionItem } from '@reportman/lib';
+import { PdfDevice } from '@reportman/pdf';
 import {
   NotSupportedYetError,
   prepareReport,
@@ -15,7 +15,7 @@ import {
   type DataConnection,
   type DataHost,
   type QueryCommand,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { sqliteHost } from './sqlite-host.js';
 import { here, metaFileJson, pdfCreation, runFixtures, samplesDb } from './golden-run.js';
 

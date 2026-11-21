@@ -1,13 +1,13 @@
 // PostgreSQL for Report Manager in Node.js, through pg (pure JavaScript), with the behaviour of
 // Npgsql 10, the provider of the C# engine: a report gives the same result in both engines.
 //
-//   import { openReport } from 'reportman-node';
-//   import { postgres } from 'reportman-driver-postgres';
+//   import { openReport } from '@reportman/node';
+//   import { postgres } from '@reportman/driver-postgres';
 //   const report = await openReport('sales.rep', {
 //     connections: { SALES: postgres('Host=db;Database=sales;Username=report;Password=...') },
 //   });
 
-import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from 'reportman-engine';
+import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from '@reportman/engine';
 import type pg from 'pg';
 import { PostgresConnection, type ConnectionSettings } from './connection.js';
 import { parseNpgsqlConnectionString } from './connstring.js';

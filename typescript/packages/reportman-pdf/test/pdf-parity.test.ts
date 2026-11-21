@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import { renderPdf } from 'reportman-pdf';
+import { renderPdf } from '@reportman/pdf';
 import { loadGolden } from './golden.js';
 import {
   contentStreams,

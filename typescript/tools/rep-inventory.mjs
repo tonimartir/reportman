@@ -55,8 +55,8 @@ import {
   PrinterFontsType,
   AutoRangeAxis,
   PDFAFRelationShip,
-} from 'reportman-lib';
-import { Evaluator, EvalParser, TokenType, createContext } from 'reportman-engine';
+} from '@reportman/lib';
+import { Evaluator, EvalParser, TokenType, createContext } from '@reportman/engine';
 
 /**
  * The identifiers a report adds to its evaluator (ReportRuntime, reportman-engine report/report.ts),

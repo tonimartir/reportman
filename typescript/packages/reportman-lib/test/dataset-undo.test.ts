@@ -1,7 +1,7 @@
 // The undo history of the datasets of a report with a union (contacts.rep), as the web designer edits it:
 // each property of an added dataset under its own name, and a removed one given back whole.
 import { describe, expect, it } from "vitest";
-import { hydrateReport, DataInfo, DriverType, OperationType, PropertyType } from "reportman-lib";
+import { hydrateReport, DataInfo, DriverType, OperationType, PropertyType } from "@reportman/lib";
 
 /**
  * The datasets of contacts.rep as the designer's server sends them: two SQL datasets on SAMPLES and

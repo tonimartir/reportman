@@ -16,7 +16,7 @@ import {
   formatDouble,
   type DataColumnType,
   type DataValue,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { argumentException, argumentOutOfRange, invalidCast, overflow } from './errors.js';
 import type { PgType, TypeCatalog, ValueKind } from './types.js';
 

@@ -5,8 +5,8 @@
 // them, the text is laid out shaped with fontkit (bidi, scripts, fallback by coverage) and the font
 // program embedded is a fontkit subset.
 
-import type { LineInfo } from 'reportman-metafile';
-import { PrintStepType } from 'reportman-metafile';
+import type { LineInfo } from '@reportman/metafile';
+import { PrintStepType } from '@reportman/metafile';
 import { PDFFont } from '../pdffont.js';
 import { BidiParagraph, UBIDI_DEFAULT_LTR, UBIDI_DEFAULT_RTL } from '../bidi.js';
 import { HtmlTextParser, type HtmlFormatRun } from '../html/htmltextparser.js';

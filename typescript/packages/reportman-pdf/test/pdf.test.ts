@@ -19,8 +19,8 @@ import {
   TextAlignType,
   TextAlignVerticalType,
   newTextObjectStruct,
-} from 'reportman-metafile';
-import { PDFA3_NO_FONT_PROVIDER, StandardTextMeasurer, ShaperNotSupportedError } from 'reportman-text';
+} from '@reportman/metafile';
+import { PDFA3_NO_FONT_PROVIDER, StandardTextMeasurer, ShaperNotSupportedError } from '@reportman/text';
 import {
   PDFFile,
   PdfDevice,
@@ -32,8 +32,8 @@ import {
   renderPdf,
   splitDocDate,
   zoneOfOffset,
-} from 'reportman-pdf';
-import type { PdfClock } from 'reportman-pdf';
+} from '@reportman/pdf';
+import type { PdfClock } from '@reportman/pdf';
 import { contentStreams } from './pdftools.js';
 
 const latin1 = (b: Uint8Array): string => Buffer.from(b).toString('latin1');

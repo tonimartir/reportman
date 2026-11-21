@@ -17,7 +17,7 @@ import {
   Variant,
   VariantType,
   standardDeviation,
-} from 'reportman-engine';
+} from '@reportman/engine';
 
 const ctx = createContext('en-US');
 const d = (s: string) => CsDecimal.parseInvariant(s);

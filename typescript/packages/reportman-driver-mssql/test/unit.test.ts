@@ -4,7 +4,7 @@
 
 import { EOL } from 'node:os';
 import { describe, expect, it } from 'vitest';
-import { CsDecimal, CultureInfo, NetException, RpDateTime, type QueryParameter } from 'reportman-engine';
+import { CsDecimal, CultureInfo, NetException, RpDateTime, type QueryParameter } from '@reportman/engine';
 import {
   bindParameter,
   bindParameters,

@@ -1,7 +1,7 @@
 // Port of the runtime part of Reportman.Reporting.DatabaseInfo: a report connection, opened
 // through the data host (the provider resolution of C# is the host's job).
 
-import { DriverType, type DatabaseInfo } from 'reportman-lib';
+import { DriverType, type DatabaseInfo } from '@reportman/lib';
 import { toUpperNet, trimNet } from '../util/chars.js';
 import type { ReportRuntime } from '../report/report.js';
 import type { ConnectionRequest, DataConnection, IsolationLevelName } from './host.js';

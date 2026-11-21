@@ -4,7 +4,7 @@
 // a NotSupportedException for what this driver leaves out.
 
 import { EOL } from 'node:os';
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 
 /** An error or message token of the server (SqlError). */
 export interface SqlError {

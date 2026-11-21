@@ -5,9 +5,9 @@
 // (PrintOut.drawChart, of Report.ChartingDriver when the host sets one) or else the vector chart.
 // Its identifier is a variable the GRAPHIC* report functions find to add values from expressions.
 
-import type { ChartItem as ChartModel } from 'reportman-lib';
-import { AutoRangeAxis, BarType, ChartDriver, ChartType } from 'reportman-lib';
-import type { MetaFile, Point, PrintOut } from 'reportman-metafile';
+import type { ChartItem as ChartModel } from '@reportman/lib';
+import { AutoRangeAxis, BarType, ChartDriver, ChartType } from '@reportman/lib';
+import type { MetaFile, Point, PrintOut } from '@reportman/metafile';
 import { IdenVariable } from '../../eval/identifiers.js';
 import { messageOf } from '../../util/netexception.js';
 import { Variant } from '../../variant/variant.js';

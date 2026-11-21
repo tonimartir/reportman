@@ -22,9 +22,9 @@ import {
   type QueryParameter,
   type QueryResult,
   RpDateTime,
-} from 'reportman-engine';
-import { createDataHost, openReport } from 'reportman-node';
-import { firebird, type FirebirdColumnInfo } from 'reportman-driver-firebird';
+} from '@reportman/engine';
+import { createDataHost, openReport } from '@reportman/node';
+import { firebird, type FirebirdColumnInfo } from '@reportman/driver-firebird';
 import { metaFileJson, pdfCreation } from '../../reportman-engine/test/golden-run.js';
 import { connectionString, isReachable, loadDatabase } from './database.js';
 import { cases, here, runFixtures, runLikeGolden, sqlFixtures } from './golden.js';

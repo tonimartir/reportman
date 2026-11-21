@@ -4,7 +4,7 @@
 // a MyBase connection is made of other datasets of the report (DataUnions, see union.ts) and
 // follows its master by a filter on its index fields (MyBaseMasterFields).
 
-import { DriverType, type DataInfo } from 'reportman-lib';
+import { DriverType, type DataInfo } from '@reportman/lib';
 import { replaceNet, toUpperNet } from '../util/chars.js';
 import { argumentOutOfRangeException, NamedException, nullReferenceException } from '../util/netexception.js';
 import { ParamType, Variant, VariantType } from '../variant/variant.js';

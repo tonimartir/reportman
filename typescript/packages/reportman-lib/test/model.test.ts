@@ -16,7 +16,7 @@ import {
   SubReport,
   UndoCue,
   type ClipboardAdapter,
-} from "reportman-lib";
+} from "@reportman/lib";
 
 function newReport(): Report {
   const report = new Report();

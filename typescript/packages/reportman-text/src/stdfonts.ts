@@ -1,4 +1,4 @@
-import { PDFConformanceType, PDFFontType } from 'reportman-metafile';
+import { PDFConformanceType, PDFFontType } from '@reportman/metafile';
 
 /** Line spacing and leading of a standard font, in hundred thousandths of the font size × 1.25. */
 export interface StdLineSpacing {

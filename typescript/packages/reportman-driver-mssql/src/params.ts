@@ -24,7 +24,7 @@ import {
   type QueryParameter,
   RpDateTime,
   tryParseInt64,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { argumentException, formatException, invalidCast, overflowException, sqlTypeException } from './errors.js';
 import type { RawParameterValue } from './raw.js';
 

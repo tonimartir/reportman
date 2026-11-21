@@ -1,4 +1,4 @@
-# reportman-driver-http
+# @reportman/driver-http
 
 The Reportman AI Agent connections of Report Manager: the SQL of a report runs on a database behind a
 Reportman DB Agent, through the Hub API (`https://aiapi.reportman.es` by default), with the behaviour of the
@@ -8,8 +8,8 @@ metafile and the same PDF bytes in both engines. It needs only `fetch`: it runs 
 browser (no Node API, compiled without DOM or Node types).
 
 ```ts
-import { openReport } from 'reportman-node';
-import { reportmanAgent } from 'reportman-driver-http';
+import { openReport } from '@reportman/node';
+import { reportmanAgent } from '@reportman/driver-http';
 
 const report = await openReport('sales.rep', {
   connections: { SALES: reportmanAgent({ hubDatabaseId: 42, apiKey: process.env.RM_AGENT_KEY }) },

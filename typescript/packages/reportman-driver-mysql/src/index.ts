@@ -4,8 +4,8 @@
 // values, the same parameter binding (the literals MySqlConnector writes in the statement), the same
 // transactions and the same errors, so a report gives the same result in both engines.
 //
-//   import { openReport } from 'reportman-node';
-//   import { mysql } from 'reportman-driver-mysql';
+//   import { openReport } from '@reportman/node';
+//   import { mysql } from '@reportman/driver-mysql';
 //
 //   const report = await openReport('invoices.rep', {
 //     connections: { SAMPLES: mysql('Server=db.example.com;Database=sales;User ID=reports;Password=...') },
@@ -13,7 +13,7 @@
 //   const pdf = await report.executeToPdf({ FIRST_ORDER: 7 });
 
 import type { SslOptions } from 'mysql2';
-import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from 'reportman-engine';
+import { CultureInfo, type ConnectionRequest, type DataConnection, type MaybePromise } from '@reportman/engine';
 import { MySqlConnection, startTransactionStatements } from './connection.js';
 import { type ConnectionSettings, defaultSettings, parseConnectionString } from './connectionstring.js';
 import { SyncMySqlConnection } from './sync.js';

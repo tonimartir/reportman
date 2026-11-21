@@ -22,10 +22,10 @@ if (import.meta.url.endsWith('.ts')) {
 const ext = import.meta.url.endsWith('.ts') ? '.ts' : '.js';
 const { MsSqlConnection } = (await import('./connection' + ext)) as typeof import('./connection.js');
 const wire = (await import('./wire' + ext)) as typeof import('./wire.js');
-const { CultureInfo } = await import('reportman-engine');
+const { CultureInfo } = await import('@reportman/engine');
 
 type Request =
-  | { op: 'open'; settings: import('./connectionstring.js').SqlSettings; isolationLevel: import('reportman-engine').IsolationLevelName; culture: string; authentication?: unknown; tls?: unknown }
+  | { op: 'open'; settings: import('./connectionstring.js').SqlSettings; isolationLevel: import('@reportman/engine').IsolationLevelName; culture: string; authentication?: unknown; tls?: unknown }
   | { op: 'query'; command: import('./wire.js').WireCommand }
   | { op: 'close'; commit: boolean };
 

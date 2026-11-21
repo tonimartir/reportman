@@ -5,10 +5,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { ChartType, readReportXml } from 'reportman-lib';
-import { MetaFile, MetaObjectDraw, MetaObjectText, MetaPage, PenType, ShapeType } from 'reportman-metafile';
-import { PdfDevice } from 'reportman-pdf';
-import { CultureInfo, drawVectorChart, prepareReport, RpDateTime, Series, SeriesItem } from 'reportman-engine';
+import { ChartType, readReportXml } from '@reportman/lib';
+import { MetaFile, MetaObjectDraw, MetaObjectText, MetaPage, PenType, ShapeType } from '@reportman/metafile';
+import { PdfDevice } from '@reportman/pdf';
+import { CultureInfo, drawVectorChart, prepareReport, RpDateTime, Series, SeriesItem } from '@reportman/engine';
 import { sqliteHost } from './sqlite-host.js';
 import { here, samplesDb } from './golden-run.js';
 

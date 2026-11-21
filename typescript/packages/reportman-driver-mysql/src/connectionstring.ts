@@ -3,7 +3,7 @@
 // values in quotes), the keys and synonyms of MySqlConnector 2.5 (an unknown key fails as it fails
 // there), its value conversions and its defaults.
 
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 import { MySqlException } from './errors.js';
 
 /** MySqlSslMode. */

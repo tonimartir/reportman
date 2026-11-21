@@ -8,7 +8,7 @@
 // network errors), node-firebird's for the rest.
 
 import { createRequire } from 'node:module';
-import { NetException } from 'reportman-engine';
+import { NetException } from '@reportman/engine';
 
 /** An error of the Firebird server or of the wire (FirebirdSql.Data.FirebirdClient.FbException). */
 export class FbException extends NetException {

@@ -1,7 +1,6 @@
 {
-  "name": "reportman-text",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@reportman/text",
+  "version": "0.1.0-alpha.1",
   "description": "Report Manager text measurement: the standard 14 PDF font metrics and the line breaking of the engine.",
   "license": "MPL-2.0",
   "type": "module",
@@ -26,9 +25,13 @@
   "engines": {
     "node": ">=22.12"
   },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
   "dependencies": {
     "bidi-js": "^1.1.0",
     "fontkit": "^3.0.0",
-    "reportman-metafile": "0.0.1"
+    "@reportman/metafile": "0.1.0-alpha.1"
   }
 }

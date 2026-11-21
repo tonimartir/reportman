@@ -25,7 +25,7 @@ import {
   hydrateReport,
   readReportXml,
   serializeReport,
-} from "reportman-lib";
+} from "@reportman/lib";
 
 const packageDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 interface Case {

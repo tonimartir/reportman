@@ -1,7 +1,6 @@
 {
-  "name": "reportman-node",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@reportman/node",
+  "version": "0.1.0-alpha.1",
   "description": "Report Manager for Node.js: open a .rep, describe its parameters, run it to PDF.",
   "license": "MPL-2.0",
   "type": "module",
@@ -26,12 +25,16 @@
   "engines": {
     "node": ">=22.12"
   },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
   "dependencies": {
-    "reportman-lib": "0.0.1",
-    "reportman-metafile": "0.0.1",
-    "reportman-text": "0.0.1",
-    "reportman-pdf": "0.0.1",
-    "reportman-engine": "0.0.1"
+    "@reportman/lib": "0.1.0-alpha.1",
+    "@reportman/metafile": "0.1.0-alpha.1",
+    "@reportman/text": "0.1.0-alpha.1",
+    "@reportman/pdf": "0.1.0-alpha.1",
+    "@reportman/engine": "0.1.0-alpha.1"
   },
   "bin": {
     "reportman-pdf": "./dist/cli.js"

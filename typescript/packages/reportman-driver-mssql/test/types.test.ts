@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { CsDecimal, RpDateTime } from 'reportman-engine';
+import { CsDecimal, RpDateTime } from '@reportman/engine';
 import { MsSqlConnection, mssql, type NetCell } from '../src/index.js';
 import { machineName } from '../src/connection.js';
 import { QUERIES, fixtures } from './cases.ts';

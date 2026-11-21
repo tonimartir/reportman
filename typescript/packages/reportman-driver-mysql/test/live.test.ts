@@ -10,9 +10,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { CultureInfo, type ConnectionRequest, type DataConnection, type QueryResult } from 'reportman-engine';
-import { createDataHost, openReport } from 'reportman-node';
-import { mysql, type MySqlColumnInfo } from 'reportman-driver-mysql';
+import { CultureInfo, type ConnectionRequest, type DataConnection, type QueryResult } from '@reportman/engine';
+import { createDataHost, openReport } from '@reportman/node';
+import { mysql, type MySqlColumnInfo } from '@reportman/driver-mysql';
 import { pdfCreation } from '../../reportman-engine/test/golden-run.js';
 import { connectionString, isReachable, loadDatabase, serverVersion } from './database.js';
 import {

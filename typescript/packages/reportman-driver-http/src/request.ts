@@ -15,7 +15,7 @@ import {
   type DataValue,
   type ParameterDbType,
   type QueryParameter,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { jsonString } from './json.js';
 
 /** System.Data.DbType numbers. */

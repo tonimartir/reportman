@@ -8,8 +8,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { afterAll, describe, expect, it } from 'vitest';
-import { DatabaseInfo, DataInfo, DriverType, Param, ParamType as LibParamType, Report, SubReport, VariantType } from 'reportman-lib';
-import { PdfDevice } from 'reportman-pdf';
+import { DatabaseInfo, DataInfo, DriverType, Param, ParamType as LibParamType, Report, SubReport, VariantType } from '@reportman/lib';
+import { PdfDevice } from '@reportman/pdf';
 import {
   CsDecimal,
   NoDataToPrintException,
@@ -20,7 +20,7 @@ import {
   RpDateTime,
   VariantType as EngineVariantType,
   type ReportRun,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { sqliteHost } from './sqlite-host.js';
 
 const database = path.join(os.tmpdir(), 'rm-params-' + process.pid + '-' + Date.now() + '.db');

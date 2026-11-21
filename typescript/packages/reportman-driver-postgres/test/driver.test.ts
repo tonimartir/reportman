@@ -12,7 +12,7 @@ import {
   type IsolationLevelName,
   type QueryCommand,
   type QueryParameter,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { PostgresException, parseNpgsqlConnectionString, parseSql, postgres } from '../src/index.js';
 import { bindParameter } from '../src/params.js';
 import { intervalTicks, parseArray, readBytea, readNumeric, timeSpanText, tsQueryText } from '../src/values.js';

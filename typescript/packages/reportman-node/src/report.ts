@@ -1,7 +1,7 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
-import { readReportXml, type Report } from 'reportman-lib';
-import type { MetaFile } from 'reportman-metafile';
-import { PdfDevice, systemClock, type PdfClock } from 'reportman-pdf';
+import { readReportXml, type Report } from '@reportman/lib';
+import type { MetaFile } from '@reportman/metafile';
+import { PdfDevice, systemClock, type PdfClock } from '@reportman/pdf';
 import {
   prepareReport,
   RpDateTime,
@@ -10,10 +10,10 @@ import {
   type ParameterDescription,
   type ParameterInput,
   type ReportRun,
-} from 'reportman-engine';
+} from '@reportman/engine';
 import { createDataHost, type DataSources } from './host.js';
 import { fontLibrary, type FontOptions } from './fonts.js';
-import { FontLibrary } from 'reportman-text';
+import { FontLibrary } from '@reportman/text';
 
 /** Options of openReport. */
 export interface OpenReportOptions extends DataSources {

@@ -3,7 +3,7 @@
 // connections file (dbxconnections.ini: DbxIniDocument, LoadHttpAgentConnectionParams), then from the
 // Reportman AI session of the host (ApplyHttpAgentSession).
 
-import type { ConnectionRequest } from 'reportman-engine';
+import type { ConnectionRequest } from '@reportman/engine';
 
 /** DriverType.HttpAgent. */
 export const DRIVER_HTTP_AGENT = 10;

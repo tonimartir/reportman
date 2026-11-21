@@ -5,10 +5,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { readReportXml, type BarcodeItem as BarcodeModel, type Report } from 'reportman-lib';
-import { MetaBarcodeEcc, MetaBarcodeSymbology, MetaObjectBarcode, MetaObjectDraw } from 'reportman-metafile';
-import { PdfDevice } from 'reportman-pdf';
-import { NotSupportedYetError, prepareReport, RpDateTime } from 'reportman-engine';
+import { readReportXml, type BarcodeItem as BarcodeModel, type Report } from '@reportman/lib';
+import { MetaBarcodeEcc, MetaBarcodeSymbology, MetaObjectBarcode, MetaObjectDraw } from '@reportman/metafile';
+import { PdfDevice } from '@reportman/pdf';
+import { NotSupportedYetError, prepareReport, RpDateTime } from '@reportman/engine';
 import { here, samplesDb } from './golden-run.js';
 import { sqliteHost } from './sqlite-host.js';
 

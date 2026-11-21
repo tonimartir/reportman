@@ -15,7 +15,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { createDataHost, openReport } from 'reportman-node';
+import { createDataHost, openReport } from '@reportman/node';
 import { pdfCreation } from '../../reportman-engine/test/golden-run.js';
 import type { MockHub, HubRequest } from './hub.ts';
 import {

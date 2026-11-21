@@ -17,7 +17,7 @@ import {
   type DataValue,
   type QueryResult,
   type TransferError,
-} from 'reportman-engine';
+} from '@reportman/engine';
 
 describe('transfer between threads', () => {
   it('gives back every kind of value after a structured clone', () => {

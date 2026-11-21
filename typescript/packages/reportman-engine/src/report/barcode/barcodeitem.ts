@@ -6,7 +6,7 @@
 // C# parity: the item draws no human-readable text, MSI, PostNet and Codabar draw nothing (their
 // encoders are empty in C#) and the item has no GetExtension of its own (PrintPosItem's).
 
-import { BarcodeItem as BarcodeModel, BarcodeType } from 'reportman-lib';
+import { BarcodeItem as BarcodeModel, BarcodeType } from '@reportman/lib';
 import {
   BrushType,
   MetaBarcodeEcc,
@@ -19,7 +19,7 @@ import {
   type MetaFile,
   type Point,
   type PrintOut,
-} from 'reportman-metafile';
+} from '@reportman/metafile';
 import { substringNet, trimNet } from '../../util/chars.js';
 import { messageOf, NamedException } from '../../util/netexception.js';
 import { NumberStyles, parseInt32 } from '../../util/numberparse.js';
