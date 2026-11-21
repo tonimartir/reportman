@@ -144,6 +144,8 @@ namespace Reportman.Designer
                                         System.Drawing.Imaging.ImageFormat.Png);
                                 }
                             }
+                            if (sample.Key == "year-over-year.rep")
+                                CheckEditing(frame, shotsFolder, check, log);
                         }
                         form.Close();
                     }
@@ -151,7 +153,7 @@ namespace Reportman.Designer
             }
             catch (Exception ex)
             {
-                check(false, "unexpected " + ex.GetType().Name + ": " + ex.Message);
+                check(false, "unexpected " + ex.GetType().Name + ": " + ex.Message + Environment.NewLine + ex.StackTrace);
             }
             finally
             {
@@ -160,6 +162,121 @@ namespace Reportman.Designer
             log(fails == 0 ? "All the checks passed." : fails + " check(s) failed.");
             failed = fails;
             return text.ToString();
+        }
+
+        private static List<string> PropertyNames(DesignerInterface item, out Variants values)
+        {
+            var names = new Strings();
+            values = new Variants();
+            item.GetProperties(names, new Strings(), values, new Strings(), new Strings());
+            var list = new List<string>();
+            foreach (string name in names)
+                list.Add(name);
+            return list;
+        }
+
+        // The inspector rows of a union, the dialog of the unions and the undo of its changes
+        private static void CheckEditing(FrameMainDesigner frame, string shotsFolder, Action<bool, string> check, Action<string> log)
+        {
+            Report report = frame.Report;
+            log("--- Editing the unions of year-over-year.rep");
+            string unions = Translator.TranslateStr(1083);
+            DataInfo byCategory = report.DataInfo["BY_CATEGORY"];
+            DataInfo categoryFirst = report.DataInfo["CATEGORY_FIRST"];
+            var selection = new SortedList<int, ReportItem> { { 0, byCategory } };
+            var union = new DesignerInterfaceDataInfo(selection, null);
+            Variants values;
+            List<string> names = PropertyNames(union, out values);
+            check(union.IsMyBase, "BY_CATEGORY is a dataset of the MyBase connection");
+            check(!names.Contains("SQL"), "its inspector has no SQL");
+            int index = names.IndexOf(unions);
+            check(index >= 0 && values[index].ToString() == "CATEGORY_FIRST-CATEGORY, CATEGORY_SECOND-CATEGORY",
+                "its unions: " + (index >= 0 ? values[index].ToString() : "none"));
+            index = names.IndexOf(Translator.TranslateStr(1440));
+            check(index >= 0 && (bool)values[index], "it is a parallel union");
+            check(names.Contains(Translator.TranslateStr(164)) && names.Contains(Translator.TranslateStr(165)),
+                "the index fields and the master fields");
+            var sqlSelection = new SortedList<int, ReportItem> { { 0, categoryFirst } };
+            List<string> sqlNames = PropertyNames(new DesignerInterfaceDataInfo(sqlSelection, null), out values);
+            check(sqlNames.Contains("SQL") && !sqlNames.Contains(unions), "CATEGORY_FIRST (SQL) has its SQL and no unions");
+
+            // Typing the unions in the inspector cell
+            union.SetProperty(unions, "CATEGORY_FIRST-CATEGORY , CATEGORY_SECOND-CATEGORY,");
+            check(byCategory.DataUnions.Count == 2 && byCategory.DataUnions[1] == "CATEGORY_SECOND-CATEGORY",
+                "the unions typed in the cell, separated by commas");
+
+            // The dialog
+            using (var dialog = new UnionsEditorForm(report.DataInfo["TOP_PRODUCTS"]))
+            {
+                dialog.StartPosition = FormStartPosition.Manual;
+                dialog.Location = new Point(0, 0);
+                dialog.Show();
+                Application.DoEvents();
+                check(dialog.ColumnsText.EndsWith(": PRODUCT, SALES, Q02_, Q02_PRODUCT, Q02_SALES"),
+                    "the columns of TOP_PRODUCTS (by position): " + dialog.ColumnsText);
+                dialog.SelectEntry(0);
+                dialog.SetFieldsOfSelected("PRODUCT", true);
+                check(dialog.Settings.Validate() != null, "common fields only in the first dataset: refused");
+                dialog.SelectEntry(1);
+                dialog.SetFieldsOfSelected("PRODUCT", true);
+                check(dialog.Settings.Validate() == null, "the same number of common fields: accepted");
+                check(dialog.ColumnsText.EndsWith(": PRODUCT, SALES, Q02_, Q02_SALES"),
+                    "the columns matched by PRODUCT: " + dialog.ColumnsText);
+                dialog.Settings.Group = true;
+                check(dialog.Settings.Validate() != null, "a grouped union without index fields: refused");
+                dialog.Settings.Group = false;
+                dialog.AddDataset("CATEGORY_FIRST");
+                check(dialog.Settings.Entries.Count == 3 && dialog.Settings.Entries[2] == "CATEGORY_FIRST",
+                    "a dataset added at the end");
+                if (!string.IsNullOrEmpty(shotsFolder))
+                {
+                    using (var bmp = new Bitmap(dialog.Width, dialog.Height))
+                    {
+                        dialog.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                        bmp.Save(Path.Combine(shotsFolder, "unions-dialog.png"), System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
+
+                // Applied as the inspector does, one undo step, and undone
+                DataInfo topProducts = report.DataInfo["TOP_PRODUCTS"];
+                string before = UnionSettings.Summary(topProducts);
+                FrameMainDesigner.UndoItemState state = FrameMainDesigner.CaptureUndoState(topProducts);
+                dialog.Settings.ApplyTo(topProducts);
+                int groupId = 0;
+                FrameMainDesigner.AddUndoChanges(report, state, ref groupId);
+                check(UnionSettings.Summary(topProducts) == "TOP_FIRST-PRODUCT, TOP_SECOND-PRODUCT, CATEGORY_FIRST",
+                    "the dialog applied: " + UnionSettings.Summary(topProducts));
+                report.UndoCue.Undo(report);
+                check(UnionSettings.Summary(topProducts) == before && topProducts.ParallelUnion,
+                    "undone in one step: " + UnionSettings.Summary(topProducts));
+
+                // The same through an object inspector (what the ellipsis of the cell runs)
+                // The object inspector of the designer
+                ObjectInspector inspector = frame.PropertyInspector;
+                check(inspector != null, "the object inspector of the designer");
+                var topSelection = new SortedList<int, ReportItem> { { 1, topProducts } };
+                DesignerInterface topInterface = DesignerInterface.GetFromOject(topSelection, inspector);
+                check(topInterface is DesignerInterfaceDataInfo, "the inspector interface of TOP_PRODUCTS");
+                inspector.SetObject(topInterface);
+                Application.DoEvents();
+                Form host = frame.FindForm();
+                if (!string.IsNullOrEmpty(shotsFolder) && host != null)
+                {
+                    using (var bmp = new Bitmap(host.Width, host.Height))
+                    {
+                        host.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                        bmp.Save(Path.Combine(shotsFolder, "unions-inspector.png"), System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
+                int operations = report.UndoCue.UndoOperations.Count;
+                UnionSettings settings = dialog.Settings;
+                inspector.ApplyWithUndo(unions, delegate { settings.ApplyTo(topProducts); });
+                check(report.UndoCue.UndoOperations.Count == operations + 1 && topProducts.DataUnions.Count == 3,
+                    "the inspector applies the dialog as one undo operation");
+                report.UndoCue.Undo(report);
+                check(UnionSettings.Summary(topProducts) == before, "and it is undone: " + UnionSettings.Summary(topProducts));
+                dialog.Close();
+            }
         }
     }
 }

@@ -15,6 +15,36 @@ namespace Reportman.Designer
                 FDataInfo = (DataInfo)repitem.Values[0];
         }
         public DataInfo DataInfo { get { return FDataInfo; } }
+
+        /// <summary>The type of the property of the unions: an ellipsis that opens UnionsEditorForm.</summary>
+        internal const string UnionsType = "UNIONS";
+
+        /// <summary>The dataset is on a MyBase connection: it runs no SQL, it may join other datasets.</summary>
+        internal bool IsMyBase
+        {
+            get
+            {
+                if (FDataInfo == null || FDataInfo.Report == null)
+                    return false;
+                foreach (DatabaseInfo dbinfo in FDataInfo.Report.DatabaseInfo)
+                {
+                    if (dbinfo.Alias == FDataInfo.DatabaseAlias)
+                        return dbinfo.Driver == DriverType.Mybase;
+                }
+                return false;
+            }
+        }
+
+        private static void AddProperty(Strings lnames, Strings ltypes, Variants lvalues, Strings lhints, Strings lcat,
+            string name, string type, Variant value)
+        {
+            lnames.Add(name);
+            ltypes.Add(type);
+            lhints.Add("refdatainfo.html");
+            lcat.Add(Translator.TranslateStr(1201));
+            if (lvalues != null)
+                lvalues.Add(value);
+        }
         public Strings GetAvaliableConnections()
         {
             Strings lpossiblevalues = new Strings();
@@ -88,6 +118,21 @@ namespace Reportman.Designer
             lcat.Add(Translator.TranslateStr(1201));
             if (lvalues != null)
                 lvalues.Add(FDataInfo.DataSource);
+            if (IsMyBase)
+            {
+                // A dataset of the MyBase connection runs no SQL: the datasets it joins and how
+                AddProperty(lnames, ltypes, lvalues, lhints, lcat, Translator.TranslateStr(1083), UnionsType,
+                    UnionSettings.Summary(FDataInfo));
+                AddProperty(lnames, ltypes, lvalues, lhints, lcat, Translator.TranslateStr(1440), Translator.TranslateStr(568),
+                    FDataInfo.ParallelUnion);
+                AddProperty(lnames, ltypes, lvalues, lhints, lcat, Translator.TranslateStr(1084), Translator.TranslateStr(568),
+                    FDataInfo.GroupUnion);
+                AddProperty(lnames, ltypes, lvalues, lhints, lcat, Translator.TranslateStr(164), Translator.TranslateStr(557),
+                    FDataInfo.MyBaseIndexFields);
+                AddProperty(lnames, ltypes, lvalues, lhints, lcat, Translator.TranslateStr(165), Translator.TranslateStr(557),
+                    FDataInfo.MyBaseMasterFields);
+                return;
+            }
             // SQL
             lnames.Add("SQL");
             ltypes.Add("SQL");
@@ -110,6 +155,17 @@ namespace Reportman.Designer
             // SQL
             if (pname == "SQL")
                 return FDataInfo.SQL;
+            // The union of a dataset of the MyBase connection
+            if (pname == Translator.TranslateStr(1083))
+                return UnionSettings.Summary(FDataInfo);
+            if (pname == Translator.TranslateStr(1440))
+                return FDataInfo.ParallelUnion;
+            if (pname == Translator.TranslateStr(1084))
+                return FDataInfo.GroupUnion;
+            if (pname == Translator.TranslateStr(164))
+                return FDataInfo.MyBaseIndexFields;
+            if (pname == Translator.TranslateStr(165))
+                return FDataInfo.MyBaseMasterFields;
             return base.GetProperty(pname);
         }
         public override void SetProperty(string pname, Variant newvalue)
@@ -170,6 +226,34 @@ namespace Reportman.Designer
             if (pname == "SQL")
             {
                 FDataInfo.SQL = newvalue.ToString();
+                return;
+            }
+            // The union of a dataset of the MyBase connection: the entries, written separated by commas
+            if (pname == Translator.TranslateStr(1083))
+            {
+                FDataInfo.DataUnions.Clear();
+                foreach (string entry in UnionSettings.ParseSummary(newvalue.ToString()))
+                    FDataInfo.DataUnions.Add(entry);
+                return;
+            }
+            if (pname == Translator.TranslateStr(1440))
+            {
+                FDataInfo.ParallelUnion = (bool)newvalue;
+                return;
+            }
+            if (pname == Translator.TranslateStr(1084))
+            {
+                FDataInfo.GroupUnion = (bool)newvalue;
+                return;
+            }
+            if (pname == Translator.TranslateStr(164))
+            {
+                FDataInfo.MyBaseIndexFields = newvalue.ToString().Trim();
+                return;
+            }
+            if (pname == Translator.TranslateStr(165))
+            {
+                FDataInfo.MyBaseMasterFields = newvalue.ToString().Trim();
                 return;
             }
             // inherited

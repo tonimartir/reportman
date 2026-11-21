@@ -131,6 +131,11 @@ namespace Reportman.Designer
                         nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.SQL);
                     }
                     else
+                    if (ptypes[i] == DesignerInterfaceDataInfo.UnionsType)
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Unions);
+                    }
+                    else
                         if (ptypes[i] == Translator.TranslateStr(556))
                     {
                         nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
@@ -603,6 +608,26 @@ namespace Reportman.Designer
                 FUndoGroupId = groupId;
         }
 
+        /// <summary>
+        /// Changes the selected items with <paramref name="change"/> (a dialog that sets several of their
+        /// properties at once) as one undo step, tells the designer and shows their properties again.
+        /// </summary>
+        internal void ApplyWithUndo(string propName, Action change)
+        {
+            List<FrameMainDesigner.UndoItemState> undoStates = CaptureUndoStates();
+            try
+            {
+                change();
+            }
+            finally
+            {
+                RecordUndoChanges(undoStates);
+            }
+            if (OnPropertyChange != null)
+                OnPropertyChange(propName, DBNull.Value);
+            SetObject(CurrentInterface);
+        }
+
         // Sets the property in every selected item recording its undo operations
         private void SetPropertyWithUndo(string propName, Variant newvalue)
         {
@@ -718,6 +743,16 @@ namespace Reportman.Designer
             if ((executeonpropchange) && (OnPropertyChange != null))
             {
                 OnPropertyChange(propName, newValue);
+            }
+            // The rows of a dataset depend on its connection: the SQL, or the unions of a MyBase one
+            if (CurrentInterface is DesignerInterfaceDataInfo && propName == Translator.TranslateStr(154) && IsHandleCreated)
+            {
+                DesignerInterface current = CurrentInterface;
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    if (CurrentInterface == current)
+                        SetObject(current);
+                });
             }
         }
     }

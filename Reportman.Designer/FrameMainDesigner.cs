@@ -606,6 +606,12 @@ namespace Reportman.Designer
                 FAIChatControl.PromptText = prompt.Trim();
         }
 
+        /// <summary>The object inspector of the properties frame (the self-tests).</summary>
+        internal ObjectInspector PropertyInspector
+        {
+            get { return frameproperties.inspector as ObjectInspector; }
+        }
+
         /// <summary>The report the last preview printed, null before the first one (the self-tests).</summary>
         internal Report PreviewedReport
         {

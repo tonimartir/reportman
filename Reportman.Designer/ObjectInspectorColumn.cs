@@ -43,7 +43,9 @@ namespace Reportman.Designer
         /// <summary>Connection string editor with dialog.</summary>
         ConnectionString,
         /// <summary>Multiline text editor with dialog.</summary>
-        MultilineText
+        MultilineText,
+        /// <summary>The unions of a dataset of the MyBase connection, with a dialog.</summary>
+        Unions
     };
 
     /// <summary>
@@ -321,6 +323,8 @@ namespace Reportman.Designer
                     return ClickSQL(sender, ref text);
                 case ObjectInspectorCellType.ConnectionString:
                     return ClickConnectionString(sender, ref text);
+                case ObjectInspectorCellType.Unions:
+                    return ClickUnions(sender, ref text);
                 case ObjectInspectorCellType.MultilineText:
                     return ClickMultilineText(sender, ref text);
                 default:
@@ -433,6 +437,26 @@ namespace Reportman.Designer
             }
             else
                 return false;
+        }
+        // The dialog of the unions sets several properties of the dataset (the datasets it joins, parallel,
+        // grouping, index fields): they are applied here as one undo step, not through the cell
+        private bool ClickUnions(EllipsisEditingControl sender, ref string text)
+        {
+            IntDataGridView = sender.m_dataGridView;
+            DesignerInterfaceDataInfo dinfo = (DesignerInterfaceDataInfo)GetColumnValue("INTERFACE");
+            if (dinfo == null || dinfo.DataInfo == null)
+                return false;
+            DataInfo datainfo = dinfo.DataInfo;
+            UnionSettings settings = UnionsEditorForm.Edit(GetMainDesigner(), datainfo);
+            if (settings == null)
+                return false;
+            ObjectInspector insp = IntDataGridView as ObjectInspector;
+            string propName = Translator.TranslateStr(1083);
+            if (insp != null)
+                insp.BeginInvoke((MethodInvoker)delegate { insp.ApplyWithUndo(propName, delegate { settings.ApplyTo(datainfo); }); });
+            else
+                settings.ApplyTo(datainfo);
+            return false;
         }
         private bool ClickConnectionString(EllipsisEditingControl sender, ref string connection_string)
         {
@@ -586,6 +610,9 @@ namespace Reportman.Designer
                             ntype = typeof(EllipsisEditingControl);
                             break;
                         case ObjectInspectorCellType.ConnectionString:
+                            ntype = typeof(EllipsisEditingControl);
+                            break;
+                        case ObjectInspectorCellType.Unions:
                             ntype = typeof(EllipsisEditingControl);
                             break;
                         case ObjectInspectorCellType.MultilineText:
@@ -800,6 +827,7 @@ namespace Reportman.Designer
                 case ObjectInspectorCellType.SQL:
                 case ObjectInspectorCellType.ConnectionString:
                 case ObjectInspectorCellType.MultilineText:
+                case ObjectInspectorCellType.Unions:
                     aresult = formattedValue.ToString();
                     break;
                 case ObjectInspectorCellType.Color:
