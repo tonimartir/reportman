@@ -280,12 +280,25 @@ class Program
         result["customY"] = meta.CustomY;
         result["orientation"] = meta.Orientation.ToString();
         result["backColor"] = meta.BackColor;
+        result["docAuthor"] = meta.DocAuthor;
+        result["docTitle"] = meta.DocTitle;
+        result["docSubject"] = meta.DocSubject;
+        result["docProducer"] = meta.DocProducer;
+        result["docCreator"] = meta.DocCreator;
+        result["docKeywords"] = meta.DocKeywords;
+        result["docXMPContent"] = meta.DocXMPContent;
+        result["docCreationDate"] = meta.DocCreationDate;
+        result["docModificationDate"] = meta.DocModificationDate;
+        result["pdfConformance"] = meta.PDFConformance.ToString();
+        result["pdfCompressed"] = meta.PDFCompressed;
         var pages = new JArray();
         for (int i = 0; i < meta.Pages.Count; i++)
         {
             MetaPage page = meta.Pages[i];
             var jpage = new JObject();
             jpage["orientation"] = page.Orientation.ToString();
+            jpage["updatedPageSize"] = page.UpdatedPageSize;
+            jpage["pageDetail"] = JObject.FromObject(page.PageDetail);
             var objects = new JArray();
             foreach (MetaObject obj in page.Objects)
             {
@@ -297,6 +310,10 @@ class Program
                     jo["lFontName"] = PoolString(page, text.LFontNameP, text.LFontNameS);
                     jo["wFontName"] = PoolString(page, text.WFontNameP, text.WFontNameS);
                 }
+                if (obj is MetaObjectExport export)
+                    jo["textExp"] = PoolString(page, export.TextExpP, export.TextExpS);
+                if (obj.AnnotationS > 0)
+                    jo["annotation"] = PoolString(page, obj.AnnotationP, obj.AnnotationS);
                 objects.Add(jo);
             }
             jpage["objects"] = objects;
