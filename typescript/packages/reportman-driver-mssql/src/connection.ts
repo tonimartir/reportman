@@ -99,7 +99,7 @@ function authentication(settings: SqlSettings, options: ConnectionOptions): tedi
 }
 
 /** Environment.MachineName: the NetBIOS name on Windows, the host name up to its first dot elsewhere. */
-function machineName(): string {
+export function machineName(): string {
   if (process.platform === 'win32' && process.env.COMPUTERNAME !== undefined && process.env.COMPUTERNAME.length > 0) return process.env.COMPUTERNAME;
   const name = os.hostname();
   const dot = name.indexOf('.');

@@ -53,12 +53,15 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   const pdfFile = path.join(fixtures, c.name + '.cs.pdf.gz');
   const csPdf = fs.existsSync(pdfFile) ? readGzip(pdfFile) : null;
   const { clock, now } = csPdf === null ? { clock: undefined, now: undefined } : pdfCreation(csPdf);
-  const result = runFreeTypeLikeGolden(reportFile, { params: c.params, culture: c.culture, now, clock, fonts: systemFonts() });
+  // Run on the first test that needs it: a skipped suite (other fonts, another system, or none in a
+  // container) collects its tests without scanning the fonts
+  let run: ReturnType<typeof runFreeTypeLikeGolden> | undefined;
+  const result = () => (run ??= runFreeTypeLikeGolden(reportFile, { params: c.params, culture: c.culture, now, clock, fonts: systemFonts() }));
   const csFile = path.join(work, c.name + '.cs.pdf');
   const tsFile = path.join(work, c.name + '.ts.pdf');
 
   it('lays out the same metafile as C#', async () => {
-    const { meta } = await result;
+    const { meta } = await result();
     const ts = metaFileJson(meta) as typeof csJson;
     const { pages: tsPages, ...tsHead } = ts;
     const { pages: csPages, ...csHead } = csJson;
@@ -74,7 +77,7 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   });
 
   it('writes the same content streams as C#', async () => {
-    const { pdf } = await result;
+    const { pdf } = await result();
     expect(pdf).not.toBeNull();
     if (csPdf === null || pdf === null) return;
     fs.writeFileSync(csFile, csPdf);
@@ -87,13 +90,13 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   });
 
   it('declares the same fonts as C# (descriptors, Type0 and CID fonts, widths)', async () => {
-    const { pdf } = await result;
+    const { pdf } = await result();
     if (csPdf === null || pdf === null) return;
     expect(fontObjects(pdf)).toEqual(fontObjects(csPdf));
   });
 
   it('writes the same objects as C# but the font programs (header, metadata, pages, images, files, catalog, trailer)', async () => {
-    const { pdf } = await result;
+    const { pdf } = await result();
     if (csPdf === null || pdf === null) return;
     const got = documentStructure(pdf);
     const want = documentStructure(csPdf);
@@ -111,7 +114,7 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   });
 
   it.skipIf(!poppler)('has the same text as C# (pdftotext)', async () => {
-    const { pdf } = await result;
+    const { pdf } = await result();
     if (csPdf === null || pdf === null) return;
     fs.writeFileSync(csFile, csPdf);
     fs.writeFileSync(tsFile, pdf);
@@ -119,7 +122,7 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   });
 
   it.skipIf(!poppler)('rasterizes like C# (pdftoppm -gray)', async () => {
-    const { pdf } = await result;
+    const { pdf } = await result();
     if (csPdf === null || pdf === null) return;
     fs.writeFileSync(csFile, csPdf);
     fs.writeFileSync(tsFile, pdf);
@@ -133,7 +136,7 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   });
 
   it('keeps a copy of a PDF that differs', async () => {
-    const { pdf } = await result;
+    const { pdf } = await result();
     if (pdf !== null) fs.writeFileSync(path.join(os.tmpdir(), 'rm-freetype-' + c.name + '.ts.pdf'), pdf);
   });
 });

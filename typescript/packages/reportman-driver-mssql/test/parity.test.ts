@@ -69,7 +69,9 @@ describe.skipIf(!available)('SQL Server run parity with golden-cs (Microsoft.Dat
       const csJson = readJson<{ pages: { objects: unknown[] }[] } & Record<string, unknown>>(path.join(runDir, c.name + '.meta.json'));
       const { clock } = pdfCreation(csPdf);
 
-      it('lays out the same metafile as C#', async () => {
+      // (the xml values have Environment.NewLine: the fixtures are the Windows one; types.test.ts
+      // checks the values on every system)
+      it.skipIf(c.newLineInValues === true && os.EOL !== '\r\n')('lays out the same metafile as C#', async () => {
         const report = await openReport(file, runOptions(c, traceApp('ts-meta-' + c.name + '-' + stamp), { clock }));
         const ts = metaFileJson(await report.executeToMetafile(c.values ?? null)) as typeof csJson;
         const { pages: tsPages, ...tsHead } = ts;

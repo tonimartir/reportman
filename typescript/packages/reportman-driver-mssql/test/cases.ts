@@ -34,6 +34,11 @@ export interface ReportCase {
   /** Compare the statements both engines send (traced on the server); true by default. */
   statements?: boolean;
   /**
+   * The metafile has a value with Environment.NewLine (an xml column), and the fixtures come from
+   * SqlClient on Windows: on another system its metafile is compared only where that is \r\n.
+   */
+  newLineInValues?: boolean;
+  /**
    * C# fails where the TypeScript driver runs the report (or fails with tsError): the text of the C#
    * error and why (a limitation of SqlClient or of the C# engine, not reproduced on purpose).
    */
@@ -87,8 +92,8 @@ export const CASES: ReportCase[] = [
       why: 'With MultipleActiveResultSets=False SqlClient keeps one open reader per connection, and the C# engine keeps the reader of the dataset being printed open while GETVALUEFROMSQL runs its command. The TypeScript engine has read that dataset whole.',
     },
   },
-  { name: 'mssql-types', report: fixture('mssql-types') },
-  { name: 'mssql-types-es', report: fixture('mssql-types'), culture: 'es-ES' },
+  { name: 'mssql-types', report: fixture('mssql-types'), newLineInValues: true },
+  { name: 'mssql-types-es', report: fixture('mssql-types'), culture: 'es-ES', newLineInValues: true },
   { name: 'mssql-variants', report: fixture('mssql-variants') },
   { name: 'mssql-params', report: fixture('mssql-params') },
   { name: 'mssql-masterdetail', report: fixture('mssql-masterdetail'), csOptions: MARS },

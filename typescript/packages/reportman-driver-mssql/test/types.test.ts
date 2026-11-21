@@ -3,10 +3,12 @@
 // .NET type and value of every cell, and the errors of the queries and connection strings that fail.
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { CsDecimal, RpDateTime } from 'reportman-engine';
 import { MsSqlConnection, mssql, type NetCell } from '../src/index.js';
+import { machineName } from '../src/connection.js';
 import { QUERIES, fixtures } from './cases.ts';
 import { connectionString, isReachable, loadDatabase, request } from './database.ts';
 import type { GoldenSql } from './golden.ts';
@@ -44,6 +46,18 @@ function expectCell(golden: unknown, mine: NetCell | null, where: string): void 
   expect(goldenText(mine!), where).toBe(g);
 }
 
+/**
+ * A cell of the fixtures (SqlClient on the Windows computer that wrote them) as SqlClient gives it on
+ * this system: the line ends of an xml value are Environment.NewLine, and the host_name of the
+ * session is Environment.MachineName.
+ */
+function onThisSystem(golden: unknown, column: { columnName: string; dataTypeName: string | null }): unknown {
+  if (typeof golden !== 'string') return golden;
+  if (column.dataTypeName?.toLowerCase() === 'xml' && os.EOL !== '\r\n') return golden.replace(/\r\n/g, os.EOL);
+  if (column.columnName.toLowerCase() === 'host_name') return 'String:' + machineName();
+  return golden;
+}
+
 /** The part of a message that does not come from the operating system (its language). */
 function withoutOsText(message: string): string {
   return message.replace(/(error: 0 - ).*$/s, '$1').replace(/('\.) .*$/s, '$1');
@@ -68,7 +82,8 @@ describe.skipIf(!available)('the values of SQL Server as SqlClient gives them (g
         );
         expect(result.rows.length).toBe(golden.rows!.length);
         for (let r = 0; r < golden.rows!.length; r++) {
-          for (let i = 0; i < golden.columns!.length; i++) expectCell(golden.rows![r]![i], result.rows[r]![i]!, `row ${r} ${golden.columns![i]!.columnName}`);
+          for (let i = 0; i < golden.columns!.length; i++)
+            expectCell(onThisSystem(golden.rows![r]![i], golden.columns![i]!), result.rows[r]![i]!, `row ${r} ${golden.columns![i]!.columnName}`);
         }
       } catch (e) {
         if (golden.error === undefined) throw e;
