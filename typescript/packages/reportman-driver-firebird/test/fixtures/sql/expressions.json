@@ -1,0 +1,113 @@
+{
+  "columns": [
+    {
+      "columnName": "N",
+      "dataType": "Int64",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S_SMALL",
+      "dataType": "Int64",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S_INT",
+      "dataType": "Int64",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "S_BIG",
+      "dataType": "BigInteger",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "A_NUM",
+      "dataType": "Decimal",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_DBL",
+      "dataType": "Double",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "P_NUM",
+      "dataType": "Decimal",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "M_DEC",
+      "dataType": "FbDecFloat",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "LIT",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "NUL",
+      "dataType": "String",
+      "columnSize": 5,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "NUL2",
+      "dataType": "String",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "ADDED",
+      "dataType": "Int64",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "BOOL",
+      "dataType": "Boolean",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "FL",
+      "dataType": "Single",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DIV",
+      "dataType": "Double",
+      "columnSize": 8,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int64:1",
+      "Int64:123",
+      "Int64:123456",
+      "BigInteger:1234567890123",
+      "-123456.789",
+      "Double:3.141592653589793",
+      "-1523456.77626",
+      "FbDecFloat:-120E-2",
+      "String:lit",
+      null,
+      null,
+      "Int64:2",
+      "Boolean:True",
+      "Single:1.5",
+      "Double:-41152.263"
+    ]
+  ]
+}

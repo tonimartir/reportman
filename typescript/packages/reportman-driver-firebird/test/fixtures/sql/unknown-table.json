@@ -1,0 +1,4 @@
+{
+  "error": "FbException",
+  "message": "Dynamic SQL Error\nSQL error code = -204\nTable unknown\nNOSUCHTABLE\nAt line 1, column 15"
+}

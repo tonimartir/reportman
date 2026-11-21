@@ -1,0 +1,15 @@
+{
+  "columns": [
+    {
+      "columnName": "BIG",
+      "dataType": "BigInteger",
+      "columnSize": 16,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "BigInteger:170141183460469231731687303715884105727"
+    ]
+  ]
+}

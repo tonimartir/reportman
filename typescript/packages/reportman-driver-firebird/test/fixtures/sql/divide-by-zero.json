@@ -1,0 +1,4 @@
+{
+  "error": "FbException",
+  "message": "arithmetic exception, numeric overflow, or string truncation\nInteger divide by zero.  The code attempted to divide an integer value by an integer divisor of zero."
+}

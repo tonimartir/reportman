@@ -1,0 +1,78 @@
+{
+  "columns": [
+    {
+      "columnName": "D",
+      "dataType": "DateTime",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T",
+      "dataType": "TimeSpan",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "TS",
+      "dataType": "DateTime",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "N",
+      "dataType": "Decimal",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "B",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "U",
+      "dataType": "String",
+      "columnSize": 1,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DZ",
+      "dataType": "FbDecFloat",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DMIN",
+      "dataType": "FbDecFloat",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DMAX",
+      "dataType": "FbDecFloat",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "DSN",
+      "dataType": "FbDecFloat",
+      "columnSize": 16,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "2024-02-29T00:00:00.0000000",
+      "TimeSpan:23:59:59.9999000",
+      "2024-02-29T23:59:59.9999000",
+      "12.3",
+      "wP/u",
+      "String:ñ",
+      "FbDecFloat:-0",
+      "FbDecFloat:1E-398",
+      "FbDecFloat:1000000000000000000000000000000000E6111",
+      "FbDecFloat:-snan"
+    ]
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "error": "FbException",
+  "message": "Dynamic SQL Error\nSQL error code = -104\nToken unknown - line 1, column 8\nFROM"
+}

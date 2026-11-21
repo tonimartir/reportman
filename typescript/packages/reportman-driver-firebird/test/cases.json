@@ -1,0 +1,36 @@
+{
+  "reports": [
+    { "name": "customers", "report": "../../../../samples/customers.rep" },
+    { "name": "invoices", "report": "fixtures/reports/invoices.rep" },
+    { "name": "invoices-range", "report": "fixtures/reports/invoices.rep", "params": { "FIRST_ORDER": "7", "LAST_ORDER": "9" } },
+    { "name": "labels", "report": "../../../../samples/labels.rep" },
+    { "name": "product-catalog", "report": "../../../../samples/product-catalog.rep" },
+    { "name": "monthly-sales", "report": "fixtures/reports/monthly-sales.rep" },
+    { "name": "sales-by-category", "report": "fixtures/reports/sales-by-category.rep" },
+    { "name": "fishes", "report": "../../../../samples/fishes.rep" },
+    { "name": "syn-params", "report": "fixtures/reports/syn-params.rep" },
+    {
+      "name": "syn-params-values",
+      "report": "fixtures/reports/syn-params.rep",
+      "params": { "FROMID": "10", "MAXVAT": "21", "COUNTRY": "'Spain'", "PATTERN": "%a%", "FLAG": "False" }
+    },
+    { "name": "syn-masterdetail", "report": "fixtures/reports/syn-masterdetail.rep" },
+    { "name": "syn-getvalue", "report": "fixtures/reports/syn-getvalue.rep" }
+  ],
+  "queries": [
+    { "name": "types", "sql": "SELECT * FROM TYPES ORDER BY ID" },
+    {
+      "name": "expressions",
+      "sql": "SELECT COUNT(*) AS N, SUM(T_SMALLINT) AS S_SMALL, SUM(T_INTEGER) AS S_INT, SUM(T_BIGINT) AS S_BIG, AVG(T_NUM9_3) AS A_NUM, MAX(T_DOUBLE) AS M_DBL, SUM(T_NUM4_2 * T_NUM9_3) AS P_NUM, MIN(T_DECF34) AS M_DEC, 'lit' AS LIT, CAST(NULL AS VARCHAR(5)) AS NUL, NULL AS NUL2, CAST(1 AS SMALLINT) + 1 AS ADDED, TRUE AS BOOL, CAST('1.5' AS FLOAT) AS FL, CAST(T_NUM9_3 AS DOUBLE PRECISION) / 3 AS DIV FROM TYPES WHERE ID = 1 GROUP BY T_NUM9_3"
+    },
+    { "name": "literals", "sql": "SELECT DATE '2024-02-29' AS D, TIME '23:59:59.9999' AS T, TIMESTAMP '2024-02-29 23:59:59.9999' AS TS, CAST(12.30 AS NUMERIC(6,2)) AS N, X'C0FFEE' AS B, _UTF8 'ñ' AS U, CAST('-0.0' AS DECFLOAT(16)) AS DZ, CAST('1E-398' AS DECFLOAT(16)) AS DMIN, CAST('1.000000000000000000000000000000000E+6144' AS DECFLOAT(34)) AS DMAX, CAST('-sNaN' AS DECFLOAT(34)) AS DSN FROM RDB$DATABASE" },
+    { "name": "int128-beyond-int64", "sql": "SELECT CAST('170141183460469231731687303715884105727' AS INT128) AS BIG FROM RDB$DATABASE" },
+    { "name": "decimal-overflow", "sql": "SELECT CAST('99999999999999999999999999999999.999999' AS DECIMAL(38,6)) AS BIG FROM RDB$DATABASE" },
+    { "name": "time-zone-offset", "sql": "SELECT CAST('2024-01-01 10:00:00 +02:00' AS TIMESTAMP WITH TIME ZONE) AS TS FROM RDB$DATABASE" },
+    { "name": "time-zone-unknown", "sql": "SELECT CAST('2024-01-01 10:00:00 America/Coyhaique' AS TIMESTAMP WITH TIME ZONE) AS TS FROM RDB$DATABASE" },
+    { "name": "unknown-table", "sql": "SELECT * FROM NOSUCHTABLE" },
+    { "name": "syntax-error", "sql": "SELECT FROM WHERE" },
+    { "name": "divide-by-zero", "sql": "SELECT 1 / 0 AS X FROM RDB$DATABASE" },
+    { "name": "conversion-error", "sql": "SELECT CAST('abc' AS INTEGER) AS X FROM RDB$DATABASE" }
+  ]
+}

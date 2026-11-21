@@ -1,0 +1,334 @@
+{
+  "columns": [
+    {
+      "columnName": "ID",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_SMALLINT",
+      "dataType": "Int16",
+      "columnSize": 2,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_INTEGER",
+      "dataType": "Int32",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BIGINT",
+      "dataType": "Int64",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_INT128",
+      "dataType": "BigInteger",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_NUM4_2",
+      "dataType": "Decimal",
+      "columnSize": 2,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_NUM9_3",
+      "dataType": "Decimal",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_NUM18_4",
+      "dataType": "Decimal",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DEC38_6",
+      "dataType": "Decimal",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_NUM10_0",
+      "dataType": "Decimal",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_FLOAT",
+      "dataType": "Single",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DOUBLE",
+      "dataType": "Double",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DECF16",
+      "dataType": "FbDecFloat",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DECF34",
+      "dataType": "FbDecFloat",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_CHAR",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_VARCHAR",
+      "dataType": "String",
+      "columnSize": 20,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_UNICODE",
+      "dataType": "String",
+      "columnSize": 30,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_CHAR3",
+      "dataType": "String",
+      "columnSize": 3,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_WIN1252",
+      "dataType": "String",
+      "columnSize": 5,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_LATIN1",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_NONE",
+      "dataType": "String",
+      "columnSize": 10,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_OCTETS",
+      "dataType": "String",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_GUID",
+      "dataType": "Guid",
+      "columnSize": 16,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_VARBINARY",
+      "dataType": "String",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BLOB_TEXT",
+      "dataType": "String",
+      "columnSize": 2147483647,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BLOB_BIN",
+      "dataType": "Byte[]",
+      "columnSize": 2147483647,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_DATE",
+      "dataType": "DateTime",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIME",
+      "dataType": "TimeSpan",
+      "columnSize": 4,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIMESTAMP",
+      "dataType": "DateTime",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIME_TZ",
+      "dataType": "FbZonedTime",
+      "columnSize": 8,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_TIMESTAMP_TZ",
+      "dataType": "FbZonedDateTime",
+      "columnSize": 12,
+      "dataTypeName": null
+    },
+    {
+      "columnName": "T_BOOLEAN",
+      "dataType": "Boolean",
+      "columnSize": 1,
+      "dataTypeName": null
+    }
+  ],
+  "rows": [
+    [
+      "Int32:1",
+      "Int16:123",
+      "Int32:123456",
+      "Int64:1234567890123",
+      "BigInteger:123456789012345678",
+      "12.34",
+      "-123456.789",
+      "12345678901234.5678",
+      "1234567890123456789012.123456",
+      "1234567890",
+      "Single:1.1",
+      "Double:3.141592653589793",
+      "FbDecFloat:12345E-2",
+      "FbDecFloat:-120E-2",
+      "String:abc       ",
+      "String:Hello, world",
+      "String:日本語 Ελληνικά עברית",
+      "String:😀�",
+      "String:café ",
+      "String:Ñandú",
+      "String:plain",
+      "AQIDBA==",
+      "Guid:00112233-4455-6677-8899-aabbccddeeff",
+      "3q2+7w==",
+      "String:A text blob with ünïcödé and a line\nbreak",
+      "AAEC/w==",
+      "2024-02-29T00:00:00.0000000",
+      "TimeSpan:13:45:30.1234000",
+      "2024-02-29T13:45:30.1234000",
+      "FbZonedTime:12:45:30.1234000 Europe/Madrid",
+      "FbZonedDateTime:7/1/2024 2:00:00 PM America/New_York",
+      "Boolean:True"
+    ],
+    [
+      "Int32:2",
+      "Int16:-32768",
+      "Int32:2147483647",
+      "Int64:-9223372036854775808",
+      "BigInteger:9223372036854775807",
+      "-99.99",
+      "0.001",
+      "-99999999999999.9999",
+      "-0.000001",
+      "-9999999999",
+      "Single:3.4028235E+38",
+      "Double:1.7976931348623157E+308",
+      "FbDecFloat:9999999999999999E369",
+      "FbDecFloat:-0",
+      "String:          ",
+      "String:",
+      "String:x",
+      "String:ab ",
+      "String:     ",
+      "String:",
+      "String:",
+      "AAAAAA==",
+      "Guid:ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "",
+      "String:",
+      "",
+      "0001-01-01T00:00:00.0000000",
+      "TimeSpan:00:00:00",
+      "9999-12-31T23:59:59.9999000",
+      "FbZonedTime:23:59:59.9999000 UTC",
+      "FbZonedDateTime:1/1/2000 12:00:00 AM UTC",
+      "Boolean:False"
+    ],
+    [
+      "Int32:3",
+      "Int16:32767",
+      "Int32:-2147483648",
+      "Int64:9223372036854775807",
+      "BigInteger:-9223372036854775808",
+      "99.99",
+      "-999999.999",
+      "0",
+      "0.000001",
+      "0",
+      "Single:-1.1754944E-38",
+      "Double:0",
+      "FbDecFloat:nan",
+      "FbDecFloat:-inf",
+      "String:padded    ",
+      "String:trailing  ",
+      "String:tab\tinside",
+      "String:a  ",
+      "String:Œuvre",
+      "String:ÿ",
+      "String:ascii",
+      "f39/fw==",
+      "Guid:01020304-0506-0708-090a-0b0c0d0e0f10",
+      "AA==",
+      "String:x",
+      "AA==",
+      "9999-12-31T00:00:00.0000000",
+      "TimeSpan:23:59:59.9999000",
+      "1900-01-01T00:00:00.0001000",
+      "FbZonedTime:10:00:00 Etc/GMT-14",
+      "FbZonedDateTime:3/31/2024 12:30:00 AM Europe/Madrid",
+      "Boolean:True"
+    ],
+    [
+      "Int32:4",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ]
+}
