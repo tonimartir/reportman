@@ -9,8 +9,8 @@ namespace Reportman.Reporting.Design
     /// <summary>
     /// Serializes a Report into a compact text DSL for LLM instance context.
     /// Only properties present in the schemaContext (ReportContextBuilder allowed properties)
-    /// are emitted, so the AI designer does not see properties it cannot edit, plus some
-    /// read-only context: the connections and the unions of datasets.
+    /// are emitted, so the AI designer does not see properties it cannot edit, plus the
+    /// connections as read-only context.
     /// Only non-default property values are emitted to reduce token usage.
     /// Font names are always included (Report Manager has no parent-font inheritance).
     /// </summary>
@@ -37,7 +37,8 @@ namespace Reportman.Reporting.Design
     /// DataInfo (extras): SQL, MyBaseFilename, MyBaseFields, BDEIndexFields, BDEIndexName, BDETable,
     ///   BDEType, BDEFilter, BDEMasterFields, BDEFirstRange, BDELastRange, OpenOnStart,
     ///   HubSchemaId, SchemaName. DataUnions, ParallelUnion, GroupUnion, MyBaseIndexFields and
-    ///   MyBaseMasterFields are emitted read-only, only for the datasets of a Mybase connection.
+    ///   MyBaseMasterFields (editable: what a union is made of) are emitted only for the datasets
+    ///   of a Mybase connection.
     ///
     /// Param (extras): ErrorMessage, IsReadOnly, NeverVisible,
     ///   AllowNulls, LookupDataset, SearchDataset, Search, SearchParam, Items, Values,
@@ -174,7 +175,7 @@ namespace Reportman.Reporting.Design
             Str(sb, i, "DataSource", di.DataSource, "");
             if (onMemoryConnection)
             {
-                // Read-only: what a union of datasets is made of
+                // What a union of datasets is made of
                 DatasetList(sb, i, "DataUnions", di.DataUnions);
                 Bool(sb, i, "ParallelUnion", di.ParallelUnion, false);
                 Bool(sb, i, "GroupUnion", di.GroupUnion, false);

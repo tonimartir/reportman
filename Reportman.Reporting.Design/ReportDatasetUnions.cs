@@ -59,6 +59,40 @@ namespace Reportman.Reporting.Design
             return ignoringCase;
         }
 
+        /// <summary>
+        /// The in-memory (Mybase) connection of the report where a new union goes: the first one with an
+        /// alias. Null when the report has none.
+        /// </summary>
+        /// <param name="report">The report.</param>
+        /// <returns>The connection, or null.</returns>
+        public static DatabaseInfo FindMemoryConnection(BaseReport report)
+        {
+            if (report == null || report.DatabaseInfo == null)
+                return null;
+            foreach (DatabaseInfo database in report.DatabaseInfo)
+            {
+                if (IsMemoryConnection(database) && !string.IsNullOrWhiteSpace(database.Alias))
+                    return database;
+            }
+            return null;
+        }
+
+        /// <summary>The dataset of an alias (ignoring case), as a DataUnions entry or a SubReport.Alias names it. Null when there is none.</summary>
+        /// <param name="report">The report.</param>
+        /// <param name="datasetAlias">The alias of a dataset.</param>
+        /// <returns>The dataset, or null.</returns>
+        public static DataInfo FindDataset(BaseReport report, string datasetAlias)
+        {
+            if (report == null || report.DataInfo == null || string.IsNullOrWhiteSpace(datasetAlias))
+                return null;
+            foreach (DataInfo dataInfo in report.DataInfo)
+            {
+                if (dataInfo != null && string.Equals(dataInfo.Alias, datasetAlias.Trim(), StringComparison.OrdinalIgnoreCase))
+                    return dataInfo;
+            }
+            return null;
+        }
+
         /// <summary>Whether a connection is the in-memory one (driver Mybase): it opens no database.</summary>
         /// <param name="database">The connection.</param>
         /// <returns>True for a Mybase connection.</returns>

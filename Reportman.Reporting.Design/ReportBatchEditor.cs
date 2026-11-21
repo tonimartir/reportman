@@ -190,7 +190,7 @@ namespace Reportman.Reporting.Design
             }
 
             ValidateReportStructureRules(workingReport, result);
-            ValidateUnionSources(report, workingReport, result);
+            ValidateUnions(report, workingReport, result);
 
             return result;
         }
@@ -659,59 +659,261 @@ namespace Reportman.Reporting.Design
         }
 
         /// <summary>
-        /// Every entry of the DataUnions of a union must name a dataset of the report. Only the references
-        /// the batch breaks are reported: a report that already had a broken one can still be edited.
+        /// A problem of a union of datasets that the engine fails on, or gives no rows for. The key tells the same
+        /// problem in the report before and after a batch.
         /// </summary>
-        private static void ValidateUnionSources(Report originalReport, Report workingReport, ReportBatchValidationResult result)
+        private sealed class UnionProblem
         {
-            var alreadyBroken = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var broken in FindBrokenUnionSources(originalReport))
+            public UnionProblem(string key, string code, string message)
             {
-                alreadyBroken.Add(broken.Key);
+                Key = key;
+                Code = code;
+                Message = message;
             }
 
-            foreach (var broken in FindBrokenUnionSources(workingReport))
+            public string Key { get; private set; }
+
+            public string Code { get; private set; }
+
+            public string Message { get; private set; }
+        }
+
+        /// <summary>
+        /// The unions of datasets the batch leaves must open: each one is a dataset without SQL of an in-memory
+        /// (Mybase) connection with some entry in DataUnions; every entry names another dataset of the report; no
+        /// union reads itself, directly or through other unions; a parallel union by key names as many common
+        /// fields in every entry as in the first one; a grouped union has MyBaseIndexFields; and no SQL dataset a
+        /// union reads is the Alias of a subreport. Only the problems the batch brings are reported: a report that
+        /// already had one can still be edited.
+        /// </summary>
+        private static void ValidateUnions(Report originalReport, Report workingReport, ReportBatchValidationResult result)
+        {
+            var existing = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var problem in FindUnionProblems(originalReport))
             {
-                if (alreadyBroken.Contains(broken.Key))
+                existing.Add(problem.Key);
+            }
+
+            foreach (var problem in FindUnionProblems(workingReport))
+            {
+                if (existing.Contains(problem.Key))
                 {
                     continue;
                 }
 
-                result.Issues.Add(CreateIssue("invalid_union_source", broken.Value, null, null));
+                result.Issues.Add(CreateIssue(problem.Code, problem.Message, null, null));
             }
         }
 
-        private static List<KeyValuePair<string, string>> FindBrokenUnionSources(Report report)
+        private static List<UnionProblem> FindUnionProblems(Report report)
         {
-            var broken = new List<KeyValuePair<string, string>>();
+            var problems = new List<UnionProblem>();
             if (report == null || report.DataInfo == null)
             {
-                return broken;
+                return problems;
             }
 
+            var reportedCycles = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (DataInfo union in report.DataInfo)
             {
-                if (!ReportDatasetUnions.IsMemoryDataset(report, union))
+                var entries = ReportDatasetUnions.GetEntries(union);
+                var onMemoryConnection = ReportDatasetUnions.IsMemoryDataset(report, union);
+                var unionAlias = DatasetLabel(union);
+                if (entries.Count == 0)
                 {
+                    // SQL there is the problem sql_on_memory_connection tells; a file is the Delphi engine's own way
+                    if (onMemoryConnection && string.IsNullOrWhiteSpace(union.SQL) && string.IsNullOrWhiteSpace(union.MyBaseFilename))
+                    {
+                        problems.Add(new UnionProblem(union.Name + "|empty", "union_without_datasets",
+                            "Dataset '" + unionAlias + "' is on the in-memory connection '" + union.DatabaseAlias
+                                + "' without DataUnions: it runs no SQL, so it would have no rows. Give it DataUnions (the datasets it reads), or remove it."));
+                    }
+
                     continue;
+                }
+
+                if (!onMemoryConnection)
+                {
+                    problems.Add(new UnionProblem(union.Name + "|connection", "union_not_in_memory",
+                        "Dataset '" + unionAlias + "' has DataUnions but " + DescribeSqlConnection(report, union.DatabaseAlias)
+                            + ": a union of datasets is a dataset without SQL of an in-memory connection (driver Mybase). Create the union as a new TRPDATAINFOITEM with Alias and DataUnions and no SQL (leave DatabaseAlias empty: the server puts it on the in-memory connection), or remove DataUnions from this dataset."));
+                    continue;
+                }
+
+                var sourcesFound = true;
+                foreach (var entry in entries)
+                {
+                    var sourceAlias = ReportDatasetUnions.GetSourceAlias(entry);
+                    if (!string.IsNullOrWhiteSpace(union.Alias) && string.Equals(sourceAlias, union.Alias.Trim(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        sourcesFound = false;
+                        problems.Add(new UnionProblem(union.Name + "|self", "union_reads_itself",
+                            "The union of datasets '" + unionAlias + "' names itself in DataUnions ('" + entry + "'): each entry must be another dataset of the report."));
+                        continue;
+                    }
+
+                    if (!HasDataInfoWithAlias(report, sourceAlias))
+                    {
+                        sourcesFound = false;
+                        problems.Add(new UnionProblem(union.Name + "|" + sourceAlias, "invalid_union_source",
+                            "The union of datasets '" + unionAlias + "' reads the dataset '" + sourceAlias
+                                + "' (DataUnions), which does not exist in the report."));
+                    }
+                }
+
+                if (sourcesFound)
+                {
+                    var cycle = FindUnionCycle(report, union);
+                    if (cycle != null)
+                    {
+                        // One issue for each cycle, whichever of its unions finds it
+                        var members = cycle.GetRange(0, cycle.Count - 1);
+                        members.Sort(StringComparer.OrdinalIgnoreCase);
+                        var cycleKey = "cycle|" + string.Join("|", members);
+                        if (reportedCycles.Add(cycleKey))
+                        {
+                            problems.Add(new UnionProblem(cycleKey, "union_cycle",
+                                "The union of datasets '" + unionAlias + "' reads itself through other unions (" + string.Join(" -> ", cycle)
+                                    + "): a union can not read itself, directly or through other unions."));
+                        }
+                    }
+                }
+
+                if (union.ParallelUnion)
+                {
+                    // The engine matches the rows of every later dataset by as many common fields as the first entry has
+                    var firstFields = ReportDatasetUnions.GetCommonFields(entries[0]);
+                    // A later entry with common fields and a first one without: the engine would pair the rows by
+                    // position (the key is the first entry's) and only copy the common field over
+                    if (firstFields.Count == 0)
+                    {
+                        for (var entryIndex = 1; entryIndex < entries.Count; entryIndex++)
+                        {
+                            var laterFields = ReportDatasetUnions.GetCommonFields(entries[entryIndex]);
+                            if (laterFields.Count == 0)
+                            {
+                                continue;
+                            }
+
+                            var firstExample = ReportDatasetUnions.GetSourceAlias(entries[0]) + "-" + string.Join(";", laterFields);
+                            problems.Add(new UnionProblem(union.Name + "|commonfirst|" + entries[entryIndex], "union_common_fields",
+                                "The parallel union '" + unionAlias + "' names common fields in its entry '" + entries[entryIndex]
+                                    + "' but not in its first entry '" + entries[0] + "', whose common fields are the key the rows are matched by"
+                                    + " (without them they are matched by position): write them in every entry, for example '" + firstExample + "'."));
+                            break;
+                        }
+                    }
+                    for (var entryIndex = 1; firstFields.Count > 0 && entryIndex < entries.Count; entryIndex++)
+                    {
+                        if (ReportDatasetUnions.GetCommonFields(entries[entryIndex]).Count == firstFields.Count)
+                        {
+                            continue;
+                        }
+
+                        var example = ReportDatasetUnions.GetSourceAlias(entries[entryIndex]) + "-" + string.Join(";", firstFields);
+                        problems.Add(new UnionProblem(union.Name + "|common|" + entries[entryIndex], "union_common_fields",
+                            "The parallel union '" + unionAlias + "' matches the rows of its datasets by the " + firstFields.Count
+                                + " common field(s) of its first entry '" + entries[0] + "': its entry '" + entries[entryIndex]
+                                + "' must name as many, for example '" + example + "'."));
+                    }
+                }
+
+                if (union.GroupUnion && string.IsNullOrWhiteSpace(union.MyBaseIndexFields))
+                {
+                    var keyFields = ReportDatasetUnions.GetCommonFields(entries[0]);
+                    problems.Add(new UnionProblem(union.Name + "|group", "union_group_without_index",
+                        "The union '" + unionAlias + "' has GroupUnion: it adds together the rows with the same values of MyBaseIndexFields, so MyBaseIndexFields must name those fields, separated by ';' (for example '"
+                            + (keyFields.Count > 0 ? string.Join(";", keyFields) : "CATEGORY") + "')."));
                 }
 
                 foreach (var sourceAlias in ReportDatasetUnions.GetSourceAliases(union))
                 {
-                    if (HasDataInfoWithAlias(report, sourceAlias))
+                    // A union read by another one goes back to its first row, a SQL dataset does not
+                    var source = ReportDatasetUnions.FindDataset(report, sourceAlias);
+                    if (source == null || ReportDatasetUnions.IsMemoryDataset(report, source))
                     {
                         continue;
                     }
 
-                    var unionAlias = string.IsNullOrWhiteSpace(union.Alias) ? union.Name : union.Alias;
-                    broken.Add(new KeyValuePair<string, string>(
-                        union.Name + "|" + sourceAlias,
-                        "The union of datasets '" + unionAlias + "' reads the dataset '" + sourceAlias
-                            + "' (DataUnions), which does not exist in the report."));
+                    foreach (SubReport subReport in report.SubReports)
+                    {
+                        if (string.IsNullOrWhiteSpace(subReport.Alias)
+                            || !string.Equals(subReport.Alias.Trim(), source.Alias, StringComparison.OrdinalIgnoreCase))
+                        {
+                            continue;
+                        }
+
+                        problems.Add(new UnionProblem(union.Name + "|" + source.Alias + "|" + subReport.Name, "union_source_in_subreport",
+                            "Dataset '" + source.Alias + "' is read by the union '" + unionAlias + "' (DataUnions) and is also the Alias of the subreport '"
+                                + subReport.Name + "': the union reads its rows when it opens, so the subreport and the union would not both get them. Set the subreport Alias to the union '"
+                                + unionAlias + "', or leave that dataset out of the union."));
+                    }
                 }
             }
 
-            return broken;
+            return problems;
+        }
+
+        /// <summary>
+        /// The path of a union that reads itself through other unions (its alias first and last), or null.
+        /// </summary>
+        private static List<string> FindUnionCycle(Report report, DataInfo union)
+        {
+            var path = new List<string> { DatasetLabel(union) };
+            var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { union.Name ?? string.Empty };
+            return FindPathBack(report, union, union, path, visited) ? path : null;
+        }
+
+        private static bool FindPathBack(Report report, DataInfo start, DataInfo current, List<string> path, HashSet<string> visited)
+        {
+            foreach (var sourceAlias in ReportDatasetUnions.GetSourceAliases(current))
+            {
+                var source = ReportDatasetUnions.FindDataset(report, sourceAlias);
+                if (source == null || !ReportDatasetUnions.IsUnion(report, source))
+                {
+                    continue;
+                }
+
+                if (ReferenceEquals(source, start))
+                {
+                    path.Add(DatasetLabel(start));
+                    return true;
+                }
+
+                if (!visited.Add(source.Name ?? string.Empty))
+                {
+                    continue;
+                }
+
+                path.Add(DatasetLabel(source));
+                if (FindPathBack(report, start, source, path, visited))
+                {
+                    return true;
+                }
+
+                path.RemoveAt(path.Count - 1);
+            }
+
+            return false;
+        }
+
+        private static string DatasetLabel(DataInfo dataInfo)
+        {
+            return string.IsNullOrWhiteSpace(dataInfo.Alias) ? dataInfo.Name : dataInfo.Alias;
+        }
+
+        /// <summary>Where a dataset with DataUnions that is not on an in-memory connection is, for the message.</summary>
+        private static string DescribeSqlConnection(Report report, string databaseAlias)
+        {
+            if (string.IsNullOrWhiteSpace(databaseAlias))
+            {
+                return "it has no connection (DatabaseAlias)";
+            }
+
+            var connection = ReportDatasetUnions.FindConnection(report, databaseAlias);
+            return connection == null
+                ? "its connection '" + databaseAlias + "' does not exist"
+                : "its connection '" + connection.Alias + "' (driver " + connection.Driver + ") runs SQL";
         }
 
         /// <summary>
