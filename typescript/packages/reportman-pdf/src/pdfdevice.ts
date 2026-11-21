@@ -1,5 +1,7 @@
 import {
+  ImageDrawStyleType,
   MetaObjectDraw,
+  MetaObjectImage,
   MetaObjectText,
   MetaObjectType,
   OrientationType,
@@ -26,11 +28,19 @@ import type {
   TextObjectStruct,
 } from 'reportman-metafile';
 import { StandardTextMeasurer } from 'reportman-text';
-import { ImageNotSupportedError } from './pdfcanvas.js';
-import { PDFA3_NOT_SUPPORTED, PDFFile, systemClock } from './pdffile.js';
+import { getBitmapInfo, getJpegInfo } from './bitmaputil.js';
+import { bitmapInfoOf } from './imagecodec.js';
+import { PDFA3_NOT_SUPPORTED, PDFFile, POINTS_PER_INCH, systemClock } from './pdffile.js';
 import type { PdfClock } from './pdffile.js';
 
 const RECTANGLE_RADIUS = 160;
+
+/** Convert.ToInt32(double), which fails for NaN and values out of the int range. */
+function convertToInt32Checked(x: number): number {
+  const r = roundHalfEven(x);
+  if (!Number.isFinite(r) || r > 2147483647 || r < -2147483648) throw new RangeError('Value was either too large or too small for an Int32.');
+  return r | 0;
+}
 
 /** Options of a PdfDevice. */
 export interface PdfDeviceOptions {
@@ -46,8 +56,9 @@ export interface PdfDeviceOptions {
  * metafile as a PDF. Text is measured with the width tables of reportman-text; there is no font
  * provider, so Linked and Embedded fonts become Helvetica and nothing is embedded.
  *
- * Not ported yet, and failing with a clear error: images (ImageNotSupportedError), PDF/A-3, and
- * the texts that need the shaper (right to left, HTML, printer fonts Recalculate).
+ * Images are embedded as the C# device does (JPEG, BMP, PNG and GIF; WebP, ICO and WBMP fail with
+ * ImageFormatNotSupportedError). Not ported yet, and failing with a clear error: PDF/A-3, and the
+ * texts that need the shaper (right to left, HTML, printer fonts Recalculate).
  */
 export class PdfDevice extends PrintOut {
   private fPDFFile: PDFFile;
@@ -189,8 +200,8 @@ export class PdfDevice extends PrintOut {
   }
 
   /**
-   * Draws an object of a page (DrawObject): texts and shapes. An image fails (not ported yet);
-   * polygons, export data and barcodes are not drawn by the C# PDF device either.
+   * Draws an object of a page (DrawObject): texts, shapes and images (also the preview only ones,
+   * as the C# device); polygons, export data and barcodes are not drawn by the C# PDF device either.
    */
   drawObject(page: MetaPage, obj: MetaObject): void {
     if (this.calculateOnly) return;
@@ -290,8 +301,42 @@ export class PdfDevice extends PrintOut {
           this.fPDFFile.newAnnotation(posx + X, Y + posy, posx + X + W, posy + Y + H, drawAnnotation);
         break;
       }
-      case MetaObjectType.Image:
-        throw new ImageNotSupportedError();
+      case MetaObjectType.Image: {
+        if (!(obj instanceof MetaObjectImage)) throw new TypeError('An image object is not a MetaObjectImage');
+        let rec = { left: posx, top: posy, width: obj.width, height: obj.height };
+        const stream = page.getStream(obj);
+        const intimageindex = obj.sharedImage ? obj.streamPos : -1;
+        switch (obj.drawImageStyle as number) {
+          case ImageDrawStyleType.Full:
+            canvas.drawImage(rec, stream, obj.dpiRes, false, false, intimageindex);
+            break;
+          case ImageDrawStyleType.Stretch:
+            canvas.drawImage(rec, stream, 0, false, false, intimageindex);
+            break;
+          case ImageDrawStyleType.Crop: {
+            // The image keeps its proportions, centered (the size from the decoder, Skia in C#)
+            const binfo = bitmapInfoOf(stream);
+            const propx = rec.width / binfo.width;
+            const propy = rec.height / binfo.height;
+            if (propy > propx) {
+              const H = convertToInt32Checked(roundHalfEven((rec.height * propx) / propy));
+              rec = { left: rec.left, top: (rec.top + intDiv((rec.height - H) | 0, 2)) | 0, width: rec.width, height: H };
+            } else {
+              const W = convertToInt32Checked((rec.width * propy) / propx);
+              rec = { left: (rec.left + intDiv((rec.width - W) | 0, 2)) | 0, top: rec.top, width: W, height: rec.height };
+            }
+            canvas.drawImage(rec, stream, 0, false, false, intimageindex);
+            break;
+          }
+          case ImageDrawStyleType.Tile:
+          case ImageDrawStyleType.Tiledpi:
+            canvas.drawImage(rec, stream, POINTS_PER_INCH, true, true, intimageindex);
+            break;
+        }
+        const imageAnnotation = page.getAnnotationText(obj);
+        if (imageAnnotation !== null) this.fPDFFile.newAnnotation(rec.left, rec.top, rec.width, rec.height, imageAnnotation);
+        break;
+      }
     }
   }
 
@@ -347,9 +392,28 @@ export class PdfDevice extends PrintOut {
     return this.measurer.textExtentLineInfo(aobj, extent);
   }
 
-  /** The extent of an image: images are not ported yet (GraphicExtent). */
-  override graphicExtent(_stream: Uint8Array, _extent: Point, _dpi: number): Point {
-    throw new ImageNotSupportedError();
+  /**
+   * The extent of an image in twips at a resolution (GraphicExtent), from the size in the header
+   * of a JPEG or a bitmap; a dpi of 0 or less gives the extent back. C# parity: any other format
+   * (PNG, GIF...) has a size of 0 x 0 here.
+   */
+  override graphicExtent(stream: Uint8Array, extent: Point, dpi: number): Point {
+    let bitmapwidth: number;
+    let bitmapheight: number;
+    const jpeg = getJpegInfo(stream);
+    if (jpeg.isJpeg) {
+      bitmapwidth = jpeg.width;
+      bitmapheight = jpeg.height;
+    } else {
+      const info = getBitmapInfo(stream, false, false);
+      bitmapwidth = info.width;
+      bitmapheight = info.height;
+    }
+    if (dpi <= 0) return { x: extent.x, y: extent.y };
+    return {
+      x: toInt32(roundHalfEven((bitmapwidth / dpi) * TWIPS_PER_INCH)),
+      y: toInt32(roundHalfEven((bitmapheight / dpi) * TWIPS_PER_INCH)),
+    };
   }
 
   /** Sets the orientation: swaps the page width and height for landscape. */

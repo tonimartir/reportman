@@ -4,10 +4,8 @@
 
 import type { Section as SectionModel } from 'reportman-lib';
 import type { MetaFile, Point, PrintOut, TotalPage } from 'reportman-metafile';
-import { fromBase64String } from '../util/base64.js';
 import { messageOf } from '../util/netexception.js';
 import { Variant } from '../variant/variant.js';
-import { NotSupportedYetError } from '../data/errors.js';
 import { ReportException } from './errors.js';
 import {
   ExpressionItem,
@@ -18,6 +16,7 @@ import {
   pt,
   SubReportEvent,
 } from './items.js';
+import { ImageStreamSource, printSectionBackground, type SharedImageType } from './imageitem.js';
 import type { ReportRuntime } from './report.js';
 import type { SubReportRuntime } from './subreport.js';
 
@@ -77,7 +76,11 @@ export class SectionRuntime extends PrintItem {
   /** The value of the group expression for the current group. */
   groupValue: Variant = Variant.null;
   private readonly fPageGroupCountList: TotalPage[] = [];
-  private readonly fStream: Uint8Array;
+  /** The image draw style of the background (ImageDrawStyleType). */
+  drawStyle: number;
+  sharedImage: SharedImageType;
+  /** The background image (embedded or given by the background expression). */
+  private readonly background: ImageStreamSource;
   /** While processing, the first page of the group. */
   firstPage = 0;
   /** The subreport the section belongs to (null when the report does not name it, as in C#). */
@@ -111,7 +114,9 @@ export class SectionRuntime extends PrintItem {
     this.sectionType = model.sectionType as number as SectionType;
     this.groupName = model.groupName;
     this.backExpression = model.backExpression;
-    this.fStream = model.streamBase64.length > 0 ? fromBase64String(model.streamBase64) : new Uint8Array(0);
+    this.drawStyle = model.drawStyle;
+    this.sharedImage = model.sharedImage as number as SharedImageType;
+    this.background = new ImageStreamSource(report, model.streamBase64);
   }
 
   clearPageCountList(): void {
@@ -126,7 +131,10 @@ export class SectionRuntime extends PrintItem {
 
   override subReportChanged(newstate: SubReportEvent, newgroup: string): void {
     super.subReportChanged(newstate, newgroup);
-    if (newstate === SubReportEvent.Start) this.firstPage = 0;
+    if (newstate === SubReportEvent.Start) {
+      this.firstPage = 0;
+      this.background.reset();
+    }
   }
 
   /** EvaluateBeginPage: the section must begin a page. */
@@ -206,13 +214,11 @@ export class SectionRuntime extends PrintItem {
   }
 
   /**
-   * GetStream: the background image (the embedded one, or the one the background expression
-   * gives); null when there is none.
+   * GetStream: the background image (the embedded one, decompressed, or the one the background
+   * expression gives); null when there is none.
    */
-  private getStream(): Uint8Array | null {
-    if (this.backExpression.length > 0) return this.report.evaluator.getStreamFromExpression(this.backExpression);
-    if (this.fStream.length > 0) return this.fStream;
-    return null;
+  getStream(): Uint8Array | null {
+    return this.background.getStream(this.backExpression, this.sharedImage);
   }
 
   protected override doPrint(
@@ -231,7 +237,9 @@ export class SectionRuntime extends PrintItem {
       const astream = this.getStream();
       // C# parity: a section with a background style and no background image prints no items
       if (astream === null) return;
-      if (astream.length > 0) throw new NotSupportedYetError('Section background images (the section ' + this.name + ')');
+      if (astream.length > 0)
+        printSectionBackground(this.background, astream, metafile, aposx, aposy, this.printWidth, this.printHeight, this.drawStyle,
+          this.dpires, this.backStyle === BackStyleType.Preview, this.sharedImage);
     }
     const doPartialPrint = this.hasPartial();
     // C# parity: compe keeps the last expression item seen, also by the loop above

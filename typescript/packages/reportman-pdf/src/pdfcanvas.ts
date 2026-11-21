@@ -1,5 +1,7 @@
-import { AlignmentFlags, PDFConformanceType, PDFFontType, convertToInt32, intDiv, roundHalfEven, toInt32 } from 'reportman-metafile';
+import { AlignmentFlags, ByteBuffer, PDFConformanceType, PDFFontType, convertToInt32, intDiv, roundHalfEven, toInt32 } from 'reportman-metafile';
 import type { LineInfo, Rectangle } from 'reportman-metafile';
+import { getBitmapInfo, getJpegInfo } from './bitmaputil.js';
+import { decodeImageForPdf } from './imagecodec.js';
 import {
   CONS_PDFRES,
   ShaperNotSupportedError,
@@ -16,14 +18,6 @@ export const CONS_UNDERLINEPOS = 1.1;
 export const CONS_STRIKEOUTPOS = 0.7;
 /** Underline and strikeout width factor (PDFFile.CONS_UNDERLINEWIDTH). */
 export const CONS_UNDERLINEWIDTH = 0.1;
-
-/** The error of an image object: images are not ported to TypeScript yet. */
-export class ImageNotSupportedError extends Error {
-  constructor() {
-    super('Images are not supported yet by the TypeScript PDF writer (reportman-pdf)');
-    this.name = 'ImageNotSupportedError';
-  }
-}
 
 /** An int negation of C# (no negative zero). */
 function neg(x: number): number {
@@ -557,8 +551,223 @@ export class PDFCanvas extends TextCanvas {
     this.brushStyle = previousBrushStyle;
   }
 
-  /** Images are not ported yet: always fails (DrawImage). */
-  drawImage(_rec: Rectangle, _bitmap: Uint8Array, _dpires: number, _tile: boolean, _clip: boolean, _imageIndex: number): never {
-    throw new ImageNotSupportedError();
+  /**
+   * Draws an image in a rectangle (DrawImage) and embeds it, once, as an image XObject: a JPEG as
+   * it is (/DCTDecode), a Windows bitmap read by BitmapUtil (indexed with its palette and color
+   * key mask, or RGB with the fourth byte of a 32 bit bitmap as soft mask), and any other format
+   * decoded (PNG, GIF) as RGB with its alpha as a soft mask; Flate compressed when the file is.
+   *
+   * dpires 0 stretches the image to the rectangle; otherwise the image has its size at that
+   * resolution, centered in the rectangle when smaller. tile repeats it, clip clips to the
+   * rectangle. An internalImageIndex of 0 or more is the key of an image shared by several
+   * objects: the second time only the drawing is written.
+   *
+   * C# parity, kept: the clipping rectangle takes the width and height as the right and bottom
+   * coordinates; after the first tile the scale of the tiles is their left (top) coordinate and
+   * the tiles stop past the width (height) of the rectangle plus one tile, not past its right;
+   * the q before the clipping is never closed (the clipping stays for the rest of the page); a
+   * JPEG always declares /DeviceRGB; bytes no codec decodes give an image of 0 x 0.
+   */
+  drawImage(rec: Rectangle, abitmap: Uint8Array, dpires: number, tile: boolean, clip: boolean, internalImageIndex: number): void {
+    const file = this.file;
+    let arect = rec;
+    file.checkPrinting();
+    const calculateOnly = file.calculateOnly;
+    let fimagestream: Uint8Array | null = null;
+    let imageMaskStream: Uint8Array | null = null;
+    let bitmapwidth: number;
+    let bitmapheight: number;
+    let indexed = false;
+    let bitsperpixel = 8;
+    let numcolors = 0;
+    let palette = '';
+    let mask = '';
+    let isgif = false;
+    let newstream = true;
+    const jpeg = getJpegInfo(abitmap);
+    const isjpeg = jpeg.isJpeg;
+    if (isjpeg) {
+      bitmapwidth = jpeg.width;
+      bitmapheight = jpeg.height;
+      if (!calculateOnly) fimagestream = abitmap;
+    } else {
+      const info = getBitmapInfo(abitmap, !calculateOnly, !calculateOnly);
+      bitmapwidth = info.width;
+      bitmapheight = info.height;
+      indexed = info.indexed;
+      bitsperpixel = info.bitsPerPixel;
+      numcolors = info.usedColors;
+      palette = info.palette;
+      mask = info.mask;
+      isgif = info.isGif;
+      if (!calculateOnly) {
+        fimagestream = info.bits ?? new Uint8Array(0);
+        imageMaskStream = info.smask;
+      }
+      if (isgif || !info.isBitmap) {
+        // PNG, GIF and the rest: decoded (Skia in C#) and read as a 32 bit bitmap. C# parity:
+        // GetBitmapInfo of the bitmap resets the outputs (an image Skia cannot decode is 0 x 0)
+        const decoded = decodeImageForPdf(abitmap);
+        bitmapwidth = decoded === null ? 0 : decoded.width;
+        bitmapheight = decoded === null ? 0 : decoded.height;
+        indexed = false;
+        bitsperpixel = decoded === null ? 8 : 32;
+        numcolors = 0;
+        palette = '';
+        mask = '';
+        isgif = false;
+        if (!calculateOnly) {
+          imageMaskStream = decoded === null ? null : decoded.alpha;
+          if (decoded !== null) fimagestream = decoded.rgb;
+        }
+      }
+    }
+    if (imageMaskStream !== null && imageMaskStream.length === 0) imageMaskStream = null;
+    if (dpires !== 0) {
+      const arec = { ...rec };
+      rec = {
+        left: rec.left,
+        top: rec.top,
+        width: toInt32(roundHalfEven((bitmapwidth / dpires) * this.fResolution)),
+        height: toInt32(roundHalfEven((bitmapheight / dpires) * this.fResolution)),
+      };
+      if (rec.width < arec.width) rec = { ...rec, left: (rec.left + intDiv((arec.width - rec.width) | 0, 2)) | 0 };
+      if (rec.height < arec.height) rec = { ...rec, top: (rec.top + intDiv((arec.height - rec.height) | 0, 2)) | 0 };
+      arect = rec;
+    }
+    let imageindex: number;
+    if (internalImageIndex >= 0) {
+      const key = String(internalImageIndex);
+      const existing = file.imageIndexes.get(key);
+      if (existing !== undefined) {
+        imageindex = existing;
+        newstream = false;
+      } else {
+        file.imageCount = file.imageCount + 1;
+        imageindex = file.imageCount;
+        file.imageIndexes.set(key, imageindex);
+      }
+    } else {
+      file.imageCount = file.imageCount + 1;
+      imageindex = file.imageCount;
+    }
+    const X = (v: number): string => this.unitsToTextX(v | 0);
+    const Y = (v: number): string => this.unitsToTextY(v | 0);
+    this.swl('q');
+    if (clip) {
+      // Clipping rectangle
+      this.swl(X(arect.left) + ' ' + Y(arect.top) + ' ' + X(arect.width - arect.left) + ' ' + X(neg(arect.height - arect.top)) + ' re');
+      this.swl('h'); // ClosePath
+      this.swl('W'); // Clip
+      this.swl('n'); // NewPath
+    }
+    const awidth = rec.width;
+    const aheight = rec.height;
+    if (awidth <= 0) tile = false;
+    if (aheight <= 0) tile = false;
+    do {
+      rec = { left: arect.left, top: rec.top, width: awidth, height: aheight };
+      do {
+        this.swl('q');
+        // Translate
+        this.swl('1 0 0 1 ' + X(rec.left) + ' ' + Y(rec.top + rec.height) + ' cm');
+        // Scale
+        this.swl(X(rec.width) + ' 0 0  ' + X(rec.height) + ' 0 0 cm');
+        this.swl('/Im' + String(imageindex) + ' Do');
+        this.swl('Q');
+        if (!tile) break;
+        rec = { left: (rec.left + awidth) | 0, top: rec.top, width: (rec.left + awidth) | 0, height: rec.height };
+      } while (rec.width <= ((arect.width + awidth) | 0));
+      if (!tile) break;
+      rec = { left: rec.left, top: (rec.top + aheight) | 0, width: rec.width, height: (rec.top + aheight) | 0 };
+    } while (rec.height <= ((arect.height + aheight) | 0));
+    if (!newstream) return;
+    const imageName = 'Im' + String(file.imageCount);
+    if (calculateOnly) return;
+    const image = fimagestream ?? new Uint8Array(0);
+    const sw = (stream: ByteBuffer, value: string): void => file.sWriteLine(stream, value);
+    let maskStream: ByteBuffer | null = null;
+    if (imageMaskStream !== null) {
+      file.imageCount = file.imageCount + 1;
+      const imageMaskName = 'Im' + String(file.imageCount);
+      // Saves the soft mask to the image streams
+      maskStream = new ByteBuffer();
+      sw(maskStream, '<< /Type /XObject');
+      sw(maskStream, '/Subtype /Image');
+      sw(maskStream, '/Width ' + String(bitmapwidth));
+      sw(maskStream, '/Height ' + String(bitmapheight));
+      sw(maskStream, '/ColorSpace /DeviceGray');
+      sw(maskStream, '/BitsPerComponent 8');
+      sw(maskStream, '/Name /' + imageMaskName);
+      writeImageData(file, maskStream, imageMaskStream, file.compressed);
+    }
+    // Saves the image to the image streams
+    const astream = new ByteBuffer();
+    sw(astream, '<< /Type /XObject');
+    sw(astream, '/Subtype /Image');
+    sw(astream, '/Width ' + String(bitmapwidth));
+    sw(astream, '/Height ' + String(bitmapheight));
+    if (indexed) {
+      sw(astream, '/ColorSpace');
+      sw(astream, '[/Indexed');
+      sw(astream, '/DeviceRGB ' + String(numcolors));
+      sw(astream, palette);
+      sw(astream, ']');
+      sw(astream, '/BitsPerComponent ' + String(bitsperpixel));
+      if (mask.length > 0) sw(astream, '/Mask ' + mask);
+    } else {
+      sw(astream, '/ColorSpace /DeviceRGB');
+      sw(astream, '/BitsPerComponent 8');
+    }
+    sw(astream, '/Name /' + imageName);
+    if (maskStream !== null) {
+      // The number of the mask object is written when the objects are (PDFFile.WriteBitmap)
+      astream.writeLatin1('/SMask ');
+      file.masks.set(file.imageCount - 1, { stream: astream, position: astream.length });
+      sw(astream, '               0 R');
+    }
+    if (isjpeg) {
+      sw(astream, '/Length ' + String(image.length));
+      sw(astream, '/Filter [/DCTDecode]');
+      sw(astream, '>>');
+      sw(astream, 'stream');
+      astream.write(image);
+    } else if (isgif) {
+      // C# parity: unreachable, GetBitmapInfo of the decoded GIF resets isgif
+      sw(astream, '/Length ' + String(image.length));
+      sw(astream, '/Filter [/LZWDecode]');
+      sw(astream, '>>');
+      sw(astream, 'stream');
+      astream.write(image);
+    } else writeImageData(file, astream, image, file.compressed);
+    file.bitmapStreams.push(astream);
+    if (maskStream !== null) file.bitmapStreams.push(maskStream);
+  }
+}
+
+/**
+ * The /Length (and /Filter) of an image stream, the end of its dictionary and its data: a
+ * compressed stream gets its length written over spaces once it is compressed, as the
+ * compression task of C# does.
+ */
+function writeImageData(file: PDFFile, stream: ByteBuffer, data: Uint8Array, compressed: boolean): void {
+  if (compressed) {
+    stream.writeLatin1('/Length ');
+    const lengthPosition = stream.length;
+    file.sWriteLine(stream, '             ');
+    file.sWriteLine(stream, '/Filter [/FlateDecode]');
+    file.sWriteLine(stream, '>>');
+    file.sWriteLine(stream, 'stream');
+    const packed = file.compressImage(data);
+    stream.write(packed);
+    const digits = String(packed.length);
+    const bytes = new Uint8Array(digits.length);
+    for (let i = 0; i < digits.length; i++) bytes[i] = digits.charCodeAt(i);
+    stream.writeAt(lengthPosition, bytes);
+  } else {
+    file.sWriteLine(stream, '/Length ' + String(data.length));
+    file.sWriteLine(stream, '>>');
+    file.sWriteLine(stream, 'stream');
+    stream.write(data);
   }
 }

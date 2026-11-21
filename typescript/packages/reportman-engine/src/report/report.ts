@@ -79,6 +79,8 @@ import {
   UnsupportedItem,
 } from './items.js';
 import { SectionRuntime, SectionType, SkipType } from './section.js';
+import { ImageItem } from './imageitem.js';
+import type { ImageItem as ImageModel } from 'reportman-lib';
 import { SubReportRuntime } from './subreport.js';
 import { barcodeOp, BarcodeItem } from './barcode/barcodeitem.js';
 import type { BarcodeItem as BarcodeModel } from 'reportman-lib';
@@ -334,7 +336,7 @@ export class ReportRuntime {
       case 'TRPSHAPE':
         return new ShapeItem(this, cm as ShapeModel);
       case 'TRPIMAGE':
-        return new UnsupportedItem(this, cm, 'Images');
+        return new ImageItem(this, cm as ImageModel);
       case 'TRPBARCODE':
         return new BarcodeItem(this, cm as BarcodeModel);
       case 'TRPCHART': {

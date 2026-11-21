@@ -19,7 +19,6 @@ import {
 } from 'reportman-metafile';
 import { StandardTextMeasurer, ShaperNotSupportedError } from 'reportman-text';
 import {
-  ImageNotSupportedError,
   PDFA3_NOT_SUPPORTED,
   PDFFile,
   PdfDevice,
@@ -192,11 +191,7 @@ describe('PdfDevice', () => {
     const z = latin1(renderPdf(meta, { clock: fixedClock, compressed: true }));
     expect(z).toContain('/Filter [/FlateDecode]');
   });
-  it('fails for images, PDF/A-3, right to left text and printer fonts Recalculate', () => {
-    const meta = simpleMeta();
-    meta.pages.get(0).drawImage(0, 0, 100, 100, 1, 96, new Uint8Array([1, 2, 3]));
-    expect(() => renderPdf(meta)).toThrow(ImageNotSupportedError);
-    expect(() => new PdfDevice().graphicExtent(new Uint8Array(1), { x: 0, y: 0 }, 96)).toThrow(ImageNotSupportedError);
+  it('fails for PDF/A-3, right to left text and printer fonts Recalculate', () => {
     const a3 = simpleMeta();
     a3.pdfConformance = PDFConformanceType.PDF_A_3;
     expect(() => renderPdf(a3)).toThrow(PDFA3_NOT_SUPPORTED);

@@ -1,0 +1,1 @@
+ERROR Reportman.Drawing.NamedException: File not found:no-such-image.png

@@ -77,8 +77,14 @@ export class PDFFile {
   compressed = false;
   /** Compression favors size (level 9) over speed (level 1). */
   optimizeSize = true;
-  /** Number of images: always 0, images are not ported. */
-  readonly imageCount = 0;
+  /** Number of images (and soft masks) embedded so far (ImageCount). */
+  imageCount = 0;
+  /** The images already embedded, by the key the caller gives (ImageIndexes: a shared image). */
+  readonly imageIndexes = new Map<string, number>();
+  /** The image and soft mask objects (their dictionary and stream), by image number - 1 (BitmapStreams). */
+  readonly bitmapStreams: ByteBuffer[] = [];
+  /** The images with a soft mask, by image number - 1: where the number of its object goes (Masks). */
+  readonly masks = new Map<number, { stream: ByteBuffer; position: number }>();
   /** Current page height in twips. */
   pageHeight: number;
   /** Current page width in twips. */
@@ -193,6 +199,11 @@ export class PDFFile {
   private flushTemp(): void {
     this.addToOffset(this.fTempStream.length);
     this.main.write(this.fTempStream.view());
+  }
+
+  /** Flate compression of an image stream (StreamUtil.CompressStreamTask, BEST_SPEED). */
+  compressImage(data: Uint8Array): Uint8Array {
+    return this.compress(data, false);
   }
 
   private compress(data: Uint8Array, optimizeSize: boolean): Uint8Array {
@@ -362,6 +373,10 @@ export class PDFFile {
     this.fontList = [];
     this.fontCount = 0;
     this.currentSetPageObject = 0;
+    this.imageIndexes.clear();
+    this.bitmapStreams.length = 0;
+    // C# parity: the masks are not cleared (a PDFFile writes one document)
+    this.imageCount = 0;
     this.fPage = 1;
     this.fCanvas.pdfConformance = this.fPDFConformance;
     // The header
@@ -506,7 +521,13 @@ export class PDFFile {
     t.setLength(0);
     this.sWriteLine(t, String(this.objectCount) + ' 0 obj');
     this.sWriteLine(t, '<< /ProcSet [ /PDF /Text /ImageC]');
-    // No /XObject: images are not ported (ImageCount is 0)
+    if (this.imageCount > 0) {
+      this.sWriteLine(t, '/XObject << ');
+      // The soft masks are not listed: only the images reference them
+      for (let i = 1; i <= this.imageCount; i++)
+        if (!this.masks.has(i - 1)) this.sWriteLine(t, '/Im' + String(i) + ' ' + String(this.objectCount + i) + ' 0 R');
+      this.sWriteLine(t, '>>');
+    }
     this.sWriteLine(t, '/Font << ');
     for (let i = 1; i <= this.fontCount; i++) this.sWriteLine(t, '/F' + String(i) + ' ' + (this.fontList[i - 1] as string) + ' 0 R ');
     this.sWriteLine(t, '>>');
@@ -526,11 +547,35 @@ export class PDFFile {
     this.addAnnotations();
     this.setPages();
     this.setArray();
+    for (let i = 1; i <= this.imageCount; i++) this.writeBitmap(i);
     for (let i = 1; i <= this.fPage; i++) this.setPageObject(i);
     this.writeEmbeddedFiles();
     this.setCatalog();
     this.setXref();
     this.sWriteLine(this.main, '%%EOF');
+  }
+
+  // An image or soft mask object; an image with a soft mask gets the number of the next object
+  private writeBitmap(index: number): void {
+    if (this.calculateOnly) return;
+    this.objectCount = this.objectCount + 1;
+    const t = this.fTempStream;
+    t.setLength(0);
+    this.sWriteLine(t, String(this.objectCount) + ' 0 obj');
+    const mask = this.masks.get(index);
+    if (mask !== undefined) {
+      const digits = String(this.objectCount + 1);
+      const bytes = new Uint8Array(digits.length);
+      for (let i = 0; i < digits.length; i++) bytes[i] = digits.charCodeAt(i);
+      mask.stream.writeAt(mask.position, bytes);
+    }
+    const stream = this.bitmapStreams[index - 1];
+    if (stream === undefined) throw new RangeError('Index out of range on PrintItems collection');
+    t.write(stream.view());
+    // PDFCanvas.ENDSTREAM
+    this.sWriteLine(t, '\nendstream');
+    this.sWriteLine(t, 'endobj');
+    this.flushTemp();
   }
 
   private setCatalog(): void {

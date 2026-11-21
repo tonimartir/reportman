@@ -1,4 +1,4 @@
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { readReportXml, type Report } from 'reportman-lib';
 import type { MetaFile } from 'reportman-metafile';
 import { PdfDevice, systemClock, type PdfClock } from 'reportman-pdf';
@@ -24,7 +24,10 @@ export interface OpenReportOptions extends DataSources {
   culture?: CultureInfo | string;
   /** The clock of TODAY, NOW and the dates of the PDF (the system clock by default). */
   clock?: PdfClock;
-  /** Let FILEEXISTS look at the file system (false by default: a report does not see the disk). */
+  /**
+   * Let FILEEXISTS look at the file system, and image expressions read the image files they name
+   * (false by default: a report does not see the disk).
+   */
   allowFileAccess?: boolean;
 }
 
@@ -106,6 +109,8 @@ export class NodeReport {
     const host: EvalHost = {
       now: () => wallClock(clock),
       fileExists: (path) => allowFileAccess && existsSync(path),
+      // The bytes of the image file an image expression names (FileInfo.Exists: a file, not a directory)
+      readFile: (path) => (allowFileAccess && isFile(path) ? new Uint8Array(readFileSync(path)) : undefined),
     };
     return prepareReport(readReportXml(this.bytes), {
       device: new PdfDevice({ clock }),
@@ -114,6 +119,14 @@ export class NodeReport {
       host,
       convertToDotNet: true,
     });
+  }
+}
+
+function isFile(path: string): boolean {
+  try {
+    return statSync(path).isFile();
+  } catch {
+    return false;
   }
 }
 

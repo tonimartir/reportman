@@ -1,0 +1,38 @@
+[
+ {
+  "name": "img-styles",
+  "report": "img-styles.rep"
+ },
+ {
+  "name": "img-catalogue",
+  "report": "img-catalogue.rep"
+ },
+ {
+  "name": "img-shared",
+  "report": "img-shared.rep"
+ },
+ {
+  "name": "img-background",
+  "report": "img-background.rep"
+ },
+ {
+  "name": "img-imageop",
+  "report": "img-imageop.rep"
+ },
+ {
+  "name": "img-crop-bmp15",
+  "report": "img-crop-bmp15.rep"
+ },
+ {
+  "name": "img-crop-unknown",
+  "report": "img-crop-unknown.rep"
+ },
+ {
+  "name": "img-file-missing",
+  "report": "img-file-missing.rep"
+ },
+ {
+  "name": "img-fishes",
+  "report": "img-fishes.rep"
+ }
+]

@@ -222,7 +222,11 @@ export class Evaluator {
             const count = view.getInt16(0, true);
             const htype = view.getInt16(2, true);
             const size = view.getInt32(4, true);
-            if (count === 1 && htype === 0x0100) memstream = memstream.slice(8, 8 + Math.max(0, size));
+            if (count === 1 && htype === 0x0100) {
+              // new byte[hd.Size] of a negative size
+              if (size < 0) throw new UnNamedException('Arithmetic operation resulted in an overflow.');
+              memstream = memstream.slice(8, 8 + size);
+            }
           }
         } else if (avalue.varType !== VariantType.Null) iden = null;
       } else iden = null;
