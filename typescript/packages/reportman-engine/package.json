@@ -27,7 +27,6 @@
     "node": ">=22"
   },
   "dependencies": {
-    "decimal.js": "^10.6.0",
     "reportman-lib": "0.0.1",
     "reportman-metafile": "0.0.1"
   }
