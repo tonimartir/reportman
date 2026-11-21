@@ -128,6 +128,24 @@ namespace designer
                     return;
                 }
 
+                // designer.exe /copilottest /rep <file> /dataset <alias> /prompt <text> [/api <url>] [/tier Standard|Precision]
+                // [/mode Fast|Reasoning] [/installid repman-...] [/save <rep>] [/out <txt>] -> one request of the copilot as
+                // the chat panel sends it (the local subschema of the connection of the dataset inline, the SQL of the AI
+                // run here), against the API given (production by default); the document of the AI is saved
+                if (HasArg(args, "/copilottest"))
+                {
+                    string outFile = GetArgValue(args, "/out");
+                    if (string.IsNullOrEmpty(outFile))
+                        outFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "copilottest.txt");
+                    int failed;
+                    System.IO.File.WriteAllText(outFile, Reportman.Designer.DesignerSelfTestOnboarding.RunCopilot(
+                        GetArgValue(args, "/api"), GetArgValue(args, "/rep"), GetArgValue(args, "/dataset"),
+                        GetArgValue(args, "/tier"), GetArgValue(args, "/mode"), GetArgValue(args, "/installid"),
+                        GetArgValue(args, "/prompt"), GetArgValue(args, "/save"), out failed));
+                    Environment.ExitCode = failed > 0 ? 1 : 0;
+                    return;
+                }
+
                 // designer.exe /uniontest [/samples <dir>] [/shots <dir>] [/out <txt>] -> headless preview of the samples
                 // with unions of datasets (contacts.rep, year-over-year.rep), opened as the welcome window opens them
                 // and printed as the Preview button does; the exit code is 1 when one check fails

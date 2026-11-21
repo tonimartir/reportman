@@ -124,6 +124,108 @@ namespace Reportman.Designer
             return log.Text.ToString();
         }
 
+        /// <summary>
+        /// One request of the copilot (designer.exe /copilottest) as the chat panel sends it: the report opened as the
+        /// designer opens it, the local subschema of the connection of <paramref name="schemaDataset"/> inline, the SQL
+        /// of the AI run here; the document of the AI is saved to <paramref name="outFile"/>. Returns the log.
+        /// </summary>
+        /// <param name="apiUrl">The API (empty: production).</param>
+        /// <param name="reportFile">The report.</param>
+        /// <param name="schemaDataset">A dataset whose connection and SCHEMANAME give the subschema sent inline.</param>
+        /// <param name="tier">Standard or Precision.</param>
+        /// <param name="mode">Fast or Reasoning.</param>
+        /// <param name="installId">The install id of the guest ("repman-..."); empty: a new one.</param>
+        /// <param name="prompt">The request.</param>
+        /// <param name="outFile">Where the document of the AI is saved.</param>
+        /// <param name="failed">1 when the API gave no document, else 0.</param>
+        public static string RunCopilot(string apiUrl, string reportFile, string schemaDataset, string tier, string mode,
+            string installId, string prompt, string outFile, out int failed)
+        {
+            var log = new OnboardingLog();
+            try
+            {
+                Report report = OpenAsDesigner(reportFile);
+                DataInfo dataset = null;
+                foreach (DataInfo info in report.DataInfo)
+                    if (string.Equals(info.Alias, schemaDataset, StringComparison.OrdinalIgnoreCase))
+                        dataset = info;
+                log.Check(dataset != null, "the dataset " + schemaDataset);
+                if (dataset == null)
+                {
+                    failed = 1;
+                    return log.Text.ToString();
+                }
+                SampleReports.InstallSchema();
+                string schemaPath = LocalSchemaStore.PathFor(LocalSchemaEditorForm.DesignerFolder(), dataset.DatabaseAlias);
+                LocalSchemaFile schema = LocalSchemaStore.Load(schemaPath);
+                LocalSubschema selected = LocalSchemaStore.FindSubschema(schema, dataset.SchemaName);
+                log.Check(selected != null, "the subschema " + dataset.SchemaName + " in " + schemaPath);
+                Dictionary<string, object> inlineConfig = selected != null ? LocalSchemaStore.BuildInlineConfig(schema, selected.Name) : null;
+                string document = DocumentOf(report);
+                string reportFolder = report.ReportFolder;
+                Action<Report> prepare = copy => copy.ReportFolder = reportFolder;
+                if (string.IsNullOrEmpty(installId))
+                    installId = "repman-copilottest-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                var client = new ReportmanAgentClient
+                {
+                    BaseUrl = string.IsNullOrEmpty(apiUrl) ? ProductionApi : apiUrl,
+                    Token = "",
+                    InstallId = installId,
+                    AcceptLanguage = "en",
+                    AITier = string.IsNullOrEmpty(tier) ? "Standard" : tier,
+                    ApiKey = "",
+                    AgentSecret = "",
+                    AgentAiId = 0,
+                    HubDatabaseId = 0,
+                    HubSchemaId = 0,
+                    InlineConfig = inlineConfig
+                };
+                log.Line("API: " + client.BaseUrl + ", " + client.AITier + " " + (string.IsNullOrEmpty(mode) ? "Reasoning" : mode) + ", guest " + installId);
+                log.Line("Prompt: " + prompt);
+                var loop = new CopilotModifyReportLoop(client) { PrepareReport = prepare };
+                loop.StatusChanged += s => log.Line("  [status] " + OneLine(s));
+                CopilotModifyReportOutcome outcome = loop.RunAsync(prompt, document, string.IsNullOrEmpty(mode) ? "Reasoning" : mode,
+                    "English", "", null, null, CancellationToken.None).GetAwaiter().GetResult();
+                log.Line("  calls: " + outcome.Calls + ", client SQL: " + outcome.SqlRequests.Count);
+                for (int i = 0; i < outcome.SqlRequests.Count; i++)
+                    log.Line("  client SQL " + (i + 1) + ": " + OneLine(outcome.SqlRequests[i].Sql) +
+                        (i < outcome.SqlResults.Count && !outcome.SqlResults[i].Success ? " FAILED " + OneLine(outcome.SqlResults[i].ErrorMessage) : ""));
+                string modified = "";
+                using (JsonDocument result = outcome.Result)
+                {
+                    if (result != null)
+                    {
+                        JsonElement root = result.RootElement;
+                        string error = GetString(root, "errorMessage");
+                        if (error.Length > 0)
+                            log.Line("  error: " + OneLine(error) + " " + OneLine(GetString(root, "debugDetails")));
+                        JsonElement final;
+                        if (root.TryGetProperty("result", out final) && final.ValueKind == JsonValueKind.Object)
+                        {
+                            if (GetString(final, "errorMessage").Length > 0)
+                                log.Line("  result error: " + OneLine(GetString(final, "errorMessage")));
+                            log.Line("  explanation: " + OneLine(GetString(final, "explanation")));
+                            modified = GetString(final, "modifiedReportDocument");
+                        }
+                    }
+                }
+                if (modified.Length == 0)
+                    modified = outcome.DocumentToApply ?? "";
+                log.Check(modified.Length > 0, "a document to apply");
+                if (modified.Length > 0 && !string.IsNullOrEmpty(outFile))
+                {
+                    File.WriteAllText(outFile, modified, new UTF8Encoding(false));
+                    log.Line("  saved: " + outFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Check(false, "unexpected " + ex.GetType().Name + ": " + OneLine(ex.Message));
+            }
+            failed = log.Failed;
+            return log.Text.ToString();
+        }
+
         private static void RunChecks(OnboardingLog log, string reportFile, string installId, string mode,
             string prompt, string outFile, bool runAI)
         {
