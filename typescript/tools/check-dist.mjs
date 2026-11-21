@@ -27,7 +27,7 @@ for (const name of readdirSync(packagesDir)) {
 const out = mkdtempSync(join(tmpdir(), 'reportman-check-'));
 try {
   const cli = join(packagesDir, 'reportman-node', 'dist', 'cli.js');
-  for (const report of ['customers', 'invoices', 'labels', 'product-catalog', 'monthly-sales', 'sales-by-category', 'fishes']) {
+  for (const report of ['customers', 'invoices', 'labels', 'product-catalog', 'monthly-sales', 'sales-by-category', 'fishes', 'contacts', 'year-over-year']) {
     const pdf = join(out, report + '.pdf');
     try {
       execFileSync(process.execPath, [cli, join(samples, report + '.rep'), '-o', pdf, '--sqlite', 'SAMPLES=' + join(samples, 'samples.db')], {

@@ -1,0 +1,1 @@
+ERROR Reportman.Drawing.NamedException: Cannont combine-union a dataset to other dataset with fewer field count - U

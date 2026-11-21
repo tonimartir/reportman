@@ -24,10 +24,10 @@ the Delphi repository (`tonimartir/reportmandelphi`).
 | `reportman-driver-mssql` | SQL Server (`tedious`), as Microsoft.Data.SqlClient | Node |
 | `reportman-driver-http` | The Reportman AI Agent through the Hub HTTP API (`fetch`), as HttpAgentExecutor | browser, Node |
 
-The nine reports of `../samples` give the same metafile as the C# engine: with the standard fonts
-the PDFs are byte-identical (seven samples; `letter` and `international` need fonts), and with
+The eleven reports of `../samples` give the same metafile as the C# engine: with the standard fonts
+the PDFs are byte-identical (nine samples; `letter` and `international` need fonts), and with
 `fonts` every sample matches the C# FreeType device except the bytes of the embedded font subsets.
-Not ported yet: Mybase unions, the `.rpmf` format, declarative REST datasets.
+Not ported yet: the `.rpmf` format, declarative REST datasets.
 
 ## Rules
 

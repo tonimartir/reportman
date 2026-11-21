@@ -11,6 +11,7 @@ import { toUpperNet } from '../util/chars.js';
 import type { CultureInfo } from '../util/culture.js';
 import type { RpDateTime } from '../util/datetime.js';
 import { duplicateNameException } from './errors.js';
+import { argumentException, NetException, nullReferenceException } from '../util/netexception.js';
 import { Variant } from '../variant/variant.js';
 import {
   columnValue,
@@ -78,6 +79,14 @@ export class ResultView {
     const rows = result.rows.map((row) => columns.map((c, i) => storeValue(c, row[i], locale, culture)));
     return new ResultView(columns, rows);
   }
+
+  /**
+   * DataView.FindRows: the rows whose sort columns have the values of the key. A view without
+   * sort finds nothing (the C# ArgumentException); the view of a union has one (UnionView).
+   */
+  findRows(_key: readonly DataValue[]): readonly (readonly StoredValue[])[] {
+    throw argumentException('Find finds a row based on a Sort order, and no Sort order is specified.');
+  }
 }
 
 /** A row of the dataset (DataRow): its values by column index. */
@@ -121,6 +130,9 @@ export class ReportDataset implements FieldTable {
   private fCurrent = 0;
   private fCurrentReader: ResultReader | null = null;
   private fCurrentView: ResultView | null = null;
+  /** The rows of the view the filter found (CurrentRowSet; null: every row of the view). */
+  private currentRowSet: readonly (readonly StoredValue[])[] | null = null;
+  private fViewFilter: readonly DataValue[] | null = null;
   /** The rows of the two record buffer (reader mode). */
   private readonly rows: DatasetRow[] = [];
   private fColumns: DataColumn[] = [];
@@ -169,7 +181,7 @@ export class ReportDataset implements FieldTable {
   /** The number of records loaded (reader: the rows of the buffer; view: its rows). */
   get currentRowCount(): number {
     if (this.fCurrentReader !== null) return this.rows.length;
-    if (this.fCurrentView !== null) return this.fCurrentView.count;
+    if (this.fCurrentView !== null) return this.currentRowSet !== null ? this.currentRowSet.length : this.fCurrentView.count;
     return 0;
   }
 
@@ -178,16 +190,28 @@ export class ReportDataset implements FieldTable {
     return this.fCurrentReader !== null || this.fCurrentView !== null;
   }
 
+  /** The rows the view gives: the ones the filter found, or all of them. */
+  private viewRows(): readonly (readonly StoredValue[])[] {
+    return this.currentRowSet ?? this.fCurrentView!.rows;
+  }
+
   private viewRow(index: number): DatasetRow {
-    return new DatasetRow(this, this.fCurrentView!.rows[index]! as StoredValue[]);
+    const values = this.viewRows()[index];
+    if (values === undefined)
+      throw new NetException(
+        'IndexOutOfRangeException',
+        // The DataRowView[] of the filter, or the DataView
+        this.currentRowSet !== null ? 'Index was outside the bounds of the array.' : `There is no row at position ${index}.`,
+      );
+    return new DatasetRow(this, values as StoredValue[]);
   }
 
   /** The current row; null when there is none. */
   get currentRow(): DatasetRow | null {
     if (this.fCurrentView !== null) {
-      const view = this.fCurrentView;
-      if (this.fCurrent < view.count) return this.viewRow(this.fCurrent);
-      if (view.count > 0) return this.viewRow(view.count - 1);
+      const count = this.viewRows().length;
+      if (this.fCurrent < count) return this.viewRow(this.fCurrent);
+      if (count > 0) return this.viewRow(count - 1);
       return null;
     }
     if (this.rows.length > this.fCurrent) return this.rows[this.fCurrent] ?? null;
@@ -224,6 +248,27 @@ export class ReportDataset implements FieldTable {
     if (this.fCurrentView !== value) {
       this.fCurrentView = value;
       this.doUpdateData();
+    }
+  }
+
+  /** ViewFilter: the values of the sort columns of the view the rows must have (null: all the rows). */
+  get viewFilter(): readonly DataValue[] | null {
+    return this.fViewFilter;
+  }
+
+  set viewFilter(value: readonly DataValue[] | null) {
+    this.fViewFilter = value;
+    this.updateViewRows();
+  }
+
+  private updateViewRows(): void {
+    this.currentRowSet = null;
+    if (this.fViewFilter !== null) {
+      if (this.fCurrentView === null) throw nullReferenceException();
+      this.currentRowSet = this.fCurrentView.findRows(this.fViewFilter);
+      this.fCurrent = 0;
+      this.fEof = this.currentRowSet.length === 0;
+      this.fInternalEof = this.fEof;
     }
   }
 
@@ -291,6 +336,8 @@ export class ReportDataset implements FieldTable {
         this.fEof = true;
         this.fInternalEof = true;
       }
+      this.fViewFilter = null;
+      this.updateViewRows();
     } else if (this.fCurrentView!.count === 0) {
       this.fEof = true;
       this.fInternalEof = true;
@@ -301,7 +348,7 @@ export class ReportDataset implements FieldTable {
   first(): void {
     if (this.fCurrentView === null) throw new Error('First only supported memeory');
     this.fCurrent = 0;
-    this.fEof = this.fCurrentView.count === 0;
+    this.fEof = this.viewRows().length === 0;
     this.fInternalEof = this.fEof;
   }
 
@@ -313,7 +360,7 @@ export class ReportDataset implements FieldTable {
   /** Moves to the next record; after Prior only the current row changes. */
   *next(): Op<boolean> {
     if (this.fCurrentView !== null) {
-      if (this.fCurrent < this.fCurrentView.count - 1) {
+      if (this.fCurrent < this.viewRows().length - 1) {
         this.fCurrent++;
         yield* this.dataChanged();
         return true;

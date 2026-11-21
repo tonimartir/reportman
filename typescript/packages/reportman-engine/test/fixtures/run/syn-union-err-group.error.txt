@@ -1,0 +1,1 @@
+ERROR Reportman.Drawing.NamedException: A grouped union needs the index fields (MyBaseIndexFields) of U

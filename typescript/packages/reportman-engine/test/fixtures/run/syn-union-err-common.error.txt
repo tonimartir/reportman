@@ -1,0 +1,1 @@
+ERROR Reportman.Drawing.NamedException: The common fields of the union B-K in U must be as many as those of the first dataset: K;N

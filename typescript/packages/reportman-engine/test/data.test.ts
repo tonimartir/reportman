@@ -168,15 +168,39 @@ describe('rows given by the host (DataViewOverride)', () => {
   });
 });
 
-describe('not supported yet', () => {
-  it('fails clearly for in-memory unions of datasets (Mybase)', async () => {
+describe('unions of datasets (Mybase)', () => {
+  // The unions run against C# in report-parity.test.ts (contacts, year-over-year, syn-union-*)
+  it('makes a union of datasets the host gives, by position, in the order of its index', async () => {
     const report = peopleReport();
-    report.databaseInfo[0]!.driver = DriverType.Mybase;
-    report.dataInfo[1]!.dataUnions = ['MASTER'];
-    const run = await prepareReport(report, { device: new PdfDevice(), data: { connect: () => ({ query: () => ({ columns: [], rows: [] }), close: () => undefined }) } });
-    await expect(run.execute()).rejects.toThrow(/Mybase DataUnions/);
+    const memory = new DatabaseInfo();
+    memory.alias = 'MEMORY';
+    memory.name = 'TRPDATABASEINFOITEM2';
+    memory.driver = DriverType.Mybase;
+    report.databaseInfo.push(memory);
+    const all = new DataInfo();
+    all.alias = 'ALL';
+    all.name = 'TRPDATAINFOITEM3';
+    all.databaseAlias = 'MEMORY';
+    all.dataUnions = ['PEOPLE', 'MASTER'];
+    all.myBaseIndexFields = 'NAME';
+    report.dataInfo.push(all);
+    const sub = report.subReports[0]!;
+    sub.alias = 'ALL';
+    (sub.sections[0]!.components[0] as ExpressionItem).expression = "ALL.NAME+'/'+STR(ALL.AGE)";
+    // The host gives the rows of PEOPLE and MASTER, not of the union
+    const host = restHost();
+    const rows = host.datasetRows!;
+    const data: DataHost = { connect: host.connect, datasetRows: (request) => (request.alias === 'ALL' ? undefined : rows(request)) };
+    const run = await prepareReport(report, { device: new PdfDevice(), data });
+    const meta = await run.execute();
+    const page = meta.pages.get(0);
+    const texts = page.objects.map((o) => page.getText(o as never));
+    // MASTER (ID 1) fills NAME, the first column: Convert.ToString(1L), no AGE (STR of null: "")
+    expect(texts).toEqual(['1/', 'Person', 'Ann/30', 'Person', 'Bob/41', 'Person']);
   });
+});
 
+describe('not supported yet', () => {
   // product-catalog (barcodes) runs: barcode-parity.test.ts; fishes (images) runs:
   // image-parity.test.ts (img-fishes, without its chart); monthly-sales, sales-by-category and
   // fishes with its chart run: chart-parity.test.ts

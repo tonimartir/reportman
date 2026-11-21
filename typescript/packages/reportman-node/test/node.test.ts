@@ -63,6 +63,17 @@ describe('reportman-node: the two steps against the C# engine', () => {
     expect(Buffer.compare(Buffer.from(pdf), Buffer.from(csPdf('labels')))).toBe(0);
   });
 
+  it.each([
+    ['contacts', 'contacts', 'en-US'],
+    ['contacts', 'contacts-es', 'es-ES'],
+    ['year-over-year', 'year-over-year', 'en-US'],
+    ['year-over-year', 'year-over-year-es', 'es-ES'],
+  ])('runs %s.rep (unions of datasets, %s) to the same PDF as C#', async (sample, golden, culture) => {
+    const report = await openReport(path.join(samples, sample + '.rep'), goldenOptions(golden, { culture }));
+    const pdf = await report.executeToPdf({}, { compressed: false });
+    expect(Buffer.compare(Buffer.from(pdf), Buffer.from(csPdf(golden)))).toBe(0);
+  });
+
   it('compresses as the report asks by default', async () => {
     const report = await openReport(path.join(samples, 'customers.rep'), goldenOptions('customers'));
     expect(report.model.pdfCompressed).toBe(true);

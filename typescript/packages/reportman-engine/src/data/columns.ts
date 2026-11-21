@@ -149,6 +149,14 @@ function toStringValue(value: Exclude<DataValue, null | undefined>, column: Data
 }
 
 /**
+ * A double as a DataTable gives it back: DoubleStorage (and SingleStorage) return their default
+ * value for a value equal to it, so -0.0 reads back as 0.0.
+ */
+export function storedDouble(value: number): number {
+  return value === 0 ? 0 : value;
+}
+
+/**
  * Stores a value in a column (DataRow[column] = value): DBNull for null; otherwise the value
  * converted to the column type (IConvertible.ToXxx under the table locale, value.ToString() for a
  * string column). A value that cannot be converted fails as C# does.
@@ -178,9 +186,9 @@ export function storeValue(column: DataColumn, value: DataValue, locale: Culture
         return Number(rangeCheck(r, 0n, 255n, NetMessages.overflowByte));
       }
       case 'Double':
-        return toDouble(v, column, locale);
+        return storedDouble(toDouble(v, column, locale));
       case 'Single':
-        return Math.fround(toDouble(v, column, locale));
+        return storedDouble(Math.fround(toDouble(v, column, locale)));
       case 'Decimal':
         if (v instanceof CsDecimal) return v;
         if (typeof v === 'bigint') return CsDecimal.fromInteger(v);

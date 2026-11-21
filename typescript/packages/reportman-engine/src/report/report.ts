@@ -1022,10 +1022,16 @@ export class ReportRuntime {
           if (index < 0) throw new NamedException('Data alias not found:' + subrep.alias, subrep.alias);
           const dinfo = this.dataInfos[index]!;
           if (dinfo.dataSource.length === 0) {
-            dinfo.disConnect();
-            this.updateParamsBeforeOpen(index, true);
-            yield* dinfo.connect();
-            dinfo.goFirstMem();
+            if (dinfo.getDbItem().driver === DriverType.Mybase && dinfo.data.currentView !== null) {
+              // A dataset of the MyBase connection (a union) is not built again, its first row is
+              // the current one (as the Delphi engine does): its datasets were read already
+              dinfo.goFirstMem();
+            } else {
+              dinfo.disConnect();
+              this.updateParamsBeforeOpen(index, true);
+              yield* dinfo.connect();
+              dinfo.goFirstMem();
+            }
           } else if (dinfo.data.eof) {
             if (subrep.reOpenOnPrint) {
               dinfo.disConnect();

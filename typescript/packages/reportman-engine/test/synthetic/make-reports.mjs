@@ -618,3 +618,220 @@ report('syn-getvalue.rep', {
     ]),
   ],
 });
+
+// ---------------------------------------------------------------------------------------------
+// Unions of datasets (datasets of a MyBase connection made of other datasets): what the two
+// samples (contacts, year-over-year) and syn-union-key/group/index/position/child, checked
+// against the Delphi engine, do not reach.
+
+const memory = () => database({ ALIAS: 'MEMORY', NAME: 'TRpDatabaseInfoItem1', DRIVER: 1 });
+
+/** A dataset of the MyBase connection made of other datasets. */
+function union(alias, unions, o = {}) {
+  return datainfo(alias, '', { DATABASEALIAS: 'MEMORY', DATAUNIONS: unions, ...o });
+}
+
+/** A dataset that a union reads (it does not open on start). */
+function source(alias, sql, o = {}) {
+  return datainfo(alias, sql, { OPENONSTART: false, ...o });
+}
+
+/** A subreport that lists fields of a dataset: a title and the names, then a line per record. */
+function listing(alias, fields, title, o = {}) {
+  const w = Math.floor(10758 / fields.length);
+  return subreport(
+    alias,
+    [
+      section('groupheader', { HEIGHT: 560, GROUPNAME: 'G' + alias, CHANGEEXPRESSION: "'X'" }, [
+        label(title, { WIDTH: 10000, HEIGHT: 260, FONTSIZE: 10, FONTSTYLE: 1 }),
+        ...fields.map((f, i) => label(f, { POSX: i * w, POSY: 300, WIDTH: w - 50, HEIGHT: 240, FONTSIZE: 8, FONTSTYLE: 1 })),
+      ]),
+      section(
+        'detail',
+        { HEIGHT: 250 },
+        fields.map((f, i) => expr(alias + '.' + f, { POSX: i * w, WIDTH: w - 50, HEIGHT: 240, FONTSIZE: 8, CUTTEXT: true })),
+      ),
+      section('groupfooter', { HEIGHT: 150, GROUPNAME: 'G' + alias }, []),
+    ],
+    o,
+  );
+}
+
+// Master/detail on a union: the union follows the categories (MyBaseMasterFields against the
+// first index field, a view sorted by it); the texts of a second one are found without regard to
+// case. A category without products leaves the child at its end: it opens again (ReOpenOnPrint),
+// and its datasets, read already, give no rows any more (Preserves prints none).
+report('syn-union-filter.rep', {
+  databases: [database(), memory()],
+  data: [
+    datainfo('MC', 'SELECT CATEGORY_ID AS CID, NAME FROM CATEGORIES WHERE CATEGORY_ID <= 4 ORDER BY NAME'),
+    source('A', 'SELECT CATEGORY_ID, NAME, UNIT_PRICE FROM PRODUCTS WHERE CATEGORY_ID IN (2, 3, 4) AND UNIT_PRICE < 10 ORDER BY PRODUCT_ID'),
+    source('B', 'SELECT CATEGORY_ID, NAME, UNIT_PRICE FROM PRODUCTS WHERE CATEGORY_ID IN (2, 3, 4) AND UNIT_PRICE >= 10 ORDER BY PRODUCT_ID'),
+    union('U', ['A', 'B'], { DATASOURCE: 'MC', MYBASEINDEXFIELDS: 'CATEGORY_ID;NAME', MYBASEMASTERFIELDS: 'cid' }),
+    datainfo('MN', 'SELECT NAME FROM CATEGORIES WHERE CATEGORY_ID IN (5, 7) ORDER BY NAME'),
+    source(
+      'C',
+      'SELECT UPPER(C.NAME) AS CAT, P.NAME AS PRODUCT, P.UNIT_PRICE AS PRICE FROM PRODUCTS P JOIN CATEGORIES C ON C.CATEGORY_ID = P.CATEGORY_ID WHERE C.CATEGORY_ID IN (5, 7) AND P.PRODUCT_ID % 2 = 0',
+    ),
+    source(
+      'D',
+      'SELECT LOWER(C.NAME) AS CAT, P.NAME AS PRODUCT, P.UNIT_PRICE AS PRICE FROM PRODUCTS P JOIN CATEGORIES C ON C.CATEGORY_ID = P.CATEGORY_ID WHERE C.CATEGORY_ID IN (5, 7) AND P.PRODUCT_ID % 2 = 1',
+    ),
+    union('V', ['C', 'D'], { DATASOURCE: 'MN', MYBASEINDEXFIELDS: 'CAT;PRODUCT', MYBASEMASTERFIELDS: 'NAME' }),
+  ],
+  subs: [
+    subreport(
+      'MC',
+      [section('detail', { HEIGHT: 300, CHILDSUBREPORT: 'TRPSUBREPORT1' }, [expr('MC.NAME', { WIDTH: 5000, FONTSTYLE: 1 }), expr('MC.CID', { POSX: 5100, WIDTH: 800 })])],
+      { NAME: 'TRpSubReport0' },
+    ),
+    subreport(
+      'U',
+      [
+        section('detail', { HEIGHT: 240 }, [
+          expr('U.CATEGORY_ID', { POSX: 400, WIDTH: 800, FONTSIZE: 8 }),
+          expr('U.NAME', { POSX: 1300, WIDTH: 5000, FONTSIZE: 8 }),
+          expr('U.UNIT_PRICE', { POSX: 6400, WIDTH: 1500, FONTSIZE: 8, DISPLAYFORMAT: '#,##0.00' }),
+        ]),
+      ],
+      { NAME: 'TRpSubReport1', PARENTSUBREPORT: 'TRpSubReport0' },
+    ),
+    subreport(
+      'MN',
+      [section('detail', { HEIGHT: 300, CHILDSUBREPORT: 'TRPSUBREPORT3' }, [expr('MN.NAME', { WIDTH: 5000, FONTSTYLE: 1 })])],
+      { NAME: 'TRpSubReport2' },
+    ),
+    subreport(
+      'V',
+      [
+        section('detail', { HEIGHT: 240 }, [
+          expr('V.CAT', { POSX: 400, WIDTH: 3000, FONTSIZE: 8 }),
+          expr('V.PRODUCT', { POSX: 3500, WIDTH: 5000, FONTSIZE: 8 }),
+          expr('V.PRICE', { POSX: 8600, WIDTH: 1500, FONTSIZE: 8, DISPLAYFORMAT: '#,##0.00' }),
+        ]),
+      ],
+      { NAME: 'TRpSubReport3', PARENTSUBREPORT: 'TRpSubReport2' },
+    ),
+  ],
+});
+
+// Values of a union converted to the types of the columns of the first dataset (Convert.ChangeType
+// with the invariant culture: texts to numbers and dates, numbers and dates to texts, doubles to
+// integers half to even, fewer columns), and a grouped union: integers and doubles added, texts
+// joined, a date moved by days, nulls skipped, keys matched without regard to case.
+report('syn-union-convert.rep', {
+  databases: [database(), memory()],
+  data: [
+    source('A', "SELECT 1 AS N, 'one' AS T, 1.5 AS F, ORDER_DATE AS D FROM ORDERS WHERE ORDER_ID = 1"),
+    source('B', "SELECT '7' AS N, 25 AS T, 2 AS F, ORDER_DATE AS D FROM ORDERS WHERE ORDER_ID = 2"),
+    source('C', "SELECT 2.5 AS N, 3.25 AS T, '4.5' AS F, '2025-03-04' AS D UNION ALL SELECT 3.5, NULL, '-1e3', NULL"),
+    source('E', 'SELECT 4 AS N, ORDER_DATE AS T, -0.0 AS F FROM ORDERS WHERE ORDER_ID = 3'),
+    union('U', ['A', 'B', 'C', 'E']),
+    source(
+      'G1',
+      "SELECT 'X' AS K, 1 AS N, 'a' AS T, ORDER_DATE AS D, 5 AS Z FROM ORDERS WHERE ORDER_ID = 1 " +
+        "UNION ALL SELECT 'Y', 10, 'b', ORDER_DATE, NULL FROM ORDERS WHERE ORDER_ID = 2 " +
+        "UNION ALL SELECT 'X', 100, 'e', NULL, 7",
+    ),
+    source('G2', "SELECT 'x' AS K, 2.5 AS N, 'c' AS T, 3 AS D, 1 AS Z UNION ALL SELECT 'Z', 4, NULL, NULL, NULL UNION ALL SELECT 'y', NULL, 'f', 0.5, 2"),
+    union('G', ['G1', 'G2'], { GROUPUNION: true, MYBASEINDEXFIELDS: 'K' }),
+  ],
+  subs: [listing('U', ['N', 'T', 'F', 'D'], 'Converted to the first dataset'), listing('G', ['K', 'N', 'T', 'D', 'Z'], 'Grouped by K')],
+});
+
+// Parallel unions: an empty first dataset (by key and by position), two common fields, a first
+// dataset without common fields (the rows pair by position, the common field of the second one
+// fills the column of the first one), a grouped parallel union (a repeated key adds its values to
+// the row of the first one) and the rows of the first dataset paired in the order of the index.
+const CAT = 'SELECT NAME AS CATEGORY, CATEGORY_ID AS N FROM CATEGORIES';
+const UNITS =
+  'SELECT C.NAME AS CATEGORY, P.UNIT AS UNIT, COUNT(*) AS N FROM PRODUCTS P JOIN CATEGORIES C ON C.CATEGORY_ID = P.CATEGORY_ID WHERE C.CATEGORY_ID <= 3 AND ';
+report('syn-union-parallel.rep', {
+  databases: [database(), memory()],
+  data: [
+    source('E0', CAT + ' WHERE 1 = 0'),
+    source('E1', CAT + ' WHERE CATEGORY_ID <= 3 ORDER BY CATEGORY_ID DESC'),
+    union('P1', ['E0-CATEGORY', 'E1-category'], { PARALLELUNION: true }),
+    source('E2', CAT + ' WHERE 1 = 0'),
+    source('E3', CAT + ' WHERE CATEGORY_ID <= 2'),
+    union('P2', ['E2', 'E3'], { PARALLELUNION: true }),
+    source('K1', UNITS + 'P.UNIT_PRICE < 10 GROUP BY 1, 2'),
+    source('K2', UNITS + 'P.UNIT_PRICE >= 10 GROUP BY 1, 2'),
+    union('P3', ['K1-CATEGORY;UNIT', 'K2-CATEGORY;UNIT'], { PARALLELUNION: true }),
+    source('W1', CAT + ' WHERE CATEGORY_ID <= 3 ORDER BY CATEGORY_ID'),
+    source('W2', "SELECT UPPER(NAME) AS CATEGORY, 'w' || CATEGORY_ID AS W FROM CATEGORIES WHERE CATEGORY_ID >= 2 ORDER BY CATEGORY_ID"),
+    union('P4', ['W1', 'W2-CATEGORY'], { PARALLELUNION: true }),
+    source('R1', CAT + ' WHERE CATEGORY_ID <= 5 ORDER BY NAME'),
+    source('R2', CAT + ' WHERE CATEGORY_ID >= 3 UNION ALL SELECT NAME, 999 FROM CATEGORIES WHERE CATEGORY_ID = 4 ORDER BY 1'),
+    union('P5', ['R1-CATEGORY', 'R2-CATEGORY'], { PARALLELUNION: true, GROUPUNION: true, MYBASEINDEXFIELDS: 'CATEGORY' }),
+    source('S1', 'SELECT NAME FROM CATEGORIES WHERE CATEGORY_ID <= 4 ORDER BY CATEGORY_ID'),
+    source('S2', 'SELECT CATEGORY_ID * 100 AS ID FROM CATEGORIES WHERE CATEGORY_ID <= 3 ORDER BY CATEGORY_ID'),
+    union('P6', ['S1', 'S2'], { PARALLELUNION: true, MYBASEINDEXFIELDS: 'NAME' }),
+  ],
+  subs: [
+    listing('P1', ['CATEGORY', 'N', 'Q02_', 'Q02_N'], 'Empty first dataset, by key'),
+    listing('P2', ['CATEGORY', 'N', 'Q02_', 'Q02_CATEGORY', 'Q02_N'], 'Empty first dataset, by position'),
+    listing('P3', ['CATEGORY', 'UNIT', 'N', 'Q02_', 'Q02_N'], 'Two common fields'),
+    listing('P4', ['CATEGORY', 'N', 'Q02_', 'Q02_W'], 'Common field only in the second entry'),
+    listing('P5', ['CATEGORY', 'N', 'Q02_', 'Q02_N'], 'Grouped parallel union'),
+    listing('P6', ['NAME', 'Q02_', 'Q02_ID'], 'By position in the order of the index'),
+  ],
+});
+
+// Texts in the order of the culture without regard to case (the first index field also sorts the
+// view: trailing spaces do not count there), nulls first; a union made of another union (read
+// from its current record, so that one is left at its end and prints nothing) and a union of
+// datasets already read (no rows).
+const TEXTS_A =
+  "SELECT 'Nube' AS NAME, 1 AS ID UNION ALL SELECT '\u00d1and\u00fa', 2 UNION ALL SELECT 'nzz', 3 UNION ALL SELECT '\u00e1vila', 4 " +
+  "UNION ALL SELECT 'Avila', 5 UNION ALL SELECT 'avila', 6 UNION ALL SELECT 'abc ', 7 UNION ALL SELECT 'ABC', 8 UNION ALL SELECT 'abc', 9";
+const TEXTS_B =
+  "SELECT 'co-op' AS NAME, 10 AS ID UNION ALL SELECT 'coop', 11 UNION ALL SELECT '\u00d6l', 12 UNION ALL SELECT 'ol', 13 " +
+  "UNION ALL SELECT NULL, 14 UNION ALL SELECT 'Ch', 15 UNION ALL SELECT 'cz', 16 UNION ALL SELECT 'CH', 17 UNION ALL SELECT 'a1', 18 " +
+  "UNION ALL SELECT 'a10', 19 UNION ALL SELECT 'a2', 20 UNION ALL SELECT '_x', 21 UNION ALL SELECT 'Zoe', 22";
+report('syn-union-text.rep', {
+  databases: [database(), memory()],
+  data: [
+    source('A', TEXTS_A),
+    source('B', TEXTS_B),
+    union('U', ['A', 'B'], { MYBASEINDEXFIELDS: 'NAME' }),
+    source('A2', TEXTS_A),
+    source('B2', TEXTS_B),
+    union('V', ['A2', 'B2']),
+    union('W', ['V', 'C'], { MYBASEINDEXFIELDS: 'NAME;ID', MYBASEMASTERFIELDS: '' }),
+    source('C', "SELECT 'zz' AS NAME, 30 AS ID UNION ALL SELECT 'Zz', 31"),
+    union('U3', ['A', 'C']),
+  ],
+  subs: [
+    listing('U', ['NAME', 'ID'], 'Ordered by NAME'),
+    listing('W', ['NAME', 'ID'], 'A union of a union, ordered by NAME and ID'),
+    listing('V', ['NAME', 'ID'], 'The union read by the other one'),
+    listing('U3', ['NAME', 'ID'], 'Datasets read already'),
+  ],
+});
+
+// Errors: a dataset that is not in the report, a dataset with more fields than the first one, a
+// grouped union without index fields, an index field that is not in the union, parallel entries
+// with different numbers of common fields, a text that is not a number, more master fields than
+// index fields.
+const unionError = (file, unions, o = {}, data = []) =>
+  report(file, {
+    databases: [database(), memory()],
+    data: [
+      source('A', "SELECT 'a' AS K, 1 AS N"),
+      source('B', "SELECT 'b' AS K, 2 AS N, 3 AS M"),
+      source('T', "SELECT 'x' AS K, 'abc' AS N"),
+      ...data,
+      union('U', unions, o),
+    ],
+    subs: [listing('U', ['K', 'N'], 'Error')],
+  });
+unionError('syn-union-err-missing.rep', ['A', 'NOPE']);
+unionError('syn-union-err-fewer.rep', ['A', 'B']);
+unionError('syn-union-err-group.rep', ['A', 'B'], { GROUPUNION: true });
+unionError('syn-union-err-index.rep', ['A', 'A'], { MYBASEINDEXFIELDS: 'K;NOPE' });
+unionError('syn-union-err-common.rep', ['A-K;N', 'B-K'], { PARALLELUNION: true });
+unionError('syn-union-err-convert.rep', ['A', 'T']);
+unionError('syn-union-err-master.rep', ['A'], { MYBASEINDEXFIELDS: 'K', MYBASEMASTERFIELDS: 'K;N', DATASOURCE: 'M' }, [
+  datainfo('M', "SELECT 'a' AS K, 1 AS N"),
+]);

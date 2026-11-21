@@ -3,7 +3,7 @@
 // folders), its metafile as JSON and its PDF (gzipped), and the fingerprint of the font files of the
 // machine (fonts.json): the PDFs embed those fonts, and the tests only compare on the same fonts.
 //
-//   node packages/reportman-engine/test/generate-freetype-fixtures.mjs     (from typescript/, Windows)
+//   node packages/reportman-engine/test/generate-freetype-fixtures.mjs [name...]     (from typescript/, Windows)
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -19,7 +19,9 @@ const out = path.join(here, 'fixtures/freetype');
 fs.mkdirSync(out, { recursive: true });
 
 const cases = JSON.parse(fs.readFileSync(path.join(here, 'freetype-cases.json'), 'utf8'));
+const only = process.argv.slice(2);
 for (const c of cases) {
+  if (only.length > 0 && !only.includes(c.name)) continue;
   const report = path.resolve(here, c.report);
   const metaFile = path.join(out, c.name + '.meta.json');
   const pdfFile = path.join(out, c.name + '.cs.pdf');

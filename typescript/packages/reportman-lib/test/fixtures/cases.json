@@ -1,5 +1,10 @@
 [
   {
+    "id": "samples-contacts",
+    "rep": "../../../samples/contacts.rep",
+    "json": "test/fixtures/json/samples-contacts.json"
+  },
+  {
     "id": "samples-customers",
     "rep": "../../../samples/customers.rep",
     "json": "test/fixtures/json/samples-customers.json"
@@ -43,6 +48,11 @@
     "id": "samples-sales-by-category",
     "rep": "../../../samples/sales-by-category.rep",
     "json": "test/fixtures/json/samples-sales-by-category.json"
+  },
+  {
+    "id": "samples-year-over-year",
+    "rep": "../../../samples/year-over-year.rep",
+    "json": "test/fixtures/json/samples-year-over-year.json"
   },
   {
     "id": "delphi-arab2wordwrap",

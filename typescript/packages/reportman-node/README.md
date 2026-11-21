@@ -58,6 +58,8 @@ const pdf = await report.executeToPdf({ FIRST_ORDER: 7, LAST_ORDER: 9 });
   `.rep` carries inside. `sqlite(file)` uses Node's built-in `node:sqlite` with the behaviour of
   Microsoft.Data.Sqlite, the provider of the C# engine. A factory receives the connection request
   (alias, driver, connection string, parameters) and returns `{ query(command), close(commit) }`.
+  A MyBase connection (in-memory datasets: unions of other datasets of the report) opens nothing
+  and needs no factory.
 - `datasets`: rows for a dataset instead of running its SQL — `{ columns, rows }` or a function,
   for example the result of a REST API.
 
