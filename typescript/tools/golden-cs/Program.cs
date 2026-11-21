@@ -163,7 +163,8 @@ class Program
                 db.ProviderFactory = conn[0];
                 db.ConnectionString = conn[1];
             }
-            else if (string.IsNullOrEmpty(db.ProviderFactory) && sqlite != null)
+            // A MyBase connection (in-memory datasets, unions) opens no database
+            else if (string.IsNullOrEmpty(db.ProviderFactory) && sqlite != null && db.Driver != DriverType.Mybase)
             {
                 db.Driver = DriverType.DotNet2;
                 db.LoadParams = false;

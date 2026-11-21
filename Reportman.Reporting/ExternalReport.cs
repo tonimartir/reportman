@@ -161,8 +161,10 @@ namespace Reportman.Reporting
                     if (index >= 0)
                         newreport.Components.RemoveAt(index);
                     // Remove related union datasets
-                    foreach (string related in dinfo.DataUnions)
+                    foreach (string entry in dinfo.DataUnions)
                     {
+                        // "ALIAS" or "ALIAS-COMMONFIELDS" (a parallel union)
+                        string related = entry.IndexOf('-') >= 0 ? entry.Substring(0, entry.IndexOf('-')) : entry;
                         if (newreport.DataInfo.IndexOf(related) >= 0)
                         {
                             newreport.DataInfo.Remove(newreport.DataInfo[related]);

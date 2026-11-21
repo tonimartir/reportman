@@ -13,7 +13,6 @@ namespace Reportman.Reporting
     public class DataInfo : ReportItem, IDisposable, ICloneable
     {
         Strings masterfieldslist;
-        Strings sharedfieldslist;
         object[] mastervalues;
         private string sql;
 
@@ -177,6 +176,7 @@ namespace Reportman.Reporting
             ninfo.DataSource = this.DataSource;
             ninfo.DataUnions = (Strings)this.DataUnions.Clone();
             ninfo.GroupUnion = this.GroupUnion;
+            ninfo.ParallelUnion = this.ParallelUnion;
             ninfo.MyBaseFields = this.MyBaseFields;
             ninfo.MyBaseFilename = this.MyBaseFilename;
             ninfo.MyBaseIndexFields = this.MyBaseIndexFields;
@@ -306,7 +306,6 @@ namespace Reportman.Reporting
                     }
                     else
                     {
-                        Strings primarycolumns = new Strings();
                         masterfieldslist = Strings.FromSemiColon(MyBaseMasterFields.ToUpper());
                         masterfieldslist.RemoveBlanks();
                         mastervalues = new object[masterfieldslist.Count];
@@ -325,264 +324,10 @@ namespace Reportman.Reporting
                         }
                         if (this.DataUnions.Count > 0)
                         {
-                            DataView primview = null;
-
-                            SortedList<string, string> fieldsunion = null;
-                            if (ParallelUnion)
-                                fieldsunion = new SortedList<string, string>();
-                            int idxunion = 0;
-                            foreach (string ntable in DataUnions)
-                            {
-                                string field_prefix = "";
-                                if (idxunion > 0)
-                                    field_prefix = "Q" + (idxunion + 1).ToString("00") + "_";
-                                if (ParallelUnion)
-                                    fieldsunion.Clear();
-                                // Create structure
-                                Strings nnames = Strings.FromSeparator('-', ntable);
-                                nnames.RemoveBlanks();
-                                string tablename = nnames[0];
-                                if (nnames.Count < 2)
-                                    sharedfieldslist = new Strings();
-                                else
-                                {
-                                    sharedfieldslist = Strings.FromSemiColon(nnames[1].ToUpper());
-                                    sharedfieldslist.RemoveBlanks();
-                                }
-                                if (Report.DataInfo[tablename].DataReader == null)
-                                    Report.DataInfo[tablename].Connect();
-                                else
-                                {
-
-                                    if (Report.UsedDataReaders.IndexOfKey(tablename) >= 0)
-                                    {
-                                        Report.DataInfo[tablename].DisConnect();
-                                        Report.DataInfo[tablename].Connect();
-                                    }
-                                    else
-                                        Report.UsedDataReaders.Add(tablename, tablename);
-                                }
-                                IDataReader FCurrentReader = Report.DataInfo[tablename].DataReader;
-                                DataView FCurrentDataView = null;
-                                bool isempty;
-                                if (FCurrentReader == null)
-                                {
-                                    FCurrentDataView = Report.DataInfo[tablename].Data.CurrentView;
-                                    if (FCurrentDataView == null)
-                                        throw new Exception("No datareader in table: " + tablename);
-                                    isempty = FCurrentDataView.Count == 0;
-                                }
-                                else
-                                {
-                                    isempty = Report.DataInfo[tablename].Data.Eof;
-
-                                    if (Report.UsedDataReaders.IndexOfKey(tablename) < 0)
-                                        Report.UsedDataReaders.Add(tablename, tablename);
-                                }
-
-                                //bool isempty = Report.DataInfo[tablename].Data.Eof;
-                                if ((idxunion == 0) || ParallelUnion)
-                                {
-                                    if (idxunion == 0)
-                                        inttable = new DataTable();
-                                    DataTable adatatable = null;
-                                    if (FCurrentReader != null)
-                                        adatatable = FCurrentReader.GetSchemaTable();
-                                    else
-                                    {
-                                        adatatable = new DataTable();
-                                        adatatable.Columns.Add("ColumnName", System.Type.GetType("System.String"));
-                                        adatatable.Columns.Add("DataType", System.Type.GetType("System.Type"));
-                                        object[] values = new object[2];
-                                        foreach (DataColumn ncol in FCurrentDataView.Table.Columns)
-                                        {
-                                            values[0] = ncol.ColumnName;
-                                            values[1] = ncol.DataType;
-                                            adatatable.Rows.Add(values);
-                                        }
-                                    }
-                                    DataColumn col;
-
-                                    for (int i = 0; i < adatatable.Rows.Count; i++)
-                                    {
-                                        string acolname;
-                                        string originalcolname;
-                                        DataRow nrow = adatatable.Rows[i];
-                                        acolname = nrow["ColumnName"].ToString().ToUpper();
-                                        if (acolname.Length < 1)
-                                            acolname = "Column" + i.ToString();
-                                        originalcolname = acolname;
-                                        if (sharedfieldslist.IndexOf(acolname) < 0)
-                                            acolname = field_prefix + acolname;
-                                        if (ParallelUnion)
-                                            fieldsunion.Add(originalcolname, acolname);
-                                        if (inttable.Columns.IndexOf(acolname) < 0)
-                                        {
-                                            col = inttable.Columns.Add(acolname, (Type)nrow["DataType"]);
-                                            if ((col.DataType.ToString() == "System.String") && (FCurrentReader != null))
-                                            {
-                                                int maxlength = (int)nrow["ColumnSize"];
-                                                col.MaxLength = maxlength;
-                                            }
-                                            col.Caption = acolname;
-                                        }
-                                    }
-                                }
-                                // Add rows
-                                SortedList<int, int> fieldintunion = null;
-                                int colcount = 0;
-                                if (FCurrentReader != null)
-                                    colcount = FCurrentReader.FieldCount;
-                                else
-                                    colcount = FCurrentDataView.Table.Columns.Count;
-                                object[] nobject = new object[colcount];
-
-                                if (ParallelUnion)
-                                {
-                                    // Create primary key for share union
-                                    if (sharedfieldslist.Count > 0)
-                                    {
-                                        if (idxunion == 0)
-                                        {
-                                            DataColumn[] primcols = new DataColumn[sharedfieldslist.Count];
-                                            int idxcol = 0;
-                                            foreach (string primcolname in sharedfieldslist)
-                                            {
-                                                primcols[idxcol] = inttable.Columns[primcolname];
-                                                primarycolumns.Add(primcolname);
-                                                idxcol++;
-                                            }
-                                            primview = new DataView(inttable, "", sharedfieldslist.ToCharSeparated(','), DataViewRowState.CurrentRows);
-                                            //inttable.Constraints.Add("PRIM" + inttable.TableName, primcols,true);
-                                        }
-                                    }
-                                    fieldintunion = new SortedList<int, int>();
-
-
-                                    if (nobject.Length != inttable.Columns.Count)
-                                        nobject = new object[inttable.Columns.Count];
-                                    if (FCurrentReader != null)
-                                    {
-                                        for (int idxreader = 0; idxreader < FCurrentReader.FieldCount; idxreader++)
-                                        {
-                                            fieldintunion.Add(idxreader, inttable.Columns.IndexOf(fieldsunion[FCurrentReader.GetName(idxreader)]));
-                                        }
-                                    }
-                                    else
-                                    {
-                                        for (int idxreader = 0; idxreader < FCurrentDataView.Table.Columns.Count; idxreader++)
-                                        {
-                                            fieldintunion.Add(idxreader, inttable.Columns.IndexOf(fieldsunion[FCurrentDataView.Table.Columns[idxreader].ColumnName]));
-                                        }
-                                    }
-                                }
-                                object[] primkeys = null;
-                                if (primarycolumns.Count > 0)
-                                    primkeys = new object[primarycolumns.Count];
-                                bool addrow = !isempty;
-                                int secuentialindex = 0;
-                                int dataviewindex = 0;
-                                while (addrow)
-                                {
-                                    int xcol = 0;
-                                    if (ParallelUnion)
-                                    {
-                                        int idxcolprim = 0;
-                                        foreach (string colnameprim in sharedfieldslist)
-                                        {
-                                            if (FCurrentReader != null)
-                                            {
-                                                primkeys[idxcolprim] = FCurrentReader[colnameprim];
-                                            }
-                                            else
-                                                primkeys[idxcolprim] = FCurrentDataView[dataviewindex][colnameprim];
-
-                                            idxcolprim++;
-                                        }
-                                        //DataRow foundrow = inttable.Rows.Find(primkeys);
-                                        DataRow foundrow = null;
-                                        if (primview != null)
-                                        {
-                                            int index = primview.Find(primkeys);
-                                            if (index >= 0)
-                                                foundrow = primview[index].Row;
-                                        }
-                                        else
-                                        {
-                                            if (secuentialindex < inttable.Rows.Count)
-                                                foundrow = inttable.Rows[secuentialindex];
-                                        }
-
-                                        if (foundrow == null)
-                                        {
-                                            if (FCurrentReader != null)
-                                            {
-                                                foreach (int xindex in fieldintunion.Keys)
-                                                {
-                                                    nobject[fieldintunion[xindex]] = FCurrentReader[xindex];
-                                                }
-                                            }
-                                            else
-                                            {
-                                                foreach (int xindex in fieldintunion.Keys)
-                                                {
-                                                    nobject[fieldintunion[xindex]] = FCurrentDataView[dataviewindex][xindex];
-                                                }
-                                            }
-                                            inttable.Rows.Add(nobject);
-                                        }
-                                        else
-                                        {
-                                            foundrow.BeginEdit();
-                                            if (FCurrentReader != null)
-                                            {
-                                                foreach (int xindex in fieldintunion.Keys)
-                                                {
-                                                    foundrow[fieldintunion[xindex]] = FCurrentReader[xindex];
-                                                }
-                                            }
-                                            else
-                                            {
-                                                foreach (int xindex in fieldintunion.Keys)
-                                                {
-                                                    foundrow[fieldintunion[xindex]] = FCurrentDataView[dataviewindex][xindex];
-                                                }
-                                            }
-                                            foundrow.EndEdit();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (FCurrentReader != null)
-                                        {
-                                            while (xcol < FCurrentReader.FieldCount)
-                                            {
-                                                nobject[xcol] = FCurrentReader[xcol];
-                                                xcol++;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            while (xcol < colcount)
-                                            {
-                                                nobject[xcol] = FCurrentDataView[dataviewindex][xcol];
-                                                xcol++;
-                                            }
-                                        }
-                                        inttable.Rows.Add(nobject);
-                                    }
-                                    secuentialindex++;
-                                    dataviewindex++;
-                                    if (FCurrentReader != null)
-                                        addrow = FCurrentReader.Read();
-                                    else
-                                        addrow = dataviewindex < FCurrentDataView.Count;
-                                }
-
-                                idxunion++;
-                            }
+                            inttable = BuildUnion();
                             if (inttable != null)
                             {
+                                inttable.TableName = Alias;
                                 Strings lsorting = Strings.FromSemiColon(this.MyBaseIndexFields);
                                 Strings lnew = new Strings();
                                 Strings nmaster = Strings.FromSemiColon(this.MyBaseMasterFields);
@@ -591,29 +336,19 @@ namespace Reportman.Reporting
                                 string sortingstring = lnew.ToCharSeparated(',');
                                 DataView intview = null;
 
-                                // Resort table for master/child relations, correctly sorted
+                                // The order of the index fields (IndexFieldNames of the Delphi engine), also
+                                // the order of the master/detail filter
                                 if (MyBaseIndexFields.Length > 0)
                                 {
                                     Strings nsort = Strings.FromSemiColon(this.MyBaseIndexFields);
-                                    string nsorting = nsort.ToCharSeparated(',');
-                                    intview = new DataView(inttable, "", nsorting, DataViewRowState.CurrentRows);
+                                    nsort.RemoveBlanks();
                                     DataTable oldtable = inttable;
                                     inttable = oldtable.Clone();
-                                    object[] nobj = new object[oldtable.Columns.Count];
-                                    foreach (DataRowView xv in intview)
-                                    {
-                                        for (int idx = 0; idx < nobj.Length; idx++)
-                                        {
-                                            nobj[idx] = xv[idx];
-                                        }
-                                        inttable.Rows.Add(nobj);
-                                    }
-                                    intview.Dispose();
+                                    foreach (DataRow xrow in OrderedRows(oldtable, nsort))
+                                        inttable.Rows.Add(xrow.ItemArray);
                                     oldtable.Dispose();
-                                    intview = new DataView(inttable, "", sortingstring, DataViewRowState.CurrentRows);
                                 }
-                                else
-                                    intview = new DataView(inttable, "", sortingstring, DataViewRowState.CurrentRows);
+                                intview = new DataView(inttable, "", sortingstring, DataViewRowState.CurrentRows);
 
 
                                 intdataset.Tables.Add(inttable);
@@ -726,6 +461,372 @@ namespace Reportman.Reporting
                 connecting = false;
             }
         }
+        /// <summary>
+        /// The rows of a dataset of the MyBase connection made of other datasets of the report
+        /// (<see cref="DataUnions"/>), as TRpDataInfoItem.Connect of the Delphi engine builds them:
+        /// each dataset is opened (one already open is read from its current row) and its rows are
+        /// added to the result. The first dataset gives the columns. Without <see cref="ParallelUnion"/>
+        /// the rows of the others follow by position; with <see cref="GroupUnion"/> a row with the
+        /// values of the index fields (<see cref="MyBaseIndexFields"/>) of one already there is added
+        /// to it. With <see cref="ParallelUnion"/> the columns of each other dataset are added to the
+        /// rows of the result, see <see cref="CombineParallel"/>.
+        /// </summary>
+        private DataTable BuildUnion()
+        {
+            Strings indexFields = Strings.FromSemiColon(MyBaseIndexFields);
+            indexFields.RemoveBlanks();
+            DataTable client = null;
+            Strings originalFields = new Strings();
+            for (int i = 0; i < DataUnions.Count; i++)
+            {
+                string entry = DataUnions[i];
+                Strings commonFields;
+                string sourceAlias = ExtractUnionFields(entry, out commonFields);
+                int index = Report.DataInfo.IndexOf(sourceAlias);
+                if (index < 0)
+                    throw new NamedException(Translator.TranslateStr(959) + " - " + Alias + " - " + entry, Alias);
+                DataInfo source = Report.DataInfo[index];
+                if ((source.Data.CurrentReader == null) && (source.Data.CurrentView == null))
+                    Report.UpdateParamsBeforeOpen(index, true);
+                source.Connect();
+                DataTable data = ReadUnionSource(source.Data);
+                if ((i == 0) || (!ParallelUnion))
+                {
+                    client = CombineAddDataset(client, data, GroupUnion, indexFields, Alias);
+                    originalFields = commonFields;
+                }
+                else
+                {
+                    if ((originalFields.Count > 0) && (commonFields.Count != originalFields.Count))
+                        throw new NamedException("The common fields of the union " + entry + " in " + Alias
+                            + " must be as many as those of the first dataset: " + originalFields.ToSemiColon(), Alias);
+                    DataTable combined = CombineParallel(client, OrderedRows(client, indexFields), data,
+                        "Q" + (i + 1).ToString("00") + "_", commonFields, originalFields);
+                    client = CombineAddDataset(null, combined, GroupUnion, indexFields, Alias);
+                }
+            }
+            return client;
+        }
+
+        /// <summary>
+        /// The dataset alias of a union entry, "ALIAS" or "ALIAS-FIELD1;FIELD2", and its common fields
+        /// in upper case (ExtractUnionFields of the Delphi engine: the first '-' ends the alias).
+        /// </summary>
+        private static string ExtractUnionFields(string entry, out Strings commonFields)
+        {
+            commonFields = new Strings();
+            int index = entry.IndexOf('-');
+            if (index < 0)
+                return entry;
+            foreach (string field in Strings.FromSemiColon(entry.Substring(index + 1)))
+                commonFields.Add(field.ToUpperInvariant());
+            return entry.Substring(0, index);
+        }
+
+        /// <summary>
+        /// The rows of a dataset from its current row to its last one, with its columns.
+        /// </summary>
+        private static DataTable ReadUnionSource(ReportDataset data)
+        {
+            DataTable table = new DataTable();
+            foreach (DataColumn column in data.Columns)
+                table.Columns.Add(column.ColumnName, column.DataType);
+            while (!data.Eof)
+            {
+                DataRow row = data.CurrentRow;
+                if (row == null)
+                    break;
+                table.Rows.Add(row.ItemArray);
+                data.Next();
+            }
+            return table;
+        }
+
+        /// <summary>
+        /// Adds the rows of a dataset to the result of a union (CombineAddDataset of the Delphi engine):
+        /// the result takes the columns of the first one, and the values of each row fill its columns
+        /// by position. With grouping, a row whose index fields (by position) have the values of a row
+        /// already there adds its other values to it (numbers are added, texts joined) instead.
+        /// </summary>
+        private static DataTable CombineAddDataset(DataTable client, DataTable data, bool group, Strings indexFields, string alias)
+        {
+            if (client == null)
+                client = data.Clone();
+            if (data.Columns.Count > client.Columns.Count)
+                throw new NamedException(Translator.TranslateStr(960) + " - " + alias, alias);
+            int[] keyColumns = new int[0];
+            if (group)
+            {
+                if (indexFields.Count == 0)
+                    throw new NamedException("A grouped union needs the index fields (MyBaseIndexFields) of " + alias, alias);
+                keyColumns = new int[indexFields.Count];
+                for (int k = 0; k < indexFields.Count; k++)
+                {
+                    keyColumns[k] = client.Columns.IndexOf(indexFields[k]);
+                    if (keyColumns[k] < 0)
+                        throw new NamedException("Field '" + indexFields[k] + "' not found in " + alias, alias);
+                }
+            }
+            foreach (DataRow row in data.Rows)
+            {
+                DataRow target = null;
+                if (group)
+                {
+                    foreach (DataRow existing in client.Rows)
+                    {
+                        bool same = true;
+                        foreach (int k in keyColumns)
+                        {
+                            if (!UnionValuesEqual(existing[k], ConvertUnionValue(row[k], client.Columns[k].DataType)))
+                            {
+                                same = false;
+                                break;
+                            }
+                        }
+                        if (same)
+                        {
+                            target = existing;
+                            break;
+                        }
+                    }
+                }
+                if (target != null)
+                {
+                    for (int i = 0; i < data.Columns.Count; i++)
+                    {
+                        if (Array.IndexOf(keyColumns, i) >= 0 || row[i] == DBNull.Value)
+                            continue;
+                        if (target[i] == DBNull.Value)
+                            target[i] = ConvertUnionValue(row[i], client.Columns[i].DataType);
+                        else
+                            target[i] = ConvertUnionValue(AddUnionValues(target[i], row[i]), client.Columns[i].DataType);
+                    }
+                }
+                else
+                {
+                    DataRow newRow = client.NewRow();
+                    for (int i = 0; i < data.Columns.Count; i++)
+                        newRow[i] = ConvertUnionValue(row[i], client.Columns[i].DataType);
+                    client.Rows.Add(newRow);
+                }
+            }
+            return client;
+        }
+
+        /// <summary>
+        /// A parallel union (CombineParallel of the Delphi engine): the columns of the first dataset, an
+        /// integer column named as the prefix (0 for the rows only the first one has, 1 for the rows the
+        /// second one reaches), and the columns of the second one with the prefix but its common
+        /// fields. With common fields each row of the second dataset fills the first row of the first
+        /// one with the same values that it has not filled yet, or a new row; the result is ordered by
+        /// the prefix column and then by the common fields. Without them the rows are paired by position.
+        /// </summary>
+        private static DataTable CombineParallel(DataTable data1, List<DataRow> rows1, DataTable data2, string prefix,
+            Strings commonFields, Strings originalFields)
+        {
+            DataTable result = data1.Clone();
+            int prefixColumn = result.Columns.Add(prefix, typeof(int)).Ordinal;
+            int[] targets = new int[data2.Columns.Count];
+            for (int i = 0; i < data2.Columns.Count; i++)
+            {
+                string name = data2.Columns[i].ColumnName;
+                if (commonFields.IndexOf(name.ToUpperInvariant()) < 0)
+                    targets[i] = result.Columns.Add(prefix + name, data2.Columns[i].DataType).Ordinal;
+                else
+                {
+                    targets[i] = result.Columns.IndexOf(name);
+                    if (targets[i] < 0)
+                        throw new NamedException("Field '" + name + "' not found in the first dataset of the union", name);
+                }
+            }
+            int[] keyColumns = new int[originalFields.Count];
+            int[] keySources = new int[originalFields.Count];
+            for (int k = 0; k < originalFields.Count; k++)
+            {
+                keyColumns[k] = result.Columns.IndexOf(originalFields[k]);
+                if (keyColumns[k] < 0)
+                    throw new NamedException("Field '" + originalFields[k] + "' not found in the union", originalFields[k]);
+                keySources[k] = data2.Columns.IndexOf(commonFields[k]);
+                if (keySources[k] < 0)
+                    throw new NamedException("Field '" + commonFields[k] + "' not found in the dataset of the union", commonFields[k]);
+            }
+            foreach (DataRow row in rows1)
+            {
+                DataRow newRow = result.NewRow();
+                for (int i = 0; i < row.Table.Columns.Count; i++)
+                    newRow[i] = row[i];
+                newRow[prefixColumn] = 0;
+                result.Rows.Add(newRow);
+            }
+            int position = 0;
+            foreach (DataRow row in data2.Rows)
+            {
+                DataRow target = null;
+                if (keyColumns.Length > 0)
+                {
+                    foreach (DataRow candidate in OrderedRows(result, prefixColumn, keyColumns))
+                    {
+                        if ((int)candidate[prefixColumn] != 0)
+                            continue;
+                        bool same = true;
+                        for (int k = 0; k < keyColumns.Length; k++)
+                        {
+                            object key = ConvertUnionValue(row[keySources[k]], result.Columns[keyColumns[k]].DataType);
+                            if (!UnionValuesEqual(candidate[keyColumns[k]], key))
+                            {
+                                same = false;
+                                break;
+                            }
+                        }
+                        if (same)
+                        {
+                            target = candidate;
+                            break;
+                        }
+                    }
+                }
+                else if (position < result.Rows.Count)
+                    target = result.Rows[position];
+                if (target == null)
+                {
+                    target = result.NewRow();
+                    result.Rows.Add(target);
+                }
+                for (int i = 0; i < data2.Columns.Count; i++)
+                    target[targets[i]] = ConvertUnionValue(row[i], result.Columns[targets[i]].DataType);
+                target[prefixColumn] = 1;
+                position++;
+            }
+            if (keyColumns.Length == 0)
+                return result;
+            DataTable ordered = result.Clone();
+            foreach (DataRow row in OrderedRows(result, prefixColumn, keyColumns))
+                ordered.Rows.Add(row.ItemArray);
+            return ordered;
+        }
+
+        /// <summary>
+        /// The rows of a table in the order of an index on some of its columns (the rows with the same
+        /// values keep their order): the order a TClientDataSet with IndexFieldNames goes through them.
+        /// </summary>
+        private static List<DataRow> OrderedRows(DataTable table, Strings indexFields)
+        {
+            List<int> columns = new List<int>();
+            foreach (string field in indexFields)
+            {
+                int column = table.Columns.IndexOf(field);
+                if (column < 0)
+                    throw new NamedException("Field '" + field + "' not found in the union", field);
+                columns.Add(column);
+            }
+            return OrderedRows(table, -1, columns.ToArray());
+        }
+
+        private static List<DataRow> OrderedRows(DataTable table, int firstColumn, int[] columns)
+        {
+            List<DataRow> rows = new List<DataRow>();
+            foreach (DataRow row in table.Rows)
+                rows.Add(row);
+            if ((firstColumn < 0) && (columns.Length == 0))
+                return rows;
+            List<int> keys = new List<int>();
+            if (firstColumn >= 0)
+                keys.Add(firstColumn);
+            keys.AddRange(columns);
+            // A stable sort: List.Sort is not, so the position breaks the ties
+            Dictionary<DataRow, int> positions = new Dictionary<DataRow, int>();
+            for (int i = 0; i < rows.Count; i++)
+                positions[rows[i]] = i;
+            rows.Sort(delegate (DataRow a, DataRow b)
+            {
+                foreach (int key in keys)
+                {
+                    int result = CompareUnionValues(a[key], b[key]);
+                    if (result != 0)
+                        return result;
+                }
+                return positions[a].CompareTo(positions[b]);
+            });
+            return rows;
+        }
+
+        /// <summary>
+        /// The order of two values of an index of a union: nulls first, numbers by value, texts as a
+        /// DataView without case sensitivity compares them (the culture, ignoring case: the order of
+        /// the index of the Delphi in-memory dataset too), dates by time.
+        /// </summary>
+        private static int CompareUnionValues(object a, object b)
+        {
+            bool nullA = a == null || a == DBNull.Value;
+            bool nullB = b == null || b == DBNull.Value;
+            if (nullA || nullB)
+                return nullA == nullB ? 0 : (nullA ? -1 : 1);
+            if (IsUnionNumber(a) && IsUnionNumber(b))
+            {
+                if (a is double || a is float || b is double || b is float)
+                    return Convert.ToDouble(a).CompareTo(Convert.ToDouble(b));
+                return Convert.ToDecimal(a).CompareTo(Convert.ToDecimal(b));
+            }
+            if (a is string && b is string)
+                return System.Globalization.CultureInfo.CurrentCulture.CompareInfo.Compare((string)a, (string)b,
+                    System.Globalization.CompareOptions.IgnoreCase | System.Globalization.CompareOptions.IgnoreKanaType
+                    | System.Globalization.CompareOptions.IgnoreWidth);
+            if (a is IComparable && a.GetType() == b.GetType())
+                return ((IComparable)a).CompareTo(b);
+            return string.CompareOrdinal(Convert.ToString(a, System.Globalization.CultureInfo.InvariantCulture),
+                Convert.ToString(b, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        private static bool UnionValuesEqual(object a, object b)
+        {
+            return CompareUnionValues(a, b) == 0;
+        }
+
+        private static bool IsUnionNumber(object value)
+        {
+            return value is byte || value is sbyte || value is short || value is ushort || value is int || value is uint
+                || value is long || value is ulong || value is float || value is double || value is decimal;
+        }
+
+        /// <summary>
+        /// A value of a union converted to the type of the column it goes to, as a Variant assigned to
+        /// a field of the Delphi engine is.
+        /// </summary>
+        private static object ConvertUnionValue(object value, Type type)
+        {
+            if (value == null || value == DBNull.Value)
+                return DBNull.Value;
+            if (type == typeof(object) || type.IsInstanceOfType(value))
+                return value;
+            if (type == typeof(string))
+                return Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
+            return Convert.ChangeType(value, type, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// The sum of two values of a grouped union (the + of two Variants of the Delphi engine): texts
+        /// are joined, a date moves by a number of days, numbers are added.
+        /// </summary>
+        private static object AddUnionValues(object a, object b)
+        {
+            if (a is string || b is string)
+            {
+                if (a is string && b is string)
+                    return (string)a + (string)b;
+                return Convert.ToDouble(a, System.Globalization.CultureInfo.InvariantCulture)
+                    + Convert.ToDouble(b, System.Globalization.CultureInfo.InvariantCulture);
+            }
+            if (a is DateTime)
+                return DateTime.FromOADate(((DateTime)a).ToOADate() + Convert.ToDouble(b));
+            if (b is DateTime)
+                return DateTime.FromOADate(Convert.ToDouble(a) + ((DateTime)b).ToOADate());
+            if (a is double || a is float || b is double || b is float)
+                return Convert.ToDouble(a) + Convert.ToDouble(b);
+            if (a is decimal || b is decimal)
+                return Convert.ToDecimal(a) + Convert.ToDecimal(b);
+            return Convert.ToInt64(a) + Convert.ToInt64(b);
+        }
+
         private void OnDataChange(ReportDataset master)
         {
             if (UpdateParams(master, Command))

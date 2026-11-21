@@ -373,10 +373,21 @@ namespace Reportman.Reporting
                             throw new NamedException("Data alias not found:" + subrep.Alias, subrep.Alias);
                         if (DataInfo[index].DataSource.Length == 0)
                         {
-                            DataInfo[index].DisConnect();
-                            UpdateParamsBeforeOpen(index, true);
-                            DataInfo[index].Connect();
-                            DataInfo[index].GoFirstMem();
+                            DatabaseInfo childdb = DataInfo[index].GetDbItem();
+                            if ((childdb != null) && (childdb.Driver == DriverType.Mybase)
+                                && (DataInfo[index].Data.CurrentView != null))
+                            {
+                                // A dataset of the MyBase connection (a union) is not built again, its first row
+                                // is the current one (as the Delphi engine does): its datasets were read already
+                                DataInfo[index].GoFirstMem();
+                            }
+                            else
+                            {
+                                DataInfo[index].DisConnect();
+                                UpdateParamsBeforeOpen(index, true);
+                                DataInfo[index].Connect();
+                                DataInfo[index].GoFirstMem();
+                            }
                         }
                         else
                         {
