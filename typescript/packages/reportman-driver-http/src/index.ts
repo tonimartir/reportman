@@ -17,7 +17,6 @@
 // every query goes over HTTP, as on the net48 build of the C# engine.
 
 import type { ConnectionRequest, DataConnection, MaybePromise, QueryCommand, QueryResult } from 'reportman-engine';
-import { NetException } from 'reportman-engine';
 import { HttpAgentExecutor, type ExecutorOptions } from './executor.js';
 import { type AgentSession, type HostValues, IniDocument, isAgentConnection, resolveSettings } from './settings.js';
 import { readIniText } from './text.js';
@@ -73,10 +72,8 @@ export class AgentConnection implements DataConnection {
     this.executor = executor;
   }
 
+  /** HttpAgentExecutor.Open: the command of a dataset, and the one of GETVALUEFROMSQL. */
   query(command: QueryCommand): Promise<QueryResult> {
-    // GETVALUEFROMSQL: DatabaseInfo.GetDataReaderFromSQL asks the connection for a command, and an Agent
-    // connection has none (C#: NullReferenceException)
-    if (!command.inTransaction) return Promise.reject(new NetException('NullReferenceException', 'Object reference not set to an instance of an object.'));
     return this.executor.execute(command.sql, command.parameters);
   }
 

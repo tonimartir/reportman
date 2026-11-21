@@ -40,6 +40,11 @@ export interface ReportCase {
   connections?: string[];
   params?: Record<string, string>;
   culture?: string;
+  /**
+   * Both engines fail, with other errors: the text the C# error contains, the one of the TypeScript
+   * engine, and why (a limitation of MySqlConnector or of this driver, not reproduced on purpose).
+   */
+  knownDifference?: { error: string; tsError: string; why: string };
 }
 
 export interface QueryCase {

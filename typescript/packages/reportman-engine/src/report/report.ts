@@ -1921,11 +1921,15 @@ export class ReportRuntime {
     return runSync(this.getValueFromSQL(this.databases[index]!, sql), 'GETVALUEFROMSQL');
   }
 
-  /** DatabaseInfo.GetDataReaderFromSQL with the first column of the first row. */
+  /**
+   * DatabaseInfo.GetDataReaderFromSQL with the first column of the first row. As the commands of
+   * the datasets, the command runs inside the implicit transaction of the connection (an HTTP agent
+   * one through its executor); the result is read whole, as C# closes its reader at once.
+   */
   private *getValueFromSQL(db: ReportDatabase, sqlsentence: string): Op<Variant> {
     yield* db.connect();
-    // C# parity: Connection.CreateCommand; a Mybase or HTTP agent connection has no Connection
-    if (db.driver === DriverType.Mybase || db.driver === DriverType.HttpAgent) throw nullReferenceException();
+    // C# parity: Connection.CreateCommand; a Mybase connection has no Connection
+    if (db.driver === DriverType.Mybase) throw nullReferenceException();
     const connection = db.connection;
     if (connection === null) throw nullReferenceException();
     const ctx = this.evaluator.context;
@@ -1961,7 +1965,7 @@ export class ReportRuntime {
         }
       }
     }
-    const result = yield* wait(connection.query({ sql: sqlsentence, parameters, inTransaction: false, dataset: dataalias }));
+    const result = yield* wait(connection.query({ sql: sqlsentence, parameters, dataset: dataalias }));
     const first = result.rows[0];
     if (first === undefined) return Variant.null;
     // Variant.AssignFromObject(reader[0]): the value as the reader gives it, by its type

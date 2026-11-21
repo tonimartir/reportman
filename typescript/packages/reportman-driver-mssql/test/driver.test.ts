@@ -11,8 +11,8 @@ import { NO_SNAPSHOT_DATABASE, connectionString, isReachable, loadDatabase, mssq
 const available = await isReachable();
 if (available) await loadDatabase();
 
-function command(sql: string, parameters: QueryParameter[] = [], inTransaction = true): QueryCommand {
-  return { sql, parameters, inTransaction, dataset: 'D' };
+function command(sql: string, parameters: QueryParameter[] = []): QueryCommand {
+  return { sql, parameters, dataset: 'D' };
 }
 
 async function open(level: IsolationLevelName = 'RepeatableRead', extra = '', synchronous = false): Promise<DataConnection> {
@@ -63,11 +63,8 @@ describe.skipIf(!available)('the SQL Server connection', () => {
     await runBatch(`DELETE FROM RM_TX WHERE V = ${v}`);
   });
 
-  it('refuses at once a command outside the transaction (GETVALUEFROMSQL), an empty command and a closed connection', async () => {
+  it('refuses at once an empty command and a closed connection', async () => {
     const conn = await open();
-    expect(() => conn.query(command('SELECT 1 AS A', [], false))).toThrow(
-      'ExecuteReader requires the command to have a transaction when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.',
-    );
     expect(() => conn.query(command(''))).toThrow('ExecuteReader: CommandText property has not been initialized');
     await conn.close(true);
     expect(() => conn.query(command('SELECT 1 AS A'))).toThrow(/requires an open and available Connection/);
@@ -158,7 +155,6 @@ describe.skipIf(!available)('the SQL Server connection', () => {
     expect((typed.rows[0]![0]!.value as CsDecimal).toInvariantString()).toBe('1.50');
     expect((typed.rows[0]![1]!.value as RpDateTime).toIsoString()).toBe('2024-01-02T00:00:00.0000000');
     expect(() => conn.query(command('SELECT 1/0 AS A'))).toThrow(SqlException);
-    expect(() => conn.query(command('SELECT 1 AS A', [], false))).toThrow(/requires the command to have a transaction/);
     conn.close(true);
     expect(() => mssql({ connectionString: connectionString('Password=wrong'), synchronous: true })(request())).toThrow("Login failed for user 'sa'.");
   });

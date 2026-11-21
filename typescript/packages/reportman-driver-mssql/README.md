@@ -40,8 +40,9 @@ object with `connectionString`, `server` (Data Source), `database`, `user`, `pas
   Always Encrypted (Column Encryption Setting=Enabled).
 - `culture` is the culture of the run (`'en-US'` by default, as in openReport): SqlClient converts a parameter
   value to text, or parses one, with the current culture of the C# engine.
-- `synchronous: true` runs tedious in a worker thread and makes every call wait for it: the engine can then read a
-  dataset while it evaluates an expression (a dataset opened on demand, REOPEN), as the C# engine does.
+- `synchronous: true` runs tedious in a worker thread and makes every call wait for it: the engine can then read
+  data while it evaluates an expression (GETVALUEFROMSQL, a dataset opened on demand, REOPEN), as the C# engine
+  does.
 
 ## The session
 
@@ -89,9 +90,8 @@ ColumnSize and DataTypeName are SqlClient's (decimal 17, nvarchar(30) 30, the ma
 - The implicit transaction begins with the isolation level of the report connection (Unspecified is
   ReadCommitted, Chaos fails as in SqlClient), `close(true)` commits and `close(false)` rolls back; a transaction
   the server ended (a COMMIT in the SQL, an error that rolls it back) fails as the completed SqlTransaction:
-  `This SqlTransaction has completed; it is no longer usable.`. A command outside the transaction
-  (GETVALUEFROMSQL) fails at once as SqlCommand fails: `ExecuteReader requires the command to have a
-  transaction...`.
+  `This SqlTransaction has completed; it is no longer usable.`. Every command runs inside it, the one of
+  GETVALUEFROMSQL too.
 - Server errors are SqlException with the messages, numbers, states and classes of the server; the client errors
   have SqlClient's messages (the ones of the operating system in English).
 
@@ -100,8 +100,8 @@ report that keeps two datasets of one connection open (master/detail, two datase
 engine adds `MultipleActiveResultSets=True` to a connection string that does not set it, so both engines run those
 reports with the same output; only with an explicit `MultipleActiveResultSets=False` the C# engine fails with
 `There is already an open DataReader associated with this Connection which must be closed first.`, while this
-driver, which reads each result at once, still runs them. A GETVALUEFROMSQL fails in both engines with the error
-SqlClient gives with MARS (the command has no transaction); with MARS off, C# gives the open reader one instead. The engine keeps no Int16, Single, Guid,
+driver, which reads each result at once, still runs them; the same goes for a GETVALUEFROMSQL while the dataset
+being printed is open (it needs `synchronous: true`). The engine keeps no Int16, Single, Guid,
 TimeSpan or DateTimeOffset value of a master: a detail parameter without a value of its own (sql_variant) takes
 them as int, float or nvarchar. A DateTimeOffset before 1900 takes the standard offset of the local zone (.NET
 applies the rules of Windows, JavaScript the local mean time).

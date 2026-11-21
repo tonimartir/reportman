@@ -46,8 +46,8 @@ function request(isolationLevel: ConnectionRequest['isolationLevel'] = 'Repeatab
   };
 }
 
-function command(sql: string, parameters: QueryParameter[] = [], inTransaction = true) {
-  return { sql, parameters, inTransaction, dataset: 'T' };
+function command(sql: string, parameters: QueryParameter[] = []) {
+  return { sql, parameters, dataset: 'T' };
 }
 
 function param(name: string, valueType: QueryParameter['valueType'], value: DataValue): QueryParameter {
@@ -73,6 +73,15 @@ describe.skipIf(!reachable)('report parity with golden-cs on Firebird', () => {
   describe.each(reports)('$name', (c) => {
     const reportFile = path.resolve(here, c.report);
     const errorFile = path.join(runFixtures, c.name + '.error.json');
+    if (c.knownDifference !== undefined) {
+      const known = c.knownDifference;
+      it(`C# runs it, the TypeScript engine fails (${known.tsError})`, async () => {
+        expect(fs.existsSync(path.join(runFixtures, c.name + '.meta.json'))).toBe(true);
+        const error = await errorOf(runLikeGolden(reportFile, createDataHost({ connections }), { params: c.params, culture: c.culture }));
+        expect(error?.message).toContain(known.tsError);
+      });
+      return;
+    }
     if (fs.existsSync(errorFile)) {
       it('fails as C# does', async () => {
         const expected = JSON.parse(fs.readFileSync(errorFile, 'utf8')) as { error: string; message: string };
@@ -445,19 +454,6 @@ describe.skipIf(!reachable)('transactions and connections', () => {
       expect((await check.query(command('SELECT V FROM RM_TX ORDER BY V'))).rows).toEqual([[2]]);
     } finally {
       await check.close(true);
-    }
-  });
-
-  it('refuses a command outside the implicit transaction (GETVALUEFROMSQL), as FbCommand does', async () => {
-    const c = await connections.SAMPLES(request());
-    try {
-      expect(await errorOf(Promise.resolve().then(() => c.query(command('SELECT 1 FROM RDB$DATABASE', [], false))))).toEqual({
-        type: 'InvalidOperationException',
-        message:
-          'Execute requires the Command object to have a Transaction object when the Connection object assigned to the command is in a pending local transaction. The Transaction property of the Command has not been initialized.',
-      });
-    } finally {
-      await c.close(true);
     }
   });
 

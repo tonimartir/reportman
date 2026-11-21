@@ -37,7 +37,6 @@ export interface ConnectionSettings {
   convertZeroDateTime: boolean;
   dateTimeKind: DateTimeKindName;
   guidFormat: GuidFormat;
-  ignoreCommandTransaction: boolean;
   noBackslashEscapes: boolean;
   treatTinyAsBoolean: boolean;
   useCompression: boolean;
@@ -67,7 +66,6 @@ export function defaultSettings(): ConnectionSettings {
     convertZeroDateTime: false,
     dateTimeKind: 'Unspecified',
     guidFormat: 'Char36',
-    ignoreCommandTransaction: false,
     noBackslashEscapes: false,
     treatTinyAsBoolean: true,
     useCompression: false,
@@ -306,9 +304,6 @@ export function parseConnectionString(connectionString: string): ConnectionSetti
             break;
           case 'Convert Zero DateTime':
             s.convertZeroDateTime = b;
-            break;
-          case 'Ignore Command Transaction':
-            s.ignoreCommandTransaction = b;
             break;
           case 'No Backslash Escapes':
             s.noBackslashEscapes = b;

@@ -55,8 +55,11 @@ sent to a text parameter).
   it (`Convert.ToInt32` and the like, a decimal truncated to the scale, the text of a value under the
   current culture), and fails with the same exception and message.
 - The implicit transaction begins with the TPB FirebirdClient builds for the isolation level of the
-  report connection (no wait, write); `close(true)` commits, `close(false)` rolls back. A command outside
-  the transaction (GETVALUEFROMSQL) fails as FbCommand fails.
+  report connection (no wait, write); `close(true)` commits, `close(false)` rolls back. Every command
+  runs inside it, the one of GETVALUEFROMSQL too.
+- Every call returns a promise: a report that reads data while an expression is evaluated
+  (GETVALUEFROMSQL, a dataset opened on demand, REOPEN), which the C# engine runs, fails here with the
+  `SynchronousDataRequiredError` of the engine.
 - Server errors are FbException with FirebirdClient's lines (`Dynamic SQL Error\nSQL error code = -204\n...`).
 
 ## Tests

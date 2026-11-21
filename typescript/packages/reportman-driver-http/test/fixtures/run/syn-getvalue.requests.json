@@ -14,5 +14,21 @@
       "content-type": "application/json; charset=utf-8"
     },
     "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT ORDER_ID FROM ORDERS WHERE ORDER_ID \\u003C 3\",\"parameters\":[]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) FROM CUSTOMERS\",\"parameters\":[]}"
+  },
+  {
+    "method": "POST",
+    "path": "/api/agent/execute",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "body": "{\"hubDatabaseId\":7,\"sql\":\"SELECT COUNT(*) FROM CUSTOMERS\",\"parameters\":[]}"
   }
 ]

@@ -32,7 +32,15 @@
       "golden": "fixtures/reports/syn-masterdetail.split.rep",
       "connections": ["SAMPLES2", "SAMPLES3", "SAMPLES4"]
     },
-    { "name": "syn-getvalue", "report": "fixtures/reports/syn-getvalue.rep" }
+    {
+      "name": "syn-getvalue",
+      "report": "fixtures/reports/syn-getvalue.rep",
+      "knownDifference": {
+        "error": "This MySqlConnection is already in use",
+        "tsError": "GETVALUEFROMSQL needs the data while an expression is being evaluated",
+        "why": "A MySqlConnection keeps one open reader, and the C# engine keeps the reader of the dataset being printed open while GETVALUEFROMSQL runs its command on the same connection. This driver reads each result at once, but it answers asynchronously (it has no synchronous mode), so the TypeScript engine cannot read the value while it evaluates the expression."
+      }
+    }
   ],
   "queries": [
     { "name": "types", "sql": "SELECT * FROM TYPES ORDER BY ID" },

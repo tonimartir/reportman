@@ -75,16 +75,16 @@ export const CASES: ReportCase[] = [
   { name: 'syn-masterdetail-nomars', report: fixture('syn-masterdetail'), csOptions: NO_MARS, knownDifference: { error: 'There is already an open DataReader associated with this Connection which must be closed first.', why: NO_MARS_WHY } },
   // a dataset opened while an expression is evaluated: the synchronous driver
   { name: 'syn-ondemand', report: fixture('syn-ondemand'), csOptions: MARS, synchronous: true },
-  // GETVALUEFROMSQL: SqlClient refuses a command without the transaction (with MARS), or a second reader (without it)
-  { name: 'syn-getvalue', report: fixture('syn-getvalue') },
+  // GETVALUEFROMSQL: its command inside the implicit transaction, read while an expression is evaluated (the synchronous driver)
+  { name: 'syn-getvalue', report: fixture('syn-getvalue'), synchronous: true },
   {
     name: 'syn-getvalue-nomars',
     report: fixture('syn-getvalue'),
     csOptions: NO_MARS,
+    synchronous: true,
     knownDifference: {
       error: 'There is already an open DataReader associated with this Connection which must be closed first.',
-      tsError: 'ExecuteReader requires the command to have a transaction',
-      why: 'Both engines refuse GETVALUEFROMSQL; SqlClient with MultipleActiveResultSets=False sees the open reader of the dataset being printed first. The TypeScript engine has read that dataset whole, so the driver gives the error SqlClient gives with MARS.',
+      why: 'With MultipleActiveResultSets=False SqlClient keeps one open reader per connection, and the C# engine keeps the reader of the dataset being printed open while GETVALUEFROMSQL runs its command. The TypeScript engine has read that dataset whole.',
     },
   },
   { name: 'mssql-types', report: fixture('mssql-types') },

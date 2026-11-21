@@ -15,7 +15,14 @@
       "params": { "FROMID": "10", "MAXVAT": "21", "COUNTRY": "'Spain'", "PATTERN": "%a%", "FLAG": "False" }
     },
     { "name": "syn-masterdetail", "report": "fixtures/reports/syn-masterdetail.rep" },
-    { "name": "syn-getvalue", "report": "fixtures/reports/syn-getvalue.rep" }
+    {
+      "name": "syn-getvalue",
+      "report": "fixtures/reports/syn-getvalue.rep",
+      "knownDifference": {
+        "tsError": "GETVALUEFROMSQL needs the data while an expression is being evaluated",
+        "why": "The C# engine reads the value while it evaluates the expression; this driver answers asynchronously (it has no synchronous mode), so the TypeScript engine cannot."
+      }
+    }
   ],
   "queries": [
     { "name": "types", "sql": "SELECT * FROM TYPES ORDER BY ID" },

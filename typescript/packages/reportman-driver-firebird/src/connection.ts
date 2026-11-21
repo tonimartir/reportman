@@ -166,15 +166,8 @@ export class FirebirdConnection implements DataConnection {
   }
 
   query(command: QueryCommand): Promise<QueryResult> {
-    // FbCommand.CheckCommand fails before anything reaches the server, and so this does, at once:
-    // GETVALUEFROMSQL, which needs its answer synchronously, gets the error FirebirdClient gives
+    // FbCommand.CheckCommand fails before anything reaches the server, and so this does, at once
     if (!this.open) throw invalidOperation('Connection must be valid and open.');
-    if (!command.inTransaction) {
-      // the implicit transaction of the report is pending and the command has none
-      throw invalidOperation(
-        'Execute requires the Command object to have a Transaction object when the Connection object assigned to the command is in a pending local transaction. The Transaction property of the Command has not been initialized.',
-      );
-    }
     const run = this.queue.then(() => this.run(command));
     this.queue = run.catch(() => undefined);
     return run;

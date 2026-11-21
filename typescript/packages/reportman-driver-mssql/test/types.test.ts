@@ -56,7 +56,7 @@ describe.skipIf(!available)('the values of SQL Server as SqlClient gives them (g
       let conn: MsSqlConnection | undefined;
       try {
         conn = (await mssql({ connectionString: connectionString(q.options ?? ''), culture: q.culture })(request())) as MsSqlConnection;
-        const result = await conn.queryTyped({ sql: q.sql, parameters: [], inTransaction: true, dataset: 'D' });
+        const result = await conn.queryTyped({ sql: q.sql, parameters: [], dataset: 'D' });
         if (golden.error === 'NullReferenceException') {
           // golden-cs reads GetSchemaTable, null for a command without a result set: no columns
           expect(result.columns).toEqual([]);

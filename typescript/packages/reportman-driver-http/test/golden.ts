@@ -33,6 +33,11 @@ export interface ReportCase {
   slow?: boolean;
   /** false: the values of its parameters are not of their types (golden-cs assigns their text; openReport types them). */
   typed?: boolean;
+  /**
+   * C# runs the report and the TypeScript engine fails: the text of its error, how many requests of
+   * api/agent/execute it sends until then (the first ones of C#), and why (a limitation of this driver).
+   */
+  knownDifference?: { tsError: string; requests: number; why: string };
 }
 
 export function cases(): ReportCase[] {

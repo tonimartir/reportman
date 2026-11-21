@@ -281,17 +281,11 @@ export class MsSqlConnection implements DataConnection {
 
   /**
    * The command and its first result set with the .NET type of each value. The checks of
-   * SqlCommand fail at once, before anything reaches the server (GETVALUEFROMSQL needs the error
-   * synchronously): a command outside the transaction, an empty command, a parameter SqlClient
-   * cannot type or convert.
+   * SqlCommand fail at once, before anything reaches the server: a closed connection, an empty
+   * command, a parameter SqlClient cannot type or convert.
    */
   queryTyped(command: QueryCommand): Promise<TypedResult> {
     if (!this.open) throw invalidOperation('ExecuteReader requires an open and available Connection. The connection\'s current state is closed.');
-    if (!command.inTransaction) {
-      throw invalidOperation(
-        'ExecuteReader requires the command to have a transaction when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.',
-      );
-    }
     if (command.sql.length === 0) throw invalidOperation('ExecuteReader: CommandText property has not been initialized');
     const sql = rewritePlaceholders(command.sql, command.parameters);
     const collation = (this.connection as unknown as { databaseCollation?: { toBuffer(): Buffer } }).databaseCollation?.toBuffer().subarray(0, 5) ?? Buffer.alloc(5);

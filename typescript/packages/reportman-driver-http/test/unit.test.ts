@@ -49,8 +49,8 @@ function request(alias: string, o: { configFile?: string; loadParams?: boolean; 
   };
 }
 
-function command(sql: string, parameters: QueryParameter[] = [], inTransaction = true) {
-  return { sql, parameters, inTransaction, dataset: 'T' };
+function command(sql: string, parameters: QueryParameter[] = []) {
+  return { sql, parameters, dataset: 'T' };
 }
 
 function param(name: string, valueType: ParameterValueType, value: DataValue, dbType: QueryParameter['dbType'] = 'Object'): QueryParameter {
@@ -207,15 +207,11 @@ describe('the requests (with a fake fetch)', () => {
     expect(calls).toHaveLength(0);
   });
 
-  it('fails as GETVALUEFROMSQL fails on an Agent connection in C#', async () => {
+  it('holds no session with the Hub: closing it sends nothing', async () => {
     const { fetch, calls } = fakeFetch();
     const c = await connect('X', { fetch, hubDatabaseId: 1 });
-    expect(await errorOf(c.query(command('S', [], false)))).toEqual({
-      type: 'NullReferenceException',
-      message: 'Object reference not set to an instance of an object.',
-    });
-    expect(calls).toHaveLength(0);
     expect(c.close()).toBeUndefined();
+    expect(calls).toHaveLength(0);
   });
 
   it('gives up after the timeout with the TaskCanceledException of HttpClient', async () => {
@@ -342,7 +338,40 @@ describe('the JSON of the requests (System.Text.Json, JavaScriptEncoder.Default)
       '0.3333333333333333',
     ]);
     expect(v('Binary', new Uint8Array([0xff]))).toBe('"/w=="');
-    expect([v('Object', 'a'), v('Object', 7), v('Object', 7n), v('Object', 2.5), v('Object', null)]).toEqual(['"a"', '7', '7', '2.5', '{}']);
+    // the Variant GETVALUEFROMSQL passes (VariantSystemTextJsonConverter), its type by its DbType
+    const variant = (value: DataValue, dbType: QueryParameter['dbType']) => jsonParameterValue(param('@P', 'Object', value, dbType));
+    expect([
+      variant(null, 'Object'),
+      variant(true, 'Boolean'),
+      variant(7, 'Byte'),
+      variant('x', 'SByte'),
+      variant(5, 'Int32'),
+      variant(5000000000n, 'Int64'),
+      variant(CsDecimal.parseInvariant('12.50'), 'Decimal'),
+      variant(0.1, 'Double'),
+      variant(2, 'Double'),
+      variant(RpDateTime.create(2024, 2, 29, 13, 45, 30, 500), 'DateTime'),
+      variant(RpDateTime.create(2024, 2, 29, 0, 0, 0, 0, DateTimeKind.Utc), 'DateTime'),
+      variant(new Uint8Array([1, 2, 255]), 'Binary'),
+      variant("a<b&'\"é", 'String'),
+    ]).toEqual([
+      '{"Type":"Null","Value":{}}',
+      '{"Type":"Boolean","Value":true}',
+      '{"Type":"Byte","Value":7}',
+      '{"Type":"Char","Value":"x"}',
+      '{"Type":"Integer","Value":5}',
+      '{"Type":"Long","Value":5000000000}',
+      '{"Type":"Decimal","Value":12.50}',
+      '{"Type":"Double","Value":0.1}',
+      '{"Type":"Double","Value":2}',
+      '{"Type":"DateTime","Value":"2024-02-29T13:45:30.5"}',
+      '{"Type":"DateTime","Value":"2024-02-29T00:00:00Z"}',
+      '{"Type":"Binary","Value":null}',
+      '{"Type":"String","Value":"a\\u003Cb\\u0026\\u0027\\u0022\\u00E9"}',
+    ]);
+    expect(executeBody(7n, 'S', [param('@P', 'Object', 5, 'Int32')])).toBe(
+      '{"hubDatabaseId":7,"sql":"S","parameters":[{"name":"@P","value":{"Type":"Integer","Value":5},"dbType":11}]}',
+    );
     expect(() => v('Double', Number.NaN)).toThrow(/cannot be written as valid JSON/);
     expect(() => v('Double', Number.POSITIVE_INFINITY)).toThrow(/AllowNamedFloatingPointLiterals/);
   });

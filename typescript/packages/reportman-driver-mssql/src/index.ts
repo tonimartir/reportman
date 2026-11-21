@@ -65,9 +65,9 @@ export interface MsSqlOptions {
   culture?: CultureInfo | string;
   /**
    * Answer the engine synchronously: tedious runs in a worker thread and each call waits for it.
-   * Needed by the reports that read data while an expression is evaluated (a dataset opened on
-   * demand, REOPEN), which the C# engine runs (it turns MultipleActiveResultSets on); this thread
-   * waits meanwhile. False by default (every call returns a promise).
+   * Needed by the reports that read data while an expression is evaluated (GETVALUEFROMSQL, a
+   * dataset opened on demand, REOPEN), which the C# engine runs (it turns MultipleActiveResultSets
+   * on); this thread waits meanwhile. False by default (every call returns a promise).
    */
   synchronous?: boolean;
 }

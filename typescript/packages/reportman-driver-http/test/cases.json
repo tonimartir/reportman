@@ -14,7 +14,15 @@
     { "name": "syn-params", "report": "syn-params" },
     { "name": "syn-params-values", "report": "syn-params", "params": {"FROMID": "10", "MAXVAT": "21", "COUNTRY": "'Spain'", "PATTERN": "%a%", "FLAG": "False"} },
     { "name": "syn-twopass", "report": "syn-twopass" },
-    { "name": "syn-getvalue", "report": "syn-getvalue" },
+    {
+      "name": "syn-getvalue",
+      "report": "syn-getvalue",
+      "knownDifference": {
+        "tsError": "GETVALUEFROMSQL needs the data while an expression is being evaluated",
+        "requests": 2,
+        "why": "The C# engine waits for the answer of the Hub while it evaluates the expression; fetch is asynchronous, so the TypeScript engine gives up on it (its request is sent all the same)."
+      }
+    },
     { "name": "agent-types", "report": "agent-types" },
     { "name": "agent-types-es", "report": "agent-types", "culture": "es-ES" },
     { "name": "agent-types2", "report": "agent-types2" },

@@ -1,4 +1,0 @@
-{
-  "error": "ReportException",
-  "message": "Execute requires the Command object to have a Transaction object when the Connection object assigned to the command is in a pending local transaction. The Transaction property of the Command has not been initialized.\nTRpExpression1 Prop:Expression"
-}

@@ -143,7 +143,6 @@ describe('connection strings (MySqlConnectionStringBuilder)', () => {
       allowZeroDateTime: false,
       convertZeroDateTime: false,
       guidFormat: 'Char36',
-      ignoreCommandTransaction: false,
       noBackslashEscapes: false,
     });
     expect(parseConnectionString('Old Guids=true').guidFormat).toBe('LittleEndianBinary16');

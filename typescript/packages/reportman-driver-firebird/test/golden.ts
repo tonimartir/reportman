@@ -18,6 +18,11 @@ export interface ReportCase {
   report: string;
   params?: Record<string, string>;
   culture?: string;
+  /**
+   * C# runs the report and the TypeScript engine fails: the text of its error and why (a limitation of
+   * this driver, not of FirebirdClient).
+   */
+  knownDifference?: { tsError: string; why: string };
 }
 
 export interface QueryCase {

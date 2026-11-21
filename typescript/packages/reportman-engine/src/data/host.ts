@@ -15,11 +15,9 @@
 // which skips string literals, quoted identifiers and comments.
 //
 // Transactions. As in C#, opening a connection starts an implicit transaction (with the isolation
-// level of the report connection) and every dataset runs its commands inside it; closing the
-// connection at the end of the report (or when the report fails) commits it. Only
-// GETVALUEFROMSQL runs a command without the transaction (C# assigns its command the external
-// transaction, null): ADO.NET providers such as Microsoft.Data.Sqlite refuse that while the
-// implicit transaction is pending, and a host should do the same (QueryCommand.inTransaction).
+// level of the report connection) and every command runs inside it, the ones of the datasets and
+// the one of GETVALUEFROMSQL; closing the connection at the end of the report (or when the report
+// fails) commits it.
 //
 // Results are materialised (every row at once); a streaming variant may come later.
 //
@@ -131,8 +129,6 @@ export interface QueryCommand {
   /** The SQL, with its `:NAME` / `@NAME` placeholders. */
   readonly sql: string;
   readonly parameters: readonly QueryParameter[];
-  /** The command runs inside the connection's implicit transaction (false only for GETVALUEFROMSQL). */
-  readonly inTransaction: boolean;
   /** The dataset alias the command belongs to ("" for GETVALUEFROMSQL). */
   readonly dataset: string;
 }

@@ -230,7 +230,6 @@ export class ReportDataInfo {
       parameters: command.parameters.map(
         (p): QueryParameter => ({ name: p.name, value: p.value, valueType: p.valueType, dbType: p.dbType }),
       ),
-      inTransaction: true,
       dataset: this.alias,
     };
     const result = yield* wait(connection.query(queryCommand));

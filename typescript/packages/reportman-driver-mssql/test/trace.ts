@@ -11,7 +11,8 @@ export function traceApp(name: string): string {
   return 'rmtrace-' + name;
 }
 
-/** Starts the session (once; it keeps running). */
+/** Starts the session, empty: a running one is stopped and started again (its ring buffer is read
+ * as XML that SQL Server cuts at 4 MB, so the events of a long-running session would not be seen). */
 export async function startTrace(): Promise<void> {
   await runBatch(
     `IF NOT EXISTS (SELECT 1 FROM sys.server_event_sessions WHERE name = 'rm_trace')
@@ -20,7 +21,8 @@ CREATE EVENT SESSION rm_trace ON SERVER
  ADD EVENT sqlserver.sql_batch_completed (ACTION (sqlserver.client_app_name) WHERE sqlserver.database_name = N'${mssqlTest.database}')
  ADD TARGET package0.ring_buffer (SET max_events_limit = 20000)
  WITH (MAX_DISPATCH_LATENCY = 1 SECONDS, EVENT_RETENTION_MODE = ALLOW_SINGLE_EVENT_LOSS);
-IF NOT EXISTS (SELECT 1 FROM sys.dm_xe_sessions WHERE name = 'rm_trace') ALTER EVENT SESSION rm_trace ON SERVER STATE = START;`,
+IF EXISTS (SELECT 1 FROM sys.dm_xe_sessions WHERE name = 'rm_trace') ALTER EVENT SESSION rm_trace ON SERVER STATE = STOP;
+ALTER EVENT SESSION rm_trace ON SERVER STATE = START;`,
     'master',
   );
 }

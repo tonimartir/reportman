@@ -115,10 +115,6 @@ class SqliteConnection implements DataConnection {
 
   query(command: QueryCommand): QueryResult {
     if (!this.open) throw new ProviderError('The connection is closed.');
-    if (!command.inTransaction)
-      throw new ProviderError(
-        'Execute requires the command to have a transaction object when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.',
-      );
     const { placeholders } = rewriteNamedParameters(command.sql, (p) => p.prefix + p.name);
     const names = [...new Set(placeholders.map((p) => p.prefix + p.name))];
     const bound = new Map<string, null | bigint | number | string | Uint8Array>();

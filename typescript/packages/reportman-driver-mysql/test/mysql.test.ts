@@ -69,8 +69,8 @@ function request(isolationLevel: ConnectionRequest['isolationLevel'] = 'Repeatab
   };
 }
 
-function command(sql: string, parameters: QueryParameter[] = [], inTransaction = true) {
-  return { sql, parameters, inTransaction, dataset: 'T' };
+function command(sql: string, parameters: QueryParameter[] = []) {
+  return { sql, parameters, dataset: 'T' };
 }
 
 const DB_TYPES: Record<string, QueryParameter['dbType']> = {
@@ -116,6 +116,15 @@ describe.skipIf(!withFixtures)(`report parity with golden-cs on ${version}`, () 
       files.push([path.resolve(here, c.golden!), all]);
     }
 
+    if (c.knownDifference !== undefined) {
+      const known = c.knownDifference;
+      it(`C# fails (${known.error}), the TypeScript engine fails (${known.tsError})`, async () => {
+        expect((JSON.parse(fs.readFileSync(errorFile, 'utf8')) as { message: string }).message).toContain(known.error);
+        const error = await errorOf(runLikeGolden(reportFile, createDataHost({ connections }), { params: c.params, culture: c.culture }));
+        expect(error?.message).toContain(known.tsError);
+      });
+      return;
+    }
     if (fs.existsSync(errorFile)) {
       it('fails as C# does', async () => {
         const expected = JSON.parse(fs.readFileSync(errorFile, 'utf8')) as { error: string; message: string };
@@ -417,25 +426,6 @@ describe.skipIf(!reachable)('transactions and connections', () => {
       expect((await check.query(command('SELECT V FROM RM_TX ORDER BY V'))).rows).toEqual([[2]]);
     } finally {
       await check.close(true);
-    }
-  });
-
-  it('refuses a command outside the implicit transaction (GETVALUEFROMSQL), as MySqlCommand does', async () => {
-    const c = await connections.SAMPLES(request());
-    try {
-      expect(await errorOf(() => c.query(command('SELECT 1', [], false)))).toEqual({
-        type: 'InvalidOperationException',
-        message: "The transaction associated with this command is not the connection's active transaction; see https://mysqlconnector.net/trans",
-      });
-    } finally {
-      await c.close(true);
-    }
-    // Ignore Command Transaction=true lets it run
-    const ignore = await mysql(connectionString('Ignore Command Transaction=true'))(request());
-    try {
-      expect((await ignore.query(command('SELECT 1 AS X', [], false))).rows.map((row) => row.map(Number))).toEqual([[1]]);
-    } finally {
-      await ignore.close(true);
     }
   });
 

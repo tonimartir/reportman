@@ -305,7 +305,6 @@ function connect(options: mysql.ConnectionOptions): Promise<mysql.Connection> {
 /** An open report connection with its implicit transaction. */
 export class MySqlConnection implements DataConnection {
   private readonly connection: mysql.Connection;
-  private readonly settings: ConnectionSettings;
   private readonly bind: BindOptions;
   private readonly read: ReadOptions;
   private open = true;
@@ -314,7 +313,6 @@ export class MySqlConnection implements DataConnection {
 
   private constructor(connection: mysql.Connection, settings: ConnectionSettings, options: ConnectionOptions) {
     this.connection = connection;
-    this.settings = settings;
     this.bind = {
       noBackslashEscapes: settings.noBackslashEscapes,
       allowUserVariables: settings.allowUserVariables,
@@ -401,14 +399,10 @@ export class MySqlConnection implements DataConnection {
   }
 
   query(command: QueryCommand): Promise<QueryResult> {
-    // MySqlCommand.IsValid fails before anything reaches the server, and so this does, at once:
-    // GETVALUEFROMSQL, which needs its answer synchronously, gets the error MySqlConnector gives
+    // MySqlCommand.IsValid fails before anything reaches the server, and so this does, at once
     // (the parameters are added to the command first: a repeated name fails there)
     const parameters = new ParameterCollection(command.parameters);
     if (!this.open) throw invalidOperation('Connection must be Open; current state is Closed');
-    if (!command.inTransaction && !this.settings.ignoreCommandTransaction) {
-      throw invalidOperation("The transaction associated with this command is not the connection's active transaction; see https://mysqlconnector.net/trans");
-    }
     if (command.sql.trim().length === 0) throw invalidOperation('CommandText must be specified');
     const run = this.queue.then(() => this.run(command.sql, parameters));
     this.queue = run.catch(() => undefined);

@@ -41,7 +41,6 @@ export function decodeValue(v: WireValue): DataValue {
 export interface WireCommand {
   readonly sql: string;
   readonly parameters: { name: string; value: WireValue; valueType: QueryCommand['parameters'][number]['valueType']; dbType: QueryCommand['parameters'][number]['dbType'] }[];
-  readonly inTransaction: boolean;
   readonly dataset: string;
 }
 
@@ -49,7 +48,6 @@ export function encodeCommand(c: QueryCommand): WireCommand {
   return {
     sql: c.sql,
     parameters: c.parameters.map((p) => ({ name: p.name, value: encodeValue(p.value), valueType: p.valueType, dbType: p.dbType })),
-    inTransaction: c.inTransaction,
     dataset: c.dataset,
   };
 }

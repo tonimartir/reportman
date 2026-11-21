@@ -27,12 +27,13 @@ The connection string is read as MySqlConnectionStringBuilder reads it: every ke
 2.5 (an unknown key fails with `Option 'x' not supported.`), `yes`/`no` booleans, and its defaults. The options
 that change what a report reads are honoured: `TreatTinyAsBoolean` (true), `AllowZeroDateTime` and
 `ConvertZeroDateTime` (false), `GuidFormat` (Default: `Char36`, or `LittleEndianBinary16` with `OldGuids`),
-`DateTimeKind`, `AllowUserVariables`, `NoBackslashEscapes`, `IgnoreCommandTransaction`, `SslMode` (Preferred:
+`DateTimeKind`, `AllowUserVariables`, `NoBackslashEscapes`, `SslMode` (Preferred:
 TLS when the server offers it, without verifying it; `VerifyCA`/`VerifyFull` with `SslCa`, `SslCert`,
 `SslKey`, `CertificateFile`), `AllowPublicKeyRetrieval` and `ServerRSAPublicKeyFile` (without TLS the RSA key of the server is asked for only on a loopback address or with AllowPublicKeyRetrieval, as in MySqlConnector), `Protocol=Unix` (a socket path in `Server`), `UseCompression`,
-`ConnectionTimeout`. The pool, Kerberos and timeout-of-the-pool options are accepted and change nothing for a
-report; `Character Set` is ignored, as in MySqlConnector (the session is always utf8mb4). Named pipes and shared
-memory are refused with a NotSupportedException.
+`ConnectionTimeout`. The pool, Kerberos and timeout-of-the-pool options, and `IgnoreCommandTransaction` (every
+command of a report runs inside its transaction), are accepted and change nothing for a report; `Character Set`
+is ignored, as in MySqlConnector (the session is always utf8mb4). Named pipes and shared memory are refused with
+a NotSupportedException.
 
 `culture` is the culture of the run (`'en-US'` by default, as in openReport): the C# engine prints the
 MySqlDateTime of `AllowZeroDateTime=True` with its current culture.
@@ -76,15 +77,17 @@ of MySqlConnector has no DataTypeName, so no column is a declared date.
 - The session is set up as MySqlConnector sets it up (utf8mb4, `SET NAMES utf8mb4` unless the server says it is
   utf8mb4 already, as MariaDB 11.5 does; no IGNORE_SPACE), the implicit transaction begins with
   `set session transaction isolation level ...;` and `start transaction;` (`with consistent snapshot` for
-  Snapshot; Chaos is not supported), `close(true)` sends `commit`, `close(false)` `rollback`. A command outside
-  the transaction (GETVALUEFROMSQL) fails as MySqlCommand fails, unless IgnoreCommandTransaction (then the
-  engine needs a synchronous answer it cannot get).
+  Snapshot; Chaos is not supported), `close(true)` sends `commit`, `close(false)` `rollback`. Every command runs
+  inside it, the one of GETVALUEFROMSQL too.
+- Every call returns a promise: a report that reads data while an expression is evaluated (GETVALUEFROMSQL, a
+  dataset opened on demand, REOPEN) fails with the `SynchronousDataRequiredError` of the engine.
 - Server errors are MySqlException with the server's message, number and SQLSTATE; the client errors have
   MySqlConnector's messages.
 
 Differences with C#, on purpose: a MySqlConnection keeps one open reader, so the C# engine fails with `This
 MySqlConnection is already in use` when a report keeps two datasets of one connection open (master/detail, two
-datasets of a section); this driver reads each result at once and those reports run. And MySqlConnector hands
+datasets of a section, or a GETVALUEFROMSQL while the dataset being printed is open); this driver reads each
+result at once and those reports run (GETVALUEFROMSQL would, with a synchronous answer). And MySqlConnector hands
 out the same MySqlDataReader for every command of a connection, so C# sends a detail dataset twice when its
 master moves (the second time to load it); this driver sends it once.
 

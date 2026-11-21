@@ -31,7 +31,7 @@ const request = (isolationLevel: IsolationLevelName = 'RepeatableRead'): Connect
   isolationLevel,
 });
 
-const command = (sql: string, parameters: QueryParameter[] = [], inTransaction = true): QueryCommand => ({ sql, parameters, inTransaction, dataset: 'D' });
+const command = (sql: string, parameters: QueryParameter[] = []): QueryCommand => ({ sql, parameters, dataset: 'D' });
 
 const p = (name: string, valueType: QueryParameter['valueType'], value: QueryParameter['value'], dbType: QueryParameter['dbType'] = 'Object'): QueryParameter => ({
   name,
@@ -209,13 +209,6 @@ describe.skipIf(!available)('a PostgreSQL report connection', () => {
       await admin.query('DROP TABLE IF EXISTS driver_tx');
       await admin.end();
     }
-  });
-
-  it('runs a command without the transaction (GETVALUEFROMSQL) on the same connection, as Npgsql', async () => {
-    const c = await factory(request());
-    const r = await c.query(command('SELECT count(*) AS n FROM customers', [], false));
-    expect(r.rows[0]![0]).toBe(63n);
-    await c.close(true);
   });
 
   it('checks every parameter, used or not, and leaves unknown placeholders to the server', async () => {

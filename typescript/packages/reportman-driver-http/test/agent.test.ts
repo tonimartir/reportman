@@ -4,7 +4,9 @@
 //     the metafile golden-cs wrote and gives its PDF bytes (fixtures/run, the C# clock);
 //   - the mock Hub receives from the driver the requests of api/agent/execute it received from C#: the
 //     same headers (content type, API key, Bearer token, install id) and the same body, byte for byte;
-//   - a report that fails in C# fails with the same error.
+//   - a report that fails in C# fails with the same error;
+//   - a report that reads data while an expression is evaluated (GETVALUEFROMSQL), which C# runs, fails
+//     here (fetch is asynchronous) after the requests C# sent until then.
 //
 // The fixtures come from test/generate-fixtures.ts. C# also asks the Hub for a direct channel first
 // (api/data-session/start, answered 404 by the mock: it falls back to HTTP); the driver does not.
@@ -78,6 +80,11 @@ function expectSameError(c: ReportCase, mine: { type: string; message: string } 
   if (cs.error !== 'ReportException') expect(mine!.type).toBe(cs.error);
 }
 
+/** Waits (5 s at most) until a condition holds: a request the engine gave up on still reaches the Hub. */
+async function until(condition: () => boolean): Promise<void> {
+  for (let i = 0; i < 100 && !condition(); i++) await new Promise((resolve) => setTimeout(resolve, 50));
+}
+
 function expectSameRequests(mine: readonly HubRequest[], csFile: string): void {
   const cs = executeRequests(JSON.parse(fs.readFileSync(csFile, 'utf8')) as HubRequest[]);
   expect(executeRequests(mine)).toEqual(cs);
@@ -90,6 +97,21 @@ describe.each(cases())('$name', (c) => {
   const skip = c.zone === true && !zoneOk;
   const timeout = c.slow === true && !slow ? 1000 : undefined;
   const testTimeout = c.slow === true && slow ? 130000 : 30000;
+
+  if (c.knownDifference !== undefined) {
+    const known = c.knownDifference;
+    it.skipIf(skip)(`C# runs it; the TypeScript engine fails (${known.tsError}), after the same requests`, async () => {
+      expect(fs.existsSync(path.join(runFixtures, c.name + '.meta.json'))).toBe(true);
+      hub.clear();
+      const data = createDataHost({ connections: connectionsFor(c) });
+      const error = await errorOf(printLikeGolden(reportFile, data, { params: c.params, culture: c.culture }));
+      expect(error?.message).toContain(known.tsError);
+      const cs = executeRequests(JSON.parse(fs.readFileSync(requestsFile, 'utf8')) as HubRequest[]);
+      await until(() => executeRequests(hub.requests).length >= known.requests);
+      expect(executeRequests(hub.requests)).toEqual(cs.slice(0, known.requests));
+    });
+    return;
+  }
 
   if (fs.existsSync(errorFile)) {
     const cs = JSON.parse(fs.readFileSync(errorFile, 'utf8')) as { error: string; message: string };

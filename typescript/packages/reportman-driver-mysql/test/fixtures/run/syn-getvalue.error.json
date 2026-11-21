@@ -1,4 +1,4 @@
 {
   "error": "ReportException",
-  "message": "The transaction associated with this command is not the connection's active transaction; see https://mysqlconnector.net/trans\nTRpExpression1 Prop:Expression"
+  "message": "This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse\nTRpExpression1 Prop:Expression"
 }

@@ -1,8 +1,8 @@
 // A synchronous report connection: tedious runs in a worker thread (worker.ts) and this thread
 // waits for each answer (Atomics.wait), so query and close return their results, not promises.
-// That is what lets the engine read a dataset while it evaluates an expression (a dataset opened
-// on demand, REOPEN), as the C# engine does with SqlClient. Nothing else runs in this thread
-// meanwhile.
+// That is what lets the engine read data while it evaluates an expression (GETVALUEFROMSQL, a
+// dataset opened on demand, REOPEN), as the C# engine does with SqlClient. Nothing else runs in
+// this thread meanwhile.
 
 import { MessageChannel, Worker, receiveMessageOnPort, type MessagePort } from 'node:worker_threads';
 import type { ConnectionRequest, DataConnection, DataValue, QueryCommand, QueryResult } from 'reportman-engine';
@@ -78,11 +78,6 @@ export class SyncMsSqlConnection implements DataConnection {
   /** The first result set with the .NET type of each value (see MsSqlConnection.queryTyped). */
   queryTyped(command: QueryCommand): TypedResult {
     if (!this.open) throw invalidOperation("ExecuteReader requires an open and available Connection. The connection's current state is closed.");
-    if (!command.inTransaction) {
-      throw invalidOperation(
-        'ExecuteReader requires the command to have a transaction when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.',
-      );
-    }
     return decodeResult(this.call<WireResult>({ op: 'query', command: encodeCommand(command) }));
   }
 

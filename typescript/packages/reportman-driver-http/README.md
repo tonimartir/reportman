@@ -64,7 +64,9 @@ DateTime 6, Binary 1, Byte 2, SByte 14, Object 13); `value` the boxed .NET value
 (`1E-05`, `0.3333333333333333`, a decimal with its scale `12.50`), `true`/`false`, strings, a DateTime as
 `2024-02-29T13:45:30.5` (`Z` for UTC, the local offset for a local one), bytes in base64, `{}` for DBNull,
 `null` for no value (a detail whose master has no record). NaN and the infinities fail as in
-System.Text.Json (`ArgumentException`).
+System.Text.Json (`ArgumentException`). The command of `GETVALUEFROMSQL` goes the same way; a parameter of
+it is named `@` + the alias and its value is the Variant itself, as C# writes one:
+`{"Type":"Integer","Value":7}` (`{"Type":"Binary","Value":null}` for bytes).
 
 ## The answer
 
@@ -102,8 +104,7 @@ The ones of C#, with their .NET type in `netType`:
 - the timeout: `TaskCanceledException` *The request was canceled due to the configured HttpClient.Timeout of
   100 seconds elapsing.*;
 - no answer: `HttpRequestException` with the reason and the endpoint (the texts of Windows sockets; C# shows
-  the ones of its operating system, in its language);
-- `GETVALUEFROMSQL` on an Agent connection: the `NullReferenceException` of C#.
+  the ones of its operating system, in its language).
 
 ## The executor
 
@@ -118,9 +119,9 @@ tableName, field)` (`api/agent/readtables`, `readcolumns`, `readforeignkeys`: th
   DataChannel to the Agent (`api/data-session/start`) and falls back to this same HTTP path when it cannot
   open one. This package always uses HTTP, as the net48 build of the C# engine does: the data is the same,
   only the transport differs.
-- **Datasets opened from inside an expression** (a field of a dataset not open yet, `REOPEN`): fetch is
-  asynchronous, so the engine fails with its `SynchronousDataRequiredError`; open the dataset before
-  printing (OpenOnStart), as the reports of the designer do.
+- **Data read from inside an expression** (`GETVALUEFROMSQL`, a field of a dataset not open yet, `REOPEN`):
+  fetch is asynchronous, so the engine fails with its `SynchronousDataRequiredError` where C# sends the
+  request and goes on; open the dataset before printing (OpenOnStart), as the reports of the designer do.
 - A Single value of a master record sent to a detail goes with its double digits (the engine keeps Single
   values as doubles); C# writes its float digits.
 - `fetch` adds its own headers (`user-agent`, `accept`...) and a browser sends a CORS preflight for the

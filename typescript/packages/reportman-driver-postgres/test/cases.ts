@@ -55,13 +55,17 @@ export const CASES: PgCase[] = [
   { name: 'pg-sql', report: synthetic('pg-sql') },
   { name: 'pg-session', report: synthetic('pg-session') },
   { name: 'pg-masterdetail', report: synthetic('pg-masterdetail'), connections: ['MASTERDB'] },
+  // GETVALUEFROMSQL: its command inside the implicit transaction, read while an expression is evaluated
+  { name: 'pg-getvalue', report: synthetic('pg-getvalue'), synchronous: true },
   {
-    name: 'pg-getvalue',
-    report: synthetic('pg-getvalue'),
+    name: 'pg-getvalue-dataset',
+    report: synthetic('pg-getvalue-dataset'),
     synchronous: true,
     knownDifference: {
       error: 'A command is already in progress',
-      why: 'The C# engine never closes the reader of GETVALUEFROMSQL, and Npgsql refuses the next command on the connection (here the COMMIT).',
+      why:
+        'Npgsql has no multiple active result sets: the C# engine keeps the reader of the dataset being printed open while ' +
+        'GETVALUEFROMSQL runs its command on the same connection. The TypeScript engine reads each result whole.',
     },
   },
   { name: 'pg-ondemand', report: synthetic('pg-ondemand'), synchronous: true },
@@ -215,6 +219,15 @@ export function syntheticReports(): Record<string, string> {
   out['pg-getvalue'] = report({
     data: [],
     subs: [subreport('', [detail([expr("GETVALUEFROMSQL('SAMPLES','SELECT COUNT(*) FROM customers')", { WIDTH: 3000 })])])],
+  });
+  // GETVALUEFROMSQL while the dataset being printed is open
+  out['pg-getvalue-dataset'] = report({
+    data: [datainfo('ORD', 'SELECT order_id FROM orders WHERE order_id < 3 ORDER BY order_id')],
+    subs: [
+      subreport('ORD', [
+        detail([expr('ORD.ORDER_ID', { WIDTH: 1000 }), expr("GETVALUEFROMSQL('SAMPLES','SELECT COUNT(*) FROM customers')", { POSX: 1100, WIDTH: 1000 })]),
+      ]),
+    ],
   });
   // A dataset opened by an expression (not on start): read while the expression is evaluated
   out['pg-ondemand'] = report({

@@ -42,7 +42,7 @@ export const request: ConnectionRequest = {
 async function run(sql: string, culture?: string): Promise<QueryResult> {
   const connection = await postgres({ ...testConfig(), culture })(request);
   try {
-    return await connection.query({ sql, parameters: [], inTransaction: true, dataset: 'D' });
+    return await connection.query({ sql, parameters: [], dataset: 'D' });
   } finally {
     await connection.close(true);
   }
@@ -192,7 +192,6 @@ describe.skipIf(!available)('every PostgreSQL type as Npgsql gives it to the C# 
       const r = await connection.query({
         sql: "SELECT timestamptz '2024-01-02 03:04:05+00' AS a, timestamptz '1900-01-01 00:00:00+00' AS b, current_setting('TimeZone') AS z",
         parameters: [],
-        inTransaction: true,
         dataset: 'D',
       });
       expect((r.rows[0]![0] as RpDateTime).toIsoString()).toBe('2024-01-02T03:04:05.0000000');

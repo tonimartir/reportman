@@ -2,7 +2,7 @@
 // hubDatabaseId, sql, parameters }) with camelCase names, each parameter a DbParameterInfo (Name, Value,
 // DbType: the System.Data.DbType number) whose Value is the boxed .NET value the engine assigned to the
 // IDbDataParameter (DataInfo: the alias of the report parameter and Variant.AsObject of its value; a
-// master record's value for a detail).
+// master record's value for a detail; GETVALUEFROMSQL: "@" + the alias and the Variant itself).
 
 import {
   CsDecimal,
@@ -75,7 +75,7 @@ export function jsonDateTime(d: RpDateTime): string {
   return '"' + s + '"';
 }
 
-/** The JSON of a value by its JavaScript form (a value of an Object column). */
+/** The JSON of a value by its JavaScript form. */
 function jsonOfValue(value: DataValue): string {
   if (value === undefined) return 'null';
   if (value === null) return '{}';
@@ -88,6 +88,21 @@ function jsonOfValue(value: DataValue): string {
   if (value instanceof RpDateTime) return jsonDateTime(value);
   return jsonDateTime(RpDateTime.fromJsDate(value, DateTimeKind.Local));
 }
+
+/** The VariantType name of the Variant GETVALUEFROMSQL passes, by its DbType (Variant.GetDbType). */
+const VARIANT_TYPES: Readonly<Record<ParameterDbType, string>> = {
+  Object: 'Null',
+  Boolean: 'Boolean',
+  Byte: 'Byte',
+  SByte: 'Char',
+  Int32: 'Integer',
+  Int64: 'Long',
+  Decimal: 'Decimal',
+  Double: 'Double',
+  DateTime: 'DateTime',
+  Binary: 'Binary',
+  String: 'String',
+};
 
 /** The JSON of the value of a parameter, by its .NET type: C# null is null, DBNull an empty object. */
 export function jsonParameterValue(p: QueryParameter): string {
@@ -116,7 +131,9 @@ export function jsonParameterValue(p: QueryParameter): string {
     case 'Binary':
       return v instanceof Uint8Array ? jsonString(toBase64String(v)) : jsonOfValue(v);
     case 'Object':
-      return jsonOfValue(v);
+      // The Variant itself (GETVALUEFROMSQL), as VariantSystemTextJsonConverter writes it: its VariantType
+      // and its AsObject (DBNull for Null; null for Binary, whose AsObject gives no bytes)
+      return `{"Type":"${VARIANT_TYPES[p.dbType]}","Value":${p.dbType === 'Binary' ? 'null' : jsonOfValue(v)}}`;
   }
 }
 

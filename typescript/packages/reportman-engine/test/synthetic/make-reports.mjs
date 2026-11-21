@@ -605,8 +605,8 @@ report('syn-ondemand.rep', {
   ],
 });
 
-// GETVALUEFROMSQL runs its command without the transaction of the connection, which
-// Microsoft.Data.Sqlite refuses: the report fails in C#, and the same way here.
+// GETVALUEFROMSQL while the dataset being printed is open: its command runs inside the implicit
+// transaction of the connection, as the commands of the datasets.
 report('syn-getvalue.rep', {
   data: [datainfo('ORD', 'SELECT ORDER_ID FROM ORDERS WHERE ORDER_ID < 3')],
   subs: [
