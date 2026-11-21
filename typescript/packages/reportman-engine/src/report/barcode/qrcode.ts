@@ -14,18 +14,30 @@
 // - the mask: the penalty rule 3 of ZXing.Net counts a finder-like pattern only when its four
 //   light modules are inside the symbol, and its rule 4 computes the dark ratio in doubles.
 
-import {
-  BitArray,
-  QRCodeByteMatrix as ByteMatrix,
-  QRCodeDecoderErrorCorrectionLevel as ErrorCorrectionLevel,
-  QRCodeEncoder as Encoder,
-  QRCodeMaskUtil as MaskUtil,
-  QRCodeMatrixUtil as MatrixUtil,
-  QRCodeMode as Mode,
-  QRCodeVersion as Version,
-  WriterException,
-} from '@zxing/library';
+import * as zxingModule from '@zxing/library';
 import { argumentException } from '../../util/netexception.js';
+
+// @zxing/library gives Node its CommonJS bundle, whose exports Node cannot list as named ESM
+// exports (only the default, module.exports), and bundlers its ES modules (named exports, no
+// default): take the classes from whichever shape the module has.
+const zxing: typeof zxingModule =
+  (zxingModule as unknown as { default?: typeof zxingModule }).default ?? zxingModule;
+const {
+  BitArray,
+  QRCodeByteMatrix: ByteMatrix,
+  QRCodeDecoderErrorCorrectionLevel: ErrorCorrectionLevel,
+  QRCodeEncoder: Encoder,
+  QRCodeMaskUtil: MaskUtil,
+  QRCodeMatrixUtil: MatrixUtil,
+  QRCodeMode: Mode,
+  QRCodeVersion: Version,
+  WriterException,
+} = zxing;
+type BitArray = zxingModule.BitArray;
+type ByteMatrix = zxingModule.QRCodeByteMatrix;
+type ErrorCorrectionLevel = zxingModule.QRCodeDecoderErrorCorrectionLevel;
+type Mode = zxingModule.QRCodeMode;
+type Version = zxingModule.QRCodeVersion;
 import { castInt32 } from './netutil.js';
 
 /** A QR matrix with its quiet zone: true for a dark module. */
