@@ -73,9 +73,14 @@ Every package has the same version, the one the Delphi and C# engines share at e
 (4.x). `npm run version:set -- 4.1.0-alpha.2` sets it on all of them, on the references between
 them and in `package-lock.json` (edit the status lines of the README files by hand);
 `npm run release:next` checks that they share it, builds from scratch, runs the tests and
-`check:dist`, and publishes them all with the tag `next` (after `npm login`). npm stages the new
-versions (staged publishing): each one waits in the **Staged Packages** tab of the account
-settings on npmjs.com until it is approved there, with the 2FA of the account.
+`check:dist`, and publishes them with the tag `next` (after `npm login`; `tools/release.mjs`).
+The publishing can be run again (`npm run release:publish`): it publishes only the packages whose
+version is not on the registry yet, and moves the tag `latest`, which npm gives to the first
+version of a package and the website shows, to the newest preview while there is no final
+version. Every command that writes asks for the 2FA of the account. The registry takes some
+minutes to show a new version everywhere: a package may look missing for a while. For a package
+that does not exist yet, npm stages the first version (staged publishing): it waits in the
+**Staged Packages** tab of the account settings on npmjs.com until it is approved there.
 
 ### Continuous integration, on this computer
 

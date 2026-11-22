@@ -20,7 +20,8 @@
     "check:canvas": "node tools/check-canvas.mjs",
     "check:dfm": "node tools/check-dfm.mjs",
     "version:set": "node tools/set-version.mjs",
-    "release:next": "node tools/set-version.mjs --check && npm run clean && npm run build && npm test && npm run check:dist && npm publish --workspaces --tag next"
+    "release:next": "node tools/set-version.mjs --check && npm run clean && npm run build && npm test && npm run check:dist && node tools/release.mjs --tag next",
+    "release:publish": "node tools/release.mjs --tag next"
   },
   "engines": {
     "node": ">=22.12"
