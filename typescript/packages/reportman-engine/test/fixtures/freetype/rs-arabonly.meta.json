@@ -1,0 +1,70 @@
+{
+  "pageSizeIndex": 0,
+  "customX": 11906,
+  "customY": 16838,
+  "orientation": "Default",
+  "backColor": 16777215,
+  "docAuthor": "",
+  "docTitle": "",
+  "docSubject": "",
+  "docProducer": "",
+  "docCreator": "",
+  "docKeywords": "",
+  "docXMPContent": "",
+  "docCreationDate": "",
+  "docModificationDate": "",
+  "pdfConformance": "PDF_A_3",
+  "pdfCompressed": false,
+  "pages": [
+    {
+      "orientation": "Default",
+      "updatedPageSize": false,
+      "pageDetail": {
+        "Index": 0,
+        "Custom": false,
+        "CustomWidth": 0,
+        "CustomHeight": 0,
+        "PhysicWidth": 11906,
+        "PhysicHeight": 16837,
+        "PaperSource": 0,
+        "ForcePaperName": "",
+        "Duplex": 0
+      },
+      "objects": [
+        {
+          "class": "MetaObjectText",
+          "TextP": 1,
+          "TextS": 182,
+          "LFontNameP": 183,
+          "LFontNameS": 17,
+          "WFontNameP": 200,
+          "WFontNameS": 16,
+          "FontSize": 12,
+          "FontRotation": 0,
+          "FontStyle": 0,
+          "Type1Font": 6,
+          "FontColor": 0,
+          "BackColor": 16777215,
+          "Transparent": true,
+          "CutText": false,
+          "Alignment": 2,
+          "WordWrap": true,
+          "RightToLeft": true,
+          "PrintStep": 0,
+          "IsHtml": false,
+          "Id": 0,
+          "Top": 1030,
+          "Left": 1270,
+          "Width": 5184,
+          "Height": 3792,
+          "AnnotationP": 0,
+          "AnnotationS": 0,
+          "MetaType": 0,
+          "text": "النص العربي:\nيُعَدّ معيار PDF أحد أهم المعايير في تبادل المستندات الرقمية.\nتدعمه معظم الأنظمة والبرامج دون الحاجة إلى تعديل المحتوى.\nيهدف إلى ضمان عرض موحّد ودقيق للوثائق في كل مكان.",
+          "lFontName": "Noto Naskh Arabic",
+          "wFontName": "Noto Sans Arabic"
+        }
+      ]
+    }
+  ]
+}

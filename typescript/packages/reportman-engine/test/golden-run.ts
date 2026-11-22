@@ -20,6 +20,13 @@ export interface RunCase {
   report: string;
   params?: Record<string, string>;
   culture?: string;
+  /** The SQLite database of the report, relative to test/ (samples.db when not given). */
+  db?: string;
+}
+
+/** The SQLite database a case reads (golden-cs run --sqlite). */
+export function caseDb(c: { db?: string }): string {
+  return c.db === undefined ? samplesDb : path.resolve(here, c.db);
 }
 
 export function runCases(): RunCase[] {
@@ -126,7 +133,7 @@ export interface RunResult {
 /** Runs a report as golden-cs does: the device asks for page after page and draws each one. */
 export async function runLikeGolden(
   reportFile: string,
-  options: { params?: Record<string, string>; culture?: string; now?: RpDateTime } = {},
+  options: { params?: Record<string, string>; culture?: string; now?: RpDateTime; db?: string } = {},
 ): Promise<RunResult> {
   const model = readReportXml(new Uint8Array(fs.readFileSync(reportFile)));
   const now = options.now;
@@ -136,7 +143,7 @@ export async function runLikeGolden(
   };
   const run = await prepareReport(model, {
     device: new PdfDevice(),
-    data: sqliteHost(samplesDb),
+    data: sqliteHost(options.db ?? samplesDb),
     culture: options.culture ?? 'en-US',
     host: evalHost,
   });

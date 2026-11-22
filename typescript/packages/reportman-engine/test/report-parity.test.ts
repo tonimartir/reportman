@@ -6,7 +6,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { metaFileJson, pdfCreation, renderDrawn, runCases, runFixtures, runLikeGolden, here } from './golden-run.js';
+import { systemClock } from '@reportman/pdf';
+import { caseDb, metaFileJson, pdfCreation, renderDrawn, runCases, runFixtures, runLikeGolden, here } from './golden-run.js';
 
 describe.each(runCases())('run parity with golden-cs: $name', (c) => {
   const errorFile = path.join(runFixtures, c.name + '.error.txt');
@@ -14,10 +15,14 @@ describe.each(runCases())('run parity with golden-cs: $name', (c) => {
   if (fs.existsSync(errorFile)) {
     it('fails as C# does', async () => {
       const expected = fs.readFileSync(errorFile, 'utf8');
-      const message = await runLikeGolden(reportFile, { params: c.params, culture: c.culture }).then(
-        () => 'no error',
-        (e: unknown) => (e instanceof Error ? e.message : String(e)),
-      );
+      // The layout, and the drawing of the PDF, where C# fails too (a PDF/A-3 text without a font
+      // provider, for example, fails in PDFCanvas.TextRect)
+      const message = await runLikeGolden(reportFile, { params: c.params, culture: c.culture, db: caseDb(c) }).then(
+        ({ meta, drawn, noData }) => {
+          if (!noData) renderDrawn(meta, drawn, systemClock);
+          return 'no error';
+        },
+      ).catch((e: unknown) => (e instanceof Error ? e.message : String(e)));
       expect(expected).toContain(message.split('\n')[0]!);
     });
     return;
@@ -29,7 +34,7 @@ describe.each(runCases())('run parity with golden-cs: $name', (c) => {
   // A report with nothing to print: the C# device writes no PDF
   const csPdf = fs.existsSync(pdfFile) ? new Uint8Array(fs.readFileSync(pdfFile)) : null;
   const { clock, now } = csPdf === null ? { clock: undefined, now: undefined } : pdfCreation(csPdf);
-  const result = runLikeGolden(reportFile, { params: c.params, culture: c.culture, now });
+  const result = runLikeGolden(reportFile, { params: c.params, culture: c.culture, now, db: caseDb(c) });
 
   it('lays out the same metafile as C#', async () => {
     const { meta } = await result;

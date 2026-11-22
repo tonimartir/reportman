@@ -15,5 +15,16 @@
   { "name": "ft-html", "report": "fixtures/freetype/ft-html.rep" },
   { "name": "ft-html-multipage", "report": "fixtures/freetype/ft-html-multipage.rep" },
   { "name": "ft-rtl", "report": "fixtures/freetype/ft-rtl.rep" },
-  { "name": "ft-pdfa", "report": "fixtures/freetype/ft-pdfa.rep" }
+  { "name": "ft-pdfa", "report": "fixtures/freetype/ft-pdfa.rep" },
+  { "name": "rs-arab2wordwrap", "report": "fixtures/repsamples/arab2wordwrap.rep" },
+  { "name": "rs-arabonly", "report": "fixtures/repsamples/arabonly.rep" },
+  { "name": "rs-bold", "report": "fixtures/repsamples/bold.rep" },
+  { "name": "rs-bold-nospecial", "report": "fixtures/repsamples/bold_nospecial.rep" },
+  { "name": "rs-boldold", "report": "fixtures/repsamples/boldold.rep" },
+  { "name": "rs-testpdf417", "report": "fixtures/repsamples/testpdf417.rep" },
+  { "name": "rs-htmltest", "report": "fixtures/repsamples/htmltest.rep" },
+  { "name": "rs-debugagent", "report": "fixtures/repsamples/debugagent.rep" },
+  { "name": "rs-medianchart", "report": "fixtures/repsamples/medianchart.rep" },
+  { "name": "rs-firedactest", "report": "fixtures/repsamples/firedactest.rep", "db": "fixtures/repsamples/clientes.db" },
+  { "name": "rs-sqlite-clientes", "report": "fixtures/repsamples/sqlite_clientes.rep", "db": "fixtures/repsamples/clientes.db" }
 ]

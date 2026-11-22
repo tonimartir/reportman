@@ -12,7 +12,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { metaFileJson, pdfCreation, here } from './golden-run.js';
+import { caseDb, metaFileJson, pdfCreation, here } from './golden-run.js';
 import {
   documentStructure,
   firstTextDifference,
@@ -39,7 +39,7 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   if (fs.existsSync(errorFile)) {
     it('fails as C# does', async () => {
       const expected = fs.readFileSync(errorFile, 'utf8');
-      const message = await runFreeTypeLikeGolden(reportFile, { params: c.params, culture: c.culture, fonts: systemFonts() }).then(
+      const message = await runFreeTypeLikeGolden(reportFile, { params: c.params, culture: c.culture, fonts: systemFonts(), db: caseDb(c) }).then(
         () => 'no error',
         (e: unknown) => (e instanceof Error ? e.message : String(e)),
       );
@@ -56,7 +56,7 @@ describe.skipIf(!sameFonts).each(cases)('FreeType parity with golden-cs: $name',
   // Run on the first test that needs it: a skipped suite (other fonts, another system, or none in a
   // container) collects its tests without scanning the fonts
   let run: ReturnType<typeof runFreeTypeLikeGolden> | undefined;
-  const result = () => (run ??= runFreeTypeLikeGolden(reportFile, { params: c.params, culture: c.culture, now, clock, fonts: systemFonts() }));
+  const result = () => (run ??= runFreeTypeLikeGolden(reportFile, { params: c.params, culture: c.culture, now, clock, fonts: systemFonts(), db: caseDb(c) }));
   const csFile = path.join(work, c.name + '.cs.pdf');
   const tsFile = path.join(work, c.name + '.ts.pdf');
 

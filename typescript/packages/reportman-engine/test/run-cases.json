@@ -42,5 +42,11 @@
   { "name": "syn-union-err-index", "report": "fixtures/run/syn-union-err-index.rep" },
   { "name": "syn-union-err-common", "report": "fixtures/run/syn-union-err-common.rep" },
   { "name": "syn-union-err-convert", "report": "fixtures/run/syn-union-err-convert.rep" },
-  { "name": "syn-union-err-master", "report": "fixtures/run/syn-union-err-master.rep" }
+  { "name": "syn-union-err-master", "report": "fixtures/run/syn-union-err-master.rep" },
+  { "name": "rs-debugagent", "report": "fixtures/repsamples/debugagent.rep" },
+  { "name": "rs-medianchart", "report": "fixtures/repsamples/medianchart.rep" },
+  { "name": "rs-firedactest", "report": "fixtures/repsamples/firedactest.rep", "db": "fixtures/repsamples/clientes.db" },
+  { "name": "rs-sqlite-clientes", "report": "fixtures/repsamples/sqlite_clientes.rep", "db": "fixtures/repsamples/clientes.db" },
+  { "name": "rs-bold", "report": "fixtures/repsamples/bold.rep" },
+  { "name": "rs-sample4", "report": "fixtures/repsamples/sample4.rep" }
 ]

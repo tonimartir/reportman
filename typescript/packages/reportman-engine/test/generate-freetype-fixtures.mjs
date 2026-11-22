@@ -25,7 +25,7 @@ for (const c of cases) {
   const report = path.resolve(here, c.report);
   const metaFile = path.join(out, c.name + '.meta.json');
   const pdfFile = path.join(out, c.name + '.cs.pdf');
-  const args = ['run', report, metaFile, '--pdf', pdfFile, '--sqlite', db, '--driver', 'freetype'];
+  const args = ['run', report, metaFile, '--pdf', pdfFile, '--sqlite', c.db ? path.resolve(here, c.db) : db, '--driver', 'freetype'];
   for (const [k, v] of Object.entries(c.params ?? {})) args.push('--param', k + '=' + v);
   if (c.culture) args.push('--culture', c.culture);
   const errorFile = path.join(out, c.name + '.error.txt');

@@ -20,6 +20,8 @@ export interface FreeTypeCase {
   report: string;
   params?: Record<string, string>;
   culture?: string;
+  /** The SQLite database of the report, relative to test/ (samples.db when not given). */
+  db?: string;
 }
 
 /** The font files of the system the FreeType fixtures were made with: name and size of each. */
@@ -44,7 +46,7 @@ export interface FreeTypeRun {
 /** Runs a report and prints it as golden-cs run --driver freetype does. */
 export async function runFreeTypeLikeGolden(
   reportFile: string,
-  options: { params?: Record<string, string>; culture?: string; now?: RpDateTime; clock?: PdfClock; fonts: FontLibrary },
+  options: { params?: Record<string, string>; culture?: string; now?: RpDateTime; clock?: PdfClock; fonts: FontLibrary; db?: string },
 ): Promise<FreeTypeRun> {
   const model = readReportXml(new Uint8Array(fs.readFileSync(reportFile)));
   const now = options.now;
@@ -55,7 +57,7 @@ export async function runFreeTypeLikeGolden(
   const device = new PdfDevice({ fonts: options.fonts, compressed: false, clock: options.clock });
   const run = await prepareReport(model, {
     device,
-    data: sqliteHost(samplesDb),
+    data: sqliteHost(options.db ?? samplesDb),
     culture: options.culture ?? 'en-US',
     host: evalHost,
   });

@@ -26,7 +26,7 @@ for (const c of cases) {
   const pdf = path.join(out, c.name + '.cs.pdf');
   const errFile = path.join(out, c.name + '.error.txt');
   for (const f of [meta, pdf, errFile]) if (fs.existsSync(f)) fs.unlinkSync(f);
-  const args = ['run', report, meta, '--pdf', pdf, '--sqlite', db];
+  const args = ['run', report, meta, '--pdf', pdf, '--sqlite', c.db ? path.resolve(here, c.db) : db];
   for (const [k, v] of Object.entries(c.params ?? {})) args.push('--param', k + '=' + v);
   if (c.culture) args.push('--culture', c.culture);
   const r = spawnSync(exe, args, { encoding: 'utf8' });
