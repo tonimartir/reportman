@@ -403,6 +403,38 @@ describe('shapes', () => {
       [4900 + 500, 1000],
     ]);
   });
+
+  // tests/FormasClearTest of the C# engine (its Skia bitmap part; the PDF part is in
+  // reportman-engine/test/shapes-clear.test.ts): the bitmap driver painted the lines whatever the pen
+  it('paints nothing for a clear pen and a clear brush, whatever the shape', async () => {
+    // What paints, but the background of the page (what an empty page paints)
+    const paints = (calls: Call[]): Call[] => calls.filter((c) => ['fill', 'stroke', 'fillRect'].includes(c.op));
+    const background = paints((await draw(newMeta())).ctx.calls);
+    const shapes = [
+      ShapeType.Rectangle,
+      ShapeType.Square,
+      ShapeType.RoundRect,
+      ShapeType.Ellipse,
+      ShapeType.Circle,
+      ShapeType.HorzLine,
+      ShapeType.VertLine,
+      ShapeType.Oblique1,
+      ShapeType.Oblique2,
+    ];
+    for (const shape of shapes) {
+      const meta = newMeta();
+      meta.pages.get(0).drawShape(500, 500, 3000, 2000, shape, BrushType.Clear, PenType.Clear, 20, 0, 0);
+      const { ctx } = await draw(meta);
+      expect(paints(ctx.calls), ShapeType[shape]).toEqual(background);
+    }
+    // The measure sees what is drawn: a solid outline, and a hatched fill with a clear pen
+    const control = newMeta();
+    control.pages.get(0).drawShape(500, 500, 3000, 2000, ShapeType.Rectangle, BrushType.Clear, PenType.Solid, 20, 0, 0);
+    expect(paints((await draw(control)).ctx.calls).length).toBeGreaterThan(background.length);
+    const hatched = newMeta();
+    hatched.pages.get(0).drawShape(500, 500, 3000, 2000, ShapeType.Rectangle, BrushType.Horizontal, PenType.Clear, 20, 0, 0);
+    expect(paints((await draw(hatched)).ctx.calls).length).toBeGreaterThan(background.length);
+  });
 });
 
 describe('images', () => {

@@ -10,7 +10,18 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { readReportXml } from '@reportman/lib';
 import { prepareReport, RpDateTime, type EvalHost } from '@reportman/engine';
-import { MetaBarcodeSymbology, MetaFile, MetaPage, PDFFontType, PrintStepType, PrinterSelectType, TextAlignType, TextAlignVerticalType } from '@reportman/metafile';
+import {
+  MetaBarcodeSymbology,
+  MetaFile,
+  MetaObjectBarcode,
+  MetaObjectType,
+  MetaPage,
+  PDFFontType,
+  PrintStepType,
+  PrinterSelectType,
+  TextAlignType,
+  TextAlignVerticalType,
+} from '@reportman/metafile';
 import { metaFileJson, samplesDb } from '../../reportman-engine/test/golden-run.js';
 import { sqliteHost } from '../../reportman-engine/test/sqlite-host.js';
 import { TextDevice, decodeCp437, encodeLatin1, encodeOem, encodeUtf8, runReportToText, type TextPrinterConfig } from '../src/text.js';
@@ -230,6 +241,58 @@ describe('TextDevice', () => {
     expect(device.textExtent(t, { x: 600, y: 0 })).toEqual({ x: 588, y: 480 });
     // EPSON has no 12 cpi: 10 points print at 17 cpi
     expect(device.nearestFontStep(PrintStepType.cpi12)).toBe(PrintStepType.cpi17);
+  });
+
+  // tests/EscPosReceiptTest of the C# engine, its native EAN-13 and PDF417 part: the barcode
+  // objects of a receipt (as the C# engine emits them for a TM88, its modules counted by ZXing)
+  // come out as the printer's own commands. The engine does not emit them yet for these
+  // symbologies (NotSupportedYetError, see reportman-engine/test/barcode.test.ts).
+  it('prints an EAN-13 and a PDF417 of a receipt with the commands of the printer', () => {
+    const LINE = 240;
+    const meta = new MetaFile();
+    meta.linesPerInch = 600;
+    meta.customX = 4536; // 80 mm
+    meta.customY = 26 * LINE;
+    const page = new MetaPage(meta);
+    page.pageDetail.custom = true;
+    page.pageDetail.customWidth = meta.customX;
+    page.pageDetail.customHeight = meta.customY;
+    page.drawText(0, 15 * LINE, 4536, LINE, 'Peluche pequeño ñ', 'Arial', 'Helvetica', 8, 0, 0, 0xffffff, true, 0,
+      PDFFontType.Helvetica, TextAlignType.Left, TextAlignVerticalType.Center, false, false, true, PrintStepType.BySize);
+    const barcode = (left: number, top: number, width: number, height: number, text: string, set: Partial<MetaObjectBarcode>) => {
+      const bar = new MetaObjectBarcode();
+      bar.metaType = MetaObjectType.Barcode;
+      Object.assign(bar, { left, top, width, height, ...set });
+      bar.textP = page.addString(text);
+      bar.textS = text.length;
+      page.objects.push(bar);
+    };
+    barcode(500, 16 * LINE, 3000, 3 * LINE, '8412345678905', { symbology: MetaBarcodeSymbology.EAN13, modules: 95 });
+    // ECCLevel 2 in bits 8 to 15 of the flags, 4 columns
+    barcode(0, 20 * LINE, 4536, 5 * LINE, 'FACTURA SIMPLIFICADA 34,90 EUR', { symbology: MetaBarcodeSymbology.PDF417, columns: 4, flags: 2 << 8 });
+    meta.pages.add(page);
+    const device = new TextDevice({ driver: 'EPSONTM88IICUT' });
+    device.print(meta);
+    const escpos = device.printResult;
+    const indexOf = (needle: number[] | string, from = 0): number => Buffer.from(escpos).indexOf(Buffer.from(needle as never), from);
+
+    const iEan = indexOf([29, 0x6b, 67, 13]);
+    expect(iEan).toBeGreaterThanOrEqual(0);
+    expect(indexOf('8412345678905', iEan)).toBe(iEan + 4);
+    // Bar height and module width precede the linear code
+    const iH = indexOf([29, 0x68]);
+    const iW = indexOf([29, 0x77]);
+    expect(iH).toBeGreaterThanOrEqual(0);
+    expect(iW).toBeGreaterThanOrEqual(0);
+    expect(iH).toBeLessThan(iEan);
+    expect(iW).toBeLessThan(iEan);
+    // PDF417: GS ( k cn 48 with 4 columns, stored and printed
+    const iPdf = indexOf([29, 0x28, 0x6b, 3, 0, 48, 65, 4]);
+    const iPdfData = indexOf('FACTURA SIMPLIFICADA');
+    const iPdfPrint = indexOf([29, 0x28, 0x6b, 3, 0, 48, 81, 48]);
+    expect(iPdf).toBeGreaterThanOrEqual(0);
+    expect(iPdfData).toBeGreaterThan(iPdf);
+    expect(iPdfPrint).toBeGreaterThan(iPdfData);
   });
 
   it('draws the barcodes by itself on the ESC/POS drivers only', () => {
