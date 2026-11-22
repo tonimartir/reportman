@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Monthly sales</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="54px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">MARE NOSTRUM FINE FOODS</text>
+<text x="54px"  y="59px"  fill="#FFFFFF" font-family="Helvetica" font-size="18">Monthly sales</text>
+<text x="538px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">Printed on</text>
+<text x="639px"  y="45px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">22/11/2026</text>
+<text x="37px"  y="97px"  fill="#595959" font-family="Helvetica" font-size="9">Orders, units and sales by month between the two dates of the parameters</text>
+<text x="457px"  y="97px"  fill="#595959" font-family="Helvetica" font-size="9">Period</text>
+<text x="545px"  y="97px"  fill="#1F4E79" font-family="Helvetica" font-size="9">01/01/2025</text>
+<text x="626px"  y="97px"  fill="#1F4E79" font-family="Helvetica" font-size="9">–</text>
+<text x="655px"  y="97px"  fill="#1F4E79" font-family="Helvetica" font-size="9">31/12/2025</text>
+<text x="37px"  y="132px"  fill="#595959" font-family="Helvetica" font-size="8">Month</text>
+<text x="219px"  y="132px"  fill="#595959" font-family="Helvetica" font-size="8">Orders</text>
+<text x="336px"  y="132px"  fill="#595959" font-family="Helvetica" font-size="8">Units</text>
+<text x="453px"  y="132px"  fill="#595959" font-family="Helvetica" font-size="8">Sales (EUR)</text>
+<text x="603px"  y="132px"  fill="#595959" font-family="Helvetica" font-size="8">Average order</text>
+<text x="37px"  y="161px"  fill="#000000" font-family="Helvetica" font-size="9">Jan 2025</text>
+<text x="219px"  y="161px"  fill="#000000" font-family="Helvetica" font-size="9">26</text>
+<text x="336px"  y="161px"  fill="#000000" font-family="Helvetica" font-size="9">895</text>
+<text x="453px"  y="161px"  fill="#000000" font-family="Helvetica" font-size="9">7,436.34</text>
+<text x="603px"  y="161px"  fill="#595959" font-family="Helvetica" font-size="9">286.01</text>
+<text x="37px"  y="183px"  fill="#000000" font-family="Helvetica" font-size="9">Feb 2025</text>
+<text x="219px"  y="183px"  fill="#000000" font-family="Helvetica" font-size="9">20</text>
+<text x="336px"  y="183px"  fill="#000000" font-family="Helvetica" font-size="9">820</text>
+<text x="453px"  y="183px"  fill="#000000" font-family="Helvetica" font-size="9">5,597.48</text>
+<text x="603px"  y="183px"  fill="#595959" font-family="Helvetica" font-size="9">279.87</text>
+<text x="37px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">Mar 2025</text>
+<text x="219px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">22</text>
+<text x="336px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">1,062</text>
+<text x="453px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">8,627.18</text>
+<text x="603px"  y="204px"  fill="#595959" font-family="Helvetica" font-size="9">392.14</text>
+<text x="37px"  y="226px"  fill="#000000" font-family="Helvetica" font-size="9">Apr 2025</text>
+<text x="219px"  y="226px"  fill="#000000" font-family="Helvetica" font-size="9">21</text>
+<text x="336px"  y="226px"  fill="#000000" font-family="Helvetica" font-size="9">1,219</text>
+<text x="453px"  y="226px"  fill="#000000" font-family="Helvetica" font-size="9">10,960.24</text>
+<text x="603px"  y="226px"  fill="#595959" font-family="Helvetica" font-size="9">521.92</text>
+<text x="37px"  y="247px"  fill="#000000" font-family="Helvetica" font-size="9">May 2025</text>
+<text x="219px"  y="247px"  fill="#000000" font-family="Helvetica" font-size="9">18</text>
+<text x="336px"  y="247px"  fill="#000000" font-family="Helvetica" font-size="9">605</text>
+<text x="453px"  y="247px"  fill="#000000" font-family="Helvetica" font-size="9">5,693.94</text>
+<text x="603px"  y="247px"  fill="#595959" font-family="Helvetica" font-size="9">316.33</text>
+<text x="37px"  y="269px"  fill="#000000" font-family="Helvetica" font-size="9">Jun 2025</text>
+<text x="219px"  y="269px"  fill="#000000" font-family="Helvetica" font-size="9">20</text>
+<text x="336px"  y="269px"  fill="#000000" font-family="Helvetica" font-size="9">1,120</text>
+<text x="453px"  y="269px"  fill="#000000" font-family="Helvetica" font-size="9">8,387.36</text>
+<text x="603px"  y="269px"  fill="#595959" font-family="Helvetica" font-size="9">419.37</text>
+<text x="37px"  y="290px"  fill="#000000" font-family="Helvetica" font-size="9">Jul 2025</text>
+<text x="219px"  y="290px"  fill="#000000" font-family="Helvetica" font-size="9">20</text>
+<text x="336px"  y="290px"  fill="#000000" font-family="Helvetica" font-size="9">861</text>
+<text x="453px"  y="290px"  fill="#000000" font-family="Helvetica" font-size="9">6,094.00</text>
+<text x="603px"  y="290px"  fill="#595959" font-family="Helvetica" font-size="9">304.70</text>
+<text x="37px"  y="312px"  fill="#000000" font-family="Helvetica" font-size="9">Aug 2025</text>
+<text x="219px"  y="312px"  fill="#000000" font-family="Helvetica" font-size="9">19</text>
+<text x="336px"  y="312px"  fill="#000000" font-family="Helvetica" font-size="9">883</text>
+<text x="453px"  y="312px"  fill="#000000" font-family="Helvetica" font-size="9">8,764.18</text>
+<text x="603px"  y="312px"  fill="#595959" font-family="Helvetica" font-size="9">461.27</text>
+<text x="37px"  y="333px"  fill="#000000" font-family="Helvetica" font-size="9">Sep 2025</text>
+<text x="219px"  y="333px"  fill="#000000" font-family="Helvetica" font-size="9">20</text>
+<text x="336px"  y="333px"  fill="#000000" font-family="Helvetica" font-size="9">969</text>
+<text x="453px"  y="333px"  fill="#000000" font-family="Helvetica" font-size="9">7,402.88</text>
+<text x="603px"  y="333px"  fill="#595959" font-family="Helvetica" font-size="9">370.14</text>
+<text x="37px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">Oct 2025</text>
+<text x="219px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">27</text>
+<text x="336px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">862</text>
+<text x="453px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">6,481.44</text>
+<text x="603px"  y="355px"  fill="#595959" font-family="Helvetica" font-size="9">240.05</text>
+<text x="37px"  y="376px"  fill="#000000" font-family="Helvetica" font-size="9">Nov 2025</text>
+<text x="219px"  y="376px"  fill="#000000" font-family="Helvetica" font-size="9">41</text>
+<text x="336px"  y="376px"  fill="#000000" font-family="Helvetica" font-size="9">2,366</text>
+<text x="453px"  y="376px"  fill="#000000" font-family="Helvetica" font-size="9">18,801.64</text>
+<text x="603px"  y="376px"  fill="#595959" font-family="Helvetica" font-size="9">458.58</text>
+<text x="37px"  y="397px"  fill="#000000" font-family="Helvetica" font-size="9">Dec 2025</text>
+<text x="219px"  y="397px"  fill="#000000" font-family="Helvetica" font-size="9">44</text>
+<text x="336px"  y="397px"  fill="#000000" font-family="Helvetica" font-size="9">2,604</text>
+<text x="453px"  y="397px"  fill="#000000" font-family="Helvetica" font-size="9">20,817.14</text>
+<text x="603px"  y="397px"  fill="#595959" font-family="Helvetica" font-size="9">473.12</text>
+<text x="50px"  y="429px"  fill="#FFFFFF" font-family="Helvetica" font-size="11">Total</text>
+<text x="219px"  y="429px"  fill="#FFFFFF" font-family="Helvetica" font-size="11">298</text>
+<text x="336px"  y="429px"  fill="#FFFFFF" font-family="Helvetica" font-size="11">14,266</text>
+<text x="453px"  y="429px"  fill="#FFFFFF" font-family="Helvetica" font-size="11">115,063.82</text>
+<text x="603px"  y="429px"  fill="#FFFFFF" font-family="Helvetica" font-size="11">386.12</text>
+<text x="37px"  y="474px"  fill="#1F4E79" font-family="Helvetica" font-size="13">Sales by month (EUR)</text>
+<text x="37px"  y="837px"  fill="#000000" font-family="Helvetica" font-size="9">5597.48</text>
+<text x="37px"  y="814px"  fill="#000000" font-family="Helvetica" font-size="9">6645.10</text>
+<text x="37px"  y="791px"  fill="#000000" font-family="Helvetica" font-size="9">7692.73</text>
+<text x="37px"  y="767px"  fill="#000000" font-family="Helvetica" font-size="9">8740.35</text>
+<text x="37px"  y="744px"  fill="#000000" font-family="Helvetica" font-size="9">9787.98</text>
+<text x="37px"  y="720px"  fill="#000000" font-family="Helvetica" font-size="9">10835.60</text>
+<text x="37px"  y="697px"  fill="#000000" font-family="Helvetica" font-size="9">11883.23</text>
+<text x="37px"  y="674px"  fill="#000000" font-family="Helvetica" font-size="9">12930.85</text>
+<text x="37px"  y="650px"  fill="#000000" font-family="Helvetica" font-size="9">13978.48</text>
+<text x="37px"  y="627px"  fill="#000000" font-family="Helvetica" font-size="9">15026.10</text>
+<text x="37px"  y="603px"  fill="#000000" font-family="Helvetica" font-size="9">16073.73</text>
+<text x="37px"  y="580px"  fill="#000000" font-family="Helvetica" font-size="9">17121.35</text>
+<text x="37px"  y="557px"  fill="#000000" font-family="Helvetica" font-size="9">18168.98</text>
+<text x="37px"  y="533px"  fill="#000000" font-family="Helvetica" font-size="9">19216.60</text>
+<text x="37px"  y="510px"  fill="#000000" font-family="Helvetica" font-size="9">20264.23</text>
+</svg>

@@ -1,0 +1,15 @@
+[
+  { "name": "customers", "report": "../../../../samples/customers.rep", "pages": 2, "caption": "Customers & <Delphi's> país" },
+  { "name": "invoices", "report": "../../../../samples/invoices.rep", "pages": 1, "caption": "Invoices" },
+  { "name": "labels", "report": "../../../../samples/labels.rep", "pages": 1, "caption": "Address labels" },
+  { "name": "product-catalog", "report": "../../../../samples/product-catalog.rep", "pages": 1, "caption": "Product catalogue" },
+  { "name": "monthly-sales", "report": "../../../../samples/monthly-sales.rep", "pages": 1, "caption": "Monthly sales" },
+  { "name": "sales-by-category", "report": "../../../../samples/sales-by-category.rep", "pages": 1, "caption": "Sales by category" },
+  { "name": "fishes", "report": "../../../../samples/fishes.rep", "pages": 1, "caption": "Fishes" },
+  { "name": "contacts", "report": "../../../../samples/contacts.rep", "pages": 1, "caption": "Contact directory" },
+  { "name": "year-over-year", "report": "../../../../samples/year-over-year.rep", "pages": 1, "caption": "Year over year" },
+  { "name": "letter", "report": "../../../../samples/letter.rep", "pages": 1, "caption": "Customer letter", "engine": false },
+  { "name": "international", "report": "../../../../samples/international.rep", "pages": 1, "caption": "International text", "engine": false },
+  { "name": "features", "report": "fixtures/features.rep", "pages": 1, "caption": "Features & <escapes>" },
+  { "name": "img-styles", "report": "../../reportman-engine/test/fixtures/images/img-styles.rep", "pages": 1, "caption": "Images" }
+]

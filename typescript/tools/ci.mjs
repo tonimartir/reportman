@@ -33,6 +33,8 @@ const STEPS = [
   ['test', ['test']],
   ['check:pure-js', ['run', 'check:pure-js']],
   ['check:dist', ['run', 'check:dist']],
+  // The expression parity in a Chromium-based browser of the computer (skipped where there is none)
+  ['check:browser', ['run', 'check:browser']],
 ];
 
 const args = process.argv.slice(2);

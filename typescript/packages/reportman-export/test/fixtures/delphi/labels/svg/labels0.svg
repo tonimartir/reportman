@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Address labels</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="21px"  y="38px"  fill="#000000" font-family="Helvetica" font-size="10">Corner Restaurant</text>
+<text x="21px"  y="59px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Paolo Fernandez</text>
+<text x="21px"  y="75px"  fill="#000000" font-family="Helvetica" font-size="9">56 High Street</text>
+<text x="21px"  y="91px"  fill="#000000" font-family="Helvetica" font-size="9">08102 Rosario</text>
+<text x="21px"  y="108px"  fill="#000000" font-family="Helvetica" font-size="9">ARGENTINA</text>
+<text x="279px"  y="38px"  fill="#000000" font-family="Helvetica" font-size="10">Little Italy Wine Bar</text>
+<text x="279px"  y="59px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Sofia Moreau</text>
+<text x="279px"  y="75px"  fill="#000000" font-family="Helvetica" font-size="9">93 Market Square</text>
+<text x="279px"  y="91px"  fill="#000000" font-family="Helvetica" font-size="9">11232 Cordoba</text>
+<text x="279px"  y="108px"  fill="#000000" font-family="Helvetica" font-size="9">ARGENTINA</text>
+<text x="537px"  y="38px"  fill="#000000" font-family="Helvetica" font-size="10">Red Door Cafe</text>
+<text x="537px"  y="59px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Claire Ruiz</text>
+<text x="537px"  y="75px"  fill="#000000" font-family="Helvetica" font-size="9">77 Mill Lane</text>
+<text x="537px"  y="91px"  fill="#000000" font-family="Helvetica" font-size="9">81794 Rosario</text>
+<text x="537px"  y="108px"  fill="#000000" font-family="Helvetica" font-size="9">ARGENTINA</text>
+<text x="21px"  y="171px"  fill="#000000" font-family="Helvetica" font-size="10">Riverside Cafe</text>
+<text x="21px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Marco Brown</text>
+<text x="21px"  y="208px"  fill="#000000" font-family="Helvetica" font-size="9">8 Mill Lane</text>
+<text x="21px"  y="224px"  fill="#000000" font-family="Helvetica" font-size="9">32574 Buenos Aires</text>
+<text x="21px"  y="240px"  fill="#000000" font-family="Helvetica" font-size="9">ARGENTINA</text>
+<text x="279px"  y="171px"  fill="#000000" font-family="Helvetica" font-size="10">Le Petit Restaurant</text>
+<text x="279px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Pieter Castro</text>
+<text x="279px"  y="208px"  fill="#000000" font-family="Helvetica" font-size="9">27 Harbour Road</text>
+<text x="279px"  y="224px"  fill="#000000" font-family="Helvetica" font-size="9">19598 Antwerp</text>
+<text x="279px"  y="240px"  fill="#000000" font-family="Helvetica" font-size="9">BELGIUM</text>
+<text x="537px"  y="171px"  fill="#000000" font-family="Helvetica" font-size="10">Little Italy Restaurant</text>
+<text x="537px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Ines de Vries</text>
+<text x="537px"  y="208px"  fill="#000000" font-family="Helvetica" font-size="9">8 Oak Avenue</text>
+<text x="537px"  y="224px"  fill="#000000" font-family="Helvetica" font-size="9">16295 Brussels</text>
+<text x="537px"  y="240px"  fill="#000000" font-family="Helvetica" font-size="9">BELGIUM</text>
+<text x="21px"  y="303px"  fill="#000000" font-family="Helvetica" font-size="10">Riverside Grocers</text>
+<text x="21px"  y="324px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Ana Keller</text>
+<text x="21px"  y="340px"  fill="#000000" font-family="Helvetica" font-size="9">109 Station Road</text>
+<text x="21px"  y="357px"  fill="#000000" font-family="Helvetica" font-size="9">71434 Brussels</text>
+<text x="21px"  y="373px"  fill="#000000" font-family="Helvetica" font-size="9">BELGIUM</text>
+<text x="279px"  y="303px"  fill="#000000" font-family="Helvetica" font-size="10">Saint Martin Delicatessen</text>
+<text x="279px"  y="324px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Leon Smith</text>
+<text x="279px"  y="340px"  fill="#000000" font-family="Helvetica" font-size="9">42 Oak Avenue</text>
+<text x="279px"  y="357px"  fill="#000000" font-family="Helvetica" font-size="9">39392 Brussels</text>
+<text x="279px"  y="373px"  fill="#000000" font-family="Helvetica" font-size="9">BELGIUM</text>
+<text x="537px"  y="303px"  fill="#000000" font-family="Helvetica" font-size="10">Casa Verde Gourmet Shop</text>
+<text x="537px"  y="324px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Pieter Silva</text>
+<text x="537px"  y="340px"  fill="#000000" font-family="Helvetica" font-size="9">151 Park Avenue</text>
+<text x="537px"  y="357px"  fill="#000000" font-family="Helvetica" font-size="9">67545 Toulouse</text>
+<text x="537px"  y="373px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="21px"  y="436px"  fill="#000000" font-family="Helvetica" font-size="10">Cedar Grocers</text>
+<text x="21px"  y="457px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Elena Garcia</text>
+<text x="21px"  y="473px"  fill="#000000" font-family="Helvetica" font-size="9">28 King Street</text>
+<text x="21px"  y="489px"  fill="#000000" font-family="Helvetica" font-size="9">10625 Marseille</text>
+<text x="21px"  y="506px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="279px"  y="436px"  fill="#000000" font-family="Helvetica" font-size="10">Harvest Moon Food Hall</text>
+<text x="279px"  y="457px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Luis Martin</text>
+<text x="279px"  y="473px"  fill="#000000" font-family="Helvetica" font-size="9">131 Mill Lane</text>
+<text x="279px"  y="489px"  fill="#000000" font-family="Helvetica" font-size="9">43960 Paris</text>
+<text x="279px"  y="506px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="537px"  y="436px"  fill="#000000" font-family="Helvetica" font-size="10">Market Square Wine Bar</text>
+<text x="537px"  y="457px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Alba de Vries</text>
+<text x="537px"  y="473px"  fill="#000000" font-family="Helvetica" font-size="9">40 High Street</text>
+<text x="537px"  y="489px"  fill="#000000" font-family="Helvetica" font-size="9">69106 Bordeaux</text>
+<text x="537px"  y="506px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="21px"  y="569px"  fill="#000000" font-family="Helvetica" font-size="10">Red Door Bistro</text>
+<text x="21px"  y="589px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Mia Weber</text>
+<text x="21px"  y="606px"  fill="#000000" font-family="Helvetica" font-size="9">122 High Street</text>
+<text x="21px"  y="622px"  fill="#000000" font-family="Helvetica" font-size="9">18198 Marseille</text>
+<text x="21px"  y="638px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="279px"  y="569px"  fill="#000000" font-family="Helvetica" font-size="10">Seaside Grocers</text>
+<text x="279px"  y="589px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Hans Taylor</text>
+<text x="279px"  y="606px"  fill="#000000" font-family="Helvetica" font-size="9">9 Church Lane</text>
+<text x="279px"  y="622px"  fill="#000000" font-family="Helvetica" font-size="9">85833 Paris</text>
+<text x="279px"  y="638px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="537px"  y="569px"  fill="#000000" font-family="Helvetica" font-size="10">Silver Spoon Kitchen</text>
+<text x="537px"  y="589px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Emma Keller</text>
+<text x="537px"  y="606px"  fill="#000000" font-family="Helvetica" font-size="9">174 Oak Avenue</text>
+<text x="537px"  y="622px"  fill="#000000" font-family="Helvetica" font-size="9">03683 Toulouse</text>
+<text x="537px"  y="638px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="21px"  y="701px"  fill="#000000" font-family="Helvetica" font-size="10">Atlas Grocers</text>
+<text x="21px"  y="722px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Lukas Garcia</text>
+<text x="21px"  y="738px"  fill="#000000" font-family="Helvetica" font-size="9">24 Oak Avenue</text>
+<text x="21px"  y="755px"  fill="#000000" font-family="Helvetica" font-size="9">60521 Hamburg</text>
+<text x="21px"  y="771px"  fill="#000000" font-family="Helvetica" font-size="9">GERMANY</text>
+<text x="279px"  y="701px"  fill="#000000" font-family="Helvetica" font-size="10">Aurora Bistro</text>
+<text x="279px"  y="722px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Pieter Janssens</text>
+<text x="279px"  y="738px"  fill="#000000" font-family="Helvetica" font-size="9">100 Park Avenue</text>
+<text x="279px"  y="755px"  fill="#000000" font-family="Helvetica" font-size="9">56752 Cologne</text>
+<text x="279px"  y="771px"  fill="#000000" font-family="Helvetica" font-size="9">GERMANY</text>
+<text x="537px"  y="701px"  fill="#000000" font-family="Helvetica" font-size="10">Blue Harbor Trattoria</text>
+<text x="537px"  y="722px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Pieter Pereira</text>
+<text x="537px"  y="738px"  fill="#000000" font-family="Helvetica" font-size="9">144 Garden Row</text>
+<text x="537px"  y="755px"  fill="#000000" font-family="Helvetica" font-size="9">76016 Frankfurt</text>
+<text x="537px"  y="771px"  fill="#000000" font-family="Helvetica" font-size="9">GERMANY</text>
+<text x="21px"  y="834px"  fill="#000000" font-family="Helvetica" font-size="10">Cedar Foods</text>
+<text x="21px"  y="855px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Marco Romero</text>
+<text x="21px"  y="871px"  fill="#000000" font-family="Helvetica" font-size="9">44 Harbour Road</text>
+<text x="21px"  y="887px"  fill="#000000" font-family="Helvetica" font-size="9">90724 Berlin</text>
+<text x="21px"  y="904px"  fill="#000000" font-family="Helvetica" font-size="9">GERMANY</text>
+<text x="279px"  y="834px"  fill="#000000" font-family="Helvetica" font-size="10">La Despensa Trattoria</text>
+<text x="279px"  y="855px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Noah Keller</text>
+<text x="279px"  y="871px"  fill="#000000" font-family="Helvetica" font-size="9">114 Harbour Road</text>
+<text x="279px"  y="887px"  fill="#000000" font-family="Helvetica" font-size="9">70107 Berlin</text>
+<text x="279px"  y="904px"  fill="#000000" font-family="Helvetica" font-size="9">GERMANY</text>
+<text x="537px"  y="834px"  fill="#000000" font-family="Helvetica" font-size="10">Saint Martin Bistro</text>
+<text x="537px"  y="855px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Carmen Janssens</text>
+<text x="537px"  y="871px"  fill="#000000" font-family="Helvetica" font-size="9">68 Mill Lane</text>
+<text x="537px"  y="887px"  fill="#000000" font-family="Helvetica" font-size="9">66221 Cologne</text>
+<text x="537px"  y="904px"  fill="#000000" font-family="Helvetica" font-size="9">GERMANY</text>
+<text x="21px"  y="967px"  fill="#000000" font-family="Helvetica" font-size="10">Village Foods</text>
+<text x="21px"  y="987px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Hugo Brown</text>
+<text x="21px"  y="1004px"  fill="#000000" font-family="Helvetica" font-size="9">146 Park Avenue</text>
+<text x="21px"  y="1020px"  fill="#000000" font-family="Helvetica" font-size="9">74771 Berlin</text>
+<text x="21px"  y="1036px"  fill="#000000" font-family="Helvetica" font-size="9">GERMANY</text>
+<text x="279px"  y="967px"  fill="#000000" font-family="Helvetica" font-size="10">Atlas Restaurant</text>
+<text x="279px"  y="987px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. James Peeters</text>
+<text x="279px"  y="1004px"  fill="#000000" font-family="Helvetica" font-size="9">75 Sea Front</text>
+<text x="279px"  y="1020px"  fill="#000000" font-family="Helvetica" font-size="9">47703 Rome</text>
+<text x="279px"  y="1036px"  fill="#000000" font-family="Helvetica" font-size="9">ITALY</text>
+<text x="537px"  y="967px"  fill="#000000" font-family="Helvetica" font-size="10">Bella Vista Kitchen</text>
+<text x="537px"  y="987px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. James Wilson</text>
+<text x="537px"  y="1004px"  fill="#000000" font-family="Helvetica" font-size="9">4 Main Street</text>
+<text x="537px"  y="1020px"  fill="#000000" font-family="Helvetica" font-size="9">13641 Rome</text>
+<text x="537px"  y="1036px"  fill="#000000" font-family="Helvetica" font-size="9">ITALY</text>
+</svg>

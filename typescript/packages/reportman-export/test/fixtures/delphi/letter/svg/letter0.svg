@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Customer letter</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="37px"  y="52px"  fill="#1F4E79" font-family="Helvetica" font-size="18">Mare Nostrum Fine Foods</text>
+<text x="37px"  y="83px"  fill="#595959" font-family="Helvetica" font-size="8">Muelle de Levante 12 · 08039 Barcelona · Spain</text>
+<text x="37px"  y="98px"  fill="#595959" font-family="Helvetica" font-size="8">www.marenostrum.example · +34 930 000 000</text>
+<text x="447px"  y="135px"  fill="#000000" font-family="Helvetica" font-size="10">Gourmet Foods</text>
+<text x="447px"  y="154px"  fill="#000000" font-family="Helvetica" font-size="9">Attn. Hugo Castro</text>
+<text x="447px"  y="171px"  fill="#000000" font-family="Helvetica" font-size="9">179 Mill Lane</text>
+<text x="447px"  y="187px"  fill="#000000" font-family="Helvetica" font-size="9">53684 Madrid</text>
+<text x="447px"  y="203px"  fill="#000000" font-family="Helvetica" font-size="9">SPAIN</text>
+<text x="37px"  y="245px"  fill="#595959" font-family="Helvetica" font-size="9">Barcelona,</text>
+<text x="128px"  y="245px"  fill="#595959" font-family="Helvetica" font-size="9">22/11/2026</text>
+<text x="37px"  y="275px"  fill="#1F4E79" font-family="Helvetica" font-size="13">The new harvest is here: 10% off your next order</text>
+<text x="37px"  y="321px"  fill="#000000" font-family="Helvetica" font-size="10">Dear <b>Hugo Castro</b>,</text>
+<text x="37px"  y="348px"  fill="#000000" font-family="Helvetica" font-size="10">Thank you for trusting <b><font color="#1F4E79">Mare Nostrum Fine Foods</font></b> since <b>2019</b>: you have placed <b>18 orders</b> with us, and we are proud to supply <i>Gourmet Foods</i> in <u>Madrid</u>.</text>
+<text x="37px"  y="389px"  fill="#000000" font-family="Helvetica" font-size="10">The <font color="#548235"><b>new harvest</b></font> has arrived. Our <b>Arbequina</b> and <b>Picual</b> extra virgin olive oils were cold pressed in October, and this month they come with a special price:<br>• Arbequina Extra Virgin Olive Oil, 500 ml: <s>9,80</s> <b><font color="#C00000">8,82</font></b><br>• Picual Extra Virgin Olive Oil, 1 l: <s>14,50</s> <b><font color="#C00000">13,05</font></b></text>
+<text x="37px"  y="460px"  fill="#000000" font-family="Helvetica" font-size="10">Write the code <font face="Courier New"><b>HARVEST-10</b></font> in your next order before <b>31 December</b> and the <font color="#C00000"><b>10% discount</b></font> applies to the <i>whole</i> order: not only to the oils, but to the cheeses and the wines too.</text>
+<text x="37px"  y="502px"  fill="#000000" font-family="Helvetica" font-size="10">Kind regards,</text>
+<text x="37px"  y="538px"  fill="#000000" font-family="Helvetica" font-size="10">Laura Navarro</text>
+<text x="37px"  y="556px"  fill="#595959" font-family="Helvetica" font-size="9">Sales Manager</text>
+<text x="37px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Mare Nostrum Fine Foods · Muelle de Levante 12 · 08039 Barcelona · VAT ES-B00000000</text>
+</svg>

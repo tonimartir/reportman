@@ -1,0 +1,9 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Reportman engine in the browser</title>
+<script>
+  // A page that fails (a module that does not load, an exception) answers too, so the check ends
+  const fail = (m) => fetch('/__result', { method: 'POST', body: 'RESULT: the page failed: ' + m });
+  addEventListener('error', (e) => fail(e.message || String(e)));
+  addEventListener('unhandledrejection', (e) => fail(String(e.reason && e.reason.stack || e.reason)));
+</script></head>
+<body><pre id="out">running</pre><script type="module" src="./main.ts"></script></body></html>

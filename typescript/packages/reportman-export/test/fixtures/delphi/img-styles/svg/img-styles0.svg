@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Images</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="37px"  y="37px"  fill="#000000" font-family="Helvetica" font-size="8">png-rgba8</text>
+<image x="148px" y="37px" width="110px"  height="78px" xlink:href="img-stylespage0obj1"></image>
+<image x="265px" y="37px" width="110px"  height="78px" xlink:href="img-stylespage0obj2"></image>
+<image x="382px" y="37px" width="110px"  height="78px" xlink:href="img-stylespage0obj3"></image>
+<image x="499px" y="37px" width="110px"  height="78px" xlink:href="img-stylespage0obj4"></image>
+<image x="616px" y="37px" width="110px"  height="78px" xlink:href="img-stylespage0obj5"></image>
+<text x="37px"  y="76px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles png-rgba8</text>
+<text x="37px"  y="122px"  fill="#000000" font-family="Helvetica" font-size="8">png-pal4-trns</text>
+<image x="148px" y="122px" width="110px"  height="78px" xlink:href="img-stylespage0obj8"></image>
+<image x="265px" y="122px" width="110px"  height="78px" xlink:href="img-stylespage0obj9"></image>
+<image x="382px" y="122px" width="110px"  height="78px" xlink:href="img-stylespage0obj10"></image>
+<image x="499px" y="122px" width="110px"  height="78px" xlink:href="img-stylespage0obj11"></image>
+<image x="616px" y="122px" width="110px"  height="78px" xlink:href="img-stylespage0obj12"></image>
+<text x="37px"  y="161px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles png-pal4-trns</text>
+<text x="37px"  y="206px"  fill="#000000" font-family="Helvetica" font-size="8">png-i-rgba16</text>
+<image x="148px" y="206px" width="110px"  height="78px" xlink:href="img-stylespage0obj15"></image>
+<image x="265px" y="206px" width="110px"  height="78px" xlink:href="img-stylespage0obj16"></image>
+<image x="382px" y="206px" width="110px"  height="78px" xlink:href="img-stylespage0obj17"></image>
+<image x="499px" y="206px" width="110px"  height="78px" xlink:href="img-stylespage0obj18"></image>
+<image x="616px" y="206px" width="110px"  height="78px" xlink:href="img-stylespage0obj19"></image>
+<text x="37px"  y="245px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles png-i-rgba16</text>
+<text x="37px"  y="291px"  fill="#000000" font-family="Helvetica" font-size="8">gif-offset-transparent</text>
+<image x="148px" y="291px" width="110px"  height="78px" xlink:href="img-stylespage0obj22"></image>
+<image x="265px" y="291px" width="110px"  height="78px" xlink:href="img-stylespage0obj23"></image>
+<image x="382px" y="291px" width="110px"  height="78px" xlink:href="img-stylespage0obj24"></image>
+<image x="499px" y="291px" width="110px"  height="78px" xlink:href="img-stylespage0obj25"></image>
+<image x="616px" y="291px" width="110px"  height="78px" xlink:href="img-stylespage0obj26"></image>
+<text x="37px"  y="330px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles gif-offset-transparent</text>
+<text x="37px"  y="375px"  fill="#000000" font-family="Helvetica" font-size="8">bmp-24</text>
+Bad bitmap streamBad bitmap streamBad bitmap streamBad bitmap streamBad bitmap stream<text x="37px"  y="414px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles bmp-24</text>
+<text x="37px"  y="460px"  fill="#000000" font-family="Helvetica" font-size="8">bmp-32</text>
+Bad bitmap streamBad bitmap streamBad bitmap streamBad bitmap streamBad bitmap stream<text x="37px"  y="499px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles bmp-32</text>
+<text x="37px"  y="544px"  fill="#000000" font-family="Helvetica" font-size="8">bmp-8</text>
+<image x="148px" y="544px" width="110px"  height="78px" xlink:href="img-stylespage0obj43.bmp"></image>
+<image x="265px" y="544px" width="110px"  height="78px" xlink:href="img-stylespage0obj44.bmp"></image>
+<image x="382px" y="544px" width="110px"  height="78px" xlink:href="img-stylespage0obj45.bmp"></image>
+<image x="499px" y="544px" width="110px"  height="78px" xlink:href="img-stylespage0obj46.bmp"></image>
+<image x="616px" y="544px" width="110px"  height="78px" xlink:href="img-stylespage0obj47.bmp"></image>
+<text x="37px"  y="583px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles bmp-8</text>
+<text x="37px"  y="629px"  fill="#000000" font-family="Helvetica" font-size="8">jpeg</text>
+<image x="148px" y="629px" width="110px"  height="78px" xlink:href="img-stylespage0obj50.jpg"></image>
+<image x="265px" y="629px" width="110px"  height="78px" xlink:href="img-stylespage0obj51.jpg"></image>
+<image x="382px" y="629px" width="110px"  height="78px" xlink:href="img-stylespage0obj52.jpg"></image>
+<image x="499px" y="629px" width="110px"  height="78px" xlink:href="img-stylespage0obj53.jpg"></image>
+<image x="616px" y="629px" width="110px"  height="78px" xlink:href="img-stylespage0obj54.jpg"></image>
+<text x="37px"  y="668px"  fill="#000000" font-family="Helvetica" font-size="8">after the tiles jpeg</text>
+<image x="37px" y="753px" width="260px"  height="162px" xlink:href="img-stylespage0obj56.jpg"></image>
+Bad bitmap stream<image x="505px" y="753px" width="195px"  height="130px" xlink:href="img-stylespage0obj58.jpg"></image>
+<image x="505px" y="890px" width="65px"  height="26px" xlink:href="img-stylespage0obj59.jpg"></image>
+</svg>

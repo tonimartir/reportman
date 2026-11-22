@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Product catalogue</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="54px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">MARE NOSTRUM FINE FOODS</text>
+<text x="54px"  y="59px"  fill="#FFFFFF" font-family="Helvetica" font-size="18">Product catalogue</text>
+<text x="538px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">Printed on</text>
+<text x="639px"  y="45px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">22/11/2026</text>
+<text x="37px"  y="97px"  fill="#595959" font-family="Helvetica" font-size="9">Every product with its EAN-13 barcode, price and stock; the products below their reorder level are marked in red</text>
+<text x="54px"  y="137px"  fill="#1F4E79" font-family="Helvetica" font-size="13">Cheese & Dairy</text>
+<text x="54px"  y="160px"  fill="#595959" font-family="Helvetica" font-size="9">Cured and semi-cured cheeses from small dairies</text>
+<text x="37px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="8">Barcode</text>
+<text x="200px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="8">Product</text>
+<text x="486px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="8">SKU</text>
+<text x="574px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="8">Price</text>
+<text x="652px"  y="191px"  fill="#595959" font-family="Helvetica" font-size="8">In stock</text>
+<text x="44px"  y="258px"  fill="#595959" font-family="Helvetica" font-size="7">8473100003707</text>
+<text x="200px"  y="225px"  fill="#000000" font-family="Helvetica" font-size="10">Goat Cheese Log</text>
+<text x="200px"  y="245px"  fill="#595959" font-family="Helvetica" font-size="9">200 g log</text>
+<text x="486px"  y="226px"  fill="#595959" font-family="Helvetica" font-size="9">MN-2010</text>
+<text x="574px"  y="225px"  fill="#000000" font-family="Helvetica" font-size="10">4.90</text>
+<text x="652px"  y="225px"  fill="#C00000" font-family="Helvetica" font-size="10">1</text>
+<text x="587px"  y="245px"  fill="#C00000" font-family="Helvetica" font-size="7">Below reorder level</text>
+<text x="44px"  y="323px"  fill="#595959" font-family="Helvetica" font-size="7">8473100002960</text>
+<text x="200px"  y="290px"  fill="#000000" font-family="Helvetica" font-size="10">Idiazabal Smoked Cheese</text>
+<text x="200px"  y="310px"  fill="#595959" font-family="Helvetica" font-size="9">500 g piece</text>
+<text x="486px"  y="291px"  fill="#595959" font-family="Helvetica" font-size="9">MN-2008</text>
+<text x="574px"  y="290px"  fill="#000000" font-family="Helvetica" font-size="10">13.40</text>
+<text x="652px"  y="290px"  fill="#000000" font-family="Helvetica" font-size="10">147</text>
+<text x="44px"  y="388px"  fill="#595959" font-family="Helvetica" font-size="7">8473100002595</text>
+<text x="200px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="10">Manchego Cured Cheese</text>
+<text x="200px"  y="375px"  fill="#595959" font-family="Helvetica" font-size="9">1 kg wheel</text>
+<text x="486px"  y="356px"  fill="#595959" font-family="Helvetica" font-size="9">MN-2007</text>
+<text x="574px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="10">21.90</text>
+<text x="652px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="10">325</text>
+<text x="44px"  y="453px"  fill="#595959" font-family="Helvetica" font-size="7">8473100003332</text>
+<text x="200px"  y="420px"  fill="#000000" font-family="Helvetica" font-size="10">Parmigiano Reggiano 24 Months</text>
+<text x="200px"  y="440px"  fill="#595959" font-family="Helvetica" font-size="9">1 kg wedge</text>
+<text x="486px"  y="421px"  fill="#595959" font-family="Helvetica" font-size="9">MN-2009</text>
+<text x="574px"  y="420px"  fill="#000000" font-family="Helvetica" font-size="10">26.50</text>
+<text x="652px"  y="420px"  fill="#000000" font-family="Helvetica" font-size="10">324</text>
+<text x="44px"  y="518px"  fill="#595959" font-family="Helvetica" font-size="7">8473100004070</text>
+<text x="200px"  y="485px"  fill="#000000" font-family="Helvetica" font-size="10">Pecorino Romano</text>
+<text x="200px"  y="505px"  fill="#595959" font-family="Helvetica" font-size="9">500 g piece</text>
+<text x="486px"  y="486px"  fill="#595959" font-family="Helvetica" font-size="9">MN-2011</text>
+<text x="574px"  y="485px"  fill="#000000" font-family="Helvetica" font-size="10">12.80</text>
+<text x="652px"  y="485px"  fill="#000000" font-family="Helvetica" font-size="10">70</text>
+<text x="44px"  y="583px"  fill="#595959" font-family="Helvetica" font-size="7">8473100004445</text>
+<text x="200px"  y="550px"  fill="#000000" font-family="Helvetica" font-size="10">Tetilla Cheese</text>
+<text x="200px"  y="570px"  fill="#595959" font-family="Helvetica" font-size="9">1 kg piece</text>
+<text x="486px"  y="551px"  fill="#595959" font-family="Helvetica" font-size="9">MN-2012</text>
+<text x="574px"  y="550px"  fill="#000000" font-family="Helvetica" font-size="10">15.60</text>
+<text x="652px"  y="550px"  fill="#000000" font-family="Helvetica" font-size="10">30</text>
+<text x="54px"  y="631px"  fill="#1F4E79" font-family="Helvetica" font-size="13">Coffee & Tea</text>
+<text x="54px"  y="654px"  fill="#595959" font-family="Helvetica" font-size="9">Roasted coffee, loose tea and infusions</text>
+<text x="37px"  y="685px"  fill="#595959" font-family="Helvetica" font-size="8">Barcode</text>
+<text x="200px"  y="685px"  fill="#595959" font-family="Helvetica" font-size="8">Product</text>
+<text x="486px"  y="685px"  fill="#595959" font-family="Helvetica" font-size="8">SKU</text>
+<text x="574px"  y="685px"  fill="#595959" font-family="Helvetica" font-size="8">Price</text>
+<text x="652px"  y="685px"  fill="#595959" font-family="Helvetica" font-size="8">In stock</text>
+<text x="44px"  y="752px"  fill="#595959" font-family="Helvetica" font-size="7">8473100012952</text>
+<text x="200px"  y="719px"  fill="#000000" font-family="Helvetica" font-size="10">Chamomile from Aragon</text>
+<text x="200px"  y="739px"  fill="#595959" font-family="Helvetica" font-size="9">50 g bag</text>
+<text x="486px"  y="720px"  fill="#595959" font-family="Helvetica" font-size="9">MN-6035</text>
+<text x="574px"  y="719px"  fill="#000000" font-family="Helvetica" font-size="10">3.30</text>
+<text x="652px"  y="719px"  fill="#000000" font-family="Helvetica" font-size="10">275</text>
+<text x="44px"  y="817px"  fill="#595959" font-family="Helvetica" font-size="7">8473100011849</text>
+<text x="200px"  y="784px"  fill="#000000" font-family="Helvetica" font-size="10">Espresso Blend, ground</text>
+<text x="200px"  y="804px"  fill="#595959" font-family="Helvetica" font-size="9">250 g bag</text>
+<text x="486px"  y="785px"  fill="#595959" font-family="Helvetica" font-size="9">MN-6032</text>
+<text x="574px"  y="784px"  fill="#000000" font-family="Helvetica" font-size="10">5.40</text>
+<text x="652px"  y="784px"  fill="#000000" font-family="Helvetica" font-size="10">281</text>
+<text x="44px"  y="882px"  fill="#595959" font-family="Helvetica" font-size="7">8473100012211</text>
+<text x="200px"  y="849px"  fill="#000000" font-family="Helvetica" font-size="10">Green Tea Sencha</text>
+<text x="200px"  y="869px"  fill="#595959" font-family="Helvetica" font-size="9">100 g tin</text>
+<text x="486px"  y="850px"  fill="#595959" font-family="Helvetica" font-size="9">MN-6033</text>
+<text x="574px"  y="849px"  fill="#000000" font-family="Helvetica" font-size="10">7.20</text>
+<text x="652px"  y="849px"  fill="#000000" font-family="Helvetica" font-size="10">293</text>
+<text x="44px"  y="947px"  fill="#595959" font-family="Helvetica" font-size="7">8473100012587</text>
+<text x="200px"  y="914px"  fill="#000000" font-family="Helvetica" font-size="10">Rooibos Orange</text>
+<text x="200px"  y="934px"  fill="#595959" font-family="Helvetica" font-size="9">100 g tin</text>
+<text x="486px"  y="915px"  fill="#595959" font-family="Helvetica" font-size="9">MN-6034</text>
+<text x="574px"  y="914px"  fill="#000000" font-family="Helvetica" font-size="10">6.10</text>
+<text x="652px"  y="914px"  fill="#000000" font-family="Helvetica" font-size="10">235</text>
+<text x="37px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Report Manager sample report · data: samples.db (SQLite)</text>
+<text x="607px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Page 1</text>
+</svg>

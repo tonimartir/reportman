@@ -1,0 +1,54 @@
+[
+  {
+    "name": "customers",
+    "report": "../../../../samples/customers.rep",
+    "creationDate": "D:20261122020846+01'00'"
+  },
+  {
+    "name": "customers-es",
+    "report": "../../../../samples/customers.rep",
+    "culture": "es-ES",
+    "creationDate": "D:20261122020846+01'00'"
+  },
+  {
+    "name": "invoices",
+    "report": "../../../../samples/invoices.rep",
+    "creationDate": "D:20261122020847+01'00'"
+  },
+  {
+    "name": "invoices-range",
+    "report": "../../../../samples/invoices.rep",
+    "params": {
+      "FIRST_ORDER": "7",
+      "LAST_ORDER": "9"
+    },
+    "creationDate": "D:20261122020847+01'00'"
+  },
+  {
+    "name": "labels",
+    "report": "../../../../samples/labels.rep",
+    "creationDate": "D:20261122020847+01'00'"
+  },
+  {
+    "name": "contacts",
+    "report": "../../../../samples/contacts.rep",
+    "creationDate": "D:20261122020848+01'00'"
+  },
+  {
+    "name": "contacts-es",
+    "report": "../../../../samples/contacts.rep",
+    "culture": "es-ES",
+    "creationDate": "D:20261122020848+01'00'"
+  },
+  {
+    "name": "year-over-year",
+    "report": "../../../../samples/year-over-year.rep",
+    "creationDate": "D:20261122020848+01'00'"
+  },
+  {
+    "name": "year-over-year-es",
+    "report": "../../../../samples/year-over-year.rep",
+    "culture": "es-ES",
+    "creationDate": "D:20261122020849+01'00'"
+  }
+]

@@ -9,13 +9,14 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc -b packages/reportman-node packages/reportman-driver-postgres packages/reportman-driver-firebird packages/reportman-driver-mysql packages/reportman-driver-http packages/reportman-driver-mssql",
-    "clean": "tsc -b --clean packages/reportman-node packages/reportman-driver-postgres packages/reportman-driver-firebird packages/reportman-driver-mysql packages/reportman-driver-http packages/reportman-driver-mssql",
+    "build": "tsc -b packages/reportman-node packages/reportman-export packages/reportman-server packages/reportman-driver-postgres packages/reportman-driver-firebird packages/reportman-driver-mysql packages/reportman-driver-http packages/reportman-driver-mssql",
+    "clean": "tsc -b --clean packages/reportman-node packages/reportman-export packages/reportman-server packages/reportman-driver-postgres packages/reportman-driver-firebird packages/reportman-driver-mysql packages/reportman-driver-http packages/reportman-driver-mssql",
     "test": "vitest run",
     "check:pure-js": "node tools/check-pure-js.mjs",
     "check:dist": "node tools/check-dist.mjs",
     "ci": "node tools/ci.mjs",
-    "inventory": "node tools/rep-inventory.mjs"
+    "inventory": "node tools/rep-inventory.mjs",
+    "check:browser": "node tools/check-browser.mjs"
   },
   "engines": {
     "node": ">=22.12"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "^24.0.0",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "vite": "^8.0.0"
   }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Invoices</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="37px"  y="37px"  fill="#1F4E79" font-family="Helvetica" font-size="18">Mare Nostrum Fine Foods</text>
+<text x="37px"  y="70px"  fill="#595959" font-family="Helvetica" font-size="8">Muelle de Levante 12 · 08039 Barcelona · Spain</text>
+<text x="37px"  y="85px"  fill="#595959" font-family="Helvetica" font-size="8">VAT ES-B00000000 · +34 930 000 000 · billing@marenostrum.example</text>
+<text x="477px"  y="37px"  fill="#1F4E79" font-family="Helvetica" font-size="22">INVOICE</text>
+<text x="438px"  y="122px"  fill="#595959" font-family="Helvetica" font-size="8">Invoice number</text>
+<text x="574px"  y="122px"  fill="#000000" font-family="Helvetica" font-size="9">2024/00001</text>
+<text x="438px"  y="141px"  fill="#595959" font-family="Helvetica" font-size="8">Date</text>
+<text x="574px"  y="141px"  fill="#000000" font-family="Helvetica" font-size="9">02/01/2024</text>
+<text x="438px"  y="160px"  fill="#595959" font-family="Helvetica" font-size="8">Customer code</text>
+<text x="574px"  y="160px"  fill="#000000" font-family="Helvetica" font-size="9">C0014</text>
+<text x="438px"  y="178px"  fill="#595959" font-family="Helvetica" font-size="8">Sales representative</text>
+<text x="574px"  y="178px"  fill="#000000" font-family="Helvetica" font-size="9">Lukas Weber</text>
+<text x="54px"  y="124px"  fill="#2E75B6" font-family="Helvetica" font-size="7">BILL TO</text>
+<text x="54px"  y="140px"  fill="#000000" font-family="Helvetica" font-size="11">Silver Spoon Kitchen</text>
+<text x="54px"  y="163px"  fill="#595959" font-family="Helvetica" font-size="9">Attn. Emma Keller</text>
+<text x="54px"  y="181px"  fill="#000000" font-family="Helvetica" font-size="9">174 Oak Avenue</text>
+<text x="54px"  y="198px"  fill="#000000" font-family="Helvetica" font-size="9">03683 Toulouse</text>
+<text x="54px"  y="215px"  fill="#000000" font-family="Helvetica" font-size="9">FRANCE</text>
+<text x="44px"  y="274px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">#</text>
+<text x="67px"  y="274px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">SKU</text>
+<text x="135px"  y="274px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">Description</text>
+<text x="411px"  y="274px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">Qty.</text>
+<text x="476px"  y="274px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">Unit price</text>
+<text x="561px"  y="274px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">Disc.</text>
+<text x="613px"  y="274px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">Amount</text>
+<text x="44px"  y="307px"  fill="#595959" font-family="Helvetica" font-size="9">1</text>
+<text x="67px"  y="307px"  fill="#595959" font-family="Helvetica" font-size="8">MN-2009</text>
+<text x="135px"  y="306px"  fill="#000000" font-family="Helvetica" font-size="9">Parmigiano Reggiano 24 Months</text>
+<text x="135px"  y="321px"  fill="#8C8C8C" font-family="Helvetica" font-size="7">1 kg wedge</text>
+<text x="411px"  y="307px"  fill="#000000" font-family="Helvetica" font-size="9">6</text>
+<text x="476px"  y="307px"  fill="#000000" font-family="Helvetica" font-size="9">26.50</text>
+<text x="613px"  y="307px"  fill="#000000" font-family="Helvetica" font-size="9">159.00</text>
+<text x="44px"  y="342px"  fill="#595959" font-family="Helvetica" font-size="9">2</text>
+<text x="67px"  y="342px"  fill="#595959" font-family="Helvetica" font-size="8">MN-7036</text>
+<text x="135px"  y="341px"  fill="#000000" font-family="Helvetica" font-size="9">Jijona Soft Nougat</text>
+<text x="135px"  y="356px"  fill="#8C8C8C" font-family="Helvetica" font-size="7">300 g bar</text>
+<text x="411px"  y="342px"  fill="#000000" font-family="Helvetica" font-size="9">24</text>
+<text x="476px"  y="342px"  fill="#000000" font-family="Helvetica" font-size="9">7.50</text>
+<text x="613px"  y="342px"  fill="#000000" font-family="Helvetica" font-size="9">180.00</text>
+<text x="44px"  y="377px"  fill="#595959" font-family="Helvetica" font-size="9">3</text>
+<text x="67px"  y="377px"  fill="#595959" font-family="Helvetica" font-size="8">MN-8044</text>
+<text x="135px"  y="376px"  fill="#000000" font-family="Helvetica" font-size="9">Cava Brut Nature</text>
+<text x="135px"  y="392px"  fill="#8C8C8C" font-family="Helvetica" font-size="7">750 ml bottle</text>
+<text x="411px"  y="377px"  fill="#000000" font-family="Helvetica" font-size="9">12</text>
+<text x="476px"  y="377px"  fill="#000000" font-family="Helvetica" font-size="9">11.40</text>
+<text x="561px"  y="377px"  fill="#595959" font-family="Helvetica" font-size="9">5%</text>
+<text x="613px"  y="377px"  fill="#000000" font-family="Helvetica" font-size="9">129.96</text>
+<text x="44px"  y="412px"  fill="#595959" font-family="Helvetica" font-size="9">4</text>
+<text x="67px"  y="412px"  fill="#595959" font-family="Helvetica" font-size="8">MN-4021</text>
+<text x="135px"  y="411px"  fill="#000000" font-family="Helvetica" font-size="9">Piquillo Peppers</text>
+<text x="135px"  y="427px"  fill="#8C8C8C" font-family="Helvetica" font-size="7">290 g jar</text>
+<text x="411px"  y="412px"  fill="#000000" font-family="Helvetica" font-size="9">24</text>
+<text x="476px"  y="412px"  fill="#000000" font-family="Helvetica" font-size="9">3.60</text>
+<text x="561px"  y="412px"  fill="#595959" font-family="Helvetica" font-size="9">5%</text>
+<text x="613px"  y="412px"  fill="#000000" font-family="Helvetica" font-size="9">82.08</text>
+<text x="451px"  y="456px"  fill="#595959" font-family="Helvetica" font-size="9">Subtotal</text>
+<text x="607px"  y="456px"  fill="#000000" font-family="Helvetica" font-size="9">551.04</text>
+<text x="451px"  y="475px"  fill="#595959" font-family="Helvetica" font-size="9">VAT 20%</text>
+<text x="607px"  y="475px"  fill="#000000" font-family="Helvetica" font-size="9">110.21</text>
+<text x="460px"  y="503px"  fill="#FFFFFF" font-family="Helvetica" font-size="11">TOTAL (EUR)</text>
+<text x="581px"  y="503px"  fill="#FFFFFF" font-family="Helvetica" font-size="11">661.25</text>
+<text x="37px"  y="457px"  fill="#595959" font-family="Helvetica" font-size="8">Amounts in euros. Payment within 30 days by bank transfer.</text>
+<text x="37px"  y="473px"  fill="#595959" font-family="Helvetica" font-size="8">IBAN ES00 0000 0000 0000 0000 0000</text>
+<text x="37px"  y="508px"  fill="#1F4E79" font-family="Helvetica" font-size="11">Thank you for your business!</text>
+<text x="37px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Report Manager sample report · data: samples.db (SQLite)</text>
+<text x="607px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Page 1</text>
+</svg>

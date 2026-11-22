@@ -5,6 +5,7 @@ import { PdfDevice, systemClock, type PdfClock } from '@reportman/pdf';
 import {
   prepareReport,
   RpDateTime,
+  Variant,
   type CultureInfo,
   type EvalHost,
   type ParameterDescription,
@@ -62,6 +63,27 @@ export interface RunOptions {
   signal?: AbortSignal;
   /** Progress: the records and pages so far, at most every half second and at the end. */
   onProgress?: (recordCount: number, pageCount: number) => void;
+  /**
+   * Values set straight on the parameters, as the execute endpoint of Reportman.Server does
+   * (ReportExecutionService.ApplyParameters): any parameter, hidden ones too, by its alias or its
+   * name in any case; JSON values, a text "yyyy-MM-dd[THH:mm[:ss]]" a date. Nothing is checked: it is
+   * the call of a program, not the form of a person. When given, the values of the form (the
+   * first argument) are not applied.
+   */
+  assign?: Readonly<Record<string, unknown>>;
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}(?:[T ]\d{2}:\d{2}(?::\d{2}(?:\.\d{1,7})?)?)?(?:Z|[+-]\d{2}:?\d{2})?$/;
+
+/** ReportExecutionService.ToClr: the value of a JSON value for a parameter. */
+function assignedValue(value: unknown): Variant | string | number | boolean | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'boolean') return value;
+  // TryGetInt64: an integer is a long, any other number a double
+  if (typeof value === 'number') return Number.isInteger(value) && Math.abs(value) > 2147483647 ? Variant.fromLong(BigInt(value)) : value;
+  if (typeof value === 'string') return ISO_DATE.test(value) ? Variant.fromDateTime(RpDateTime.parseIso(value)) : value;
+  // GetRawText of an array or an object
+  return JSON.stringify(value);
 }
 
 /** A report opened from a .rep file: the two steps of a run, parameters and PDF. */
@@ -110,7 +132,7 @@ export class NodeReport {
     options.signal?.throwIfAborted();
     const run = await this.prepare(options);
     try {
-      await run.applyParameters(values ?? {});
+      await this.setParameters(run, values, options);
       const device = run.device as PdfDevice;
       device.compressed = options.compressed ?? this.model.pdfCompressed;
       return await withSignal(options.signal, () => printPdf(run, device, options.signal));
@@ -124,10 +146,24 @@ export class NodeReport {
     options.signal?.throwIfAborted();
     const run = await this.prepare(options);
     try {
-      await run.applyParameters(values ?? {});
+      await this.setParameters(run, values, options);
       return await withSignal(options.signal, () => run.execute());
     } finally {
       await run.close();
+    }
+  }
+
+  /** The values of the form (checked), or the assigned ones (set as they come). */
+  private async setParameters(run: ReportRun, values: Readonly<Record<string, ParameterInput>> | null | undefined, options: RunOptions): Promise<void> {
+    if (options.assign === undefined) {
+      await run.applyParameters(values ?? {});
+      return;
+    }
+    for (const [key, value] of Object.entries(options.assign)) {
+      const k = key.toUpperCase();
+      const p = this.model.params.find((q) => q.alias.toUpperCase() === k) ?? this.model.params.find((q) => q.name.toUpperCase() === k);
+      // A name the report does not have is left out, as Reportman.Server does
+      if (p !== undefined) run.setParameterValue(p.alias, assignedValue(value));
     }
   }
 

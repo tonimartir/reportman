@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Year over year</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="54px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">MARE NOSTRUM FINE FOODS</text>
+<text x="54px"  y="59px"  fill="#FFFFFF" font-family="Helvetica" font-size="18">Year over year</text>
+<text x="538px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">Printed on</text>
+<text x="639px"  y="45px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">22/11/2026</text>
+<text x="37px"  y="97px"  fill="#595959" font-family="Helvetica" font-size="9">Parallel unions of a dataset for each year, side by side</text>
+<text x="509px"  y="97px"  fill="#1F4E79" font-family="Helvetica" font-size="9">Years 2024 and 2025</text>
+<text x="37px"  y="128px"  fill="#1F4E79" font-family="Helvetica" font-size="16">Sales by category</text>
+<text x="252px"  y="167px"  fill="#1F4E79" font-family="Helvetica" font-size="9">2024</text>
+<text x="460px"  y="167px"  fill="#1F4E79" font-family="Helvetica" font-size="9">2025</text>
+<text x="37px"  y="186px"  fill="#595959" font-family="Helvetica" font-size="8">Category</text>
+<text x="252px"  y="186px"  fill="#595959" font-family="Helvetica" font-size="8">Orders</text>
+<text x="330px"  y="186px"  fill="#595959" font-family="Helvetica" font-size="8">Sales (EUR)</text>
+<text x="460px"  y="186px"  fill="#595959" font-family="Helvetica" font-size="8">Orders</text>
+<text x="538px"  y="186px"  fill="#595959" font-family="Helvetica" font-size="8">Sales (EUR)</text>
+<text x="668px"  y="186px"  fill="#595959" font-family="Helvetica" font-size="8">Change</text>
+<text x="37px"  y="209px"  fill="#000000" font-family="Helvetica" font-size="9">Cheese & Dairy</text>
+<text x="252px"  y="209px"  fill="#000000" font-family="Helvetica" font-size="9">101</text>
+<text x="330px"  y="209px"  fill="#000000" font-family="Helvetica" font-size="9">27,046.32</text>
+<text x="460px"  y="209px"  fill="#000000" font-family="Helvetica" font-size="9">100</text>
+<text x="538px"  y="209px"  fill="#000000" font-family="Helvetica" font-size="9">27,416.54</text>
+<text x="668px"  y="209px"  fill="#595959" font-family="Helvetica" font-size="9">1.4%</text>
+<text x="37px"  y="230px"  fill="#000000" font-family="Helvetica" font-size="9">Coffee & Tea</text>
+<text x="252px"  y="230px"  fill="#000000" font-family="Helvetica" font-size="9">97</text>
+<text x="330px"  y="230px"  fill="#000000" font-family="Helvetica" font-size="9">12,081.38</text>
+<text x="460px"  y="230px"  fill="#000000" font-family="Helvetica" font-size="9">83</text>
+<text x="538px"  y="230px"  fill="#000000" font-family="Helvetica" font-size="9">9,897.04</text>
+<text x="668px"  y="230px"  fill="#595959" font-family="Helvetica" font-size="9">-18.1%</text>
+<text x="37px"  y="251px"  fill="#000000" font-family="Helvetica" font-size="9">Cured Meats</text>
+<text x="252px"  y="251px"  fill="#000000" font-family="Helvetica" font-size="9">96</text>
+<text x="330px"  y="251px"  fill="#000000" font-family="Helvetica" font-size="9">13,715.44</text>
+<text x="460px"  y="251px"  fill="#000000" font-family="Helvetica" font-size="9">104</text>
+<text x="538px"  y="251px"  fill="#000000" font-family="Helvetica" font-size="9">11,700.22</text>
+<text x="668px"  y="251px"  fill="#595959" font-family="Helvetica" font-size="9">-14.7%</text>
+<text x="37px"  y="272px"  fill="#000000" font-family="Helvetica" font-size="9">Olive Oil & Vinegar</text>
+<text x="252px"  y="272px"  fill="#000000" font-family="Helvetica" font-size="9">112</text>
+<text x="330px"  y="272px"  fill="#000000" font-family="Helvetica" font-size="9">23,696.98</text>
+<text x="460px"  y="272px"  fill="#000000" font-family="Helvetica" font-size="9">90</text>
+<text x="538px"  y="272px"  fill="#000000" font-family="Helvetica" font-size="9">19,501.54</text>
+<text x="668px"  y="272px"  fill="#595959" font-family="Helvetica" font-size="9">-17.7%</text>
+<text x="37px"  y="292px"  fill="#000000" font-family="Helvetica" font-size="9">Pasta, Rice & Grains</text>
+<text x="252px"  y="292px"  fill="#000000" font-family="Helvetica" font-size="9">113</text>
+<text x="330px"  y="292px"  fill="#000000" font-family="Helvetica" font-size="9">6,489.66</text>
+<text x="460px"  y="292px"  fill="#000000" font-family="Helvetica" font-size="9">110</text>
+<text x="538px"  y="292px"  fill="#000000" font-family="Helvetica" font-size="9">7,258.34</text>
+<text x="668px"  y="292px"  fill="#595959" font-family="Helvetica" font-size="9">11.8%</text>
+<text x="37px"  y="313px"  fill="#000000" font-family="Helvetica" font-size="9">Preserves</text>
+<text x="252px"  y="313px"  fill="#000000" font-family="Helvetica" font-size="9">122</text>
+<text x="330px"  y="313px"  fill="#000000" font-family="Helvetica" font-size="9">12,259.34</text>
+<text x="460px"  y="313px"  fill="#000000" font-family="Helvetica" font-size="9">148</text>
+<text x="538px"  y="313px"  fill="#000000" font-family="Helvetica" font-size="9">12,610.94</text>
+<text x="668px"  y="313px"  fill="#595959" font-family="Helvetica" font-size="9">2.9%</text>
+<text x="37px"  y="334px"  fill="#000000" font-family="Helvetica" font-size="9">Sweets & Chocolate</text>
+<text x="252px"  y="334px"  fill="#000000" font-family="Helvetica" font-size="9">99</text>
+<text x="330px"  y="334px"  fill="#000000" font-family="Helvetica" font-size="9">8,510.04</text>
+<text x="460px"  y="334px"  fill="#000000" font-family="Helvetica" font-size="9">105</text>
+<text x="538px"  y="334px"  fill="#000000" font-family="Helvetica" font-size="9">9,632.48</text>
+<text x="668px"  y="334px"  fill="#595959" font-family="Helvetica" font-size="9">13.2%</text>
+<text x="37px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">Wines & Beverages</text>
+<text x="252px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">113</text>
+<text x="330px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">16,165.12</text>
+<text x="460px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">111</text>
+<text x="538px"  y="355px"  fill="#000000" font-family="Helvetica" font-size="9">17,046.72</text>
+<text x="668px"  y="355px"  fill="#595959" font-family="Helvetica" font-size="9">5.5%</text>
+<text x="50px"  y="381px"  fill="#1F4E79" font-family="Helvetica" font-size="9">Total</text>
+<text x="252px"  y="381px"  fill="#1F4E79" font-family="Helvetica" font-size="9">853</text>
+<text x="330px"  y="381px"  fill="#1F4E79" font-family="Helvetica" font-size="9">119,964.28</text>
+<text x="460px"  y="381px"  fill="#1F4E79" font-family="Helvetica" font-size="9">851</text>
+<text x="538px"  y="381px"  fill="#1F4E79" font-family="Helvetica" font-size="9">115,063.82</text>
+<text x="37px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Report Manager sample report · data: samples.db (SQLite)</text>
+<text x="607px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Page 1</text>
+</svg>

@@ -1,0 +1,36 @@
+{
+  "name": "@reportman/export",
+  "version": "0.1.0-alpha.1",
+  "description": "Report Manager outputs of a metafile besides the PDF: CSV, plain text, SVG and HTML.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonimartir/reportman",
+    "directory": "typescript/packages/reportman-export"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
+  "dependencies": {
+    "@reportman/metafile": "0.1.0-alpha.1",
+    "@reportman/text": "0.1.0-alpha.1"
+  }
+}

@@ -2,3 +2,6 @@
 *.rep binary
 *.pdf binary
 *.rpmf binary
+# The documents of the Delphi and C# engines the export tests compare byte for byte (CSV with the
+# CR LF of C#, SVG and HTML as Delphi writes them)
+packages/reportman-export/test/fixtures/** binary

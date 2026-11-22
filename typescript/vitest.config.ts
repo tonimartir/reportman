@@ -15,6 +15,8 @@ const packages = [
   'driver-mysql',
   'driver-http',
   'driver-mssql',
+  'export',
+  'server',
 ];
 
 export default defineConfig({

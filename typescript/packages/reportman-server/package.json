@@ -1,0 +1,37 @@
+{
+  "name": "@reportman/server",
+  "version": "0.1.0-alpha.1",
+  "description": "Report Manager server for Node.js: the reports API of Reportman.Server (list, parameters, execute to PDF, metafile, text or CSV) over folders of .rep files.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonimartir/reportman",
+    "directory": "typescript/packages/reportman-server"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
+  "dependencies": {
+    "@reportman/node": "0.1.0-alpha.1",
+    "@reportman/export": "0.1.0-alpha.1",
+    "@reportman/metafile": "0.1.0-alpha.1"
+  }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Features & <escapes></desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFF0"></rect>
+<text x="37px"  y="37px"  fill="#000000" font-family="Helvetica" font-size="9">A single line text</text>
+<text x="37px"  y="63px"  fill="#000000" font-family="Helvetica" font-size="9">Bottom right</text>
+<text x="37px"  y="102px"  fill="#000000" font-family="Helvetica" font-size="9">Middle center</text>
+<text x="37px"  y="141px"  fill="#000000" font-family="Helvetica" font-size="9">Justified text that wraps in its box</text>
+<text x="37px"  y="180px"  fill="#000000" font-family="Helvetica" font-size="9">Struck out</text>
+<text x="37px"  y="206px"  fill="#FF0000" font-family="Helvetica" font-size="9">Underlined and struck out</text>
+<text x="37px"  y="232px"  fill="#000000" font-family="Helvetica" font-size="9">Bold italic underlined</text>
+<text x="37px"  y="258px"  fill="#FFFFFF" font-family="Helvetica" font-size="9">On a background</text>
+<text x="37px"  y="284px"  fill="#000000" font-family="Helvetica" font-size="9">Fish & chips <b>"quoted"</b> it's
+the second line
+and a third</text>
+<text x="37px"  y="336px"  fill="#000000" font-family="Helvetica" font-size="9">A o € – • ???????? ??? ??</text>
+<text x="76px"  y="362px"  fill="#000000" font-family="Helvetica" font-size="9">Rotated</text>
+<text x="37px"  y="440px"  fill="#000000" font-family="Helvetica" font-size="11">Arial and Helvetica</text>
+<text x="37px"  y="466px"  fill="#000000" font-family="HELVETICA" font-size="11">ARIAL and HELVETICA</text>
+</svg>

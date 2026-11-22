@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="774px" height="1094px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<desc>Customers & <Delphi's> país</desc>
+<rect x="0" y="0" width="774px"  height="1094px"  fill="#FFFFFF"></rect>
+<text x="54px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">MARE NOSTRUM FINE FOODS</text>
+<text x="54px"  y="59px"  fill="#FFFFFF" font-family="Helvetica" font-size="18">Customers by country</text>
+<text x="538px"  y="45px"  fill="#BDD7EE" font-family="Helvetica" font-size="8">Printed on</text>
+<text x="639px"  y="45px"  fill="#FFFFFF" font-family="Helvetica" font-size="8">22/11/2026</text>
+<text x="37px"  y="97px"  fill="#595959" font-family="Helvetica" font-size="9">Every customer, grouped by country, with the contact person and the phone number</text>
+<text x="37px"  y="132px"  fill="#1F4E79" font-family="Helvetica" font-size="13">Argentina</text>
+<text x="37px"  y="162px"  fill="#595959" font-family="Helvetica" font-size="8">Code</text>
+<text x="96px"  y="162px"  fill="#595959" font-family="Helvetica" font-size="8">Company</text>
+<text x="297px"  y="162px"  fill="#595959" font-family="Helvetica" font-size="8">Contact</text>
+<text x="447px"  y="162px"  fill="#595959" font-family="Helvetica" font-size="8">City</text>
+<text x="557px"  y="162px"  fill="#595959" font-family="Helvetica" font-size="8">Phone</text>
+<text x="668px"  y="162px"  fill="#595959" font-family="Helvetica" font-size="8">Customer since</text>
+<text x="37px"  y="184px"  fill="#595959" font-family="Helvetica" font-size="9">C0060</text>
+<text x="96px"  y="184px"  fill="#000000" font-family="Helvetica" font-size="9">Corner Restaurant</text>
+<text x="297px"  y="184px"  fill="#000000" font-family="Helvetica" font-size="9">Paolo Fernandez</text>
+<text x="447px"  y="184px"  fill="#000000" font-family="Helvetica" font-size="9">Rosario</text>
+<text x="557px"  y="184px"  fill="#595959" font-family="Helvetica" font-size="9">+54 934 520 983</text>
+<text x="668px"  y="184px"  fill="#000000" font-family="Helvetica" font-size="9">21/09/2016</text>
+<text x="37px"  y="204px"  fill="#595959" font-family="Helvetica" font-size="9">C0062</text>
+<text x="96px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">Little Italy Wine Bar</text>
+<text x="297px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">Sofia Moreau</text>
+<text x="447px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">Cordoba</text>
+<text x="557px"  y="204px"  fill="#595959" font-family="Helvetica" font-size="9">+54 675 984 917</text>
+<text x="668px"  y="204px"  fill="#000000" font-family="Helvetica" font-size="9">15/12/2017</text>
+<text x="37px"  y="225px"  fill="#595959" font-family="Helvetica" font-size="9">C0061</text>
+<text x="96px"  y="225px"  fill="#000000" font-family="Helvetica" font-size="9">Red Door Cafe</text>
+<text x="297px"  y="225px"  fill="#000000" font-family="Helvetica" font-size="9">Claire Ruiz</text>
+<text x="447px"  y="225px"  fill="#000000" font-family="Helvetica" font-size="9">Rosario</text>
+<text x="557px"  y="225px"  fill="#595959" font-family="Helvetica" font-size="9">+54 192 973 621</text>
+<text x="668px"  y="225px"  fill="#000000" font-family="Helvetica" font-size="9">09/11/2021</text>
+<text x="37px"  y="246px"  fill="#595959" font-family="Helvetica" font-size="9">C0063</text>
+<text x="96px"  y="246px"  fill="#000000" font-family="Helvetica" font-size="9">Riverside Cafe</text>
+<text x="297px"  y="246px"  fill="#000000" font-family="Helvetica" font-size="9">Marco Brown</text>
+<text x="447px"  y="246px"  fill="#000000" font-family="Helvetica" font-size="9">Buenos Aires</text>
+<text x="557px"  y="246px"  fill="#595959" font-family="Helvetica" font-size="9">+54 314 539 620</text>
+<text x="668px"  y="246px"  fill="#000000" font-family="Helvetica" font-size="9">26/11/2021</text>
+<text x="503px"  y="269px"  fill="#595959" font-family="Helvetica" font-size="9">Customers in this country</text>
+<text x="672px"  y="269px"  fill="#000000" font-family="Helvetica" font-size="9">4</text>
+<text x="37px"  y="307px"  fill="#1F4E79" font-family="Helvetica" font-size="13">Belgium</text>
+<text x="37px"  y="338px"  fill="#595959" font-family="Helvetica" font-size="8">Code</text>
+<text x="96px"  y="338px"  fill="#595959" font-family="Helvetica" font-size="8">Company</text>
+<text x="297px"  y="338px"  fill="#595959" font-family="Helvetica" font-size="8">Contact</text>
+<text x="447px"  y="338px"  fill="#595959" font-family="Helvetica" font-size="8">City</text>
+<text x="557px"  y="338px"  fill="#595959" font-family="Helvetica" font-size="8">Phone</text>
+<text x="668px"  y="338px"  fill="#595959" font-family="Helvetica" font-size="8">Customer since</text>
+<text x="37px"  y="359px"  fill="#595959" font-family="Helvetica" font-size="9">C0039</text>
+<text x="96px"  y="359px"  fill="#000000" font-family="Helvetica" font-size="9">Le Petit Restaurant</text>
+<text x="297px"  y="359px"  fill="#000000" font-family="Helvetica" font-size="9">Pieter Castro</text>
+<text x="447px"  y="359px"  fill="#000000" font-family="Helvetica" font-size="9">Antwerp</text>
+<text x="557px"  y="359px"  fill="#595959" font-family="Helvetica" font-size="9">+32 850 498 441</text>
+<text x="668px"  y="359px"  fill="#000000" font-family="Helvetica" font-size="9">20/02/2022</text>
+<text x="37px"  y="380px"  fill="#595959" font-family="Helvetica" font-size="9">C0042</text>
+<text x="96px"  y="380px"  fill="#000000" font-family="Helvetica" font-size="9">Little Italy Restaurant</text>
+<text x="297px"  y="380px"  fill="#000000" font-family="Helvetica" font-size="9">Ines de Vries</text>
+<text x="447px"  y="380px"  fill="#000000" font-family="Helvetica" font-size="9">Brussels</text>
+<text x="557px"  y="380px"  fill="#595959" font-family="Helvetica" font-size="9">+32 627 783 821</text>
+<text x="668px"  y="380px"  fill="#000000" font-family="Helvetica" font-size="9">20/03/2023</text>
+<text x="37px"  y="401px"  fill="#595959" font-family="Helvetica" font-size="9">C0041</text>
+<text x="96px"  y="401px"  fill="#000000" font-family="Helvetica" font-size="9">Riverside Grocers</text>
+<text x="297px"  y="401px"  fill="#000000" font-family="Helvetica" font-size="9">Ana Keller</text>
+<text x="447px"  y="401px"  fill="#000000" font-family="Helvetica" font-size="9">Brussels</text>
+<text x="557px"  y="401px"  fill="#595959" font-family="Helvetica" font-size="9">+32 274 839 628</text>
+<text x="668px"  y="401px"  fill="#000000" font-family="Helvetica" font-size="9">30/04/2016</text>
+<text x="37px"  y="421px"  fill="#595959" font-family="Helvetica" font-size="9">C0040</text>
+<text x="96px"  y="421px"  fill="#000000" font-family="Helvetica" font-size="9">Saint Martin Delicatessen</text>
+<text x="297px"  y="421px"  fill="#000000" font-family="Helvetica" font-size="9">Leon Smith</text>
+<text x="447px"  y="421px"  fill="#000000" font-family="Helvetica" font-size="9">Brussels</text>
+<text x="557px"  y="421px"  fill="#595959" font-family="Helvetica" font-size="9">+32 402 654 392</text>
+<text x="668px"  y="421px"  fill="#000000" font-family="Helvetica" font-size="9">03/01/2020</text>
+<text x="503px"  y="445px"  fill="#595959" font-family="Helvetica" font-size="9">Customers in this country</text>
+<text x="672px"  y="445px"  fill="#000000" font-family="Helvetica" font-size="9">4</text>
+<text x="37px"  y="483px"  fill="#1F4E79" font-family="Helvetica" font-size="13">France</text>
+<text x="37px"  y="513px"  fill="#595959" font-family="Helvetica" font-size="8">Code</text>
+<text x="96px"  y="513px"  fill="#595959" font-family="Helvetica" font-size="8">Company</text>
+<text x="297px"  y="513px"  fill="#595959" font-family="Helvetica" font-size="8">Contact</text>
+<text x="447px"  y="513px"  fill="#595959" font-family="Helvetica" font-size="8">City</text>
+<text x="557px"  y="513px"  fill="#595959" font-family="Helvetica" font-size="8">Phone</text>
+<text x="668px"  y="513px"  fill="#595959" font-family="Helvetica" font-size="8">Customer since</text>
+<text x="37px"  y="535px"  fill="#595959" font-family="Helvetica" font-size="9">C0009</text>
+<text x="96px"  y="535px"  fill="#000000" font-family="Helvetica" font-size="9">Casa Verde Gourmet Shop</text>
+<text x="297px"  y="535px"  fill="#000000" font-family="Helvetica" font-size="9">Pieter Silva</text>
+<text x="447px"  y="535px"  fill="#000000" font-family="Helvetica" font-size="9">Toulouse</text>
+<text x="557px"  y="535px"  fill="#595959" font-family="Helvetica" font-size="9">+33 521 499 927</text>
+<text x="668px"  y="535px"  fill="#000000" font-family="Helvetica" font-size="9">31/08/2017</text>
+<text x="37px"  y="555px"  fill="#595959" font-family="Helvetica" font-size="9">C0010</text>
+<text x="96px"  y="555px"  fill="#000000" font-family="Helvetica" font-size="9">Cedar Grocers</text>
+<text x="297px"  y="555px"  fill="#000000" font-family="Helvetica" font-size="9">Elena Garcia</text>
+<text x="447px"  y="555px"  fill="#000000" font-family="Helvetica" font-size="9">Marseille</text>
+<text x="557px"  y="555px"  fill="#595959" font-family="Helvetica" font-size="9">+33 152 953 455</text>
+<text x="668px"  y="555px"  fill="#000000" font-family="Helvetica" font-size="9">01/04/2023</text>
+<text x="37px"  y="576px"  fill="#595959" font-family="Helvetica" font-size="9">C0011</text>
+<text x="96px"  y="576px"  fill="#000000" font-family="Helvetica" font-size="9">Harvest Moon Food Hall</text>
+<text x="297px"  y="576px"  fill="#000000" font-family="Helvetica" font-size="9">Luis Martin</text>
+<text x="447px"  y="576px"  fill="#000000" font-family="Helvetica" font-size="9">Paris</text>
+<text x="557px"  y="576px"  fill="#595959" font-family="Helvetica" font-size="9">+33 799 410 560</text>
+<text x="668px"  y="576px"  fill="#000000" font-family="Helvetica" font-size="9">28/08/2019</text>
+<text x="37px"  y="597px"  fill="#595959" font-family="Helvetica" font-size="9">C0012</text>
+<text x="96px"  y="597px"  fill="#000000" font-family="Helvetica" font-size="9">Market Square Wine Bar</text>
+<text x="297px"  y="597px"  fill="#000000" font-family="Helvetica" font-size="9">Alba de Vries</text>
+<text x="447px"  y="597px"  fill="#000000" font-family="Helvetica" font-size="9">Bordeaux</text>
+<text x="557px"  y="597px"  fill="#595959" font-family="Helvetica" font-size="9">+33 311 544 738</text>
+<text x="668px"  y="597px"  fill="#000000" font-family="Helvetica" font-size="9">09/10/2019</text>
+<text x="37px"  y="618px"  fill="#595959" font-family="Helvetica" font-size="9">C0008</text>
+<text x="96px"  y="618px"  fill="#000000" font-family="Helvetica" font-size="9">Red Door Bistro</text>
+<text x="297px"  y="618px"  fill="#000000" font-family="Helvetica" font-size="9">Mia Weber</text>
+<text x="447px"  y="618px"  fill="#000000" font-family="Helvetica" font-size="9">Marseille</text>
+<text x="557px"  y="618px"  fill="#595959" font-family="Helvetica" font-size="9">+33 712 997 809</text>
+<text x="668px"  y="618px"  fill="#000000" font-family="Helvetica" font-size="9">29/08/2021</text>
+<text x="37px"  y="639px"  fill="#595959" font-family="Helvetica" font-size="9">C0013</text>
+<text x="96px"  y="639px"  fill="#000000" font-family="Helvetica" font-size="9">Seaside Grocers</text>
+<text x="297px"  y="639px"  fill="#000000" font-family="Helvetica" font-size="9">Hans Taylor</text>
+<text x="447px"  y="639px"  fill="#000000" font-family="Helvetica" font-size="9">Paris</text>
+<text x="557px"  y="639px"  fill="#595959" font-family="Helvetica" font-size="9">+33 277 146 763</text>
+<text x="668px"  y="639px"  fill="#000000" font-family="Helvetica" font-size="9">09/02/2022</text>
+<text x="37px"  y="659px"  fill="#595959" font-family="Helvetica" font-size="9">C0014</text>
+<text x="96px"  y="659px"  fill="#000000" font-family="Helvetica" font-size="9">Silver Spoon Kitchen</text>
+<text x="297px"  y="659px"  fill="#000000" font-family="Helvetica" font-size="9">Emma Keller</text>
+<text x="447px"  y="659px"  fill="#000000" font-family="Helvetica" font-size="9">Toulouse</text>
+<text x="557px"  y="659px"  fill="#595959" font-family="Helvetica" font-size="9">+33 232 761 642</text>
+<text x="668px"  y="659px"  fill="#000000" font-family="Helvetica" font-size="9">14/06/2018</text>
+<text x="503px"  y="683px"  fill="#595959" font-family="Helvetica" font-size="9">Customers in this country</text>
+<text x="672px"  y="683px"  fill="#000000" font-family="Helvetica" font-size="9">7</text>
+<text x="37px"  y="720px"  fill="#1F4E79" font-family="Helvetica" font-size="13">Germany</text>
+<text x="37px"  y="751px"  fill="#595959" font-family="Helvetica" font-size="8">Code</text>
+<text x="96px"  y="751px"  fill="#595959" font-family="Helvetica" font-size="8">Company</text>
+<text x="297px"  y="751px"  fill="#595959" font-family="Helvetica" font-size="8">Contact</text>
+<text x="447px"  y="751px"  fill="#595959" font-family="Helvetica" font-size="8">City</text>
+<text x="557px"  y="751px"  fill="#595959" font-family="Helvetica" font-size="8">Phone</text>
+<text x="668px"  y="751px"  fill="#595959" font-family="Helvetica" font-size="8">Customer since</text>
+<text x="37px"  y="772px"  fill="#595959" font-family="Helvetica" font-size="9">C0018</text>
+<text x="96px"  y="772px"  fill="#000000" font-family="Helvetica" font-size="9">Atlas Grocers</text>
+<text x="297px"  y="772px"  fill="#000000" font-family="Helvetica" font-size="9">Lukas Garcia</text>
+<text x="447px"  y="772px"  fill="#000000" font-family="Helvetica" font-size="9">Hamburg</text>
+<text x="557px"  y="772px"  fill="#595959" font-family="Helvetica" font-size="9">+49 761 438 517</text>
+<text x="668px"  y="772px"  fill="#000000" font-family="Helvetica" font-size="9">10/02/2022</text>
+<text x="37px"  y="793px"  fill="#595959" font-family="Helvetica" font-size="9">C0015</text>
+<text x="96px"  y="793px"  fill="#000000" font-family="Helvetica" font-size="9">Aurora Bistro</text>
+<text x="297px"  y="793px"  fill="#000000" font-family="Helvetica" font-size="9">Pieter Janssens</text>
+<text x="447px"  y="793px"  fill="#000000" font-family="Helvetica" font-size="9">Cologne</text>
+<text x="557px"  y="793px"  fill="#595959" font-family="Helvetica" font-size="9">+49 645 524 988</text>
+<text x="668px"  y="793px"  fill="#000000" font-family="Helvetica" font-size="9">18/11/2016</text>
+<text x="37px"  y="814px"  fill="#595959" font-family="Helvetica" font-size="9">C0019</text>
+<text x="96px"  y="814px"  fill="#000000" font-family="Helvetica" font-size="9">Blue Harbor Trattoria</text>
+<text x="297px"  y="814px"  fill="#000000" font-family="Helvetica" font-size="9">Pieter Pereira</text>
+<text x="447px"  y="814px"  fill="#000000" font-family="Helvetica" font-size="9">Frankfurt</text>
+<text x="557px"  y="814px"  fill="#595959" font-family="Helvetica" font-size="9">+49 910 651 321</text>
+<text x="668px"  y="814px"  fill="#000000" font-family="Helvetica" font-size="9">25/03/2017</text>
+<text x="37px"  y="835px"  fill="#595959" font-family="Helvetica" font-size="9">C0021</text>
+<text x="96px"  y="835px"  fill="#000000" font-family="Helvetica" font-size="9">Cedar Foods</text>
+<text x="297px"  y="835px"  fill="#000000" font-family="Helvetica" font-size="9">Marco Romero</text>
+<text x="447px"  y="835px"  fill="#000000" font-family="Helvetica" font-size="9">Berlin</text>
+<text x="557px"  y="835px"  fill="#595959" font-family="Helvetica" font-size="9">+49 161 877 464</text>
+<text x="668px"  y="835px"  fill="#000000" font-family="Helvetica" font-size="9">29/01/2018</text>
+<text x="37px"  y="856px"  fill="#595959" font-family="Helvetica" font-size="9">C0017</text>
+<text x="96px"  y="856px"  fill="#000000" font-family="Helvetica" font-size="9">La Despensa Trattoria</text>
+<text x="297px"  y="856px"  fill="#000000" font-family="Helvetica" font-size="9">Noah Keller</text>
+<text x="447px"  y="856px"  fill="#000000" font-family="Helvetica" font-size="9">Berlin</text>
+<text x="557px"  y="856px"  fill="#595959" font-family="Helvetica" font-size="9">+49 915 637 915</text>
+<text x="668px"  y="856px"  fill="#000000" font-family="Helvetica" font-size="9">26/01/2019</text>
+<text x="37px"  y="876px"  fill="#595959" font-family="Helvetica" font-size="9">C0016</text>
+<text x="96px"  y="876px"  fill="#000000" font-family="Helvetica" font-size="9">Saint Martin Bistro</text>
+<text x="297px"  y="876px"  fill="#000000" font-family="Helvetica" font-size="9">Carmen Janssens</text>
+<text x="447px"  y="876px"  fill="#000000" font-family="Helvetica" font-size="9">Cologne</text>
+<text x="557px"  y="876px"  fill="#595959" font-family="Helvetica" font-size="9">+49 898 934 525</text>
+<text x="668px"  y="876px"  fill="#000000" font-family="Helvetica" font-size="9">24/03/2019</text>
+<text x="37px"  y="897px"  fill="#595959" font-family="Helvetica" font-size="9">C0020</text>
+<text x="96px"  y="897px"  fill="#000000" font-family="Helvetica" font-size="9">Village Foods</text>
+<text x="297px"  y="897px"  fill="#000000" font-family="Helvetica" font-size="9">Hugo Brown</text>
+<text x="447px"  y="897px"  fill="#000000" font-family="Helvetica" font-size="9">Berlin</text>
+<text x="557px"  y="897px"  fill="#595959" font-family="Helvetica" font-size="9">+49 374 786 669</text>
+<text x="668px"  y="897px"  fill="#000000" font-family="Helvetica" font-size="9">27/06/2017</text>
+<text x="503px"  y="921px"  fill="#595959" font-family="Helvetica" font-size="9">Customers in this country</text>
+<text x="672px"  y="921px"  fill="#000000" font-family="Helvetica" font-size="9">7</text>
+<text x="37px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Report Manager sample report · data: samples.db (SQLite)</text>
+<text x="607px"  y="1017px"  fill="#8C8C8C" font-family="Helvetica" font-size="8">Page 1</text>
+</svg>
