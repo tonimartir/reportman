@@ -28,6 +28,7 @@ import { FontLibrary, memoryFontFile } from '@reportman/text';
 import { openReport, sqlite } from '@reportman/node';
 import {
   CanvasPreview,
+  DEFAULT_FAMILIES,
   cssColor,
   drawPage,
   pageSize,
@@ -304,11 +305,28 @@ describe('texts with the standard fonts', () => {
     barcode.metaType = MetaObjectType.Barcode;
     page.objects.push(barcode);
     const { ctx, result } = await draw(meta);
-    expect(result.skipped.map((s) => s.objectIndex)).toEqual([0, 1]);
-    expect(result.skipped[0]!.reason).toMatch(/Symbol font/);
-    expect(result.skipped[1]!.reason).toMatch(/Right to left text needs a text shaper/);
-    // The objects after them are drawn
-    expect(ctx.ops('fillText').map((c) => c.text).join('')).toBe('After');
+    expect(result.skipped.map((s) => s.objectIndex)).toEqual([1]);
+    expect(result.skipped[0]!.reason).toMatch(/Right to left text needs a text shaper/);
+    // The objects before and after it are drawn
+    expect(ctx.ops('fillText').map((c) => c.text).join('')).toBe('αβχAfter');
+  });
+
+  it('draws Symbol and ZapfDingbats as the characters of their encodings, where their widths put them', async () => {
+    const meta = newMeta();
+    const page = meta.pages.get(0);
+    text(page, 1000, 1000, 5000, 300, 'abc"', { font: PDFFontType.Symbol, style: 3 });
+    text(page, 1000, 2000, 5000, 300, '!an', { font: PDFFontType.ZafDingbats });
+    const { ctx, result } = await draw(meta);
+    expect(result.skipped).toEqual([]);
+    const calls = ctx.ops('fillText');
+    expect(calls.map((c) => c.text).join('')).toBe('αβχ∀✁❁■');
+    // No bold or italic face: the family of the characters
+    expect(calls[0]!.font).toBe('200px ' + DEFAULT_FAMILIES.symbol);
+    expect(calls[4]!.font).toBe('200px ' + DEFAULT_FAMILIES.dingbats);
+    // The widths of the AFM files (10 points: 0.2 twips a thousandth): alpha 631, beta 549; a1 974
+    expect(calls[1]!.points[0]![0] - calls[0]!.points[0]![0]).toBeCloseTo(631 * 0.2, 6);
+    expect(calls[2]!.points[0]![0] - calls[1]!.points[0]![0]).toBeCloseTo(549 * 0.2, 6);
+    expect(calls[5]!.points[0]![0] - calls[4]!.points[0]![0]).toBeCloseTo(974 * 0.2, 6);
   });
 });
 

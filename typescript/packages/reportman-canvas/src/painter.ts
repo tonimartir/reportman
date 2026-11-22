@@ -13,7 +13,7 @@ import { CONS_PDFRES, ShaperNotSupportedError, TextCanvas, unicodeToWin1252 } fr
 import type { FontInfoProvider, LogFontFt, TGlyphPos, TTFontData } from '@reportman/text';
 import { cssColor } from './color.js';
 import type { CanvasContext, CanvasImage } from './context.js';
-import { OutlineCache, standardFamily, winAnsiChar, DEFAULT_FAMILIES } from './fonts.js';
+import { OutlineCache, standardChar, standardFamily, standardWidth, DEFAULT_FAMILIES } from './fonts.js';
 import type { StandardFamilies } from './fonts.js';
 import type { PreparedImage } from './images.js';
 
@@ -502,16 +502,19 @@ export class PreviewCanvas extends TextCanvas {
       return;
     }
     const c = this.c;
-    c.font = (fnt.italic ? 'italic ' : '') + (fnt.bold ? 'bold ' : '') + String(fnt.size * TWIPS_PER_POINT) + 'px ' + family;
+    // Symbol and ZapfDingbats have no bold or italic faces
+    const symbolic = fnt.name === PDFFontType.Symbol || fnt.name === PDFFontType.ZafDingbats;
+    c.font = (fnt.italic && !symbolic ? 'italic ' : '') + (fnt.bold && !symbolic ? 'bold ' : '') + String(fnt.size * TWIPS_PER_POINT) + 'px ' + family;
     c.fillStyle = cssColor(fnt.color);
     // On the nearest pixel row, as text rasterizers place a horizontal baseline
     if (this.snapping) baseline = this.toEdge(baseline);
     let x = X;
     for (let i = 0; i < text.length; i++) {
       const code = text.charCodeAt(i);
-      const ch = winAnsiChar(code & 0xff);
+      const ch = standardChar(fnt.name, code & 0xff);
       if (ch !== '' && ch !== ' ') c.fillText(ch, x, baseline);
-      x += this.calcCharWidth(code, null) * TWIPS_PER_POINT;
+      const width = standardWidth(fnt.name, code & 0xff);
+      x += (width === null ? this.calcCharWidth(code, null) : (width / 1000) * fnt.size) * TWIPS_PER_POINT;
     }
   }
 

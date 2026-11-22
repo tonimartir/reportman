@@ -4,6 +4,7 @@
 
 import { PDFFontType } from '@reportman/metafile';
 import type { LogFontFt } from '@reportman/text';
+import { DINGBATS_CHARS, DINGBATS_WIDTHS, SYMBOL_CHARS, SYMBOL_WIDTHS } from './symboltables.js';
 
 /** The CSS font families that draw the standard fonts. */
 export interface StandardFamilies {
@@ -13,6 +14,13 @@ export interface StandardFamilies {
   times: string;
   /** Courier; every character 600 thousandths of the em. */
   courier: string;
+  /**
+   * The characters of Symbol (Greek letters and mathematical signs): no browser has the font, so its
+   * bytes are drawn as the characters they stand for, each one where the widths of Symbol put it.
+   */
+  symbol: string;
+  /** The characters of ZapfDingbats (the dingbats of Unicode), drawn as those of Symbol. */
+  dingbats: string;
 }
 
 /** The families of a PDF viewer without the fonts: the metric compatible ones of each system. */
@@ -20,9 +28,11 @@ export const DEFAULT_FAMILIES: StandardFamilies = {
   helvetica: 'Arial, Helvetica, "Liberation Sans", "Nimbus Sans", sans-serif',
   times: '"Times New Roman", Times, "Liberation Serif", "Nimbus Roman", serif',
   courier: '"Courier New", Courier, "Liberation Mono", "Nimbus Mono PS", monospace',
+  symbol: '"Segoe UI Symbol", "Noto Sans Symbols", "Noto Sans Math", "DejaVu Sans", Symbola, "Times New Roman", serif',
+  dingbats: '"Segoe UI Symbol", "Noto Sans Symbols 2", "Noto Sans Symbols", "DejaVu Sans", Symbola, "Zapf Dingbats", sans-serif',
 };
 
-/** The family of a standard font; null for Symbol and ZapfDingbats, whose glyphs the browser has not. */
+/** The family of a standard font. */
 export function standardFamily(families: StandardFamilies, font: PDFFontType): string | null {
   switch (font) {
     case PDFFontType.Helvetica:
@@ -31,9 +41,35 @@ export function standardFamily(families: StandardFamilies, font: PDFFontType): s
       return families.times;
     case PDFFontType.Courier:
       return families.courier;
+    case PDFFontType.Symbol:
+      return families.symbol;
+    case PDFFontType.ZafDingbats:
+      return families.dingbats;
     default:
       return null;
   }
+}
+
+/**
+ * The character a viewer draws for a byte of a standard font: WinAnsi for Helvetica, Times and
+ * Courier; the built-in encodings for Symbol and ZapfDingbats.
+ */
+export function standardChar(font: PDFFontType, byte: number): string {
+  if (font === PDFFontType.Symbol) return SYMBOL_CHARS[byte & 0xff] ?? '';
+  if (font === PDFFontType.ZafDingbats) return DINGBATS_CHARS[byte & 0xff] ?? '';
+  return winAnsiChar(byte);
+}
+
+/**
+ * The width, in thousandths of the em, a viewer advances by after a byte of Symbol or ZapfDingbats
+ * (their AFM files); null for the other fonts, whose widths are those the layout measured. The
+ * layout measures Symbol and ZapfDingbats with 600, as the engine of C# does, and their PDF draws
+ * them with these widths: the preview places them where the viewer does.
+ */
+export function standardWidth(font: PDFFontType, byte: number): number | null {
+  if (font === PDFFontType.Symbol) return SYMBOL_WIDTHS[byte & 0xff] ?? 0;
+  if (font === PDFFontType.ZafDingbats) return DINGBATS_WIDTHS[byte & 0xff] ?? 0;
+  return null;
 }
 
 // The characters of the bytes 0x80 to 0x9F in WinAnsiEncoding, the encoding the PDF gives the

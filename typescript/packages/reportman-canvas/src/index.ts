@@ -9,7 +9,7 @@ export { PreviewCanvas } from './painter.js';
 export type { SkippedObject } from './painter.js';
 export { browserImageLoader, prepareImage } from './images.js';
 export type { ImageInput, ImageLoader, PreparedImage } from './images.js';
-export { DEFAULT_FAMILIES, OutlineCache, winAnsiChar } from './fonts.js';
+export { DEFAULT_FAMILIES, OutlineCache, standardChar, standardWidth, winAnsiChar } from './fonts.js';
 export type { StandardFamilies, GlyphOutline, OutlineCommand } from './fonts.js';
 export { cssColor } from './color.js';
 export { pdfPageSizes } from './pagesize.js';
