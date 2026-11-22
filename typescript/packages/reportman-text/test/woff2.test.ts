@@ -1,8 +1,9 @@
 // WOFF2: the sfnt woff2ToSfnt rebuilds (the transformed glyf and loca decoded, the tables of an sfnt)
 // read by fontkit as an sfnt, against fontkit reading the WOFF2 file itself: the same glyphs,
-// advances, outlines, boxes and cmap. The WOFF2 font of the repository (the icons of the generated
-// documentation site) always; RM_WOFF2_FILES, a file with one WOFF2 path per line, adds others (on
-// 22-11-2026 the 163 WOFF2 files of the development machine were all the same).
+// advances, outlines, boxes and cmap. A WOFF2 font of the repository always (fixtures/: the icons of
+// the generated documentation site, doc/_site/styles, Glyphicons Halflings of Bootstrap);
+// RM_WOFF2_FILES, a file with one WOFF2 path per line, adds others (on 22-11-2026 the 163 WOFF2
+// files of the development machine were all the same).
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +13,7 @@ import { describe, expect, it } from 'vitest';
 import { isWoff2, woff2ToSfnt } from '../src/fonts/woff2.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const repoFont = path.resolve(here, '../../../../doc/_site/styles/glyphicons-halflings-regular-W4DYDFZM.woff2');
+const repoFont = path.join(here, 'fixtures', 'glyphicons-halflings-regular.woff2');
 const extra = process.env.RM_WOFF2_FILES;
 const files = [repoFont, ...(extra !== undefined && fs.existsSync(extra) ? fs.readFileSync(extra, 'utf8').split(/\r?\n/).filter((l) => l.trim() !== '') : [])];
 

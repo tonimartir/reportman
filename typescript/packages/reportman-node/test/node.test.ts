@@ -223,9 +223,10 @@ describe('reportman-node: the fonts option', () => {
     expect(pdf).toContain('/FontFile2 ');
   });
 
-  // The WOFF2 font of the repository: the icons of the generated documentation site, its glyf and
-  // loca transformed; the labels get its characters (+, *, the euro sign and two icons)
-  const glyphicons = path.resolve(here, '../../../../doc/_site/styles/glyphicons-halflings-regular-W4DYDFZM.woff2');
+  // A WOFF2 font of the repository (the icons of the generated documentation site, in the fixtures
+  // of @reportman/text), its glyf and loca transformed; the labels get its characters (+, *, the euro
+  // sign and two icons)
+  const glyphicons = path.resolve(here, '../../reportman-text/test/fixtures/glyphicons-halflings-regular.woff2');
   it.skipIf(!fs.existsSync(glyphicons))('finds and embeds a WOFF2 font of a folder', async () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'rm-woff2-'));
     fs.copyFileSync(glyphicons, path.join(dir, 'glyphicons.woff2'));
