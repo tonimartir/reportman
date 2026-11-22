@@ -6,7 +6,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tonimartir/reportman",
+    "url": "git+https://github.com/tonimartir/reportman.git",
     "directory": "typescript/packages/reportman-server"
   },
   "homepage": "https://reportman.es",
@@ -19,7 +19,7 @@
     }
   },
   "bin": {
-    "reportman-server": "./dist/cli.js"
+    "reportman-server": "dist/cli.js"
   },
   "files": [
     "dist",

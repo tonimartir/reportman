@@ -6,7 +6,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tonimartir/reportman",
+    "url": "git+https://github.com/tonimartir/reportman.git",
     "directory": "typescript/packages/reportman-dfm"
   },
   "homepage": "https://reportman.es",
@@ -19,7 +19,7 @@
     }
   },
   "bin": {
-    "reportman-dfm2xml": "./dist/cli.js"
+    "reportman-dfm2xml": "dist/cli.js"
   },
   "files": [
     "dist"
