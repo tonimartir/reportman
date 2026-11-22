@@ -29,6 +29,8 @@ using Reportman.Reporting.Design.Json;
 //       opened as SQLite (SQLiteCore) on the --sqlite file, read only.
 //       --rpmf saves the metafile of the run in the binary .rpmf format (SaveToStream, not
 //       compressed), --rpmfz the same compressed (zlib).
+//       --csv out.csv writes PrintOutCSV.ExportToCSV of all the pages (',' and '"'; the line
+//       ending is Environment.NewLine).
 //       --connection ALIAS=Provider|ConnectionString opens that report connection with an
 //       ADO.NET provider instead (Provider: SQLiteCore, PostgreSQL, FirebirdSql.Data.FirebirdClient,
 //       MySQLConnector or SQLServer, the names Reportman.Server registers); it wins over --sqlite.
@@ -200,6 +202,9 @@ class Program
         // of the file and raises it for PrinterFonts = Recalculate
         SaveRpmf(report.MetaFile, Option(args, "--rpmf"), false);
         SaveRpmf(report.MetaFile, Option(args, "--rpmfz"), true);
+        string csvPath = Option(args, "--csv");
+        if (csvPath != null)
+            File.WriteAllText(csvPath, PrintOutCSV.ExportToCSV(report.MetaFile, true, 1, 1, ",", '"'), new UTF8Encoding(false));
         Console.WriteLine("pages=" + report.MetaFile.Pages.Count);
         return 0;
     }
