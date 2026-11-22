@@ -22,3 +22,11 @@ export {
   isSynchronousDataRequired,
 } from '@reportman/engine';
 export type { ParameterDescription, ParameterInput, ParameterOption } from '@reportman/engine';
+export {
+  dbxConnections,
+  dbxConnectionsCandidates,
+  dbxConnectionsPath,
+  dbxConnectionString,
+  readDbxDirectConnections,
+} from './dbxconnections.js';
+export type { ConnectionStringDriver, DbxConnectionsOptions, DbxDirectConnection, DbxDrivers } from './dbxconnections.js';

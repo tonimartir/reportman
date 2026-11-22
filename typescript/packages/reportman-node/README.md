@@ -83,6 +83,23 @@ const pdf = await report.executeToPdf({ FIRST_ORDER: 7, LAST_ORDER: 9 });
   and needs no factory.
 - `datasets`: rows for a dataset instead of running its SQL — `{ columns, rows }` or a function,
   for example the result of a REST API.
+- `dbxConnections({ drivers, password })`: the connections of this computer in the shared
+  `dbxconnections.ini` (the `DriverName=ADO.NET` sections Reportman.Server and the designers
+  write), by alias, to pass as `connections`. SQLite is built in; the other databases take the
+  driver function of their package (`drivers: { postgresql: postgres, firebird, mysql, sqlserver:
+  mssql }`). A password the file keeps ciphered with Windows DPAPI cannot be read from JavaScript:
+  `password(alias, name)` gives it (an environment variable, a secret store).
+
+```ts
+import { dbxConnections, openReport } from '@reportman/node';
+import { postgres } from '@reportman/driver-postgres';
+
+const connections = dbxConnections({
+  drivers: { postgresql: postgres },
+  password: (alias) => process.env[`REPORTMAN_PASSWORD_${alias}`],
+});
+const report = await openReport('sales.rep', { connections });
+```
 
 ## Command line
 
