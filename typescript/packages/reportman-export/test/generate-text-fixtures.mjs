@@ -118,6 +118,14 @@ function qr(expression, o = {}) {
   })}\n</COMPONENT>`;
 }
 
+/** A linear barcode (TYP: the BarcodeType of the item). */
+function bar(expression, typ, o = {}) {
+  return `<COMPONENT>\n${head('TRPBARCODE', 'TRpBarcode', o)}\n${props({ EXPRESSION: expression, MODUL: 10 })}\n<RATIO type="Double">2</RATIO>\n${props({
+    TYP: typ, CHECKSUM: false, DISPLAYFORMAT: '', ROTATION: 0, BCOLOR: 0, BACKCOLOR: 16777215, TRANSPARENT: true,
+    NUMCOLUMNS: 0, NUMROWS: 0, ECCLEVEL: -1, TRUNCATED: false,
+  })}\n</COMPONENT>`;
+}
+
 let secCount = 0;
 const SECTION_TYPES = { pageheader: 0, detail: 2, pagefooter: 4 };
 function section(type, o, components) {
@@ -231,6 +239,34 @@ report('syn-text-qr.rep', {
   ]),
 ]);
 
+// Linear barcodes on a receipt: the TM88 drivers draw them by themselves (GS k) with the module
+// width the box and the modules of ZXing give; where ZXing refuses the text (a wrong check digit,
+// an odd ITF, beyond ASCII) the item draws bars, which a text device does not print.
+report('syn-text-bars.rep', {
+  PAGESIZE: 2, PAGEWIDTH: 4535, PAGEHEIGHT: 11339, CUSTOMPAGEWIDTH: 4535, CUSTOMPAGEHEIGHT: 11339, LEFTMARGIN: 0,
+  TOPMARGIN: 0, RIGHTMARGIN: 0, BOTTOMMARGIN: 0,
+}, datainfo('D', 'SELECT ORDER_ID, ORDER_NUMBER FROM ORDERS WHERE ORDER_ID <= 2 ORDER BY ORDER_ID'), [
+  section('detail', { WIDTH: 4535, HEIGHT: 6000 }, [
+    expr("'Order '+D.ORDER_NUMBER", { WIDTH: 4535, ALIGNMENT: 2 }),
+    bar('D.ORDER_NUMBER', 8, { POSX: 500, POSY: 300, WIDTH: 3500, HEIGHT: 500 }),
+    bar("'400638133393'", 15, { POSY: 900, WIDTH: 2000, HEIGHT: 400 }),
+    label('EAN-13', { POSX: 2500, POSY: 900, WIDTH: 1500 }),
+    bar("'4006381333932'", 15, { POSY: 1400, WIDTH: 2000, HEIGHT: 400 }),
+    bar("'9638507'", 14, { POSX: 2535, POSY: 1400, WIDTH: 2000, HEIGHT: 400 }),
+    bar("'Code 39'", 3, { POSY: 1900, WIDTH: 4535, HEIGHT: 400 }),
+    bar("'CODE93'", 9, { POSY: 2400, WIDTH: 2500, HEIGHT: 400 }),
+    bar("'1234567890'", 0, { POSY: 2900, WIDTH: 2500, HEIGHT: 400 }),
+    bar("'123'", 0, { POSX: 2600, POSY: 2900, WIDTH: 1500, HEIGHT: 400 }),
+    bar("'A40156B'", 13, { POSY: 3400, WIDTH: 2500, HEIGHT: 400 }),
+    bar("'123456'", 7, { POSY: 3900, WIDTH: 1500, HEIGHT: 400 }),
+    bar("'ABC'", 5, { POSX: 1600, POSY: 3900, WIDTH: 1500, HEIGHT: 400 }),
+    bar("'Ñandú'", 6, { POSX: 3200, POSY: 3900, WIDTH: 1300, HEIGHT: 400 }),
+    bar("'X'", 8, { POSY: 4400, WIDTH: 300, HEIGHT: 300 }),
+    bar("'1234567890123456789012345678901234567890'", 8, { POSY: 4800, WIDTH: 4535, HEIGHT: 300 }),
+    label('End', { POSY: 5700, WIDTH: 4535, ALIGNMENT: 2 }),
+  ]),
+]);
+
 // 9.6 lines per inch: the line spacing codes n/216 and n/180 are computed in decimal by C# (22.5
 // is 22.500000000000000000000000007 there, so 23), and the lines of a page too.
 report('syn-text-lpi.rep', { LINESPERINCH: 960 }, datainfo('D', 'SELECT CUSTOMER_ID, CODE, COMPANY_NAME, CITY FROM CUSTOMERS WHERE CUSTOMER_ID <= 40 ORDER BY CUSTOMER_ID'), [
@@ -271,6 +307,8 @@ for (const driver of ['PLAIN', 'EPSON', 'HP-PCL', 'EPSONTMU210', 'EPSONTM88IICUT
   add(synthetic('syn-text-receipt'), { name: 'syn-text-receipt.' + driver, driver });
 for (const driver of ['PLAIN', 'EPSONTMU210', 'EPSONTM88II', 'EPSONTM88IICUT', 'EPSONTM88CP858', 'EPSONTM88UTF8CUT'])
   add(synthetic('syn-text-qr'), { name: 'syn-text-qr.' + driver, driver });
+for (const driver of ['PLAIN', 'EPSONTMU210', 'EPSONTM88II', 'EPSONTM88IICUT', 'EPSONTM88CP858', 'EPSONTM88UTF8CUT'])
+  add(synthetic('syn-text-bars'), { name: 'syn-text-bars.' + driver, driver });
 for (const driver of ['PLAIN', 'EPSON', 'EPSON-ESCPQ', 'EPSONTMU210', 'EPSONTM88II'])
   add(synthetic('syn-text-lpi'), { name: 'syn-text-lpi.' + driver, driver });
 // A sample on the line printers

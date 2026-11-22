@@ -74,6 +74,7 @@ class Program
                 case "encoding": return EncodingTable(args);
                 case "shape": return Shape(args);
                 case "lcmap": return LcMap(args);
+                case "zxing-width": return ZxingWidth(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -437,6 +438,45 @@ class Program
     //   zh-CN with LCMAP_TRADITIONAL_CHINESE and LCMAP_SIMPLIFIED_CHINESE): every UTF-16 code unit
     //   but the surrogates that one of the two changes, as { "traditional": { code: text },
     //   "simplified": { code: text } }, and the texts given mapped whole ("texts").
+    /// <summary>
+    /// zxing-width CASES.json OUT.json: the modules of a linear barcode as BarcodeItem.EmitNativeBarcode
+    /// takes them from ZXing.Net (MultiFormatWriter, no margin: the width of the symbol), or null
+    /// where the writer refuses the text and the item draws its bars. CASES is an array of
+    /// { "symbology": a MetaBarcodeSymbology name, "text" }.
+    /// </summary>
+    static int ZxingWidth(string[] args)
+    {
+        JArray cases = JArray.Parse(File.ReadAllText(args[1]));
+        var results = new JArray();
+        foreach (JObject c in cases)
+        {
+            ZXing.BarcodeFormat format;
+            switch ((string)c["symbology"])
+            {
+                case "Code128": format = ZXing.BarcodeFormat.CODE_128; break;
+                case "EAN13": format = ZXing.BarcodeFormat.EAN_13; break;
+                case "EAN8": format = ZXing.BarcodeFormat.EAN_8; break;
+                case "Code39": format = ZXing.BarcodeFormat.CODE_39; break;
+                case "Code93": format = ZXing.BarcodeFormat.CODE_93; break;
+                case "ITF": format = ZXing.BarcodeFormat.ITF; break;
+                case "Codabar": format = ZXing.BarcodeFormat.CODABAR; break;
+                default: throw new ArgumentException("symbology " + (string)c["symbology"]);
+            }
+            var hints = new Dictionary<ZXing.EncodeHintType, object> { { ZXing.EncodeHintType.MARGIN, 0 } };
+            try
+            {
+                ZXing.Common.BitMatrix m = new ZXing.MultiFormatWriter().encode((string)c["text"], format, 0, 0, hints);
+                results.Add(m.Width);
+            }
+            catch
+            {
+                results.Add(JValue.CreateNull());
+            }
+        }
+        File.WriteAllText(args[2], results.ToString(Formatting.None), new UTF8Encoding(false));
+        return 0;
+    }
+
     static int LcMap(string[] args)
     {
         const uint TRADITIONAL = 0x04000000;

@@ -32,6 +32,7 @@ import { CODE128_PATTERNS, CODE128_START_A, CODE128_START_B, CODE128_START_C, CO
 import { castInt32, charAt, convertToInt16, convertToInt32, i32, idiv, indexOutOfRange, mathRound, type IntPoint } from './netutil.js';
 import { draw2DBarcode } from './pdf417.js';
 import { qrMatrix } from './qrcode.js';
+import { zxingLinearModules } from './zxingwidth.js';
 
 // ---------------------------------------------------------------------------------------------
 // Tables
@@ -312,7 +313,7 @@ export class BarcodeItem extends PrintPosItem {
         // The same door as the QR: a driver that draws this symbology by itself gets the barcode
         // object; the rest get the bars.
         const simbologia = nativeSymbology(this.barType);
-        if (simbologia !== MetaBarcodeSymbology.Unknown && adriver.supportsNativeBarcode(simbologia) && this.emitNativeBarcode(simbologia))
+        if (simbologia !== MetaBarcodeSymbology.Unknown && adriver.supportsNativeBarcode(simbologia) && this.emitNativeBarcode(simbologia, aposx, aposy, metafile))
           return;
         const data = this.calculateBarcode();
         // draw the barcode
@@ -325,16 +326,48 @@ export class BarcodeItem extends PrintPosItem {
   }
 
   /**
-   * EmitNativeBarcode: a linear barcode or PDF417 as a native object (for a receipt printer).
-   * C# takes its module count from the ZXing.Net writers of each symbology (MultiFormatWriter),
-   * which @zxing/library does not have: a device that draws them natively is not supported yet.
+   * EmitNativeBarcode: a linear barcode or PDF417 as a native object (for a receipt printer). The
+   * module count is the one ZXing.Net gives C# (zxingLinearModules), so the driver sizes the module
+   * to the box; where ZXing refuses the text (an EAN of another length, an ITF with an odd count)
+   * nothing is emitted and the bars are drawn as always. The module count of PDF417 comes from the
+   * PDF417 encoder of ZXing, not ported (the engine draws PDF417 with the encoder of Delphi): a
+   * device that draws PDF417 by itself is not supported yet.
    */
-  private emitNativeBarcode(simbologia: MetaBarcodeSymbology): boolean {
+  private emitNativeBarcode(simbologia: MetaBarcodeSymbology, aposx: number, aposy: number, metafile: MetaFile): boolean {
     // C# parity: an empty text is drawn as bars
-    if (this.currentText.length === 0) return false;
-    throw new NotSupportedYetError(
-      'Barcodes drawn by the device itself (symbology ' + MetaBarcodeSymbology[simbologia] + ', the item ' + this.name + ')',
-    );
+    const text = this.currentText;
+    if (text.length === 0) return false;
+    if (simbologia === MetaBarcodeSymbology.PDF417)
+      throw new NotSupportedYetError('PDF417 barcodes drawn by the device itself (the item ' + this.name + ')');
+    const modules = zxingLinearModules(simbologia, text);
+    if (modules === null) return false;
+    const page = metafile.pages.get(metafile.currentPage);
+    const nativo = new MetaObjectBarcode();
+    nativo.metaType = MetaObjectType.Barcode;
+    nativo.left = aposx;
+    nativo.top = aposy;
+    nativo.width = this.width;
+    nativo.height = this.height;
+    nativo.textP = page.addString(text);
+    nativo.textS = text.length;
+    nativo.symbology = simbologia;
+    nativo.ecc = MetaBarcodeEcc.L;
+    nativo.modules = modules;
+    nativo.rows = 0;
+    // Code 128: the code set the item asked (A, B, C), 0 for the automatic one
+    nativo.columns =
+      simbologia === MetaBarcodeSymbology.Code128
+        ? this.barType === BarcodeType.Code128A
+          ? 1
+          : this.barType === BarcodeType.Code128B
+            ? 2
+            : this.barType === BarcodeType.Code128C
+              ? 3
+              : 0
+        : 0;
+    nativo.flags = 0;
+    page.objects.push(nativo);
+    return true;
   }
 
   private printQr(adriver: PrintOut, aposx: number, aposy: number, metafile: MetaFile): void {

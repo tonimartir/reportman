@@ -9,6 +9,7 @@ import { readReportXml, type BarcodeItem as BarcodeModel, type Report } from '@r
 import { MetaBarcodeEcc, MetaBarcodeSymbology, MetaObjectBarcode, MetaObjectDraw } from '@reportman/metafile';
 import { PdfDevice } from '@reportman/pdf';
 import { NotSupportedYetError, prepareReport, RpDateTime } from '@reportman/engine';
+import { zxingLinearModules } from '../src/report/barcode/zxingwidth.js';
 import { here, samplesDb } from './golden-run.js';
 import { sqliteHost } from './sqlite-host.js';
 
@@ -68,10 +69,25 @@ describe('a device that draws barcodes by itself', () => {
     expect(meta.pages.get(0).objects.some((o) => o instanceof MetaObjectBarcode)).toBe(false);
   });
 
-  it('is not supported yet for linear symbologies and PDF417', async () => {
-    await expect(execute(model('bc-code128'), new NativeDevice([MetaBarcodeSymbology.Code128]))).rejects.toThrow(NotSupportedYetError);
+  it('gets a linear barcode as a barcode object, with the modules ZXing gives C#', async () => {
+    const meta = await execute(model('bc-code128'), new NativeDevice([MetaBarcodeSymbology.Code128]));
+    const page = meta.pages.get(0);
+    const barcodes = page.objects.filter((o): o is MetaObjectBarcode => o instanceof MetaObjectBarcode);
+    // 28 items: the empty text and the five ZXing refuses (beyond ASCII: the ¿ that stands for
+    // FNC1 in the engine, Ñandú €) are drawn as bars, as in C#
+    expect(barcodes.length).toBe(22);
+    expect(page.objects.some((o) => o instanceof MetaObjectDraw)).toBe(true);
+    expect(barcodes.some((b) => /[^\0-\x7f]/.test(page.getText(b)))).toBe(false);
+    for (const b of barcodes) {
+      expect(b.symbology).toBe(MetaBarcodeSymbology.Code128);
+      expect(b.modules).toBe(zxingLinearModules(MetaBarcodeSymbology.Code128, page.getText(b)));
+    }
+  });
+
+  it('is not supported yet for PDF417', async () => {
+    await expect(execute(model('bc-pdf417'), new NativeDevice([MetaBarcodeSymbology.PDF417]))).rejects.toThrow(NotSupportedYetError);
     await expect(execute(model('bc-pdf417'), new NativeDevice([MetaBarcodeSymbology.PDF417]))).rejects.toThrow(
-      /Barcodes drawn by the device itself \(symbology PDF417/,
+      /PDF417 barcodes drawn by the device itself/,
     );
   });
 });
