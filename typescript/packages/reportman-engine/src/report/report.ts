@@ -137,12 +137,19 @@ class RunContext implements VariantContext {
   readonly translator: Translator;
   readonly timeZone: LocalTimeZone;
   readonly now: () => RpDateTime;
+  private readonly fromDelphi: () => boolean;
 
-  constructor(culture: CultureInfo, translator: Translator, now: () => RpDateTime, timeZone: LocalTimeZone) {
+  constructor(culture: CultureInfo, translator: Translator, now: () => RpDateTime, timeZone: LocalTimeZone, fromDelphi: () => boolean) {
     this.culture = culture;
     this.translator = translator;
     this.now = now;
     this.timeZone = timeZone;
+    this.fromDelphi = fromDelphi;
+  }
+
+  /** The masks of Delphi for the dates of a report converted from Delphi (convertedFromDelphi). */
+  get delphiDateMasks(): boolean {
+    return this.fromDelphi();
   }
 }
 
@@ -245,7 +252,7 @@ export class ReportRuntime {
     this.locale = options.culture;
     this.translator = options.translator ?? Translator.forCulture(options.culture);
     this.evalHost = options.evalHost;
-    this.context = new RunContext(options.culture, this.translator, () => this.evalHost.now(), options.timeZone ?? utcTimeZone);
+    this.context = new RunContext(options.culture, this.translator, () => this.evalHost.now(), options.timeZone ?? utcTimeZone, () => this.convertedFromDelphi);
     this.onProgress = options.onProgress;
     this.executeSubReportIndexes = options.subReportIndexes ?? null;
     this.fCompose = options.compose !== undefined;

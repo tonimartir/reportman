@@ -369,7 +369,7 @@ namespace Reportman.Reporting
             aresult = "";
             if (Params[0].VarType == VariantType.Null)
                 Params[0] = "";
-            aresult = Params[1].ToString(format, ParamType.Unknown, true);
+            aresult = Params[1].ToString(format, ParamType.Unknown, true, EvalObject != null && EvalObject.DelphiDateMasks);
             return aresult;
         }
     }

@@ -569,6 +569,31 @@ report('syn-convert.rep', {
   ],
 });
 
+// The date masks of a report converted from Delphi (dbExpress connection) follow Delphi's
+// FormatDateTime, in the display formats and in FORMATSTR; the same report with a connection of
+// the C# engine keeps the masks of .NET. Fixed dates: 2026-11-23 13:02:29.760 (a Monday), the
+// same day at midnight and 1899-12-30 13:02:29.760 (a time).
+function dateMasks(file, driver) {
+  const when = 'FLOATTODATETIME(46349.5434)';
+  const masks = ['mmm-yy', 'dd/mmm/yyyy', 'hh:nn am/pm', 'h:n a/p', 'ddd d mmm', 'c', 't', 'tt', 'ddddd', 'dddddd', 'd', 'm', 'g', 'yyyy-mm-dd"T"hh:nn:ss.zzz'];
+  const rows = [];
+  masks.forEach((mask, i) => {
+    rows.push(label(mask, { POSY: i * 260, WIDTH: 2600 }));
+    rows.push(expr(when, { POSX: 2700, POSY: i * 260, WIDTH: 3600, DISPLAYFORMAT: mask }));
+    rows.push(expr(`FORMATSTR('${mask.replace(/'/g, "''")}',${when})`, { POSX: 6400, POSY: i * 260, WIDTH: 3600 }));
+  });
+  const y = masks.length * 260;
+  rows.push(expr('FLOATTODATETIME(46349.0)', { POSY: y, WIDTH: 3600, DISPLAYFORMAT: 'c' }));
+  rows.push(expr('FLOATTODATETIME(0.5434)', { POSX: 3700, POSY: y, WIDTH: 3600, DISPLAYFORMAT: 'c' }));
+  rows.push(expr('FLOATTODATETIME(46349.5434)', { POSX: 7400, POSY: y, WIDTH: 3000 }));
+  report(file, {
+    databases: [database({ DRIVER: driver })],
+    subs: [subreport('', [section('detail', { HEIGHT: y + 300 }, rows)])],
+  });
+}
+dateMasks('syn-delphi-masks.rep', 0);
+dateMasks('syn-net-masks.rep', 8);
+
 // Nothing to print: a report that prints only with data and a dataset without rows.
 report('syn-nodata.rep', {
   props: { PRINTONLYIFDATAAVAILABLE: true },

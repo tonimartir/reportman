@@ -10,6 +10,7 @@ import { compareCulture } from '../util/chars.js';
 import { compositeFormat } from '../util/compositeformat.js';
 import { dateFormatMask, formatDateTime } from '../util/dateformat.js';
 import { RpDateTime, DateTimeKind } from '../util/datetime.js';
+import { delphiFormatSettings, formatDateTimeDelphi } from '../util/delphidateformat.js';
 import { CsDecimal } from '../util/decimal.js';
 import { formatDecimal, formatDouble, formatInteger } from '../util/numberformat.js';
 import { NumberStyles, tryParseDecimal, tryParseDouble } from '../util/numberparse.js';
@@ -610,11 +611,15 @@ export class Variant {
         if (displayformat.length === 0) return value.displayText(ctx);
         if (isDateParam) {
           const adate = value.toDateTime(ctx);
+          if (ctx.delphiDateMasks === true) return formatDateTimeDelphi(adate, displayformat, delphiFormatSettings(ctx.culture));
           return formatDateTime(adate, dateFormatMask(displayformat), ctx.culture, ctx.timeZone);
         }
         if (displayformat[0] === '*') return formatDouble(value.toDouble(ctx), displayformat.substring(1), ctx.culture.number);
         return formatDouble(value.toDouble(ctx), displayformat, ctx.culture.number);
       case VariantType.DateTime: {
+        // Only a mask of the report follows Delphi: the default formats are patterns of .NET
+        if (ctx.delphiDateMasks === true && displayformat.length > 0)
+          return formatDateTimeDelphi(value.dt, displayformat, delphiFormatSettings(ctx.culture));
         // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
         // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
         if (displayformat.length === 0 && paramtype !== ParamType.Date && value.dt.days === 0 && value.dt.tickOfDay !== 0)

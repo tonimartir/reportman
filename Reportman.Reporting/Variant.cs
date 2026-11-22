@@ -2329,6 +2329,29 @@ namespace Reportman.Reporting
         public string ToString(string displayformat, ParamType paramtype,
             bool printnulls)
         {
+            return ToString(displayformat, paramtype, printnulls, false);
+        }
+        /// <summary>
+        /// Formats a Variant, with a display format; a date with a display format of a report
+        /// converted from Delphi is formatted as Delphi does (<see cref="DelphiDateFormat"/>).
+        /// </summary>
+        /// <param name="displayformat">
+        /// The formatting string, depending on current value
+        /// </param>
+        /// <param name="paramtype">
+        /// The variant will be formatted with a logic related to parameter type
+        /// specified, unknown can be specified
+        /// </param>
+        /// <param name="printnulls">
+        /// For numeric values the 0 will return an empty string
+        /// </param>
+        /// <param name="delphiDateMasks">
+        /// The report was converted from Delphi (<see cref="BaseReport.ConvertedFromDelphi"/>): the
+        /// date masks are those of Delphi's FormatDateTime instead of .NET's
+        /// </param>
+        public string ToString(string displayformat, ParamType paramtype,
+            bool printnulls, bool delphiDateMasks)
+        {
             VariantType atype;
             Variant Value = this;
 
@@ -2420,7 +2443,9 @@ namespace Reportman.Reporting
                                 if (displayformat.Length == 0)
                                     displayformat = DefaultDateTimeFormat(paramtype);
                                 DateTime adate = Value;
-                                aresult = adate.ToString(DateFormatMask(displayformat));
+                                aresult = delphiDateMasks
+                                    ? DelphiDateFormat.Format(adate, displayformat, DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture))
+                                    : adate.ToString(DateFormatMask(displayformat));
                             }
                             else
                             {
@@ -2438,6 +2463,12 @@ namespace Reportman.Reporting
                     break;
                 case VariantType.DateTime:
                     DateTime dvalue = Value;
+                    // Only a mask of the report follows Delphi: the default formats are patterns of .NET
+                    if (delphiDateMasks && (displayformat.Length > 0))
+                    {
+                        aresult = DelphiDateFormat.Format(dvalue, displayformat, DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture));
+                        break;
+                    }
                     // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
                     // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
                     if ((displayformat.Length == 0) && (paramtype != ParamType.Date) && (dvalue.Date == DateTime.MinValue.Date) &&

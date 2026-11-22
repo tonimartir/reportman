@@ -273,7 +273,7 @@ namespace Reportman.Reporting
             {
                 try
                 {
-                    avalue = FExportValue.ToString(ExportDisplayFormat, ParamType.Unknown, true);
+                    avalue = FExportValue.ToString(ExportDisplayFormat, ParamType.Unknown, true, Report.ConvertedFromDelphi);
 
                     MetaObjectExport nobj = new MetaObjectExport();
                     nobj.MetaType = MetaObjectType.Export;
@@ -405,7 +405,7 @@ namespace Reportman.Reporting
             try
             {
                 Evaluate();
-                aresult = Value.ToString(DisplayFormat, DataType, PrintNulls);
+                aresult = Value.ToString(DisplayFormat, DataType, PrintNulls, Report.ConvertedFromDelphi);
                 if (IsHtml)
                     aresult = EvaluateHtmlExpressions(aresult);
             }

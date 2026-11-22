@@ -16,6 +16,11 @@ export interface VariantContext {
   readonly timeZone: LocalTimeZone;
   /** DateTime.Now: the date of a parsed text with a time only. */
   readonly now: () => RpDateTime;
+  /**
+   * The report was converted from Delphi (convertedFromDelphi): a date with a display format is
+   * formatted with the masks of Delphi's FormatDateTime instead of those of .NET.
+   */
+  readonly delphiDateMasks?: boolean;
 }
 
 export interface ContextOptions {

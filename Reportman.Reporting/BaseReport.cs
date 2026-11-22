@@ -1079,7 +1079,12 @@ namespace Reportman.Reporting
             }
             ReportReader.ConvertToDotNet((Report)this, DriverType.DotNet2, "");
             if (fromDelphi)
+            {
                 ConvertedFromDelphi = true;
+                // The evaluator of the report may be there already (created with the report)
+                if (Evaluator != null)
+                    Evaluator.DelphiDateMasks = true;
+            }
         }
         /// <summary>
         /// Loads a report from a stream using the given read buffer size.
@@ -1295,6 +1300,7 @@ namespace Reportman.Reporting
             Evaluator = new Evaluator();
             Evaluator.OnDatasetNeeded += Evaluator_OnDatasetNeeded;
             Evaluator.Language = Language;
+            Evaluator.DelphiDateMasks = ConvertedFromDelphi;
         }
         SortedList<string, string> openingDatasets = new SortedList<string, string>();
         private void Evaluator_OnDatasetNeeded(DataNeededEventArgs args)
@@ -1529,7 +1535,7 @@ namespace Reportman.Reporting
             barcode.Rotation = System.Convert.ToInt16(Rotation * 10);
             barcode.Checksum = CalcChecksum;
             FValue = Evaluator.EvaluateText(Expression);
-            barcode.CurrentText = FValue.ToString(DisplayFormat, ParamType.Unknown, true);
+            barcode.CurrentText = FValue.ToString(DisplayFormat, ParamType.Unknown, true, ConvertedFromDelphi);
             data = barcode.CalculateBarcode();
             // Draws Barcode
             barcode.PrintHeight = Height;

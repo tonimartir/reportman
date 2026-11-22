@@ -170,7 +170,7 @@ namespace Reportman.Reporting
             try
             {
                 Evaluate();
-                aresult = FValue.ToString(DisplayFormat, ParamType.Unknown, true);
+                aresult = FValue.ToString(DisplayFormat, ParamType.Unknown, true, Report.ConvertedFromDelphi);
             }
             catch (Exception E)
             {

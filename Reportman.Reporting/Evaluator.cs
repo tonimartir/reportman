@@ -1061,6 +1061,11 @@ namespace Reportman.Reporting
         /// a desktop program that runs its own reports can turn it on, as the Delphi engine has it.
         /// </summary>
         public static bool AllowFileFunctions;
+        /// <summary>
+        /// The report of the evaluator was converted from Delphi (<see cref="BaseReport.ConvertedFromDelphi"/>):
+        /// FORMATSTR formats dates with the masks of Delphi.
+        /// </summary>
+        public bool DelphiDateMasks;
 
         internal static void CheckFileFunctions(string name)
         {

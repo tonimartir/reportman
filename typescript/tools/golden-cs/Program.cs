@@ -75,6 +75,7 @@ class Program
                 case "shape": return Shape(args);
                 case "lcmap": return LcMap(args);
                 case "zxing-width": return ZxingWidth(args);
+                case "delphi-dates": return DelphiDates(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -472,6 +473,26 @@ class Program
             {
                 results.Add(JValue.CreateNull());
             }
+        }
+        File.WriteAllText(args[2], results.ToString(Formatting.None), new UTF8Encoding(false));
+        return 0;
+    }
+
+    /// <summary>
+    /// delphi-dates CASES.json OUT.json: the date masks of a report converted from Delphi, as the C#
+    /// engine formats them (DelphiDateFormat with the format settings of the culture). CASES is an
+    /// array of { "culture" ('' the invariant one), "mask", "value" (an OLE date) }.
+    /// </summary>
+    static int DelphiDates(string[] args)
+    {
+        JArray cases = JArray.Parse(File.ReadAllText(args[1]));
+        var results = new JArray();
+        foreach (JObject c in cases)
+        {
+            string name = (string)c["culture"];
+            CultureInfo culture = name.Length == 0 ? CultureInfo.InvariantCulture : CultureInfo.GetCultureInfo(name);
+            DateTime value = DateTime.FromOADate((double)c["value"]);
+            results.Add(DelphiDateFormat.Format(value, (string)c["mask"], DelphiDateFormat.SettingsFor(culture)));
         }
         File.WriteAllText(args[2], results.ToString(Formatting.None), new UTF8Encoding(false));
         return 0;

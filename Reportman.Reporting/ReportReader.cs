@@ -768,6 +768,8 @@ namespace Reportman.Reporting
         {
             areport.UndoCue = null;
             areport.ConvertedFromDelphi = false;
+            if (areport.Evaluator != null)
+                areport.Evaluator.DelphiDateMasks = false;
             areport.DatabaseInfo.Clear();
             areport.DataInfo.Clear();
             areport.Params.Clear();
