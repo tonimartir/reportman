@@ -50,9 +50,13 @@ function emMult(v: number, s: HbScale): number {
   return Math.floor((x * s.mult + 32768) / 65536);
 }
 
-/** roundf of C: half away from zero. */
+/**
+ * roundf as HarfBuzz uses it: its own _hb_roundf, floorf (x + .5f), so a half goes up (-42.5 is
+ * -42), not away from zero as the roundf of C (an anchor at a scale that is not the font's: the C#
+ * FreeType driver usually shapes at 1024, the UnitsPerEM a new TTFontData starts with).
+ */
 function roundf(x: number): number {
-  return x < 0 ? -Math.floor(-x + 0.5) : Math.floor(x + 0.5);
+  return Math.floor(Math.fround(Math.fround(x) + 0.5));
 }
 
 /** em_fscale of HarfBuzz: a float product in single precision. */

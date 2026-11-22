@@ -71,6 +71,7 @@ class Program
                 case "sql": return Sql(args);
                 case "text-extent": return TextExtent(args);
                 case "encoding": return EncodingTable(args);
+                case "shape": return Shape(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -379,6 +380,41 @@ class Program
     //     cases.json: [{ "text": "...", "fontSize": 10, "fontStyle": 0, "type1Font": 0,
     //     "wordWrap": true, "alignment": 0, "cutText": false, "width": 2000, "height": 0 }, ...]
     //     For each case, PrintOutPDFStandard.TextExtent (twips) and the LineInfo list.
+    // golden-cs shape <font file> <rtl 0|1> <script|-> <text file, UTF-8> [face index] [scale]
+    //   The glyphs HarfBuzz gives for a text as FontInfoFt.DarForma shapes it (the scale in units
+    //   per em, or the scale given, the OpenType functions, the language "ar" for Arab), one line per glyph:
+    //   codepoint xAdvance xOffset yOffset cluster, at the scale.
+    static int Shape(string[] args)
+    {
+        bool rightToLeft = args[2] == "1";
+        string script = args[3];
+        string text = File.ReadAllText(args[4], new UTF8Encoding(false));
+        int faceIndex = args.Length > 5 ? int.Parse(args[5], CultureInfo.InvariantCulture) : 0;
+        using (var blob = HarfBuzzSharp.Blob.FromFile(args[1]))
+        using (var face = new HarfBuzzSharp.Face(blob, faceIndex))
+        using (var font = new HarfBuzzSharp.Font(face))
+        using (var buffer = new HarfBuzzSharp.Buffer())
+        {
+            int scale = args.Length > 6 ? int.Parse(args[6], CultureInfo.InvariantCulture) : face.UnitsPerEm;
+            font.SetScale(scale, scale);
+            font.SetFunctionsOpenType();
+            buffer.Direction = rightToLeft ? HarfBuzzSharp.Direction.RightToLeft : HarfBuzzSharp.Direction.LeftToRight;
+            if (script != "-")
+            {
+                buffer.Script = HarfBuzzSharp.Script.Parse(script);
+                if (script == "Arab")
+                    buffer.Language = new HarfBuzzSharp.Language("ar");
+            }
+            buffer.AddUtf16(text);
+            font.Shape(buffer);
+            var infos = buffer.GlyphInfos;
+            var positions = buffer.GlyphPositions;
+            for (int i = 0; i < infos.Length; i++)
+                Console.WriteLine(string.Join(" ", infos[i].Codepoint, positions[i].XAdvance, positions[i].XOffset, positions[i].YOffset, infos[i].Cluster));
+        }
+        return 0;
+    }
+
     static int TextExtent(string[] args)
     {
         SetCulture(args);
