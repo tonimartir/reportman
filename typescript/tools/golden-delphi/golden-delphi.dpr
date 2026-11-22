@@ -16,8 +16,10 @@ program golden_delphi;
   The drivers write the file name they are given into the documents (the names of the images), so
   each export runs in its own folder with a relative name.
 
-  Usage: golden-delphi <report.rep> <outdir> [-name NAME] [-pages N] [-caption TEXT]
+  Usage: golden-delphi <report.rep> <outdir> [-name NAME] [-pages N] [-caption TEXT] [-pdf FILE]
     -name     base name of the files (the name of the report by default)
+    -pdf      also the PDF of every page, as printreptopdf writes it (SaveMetafileToPDF of the
+              metafile the PDF driver measured, uncompressed, PDF/A-3 when the report says so)
     -pages    the first N pages only (all of them by default); the report still runs to its end,
               so the page count texts are those of the whole report
     -caption  the caption the drivers write (<desc> of the SVG, <TITLE> of the HTML)
@@ -54,6 +56,7 @@ uses
 var
   ReportFile, OutDir, BaseName, Caption: string;
   PageLimit: Integer;
+  PdfFile: string;
 
 procedure Fail(const AMessage: string);
 begin
@@ -235,11 +238,12 @@ begin
   BaseName := '';
   Caption := '';
   PageLimit := 0;
+  PdfFile := '';
   i := 1;
   while i <= ParamCount do
   begin
     arg := ParamStr(i);
-    if (arg = '-name') or (arg = '-pages') or (arg = '-caption') then
+    if (arg = '-name') or (arg = '-pages') or (arg = '-caption') or (arg = '-pdf') then
     begin
       if i = ParamCount then
         Fail('A value is expected after ' + arg);
@@ -248,6 +252,8 @@ begin
         BaseName := ParamStr(i)
       else if arg = '-pages' then
         PageLimit := StrToInt(ParamStr(i))
+      else if arg = '-pdf' then
+        PdfFile := ExpandFileName(ParamStr(i))
       else
         Caption := ParamStr(i);
     end
@@ -260,7 +266,7 @@ begin
     Inc(i);
   end;
   if (ReportFile = '') or (OutDir = '') then
-    Fail('Usage: golden-delphi <report.rep> <outdir> [-name NAME] [-pages N] [-caption TEXT]');
+    Fail('Usage: golden-delphi <report.rep> <outdir> [-name NAME] [-pages N] [-caption TEXT] [-pdf FILE]');
   ReportFile := ExpandFileName(ReportFile);
   OutDir := ExcludeTrailingPathDelimiter(ExpandFileName(OutDir));
   if BaseName = '' then
@@ -295,6 +301,8 @@ begin
     // As printreptopdf: every page, the parameters with their default values
     PrintReportToMetafile(report, '', False, True, 1, MAX_PAGECOUNT, 1, '', False);
     totalPages := report.Metafile.CurrentPageCount;
+    if PdfFile <> '' then
+      SaveMetafileToPDF(report.Metafile, PdfFile, False, report.PDFConformance = TPDFConformanceType.PDF_A_3);
     if (PageLimit > 0) and (PageLimit < totalPages) then
       report.Metafile.PageRange(1, PageLimit);
     WriteMetafileJson(report, totalPages, runTime, OutDir + PathDelim + 'meta.json');
