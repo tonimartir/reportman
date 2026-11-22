@@ -1,9 +1,10 @@
 // The DFM forms of a component stream, as Delphi writes a report with TWriter (TRpBaseReport.
 // SaveToStream): binary (TPF0, rpStreamBinary), text (ObjectBinaryToText, rpStreamText, the default
-// of the designers) and either of them compressed with zlib (rpStreamZLib). The three are read into
+// of the designers) and the binary one compressed with zlib (rpStreamZLib). The three are read into
 // the same tree: the root object, its properties with their typed values, and its child objects.
-// An independent implementation of the format (the value types of TValueType and the grammar of
-// ObjectTextToBinary), checked against the files Delphi writes: test/dfm.test.ts.
+// An independent implementation of the format (the value types of TValueType, TReader.ReadString,
+// and TParser and ObjectTextToBinary for the text form), checked against the files Delphi writes
+// and against what Delphi reads from them: test/dfm.test.ts and test/reader.test.ts.
 
 import { unzlibSync } from 'fflate';
 
@@ -50,8 +51,8 @@ export interface DfmObject {
   children: DfmObject[];
 }
 
-/** The form a report is stored in. */
-export type ReportForm = 'xml' | 'text' | 'binary' | 'zlib-xml' | 'zlib-text' | 'zlib-binary';
+/** The form a report is stored in, as TRpBaseReport.LoadFromStream tells it. */
+export type ReportForm = 'xml' | 'text' | 'binary' | 'zlib-xml' | 'zlib-binary';
 
 /** A file that is not a DFM the reader understands, or a broken one. */
 export class DfmError extends Error {
@@ -67,28 +68,29 @@ function isSignature(bytes: Uint8Array, at = 0): boolean {
   return bytes.length >= at + 4 && SIGNATURE.every((b, i) => bytes[at + i] === b);
 }
 
-/** The first byte that is not blank (a text form may start with a BOM or spaces). */
-function firstChar(bytes: Uint8Array): number {
-  let i = bytes.length >= 3 && bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf ? 3 : 0;
-  while (i < bytes.length && (bytes[i] === 0x20 || bytes[i] === 0x09 || bytes[i] === 0x0d || bytes[i] === 0x0a)) i++;
-  return i < bytes.length ? bytes[i]! : -1;
-}
+const NOT_A_REPORT =
+  'Not a report Delphi reads (Invalid stream format): a report is XML (it starts with <), a text DFM ' +
+  '(it starts with "object", with no BOM or blanks before it), a binary DFM (TPF0) or a binary DFM or XML ' +
+  'compressed with zlib.';
 
 /**
- * The form of a report file, as TRpBaseReport.LoadFromStream tells it by its first byte: 'x'
- * zlib, 'o' text, '<' XML, anything else binary. A text form may also start with inherited or
- * inline, and a binary one is checked by its signature.
+ * The form of a report file, as TRpBaseReport.LoadFromStream tells it by its first byte: 'x' zlib
+ * (decompressed, '<' is XML and anything else binary), 'o' text, '<' XML, anything else binary,
+ * which TReader checks by its signature. So Delphi does not read a text DFM with a BOM or blanks
+ * before "object", nor a text DFM compressed with zlib, and neither does the converter.
  */
 export function reportForm(bytes: Uint8Array): ReportForm {
-  const plain = (b: Uint8Array): 'xml' | 'text' | 'binary' => {
-    if (isSignature(b)) return 'binary';
-    const c = firstChar(b);
-    if (c === 0x3c) return 'xml';
-    if (c === 0x6f || c === 0x69) return 'text'; // object, inherited, inline
-    throw new DfmError('Not a report: neither XML nor a DFM form (text, binary or zlib).');
-  };
-  if (bytes.length > 0 && bytes[0] === 0x78) return ('zlib-' + plain(inflate(bytes))) as ReportForm;
-  return plain(bytes);
+  if (bytes.length === 0) throw new DfmError('The report is empty.');
+  if (bytes[0] === 0x78) {
+    const inner = inflate(bytes);
+    if (inner[0] === 0x3c) return 'zlib-xml';
+    if (!isSignature(inner)) throw new DfmError(NOT_A_REPORT);
+    return 'zlib-binary';
+  }
+  if (bytes[0] === 0x6f) return 'text';
+  if (bytes[0] === 0x3c) return 'xml';
+  if (!isSignature(bytes)) throw new DfmError(NOT_A_REPORT);
+  return 'binary';
 }
 
 function inflate(bytes: Uint8Array): Uint8Array {
@@ -99,7 +101,7 @@ function inflate(bytes: Uint8Array): Uint8Array {
   }
 }
 
-/** Whether a report file is in a DFM form (text, binary, or one of them compressed). */
+/** Whether a report file is in a DFM form Delphi reads (text, binary, or binary compressed). */
 export function isDfm(bytes: Uint8Array): boolean {
   try {
     const form = reportForm(bytes);
@@ -109,13 +111,16 @@ export function isDfm(bytes: Uint8Array): boolean {
   }
 }
 
-/** The tree of a DFM report in any of its forms. */
+/**
+ * The tree of a DFM stream: binary (TPF0) or text, as TReader and ObjectTextToBinary read them, or
+ * either one compressed with zlib. Any DFM, also the ones a report can not be (a text form with a
+ * UTF-8 BOM, which TParser reads as UTF-8); dfmToXml takes only what reportForm accepts.
+ */
 export function readDfm(bytes: Uint8Array): DfmObject {
   let data = bytes;
   if (data.length > 0 && data[0] === 0x78) data = inflate(data);
   if (isSignature(data)) return new BinaryReader(data).readRoot();
-  const c = firstChar(data);
-  if (c === 0x3c) throw new DfmError('The report is XML, not a DFM form.');
+  if (data[0] === 0x3c) throw new DfmError('The report is XML, not a DFM form.');
   const { text, utf8 } = textBytes(data);
   return new TextParser(text, utf8).readRoot();
 }
@@ -140,7 +145,61 @@ export function decodeAnsi(bytes: Uint8Array, start = 0, end = bytes.length): st
   return units.join('');
 }
 
-/** UTF-8 bytes (an invalid sequence becomes U+FFFD). */
+let utf8Decoder: { decode(input: Uint8Array): string } | undefined;
+
+/**
+ * UTF-8 bytes as TEncoding.UTF8.GetString reads them (vaUTF8String, and the strings of a text form
+ * with a UTF-8 BOM): an invalid sequence (a stray byte, a truncated or overlong sequence, a
+ * surrogate, a code point above U+10FFFF) is an error, which Delphi raises too and so does not
+ * load the report; a U+FEFF stays.
+ */
+export function decodeUtf8Strict(bytes: Uint8Array, start = 0, end = bytes.length): string {
+  utf8Decoder ??= new TextDecoder('utf-8', { fatal: true, ignoreBOM: true });
+  try {
+    return utf8Decoder.decode(bytes.subarray(start, end));
+  } catch {
+    throw new DfmError('A string of the DFM is not valid UTF-8 (Delphi cannot read it either: "No mapping for the Unicode character exists in the target multi-byte code page").');
+  }
+}
+
+/**
+ * What TWriter.WriteString and then TReader.ReadString make of a string: ObjectTextToBinary writes
+ * every string of the text form with WriteString, which writes it in UTF-8 (vaUTF8String) when
+ * that is shorter than UTF-16 and not ASCII, and there a lone surrogate becomes U+FFFD; otherwise
+ * it is kept as it is (vaString of ASCII, vaWString).
+ */
+export function writeStringRoundTrip(s: string): string {
+  let bytes = 0;
+  let ascii = true;
+  let lone = false;
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    if (c < 0x80) bytes += 1;
+    else {
+      ascii = false;
+      if (c < 0x800) bytes += 2;
+      else if (c >= 0xd800 && c < 0xdc00 && i + 1 < s.length && (s.charCodeAt(i + 1) & 0xfc00) === 0xdc00) {
+        bytes += 4;
+        i++;
+      } else {
+        bytes += 3;
+        if (c >= 0xd800 && c < 0xe000) lone = true;
+      }
+    }
+  }
+  if (ascii || !lone || bytes >= s.length * 2) return s;
+  let out = '';
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    if (c >= 0xd800 && c < 0xdc00 && i + 1 < s.length && (s.charCodeAt(i + 1) & 0xfc00) === 0xdc00) {
+      out += s[i]! + s[i + 1]!;
+      i++;
+    } else out += c >= 0xd800 && c < 0xe000 ? '�' : s[i]!;
+  }
+  return out;
+}
+
+/** UTF-8 bytes, an invalid sequence as U+FFFD: the names of the binary form (UTF8IdentToString). */
 export function decodeUtf8(bytes: Uint8Array, start = 0, end = bytes.length): string {
   let out = '';
   let i = start;
@@ -374,7 +433,7 @@ class BinaryReader {
       case VA.UTF8String: {
         const n = this.int32();
         this.need(n);
-        const s = t === VA.UTF8String ? decodeUtf8(this.bytes, this.pos, this.pos + n) : decodeAnsi(this.bytes, this.pos, this.pos + n);
+        const s = t === VA.UTF8String ? decodeUtf8Strict(this.bytes, this.pos, this.pos + n) : decodeAnsi(this.bytes, this.pos, this.pos + n);
         this.pos += n;
         return { type: 'string', value: s };
       }
@@ -458,20 +517,21 @@ class TextParser {
     throw new DfmError(`${message} (line ${this.line} of the text DFM)`);
   }
 
+  /** TParser.SkipBlanks: every byte from 1 to 32 is a blank; a zero byte ends the text. */
   private skipBlanks(): void {
     const t = this.text;
     while (this.pos < t.length) {
       const c = t.charCodeAt(this.pos);
+      if (c === 0 || c > 32) break;
       if (c === 0x0a) this.line++;
-      if (c === 0x20 || c === 0x09 || c === 0x0a || c === 0x0d || c === 0xfeff) this.pos++;
-      else break;
+      this.pos++;
     }
   }
 
   private next(): Token {
     this.skipBlanks();
     const t = this.text;
-    if (this.pos >= t.length) return (this.token = { kind: 'eof' });
+    if (this.pos >= t.length || t.charCodeAt(this.pos) === 0) return (this.token = { kind: 'eof' });
     const c = t[this.pos]!;
     if (/[A-Za-z_]/.test(c)) {
       const start = this.pos;
@@ -479,17 +539,18 @@ class TextParser {
       return (this.token = { kind: 'symbol', text: t.substring(start, this.pos) });
     }
     if (c === "'" || c === '#') return (this.token = { kind: 'string', text: this.readString() });
-    if (/[0-9]/.test(c) || ((c === '-' || c === '+') && /[0-9$]/.test(t[this.pos + 1] ?? ''))) return (this.token = this.readNumber());
-    if (c === '$') return (this.token = this.readNumber());
+    if (/[0-9$-]/.test(c)) return (this.token = this.readNumber());
     this.pos++;
     return (this.token = { kind: 'char', text: c });
   }
 
   /**
    * A string token: quoted parts ('' is a quote) and #code characters written together, as
-   * TParser.NextToken reads it. With a code above 127 it is a wide string: the codes are UTF-16
-   * code units and each byte inside the quotes becomes the character of its value. Otherwise the
-   * codes and the bytes are bytes, decoded with the encoding of the file (TokenString).
+   * TParser.NextToken reads it. A code is decimal or $hexadecimal, an Integer (32 bits, it wraps)
+   * that is 0 without digits. With a code above 127 it is a wide string: each code is a UTF-16
+   * code unit (its low 16 bits) and each byte inside the quotes the character of its value.
+   * Otherwise the codes and the bytes are bytes, decoded with the encoding of the file
+   * (TokenString: UTF-8 after a BOM, the ANSI code page otherwise).
    */
   private readString(): string {
     const t = this.text;
@@ -499,9 +560,8 @@ class TextParser {
       if (c === "'") {
         this.pos++;
         for (;;) {
-          if (this.pos >= t.length) this.error('Unterminated string');
-          const d = t[this.pos]!;
-          if (d === '\n' || d === '\r') this.error('Unterminated string');
+          const d = t[this.pos];
+          if (d === undefined || d === '\n' || d === '\r' || d === '\0') this.error('Unterminated string');
           if (d === "'") {
             if (t[this.pos + 1] === "'") {
               parts.push({ code: 0x27, raw: true });
@@ -516,60 +576,60 @@ class TextParser {
         }
       } else if (c === '#') {
         this.pos++;
-        let code: number;
+        let code = 0;
         if (t[this.pos] === '$') {
-          const start = ++this.pos;
-          while (this.pos < t.length && /[0-9A-Fa-f]/.test(t[this.pos]!)) this.pos++;
-          code = Number.parseInt(t.substring(start, this.pos), 16);
+          this.pos++;
+          for (let d; this.pos < t.length && (d = Number.parseInt(t[this.pos]!, 16)) >= 0; this.pos++) code = ((code << 4) + d) | 0;
         } else {
-          const start = this.pos;
-          while (this.pos < t.length && /[0-9]/.test(t[this.pos]!)) this.pos++;
-          code = Number.parseInt(t.substring(start, this.pos), 10);
+          for (let d; this.pos < t.length && (d = t.charCodeAt(this.pos) - 48) >= 0 && d <= 9; this.pos++) code = (code * 10 + d) | 0;
         }
-        if (!Number.isFinite(code)) this.error('Invalid character code');
         parts.push({ code, raw: false });
       } else break;
     }
     if (parts.some((p) => !p.raw && p.code > 127)) return parts.map((p) => String.fromCharCode(p.code & 0xffff)).join('');
     const bytes = Uint8Array.from(parts, (p) => p.code & 0xff);
-    return this.utf8 ? decodeUtf8(bytes) : decodeAnsi(bytes);
+    return this.utf8 ? decodeUtf8Strict(bytes) : decodeAnsi(bytes);
   }
 
+  /**
+   * A number as TParser.NextToken scans it: $ and hexadecimal digits; or a minus or a digit, the
+   * digits, and then any of 0-9 . e E + - make it a float, which a suffix may type (s Single,
+   * c Currency, d Date, f Extended). TokenInt and TokenFloat then read it (StrToInt64, StrToFloat).
+   */
   private readNumber(): Token {
     const t = this.text;
     const start = this.pos;
-    let negative = false;
-    if (t[this.pos] === '-' || t[this.pos] === '+') {
-      negative = t[this.pos] === '-';
-      this.pos++;
-    }
     if (t[this.pos] === '$') {
-      const digits = ++this.pos;
+      this.pos++;
       while (this.pos < t.length && /[0-9A-Fa-f]/.test(t[this.pos]!)) this.pos++;
-      const v = BigInt('0x' + t.substring(digits, this.pos));
-      return { kind: 'integer', value: negative ? -v : v };
+      const digits = t.substring(start + 1, this.pos);
+      if (digits.length === 0) this.error("'$' is not a valid integer value");
+      return { kind: 'integer', value: BigInt.asIntN(64, BigInt('0x' + digits)) };
     }
+    this.pos++;
     while (this.pos < t.length && /[0-9]/.test(t[this.pos]!)) this.pos++;
     let isFloat = false;
-    if (t[this.pos] === '.' && /[0-9]/.test(t[this.pos + 1] ?? '')) {
-      isFloat = true;
+    while (this.pos < t.length && /[0-9.eE+-]/.test(t[this.pos]!)) {
       this.pos++;
-      while (this.pos < t.length && /[0-9]/.test(t[this.pos]!)) this.pos++;
-    }
-    if ((t[this.pos] === 'e' || t[this.pos] === 'E') && /[-+0-9]/.test(t[this.pos + 1] ?? '')) {
       isFloat = true;
-      this.pos++;
-      if (t[this.pos] === '-' || t[this.pos] === '+') this.pos++;
-      while (this.pos < t.length && /[0-9]/.test(t[this.pos]!)) this.pos++;
     }
     const number = t.substring(start, this.pos);
     const s = t[this.pos];
-    if (s === 's' || s === 'S' || s === 'c' || s === 'C' || s === 'd' || s === 'D') {
+    if (s !== undefined && /[cCdDsSfF]/.test(s)) {
       this.pos++;
-      return { kind: 'float', value: Number(number), suffix: s.toLowerCase() as 's' | 'c' | 'd' };
+      const suffix = s.toLowerCase();
+      return { kind: 'float', value: this.float(number), suffix: suffix === 'f' ? '' : (suffix as 's' | 'c' | 'd') };
     }
-    if (isFloat) return { kind: 'float', value: Number(number), suffix: '' };
+    if (isFloat) return { kind: 'float', value: this.float(number), suffix: '' };
+    if (!/^-?[0-9]+$/.test(number)) this.error(`'${number}' is not a valid integer value`);
     return { kind: 'integer', value: BigInt(number) };
+  }
+
+  /** StrToFloat with '.' as the decimal separator. */
+  private float(text: string): number {
+    const v = Number(text);
+    if (Number.isNaN(v) || !/^-?(?:[0-9]+\.?[0-9]*|\.[0-9]+)(?:[eE][-+]?[0-9]+)?$/.test(text)) this.error(`'${text}' is not a valid floating point value`);
+    return v;
   }
 
   private isSymbol(text: string): boolean {
@@ -592,10 +652,9 @@ class TextParser {
     return s;
   }
 
+  /** ObjectTextToBinary reads one token after the end of the root object and ignores the rest. */
   readRoot(): DfmObject {
-    const root = this.readObject();
-    if (this.token.kind !== 'eof') this.error('Text after the end of the root object');
-    return root;
+    return this.readObject();
   }
 
   private readObject(): DfmObject {
@@ -674,7 +733,8 @@ class TextParser {
           s += part.text;
           this.next();
         }
-        return { type: 'string', value: s };
+        // Written with TWriter.WriteString by ObjectTextToBinary, read back by TReader
+        return { type: 'string', value: writeStringRoundTrip(s) };
       }
       case 'symbol': {
         this.next();

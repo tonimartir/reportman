@@ -1,0 +1,702 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE REPORT_MANAGER_2>
+<REPORT>
+<WFONTNAME type="WideString">MS #12468##12471##12483##12463#</WFONTNAME>
+<LFONTNAME type="WideString">DejaVu Sans #241#</LFONTNAME>
+<GRIDVISIBLE type="Boolean">True</GRIDVISIBLE>
+<GRIDLINES type="Boolean">False</GRIDLINES>
+<GRIDENABLED type="Boolean">True</GRIDENABLED>
+<GRIDCOLOR type="Integer">16711680</GRIDCOLOR>
+<GRIDWIDTH type="Integer">115</GRIDWIDTH>
+<GRIDHEIGHT type="Integer">115</GRIDHEIGHT>
+<PAGEORIENTATION type="Integer">0</PAGEORIENTATION>
+<PAGESIZE type="Integer">0</PAGESIZE>
+<PAGESIZEQT type="Integer">0</PAGESIZEQT>
+<PAGEHEIGHT type="Integer">16837</PAGEHEIGHT>
+<PAGEWIDTH type="Integer">11906</PAGEWIDTH>
+<CUSTOMPAGEHEIGHT type="Integer">16837</CUSTOMPAGEHEIGHT>
+<CUSTOMPAGEWIDTH type="Integer">11906</CUSTOMPAGEWIDTH>
+<PAGEBACKCOLOR type="Integer">16777215</PAGEBACKCOLOR>
+<PREVIEWSTYLE type="Integer">0</PREVIEWSTYLE>
+<PREVIEWMARGINS type="Boolean">False</PREVIEWMARGINS>
+<PREVIEWWINDOW type="Integer">0</PREVIEWWINDOW>
+<LEFTMARGIN type="Integer">574</LEFTMARGIN>
+<TOPMARGIN type="Integer">574</TOPMARGIN>
+<RIGHTMARGIN type="Integer">574</RIGHTMARGIN>
+<BOTTOMMARGIN type="Integer">861</BOTTOMMARGIN>
+<PRINTERSELECT type="Integer">0</PRINTERSELECT>
+<LANGUAGE type="Integer">-1</LANGUAGE>
+<COPIES type="Integer">1</COPIES>
+<COLLATECOPIES type="Boolean">False</COLLATECOPIES>
+<TWOPASS type="Boolean">False</TWOPASS>
+<PRINTERFONTS type="Integer">0</PRINTERFONTS>
+<PRINTONLYIFDATAAVAILABLE type="Boolean">False</PRINTONLYIFDATAAVAILABLE>
+<STREAMFORMAT type="Integer">3</STREAMFORMAT>
+<REPORTACTIONDRAWERBEFORE type="Boolean">False</REPORTACTIONDRAWERBEFORE>
+<REPORTACTIONDRAWERAFTER type="Boolean">False</REPORTACTIONDRAWERAFTER>
+<PREVIEWABOUT type="Boolean">True</PREVIEWABOUT>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<PAPERSOURCE type="Integer">0</PAPERSOURCE>
+<DUPLEX type="Integer">0</DUPLEX>
+<FORCEPAPERNAME type="String"></FORCEPAPERNAME>
+<LINESPERINCH type="Integer">600</LINESPERINCH>
+<PDFCONFORMANCE type="Integer">0</PDFCONFORMANCE>
+<PDFCOMPRESSED type="Boolean">False</PDFCOMPRESSED>
+<DOCAUTHOR type="String">#198#r#248# #209#and#250# #151# Jos#233#</DOCAUTHOR>
+<DOCCREATOR type="String">A#63#</DOCCREATOR>
+<DOCPRODUCER type="String">AB#63#</DOCPRODUCER>
+<DOCSUBJECT type="String">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxx#63##63# and #63##63#
+ #63##63##63##63##63##63##63##63# #63##63#
+#63##63# #63##63# e#180# #160#nbsp #63#zw
+sp #63#bom #63# #63# end</DOCSUBJECT>
+<DOCTITLE type="String">Latin: A#241#o caf#233# #209#and#250# #198#
+r#248# Stra#223#e #255#; cp1252: #128# #147#
+quoted#148# #145#single#146# #151# #150# 
+#133# #153# #154# #159# #137#; Greek: #63#
+#63##63##63##63##63##63##63#; Cyrillic: #63#
+#63##63##63##63##63#; Hebrew: #63##63##63#
+#63#; Arabic: #63##63##63##63##63#; CJK: 
+#63##63# #63##63##63# #63##63##63#; Thai:
+ #63##63##63##63##63##63##63#; Devanagari
+: #63##63##63##63##63##63#</DOCTITLE>
+<DOCCREATIONDATE type="String"></DOCCREATIONDATE>
+<DOCMODIFICATIONDATE type="String"></DOCMODIFICATIONDATE>
+<DOCKEYWORDS type="String">tab#9#quote#39# hash#35# del#127# soh#1# 
+us#31# crlf#13##10#lf#10#end</DOCKEYWORDS>
+<DOCXMPCONTENT type="String"></DOCXMPCONTENT>
+<DATABASEINFO>
+<ALIAS type="String">CONEXI#211#N</ALIAS>
+<NAME type="String">TRPDATABASEINFOITEM1</NAME>
+<CONFIGFILE type="String"></CONFIGFILE>
+<LOADPARAMS type="Boolean">True</LOADPARAMS>
+<LOADDRIVERPARAMS type="Boolean">True</LOADDRIVERPARAMS>
+<LOGINPROMPT type="Boolean">False</LOGINPROMPT>
+<DRIVER type="Integer">10</DRIVER>
+<REPORTTABLE type="String"></REPORTTABLE>
+<REPORTSEARCHFIELD type="String">REPORT_NAME</REPORTSEARCHFIELD>
+<REPORTFIELD type="String">REPORT</REPORTFIELD>
+<REPORTGROUPSTABLE type="String">REPMAN_GROUPS</REPORTGROUPSTABLE>
+<ADOCONNECTIONSTRING type="WideString">Data Source=C:#92#datos#92#a#241#o#92#inf
+orme#8364##20013##25991#.db</ADOCONNECTIONSTRING>
+<DOTNETDRIVER type="Integer">0</DOTNETDRIVER>
+<PROVIDERFACTORY type="String"></PROVIDERFACTORY>
+</DATABASEINFO>
+<DATAINFO>
+<ALIAS type="String">DATOS_A#209#O#181##223#i#63##159##63##63#
+#63##63##63##63##63#</ALIAS>
+<NAME type="String">TRPDATAINFOITEM1</NAME>
+<DATABASEALIAS type="String">CONEXI#211#N</DATABASEALIAS>
+<SQL type="WideString">select nombre#44# #34#a#241#o#34##44# #39#
+#8364##39# as moneda#44# #39##20013##25991#
+ #55357##56832##39# as texto from cliente
+s#13##10#where pa#237#s = #39#Espa#241#a#39#
+ and ciudad #60##62# #39#Z#252#rich#39#</SQL>
+<DATASOURCE type="String">MAESTRO_#209#</DATASOURCE>
+<MYBASEFILENAME type="String"></MYBASEFILENAME>
+<MYBASEFIELDS type="String"></MYBASEFIELDS>
+<MYBASEINDEXFIELDS type="String"></MYBASEINDEXFIELDS>
+<MYBASEMASTERFIELDS type="String"></MYBASEMASTERFIELDS>
+<BDEINDEXFIELDS type="String"></BDEINDEXFIELDS>
+<BDEINDEXNAME type="String"></BDEINDEXNAME>
+<BDETABLE type="String"></BDETABLE>
+<BDETYPE type="Integer">0</BDETYPE>
+<BDEFILTER type="String"></BDEFILTER>
+<BDEMASTERFIELDS type="String"></BDEMASTERFIELDS>
+<BDEFIRSTRANGE type="String"></BDEFIRSTRANGE>
+<BDELASTRANGE type="String"></BDELASTRANGE>
+<DATAUNIONS type="String"></DATAUNIONS>
+<GROUPUNION type="Boolean">False</GROUPUNION>
+<OPENONSTART type="Boolean">True</OPENONSTART>
+<PARALLELUNION type="Boolean">False</PARALLELUNION>
+</DATAINFO>
+<DATAINFO>
+<ALIAS type="String">MAESTRO_#209#</ALIAS>
+<NAME type="String">TRPDATAINFOITEM2</NAME>
+<DATABASEALIAS type="String">CONEXI#211#N</DATABASEALIAS>
+<SQL type="WideString">select 1</SQL>
+<DATASOURCE type="String"></DATASOURCE>
+<MYBASEFILENAME type="String"></MYBASEFILENAME>
+<MYBASEFIELDS type="String"></MYBASEFIELDS>
+<MYBASEINDEXFIELDS type="String"></MYBASEINDEXFIELDS>
+<MYBASEMASTERFIELDS type="String"></MYBASEMASTERFIELDS>
+<BDEINDEXFIELDS type="String"></BDEINDEXFIELDS>
+<BDEINDEXNAME type="String"></BDEINDEXNAME>
+<BDETABLE type="String"></BDETABLE>
+<BDETYPE type="Integer">0</BDETYPE>
+<BDEFILTER type="String"></BDEFILTER>
+<BDEMASTERFIELDS type="String"></BDEMASTERFIELDS>
+<BDEFIRSTRANGE type="String"></BDEFIRSTRANGE>
+<BDELASTRANGE type="String"></BDELASTRANGE>
+<DATAUNIONS type="String"></DATAUNIONS>
+<GROUPUNION type="Boolean">False</GROUPUNION>
+<OPENONSTART type="Boolean">True</OPENONSTART>
+<PARALLELUNION type="Boolean">False</PARALLELUNION>
+</DATAINFO>
+<PARAMETER>
+<NAME type="String">A#209#O_#181##223#</NAME>
+<INTNAME type="String">TRPPARAM1</INTNAME>
+<DESCRIPTION type="WideString">Descripci#243#n#10#Description #20013##25991#
+ #55357##56832#</DESCRIPTION>
+<HINT type="WideString">Pista #241#</HINT>
+<ERRORMESSAGE type="WideString">Error: valor #171#inv#225#lido#187# #8364#
+</ERRORMESSAGE>
+<VALIDATION type="WideString">a#241#o#60##62##39##39#</VALIDATION>
+<SEARCH type="WideString">b#250#squeda</SEARCH>
+<VISIBLE type="Boolean">True</VISIBLE>
+<ISREADONLY type="Boolean">False</ISREADONLY>
+<NEVERVISIBLE type="Boolean">False</NEVERVISIBLE>
+<ALLOWNULLS type="Boolean">True</ALLOWNULLS>
+<PARAMTYPE type="Integer">0</PARAMTYPE>
+<DATASETS type="String"></DATASETS>
+<ITEMS type="String">uno #241##13##10#dos #63##63##13##10#tres
+ #63##63##13##10#</ITEMS>
+<VALUES type="String"></VALUES>
+<SELECTED type="String"></SELECTED>
+<LOOKUPDATASET type="String"></LOOKUPDATASET>
+<SEARCHDATASET type="String"></SEARCHDATASET>
+<SEARCHPARAM type="String"></SEARCHPARAM>
+<VALUE type="String">valor #63##63# #241# #128#</VALUE>
+</PARAMETER>
+<SUBREPORT>
+<NAME type="String">TRpSubReport0</NAME>
+<ALIAS type="String"></ALIAS>
+<PRINTONLYIFDATAAVAILABLE type="Boolean">True</PRINTONLYIFDATAAVAILABLE>
+<REOPENONPRINT type="Boolean">True</REOPENONPRINT>
+<SECTION>
+<NAME type="String">TRpSection0</NAME>
+<WIDTH type="Integer">10772</WIDTH>
+<HEIGHT type="Integer">1701</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<SUBREPORT type="String">TRpSubReport0</SUBREPORT>
+<GROUPNAME type="String">grupo_#241#</GROUPNAME>
+<CHANGEEXPRESSION type="WideString">pa#237#s=#39#Espa#241#a#39#</CHANGEEXPRESSION>
+<BEGINPAGEEXPRESSION type="WideString"></BEGINPAGEEXPRESSION>
+<SKIPEXPREV type="WideString"></SKIPEXPREV>
+<SKIPEXPREH type="WideString"></SKIPEXPREH>
+<SKIPTOPAGEEXPRE type="WideString"></SKIPTOPAGEEXPRE>
+<BACKEXPRESSION type="WideString"></BACKEXPRESSION>
+<CHANGEBOOL type="Boolean">False</CHANGEBOOL>
+<PAGEREPEAT type="Boolean">False</PAGEREPEAT>
+<FORCEPRINT type="Boolean">False</FORCEPRINT>
+<SKIPPAGE type="Boolean">False</SKIPPAGE>
+<ALIGNBOTTOM type="Boolean">False</ALIGNBOTTOM>
+<SECTIONTYPE type="Integer">2</SECTIONTYPE>
+<AUTOEXPAND type="Boolean">False</AUTOEXPAND>
+<AUTOCONTRACT type="Boolean">False</AUTOCONTRACT>
+<HORZDESP type="Boolean">False</HORZDESP>
+<VERTDESP type="Boolean">False</VERTDESP>
+<EXTERNALFILENAME type="String"></EXTERNALFILENAME>
+<EXTERNALCONNECTION type="String"></EXTERNALCONNECTION>
+<EXTERNALTABLE type="String">REPMAN_REPORTS</EXTERNALTABLE>
+<EXTERNALFIELD type="String">REPORT</EXTERNALFIELD>
+<EXTERNALSEARCHFIELD type="String">REPORT_NAME</EXTERNALSEARCHFIELD>
+<EXTERNALSEARCHVALUE type="String"></EXTERNALSEARCHVALUE>
+<STREAMFORMAT type="Integer">1</STREAMFORMAT>
+<SKIPRELATIVEH type="Boolean">False</SKIPRELATIVEH>
+<SKIPRELATIVEV type="Boolean">False</SKIPRELATIVEV>
+<SKIPTYPE type="Integer">0</SKIPTYPE>
+<ININUMPAGE type="Boolean">False</ININUMPAGE>
+<GLOBAL type="Boolean">False</GLOBAL>
+<DPIRES type="Integer">100</DPIRES>
+<CACHEDIMAGE type="Integer">0</CACHEDIMAGE>
+<BACKSTYLE type="Integer">0</BACKSTYLE>
+<DRAWSTYLE type="Integer">2</DRAWSTYLE>
+<COMPONENT>
+<NAME type="String">TRpLabel0</NAME>
+<CLASSNAME type="String">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">100</POSX>
+<POSY type="Integer">100</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">Latin: A#241#o caf#233# #209#and#250# #198#
+r#248# Stra#223#e #255#; cp1252: #8364# #8220#
+quoted#8221# #8216#single#8217# #8212# #8211#
+ #8230# #8482# #353# #376# #8240#; Greek:
+ #917##955##955##951##957##953##954##940#
+; Cyrillic: #1055##1088##1080##1074##1077#
+#1090#; Hebrew: #1513##1500##1493##1501#;
+ Arabic: #1605##1585##1581##1576##1575#; 
+CJK: #20013##25991# #26085##26412##35486#
+ #54620##44397##50612#; Thai: #3616##3634#
+#3625##3634##3652##3607##3618#; Devanagar
+i: #2361##2367##2344##2381##2342##2368#</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpLabel1</NAME>
+<CLASSNAME type="String">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">100</POSX>
+<POSY type="Integer">100</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxx#55357##56832# and 
+#55356##57225# #55357##56424##8205##55357#
+#56425##8205##55357##56423# #55356##56810#
+#55356##56824# #55349##56632# e#769# #160#
+nbsp #8203#zwsp #65279#bom #65533# #65535#
+ end</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpLabel2</NAME>
+<CLASSNAME type="String">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">100</POSX>
+<POSY type="Integer">100</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">tab#9#quote#39# hash#35# del#127# soh#1# 
+us#31# crlf#13##10#lf#10#end</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpLabel3</NAME>
+<CLASSNAME type="String">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">100</POSX>
+<POSY type="Integer">100</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">A#55357#</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpLabel4</NAME>
+<CLASSNAME type="String">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">100</POSX>
+<POSY type="Integer">100</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Noto Sans #20013##25991#</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">AB#65533# and #65533# #55357##56832#</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpExpression0</NAME>
+<CLASSNAME type="String">TRPEXPRESSION</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">200</POSX>
+<POSY type="Integer">200</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<EXPRESSION type="WideString">#39#A#241#o: #39# #43# STR(1) #43# #39# #55357#
+#56832##39#</EXPRESSION>
+<AGINIVALUE type="WideString">0</AGINIVALUE>
+<EXPORTEXPRESSION type="WideString"></EXPORTEXPRESSION>
+<DATATYPE type="Integer">16</DATATYPE>
+<DISPLAYFORMAT type="WideString">#35##44##35##35#0.00 #8364#</DISPLAYFORMAT>
+<IDENTIFIER type="String">A#241#o</IDENTIFIER>
+<AGGREGATE type="Integer">0</AGGREGATE>
+<GROUPNAME type="String"></GROUPNAME>
+<AGTYPE type="Integer">0</AGTYPE>
+<AUTOEXPAND type="Boolean">False</AUTOEXPAND>
+<AUTOCONTRACT type="Boolean">False</AUTOCONTRACT>
+<PRINTONLYONE type="Boolean">False</PRINTONLYONE>
+<PRINTNULLS type="Boolean">True</PRINTNULLS>
+<EXPORTDISPLAYFORMAT type="WideString">0.00 #164#</EXPORTDISPLAYFORMAT>
+<EXPORTLINE type="Integer">0</EXPORTLINE>
+<EXPORTPOSITION type="Integer">0</EXPORTPOSITION>
+<EXPORTSIZE type="Integer">1</EXPORTSIZE>
+<EXPORTDONEWLINE type="Boolean">False</EXPORTDONEWLINE>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpExpression1</NAME>
+<CLASSNAME type="String">TRPEXPRESSION</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">200</POSX>
+<POSY type="Integer">200</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<EXPRESSION type="WideString">1#43#1</EXPRESSION>
+<AGINIVALUE type="WideString">0</AGINIVALUE>
+<EXPORTEXPRESSION type="WideString"></EXPORTEXPRESSION>
+<DATATYPE type="Integer">16</DATATYPE>
+<DISPLAYFORMAT type="WideString"></DISPLAYFORMAT>
+<IDENTIFIER type="String"></IDENTIFIER>
+<AGGREGATE type="Integer">0</AGGREGATE>
+<GROUPNAME type="String"></GROUPNAME>
+<AGTYPE type="Integer">0</AGTYPE>
+<AUTOEXPAND type="Boolean">False</AUTOEXPAND>
+<AUTOCONTRACT type="Boolean">False</AUTOCONTRACT>
+<PRINTONLYONE type="Boolean">False</PRINTONLYONE>
+<PRINTNULLS type="Boolean">True</PRINTNULLS>
+<EXPORTDISPLAYFORMAT type="WideString"></EXPORTDISPLAYFORMAT>
+<EXPORTLINE type="Integer">0</EXPORTLINE>
+<EXPORTPOSITION type="Integer">0</EXPORTPOSITION>
+<EXPORTSIZE type="Integer">1</EXPORTSIZE>
+<EXPORTDONEWLINE type="Boolean">False</EXPORTDONEWLINE>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpExpression2</NAME>
+<CLASSNAME type="String">TRPEXPRESSION</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">200</POSX>
+<POSY type="Integer">200</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<EXPRESSION type="WideString">1#43#1</EXPRESSION>
+<AGINIVALUE type="WideString">0</AGINIVALUE>
+<EXPORTEXPRESSION type="WideString"></EXPORTEXPRESSION>
+<DATATYPE type="Integer">16</DATATYPE>
+<DISPLAYFORMAT type="WideString"></DISPLAYFORMAT>
+<IDENTIFIER type="String">#181#</IDENTIFIER>
+<AGGREGATE type="Integer">0</AGGREGATE>
+<GROUPNAME type="String"></GROUPNAME>
+<AGTYPE type="Integer">0</AGTYPE>
+<AUTOEXPAND type="Boolean">False</AUTOEXPAND>
+<AUTOCONTRACT type="Boolean">False</AUTOCONTRACT>
+<PRINTONLYONE type="Boolean">False</PRINTONLYONE>
+<PRINTNULLS type="Boolean">True</PRINTNULLS>
+<EXPORTDISPLAYFORMAT type="WideString"></EXPORTDISPLAYFORMAT>
+<EXPORTLINE type="Integer">0</EXPORTLINE>
+<EXPORTPOSITION type="Integer">0</EXPORTPOSITION>
+<EXPORTSIZE type="Integer">1</EXPORTSIZE>
+<EXPORTDONEWLINE type="Boolean">False</EXPORTDONEWLINE>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpExpression3</NAME>
+<CLASSNAME type="String">TRPEXPRESSION</CLASSNAME>
+<WIDTH type="Integer">1440</WIDTH>
+<HEIGHT type="Integer">275</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">200</POSX>
+<POSY type="Integer">200</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<EXPRESSION type="WideString">1#43#1</EXPRESSION>
+<AGINIVALUE type="WideString">0</AGINIVALUE>
+<EXPORTEXPRESSION type="WideString"></EXPORTEXPRESSION>
+<DATATYPE type="Integer">16</DATATYPE>
+<DISPLAYFORMAT type="WideString"></DISPLAYFORMAT>
+<IDENTIFIER type="String">#63#</IDENTIFIER>
+<AGGREGATE type="Integer">0</AGGREGATE>
+<GROUPNAME type="String"></GROUPNAME>
+<AGTYPE type="Integer">0</AGTYPE>
+<AUTOEXPAND type="Boolean">False</AUTOEXPAND>
+<AUTOCONTRACT type="Boolean">False</AUTOCONTRACT>
+<PRINTONLYONE type="Boolean">False</PRINTONLYONE>
+<PRINTNULLS type="Boolean">True</PRINTNULLS>
+<EXPORTDISPLAYFORMAT type="WideString"></EXPORTDISPLAYFORMAT>
+<EXPORTLINE type="Integer">0</EXPORTLINE>
+<EXPORTPOSITION type="Integer">0</EXPORTPOSITION>
+<EXPORTSIZE type="Integer">1</EXPORTSIZE>
+<EXPORTDONEWLINE type="Boolean">False</EXPORTDONEWLINE>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpChart0</NAME>
+<CLASSNAME type="String">TRPCHART</CLASSNAME>
+<WIDTH type="Integer">4000</WIDTH>
+<HEIGHT type="Integer">3000</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">0</POSX>
+<POSY type="Integer">0</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">10</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<VALUEEXPRESSION type="WideString"></VALUEEXPRESSION>
+<VALUEXEXPRESSION type="WideString"></VALUEXEXPRESSION>
+<GETVALUECONDITION type="WideString"></GETVALUECONDITION>
+<CHANGESERIEEXPRESSION type="WideString"></CHANGESERIEEXPRESSION>
+<CAPTIONEXPRESSION type="WideString">#39#T#237#tulo #55357##56832##39#</CAPTIONEXPRESSION>
+<COLOREXPRESSION type="WideString"></COLOREXPRESSION>
+<SERIECOLOREXPRESSION type="WideString"></SERIECOLOREXPRESSION>
+<SERIECAPTION type="WideString">Serie #241# #20013##25991#</SERIECAPTION>
+<CLEAREXPRESSION type="WideString"></CLEAREXPRESSION>
+<CHANGESERIEBOOL type="Boolean">False</CHANGESERIEBOOL>
+<CHARTTYPE type="Integer">0</CHARTTYPE>
+<IDENTIFIER type="WideString">gr#225#fico</IDENTIFIER>
+<CLEAREXPRESSIONBOOL type="Boolean">False</CLEAREXPRESSIONBOOL>
+<DRIVER type="Integer">0</DRIVER>
+<VIEW3D type="Boolean">False</VIEW3D>
+<VIEW3DWALLS type="Boolean">False</VIEW3DWALLS>
+<PERSPECTIVE type="Integer">15</PERSPECTIVE>
+<ELEVATION type="Integer">345</ELEVATION>
+<ROTATION type="Integer">345</ROTATION>
+<ZOOM type="Integer">100</ZOOM>
+<HORZOFFSET type="Integer">0</HORZOFFSET>
+<VERTOFFSET type="Integer">0</VERTOFFSET>
+<TILT type="Integer">0</TILT>
+<ORTHOGONAL type="Boolean">True</ORTHOGONAL>
+<MULTIBAR type="Integer">1</MULTIBAR>
+<RESOLUTION type="Integer">100</RESOLUTION>
+<SHOWLEGEND type="Boolean">False</SHOWLEGEND>
+<SHOWHINT type="Boolean">True</SHOWHINT>
+<MARKSTYLE type="Integer">0</MARKSTYLE>
+<HORZFONTSIZE type="Integer">0</HORZFONTSIZE>
+<VERTFONTSIZE type="Integer">0</VERTFONTSIZE>
+<HORZFONTROTATION type="Integer">0</HORZFONTROTATION>
+<VERTFONTROTATION type="Integer">0</VERTFONTROTATION>
+<AUTORANGE type="Integer">0</AUTORANGE>
+<YMIN type="Double">0</YMIN>
+<YMAX type="Double">0</YMAX>
+</COMPONENT>
+<COMPONENT>
+<NAME type="String">TRpBarcode0</NAME>
+<CLASSNAME type="String">TRPBARCODE</CLASSNAME>
+<WIDTH type="Integer">2000</WIDTH>
+<HEIGHT type="Integer">2000</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="String"></ANNOTATION>
+<POSX type="Integer">0</POSX>
+<POSY type="Integer">0</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<EXPRESSION type="WideString">#39#QR: a#241#o #20013##25991# #55357##56832#
+#39#</EXPRESSION>
+<MODUL type="Integer">10</MODUL>
+<RATIO type="Double">2</RATIO>
+<TYP type="Integer">17</TYP>
+<CHECKSUM type="Boolean">False</CHECKSUM>
+<DISPLAYFORMAT type="WideString"></DISPLAYFORMAT>
+<ROTATION type="Integer">0</ROTATION>
+<BCOLOR type="Integer">0</BCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">False</TRANSPARENT>
+<NUMCOLUMNS type="Integer">0</NUMCOLUMNS>
+<NUMROWS type="Integer">0</NUMROWS>
+<ECCLEVEL type="Integer">-1</ECCLEVEL>
+<TRUNCATED type="Boolean">False</TRUNCATED>
+</COMPONENT>
+</SECTION>
+</SUBREPORT>
+</REPORT>

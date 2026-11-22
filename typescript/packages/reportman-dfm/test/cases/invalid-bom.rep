@@ -1,0 +1,44 @@
+﻿object TRpReport
+  SubReports = <
+    item
+      SubReport = TRpSubReport0
+    end>
+  DataInfo = <>
+  DatabaseInfo = <>
+  Params = <>
+  StreamFormat = rpStreamText
+  ReportAction = []
+  Type1Font = poHelvetica
+  DocTitle = 'Año € 中文 😀 ﻿'#13#10'raw'
+  DocAuthor = 'Año'#8364
+  object TRpSubReport0: TRpSubReport
+    Sections = <
+      item
+        Section = TRpSection0
+      end>
+  end
+  object TRpSection0: TRpSection
+    Width = 10772
+    Height = 1701
+    SubReport = TRpSubReport0
+    ChangeBool = False
+    PageRepeat = False
+    SkipPage = False
+    AlignBottom = False
+    SectionType = rpsecdetail
+    AutoExpand = False
+    AutoContract = False
+    Components = <
+      item
+        Component = TRpLabel0
+      end>
+  end
+  object TRpLabel0: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 'Mañana ½ ' + 'wide '#8364' ñ'
+  end
+end

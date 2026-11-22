@@ -13,6 +13,11 @@ program golden_dfm;
   with a .Net connection (forcexml).
   Usage: golden-dfm <report.rep> <outdir> <name>          one report
          golden-dfm -xml <dfm.rep> <out.xml>              the XML of a DFM file, as reptotxt -xml
+         golden-dfm -textxml <dfm.rep> <out.xml>          the same through ObjectTextToBinary
+         golden-dfm -floats <hex>...                      FloatToStr of doubles
+         golden-dfm -upper <out.bin>                      AnsiUpperCase of every code unit
+         golden-dfm -utf8 <hex>...                        TEncoding.UTF8.GetString of bytes
+         golden-dfm -writestring <hex>...                 TWriter.WriteString, TReader.ReadString
   Exit code 0 when every output was written. }
 
 {$APPTYPE CONSOLE}
@@ -52,6 +57,32 @@ begin
     report.SaveToStream(Result);
   finally
     report.Free;
+  end;
+end;
+
+// The XML of a text DFM read by ObjectTextToBinary itself, without the first byte check of
+// LoadFromStream (which takes only a text form that starts with "object"): what TParser makes of
+// a text form with a UTF-8 BOM, for example
+function XmlOfText(const FileName: string): TMemoryStream;
+var
+  text, binary: TMemoryStream;
+  report: TRpReport;
+begin
+  Result := TMemoryStream.Create;
+  text := TMemoryStream.Create;
+  binary := TMemoryStream.Create;
+  report := TRpReport.Create(nil);
+  try
+    text.LoadFromFile(FileName);
+    ObjectTextToBinary(text, binary);
+    binary.Seek(0, soFromBeginning);
+    report.LoadFromStream(binary);
+    report.StreamFormat := rpStreamXML;
+    report.SaveToStream(Result);
+  finally
+    report.Free;
+    binary.Free;
+    text.Free;
   end;
 end;
 
@@ -132,13 +163,133 @@ begin
   end;
 end;
 
+// The UTF-16 code units of a string, 4 hexadecimal digits each
+function UnitsHex(const S: string): string;
+var
+  i: Integer;
+begin
+  Result := '';
+  for i := 1 to Length(S) do
+    Result := Result + IntToHex(Ord(S[i]), 4);
+end;
+
+function HexUnits(const Hex: string): string;
+var
+  i: Integer;
+begin
+  SetLength(Result, Length(Hex) div 4);
+  for i := 1 to Length(Result) do
+    Result[i] := Char(StrToInt('$' + Copy(Hex, (i - 1) * 4 + 1, 4)));
+end;
+
+// -upper <out.bin>: AnsiUpperCase (CharUpperBuff) of each UTF-16 code unit, 65536 little endian
+// words, the setters of Alias, DatabaseAlias, DataSource and the parameter names
+procedure WriteUpper(const FileName: string);
+var
+  c: Integer;
+  w: Word;
+  s: string;
+  stream: TFileStream;
+begin
+  stream := TFileStream.Create(FileName, fmCreate);
+  try
+    for c := 0 to $FFFF do
+    begin
+      s := AnsiUpperCase(string(Char(c)));
+      w := Ord(s[1]);
+      stream.WriteBuffer(w, SizeOf(w));
+    end;
+  finally
+    stream.Free;
+  end;
+end;
+
+// -utf8 <hex bytes>...: TEncoding.UTF8.GetString of each byte sequence (vaUTF8String, and the
+// strings of a text DFM with a UTF-8 BOM), the code units one line each, or ERROR when it raises
+procedure PrintUtf8;
+var
+  i, j: Integer;
+  hex: string;
+  bytes: TBytes;
+begin
+  for i := 2 to ParamCount do
+  begin
+    hex := ParamStr(i);
+    SetLength(bytes, Length(hex) div 2);
+    for j := 0 to High(bytes) do
+      bytes[j] := StrToInt('$' + Copy(hex, j * 2 + 1, 2));
+    try
+      Writeln(UnitsHex(TEncoding.UTF8.GetString(bytes)));
+    except
+      on EEncodingError do
+        Writeln('ERROR');
+    end;
+  end;
+end;
+
+// -writestring <hex code units>...: TWriter.WriteString and TReader.ReadString, the round trip
+// of every string of a text DFM in ObjectTextToBinary: the value type written and the code
+// units read back, one line each
+procedure PrintWriteString;
+var
+  i: Integer;
+  stream: TMemoryStream;
+  writer: TWriter;
+  reader: TReader;
+  back: string;
+  tag: Byte;
+begin
+  for i := 2 to ParamCount do
+  begin
+    stream := TMemoryStream.Create;
+    try
+      writer := TWriter.Create(stream, 4096);
+      try
+        writer.WriteString(HexUnits(ParamStr(i)));
+      finally
+        writer.Free;
+      end;
+      tag := PByte(stream.Memory)^;
+      stream.Seek(0, soFromBeginning);
+      reader := TReader.Create(stream, 4096);
+      try
+        back := reader.ReadString;
+      finally
+        reader.Free;
+      end;
+    finally
+      stream.Free;
+    end;
+    Writeln(IntToStr(tag) + ' ' + UnitsHex(back));
+  end;
+end;
+
 var
   xml: TMemoryStream;
 begin
   try
+    if (ParamCount = 2) and (ParamStr(1) = '-upper') then
+      WriteUpper(ParamStr(2))
+    else
+    if (ParamCount >= 2) and (ParamStr(1) = '-utf8') then
+      PrintUtf8
+    else
+    if (ParamCount >= 2) and (ParamStr(1) = '-writestring') then
+      PrintWriteString
+    else
     if (ParamCount = 3) and (ParamStr(1) = '-xml') then
     begin
       xml := XmlOf(ParamStr(2));
+      try
+        WriteBytes(ParamStr(3), xml);
+      finally
+        xml.Free;
+      end;
+    end
+    else
+    if (ParamCount = 3) and (ParamStr(1) = '-textxml') then
+    begin
+      xml := XmlOfText(ParamStr(2));
       try
         WriteBytes(ParamStr(3), xml);
       finally

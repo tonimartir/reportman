@@ -1,0 +1,233 @@
+object TRpReport
+  SubReports = <
+    item
+      SubReport = TRpSubReport0
+    end>
+  DataInfo = <
+    item
+      Alias = 'datos_a'#241'o'#181#223#305#383#255#453#454#64257#8560#9424#4304#43888
+      DatabaseAlias = 'conexi'#243'n'
+      SQL = 
+      'select nombre, "a'#241'o", '#39#8364#39' as moneda, '#39#20013#25991' '#55357#56832#39' as texto from clien' +
+      'tes'#13#10'where pa'#237's = '#39'Espa'#241'a'#39' and ciudad <> '#39'Z'#252'rich'#39
+      DataSource = ' maestro_'#241' '
+    end
+    item
+      Alias = 'maestro_'#241
+      DatabaseAlias = 'CONEXI'#211'N'
+      SQL = 'select 1'
+    end>
+  DatabaseInfo = <
+    item
+      Alias = 'conexi'#243'n'
+      LoadParams = True
+      LoadDriverParams = True
+      LoginPrompt = False
+      Driver = rpdbHttp
+      ReportTable = ''
+      ADOConnectionString = 'Data Source=C:\datos\a'#241'o\informe'#8364#20013#25991'.db'
+    end>
+  Params = <
+    item
+      Name = 'a'#241'o_'#181#223
+      Value = 'valor '#55357#56832' '#241' '#8364
+      ParamType = rpParamString
+      Items.Strings = (
+        'uno '#241
+        'dos '#20013#25991
+        'tres '#55357#56832)
+      Description = 'Descripci'#243'n'#10'Description '#20013#25991' '#55357#56832
+      Hint = 'Pista '#241
+      ErrorMessage = 'Error: valor '#171'inv'#225'lido'#187' '#8364
+      Validation = 'a'#241'o<>'#39#39
+      Search = 'b'#250'squeda'
+    end>
+  StreamFormat = rpStreamText
+  ReportAction = []
+  Type1Font = poHelvetica
+  DocAuthor = #198'r'#248' '#209'and'#250' '#8212' Jos'#233
+  DocTitle = 
+    'Latin: A'#241'o caf'#233' '#209'and'#250' '#198'r'#248' Stra'#223'e '#255'; cp1252: '#8364' '#8220'quoted'#8221' '#8216'single'#8217' ' +
+    #8212' '#8211' '#8230' '#8482' '#353' '#376' '#8240'; Greek: '#917#955#955#951#957#953#954#940'; Cyrillic: '#1055#1088#1080#1074#1077#1090'; Hebrew: '#1513#1500#1493#1501'; ' +
+    'Arabic: '#1605#1585#1581#1576#1575'; CJK: '#20013#25991' '#26085#26412#35486' '#54620#44397#50612'; Thai: '#3616#3634#3625#3634#3652#3607#3618'; Devanagari: '#2361#2367#2344#2381#2342 +
+    #2368
+  DocSubject = 
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'#55357 +
+    #56832' and '#55356#57225' '#55357#56424#8205#55357#56425#8205#55357#56423' '#55356#56810#55356#56824' '#55349#56632' e'#769' '#160'nbsp '#8203'zwsp '#65279'bom '#65533' '#65535' end'
+  DocKeywords = 'tab'#9'quote'#39' hash# del soh'#1' us'#31' crlf'#13#10'lf'#10'end'
+  DocCreator = 'A'#55357
+  DocProducer = 'AB'#55296
+  WFontName = 'MS '#12468#12471#12483#12463
+  LFontName = 'DejaVu Sans '#241
+  object TRpSubReport0: TRpSubReport
+    Sections = <
+      item
+        Section = TRpSection0
+      end>
+  end
+  object TRpSection0: TRpSection
+    Width = 10772
+    Height = 1701
+    SubReport = TRpSubReport0
+    ChangeBool = False
+    PageRepeat = False
+    SkipPage = False
+    AlignBottom = False
+    SectionType = rpsecdetail
+    AutoExpand = False
+    AutoContract = False
+    GroupName = 'grupo_'#241
+    ChangeExpression = 'pa'#237's='#39'Espa'#241'a'#39
+    Components = <
+      item
+        Component = TRpLabel0
+      end
+      item
+        Component = TRpLabel1
+      end
+      item
+        Component = TRpLabel2
+      end
+      item
+        Component = TRpLabel3
+      end
+      item
+        Component = TRpLabel4
+      end
+      item
+        Component = TRpExpression0
+      end
+      item
+        Component = TRpExpression1
+      end
+      item
+        Component = TRpExpression2
+      end
+      item
+        Component = TRpExpression3
+      end
+      item
+        Component = TRpChart0
+      end
+      item
+        Component = TRpBarcode0
+      end>
+  end
+  object TRpLabel0: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 
+      'Latin: A'#241'o caf'#233' '#209'and'#250' '#198'r'#248' Stra'#223'e '#255'; cp1252: '#8364' '#8220'quoted'#8221' '#8216'single'#8217' ' +
+      #8212' '#8211' '#8230' '#8482' '#353' '#376' '#8240'; Greek: '#917#955#955#951#957#953#954#940'; Cyrillic: '#1055#1088#1080#1074#1077#1090'; Hebrew: '#1513#1500#1493#1501'; ' +
+      'Arabic: '#1605#1585#1581#1576#1575'; CJK: '#20013#25991' '#26085#26412#35486' '#54620#44397#50612'; Thai: '#3616#3634#3625#3634#3652#3607#3618'; Devanagari: '#2361#2367#2344#2381#2342 +
+      #2368
+  end
+  object TRpLabel1: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 
+      'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'#55357 +
+      #56832' and '#55356#57225' '#55357#56424#8205#55357#56425#8205#55357#56423' '#55356#56810#55356#56824' '#55349#56632' e'#769' '#160'nbsp '#8203'zwsp '#65279'bom '#65533' '#65535' end'
+  end
+  object TRpLabel2: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 'tab'#9'quote'#39' hash# del soh'#1' us'#31' crlf'#13#10'lf'#10'end'
+  end
+  object TRpLabel3: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 'A'#55357
+  end
+  object TRpLabel4: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WFontName = 'Noto Sans '#20013#25991
+    WideText = 'AB'#55296' and '#56320' '#55357#56832
+  end
+  object TRpExpression0: TRpExpression
+    Width = 1440
+    Height = 275
+    PosX = 200
+    PosY = 200
+    Type1Font = poHelvetica
+    Identifier = 'A'#241'o'
+    AutoExpand = False
+    AutoContract = False
+    ExportDoNewLine = False
+    DisplayFormat = '#,##0.00 '#8364
+    ExportDisplayFormat = '0.00 '#164
+    Expression = #39'A'#241'o: '#39' + STR(1) + '#39' '#55357#56832#39
+  end
+  object TRpExpression1: TRpExpression
+    Width = 1440
+    Height = 275
+    PosX = 200
+    PosY = 200
+    Type1Font = poHelvetica
+    Identifier = 'A'#209'O'
+    AutoExpand = False
+    AutoContract = False
+    ExportDoNewLine = False
+    Expression = '1+1'
+  end
+  object TRpExpression2: TRpExpression
+    Width = 1440
+    Height = 275
+    PosX = 200
+    PosY = 200
+    Type1Font = poHelvetica
+    Identifier = #181
+    AutoExpand = False
+    AutoContract = False
+    ExportDoNewLine = False
+    Expression = '1+1'
+  end
+  object TRpExpression3: TRpExpression
+    Width = 1440
+    Height = 275
+    PosX = 200
+    PosY = 200
+    Type1Font = poHelvetica
+    Identifier = #924
+    AutoExpand = False
+    AutoContract = False
+    ExportDoNewLine = False
+    Expression = '1+1'
+  end
+  object TRpChart0: TRpChart
+    Width = 4000
+    Height = 3000
+    PosX = 0
+    PosY = 0
+    Type1Font = poHelvetica
+    Identifier = 'gr'#225'fico'
+    Driver = rpchartdriverdefault
+    Series = <>
+    SerieCaption = 'Serie '#241' '#20013#25991
+    CaptionExpression = #39'T'#237'tulo '#55357#56832#39
+  end
+  object TRpBarcode0: TRpBarcode
+    Width = 2000
+    Height = 2000
+    PosX = 0
+    PosY = 0
+    Typ = bcCodeQr
+    Expression = #39'QR: a'#241'o '#20013#25991' '#55357#56832#39
+  end
+end

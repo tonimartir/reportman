@@ -7,7 +7,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { delphiFloatToStr, dfmToXml, isDfm, reportForm } from '../src/index.js';
+import { ansiUpperCase } from '../src/ansi-upper.js';
+import { DfmError, delphiFloatToStr, dfmToXml, dfmTreeToXml, isDfm, readDfm, reportForm } from '../src/index.js';
 import { corpus, originals } from './corpus.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -65,13 +66,46 @@ describe('@reportman/dfm: the XML of Delphi, byte for byte', () => {
 
 describe('@reportman/dfm: the hand-made reports (test/make-dfm-cases.mjs)', () => {
   const cases = path.join(here, 'cases');
+  const exists = (name: string): boolean => fs.existsSync(path.join(cases, name));
+  const read = (name: string): string => fs.readFileSync(path.join(cases, name)).toString('latin1');
   for (const file of fs.readdirSync(cases).filter((f) => f.endsWith('.rep')).sort()) {
-    it(`converts ${file} as Delphi does`, () => {
-      const expected = fs.readFileSync(path.join(cases, file.replace(/.rep$/, '.xml'))).toString('latin1');
-      const actual = ascii(dfmToXml(new Uint8Array(fs.readFileSync(path.join(cases, file)))));
-      expect(actual === expected ? 'the same' : firstDifference(expected, actual)).toBe('the same');
+    const name = file.replace(/\.rep$/, '');
+    const bytes = new Uint8Array(fs.readFileSync(path.join(cases, file)));
+    if (!exists(name + '.error')) {
+      it(`converts ${file} as Delphi does`, () => {
+        const expected = read(name + '.xml');
+        const actual = ascii(dfmToXml(bytes));
+        expect(actual === expected ? 'the same' : firstDifference(expected, actual)).toBe('the same');
+      });
+      continue;
+    }
+    // What Delphi does not read as a report (cases/<name>.error has its message)
+    it(`refuses ${file} as Delphi does (${read(name + '.error').trim()})`, () => {
+      expect(() => dfmToXml(bytes)).toThrow(DfmError);
+      expect(isDfm(bytes)).toBe(read(name + '.error').startsWith('Invalid stream format') ? false : true);
     });
+    // and what ObjectTextToBinary makes of it without the first byte check of LoadFromStream
+    if (exists(name + '.text.xml'))
+      it(`reads ${file} as ObjectTextToBinary does`, () => {
+        const expected = read(name + '.text.xml');
+        const actual = ascii(dfmTreeToXml(readDfm(bytes)));
+        expect(actual === expected ? 'the same' : firstDifference(expected, actual)).toBe('the same');
+      });
+    if (exists(name + '.text.error'))
+      it(`can not read ${file}, as ObjectTextToBinary (${read(name + '.text.error').trim()})`, () => {
+        expect(() => dfmTreeToXml(readDfm(bytes))).toThrow(DfmError);
+      });
   }
+});
+
+describe('@reportman/dfm: AnsiUpperCase of Delphi', () => {
+  it('maps each code unit through the casing table of Windows, not the one of Unicode', () => {
+    expect(ansiUpperCase('año_µßıſÿǅǆﬁ')).toBe('AÑO_µßıſŸǅǄﬁ');
+    // Georgian and the small Cherokee letters stay; U+1F80 becomes U+1F88 (JavaScript: two letters)
+    expect(ansiUpperCase('აᾀꭰ')).toBe('აᾈꭰ');
+    expect('აᾀꭰ'.toUpperCase()).toBe('ᲐἈΙᎠ');
+    expect('µß'.toUpperCase()).toBe('ΜSS');
+  });
 });
 
 describe('@reportman/dfm: forms and numbers', () => {

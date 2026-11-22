@@ -1,0 +1,48 @@
+object TRpReport
+  SubReports = <
+    item
+      SubReport = TRpSubReport0
+    end>
+  DataInfo = <>
+  DatabaseInfo = <>
+  Params = <>
+  StreamFormat = rpStreamText
+  ReportAction = []
+  Type1Font = poHelvetica
+  DocTitle ='A'#'B'#$41#$20ac#128512 +'C'
+  DocAuthor = '€ '#65 + '€'#8364
+  DocSubject = 'it''s'#4294967361'x'
+  GridColor = $00FF00
+  object TRpSubReport0: TRpSubReport
+    Sections = <
+      item
+        Section = TRpSection0
+      end>
+  end
+  object TRpSection0: TRpSection
+    Width = 10772
+    Height = 1701
+    SubReport = TRpSubReport0
+    ChangeBool = False
+    PageRepeat = False
+    SkipPage = False
+    AlignBottom = False
+    SectionType = rpsecdetail
+    AutoExpand = False
+    AutoContract = False
+    Components = <
+      item
+        Component = TRpBarcode0
+      end>
+  end
+  object TRpBarcode0: TRpBarcode
+    Width = 2000		
+    Height = 600
+    PosX = 0
+    PosY = 0
+    Ratio = 3.5f
+    Typ = bcCode128
+    Expression = 'code'
+  end
+end
+garbage 'and an unterminated string

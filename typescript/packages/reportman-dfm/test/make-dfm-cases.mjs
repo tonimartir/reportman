@@ -1,6 +1,7 @@
 // The hand-made DFM reports of @reportman/dfm (test/cases/*.rep): what the corpus does not have,
-// written as an older Delphi or a hand would write them. test/generate-dfm-fixtures.mjs runs this
-// and saves the XML Delphi writes for each one (test/cases/*.xml).
+// written as Delphi, an older Delphi or a hand would write them. test/generate-dfm-fixtures.mjs
+// runs this and saves the XML Delphi writes for each one (test/cases/*.xml), or the message of
+// Delphi for the ones it does not read as reports (invalid-*.rep, test/cases/*.error).
 //
 // values.rep is written in UTF-8 on purpose: its SQL is a wide string token (it has a code above
 // 127, #8364), and Delphi takes each byte inside the quotes of such a token as one character
@@ -8,6 +9,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { deflateSync } from 'node:zlib';
 
 const out = join(dirname(fileURLToPath(import.meta.url)), 'cases');
 mkdirSync(out, { recursive: true });
@@ -287,4 +289,210 @@ const ansi = Buffer.from(
   'latin1',
 );
 writeFileSync(join(out, 'legacy-ansi.rep'), ansi);
+
+// A string as ObjectBinaryToText writes a vaWString or vaUTF8String (the strings of Reportman's
+// WriteWideString, and the non ASCII ones of TWriter.WriteString): the printable ASCII quoted,
+// every other UTF-16 code unit as #code, a line break ( +) every 64 code units
+const delphiString = (w, indent = '      ') => {
+  if (w.length === 0) return "''";
+  const LineLength = 64;
+  let out = w.length > LineLength ? '\r\n' + indent : '';
+  let i = 0;
+  let k = 0;
+  const code = (j) => w.charCodeAt(j);
+  while (i < w.length) {
+    let lineBreak = false;
+    if (code(i) >= 32 && code(i) !== 39 && code(i) <= 127) {
+      const j = i;
+      do i++;
+      while (!(i >= w.length || code(i) < 32 || code(i) === 39 || i - k >= LineLength || code(i) > 127));
+      if (i - k >= LineLength) lineBreak = true;
+      out += "'" + w.slice(j, i) + "'";
+    } else {
+      out += '#' + code(i);
+      i++;
+      if (i - k >= LineLength) lineBreak = true;
+    }
+    if (lineBreak && i < w.length) {
+      out += ' +\r\n' + indent;
+      k = i;
+    }
+  }
+  return out;
+};
+
+// 5. Unicode as Delphi writes it, in every kind of string: published strings (TWriter.WriteString:
+//    vaUTF8String in the binary form) and the DefineProperties ones (WriteWideString: vaWString);
+//    every script, emoji (a pair split by a line break), combining marks, control characters, a
+//    lone surrogate kept (vaWString) and one that WriteString makes U+FFFD; the AnsiUpperCase of the
+//    aliases and parameter names (µ, ß, ı and ǅ stay); identifiers repeated in other letters
+const scripts =
+  'Latin: Año café Ñandú Ærø Straße ÿ; cp1252: € “quoted” ‘single’ — – … ™ š Ÿ ‰; Greek: Ελληνικά; ' +
+  'Cyrillic: Привет; Hebrew: שלום; Arabic: مرحبا; CJK: 中文 日本語 한국어; Thai: ภาษาไทย; Devanagari: हिन्दी';
+const emoji = 'x'.repeat(63) + '😀 and 🎉 👨‍👩‍👧 🇪🇸 𝔸 e\u0301 \u00a0nbsp \u200bzwsp \ufeffbom \ufffd \uffff end';
+const controls = "tab\tquote' hash# del\x7f soh\x01 us\x1f crlf\r\nlf\nend";
+const u = delphiString;
+// Delphi writes it in ASCII: every other character as a code
+const ascii = (text) => {
+  const other = /[^\x00-\x7f]/.exec(text);
+  if (other !== null) throw new Error('not ASCII: ' + other[0]);
+  return Buffer.from(text, 'latin1');
+};
+writeFileSync(
+  join(out, 'unicode.rep'),
+  ascii(head() +
+    `  SubReports = <
+    item
+      SubReport = TRpSubReport0
+    end>
+  DataInfo = <
+    item
+      Alias = ${u('datos_añoµßıſÿǅǆﬁⅰⓐაꭰ')}
+      DatabaseAlias = ${u('conexión')}
+      SQL = ${u('select nombre, "año", \'€\' as moneda, \'中文 😀\' as texto from clientes\r\nwhere país = \'España\' and ciudad <> \'Zürich\'')}
+      DataSource = ${u(' maestro_ñ ')}
+    end
+    item
+      Alias = ${u('maestro_ñ')}
+      DatabaseAlias = ${u('CONEXIÓN')}
+      SQL = ${u('select 1')}
+    end>
+  DatabaseInfo = <
+    item
+      Alias = ${u('conexión')}
+      LoadParams = True
+      LoadDriverParams = True
+      LoginPrompt = False
+      Driver = rpdbHttp
+      ReportTable = ''
+      ADOConnectionString = ${u('Data Source=C:\\datos\\año\\informe€中文.db')}
+    end>
+  Params = <
+    item
+      Name = ${u('año_µß')}
+      Value = ${u('valor 😀 ñ €')}
+      ParamType = rpParamString
+      Items.Strings = (
+        ${u('uno ñ')}
+        ${u('dos 中文')}
+        ${u('tres 😀')})
+      Description = ${u('Descripción'+ '\n' + 'Description 中文 😀')}
+      Hint = ${u('Pista ñ')}
+      ErrorMessage = ${u('Error: valor «inválido» €')}
+      Validation = ${u("año<>''")}
+      Search = ${u('búsqueda')}
+    end>
+  StreamFormat = rpStreamText
+  ReportAction = []
+  Type1Font = poHelvetica
+  DocAuthor = ${u('Ærø Ñandú — José')}
+  DocTitle = ${u(scripts, '    ')}
+  DocSubject = ${u(emoji, '    ')}
+  DocKeywords = ${u(controls)}
+  DocCreator = ${u('A\ud83d')}
+  DocProducer = ${u('AB\ud800')}
+  WFontName = ${u('MS ゴシック')}
+  LFontName = ${u('DejaVu Sans ñ')}
+` +
+    subreport('TRpSubReport0', ['TRpSection0']) +
+    section('TRpSection0', 'TRpSubReport0', ['TRpLabel0', 'TRpLabel1', 'TRpLabel2', 'TRpLabel3', 'TRpLabel4', 'TRpExpression0', 'TRpExpression1', 'TRpExpression2', 'TRpExpression3', 'TRpChart0', 'TRpBarcode0'], `    GroupName = ${u('grupo_ñ')}
+    ChangeExpression = ${u("país='España'")}
+`) +
+    label('TRpLabel0', u(scripts)) +
+    label('TRpLabel1', u(emoji)) +
+    label('TRpLabel2', u(controls)) +
+    label('TRpLabel3', u('A\ud83d')) +
+    label('TRpLabel4', u('AB\ud800 and \udc00 \ud83d\ude00'), `    WFontName = ${u('Noto Sans 中文')}
+`) +
+    expression('TRpExpression0', 'X', `    DisplayFormat = ${u('#,##0.00 €')}
+    ExportDisplayFormat = ${u('0.00 ¤')}
+`).replace("Expression = '1+1'", `Expression = ${u("'Año: ' + STR(1) + ' 😀'")}`).replace("'X'", u('Año')) +
+    expression('TRpExpression1', 'X').replace("'X'", u('AÑO')) +
+    expression('TRpExpression2', 'X').replace("'X'", u('µ')) +
+    expression('TRpExpression3', 'X').replace("'X'", u('Μ')) +
+    `  object TRpChart0: TRpChart
+    Width = 4000
+    Height = 3000
+    PosX = 0
+    PosY = 0
+    Type1Font = poHelvetica
+    Identifier = ${u('gráfico')}
+    Driver = rpchartdriverdefault
+    Series = <>
+    SerieCaption = ${u('Serie ñ 中文')}
+    CaptionExpression = ${u("'Título 😀'")}
+  end
+  object TRpBarcode0: TRpBarcode
+    Width = 2000
+    Height = 2000
+    PosX = 0
+    PosY = 0
+    Typ = bcCodeQr
+    Expression = ${u("'QR: año 中文 😀'")}
+  end
+` +
+    'end\r\n'),
+);
+
+// 6. The grammar of TParser: every byte from 1 to 32 is a blank; # without digits is #0, #$ is
+//    hexadecimal, a code wraps at 32 bits and keeps its low 16 bits; each fragment joined with +
+//    is decoded on its own (\\x80 is the euro sign of Windows-1252 outside a wide string, U+0080
+//    inside one); the f suffix, hexadecimal integers; one token after the end and then anything
+const parserCase = Buffer.from(
+  head() +
+    reportProps(
+      `  DocTitle =\x0c'A'#'B'#$41#$20ac#128512 +\x0b\x01\x1f'C'
+  DocAuthor = '\x80 '#65 + '\x80'#8364
+  DocSubject = 'it''s'#4294967361'x'
+  GridColor = $00FF00
+`,
+    ) +
+    subreport('TRpSubReport0', ['TRpSection0']) +
+    section('TRpSection0', 'TRpSubReport0', ['TRpBarcode0']) +
+    `  object TRpBarcode0: TRpBarcode
+    Width = 2000\t\t
+    Height = 600
+    PosX = 0
+    PosY = 0
+    Ratio = 3.5f
+    Typ = bcCode128
+    Expression = 'code'
+  end
+` +
+    "end\r\n\x1a\x0cgarbage 'and an unterminated string",
+  'latin1',
+);
+writeFileSync(join(out, 'parser.rep'), parserCase);
+
+// 7. What LoadFromStream does not take as a report (Invalid stream format), as it tells the form by
+//    the first byte: a text DFM with a UTF-8 BOM, or with blanks before "object", and a text DFM
+//    compressed with zlib. generate-dfm-fixtures.mjs keeps the message of Delphi (.error) and, for
+//    the text ones, the XML that ObjectTextToBinary itself gives (.text.xml): with a BOM TParser
+//    reads the bytes of a string as UTF-8, but inside a wide string (a code above 127) each byte is
+//    one character; U+FEFF stays. Invalid UTF-8 after a BOM makes TEncoding.UTF8 raise (.text.error).
+const bomText = Buffer.concat([
+  Buffer.from([0xef, 0xbb, 0xbf]),
+  Buffer.from(
+    head() +
+      reportProps(`  DocTitle = 'Año € 中文 😀 \ufeff'#13#10'raw'
+  DocAuthor = 'Año'#8364
+`) +
+      subreport('TRpSubReport0', ['TRpSection0']) +
+      section('TRpSection0', 'TRpSubReport0', ['TRpLabel0']) +
+      label('TRpLabel0', "'Mañana ½ ' + 'wide '#8364' ñ'") +
+      'end\r\n',
+    'utf8',
+  ),
+]);
+writeFileSync(join(out, 'invalid-bom.rep'), bomText);
+writeFileSync(
+  join(out, 'invalid-bom-utf8.rep'),
+  Buffer.concat([
+    Buffer.from([0xef, 0xbb, 0xbf]),
+    Buffer.from(head() + reportProps("  DocTitle = 'Caf\xe9'\n") + subreport('TRpSubReport0', ['TRpSection0']) + section('TRpSection0', 'TRpSubReport0', []) + 'end\n', 'latin1'),
+  ]),
+);
+const plainText = head() + reportProps() + subreport('TRpSubReport0', ['TRpSection0']) + section('TRpSection0', 'TRpSubReport0', []) + 'end\r\n';
+writeFileSync(join(out, 'invalid-blank.rep'), Buffer.from(' \r\n' + plainText, 'latin1'));
+writeFileSync(join(out, 'invalid-zlib-text.rep'), deflateSync(Buffer.from(plainText, 'latin1')));
 console.log('written');

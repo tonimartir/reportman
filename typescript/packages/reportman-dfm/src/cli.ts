@@ -9,11 +9,13 @@
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { dfmToXml } from './convert.js';
-import { isDfm } from './reader.js';
+import { reportForm } from './reader.js';
 
 function convertFile(source: string, destination: string | undefined): 'converted' | 'copied' {
   const bytes = new Uint8Array(readFileSync(source));
-  if (!isDfm(bytes)) {
+  // What is not a report Delphi reads is an error (DfmError)
+  const form = reportForm(bytes);
+  if (form === 'xml' || form === 'zlib-xml') {
     if (destination === undefined) process.stdout.write(bytes);
     else copyFileSync(source, destination);
     return 'copied';

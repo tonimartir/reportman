@@ -5,7 +5,8 @@
 // reptotxt -xml does. The classes are not ported: each object keeps the properties of the stream,
 // and the values the Delphi constructors give the others are in the tables below.
 
-import { DfmError, readDfm, type DfmObject, type DfmProperty, type DfmValue } from './reader.js';
+import { ansiUpperCase } from './ansi-upper.js';
+import { DfmError, readDfm, reportForm, type DfmObject, type DfmProperty, type DfmValue } from './reader.js';
 import { XmlOut, delphiFloatToStr } from './xmlout.js';
 
 // ---------------------------------------------------------------------------------------------
@@ -290,8 +291,8 @@ class Props {
 /** TStrings.Text: every line followed by CR LF. */
 const text = (lines: readonly string[]): string => lines.map((l) => l + CRLF).join('');
 const clamp = (v: number, lo: number, hi: number): number => Math.min(hi, Math.max(lo, v));
-/** AnsiUpperCase of the ANSI code page: the letters of Windows-1252 and of Unicode. */
-const upper = (s: string): string => s.toUpperCase();
+/** AnsiUpperCase of Delphi on Windows. */
+const upper = ansiUpperCase;
 
 // ---------------------------------------------------------------------------------------------
 // The objects of a report
@@ -563,7 +564,8 @@ export function dfmTreeToXml(root: DfmObject): Uint8Array {
     tree.push({ subreport, sections });
   }
 
-  // TRpReport.Loaded: an identifier already taken (ignoring the case) is cleared
+  // TRpReport.Loaded: an identifier already taken (ignoring the case: AnsiCompareText, here the
+  // letters of AnsiUpperCase) is cleared
   const identifiers = new Set<string>();
   const cleared = new Set<Component>();
   for (const s of tree)
@@ -572,8 +574,8 @@ export function dfmTreeToXml(root: DfmObject): Uint8Array {
         if (c.className !== 'TRPEXPRESSION' && c.className !== 'TRPCHART') continue;
         const id = c.props.str('Identifier', '');
         if (id.length === 0) continue;
-        if (identifiers.has(id.toUpperCase())) cleared.add(c);
-        else identifiers.add(id.toUpperCase());
+        if (identifiers.has(upper(id))) cleared.add(c);
+        else identifiers.add(upper(id));
       }
 
   // SaveToStream: a report without subreports gets one with a detail section
@@ -1078,7 +1080,12 @@ function invariantFloat(s: string, name: string): number {
   return n;
 }
 
-/** The XML of a report in a DFM form: the bytes Delphi writes for it (reptotxt -xml). */
+/**
+ * The XML of a report in a DFM form: the bytes Delphi writes for it (reptotxt -xml). Only the forms
+ * TRpBaseReport.LoadFromStream reads (reportForm).
+ */
 export function dfmToXml(bytes: Uint8Array): Uint8Array {
+  const form = reportForm(bytes);
+  if (form === 'xml' || form === 'zlib-xml') throw new DfmError('The report is XML, not a DFM form.');
   return dfmTreeToXml(readDfm(bytes));
 }

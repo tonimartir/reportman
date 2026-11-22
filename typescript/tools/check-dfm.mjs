@@ -16,7 +16,7 @@ if (!existsSync(exe)) {
   console.log('skip: build tools/golden-dfm first (build.bat, Windows with RAD Studio)');
   process.exit(0);
 }
-const { dfmToXml, isDfm } = await import(pathToFileURL(join(root, 'packages', 'reportman-dfm', 'dist', 'index.js')).href);
+const { dfmToXml, reportForm } = await import(pathToFileURL(join(root, 'packages', 'reportman-dfm', 'dist', 'index.js')).href);
 const folders = process.argv.slice(2);
 if (folders.length === 0) {
   console.error('Usage: node tools/check-dfm.mjs <folder>...');
@@ -44,6 +44,7 @@ let same = 0;
 let different = 0;
 let delphiFailed = 0;
 let converterFailed = 0;
+let readsMore = 0;
 try {
   for (const folder of folders) {
     for (const file of reports(folder)) {
@@ -53,13 +54,29 @@ try {
       } catch {
         continue;
       }
-      if (!isDfm(bytes)) continue;
+      // XML is not converted; anything else is a DFM for one of the two, or for none
+      let form;
+      try {
+        form = reportForm(bytes);
+      } catch {
+        form = 'refused';
+      }
+      if (form === 'xml' || form === 'zlib-xml') continue;
       const out = join(work, 'out.xml');
       rmSync(out, { force: true });
       const r = spawnSync(exe, ['-xml', file, out], { encoding: 'utf8' });
       if (r.status !== 0) {
-        delphiFailed++;
-        console.log(`delphi fails  ${file}: ${(r.stderr || r.stdout).trim().split('\n')[0]}`);
+        // Delphi does not read it: neither must the converter
+        let converted = false;
+        try {
+          dfmToXml(bytes);
+          converted = true;
+        } catch {
+          // refused too
+        }
+        if (converted) readsMore++;
+        else delphiFailed++;
+        console.log(`${converted ? 'CONVERTED    ' : 'both refuse  '} ${file}: ${(r.stderr || r.stdout).trim().split('\n')[0]}`);
         continue;
       }
       const expected = readFileSync(out);
@@ -85,5 +102,8 @@ try {
 } finally {
   rmSync(work, { recursive: true, force: true });
 }
-console.log(`${same} identical, ${different} different, ${converterFailed} failed in the converter, ${delphiFailed} that Delphi can not read`);
-process.exit(different + converterFailed > 0 ? 1 : 0);
+console.log(
+  `${same} identical, ${different} different, ${converterFailed} failed in the converter, ${delphiFailed} refused by both, ` +
+    `${readsMore} converted that Delphi can not read`,
+);
+process.exit(different + converterFailed + readsMore > 0 ? 1 : 0);
