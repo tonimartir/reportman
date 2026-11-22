@@ -108,6 +108,8 @@ reportman-pdf invoices.rep -o invoices.pdf --sqlite SAMPLES=samples.db -paramFIR
 reportman-pdf invoices.rep --describe --sqlite SAMPLES=samples.db
 ```
 
-Reports must be XML (plain or zlib compressed). A report saved by Delphi in DFM format is saved
-again as XML from the Report Manager designer, or with the `reptotxt -xml` command of Report
-Manager, which checks the conversion.
+Reports are XML (plain or zlib compressed). A report saved by Delphi in a DFM form (text, binary or
+compressed) opens too when the optional package `@reportman/dfm` is installed: `openReport`
+converts it to the XML the Delphi engine writes for it (`dfm: false` refuses it instead). Without
+that package it can be saved again as XML from the Report Manager designer, or converted with
+`npx @reportman/dfm` or the `reptotxt -xml` command of Report Manager.

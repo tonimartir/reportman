@@ -1,0 +1,130 @@
+object TRpReport
+  SubReports = <
+    item
+      SubReport = TRpSubReport0
+    end>
+  DataInfo = <>
+  DatabaseInfo = <>
+  Params = <>
+  StreamFormat = rpStreamText
+  ReportAction = []
+  Type1Font = poHelvetica
+  object TRpSubReport0: TRpSubReport
+    Sections = <
+      item
+        Section = TRpSection0
+      end>
+  end
+  object TRpSection0: TRpSection
+    Width = 10772
+    Height = 1701
+    SubReport = TRpSubReport0
+    ChangeBool = False
+    PageRepeat = False
+    SkipPage = False
+    AlignBottom = False
+    SectionType = rpsecdetail
+    AutoExpand = False
+    AutoContract = False
+    Components = <
+      item
+        Component = TRpLabel0
+      end
+      item
+        Component = TRpSection0.TRpLabel1
+      end
+      item
+        Component = Owner.TRpLabel2
+      end
+      item
+        Component = TRPLABEL3
+      end
+      item
+        Component = Nope
+      end
+      item
+        Component = TRpExpression0
+      end
+      item
+        Component = TRpExpression1
+      end
+      item
+        Component = TRpChart0
+      end>
+  end
+  object TRpLabel0: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 'zero'
+  end
+  object TRpLabel1: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 'one'
+  end
+  object TRpLabel2: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 'two'
+  end
+  object TRpLabel3: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    WideText = 'three'
+  end
+  object TRpExpression0: TRpExpression
+    Width = 1440
+    Height = 275
+    PosX = 200
+    PosY = 200
+    Type1Font = poHelvetica
+    Identifier = 'Total'
+    AutoExpand = False
+    AutoContract = False
+    ExportDoNewLine = False
+    Expression = '1+1'
+  end
+  object TRpExpression1: TRpExpression
+    Width = 1440
+    Height = 275
+    PosX = 200
+    PosY = 200
+    Type1Font = poHelvetica
+    Identifier = 'TOTAL'
+    AutoExpand = False
+    AutoContract = False
+    ExportDoNewLine = False
+    Expression = '1+1'
+  end
+  object TRpChart0: TRpChart
+    Width = 4000
+    Height = 3000
+    PosX = 0
+    PosY = 0
+    Type1Font = poHelvetica
+    Identifier = 'total'
+    Driver = rpchartdriverdefault
+    Series = <
+      item
+        Color = 255
+      end
+      item
+        Color = -1
+      end>
+    YMin = '-10.5'
+    YMax = '100'
+    AutoRange = 2
+  end
+end

@@ -1,0 +1,274 @@
+object TRpReport
+  GridWidth = 5
+  GridHeight = 7
+  Language = 1
+  SubReports = <
+    item
+      SubReport = TRpSubReport0
+    end>
+  DataInfo = <
+    item
+      Alias = 'dataset'
+      DatabaseAlias = 'conn'
+      SQL = 'select '#39'Ñ'#39', '#8364' from t'#13#10'where x = 1'
+      DataSource = ' master '
+      DataUnions.Strings = (
+        'A'
+        'B')
+      HubSchemaId = 12345678901
+      SchemaName = 'Ventas'
+    end>
+  DatabaseInfo = <
+    item
+      Alias = 'conn'
+      LoadParams = True
+      LoadDriverParams = True
+      LoginPrompt = False
+      Driver = rpdbHttp
+      ReportTable = ''
+      ADOConnectionString = 'Data Source=x.db'
+    end>
+  Params = <
+    item
+      Name = 'pstr'
+      Value = 'texto con '#241
+      ParamType = rpParamString
+    end
+    item
+      Name = 'pnull'
+      Value = Null
+      ParamType = rpParamString
+    end
+    item
+      Name = 'pabsent'
+      ParamType = rpParamString
+    end
+    item
+      Name = 'pnumtext'
+      Value = 1.500000000000000000
+      ParamType = rpParamString
+    end
+    item
+      Name = 'pinttext'
+      Value = 42
+      ParamType = rpParamString
+    end
+    item
+      Name = 'pbooltext'
+      Value = True
+      ParamType = rpParamString
+    end
+    item
+      Name = 'pint'
+      Value = -7
+      ParamType = rpParamInteger
+    end
+    item
+      Name = 'pintabsent'
+      ParamType = rpParamInteger
+    end
+    item
+      Name = 'pintfromdouble'
+      Value = 2.500000000000000000
+      ParamType = rpParamInteger
+    end
+    item
+      Name = 'pdouble'
+      Value = 3.250000000000000000
+      ParamType = rpParamDouble
+    end
+    item
+      Name = 'pcurrency'
+      Value = 12345678c
+      ParamType = rpParamCurrency
+    end
+    item
+      Name = 'psingle'
+      Value = 1.5s
+      ParamType = rpParamDouble
+    end
+    item
+      Name = 'pdate'
+      Value = 45351d
+      ParamType = rpParamDate
+    end
+    item
+      Name = 'pdatetime'
+      Value = 45823.7708333333d
+      ParamType = rpParamDateTime
+    end
+    item
+      Name = 'ptime'
+      Value = 0.5d
+      ParamType = rpParamTime
+    end
+    item
+      Name = 'pbool'
+      Value = True
+      ParamType = rpParamBool
+    end
+    item
+      Name = 'pboolabsent'
+      ParamType = rpParamBool
+    end
+    item
+      Name = 'pmulti'
+      Value = '1,2'
+      ParamType = rpParamMultiple
+      Items.Strings = (
+        'one'
+        'two')
+      Values.Strings = (
+        '1'
+        '2')
+      Selected.Strings = (
+        '0')
+    end
+    item
+      Name = 'plangs'
+      Value = ''
+      ParamType = rpParamString
+      Description = 'English'#10'Espa'#241'ol'#10'Catal'#224
+      Hint = 'h0'#10'h1'
+      ErrorMessage = 'e0'#10#13'e1'#13#10'e2'
+      Validation = 'v'
+      Search = 's'
+      Visible = False
+      IsReadOnly = True
+      NeverVisible = True
+      AllowNulls = False
+      Datasets.Strings = (
+        'DATASET')
+    end>
+  StreamFormat = rpStreamText
+  ReportAction = [rpDrawerAfter]
+  Type1Font = poCourier
+  DocTitle = 'T'#237'tulo '#8364' '#20013' '#256
+  DocAuthor = 'Autor'
+  WFontName = 'Arial '#20013
+  EmbeddedFiles =
+    '0200000005000000612E7478740A000000746578742F706C61696E0A00000046' +
+    '697273742066696C650800000032303236303130310000000002000000030000' +
+    '0061626309000000656D7074792E62696E180000006170706C69636174696F6E' +
+    '2F6F637465742D73747265616D0400000041C3B16F0000000000000000000000' +
+    '0000000000'
+  object TRpSubReport0: TRpSubReport
+    Sections = <
+      item
+        Section = TRpSection0
+      end>
+  end
+  object TRpSection0: TRpSection
+    Width = 10772
+    Height = 1701
+    SubReport = TRpSubReport0
+    ChangeBool = False
+    PageRepeat = False
+    SkipPage = False
+    AlignBottom = False
+    SectionType = rpsecdetail
+    AutoExpand = False
+    AutoContract = False
+    BeginPage = True
+    GroupName = 'g1'
+    Components = <
+      item
+        Component = TRpLabel0
+      end
+      item
+        Component = TRpLabel1
+      end
+      item
+        Component = TRpLabel2
+      end
+      item
+        Component = TRpLabel3
+      end
+      item
+        Component = TRpBarcode0
+      end
+      item
+        Component = TRpShape0
+      end
+      item
+        Component = TRpExpression0
+      end>
+  end
+  object TRpLabel0: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    Width = 100000
+    BidiModes.Strings = (
+      'BidiNo'
+      'BidiNo'
+      'BidiFull')
+    WideText = 'two lines'#10#10
+  end
+  object TRpLabel1: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    BidiModes.Strings = (
+      'BidiNo'
+      'BidiPartial')
+    WideText = #10
+  end
+  object TRpLabel2: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    AllText.Strings = (
+      'old one'
+      'old two')
+    WideText = 'ignored'
+  end
+  object TRpLabel3: TRpLabel
+    Width = 1440
+    Height = 275
+    PosX = 100
+    PosY = 100
+    Type1Font = poHelvetica
+    IsHtml = True
+    WideText = 'Caf'#233' '#8364' '#20013#13#10'end'
+  end
+  object TRpBarcode0: TRpBarcode
+    Width = 2000
+    Height = 600
+    PosX = 0
+    PosY = 0
+    Modul = 0
+    ECCLevel = 20
+    Ratio = 3.500000000000000000
+    Typ = bcCodeQr
+    Expression = 'code'
+  end
+  object TRpShape0: TRpShape
+    Width = 500
+    Height = 500
+    PosX = 0
+    PosY = 0
+    Shape = rpsEllipse
+  end
+  object TRpExpression0: TRpExpression
+    Width = 1440
+    Height = 275
+    PosX = 200
+    PosY = 200
+    Type1Font = poHelvetica
+    Identifier = ''
+    AutoExpand = False
+    AutoContract = False
+    ExportDoNewLine = False
+    ExportSize = 20
+    DataType = rpParamDouble
+    DisplayFormat = '#,##0.00'
+    Expression = '1+1'
+  end
+end

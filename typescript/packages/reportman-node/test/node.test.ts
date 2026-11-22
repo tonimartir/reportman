@@ -152,9 +152,20 @@ describe('reportman-node: data sources', () => {
     expect(text).toContain('(Porto Alegre Market)');
   });
 
-  it('refuses a Delphi DFM report with a clear message', async () => {
+  it('opens a Delphi DFM report through @reportman/dfm: the model of the XML Delphi writes for it', async () => {
+    const { corpus } = await import('../../reportman-dfm/test/corpus.js');
+    for (const r of corpus().filter((x) => x.group === 'samples' && x.binary !== undefined).slice(0, 3)) {
+      const fromXml = await openReport(r.xml);
+      for (const form of [r.text, r.binary!, r.zlib!]) {
+        const fromDfm = await openReport(form);
+        expect(JSON.stringify(fromDfm.model), r.name).toBe(JSON.stringify(fromXml.model));
+      }
+    }
+  });
+
+  it('refuses a Delphi DFM report with a clear message when it is not to convert it', async () => {
     const dfm = new TextEncoder().encode('object TRpReport\n  PageHeight = 8120\nend\n');
-    await expect(openReport(dfm)).rejects.toThrow(/Delphi DFM format; save it as XML/);
+    await expect(openReport(dfm, { dfm: false })).rejects.toThrow(/Delphi DFM format; save it as XML/);
   });
 });
 

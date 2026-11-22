@@ -18,6 +18,7 @@ const packages = [
   'export',
   'server',
   'canvas',
+  'dfm',
 ];
 
 export default defineConfig({

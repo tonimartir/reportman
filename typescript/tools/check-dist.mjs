@@ -59,6 +59,17 @@ try {
   rmSync(out, { recursive: true, force: true });
 }
 
+// The reportman-dfm2xml command line: a DFM report of test/cases to the XML Delphi writes for it
+try {
+  const cases = join(packagesDir, 'reportman-dfm', 'test', 'cases');
+  const xml = execFileSync(process.execPath, [join(packagesDir, 'reportman-dfm', 'dist', 'cli.js'), join(cases, 'values.rep')], { maxBuffer: 1 << 26 });
+  if (!xml.equals(readFileSync(join(cases, 'values.xml')))) throw new Error('not the XML of Delphi');
+  console.log('ok   reportman-dfm2xml values.rep');
+} catch (e) {
+  failed = true;
+  console.error('FAIL reportman-dfm2xml: ' + e.message.split('\n')[0]);
+}
+
 // The reportman-server command line: a data folder with the samples, the console page and key
 // (read from the folder), a sample run through the reports API with the connection the samples
 // installed, and the CSV of the report

@@ -1,0 +1,9 @@
+object TRpReport
+  SubReports = <>
+  DataInfo = <>
+  DatabaseInfo = <>
+  Params = <>
+  StreamFormat = rpStreamText
+  ReportAction = []
+  Type1Font = poHelvetica
+end

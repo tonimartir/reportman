@@ -46,6 +46,12 @@ export interface OpenReportOptions extends DataSources {
    * parameter default.
    */
   beforeRun?: (model: Report) => void;
+  /**
+   * A report in Delphi DFM form (text, binary or compressed) is converted to XML by @reportman/dfm
+   * when that package is installed (true by default); false refuses it with a clear error, as
+   * when the package is not there.
+   */
+  dfm?: boolean;
 }
 
 /** Options of a PDF. */
@@ -300,6 +306,28 @@ async function printPdf(run: ReportRun, device: PdfDevice, signal?: AbortSignal)
 
 /** Opens a .rep report (XML, plain or zlib compressed) from a file or from its bytes. */
 export async function openReport(source: string | Uint8Array, options: OpenReportOptions = {}): Promise<NodeReport> {
-  const bytes = typeof source === 'string' ? new Uint8Array(readFileSync(source)) : source;
+  let bytes = typeof source === 'string' ? new Uint8Array(readFileSync(source)) : source;
+  if (options.dfm !== false) {
+    const dfm = await dfmConverter();
+    if (dfm !== undefined && dfm.isDfm(bytes)) bytes = dfm.dfmToXml(bytes);
+  }
   return new NodeReport(bytes, options);
+}
+
+/** What @reportman/node uses of @reportman/dfm, an optional peer dependency. */
+interface DfmConverter {
+  isDfm(bytes: Uint8Array): boolean;
+  dfmToXml(bytes: Uint8Array): Uint8Array;
+}
+
+let dfmLoading: Promise<DfmConverter | undefined> | undefined;
+
+/** @reportman/dfm when it is installed next to @reportman/node, or undefined. */
+function dfmConverter(): Promise<DfmConverter | undefined> {
+  const name = '@reportman/dfm';
+  dfmLoading ??= import(name).then(
+    (m: Partial<DfmConverter>) => (typeof m.isDfm === 'function' && typeof m.dfmToXml === 'function' ? (m as DfmConverter) : undefined),
+    () => undefined,
+  );
+  return dfmLoading;
 }

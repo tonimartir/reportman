@@ -38,5 +38,13 @@
   },
   "bin": {
     "reportman-pdf": "./dist/cli.js"
+  },
+  "peerDependencies": {
+    "@reportman/dfm": "0.1.0-alpha.1"
+  },
+  "peerDependenciesMeta": {
+    "@reportman/dfm": {
+      "optional": true
+    }
   }
 }

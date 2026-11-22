@@ -18,6 +18,7 @@ Status: **preview**, versions `0.1.0-alpha.N` with the npm tag `next`
 | `@reportman/text` | Text measurement: the standard 14 PDF fonts, and TrueType/OpenType fonts with fontkit (shaping, fallback, bidi with bidi-js), HTML text, the engine's line breaking | browser, Node |
 | `@reportman/pdf` | Metafile → PDF (standard fonts, or embedded font subsets; images; PDF/A-3B); also the layout device that measures text while the report is laid out | browser, Node |
 | `@reportman/engine` | Expressions, parameters (two steps), datasets, and the layout of a report into a metafile: sections, groups, subreports, images, barcodes, charts | browser, Node |
+| `@reportman/dfm` | Optional: Delphi DFM reports (text, binary, compressed) to the XML the Delphi engine writes for them; `reportman-dfm2xml` | browser, Node |
 | `@reportman/node` | Node.js host: open a `.rep`, describe its parameters (step 1), run it to PDF (step 2); SQLite (`node:sqlite`), system fonts, CLI `@reportman/pdf` | Node |
 | `@reportman/export` | Metafile → CSV (as C#), SVG and HTML (as the Delphi drivers); the text of line, dot matrix and receipt printers (`PrintOutText`) | browser, Node |
 | `@reportman/canvas` | The preview: the pages of a metafile on a Canvas 2D context, drawn as the PDF draws them | browser |
@@ -42,9 +43,10 @@ The `.rpmf` metafile files of the viewers are written and read byte for byte as 
 2. **Pure JavaScript.** Third-party dependencies are plain JavaScript: no `.node`, `.wasm`,
    `.so`/`.dll`, and no install scripts. `npm run check:pure-js` enforces it. Node's built-in
    modules (`node:zlib`, `node:sqlite`) are allowed in `@reportman/node`.
-3. **Only XML reports.** Like the C# engine, the readers accept XML `.rep` files (plain or zlib
-   compressed). A report saved by Delphi in DFM format is saved again as XML from the designer,
-   or with the `reptotxt -xml` command of Report Manager, which checks the conversion.
+3. **XML reports; DFM through an optional converter.** Like the C# engine, the readers accept XML
+   `.rep` files (plain or zlib compressed). A report saved by Delphi in a DFM form is converted
+   by `@reportman/dfm` to the XML Delphi writes for it, byte for byte (`@reportman/node` uses it
+   when it is installed), or saved again as XML from the designer or with `reptotxt -xml`.
 4. **Same output as C#.** Each ported part is checked against the C# engine with
    `tools/golden-cs` (model JSON, expression results, metafile and PDF of a run).
 5. **ES modules only, Node 22.12 or later.** There is no CommonJS build: a CommonJS program loads
@@ -62,6 +64,7 @@ npm run check:pure-js
 npm run check:dist   # the builds in plain Node, the CLIs on the samples
 npm run check:browser  # the expression parity cases in a headless Edge or Chrome
 npm run check:canvas   # the canvas preview against the PDF rasterized by poppler (WSL on Windows)
+npm run check:dfm -- <folder>   # @reportman/dfm against Delphi on the DFM reports of a folder (tools/golden-dfm)
 ```
 
 ### Continuous integration, on this computer

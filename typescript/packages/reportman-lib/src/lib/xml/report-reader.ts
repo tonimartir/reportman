@@ -35,7 +35,7 @@ import {
 
 /** The message of the error a Delphi DFM report (text or binary, plain or zlib) gives. */
 export const DFM_FORMAT_MESSAGE =
-  "This .rep file is in Delphi DFM format; save it as XML from the Report Manager designer.";
+  "This .rep file is in Delphi DFM format; save it as XML from the Report Manager designer, or convert it with @reportman/dfm (dfmToXml, or the reportman-dfm2xml command).";
 
 /**
  * An error reading a report. propertyName is the property or item it is about, when the engine
