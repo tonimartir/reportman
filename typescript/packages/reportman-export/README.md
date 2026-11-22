@@ -17,7 +17,7 @@ The C# engine has no SVG or HTML output: those two are ports of the Delphi drive
 documents Delphi writes from the same metafile, byte for byte (`test/svg-html.test.ts` checks them
 against the Delphi engine itself, `tools/golden-delphi`).
 
-Status: preview (`0.1.0-alpha.N`, npm tag `next`). Browser and Node: the package does no I/O, it
+Status: preview (`4.1.0-alpha.N`, npm tag `next`). Browser and Node: the package does no I/O, it
 returns the documents and the files, and the host writes them.
 
 ## CSV

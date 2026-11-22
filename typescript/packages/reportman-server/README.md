@@ -7,7 +7,7 @@ folder it also has the console of Reportman.Server: connections (defined and tes
 keys, the sample reports and an API explorer. Pure JavaScript on top of `@reportman/node`;
 framework independent, with adapters for `node:http`, Express and Fastify.
 
-Status: preview (`0.1.0-alpha.N`, npm tag `next`).
+Status: preview (`4.1.0-alpha.N`, npm tag `next`).
 
 ## Try it
 

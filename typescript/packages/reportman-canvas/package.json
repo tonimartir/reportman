@@ -1,6 +1,6 @@
 {
   "name": "@reportman/canvas",
-  "version": "0.1.0-alpha.1",
+  "version": "4.1.0-alpha.1",
   "description": "Report Manager preview in the browser: paints the pages of a metafile on a Canvas 2D context as the PDF draws them.",
   "license": "MPL-2.0",
   "type": "module",
@@ -30,8 +30,8 @@
     "tag": "next"
   },
   "dependencies": {
-    "@reportman/metafile": "0.1.0-alpha.1",
-    "@reportman/pdf": "0.1.0-alpha.1",
-    "@reportman/text": "0.1.0-alpha.1"
+    "@reportman/metafile": "4.1.0-alpha.1",
+    "@reportman/pdf": "4.1.0-alpha.1",
+    "@reportman/text": "4.1.0-alpha.1"
   }
 }

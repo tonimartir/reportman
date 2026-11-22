@@ -5,8 +5,8 @@ The Report Manager engine as npm packages: run `.rep` reports from Node.js (and 
 translation of the C# engine in this repository; the two engines are meant to give the same output
 for the same report.
 
-Status: **preview**, versions `0.1.0-alpha.N` with the npm tag `next`
-(`npm install @reportman/node@next`); the API may change until 1.0. The plan (in Spanish) is
+Status: **preview**, versions `4.1.0-alpha.N` with the npm tag `next`
+(`npm install @reportman/node@next`); the API may change until 4.1.0. The plan (in Spanish) is
 `docs/npm_typescript_plan.md` of the Delphi repository (`tonimartir/reportmandelphi`).
 
 ## Packages
@@ -66,6 +66,16 @@ npm run check:browser  # the expression parity cases in a headless Edge or Chrom
 npm run check:canvas   # the canvas preview against the PDF rasterized by poppler (WSL on Windows)
 npm run check:dfm -- <folder>   # @reportman/dfm against Delphi on the DFM reports of a folder (tools/golden-dfm)
 ```
+
+### Releases
+
+Every package has the same version, the one the Delphi and C# engines share at each release
+(4.x). `npm run version:set -- 4.1.0-alpha.2` sets it on all of them, on the references between
+them and in `package-lock.json` (edit the status lines of the README files by hand);
+`npm run release:next` checks that they share it, builds from scratch, runs the tests and
+`check:dist`, and publishes them all with the tag `next` (after `npm login`). npm stages the new
+versions (staged publishing): each one waits in the **Staged Packages** tab of the account
+settings on npmjs.com until it is approved there, with the 2FA of the account.
 
 ### Continuous integration, on this computer
 
