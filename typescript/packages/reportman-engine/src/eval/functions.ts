@@ -18,6 +18,7 @@ import { convertDecimalToInt64, NumberStyles, parseDecimal, parseDouble, parseIn
 import { parseDateTime } from '../util/dateparse.js';
 import { DateTimeKind, RpDateTime } from '../util/datetime.js';
 import { ansiDecode, ansiEncode, formatMaskText, indyBase64Decode, iniReadString, utf8Decode } from '../util/delphitext.js';
+import { TO_SIMPLIFIED_FROM, TO_SIMPLIFIED_TO, TO_TRADITIONAL_FROM, TO_TRADITIONAL_TO } from './chinesetables.js';
 import { ParamType, Variant, VariantType } from '../variant/variant.js';
 import type { VariantContext } from '../variant/context.js';
 import type { Evaluator } from './evaluator.js';
@@ -582,6 +583,40 @@ class IdenFormatMask extends BuiltinFunction {
   }
 }
 
+/**
+ * CHSTOCHT and CHTTOCHS of the Delphi engine: a text in simplified Chinese to traditional and the
+ * other way round, as LCMapString of Windows does it for the locale zh-CN, one character for one
+ * (chinesetables.ts). A value that is not a string is a type error, NULL too, as in Delphi.
+ */
+class IdenChineseConversion extends BuiltinFunction {
+  private static traditional: Map<string, string> | undefined;
+  private static simplified: Map<string, string> | undefined;
+
+  constructor(
+    e: Evaluator,
+    private readonly toTraditional: boolean,
+  ) {
+    super(e, toTraditional ? 'ChsToCht' : 'ChtToChs', 1, 'function ' + (toTraditional ? 'ChsToCht' : 'ChtToChs') + '(expr:string):String');
+  }
+
+  private static table(from: string, to: string): Map<string, string> {
+    const map = new Map<string, string>();
+    for (let i = 0; i < from.length; i++) map.set(from[i]!, to[i]!);
+    return map;
+  }
+
+  protected getValue(): Variant {
+    if (this.params[0]!.varType !== VariantType.String) throw this.typeError(this.name);
+    const map = this.toTraditional
+      ? (IdenChineseConversion.traditional ??= IdenChineseConversion.table(TO_TRADITIONAL_FROM, TO_TRADITIONAL_TO))
+      : (IdenChineseConversion.simplified ??= IdenChineseConversion.table(TO_SIMPLIFIED_FROM, TO_SIMPLIFIED_TO));
+    const text = this.params[0]!.toString(this.ctx);
+    let r = '';
+    for (let i = 0; i < text.length; i++) r += map.get(text[i]!) ?? text[i];
+    return Variant.fromString(r);
+  }
+}
+
 class IdenAsc2 extends BuiltinFunction {
   constructor(e: Evaluator) {
     super(e, 'ASC2', 1, 'function ASC2:string');
@@ -728,6 +763,8 @@ export function addBuiltinIdentifiers(add: (key: string, iden: EvalIdentifier) =
   add('TIME', new IdenTime(e));
   add('SQRT', new IdenSqrt(e));
   add('ASC2', new IdenAsc2(e));
+  add('CHSTOCHT', new IdenChineseConversion(e, true));
+  add('CHTTOCHS', new IdenChineseConversion(e, false));
   add('IDENTEXISTS', new IdenIdentExists(e));
   add('GETINIVALUE', new IdenGetIniValue(e));
   add('DECODE64', new IdenDecode64(e));

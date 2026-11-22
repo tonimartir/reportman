@@ -499,6 +499,53 @@ namespace Reportman.Reporting
         }
     }
 
+    /// <summary>
+    /// CHSTOCHT and CHTTOCHS of the Delphi engine: a text in simplified Chinese to traditional and the
+    /// other way round, as LCMapString of Windows does it for the locale zh-CN, one character for one
+    /// (ChineseTables.cs, the table Windows gives). A value that is not a string is a type error, NULL
+    /// too, as in Delphi (VarIsString). Delphi converted CHTTOCHS to traditional too, a bug fixed in
+    /// both engines on 22-11-2026.
+    /// </summary>
+    class IdenChineseConversion : IdenFunction
+    {
+        private readonly bool toTraditional;
+        private static Dictionary<char, char> traditional;
+        private static Dictionary<char, char> simplified;
+
+        public IdenChineseConversion(Evaluator eval, bool toTraditional)
+            : base(eval)
+        {
+            this.toTraditional = toTraditional;
+            SetParamCount(1);
+            Name = toTraditional ? "ChsToCht" : "ChtToChs";
+            FModel = "function " + Name + "(expr:string):String";
+        }
+
+        private static Dictionary<char, char> Table(string from, string to)
+        {
+            var map = new Dictionary<char, char>(from.Length);
+            for (int i = 0; i < from.Length; i++)
+                map[from[i]] = to[i];
+            return map;
+        }
+
+        protected override Variant GetValue()
+        {
+            if (Params[0].VarType != VariantType.String)
+                throw new NamedException(Translator.TranslateStr(438), Name);
+            Dictionary<char, char> map;
+            if (toTraditional)
+                map = traditional ?? (traditional = Table(ChineseTables.ToTraditionalFrom, ChineseTables.ToTraditionalTo));
+            else
+                map = simplified ?? (simplified = Table(ChineseTables.ToSimplifiedFrom, ChineseTables.ToSimplifiedTo));
+            string text = Params[0].AsString;
+            var sb = new StringBuilder(text.Length);
+            foreach (char c in text)
+                sb.Append(map.TryGetValue(c, out char m) ? m : c);
+            return sb.ToString();
+        }
+    }
+
     class IdenAsc2 : IdenFunction
     {
         public IdenAsc2(Evaluator eval)

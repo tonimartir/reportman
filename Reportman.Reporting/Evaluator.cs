@@ -1044,6 +1044,8 @@ namespace Reportman.Reporting
             FIdentifierList.Add("TIME", new IdenTime(this));
             FIdentifierList.Add("SQRT", new IdenSqrt(this));
             FIdentifierList.Add("ASC2", new IdenAsc2(this));
+            FIdentifierList.Add("CHSTOCHT", new IdenChineseConversion(this, true));
+            FIdentifierList.Add("CHTTOCHS", new IdenChineseConversion(this, false));
             FIdentifierList.Add("IDENTEXISTS", new IdenIdentExists(this));
             FIdentifierList.Add("GETINIVALUE", new IdenGetIniValue(this));
             FIdentifierList.Add("DECODE64", new IdenDecode64(this));

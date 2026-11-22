@@ -161,6 +161,8 @@ for (const e of [
 // these cases and 1,030 random ones in es-ES, en-US and de-DE, all the same. LOADFILE and
 // GETINIVALUE read files: test/delphifunctions.test.ts.
 for (const e of [
+  "CHSTOCHT('简体中文测试')", "CHTTOCHS('繁體中文測試')", "CHSTOCHT('发 髮 發 abc')", "CHTTOCHS('發 髮 发')", "CHSTOCHT('')", 'CHSTOCHT(NULL)',
+  'CHTTOCHS(1)', "chstocht('国际')", "CHTTOCHS(CHSTOCHT('汉字'))", "CHSTOCHT('Report Manager')",
   'SQRT(16)', 'SQRT(2)', 'SQRT(0)', 'SQRT(2.25)', "SQRT('4')", 'SQRT(NULL)', 'SQRT(1E300)',
   "HOURMINSEC(1.5,'h ','m ','s')", "HOURMINSEC(0,'h','m','s')", "HOURMINSEC(2.999999,':',':','')", "HOURMINSEC(1.0083333333,'h','m','s')",
   "HOURMINSEC(25.25,'h','m','s')", "HOURMINSEC(0.0125,'h','m','s')", "HOURMINSEC(0.999999999,'h','m','s')", "HOURMINSEC(-1.5,'h','m','s')",

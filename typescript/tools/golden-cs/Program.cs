@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
@@ -72,6 +73,7 @@ class Program
                 case "text-extent": return TextExtent(args);
                 case "encoding": return EncodingTable(args);
                 case "shape": return Shape(args);
+                case "lcmap": return LcMap(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -412,6 +414,51 @@ class Program
             for (int i = 0; i < infos.Length; i++)
                 Console.WriteLine(string.Join(" ", infos[i].Codepoint, positions[i].XAdvance, positions[i].XOffset, positions[i].YOffset, infos[i].Cluster));
         }
+        return 0;
+    }
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    static extern int LCMapStringEx(string locale, uint flags, string source, int sourceLength, [Out] char[] destination,
+        int destinationLength, IntPtr version, IntPtr reserved, IntPtr sortHandle);
+
+    static string MapChinese(string text, uint flags)
+    {
+        // LCMapStringEx refuses an empty text (ERROR_INVALID_PARAMETER); LCMapString with -1 gives ""
+        if (text.Length == 0) return text;
+        int n = LCMapStringEx("zh-CN", flags, text, text.Length, null, 0, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+        if (n <= 0) throw new Exception("LCMapStringEx failed: " + Marshal.GetLastWin32Error());
+        var buffer = new char[n];
+        LCMapStringEx("zh-CN", flags, text, text.Length, buffer, n, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+        return new string(buffer, 0, n);
+    }
+
+    // golden-cs lcmap <out.json> [text...]
+    //   What Windows gives the Delphi functions CHSTOCHT and CHTTOCHS (LCMapString of the locale
+    //   zh-CN with LCMAP_TRADITIONAL_CHINESE and LCMAP_SIMPLIFIED_CHINESE): every UTF-16 code unit
+    //   but the surrogates that one of the two changes, as { "traditional": { code: text },
+    //   "simplified": { code: text } }, and the texts given mapped whole ("texts").
+    static int LcMap(string[] args)
+    {
+        const uint TRADITIONAL = 0x04000000;
+        const uint SIMPLIFIED = 0x02000000;
+        var result = new JObject();
+        foreach (var (name, flags) in new[] { ("traditional", TRADITIONAL), ("simplified", SIMPLIFIED) })
+        {
+            var map = new JObject();
+            for (int c = 1; c < 0x10000; c++)
+            {
+                if (c >= 0xD800 && c < 0xE000) continue;
+                string one = ((char)c).ToString();
+                string mapped = MapChinese(one, flags);
+                if (mapped != one) map[c.ToString(CultureInfo.InvariantCulture)] = mapped;
+            }
+            result[name] = map;
+        }
+        var texts = new JArray();
+        for (int i = 2; i < args.Length; i++)
+            texts.Add(new JObject { ["text"] = args[i], ["traditional"] = MapChinese(args[i], TRADITIONAL), ["simplified"] = MapChinese(args[i], SIMPLIFIED) });
+        result["texts"] = texts;
+        File.WriteAllText(args[1], result.ToString(Formatting.None), new UTF8Encoding(false));
         return 0;
     }
 

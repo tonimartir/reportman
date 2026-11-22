@@ -1,0 +1,72 @@
+[
+ {
+  "text": "简体中文测试",
+  "traditional": "簡體中文測試",
+  "simplified": "简体中文测试"
+ },
+ {
+  "text": "繁體中文測試",
+  "traditional": "繁體中文測試",
+  "simplified": "繁体中文测试"
+ },
+ {
+  "text": "汉字 漢字 abc 123",
+  "traditional": "漢字 漢字 abc 123",
+  "simplified": "汉字 汉字 abc 123"
+ },
+ {
+  "text": "发 髮 發",
+  "traditional": "發 髮 發",
+  "simplified": "发 发 发"
+ },
+ {
+  "text": "后 後",
+  "traditional": "后 後",
+  "simplified": "后 後"
+ },
+ {
+  "text": "干 乾 幹",
+  "traditional": "干 乾 幹",
+  "simplified": "干 乾 干"
+ },
+ {
+  "text": "里 裡 裏",
+  "traditional": "里 裡 裏",
+  "simplified": "里 里 里"
+ },
+ {
+  "text": "这是一个报表的标题：销售汇总",
+  "traditional": "這是一個報表的標題：銷售匯總",
+  "simplified": "这是一个报表的标题：销售汇总"
+ },
+ {
+  "text": "這是一個報表的標題：銷售彙總",
+  "traditional": "這是一個報表的標題：銷售彙總",
+  "simplified": "这是一个报表的标题：销售汇总"
+ },
+ {
+  "text": "国际 國際 电脑 電腦 软件 軟體",
+  "traditional": "國際 國際 電腦 電腦 軟件 軟體",
+  "simplified": "国际 国际 电脑 电脑 软件 软体"
+ },
+ {
+  "text": "台湾 臺灣 台灣",
+  "traditional": "臺灣 臺灣 臺灣",
+  "simplified": "台湾 台湾 台湾"
+ },
+ {
+  "text": "面 麵 云 雲",
+  "traditional": "面 麵 云 雲",
+  "simplified": "面 面 云 云"
+ },
+ {
+  "text": "",
+  "traditional": "",
+  "simplified": ""
+ },
+ {
+  "text": "Report Manager",
+  "traditional": "Report Manager",
+  "simplified": "Report Manager"
+ }
+]
