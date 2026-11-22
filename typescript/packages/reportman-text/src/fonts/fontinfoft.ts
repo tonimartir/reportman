@@ -25,6 +25,7 @@ import {
 } from './sfnt.js';
 import { memoryFontFile, type FontFileSource, type FontPlatform } from './sources.js';
 import { isWoff, woffToSfnt } from './woff.js';
+import { isWoff2, woff2ToSfnt } from './woff2.js';
 import { openFontkitFace, type FkFont } from './fontkitfont.js';
 import { shapeText } from './shaper.js';
 import { compareCulture } from './culturemap.js';
@@ -106,8 +107,11 @@ export class FontFile {
 
   constructor(source: FontFileSource) {
     this.source = source;
-    // A WOFF web font is read as the sfnt it was made from (the faces, the PDF subset)
-    this.reader = isWoff(source.read(0, 4)) ? new ByteReader(memoryFontFile(source.path, woffToSfnt(source.readAll()))) : new ByteReader(source);
+    // A WOFF or WOFF2 web font is read as the sfnt it was made from (the faces, the PDF subset)
+    const head = source.read(0, 4);
+    if (isWoff(head)) this.reader = new ByteReader(memoryFontFile(source.path, woffToSfnt(source.readAll())));
+    else if (isWoff2(head)) this.reader = new ByteReader(memoryFontFile(source.path, woff2ToSfnt(source.readAll())));
+    else this.reader = new ByteReader(source);
   }
 
   get path(): string {

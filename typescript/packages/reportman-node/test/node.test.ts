@@ -222,6 +222,30 @@ describe('reportman-node: the fonts option', () => {
     expect(pdf).toMatch(/\/BaseFont \/[A-Z]{6}\+OpenSans/);
     expect(pdf).toContain('/FontFile2 ');
   });
+
+  // The WOFF2 font of the repository: the icons of the generated documentation site, its glyf and
+  // loca transformed; the labels get its characters (+, *, the euro sign and two icons)
+  const glyphicons = path.resolve(here, '../../../../doc/_site/styles/glyphicons-halflings-regular-W4DYDFZM.woff2');
+  it.skipIf(!fs.existsSync(glyphicons))('finds and embeds a WOFF2 font of a folder', async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'rm-woff2-'));
+    fs.copyFileSync(glyphicons, path.join(dir, 'glyphicons.woff2'));
+    const fonts = { systemFolders: false, folders: [dir], platform: 'windows' as const };
+    expect(fontFiles([dir])).toEqual([path.join(dir, 'glyphicons.woff2')]);
+    const report = await openReport(path.join(samples, 'customers.rep'), {
+      connections: { SAMPLES: sqlite(samplesDb) },
+      fonts,
+      beforeRun: (m) => {
+        m.wFontName = 'GLYPHICONS Halflings';
+        for (const c of m.components.values()) {
+          if ('wFontName' in c) (c as { wFontName: string }).wFontName = 'GLYPHICONS Halflings';
+          if ('allStrings' in c) (c as { allStrings: string[] }).allStrings = ['+*€'];
+        }
+      },
+    });
+    const pdf = latin1(await report.executeToPdf({}, { compressed: false }));
+    expect(pdf).toMatch(/\/BaseFont \/[A-Z]{6}\+GLYPHICONSHalflings/);
+    expect(pdf).toContain('/FontFile2 ');
+  });
 });
 
 describe('reportman-node: progress and cancellation', () => {

@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "bidi-js": "^1.1.0",
+    "brotli": "^2.1.0",
     "fflate": "^0.8.3",
     "fontkit": "^3.0.0",
     "@reportman/metafile": "0.1.0-alpha.1"
