@@ -106,6 +106,8 @@ class Program
     static int Eval(string[] args)
     {
         SetCulture(args);
+        // The cases of LOADFILE and GETINIVALUE read the files of the fixtures
+        Evaluator.AllowFileFunctions = true;
         JArray cases = JArray.Parse(File.ReadAllText(args[1]));
         var results = new JArray();
         foreach (JObject c in cases)

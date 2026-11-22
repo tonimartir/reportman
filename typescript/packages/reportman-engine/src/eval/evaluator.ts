@@ -26,7 +26,7 @@ import type { CultureInfo } from '../util/culture.js';
 import { EvalException } from './exception.js';
 import type { FieldResolver } from './fields.js';
 import { IdenField } from './fields.js';
-import { addBuiltinIdentifiers } from './functions.js';
+import { addBuiltinIdentifiers, IdenTime } from './functions.js';
 import { EvalIdentifier, EvalIdentifiers, IdenFunction, IdenVariable } from './identifiers.js';
 import { EvalParser, TokenType } from './parser.js';
 
@@ -66,6 +66,11 @@ export interface EvalHost {
   fileExists(path: string): boolean;
   /** The bytes of a file (GetStreamFromExpression); undefined when it does not exist. */
   readFile?(path: string): Uint8Array | undefined;
+  /**
+   * LOADFILE and GETINIVALUE may read files with readFile (Evaluator.AllowFileFunctions of C#;
+   * false by default): a report is a file anybody who designs can write.
+   */
+  fileFunctions?: boolean;
 }
 
 /** A host with the JavaScript clock (local time) and no file system (FILEEXISTS is False). */
@@ -175,7 +180,15 @@ export class Evaluator {
     const index = idenname.indexOf('.');
     if (index < 0) {
       const found = this.fIdentifierList.get(idenname);
-      if (found !== undefined) return found;
+      if (found !== undefined) {
+        // TIME came from the Delphi engine when reports of the C# one could already name a field
+        // TIME without its dataset: such a field keeps winning
+        if (found instanceof IdenTime && this.aliasList !== null) {
+          const r = this.aliasList.findField(idenname, '');
+          if (r.iden !== null && !r.duplicated) return r.iden;
+        }
+        return found;
+      }
       sfield = idenname;
     } else {
       sdataset = idenname.substring(0, index);

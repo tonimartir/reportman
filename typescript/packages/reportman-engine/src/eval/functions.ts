@@ -14,9 +14,10 @@ import { fromBase64String } from '../util/base64.js';
 import { CsDecimal } from '../util/decimal.js';
 import { compareValue, numberToText, roundDecimalUp } from '../util/doubleutil.js';
 import { argumentException, invalidCastException, NamedException, nullReferenceException, UnNamedException, divideByZeroException, overflowException, NetMessages } from '../util/netexception.js';
-import { convertDecimalToInt64, NumberStyles, parseDecimal, parseDouble, parseInt32 } from '../util/numberparse.js';
+import { convertDecimalToInt64, NumberStyles, parseDecimal, parseDouble, parseInt32, roundHalfEvenDouble } from '../util/numberparse.js';
 import { parseDateTime } from '../util/dateparse.js';
-import { DateTimeKind } from '../util/datetime.js';
+import { DateTimeKind, RpDateTime } from '../util/datetime.js';
+import { ansiDecode, ansiEncode, formatMaskText, indyBase64Decode, iniReadString, utf8Decode } from '../util/delphitext.js';
 import { ParamType, Variant, VariantType } from '../variant/variant.js';
 import type { VariantContext } from '../variant/context.js';
 import type { Evaluator } from './evaluator.js';
@@ -394,10 +395,13 @@ class IdenFloatToDateTime extends BuiltinFunction {
     super(e, 'FloatToDateTime', 1, 'function FloatToDateTime(value:double):DateTime');
   }
   protected getValue(): Variant {
-    if (!this.params[0]!.isNumber()) throw this.typeError('FloatToDateTime');
-    this.params[0]!.toDouble(this.ctx);
-    // C# parity: Convert.ToDateTime(double) always throws InvalidCastException.
-    throw invalidCastException('Double', 'DateTime');
+    // As Delphi (TIdenFloatToDateTime): a number is the date of its OLE value (the days since
+    // 30/12/1899, the time the fraction), a date is itself and null is null
+    const p = this.params[0]!;
+    if (p.varType === VariantType.DateTime) return p;
+    if (p.varType === VariantType.Null) return Variant.null;
+    if (!p.isNumber()) throw this.typeError('FloatToDateTime');
+    return Variant.fromDateTime(RpDateTime.fromOADate(p.toDouble(this.ctx)));
   }
 }
 
@@ -514,6 +518,166 @@ class IdenNumToText extends BuiltinFunction {
   }
 }
 
+// The functions of the Delphi engine (rpevalfunc.pas) that the C# engine has too
+// (EvalFunctionsDelphi.cs), with the results of the Delphi evaluator.
+
+/** (long)Math.Round(x) of .NET 9 and later: NaN is 0 and a value out of range saturates. */
+function saturatingLong(x: number): bigint {
+  if (Number.isNaN(x)) return 0n;
+  if (x >= 9223372036854775807) return 9223372036854775807n;
+  if (x <= -9223372036854775808) return -9223372036854775808n;
+  return BigInt(roundHalfEvenDouble(x));
+}
+
+/** TIME: the time of now without a date (day 0001-01-01, as a time column gives it). */
+export class IdenTime extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'Time', 0, 'function Time:time');
+  }
+  protected getValue(): Variant {
+    return Variant.fromDateTime(RpDateTime.fromTicks(BigInt(this.ev.host.now().tickOfDay)));
+  }
+}
+
+class IdenSqrt extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'Sqrt', 1, 'function Sqrt(num:double):double');
+  }
+  protected getValue(): Variant {
+    if (!this.params[0]!.isNumber()) throw this.typeError(this.name);
+    return Variant.fromDouble(Math.sqrt(this.params[0]!.toDouble(this.ctx)));
+  }
+}
+
+class IdenHourMinSec extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'HourMinSec', 4, 'function HourMinSec(h:Double, idenH:string, idenM:string, idenS:string):string');
+  }
+  protected getValue(): Variant {
+    for (let i = 1; i <= 3; i++) if (this.params[i]!.varType !== VariantType.String) throw this.typeError(this.name);
+    if (!this.params[0]!.isNumber()) throw this.typeError(this.name);
+    const hours = this.params[0]!.toDouble(this.ctx);
+    const whole = Math.trunc(hours);
+    const minutes = (hours - whole) * 60;
+    const seconds = (minutes - Math.trunc(minutes)) * 60;
+    // As Delphi: the hours an Integer, the minutes and seconds a Word (a negative one wraps)
+    const h = Number(BigInt.asIntN(32, saturatingLong(whole)));
+    const m = Number(BigInt.asUintN(16, saturatingLong(Math.trunc(minutes))));
+    const s = Number(BigInt.asUintN(16, saturatingLong(seconds)));
+    const two = (v: number): string => (v < 10 ? '0' + String(v) : String(v));
+    return Variant.fromString(
+      String(h) + this.params[1]!.toString(this.ctx) + two(m) + this.params[2]!.toString(this.ctx) + two(s) + this.params[3]!.toString(this.ctx),
+    );
+  }
+}
+
+class IdenFormatMask extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'FormatMask', 2, 'function FormatMask(format:string,v:string):string');
+  }
+  protected getValue(): Variant {
+    if (this.params[0]!.varType !== VariantType.String || this.params[1]!.varType !== VariantType.String) throw this.typeError(this.name);
+    const date = this.ctx.culture.date;
+    return Variant.fromString(formatMaskText(this.params[0]!.toString(this.ctx), this.params[1]!.toString(this.ctx), date.dateSeparator, date.timeSeparator));
+  }
+}
+
+class IdenAsc2 extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'ASC2', 1, 'function ASC2:string');
+  }
+  protected getValue(): Variant {
+    const text = this.params[0]!.varType === VariantType.Null ? '' : this.params[0]!.toString(this.ctx);
+    let r = '';
+    for (let i = 0; i < text.length; i++) {
+      const code = text.charCodeAt(i);
+      if (code >= 192 && code <= 198) r += 'A';
+      else if (code >= 224 && code <= 230) r += 'a';
+      else if (code >= 200 && code <= 203) r += 'E';
+      else if (code >= 232 && code <= 235) r += 'e';
+      else if (code >= 204 && code <= 207) r += 'I';
+      else if (code >= 236 && code <= 239) r += 'i';
+      else if (code >= 210 && code <= 214) r += 'O';
+      else if (code >= 242 && code <= 246) r += 'o';
+      else if (code >= 217 && code <= 220) r += 'U';
+      else if (code >= 249 && code <= 252) r += 'u';
+      else if (code === 199) r += 'C';
+      else if (code === 231) r += 'c';
+      else if (code === 209) r += 'N';
+      else if (code === 241) r += 'n';
+      else if (code === 176 || code === 186) r += 'o';
+      else if (code === 170) r += 'a';
+      else r += text[i];
+    }
+    return Variant.fromString(r);
+  }
+}
+
+class IdenDecode64 extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'Decode64', 1, 'function Decode64(s:string):string');
+  }
+  protected getValue(): Variant {
+    if (this.params[0]!.varType !== VariantType.String) throw this.typeError(this.name);
+    return Variant.fromString(indyBase64Decode(this.params[0]!.toString(this.ctx)));
+  }
+}
+
+class IdenUtf8ToWideString extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'UTF8ToWideString', 1, 'function UTF8ToWideString(value:string):WideString');
+  }
+  protected getValue(): Variant {
+    if (this.params[0]!.varType === VariantType.Null) return Variant.fromString('');
+    // The ANSI bytes of the text read as UTF-8 (an invalid sequence gives U+FFFD)
+    return Variant.fromString(utf8Decode(ansiEncode(this.params[0]!.toString(this.ctx))));
+  }
+}
+
+class IdenIdentExists extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'IdentExists', 1, 'function IdentExists(s:String)');
+  }
+  protected getValue(): Variant {
+    if (this.params[0]!.varType !== VariantType.String) throw this.typeError(this.name);
+    return Variant.fromBoolean(this.ev.searchIdentifier(this.params[0]!.toString(this.ctx)) !== null);
+  }
+}
+
+/** Evaluator.CheckFileFunctions: LOADFILE and GETINIVALUE read files only when the host allows it. */
+function checkFileFunctions(e: Evaluator, name: string): void {
+  if (e.host.fileFunctions !== true)
+    throw new NamedException('Reading files from expressions is not allowed (the fileFunctions of the host; allowFileAccess in @reportman/node): ' + name, name);
+}
+
+class IdenLoadFile extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'LoadFile', 1, 'function LoadFile(s:string):string');
+  }
+  protected getValue(): Variant {
+    if (this.params[0]!.varType !== VariantType.String) throw this.typeError(this.name);
+    checkFileFunctions(this.ev, this.name);
+    const path = this.params[0]!.toString(this.ctx);
+    const bytes = path.length === 0 ? undefined : this.ev.host.readFile?.(path);
+    if (bytes === undefined) throw new NamedException('File not found:' + path, this.name);
+    // The bytes as ANSI characters, as the Delphi engine loads a file into a string
+    return Variant.fromString(ansiDecode(bytes));
+  }
+}
+
+class IdenGetIniValue extends BuiltinFunction {
+  constructor(e: Evaluator) {
+    super(e, 'GetINIValue', 4, 'function GetINIValue(file, section, name, default : string):String');
+  }
+  protected getValue(): Variant {
+    for (let i = 0; i < 4; i++) if (this.params[i]!.varType !== VariantType.String) throw this.typeError(this.name);
+    checkFileFunctions(this.ev, this.name);
+    const path = this.params[0]!.toString(this.ctx);
+    const bytes = path.length === 0 ? undefined : this.ev.host.readFile?.(path);
+    return Variant.fromString(iniReadString(bytes, this.params[1]!.toString(this.ctx), this.params[2]!.toString(this.ctx), this.params[3]!.toString(this.ctx)));
+  }
+}
+
 /**
  * Evaluator.AddIdentifiers: the constants and built-in functions, in the C# order (TRUE, FALSE,
  * FALSO and CIERTO first; NULL between FILEEXISTS and TODAY).
@@ -560,4 +724,15 @@ export function addBuiltinIdentifiers(add: (key: string, iden: EvalIdentifier) =
   add('MOD', new IdenModul(e));
   add('EVALTEXT', new IdenEvalText(e));
   add('NUMTOTEXT', new IdenNumToText(e));
+  // The functions of the Delphi engine
+  add('TIME', new IdenTime(e));
+  add('SQRT', new IdenSqrt(e));
+  add('ASC2', new IdenAsc2(e));
+  add('IDENTEXISTS', new IdenIdentExists(e));
+  add('GETINIVALUE', new IdenGetIniValue(e));
+  add('DECODE64', new IdenDecode64(e));
+  add('LOADFILE', new IdenLoadFile(e));
+  add('FORMATMASK', new IdenFormatMask(e));
+  add('HOURMINSEC', new IdenHourMinSec(e));
+  add('UTF8TOWIDESTRING', new IdenUtf8ToWideString(e));
 }

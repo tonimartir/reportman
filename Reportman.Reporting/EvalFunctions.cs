@@ -767,13 +767,18 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new Variant();
+            // As Delphi (TIdenFloatToDateTime): a number is the date of its OLE value (the days since
+            // 30/12/1899, the time the fraction), a date is itself and null is null. It used
+            // Convert.ToDateTime(double), which always throws InvalidCastException
+            if (Params[0].VarType == VariantType.DateTime)
+                return Params[0];
+            if (Params[0].VarType == VariantType.Null)
+                return new Variant();
             if (!Params[0].IsNumber())
             {
                 throw new NamedException(Translator.TranslateStr(438), "FloatToDateTime");
             }
-            aresult = System.Convert.ToDateTime(Params[0].AsDouble);
-            return aresult;
+            return DateTime.FromOADate(Params[0].AsDouble);
         }
     }
     class IdenRound : IdenFunction

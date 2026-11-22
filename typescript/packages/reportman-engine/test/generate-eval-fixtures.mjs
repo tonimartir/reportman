@@ -156,6 +156,60 @@ for (const e of [
   "[LEFT]('abc',1)", 'ABS', 'ABS 5', 'NULL(1)',
 ]) add(e);
 
+// --- The functions of the Delphi engine (EvalFunctionsDelphi.cs) ---------------------------------
+// The C# results of these were compared with the Delphi evaluator (TRpEvaluator) on 22-11-2026,
+// these cases and 1,030 random ones in es-ES, en-US and de-DE, all the same. LOADFILE and
+// GETINIVALUE read files: test/delphifunctions.test.ts.
+for (const e of [
+  'SQRT(16)', 'SQRT(2)', 'SQRT(0)', 'SQRT(2.25)', "SQRT('4')", 'SQRT(NULL)', 'SQRT(1E300)',
+  "HOURMINSEC(1.5,'h ','m ','s')", "HOURMINSEC(0,'h','m','s')", "HOURMINSEC(2.999999,':',':','')", "HOURMINSEC(1.0083333333,'h','m','s')",
+  "HOURMINSEC(25.25,'h','m','s')", "HOURMINSEC(0.0125,'h','m','s')", "HOURMINSEC(0.999999999,'h','m','s')", "HOURMINSEC(-1.5,'h','m','s')",
+  "HOURMINSEC(-0.25,'h','m','s')", "HOURMINSEC(10,'','','')", "HOURMINSEC('1','h','m','s')", "HOURMINSEC(1,1,'m','s')", "HOURMINSEC(NULL,'h','m','s')",
+  "FORMATMASK('000-000;0;_','123456')", "FORMATMASK('000-000;1;_','123456')", "FORMATMASK('000-000;1;_','123-456')",
+  "FORMATMASK('(999) 000-0000;1;_','5551234567')", "FORMATMASK('(999) 000-0000;0;_','5551234567')", "FORMATMASK('>L<ll;0;_','aBC')",
+  "FORMATMASK('!99/99/9999;1;_','01022024')", "FORMATMASK('!99/99/9999;0;_','01022024')", "FORMATMASK('00.000.000/0000-00;0;_','12345678000195')",
+  "FORMATMASK('000.000.000-00;0;_','12345678901')", "FORMATMASK('00000-000;0;_','88010100')", "FORMATMASK('!00000;0;_','12')",
+  "FORMATMASK('\\(000\\);0;_','123')", "FORMATMASK('\\(000\\);1;_','123')", "FORMATMASK('000:00;1;_','12345')", "FORMATMASK('00/00/0000;1;_','1/2/2024')",
+  "FORMATMASK('','abc')", "FORMATMASK('000',NULL)", "FORMATMASK('000-000;;_','123456')", "FORMATMASK(1,'a')", "FORMATMASK('000',123)",
+  "ASC2('ÁÉÍÓÚáéíóúÇçÑñÀàÂâÃãÄäÜüÿ abc €')", "ASC2('ÈËÌÏÒÕÖÙÛÆæØøÅåÝýÐðÞþß')", 'ASC2(123)', 'ASC2(NULL)',
+  "DECODE64('SGVsbG8=')", "DECODE64('w6E=')", "DECODE64('')", "DECODE64('SGVsbG8')", "DECODE64('SGVs bG8=')", "DECODE64('bad!')",
+  "DECODE64('/w==')", "DECODE64('gIGCgw==')", 'DECODE64(5)', 'DECODE64(NULL)',
+  "UTF8TOWIDESTRING('Ã¡Ã©')", 'UTF8TOWIDESTRING(NULL)', "UTF8TOWIDESTRING('€')", "UTF8TOWIDESTRING('Ã')", "UTF8TOWIDESTRING('â‚¬')",
+  "UTF8TOWIDESTRING('ä½ å¥½')", 'UTF8TOWIDESTRING(12)', "UTF8TOWIDESTRING(DECODE64('w6E='))",
+  "IDENTEXISTS('TODAY')", "IDENTEXISTS('today')", "IDENTEXISTS('NOPE')", "IDENTEXISTS('M.X')", "IDENTEXISTS('')", 'IDENTEXISTS(1)',
+  'TIME>0', 'TIME<1', 'YEAR(TIME)', "LOADFILE('')", "GETINIVALUE('','a','b','c')",
+]) add(e);
+{
+  // Random masks, base64 texts and hours (a fixed seed), as in the comparison with Delphi
+  let seed = 12345;
+  const rnd = (n) => {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    return seed % n;
+  };
+  const pick = (s) => s[rnd(s.length)];
+  for (let i = 0; i < 200; i++) {
+    let mask = '';
+    const len = 1 + rnd(12);
+    for (let j = 0; j < len; j++) mask += pick('0009#LlAaCc-().:/ \\!><');
+    const tail = rnd(5);
+    if (tail === 1) mask += ';0;_';
+    else if (tail === 2) mask += ';1;_';
+    else if (tail === 3) mask += ';0';
+    else if (tail === 4) mask += pick([';1; ', ';;*', ';0;', ';1']);
+    let value = '';
+    const vlen = rnd(14);
+    for (let j = 0; j < vlen; j++) value += pick('0123456789abcXYZ- /.:é');
+    add(`FORMATMASK(${q(mask)},${q(value)})`);
+  }
+  for (let i = 0; i < 40; i++) {
+    let s = '';
+    const len = rnd(17);
+    for (let j = 0; j < len; j++) s += pick('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/= !-_');
+    add(`DECODE64(${q(s)})`);
+  }
+  for (let i = 0; i < 30; i++) add(`HOURMINSEC(${(rnd(2000000) - 200000) / (1 + rnd(7) * 1000)},'h','m','s')`);
+}
+
 // --- Formats ------------------------------------------------------------------------------------
 const numberValues = ['0', '1', '-1', '5', '1234', '-1234', '1234567', 'INT(123456789012)', '0.5', '1.5', '2.5', '-2.5', '0.125', '0.375',
   '1.005', '-0.001', '-0.0', '1234.5678', '1234567.891', '0.000123', '12345.6789', '1.5D', '2.5D', '0.1D', '1E20', '1E-10D', '123.456',

@@ -182,7 +182,9 @@ describe('registration API', () => {
   it('lists the identifiers in culture order', () => {
     const ev = make();
     const keys = ev.identifiers.keys;
-    expect(keys.length).toBe(41);
+    // 41 of the C# engine and the 10 of the Delphi engine (EvalFunctionsDelphi.cs)
+    expect(keys.length).toBe(51);
+    expect(keys.includes('HOURMINSEC')).toBe(true);
     expect(keys[0]).toBe('ABS');
     expect(keys.includes('FORMATNUM')).toBe(true);
     expect(ev.identifiers.at(0).name).toBe('Abs');

@@ -152,7 +152,19 @@ namespace Reportman.Reporting
                 // If is not a funcion, can be a variable
                 index = FIdentifierList.IndexOfKey(idenname);
                 if (index >= 0)
-                    return FIdentifierList[idenname];
+                {
+                    EvalIdentifier found = FIdentifierList[idenname];
+                    // TIME came from the Delphi engine when reports of this one could already name a
+                    // field TIME without its dataset: such a field keeps winning
+                    if ((found is IdenTime) && (FAliasList != null))
+                    {
+                        bool duplicatedTime = false;
+                        EvalIdentifier timeField = FAliasList.FindField(idenname, "", ref duplicatedTime);
+                        if ((timeField != null) && !duplicatedTime)
+                            return timeField;
+                    }
+                    return found;
+                }
                 sfield = idenname;
             }
             else
@@ -1028,6 +1040,30 @@ namespace Reportman.Reporting
             FIdentifierList.Add("MOD", new IdenModul(this));
             FIdentifierList.Add("EVALTEXT", new IdenEvalText(this));
             FIdentifierList.Add("NUMTOTEXT", new IdenNumToText(this));
+            // The functions of the Delphi engine (EvalFunctionsDelphi.cs)
+            FIdentifierList.Add("TIME", new IdenTime(this));
+            FIdentifierList.Add("SQRT", new IdenSqrt(this));
+            FIdentifierList.Add("ASC2", new IdenAsc2(this));
+            FIdentifierList.Add("IDENTEXISTS", new IdenIdentExists(this));
+            FIdentifierList.Add("GETINIVALUE", new IdenGetIniValue(this));
+            FIdentifierList.Add("DECODE64", new IdenDecode64(this));
+            FIdentifierList.Add("LOADFILE", new IdenLoadFile(this));
+            FIdentifierList.Add("FORMATMASK", new IdenFormatMask(this));
+            FIdentifierList.Add("HOURMINSEC", new IdenHourMinSec(this));
+            FIdentifierList.Add("UTF8TOWIDESTRING", new IdenUtf8ToWideString(this));
+        }
+
+        /// <summary>
+        /// LOADFILE and GETINIVALUE may read files of this computer (false by default). A report is a
+        /// file anybody who designs can write, so a server that runs reports of others leaves it off;
+        /// a desktop program that runs its own reports can turn it on, as the Delphi engine has it.
+        /// </summary>
+        public static bool AllowFileFunctions;
+
+        internal static void CheckFileFunctions(string name)
+        {
+            if (!AllowFileFunctions)
+                throw new NamedException("Reading files from expressions is not allowed (Evaluator.AllowFileFunctions): " + name, name);
         }
 
         /// <summary> 

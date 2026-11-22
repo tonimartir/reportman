@@ -46,7 +46,7 @@ const machineTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const LONE_SURROGATE = /[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/g;
 const wellFormed = (row: Row): Row => row.map((s) => s.replace(LONE_SURROGATE, '�')) as Row;
 
-function run(c: Case, ctx: ReturnType<typeof createContext>, host: { now: () => RpDateTime; fileExists: () => boolean }): Row {
+function run(c: Case, ctx: ReturnType<typeof createContext>, host: { now: () => RpDateTime; fileExists: () => boolean; fileFunctions: boolean }): Row {
   try {
     const ev = new Evaluator({ context: ctx, host });
     ev.expression = c.expr;
@@ -68,7 +68,8 @@ for (const culture of ['en-US', 'es-ES', 'pt-BR', 'de-DE', 'fr-FR']) {
     // TODAY is the generation date; NOW is noon of that date (no case prints NOW).
     const now = () => RpDateTime.create(y, m, d, 12, 0, 0, 0, DateTimeKind.Local);
     const ctx = createContext(culture, { timeZone: hostTimeZone, now });
-    const host = { now, fileExists: () => false };
+    // golden-cs allows the file functions (Evaluator.AllowFileFunctions); there are no files here
+    const host = { now, fileExists: () => false, fileFunctions: true };
     const all = [...cases, ...golden.extra];
     const sameZone = golden.timeZone === machineTimeZone;
 

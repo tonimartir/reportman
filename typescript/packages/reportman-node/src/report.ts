@@ -27,8 +27,8 @@ export interface OpenReportOptions extends DataSources {
   /** The clock of TODAY, NOW and the dates of the PDF (the system clock by default). */
   clock?: PdfClock;
   /**
-   * Let FILEEXISTS look at the file system, and image expressions read the image files they name
-   * (false by default: a report does not see the disk).
+   * Let FILEEXISTS look at the file system, image expressions read the image files they name, and
+   * LOADFILE and GETINIVALUE read files (false by default: a report does not see the disk).
    */
   allowFileAccess?: boolean;
   /**
@@ -126,6 +126,8 @@ export class NodeReport {
       fileExists: (path) => allowFileAccess && existsSync(path),
       // The bytes of the image file an image expression names (FileInfo.Exists: a file, not a directory)
       readFile: (path) => (allowFileAccess && isFile(path) ? new Uint8Array(readFileSync(path)) : undefined),
+      // LOADFILE and GETINIVALUE read files too
+      fileFunctions: allowFileAccess,
     };
     const fontsOption = this.options.fonts;
     const fonts =
