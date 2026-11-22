@@ -135,7 +135,8 @@ function simpleUpper(s: string): string {
  * In C# a report fills the metafile through events (OnRequestPage, OnBeginPrint...) while the
  * pages are being read or printed, and the metafile can be read and saved in the binary .rpmf
  * format. In TypeScript the engine fills the metafile itself, so the metafile is data plus
- * helpers: the events, the asynchronous reading and the .rpmf format are not part of it.
+ * helpers: the events and the asynchronous reading are not part of it, and the .rpmf format is
+ * in rpmf.ts (writeRpmf, readRpmf).
  */
 export class MetaFile {
   /** Page sizes by index, in thousandths of an inch. */

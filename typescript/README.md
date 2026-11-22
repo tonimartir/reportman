@@ -28,7 +28,8 @@ Status: **preview**, versions `0.1.0-alpha.N` with the npm tag `next`
 The eleven reports of `../samples` give the same metafile as the C# engine: with the standard fonts
 the PDFs are byte-identical (nine samples; `letter` and `international` need fonts), and with
 `fonts` every sample matches the C# FreeType device except the bytes of the embedded font subsets.
-Not ported yet: the `.rpmf` format, declarative REST datasets.
+The `.rpmf` metafile files of the viewers are written and read byte for byte as C# writes them
+(`writeRpmf`, `readRpmf` of `@reportman/metafile`). Not ported yet: declarative REST datasets.
 
 ## Rules
 

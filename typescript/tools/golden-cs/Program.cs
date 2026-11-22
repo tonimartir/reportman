@@ -23,9 +23,12 @@ using Reportman.Reporting.Design.Json;
 //
 //   golden-cs run <report.rep> <out.metafile.json> [--pdf out.pdf] [--sqlite db]
 //                 [--param NAME=value]... [--culture xx-XX] [--driver standard|freetype] [--fonts dir]
+//                 [--rpmf out.rpmf] [--rpmfz out.rpmf]
 //       Runs the report measured and printed with PrintOutPDFStandard (standard 14 fonts, no
 //       FreeType) and writes the metafile as JSON. Connections without a provider factory are
 //       opened as SQLite (SQLiteCore) on the --sqlite file, read only.
+//       --rpmf saves the metafile of the run in the binary .rpmf format (SaveToStream, not
+//       compressed), --rpmfz the same compressed (zlib).
 //       --connection ALIAS=Provider|ConnectionString opens that report connection with an
 //       ADO.NET provider instead (Provider: SQLiteCore, PostgreSQL, FirebirdSql.Data.FirebirdClient,
 //       MySQLConnector or SQLServer, the names Reportman.Server registers); it wins over --sqlite.
@@ -193,8 +196,22 @@ class Program
         printer.Print(report.MetaFile);
 
         Output(MetaFileJson(report.MetaFile).ToString(Formatting.Indented), args[2]);
+        // After the JSON, so the options do not change it: saving gives every page the version
+        // of the file and raises it for PrinterFonts = Recalculate
+        SaveRpmf(report.MetaFile, Option(args, "--rpmf"), false);
+        SaveRpmf(report.MetaFile, Option(args, "--rpmfz"), true);
         Console.WriteLine("pages=" + report.MetaFile.Pages.Count);
         return 0;
+    }
+
+    static void SaveRpmf(MetaFile meta, string path, bool compressed)
+    {
+        if (path == null)
+            return;
+        using (var file = new FileStream(path, FileMode.Create, FileAccess.Write))
+        {
+            meta.SaveToStream(file, compressed);
+        }
     }
 
     // --driver standard (default): PrintOutPDFStandard, the 14 standard fonts, no font provider.

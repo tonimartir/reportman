@@ -1,0 +1,81 @@
+[
+ {
+  "name": "syn-nodata",
+  "report": "fixtures/run/syn-nodata.rep"
+ },
+ {
+  "name": "syn-pagecount",
+  "report": "fixtures/run/syn-pagecount.rep",
+  "creationDate": "D:20261122015154+01'00'"
+ },
+ {
+  "name": "syn-multipage",
+  "report": "fixtures/run/syn-multipage.rep",
+  "creationDate": "D:20261122015154+01'00'"
+ },
+ {
+  "name": "syn-layout",
+  "report": "fixtures/run/syn-layout.rep",
+  "compressed": true,
+  "creationDate": "D:20261122015155+01'00'"
+ },
+ {
+  "name": "invoices-range",
+  "report": "../../../../samples/invoices.rep",
+  "params": {
+   "FIRST_ORDER": "7",
+   "LAST_ORDER": "9"
+  },
+  "creationDate": "D:20261122015155+01'00'"
+ },
+ {
+  "name": "contacts-es",
+  "report": "../../../../samples/contacts.rep",
+  "culture": "es-ES",
+  "creationDate": "D:20261122015156+01'00'"
+ },
+ {
+  "name": "labels",
+  "report": "../../../../samples/labels.rep",
+  "creationDate": "D:20261122015156+01'00'"
+ },
+ {
+  "name": "monthly-sales-range",
+  "report": "../../../../samples/monthly-sales.rep",
+  "params": {
+   "FROM_DATE": "2025-04-01",
+   "TO_DATE": "2025-09-30"
+  },
+  "creationDate": "D:20261122015156+01'00'"
+ },
+ {
+  "name": "ch-inf-bar",
+  "report": "fixtures/chart/ch-inf-bar.rep",
+  "creationDate": "D:20261122015157+01'00'"
+ },
+ {
+  "name": "bc-code128",
+  "report": "fixtures/barcode/bc-code128.rep",
+  "creationDate": "D:20261122015157+01'00'"
+ },
+ {
+  "name": "img-styles",
+  "report": "fixtures/images/img-styles.rep",
+  "folder": "fixtures/images",
+  "compressed": true,
+  "creationDate": "D:20261122015157+01'00'"
+ },
+ {
+  "name": "img-background",
+  "report": "fixtures/images/img-background.rep",
+  "folder": "fixtures/images",
+  "creationDate": "D:20261122015158+01'00'"
+ },
+ {
+  "name": "ft-pdfa",
+  "report": "fixtures/freetype/ft-pdfa.rep",
+  "driver": "freetype",
+  "compressed": true,
+  "creationDate": "D:20260506070809+02'00'"
+ }
+]

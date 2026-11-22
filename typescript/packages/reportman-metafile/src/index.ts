@@ -20,6 +20,7 @@ export {
 } from './metaobject.js';
 export { MetaPage, MetaPages, PageSizeDetail } from './metapage.js';
 export { MetaFile, EmbeddedFile } from './metafile.js';
+export { writeRpmf, readRpmf } from './rpmf.js';
 export type { TotalPage, IntegerFormatter, TextExtentDevice } from './metafile.js';
 export { newTextObjectStruct, textObjectFromMetaObjectText, newLineInfo } from './textobject.js';
 export type { TextObjectStruct, LineInfo } from './textobject.js';

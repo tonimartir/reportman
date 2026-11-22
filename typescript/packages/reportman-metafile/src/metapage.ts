@@ -94,6 +94,17 @@ export class MetaPage {
     return this.fPoolPos;
   }
 
+  /**
+   * Replaces the pool with one read from a file (the .rpmf reader): `pool` is the new pool, its
+   * length the capacity, and its first `poolPos` characters are in use. The page keeps the array.
+   */
+  loadPool(pool: Uint16Array, poolPos: number): void {
+    if (!Number.isInteger(poolPos) || poolPos < 0 || poolPos > pool.length)
+      throw new RangeError('MetaPage.loadPool: the position is outside the pool');
+    this.fPool = pool;
+    this.fPoolPos = poolPos;
+  }
+
   /** The metafile owner of the page. */
   get metaFile(): MetaFile {
     return this.fMetafile;

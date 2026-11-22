@@ -29,5 +29,7 @@
     "access": "public",
     "tag": "next"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fflate": "^0.8.3"
+  }
 }

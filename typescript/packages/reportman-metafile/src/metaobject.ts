@@ -1,6 +1,6 @@
 // The metafile objects (MetaObject*.cs). Fixed size records in the C# engine; here plain data
 // classes with the same public fields. The binary record layout (RECORD_SIZE, FillFromBuf,
-// SaveToStream) belongs to the .rpmf format, which is not ported (see README).
+// SaveToStream) belongs to the .rpmf format, in rpmf.ts.
 
 import {
   ImageDrawStyleType,
