@@ -1,7 +1,7 @@
 // Report Manager for Node.js: open a .rep report, describe its parameters (step 1) and run it
 // to PDF (step 2), with data from the connections and datasets the host gives.
 export { openReport, NodeReport } from './report.js';
-export type { OpenReportOptions, PdfOptions } from './report.js';
+export type { OpenReportOptions, PdfOptions, RunOptions } from './report.js';
 export { createDataHost } from './host.js';
 export type { ConnectionFactory, DatasetSource, DataSources } from './host.js';
 export { sqlite } from './sqlite.js';

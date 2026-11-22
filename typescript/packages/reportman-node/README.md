@@ -65,6 +65,10 @@ const pdf = await report.executeToPdf({ FIRST_ORDER: 7, LAST_ORDER: 9 });
 - `beforeRun(model)`, an option of `openReport`, adjusts the fresh copy of the report each step
   runs, as an old host did before running it: the language (`model.language = 4`) or the value
   of a hidden parameter (`CODEMP`), which `executeToPdf` does not take from the caller.
+- `executeToPdf(values, { signal, onProgress })` (and `executeToMetafile`): an `AbortSignal`
+  cancels the run, which then fails with the reason of the signal; `onProgress(records, pages)`
+  is called at most every half second and at the end. A query already sent to the database runs
+  to its end.
 - A report that reads data while it prints (GETVALUEFROMSQL, a dataset opened on demand) needs a
   driver with `synchronous: true`. With an asynchronous one it fails, and
   `isSynchronousDataRequired(error)` tells it apart, so a host can run it again synchronously.

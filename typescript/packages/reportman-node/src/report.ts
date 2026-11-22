@@ -47,9 +47,21 @@ export interface OpenReportOptions extends DataSources {
 }
 
 /** Options of a PDF. */
-export interface PdfOptions {
+export interface PdfOptions extends RunOptions {
   /** Flate compress the content streams (the report's PDFCompressed by default). */
   compressed?: boolean;
+}
+
+/** Options of one run (executeToPdf, executeToMetafile). */
+export interface RunOptions {
+  /**
+   * Cancels the run: it fails with the reason of the signal (an AbortError by default). The run
+   * looks at it between pages and while it lays out records; a query already sent to the database
+   * runs to its end.
+   */
+  signal?: AbortSignal;
+  /** Progress: the records and pages so far, at most every half second and at the end. */
+  onProgress?: (recordCount: number, pageCount: number) => void;
 }
 
 /** A report opened from a .rep file: the two steps of a run, parameters and PDF. */
@@ -95,30 +107,32 @@ export class NodeReport {
    * (ReportParameters.Apply): a wrong one throws a ParameterException that names it.
    */
   async executeToPdf(values?: Readonly<Record<string, ParameterInput>> | null, options: PdfOptions = {}): Promise<Uint8Array> {
-    const run = await this.prepare();
+    options.signal?.throwIfAborted();
+    const run = await this.prepare(options);
     try {
       await run.applyParameters(values ?? {});
       const device = run.device as PdfDevice;
       device.compressed = options.compressed ?? this.model.pdfCompressed;
-      return await printPdf(run, device);
+      return await withSignal(options.signal, () => printPdf(run, device, options.signal));
     } finally {
       await run.close();
     }
   }
 
   /** Runs the report with the values given and returns the metafile, for other outputs. */
-  async executeToMetafile(values?: Readonly<Record<string, ParameterInput>> | null): Promise<MetaFile> {
-    const run = await this.prepare();
+  async executeToMetafile(values?: Readonly<Record<string, ParameterInput>> | null, options: RunOptions = {}): Promise<MetaFile> {
+    options.signal?.throwIfAborted();
+    const run = await this.prepare(options);
     try {
       await run.applyParameters(values ?? {});
-      return await run.execute();
+      return await withSignal(options.signal, () => run.execute());
     } finally {
       await run.close();
     }
   }
 
   /** A fresh run of a fresh copy of the model: the engine converts and fills what it runs. */
-  private async prepare(): Promise<ReportRun> {
+  private async prepare(runOptions: RunOptions = {}): Promise<ReportRun> {
     const clock = this.options.clock ?? systemClock;
     const allowFileAccess = this.options.allowFileAccess ?? false;
     const host: EvalHost = {
@@ -138,13 +152,32 @@ export class NodeReport {
           : fontLibrary(fontsOption);
     const model = readReportXml(this.bytes);
     if (this.options.beforeRun !== undefined) this.options.beforeRun(model);
+    const { signal, onProgress } = runOptions;
     return prepareReport(model, {
       device: new PdfDevice({ clock, fonts }),
       data: createDataHost(this.options),
       culture: this.options.culture ?? 'en-US',
       host,
       convertToDotNet: true,
+      // The engine cancels when its progress callback returns true
+      onProgress:
+        signal === undefined && onProgress === undefined
+          ? undefined
+          : (records, pages) => {
+              onProgress?.(records, pages);
+              return signal?.aborted === true;
+            },
     });
+  }
+}
+
+/** Runs a step; when the signal aborted it, the error is the reason of the signal. */
+async function withSignal<T>(signal: AbortSignal | undefined, step: () => Promise<T>): Promise<T> {
+  try {
+    return await step();
+  } catch (e) {
+    if (signal?.aborted === true) throw signal.reason;
+    throw e;
   }
 }
 
@@ -176,9 +209,10 @@ function wallClock(clock: PdfClock): RpDateTime {
  * drawn as soon as it is generated, the next one requested after it. A report with nothing to
  * print throws NoDataToPrintException (EmptyReportThrowException, as the .NET server).
  */
-async function printPdf(run: ReportRun, device: PdfDevice): Promise<Uint8Array> {
+async function printPdf(run: ReportRun, device: PdfDevice, signal?: AbortSignal): Promise<Uint8Array> {
   const meta = run.metaFile;
   await run.begin();
+  signal?.throwIfAborted();
   device.preparePrint(meta);
   let current = device.fromPage - 1;
   await run.requestPage(current);
@@ -195,6 +229,7 @@ async function printPdf(run: ReportRun, device: PdfDevice): Promise<Uint8Array> 
     device.drawPage(meta, page);
     current++;
     if (current > device.toPage - 1) break;
+    signal?.throwIfAborted();
     await run.requestPage(current);
   }
   device.endDocument(meta);

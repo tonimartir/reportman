@@ -146,6 +146,8 @@ export function fontFiles(dirs: readonly string[]): string[] {
     (n) => n.includes('.pf'),
     (n) => n.endsWith('.ttc'),
     (n) => n.endsWith('.otf'),
+    // WOFF web fonts last, after the order of the C# scan (WOFF2 is not read)
+    (n) => n.endsWith('.woff'),
   ];
   for (const dir of dirs) {
     try {

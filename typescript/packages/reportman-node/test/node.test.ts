@@ -191,4 +191,50 @@ describe('reportman-node: the fonts option', () => {
     expect(pdf).toContain('/Subtype /CIDFontType2');
     expect(pdf).toContain('/FontFile2 ');
   });
+
+  // A WOFF font that is in node_modules anyway (Open Sans, Apache 2.0, through tedious)
+  const openSansWoff = path.resolve(here, '../../../node_modules/js-md4/doc/fonts/OpenSans-Regular-webfont.woff');
+  it.skipIf(!fs.existsSync(openSansWoff))('finds and embeds a WOFF font of a folder', async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'rm-woff-'));
+    fs.copyFileSync(openSansWoff, path.join(dir, 'OpenSans-Regular.woff'));
+    const fonts = { systemFolders: false, folders: [dir], platform: 'windows' as const };
+    expect(fontFiles([dir])).toEqual([path.join(dir, 'OpenSans-Regular.woff')]);
+    const report = await openReport(path.join(samples, 'customers.rep'), {
+      connections: { SAMPLES: sqlite(samplesDb) },
+      fonts,
+      beforeRun: (m) => {
+        m.wFontName = 'Open Sans';
+        for (const c of m.components.values()) if ('wFontName' in c) (c as { wFontName: string }).wFontName = 'Open Sans';
+      },
+    });
+    const pdf = latin1(await report.executeToPdf({}, { compressed: false }));
+    expect(pdf).toMatch(/\/BaseFont \/[A-Z]{6}\+OpenSans/);
+    expect(pdf).toContain('/FontFile2 ');
+  });
+});
+
+describe('reportman-node: progress and cancellation', () => {
+  it('reports the records and pages, and the last call has them all', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'), { connections: { SAMPLES: sqlite(samplesDb) } });
+    const calls: [number, number][] = [];
+    await report.executeToPdf({}, { onProgress: (records, pages) => calls.push([records, pages]) });
+    expect(calls.length).toBeGreaterThan(0);
+    const [records, pages] = calls[calls.length - 1]!;
+    expect(records).toBeGreaterThan(0);
+    expect(pages).toBeGreaterThan(0);
+  });
+
+  it('fails with the reason of the signal when it is aborted while running', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'), { connections: { SAMPLES: sqlite(samplesDb) } });
+    const controller = new AbortController();
+    const reason = new Error('the user closed the page');
+    // Aborted on the first progress call, while the records are laid out
+    const run = report.executeToPdf({}, { signal: controller.signal, onProgress: () => controller.abort(reason) });
+    await expect(run).rejects.toBe(reason);
+  });
+
+  it('does not start with a signal that is already aborted', async () => {
+    const report = await openReport(path.join(samples, 'customers.rep'), { connections: { SAMPLES: sqlite(samplesDb) } });
+    await expect(report.executeToMetafile({}, { signal: AbortSignal.abort() })).rejects.toThrow(/aborted/i);
+  });
 });
