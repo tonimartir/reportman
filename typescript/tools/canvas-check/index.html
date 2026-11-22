@@ -1,0 +1,11 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Reportman canvas preview check</title>
+<script>
+  // A page that fails (a module that does not load, an exception) answers too, so the check ends
+  const fail = (m) => fetch('/__result', { method: 'POST', body: 'RESULT: the page failed: ' + m });
+  addEventListener('error', (e) => fail(e.message || String(e)));
+  addEventListener('unhandledrejection', (e) => fail(String(e.reason && e.reason.stack || e.reason)));
+</script>
+<style>body { margin: 0; background: #888; } canvas { display: block; margin: 8px; background: #fff; }</style>
+</head>
+<body><pre id="out">running</pre><div id="pages"></div><script type="module" src="./main.ts"></script></body></html>

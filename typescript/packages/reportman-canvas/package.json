@@ -1,0 +1,37 @@
+{
+  "name": "@reportman/canvas",
+  "version": "0.1.0-alpha.1",
+  "description": "Report Manager preview in the browser: paints the pages of a metafile on a Canvas 2D context as the PDF draws them.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonimartir/reportman",
+    "directory": "typescript/packages/reportman-canvas"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
+  "dependencies": {
+    "@reportman/metafile": "0.1.0-alpha.1",
+    "@reportman/pdf": "0.1.0-alpha.1",
+    "@reportman/text": "0.1.0-alpha.1"
+  }
+}

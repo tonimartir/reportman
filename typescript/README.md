@@ -19,6 +19,9 @@ Status: **preview**, versions `0.1.0-alpha.N` with the npm tag `next`
 | `@reportman/pdf` | Metafile → PDF (standard fonts, or embedded font subsets; images; PDF/A-3B); also the layout device that measures text while the report is laid out | browser, Node |
 | `@reportman/engine` | Expressions, parameters (two steps), datasets, and the layout of a report into a metafile: sections, groups, subreports, images, barcodes, charts | browser, Node |
 | `@reportman/node` | Node.js host: open a `.rep`, describe its parameters (step 1), run it to PDF (step 2); SQLite (`node:sqlite`), system fonts, CLI `@reportman/pdf` | Node |
+| `@reportman/export` | Metafile → CSV (as C#), SVG and HTML (as the Delphi drivers); the text of line, dot matrix and receipt printers (`PrintOutText`) | browser, Node |
+| `@reportman/canvas` | The preview: the pages of a metafile on a Canvas 2D context, drawn as the PDF draws them | browser |
+| `@reportman/server` | The reports API of Reportman.Server (list, parameters, run to PDF, `.rpmf`, text, CSV) for `node:http`, Express and Fastify | Node |
 | `@reportman/driver-postgres` | PostgreSQL (`pg`), as Npgsql | Node |
 | `@reportman/driver-firebird` | Firebird (`node-firebird`), as FirebirdClient | Node |
 | `@reportman/driver-mysql` | MySQL and MariaDB (`mysql2`), as MySqlConnector | Node |
@@ -57,13 +60,16 @@ npm run build        # tsc -b
 npm test             # vitest, against the sources
 npm run check:pure-js
 npm run check:dist   # the builds in plain Node, and the CLI on the samples
+npm run check:browser  # the expression parity cases in a headless Edge or Chrome
+npm run check:canvas   # the canvas preview against the PDF rasterized by poppler (WSL on Windows)
 ```
 
 ### Continuous integration, on this computer
 
 `npm run ci` (`tools/ci.mjs`) copies the working tree (the files git tracks or would track in
 `typescript/` and `samples/`, uncommitted changes included, never a `node_modules` or a `dist`) and
-runs `npm ci`, build, tests, `check:pure-js` and `check:dist` on it:
+runs `npm ci`, build, tests, `check:pure-js`, `check:dist` and `check:browser` on it (the last one
+passes without a browser, as in the Docker images):
 
 - on Windows, with the Node of the computer (when it runs on Windows);
 - on Linux, in Docker — inside WSL when it runs on Windows — once on `node:22` and once on

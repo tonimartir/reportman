@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    // The browser types are used by the default image loader and the page helpers only; the
+    // drawing code works on the CanvasContext interface, so Node runs it with a fake context
+    "lib": ["ES2023", "DOM"],
+    "types": []
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "../reportman-metafile"
+    },
+    {
+      "path": "../reportman-text"
+    },
+    {
+      "path": "../reportman-pdf"
+    }
+  ]
+}
