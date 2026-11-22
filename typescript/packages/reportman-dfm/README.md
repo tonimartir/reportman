@@ -80,7 +80,8 @@ What the converter reads is what Delphi writes, read as Delphi reads it (`System
   is a table taken from Delphi, not `toUpperCase`.
 
 One difference on purpose: a line longer than the 4096 bytes of the buffer of `TParser` is read
-(Delphi says "Line too long"), as the text a report saved by the Lazarus port may have.
+(Delphi says "Line too long"), as the reports saved by the Lazarus port before 22-11-2026 may have
+(it wrote each string on one line).
 
 What Delphi does is kept, also when it loses information: a value at its `default` clause that the
 constructor does not give back (the export size of an expression comes back as 1, the pen width of

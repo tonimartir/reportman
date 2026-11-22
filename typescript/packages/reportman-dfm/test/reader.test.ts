@@ -125,7 +125,8 @@ end
   });
 
   it('reads a string on a line longer than the 4096 bytes of the buffer of TParser, which Delphi can not', () => {
-    // RpObjectBinaryToText of the Lazarus port writes a string on one line; Delphi says "Line too long"
+    // RpObjectBinaryToText of the Lazarus port wrote a string on one line until 22-11-2026; Delphi
+    // says "Line too long"
     const long = 'x'.repeat(6000) + 'ñ';
     const one = `object TRpReport\r\n  DocTitle = '${'x'.repeat(6000)}'#241\r\nend\r\n`;
     const fragments = 'x'.repeat(6000).match(/.{1,64}/g) ?? [];
