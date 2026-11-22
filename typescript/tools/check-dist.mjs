@@ -4,7 +4,7 @@
 import { readdirSync, readFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -57,5 +57,47 @@ try {
   }
 } finally {
   rmSync(out, { recursive: true, force: true });
+}
+
+// The reportman-server command line: a data folder with the samples, the console page and key
+// (read from the folder), a sample run through the reports API with the connection the samples
+// installed, and the CSV of the report
+const data = mkdtempSync(join(tmpdir(), 'reportman-server-'));
+const child = spawn(process.execPath, [join(packagesDir, 'reportman-server', 'dist', 'cli.js'), '--data', data, '--port', '0', '--samples', '--standard-fonts'], {
+  stdio: ['ignore', 'pipe', 'pipe'],
+});
+try {
+  let output = '';
+  const url = await new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error('no answer in 30 s: ' + output)), 30000);
+    child.stdout.on('data', (chunk) => {
+      output += chunk;
+      const m = /on (http:\/\/127\.0\.0\.1:\d+)\//.exec(output);
+      if (m !== null && /Console key: /.test(output)) {
+        clearTimeout(timer);
+        resolve(m[1]);
+      }
+    });
+    child.stderr.on('data', (chunk) => (output += chunk));
+    child.on('exit', (code) => reject(new Error('exited with ' + code + ': ' + output)));
+  });
+  const key = readFileSync(join(data, 'console.key'), 'utf8').trim();
+  if (!output.includes('Console key: ' + key)) throw new Error('the key printed is not the one of console.key');
+  const page = await fetch(url + '/');
+  if (!(await page.text()).includes('<title>Report Manager Server</title>')) throw new Error('no console page');
+  const connections = await (await fetch(url + '/api/connections', { headers: { 'X-ReportmanServer-AdminKey': key } })).json();
+  if (!connections.some((c) => c.alias === 'SAMPLES')) throw new Error('no SAMPLES connection: ' + JSON.stringify(connections));
+  const test = await (await fetch(url + '/api/connections/SAMPLES/test', { method: 'POST', headers: { 'X-ReportmanServer-AdminKey': key } })).json();
+  if (test.ok !== true) throw new Error('SAMPLES test: ' + test.message);
+  const csv = await fetch(url + '/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=csv');
+  if (csv.status !== 200 || !(await csv.text()).includes('"Total customers"')) throw new Error('customers.rep to CSV: ' + csv.status);
+  console.log('ok   reportman-server: console, samples, SAMPLES connection, customers.rep');
+} catch (e) {
+  failed = true;
+  console.error('FAIL reportman-server: ' + e.message.split('\n')[0]);
+} finally {
+  child.kill();
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  rmSync(data, { recursive: true, force: true });
 }
 process.exit(failed ? 1 : 0);

@@ -43,27 +43,29 @@ const byName = (a: string, b: string): number => (a.toUpperCase() < b.toUpperCas
 
 /** Folders of .rep files by alias. */
 export class FolderReportStore {
-  private readonly folders: Map<string, string>;
+  private readonly source: () => Readonly<Record<string, string>>;
 
-  constructor(aliases: Readonly<Record<string, string>>) {
-    this.folders = new Map(Object.entries(aliases).map(([alias, folder]) => [alias.toUpperCase(), path.resolve(folder)]));
-    this.names = Object.keys(aliases).sort(byName);
+  /** The aliases and their folders, or a function that gives them as they are now. */
+  constructor(aliases: Readonly<Record<string, string>> | (() => Readonly<Record<string, string>>)) {
+    this.source = typeof aliases === 'function' ? aliases : () => aliases;
   }
 
-  private readonly names: string[];
+  private folders(): Map<string, string> {
+    return new Map(Object.entries(this.source()).map(([alias, folder]) => [alias.toUpperCase(), path.resolve(folder)]));
+  }
 
   /** The aliases, in name order (ignoring the case). */
   listAliases(): string[] {
-    return [...this.names];
+    return Object.keys(this.source()).sort(byName);
   }
 
   /** The configured name of an alias (as written in the options), or null. */
   aliasName(alias: string): string | null {
-    return this.names.find((n) => n.toUpperCase() === alias.toUpperCase()) ?? null;
+    return this.listAliases().find((n) => n.toUpperCase() === alias.toUpperCase()) ?? null;
   }
 
   private root(alias: string): string {
-    const folder = alias.trim().length === 0 ? undefined : this.folders.get(alias.toUpperCase());
+    const folder = alias.trim().length === 0 ? undefined : this.folders().get(alias.toUpperCase());
     if (folder === undefined) throw new ServerError(404, `Alias '${alias}' is not configured.`);
     return folder;
   }

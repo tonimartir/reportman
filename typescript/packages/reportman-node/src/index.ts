@@ -8,6 +8,8 @@ export type { PdfClock } from '@reportman/pdf';
 export { createDataHost } from './host.js';
 export type { ConnectionFactory, DatasetSource, DataSources } from './host.js';
 export { sqlite } from './sqlite.js';
+export { probeConnection } from './probe.js';
+export type { ProbeOptions } from './probe.js';
 export type { SqliteOptions } from './sqlite.js';
 export { renderParametersForm } from './form.js';
 export { fontLibrary, fontDirectories, fontFiles, diskFontFile, currentFontPlatform } from './fonts.js';

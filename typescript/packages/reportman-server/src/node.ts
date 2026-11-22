@@ -47,13 +47,12 @@ function send(res: NodeResponse, response: ServerResponse): void {
 
 /**
  * A node:http request listener: http.createServer(nodeHandler(server)). In Express,
- * app.use(nodeHandler(server)): a path outside /api/reports and /api/health goes to next().
+ * app.use(nodeHandler(server)): a path the server does not answer (ReportServer.owns) goes to next().
  */
 export function nodeHandler(server: ReportServer): (req: IncomingMessage, res: NodeResponse, next?: (err?: unknown) => void) => void {
   return (req, res, next) => {
-    const path = new URL((req as { originalUrl?: string }).originalUrl ?? req.url ?? '/', 'http://localhost').pathname.toLowerCase();
-    const ours = path.startsWith('/api/reports') || path === '/api/health';
-    if (!ours && next !== undefined) {
+    const path = new URL((req as { originalUrl?: string }).originalUrl ?? req.url ?? '/', 'http://localhost').pathname;
+    if (!server.owns(path) && next !== undefined) {
       next();
       return;
     }
@@ -98,6 +97,10 @@ export function fastifyPlugin(server: ReportServer): (fastify: FastifyLike, _opt
     };
     fastify.all('/api/health', handler);
     fastify.all('/api/reports/*', handler);
+    if (server.console !== undefined) {
+      for (const route of ['/api/connections', '/api/connections/*', '/api/console/*']) fastify.all(route, handler);
+      if (server.owns('/')) for (const route of ['/', '/console']) fastify.all(route, handler);
+    }
     done();
   };
 }

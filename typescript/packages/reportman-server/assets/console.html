@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report Manager Server</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --text: #1d2330; --muted: #5d6676; --line: #dde1e8;
+  --accent: #1f6feb; --accent-text: #ffffff; --ok: #1a7f37; --bad: #cf222e; --warn: #9a6700;
+  --code: #f0f2f5; --hover: #eef2f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151b; --panel: #1a1e26; --text: #e4e7ec; --muted: #9aa3b2; --line: #2c323d;
+    --accent: #4d8ff0; --accent-text: #0b0e13; --ok: #3fb950; --bad: #f85149; --warn: #d29922;
+    --code: #222833; --hover: #222a36;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+header h1 { font-size: 17px; margin: 0; font-weight: 600; }
+header .info { color: var(--muted); font-size: 12px; flex: 1; }
+nav { display: flex; gap: 2px; padding: 0 20px; background: var(--panel); border-bottom: 1px solid var(--line); overflow-x: auto; }
+nav button { border: 0; background: none; color: var(--muted); padding: 10px 14px; font: inherit; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+nav button.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+main { padding: 20px; max-width: 1180px; margin: 0 auto; }
+section.tab { display: none; }
+section.tab.active { display: block; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.panel h2 { font-size: 15px; margin: 0 0 12px; }
+.panel h3 { font-size: 13px; margin: 14px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px 14px; }
+label.field { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+label.field > span.hint { font-size: 11px; }
+input, select, textarea { font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; min-width: 0; }
+input[type=checkbox], input[type=radio] { padding: 0; }
+textarea { width: 100%; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; }
+button { font: inherit; cursor: pointer; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--text); padding: 6px 12px; }
+button:hover { background: var(--hover); }
+button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+button.danger { color: var(--bad); }
+button.small { padding: 2px 8px; font-size: 12px; }
+button:disabled { opacity: .5; cursor: default; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.row.end { justify-content: flex-end; }
+.spacer { flex: 1; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; }
+td.actions { white-space: nowrap; text-align: right; }
+code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; }
+pre { background: var(--code); border-radius: 6px; padding: 10px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-all; }
+.muted { color: var(--muted); }
+.ok { color: var(--ok); }
+.bad { color: var(--bad); }
+.warn { color: var(--warn); }
+.badge { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; border: 1px solid var(--line); color: var(--muted); }
+.badge.ok { border-color: var(--ok); color: var(--ok); }
+.badge.bad { border-color: var(--bad); color: var(--bad); }
+.notice { border-left: 3px solid var(--warn); padding: 8px 12px; background: var(--code); border-radius: 4px; margin-bottom: 12px; }
+.subtabs { display: flex; gap: 4px; margin-bottom: 6px; flex-wrap: wrap; }
+.subtabs button.active { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+.result-frame { width: 100%; height: 640px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.samples { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.sample { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; background: var(--panel); }
+.sample .thumb { height: 150px; background: var(--code); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.sample .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.sample .body { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.sample .title { font-weight: 600; }
+.sample .desc { color: var(--muted); font-size: 12px; flex: 1; }
+.login { max-width: 420px; margin: 60px auto; }
+.params td { padding: 5px 8px; }
+.params input[type=text], .params input[type=number], .params input[type=date], .params input[type=datetime-local], .params select { width: 100%; }
+.mono { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; word-break: break-all; }
+[hidden] { display: none !important; }
+@media (max-width: 640px) { main { padding: 12px; } .panel { padding: 12px; } td.actions { white-space: normal; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Report Manager Server</h1>
+  <div class="info" id="serverInfo"></div>
+  <button id="logout" class="small" hidden data-t="logout">Log out</button>
+</header>
+
+<div id="loginView" class="login" hidden>
+  <div class="panel">
+    <h2 data-t="loginTitle">Administrator key</h2>
+    <p class="muted" data-t="loginHelp">The server printed its administrator key when it started (or set it with --admin-key / REPORTMAN_ADMIN_KEY).</p>
+    <form id="loginForm" class="row">
+      <input id="loginKey" type="password" autocomplete="current-password" style="flex:1" data-tp="loginKey" placeholder="Administrator key">
+      <button class="primary" type="submit" data-t="enter">Enter</button>
+    </form>
+    <p id="loginError" class="bad" hidden></p>
+  </div>
+</div>
+
+<div id="app" hidden>
+<nav id="tabs">
+  <button data-tab="explorer" class="active" data-t="tabExplorer">API explorer</button>
+  <button data-tab="connections" data-t="tabConnections">Connections</button>
+  <button data-tab="aliases" data-t="tabAliases">Aliases</button>
+  <button data-tab="keys" data-t="tabKeys">API keys</button>
+  <button data-tab="samples" data-t="tabSamples">Samples</button>
+</nav>
+<main>
+
+<!-- API explorer -->
+<section class="tab active" id="tab-explorer">
+  <div class="panel">
+    <h2 data-t="explorerTitle">Try the reports API</h2>
+    <p class="muted" data-t="explorerHelp">Choose a report, its parameters and the output: the page shows the exact request, runs it against this server and gives the same call for curl, PowerShell, JavaScript, C# and Delphi.</p>
+    <h3 data-t="explorerAuth">1 · Authentication</h3>
+    <div class="grid">
+      <label class="field"><span data-t="apiKey">API key</span>
+        <select id="exKey"></select>
+      </label>
+      <label class="field" id="exKeyOtherBox" hidden><span data-t="apiKeyOther">Key</span>
+        <input id="exKeyOther" type="text" class="mono">
+      </label>
+      <label class="field"><span data-t="keyWhere">Send the key</span>
+        <select id="exKeyWhere">
+          <option value="header" data-t="keyHeader">In the X-ReportmanServer-ApiKey header</option>
+          <option value="query" data-t="keyQuery">In the query (apikey=, for plain links)</option>
+        </select>
+      </label>
+    </div>
+    <p id="exOpen" class="notice" hidden data-t="apiOpen">There is no API key: the reports API is open to anyone who reaches this server. Create a key in API keys to close it.</p>
+    <h3 data-t="explorerReport">2 · Report</h3>
+    <div class="grid">
+      <label class="field"><span data-t="alias">Alias</span><select id="exAlias"></select></label>
+      <label class="field" style="grid-column: span 2"><span data-t="report">Report</span><select id="exReport"></select></label>
+    </div>
+    <p id="exReportError" class="bad" hidden></p>
+    <h3 data-t="explorerParams">3 · Parameters</h3>
+    <div id="exParams" class="muted" data-t="chooseReport">Choose a report.</div>
+    <h3 data-t="explorerOutput">4 · Output</h3>
+    <div class="grid">
+      <label class="field"><span data-t="format">Format</span>
+        <select id="exFormat">
+          <option value="pdf">PDF</option>
+          <option value="metafile">Metafile (.rpmf)</option>
+          <option value="text" data-t="formatText">Text</option>
+          <option value="csv">CSV</option>
+        </select>
+      </label>
+      <label class="field"><span data-t="method">Method</span>
+        <select id="exMethod">
+          <option value="GET">GET (query)</option>
+          <option value="POST">POST (JSON)</option>
+        </select>
+      </label>
+      <label class="field"><span data-t="disposition">Answer</span>
+        <select id="exDownload">
+          <option value="" data-t="inline">Inline</option>
+          <option value="1" data-t="attachment">As a download (download=1)</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2 data-t="requestTitle">The request</h2>
+    <div class="subtabs" id="exCodeTabs">
+      <button data-code="http" class="small active">HTTP</button>
+      <button data-code="curl" class="small">curl</button>
+      <button data-code="powershell" class="small">PowerShell</button>
+      <button data-code="fetch" class="small">JavaScript</button>
+      <button data-code="csharp" class="small">C#</button>
+      <button data-code="delphi" class="small">Delphi</button>
+    </div>
+    <pre id="exCode"></pre>
+    <div class="row end" style="margin-top:10px">
+      <button id="exCopy" class="small" data-t="copy">Copy</button>
+      <button id="exRun" class="primary" data-t="run">Run</button>
+    </div>
+  </div>
+
+  <div class="panel" id="exResultPanel" hidden>
+    <div class="row"><h2 style="margin:0" data-t="resultTitle">The answer</h2><span class="spacer"></span><a id="exSave" class="small" hidden></a></div>
+    <p id="exStatus" class="mono"></p>
+    <div id="exResult"></div>
+  </div>
+</section>
+
+<!-- Connections -->
+<section class="tab" id="tab-connections">
+  <div class="panel">
+    <div class="row"><h2 style="margin:0" data-t="connectionsTitle">Connections</h2><span class="spacer"></span><button id="connNew" class="primary" data-t="newConnection">New connection</button></div>
+    <p class="muted" data-t="connectionsHelp">The connection aliases the reports name, in dbxconnections.ini of the data folder: the same file the Delphi and .NET designers read.</p>
+    <p id="connDrivers" class="notice" hidden></p>
+    <table>
+      <thead><tr><th data-t="alias">Alias</th><th data-t="database">Database</th><th data-t="connectionString">Connection</th><th></th></tr></thead>
+      <tbody id="connList"></tbody>
+    </table>
+  </div>
+  <div class="panel" id="connEditor" hidden>
+    <h2 id="connEditorTitle"></h2>
+    <div class="grid">
+      <label class="field"><span data-t="alias">Alias</span><input id="connAlias" type="text"></label>
+      <label class="field"><span data-t="kind">Kind</span>
+        <select id="connKind">
+          <option value="direct" data-t="kindDirect">Direct (a database driver on this server)</option>
+          <option value="agent" data-t="kindAgent">Reportman AI Agent (through the Hub)</option>
+        </select>
+      </label>
+      <label class="field" id="connProviderBox"><span data-t="provider">Database</span><select id="connProvider"></select></label>
+    </div>
+    <div id="connDirect">
+      <h3 data-t="parameters">Parameters</h3>
+      <div class="grid" id="connParams"></div>
+      <label class="row" style="margin-top:8px"><input type="checkbox" id="connAll"> <span data-t="showAll">Show every parameter</span></label>
+    </div>
+    <div id="connAgent" hidden>
+      <h3 data-t="agent">Agent</h3>
+      <div class="grid">
+        <label class="field"><span>HubDatabaseId</span><input id="connHub" type="number" min="1"></label>
+        <label class="field"><span data-t="agentKey">Agent API key</span><input id="connAgentKey" type="password" autocomplete="off"></label>
+      </div>
+    </div>
+    <p id="connTest" class="mono" hidden></p>
+    <div class="row end" style="margin-top:12px">
+      <button id="connCancel" data-t="cancel">Cancel</button>
+      <button id="connTestBtn" data-t="test">Test</button>
+      <button id="connSave" class="primary" data-t="save">Save</button>
+    </div>
+  </div>
+</section>
+
+<!-- Aliases -->
+<section class="tab" id="tab-aliases">
+  <div class="panel">
+    <h2 data-t="aliasesTitle">Report aliases</h2>
+    <p class="muted" data-t="aliasesHelp">Each alias is a folder of .rep files (server.json); a relative folder hangs from informes/ in the data folder. The API names a report by its alias and its path inside the folder.</p>
+    <table>
+      <thead><tr><th data-t="alias">Alias</th><th data-t="folder">Folder</th><th data-t="path">Path</th><th></th></tr></thead>
+      <tbody id="aliasList"></tbody>
+    </table>
+    <form id="aliasForm" class="row" style="margin-top:12px">
+      <input id="aliasName" type="text" data-tp="aliasName" placeholder="ALIAS" style="width:160px">
+      <input id="aliasFolder" type="text" data-tp="aliasFolder" placeholder="folder (the alias in lower case)" style="flex:1;min-width:200px">
+      <button class="primary" type="submit" data-t="saveAlias">Add or change</button>
+    </form>
+  </div>
+</section>
+
+<!-- API keys -->
+<section class="tab" id="tab-keys">
+  <div class="panel">
+    <h2 data-t="keysTitle">API keys</h2>
+    <p class="muted" data-t="keysHelp">What a program presents to run reports (X-ReportmanServer-ApiKey, or apikey= in the query), for every alias or some of them. Rotating gives a new secret and stops the old one at once.</p>
+    <p id="keysOpen" class="notice" hidden data-t="apiOpen">There is no API key: the reports API is open to anyone who reaches this server. Create a key in API keys to close it.</p>
+    <table>
+      <thead><tr><th data-t="name">Name</th><th data-t="key">Key</th><th data-t="aliases">Aliases</th><th data-t="lastUsed">Last used</th><th></th></tr></thead>
+      <tbody id="keyList"></tbody>
+    </table>
+    <h3 data-t="newKey">New key</h3>
+    <form id="keyForm" class="row">
+      <input id="keyName" type="text" data-tp="keyName" placeholder="Name (who uses it)" style="width:220px">
+      <input id="keyAliases" type="text" data-tp="keyAliases" placeholder="Aliases, separated by commas (empty: all)" style="flex:1;min-width:220px">
+      <button class="primary" type="submit" data-t="create">Create</button>
+    </form>
+    <p id="keyCreated" class="notice" hidden></p>
+  </div>
+</section>
+
+<!-- Samples -->
+<section class="tab" id="tab-samples">
+  <div class="panel">
+    <div class="row"><h2 style="margin:0" data-t="samplesTitle">Sample reports</h2><span class="spacer"></span><button id="samplesInstall" class="primary" data-t="installSamples">Install the samples</button></div>
+    <p class="muted" data-t="samplesHelp">The sample reports of the Report Manager designers, with their SQLite database: they go to informes/Ejemplos and the SAMPLES connection is added. A report already there is never replaced.</p>
+    <p id="samplesResult" class="notice" hidden></p>
+    <div class="samples" id="samplesList"></div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+'use strict';
+(function () {
+  // ---- texts ----
+  var TEXTS = {
+    es: {
+      logout: 'Salir', loginTitle: 'Clave de administrador', enter: 'Entrar', loginKey: 'Clave de administrador',
+      loginHelp: 'El servidor escribió su clave de administrador al arrancar (o se fijó con --admin-key / REPORTMAN_ADMIN_KEY).',
+      loginBad: 'La clave no es válida.',
+      tabExplorer: 'Explorador de la API', tabConnections: 'Conexiones', tabAliases: 'Alias', tabKeys: 'Claves API', tabSamples: 'Ejemplos',
+      explorerTitle: 'Probar la API de informes',
+      explorerHelp: 'Elige un informe, sus parámetros y la salida: la página muestra la petición exacta, la ejecuta contra este servidor y da la misma llamada para curl, PowerShell, JavaScript, C# y Delphi.',
+      explorerAuth: '1 · Autenticación', apiKey: 'Clave API', apiKeyOther: 'Clave', keyWhere: 'Enviar la clave',
+      keyHeader: 'En la cabecera X-ReportmanServer-ApiKey', keyQuery: 'En la URL (apikey=, para enlaces)',
+      noKey: '(sin clave)', otherKey: 'Otra clave...',
+      apiOpen: 'No hay ninguna clave API: la API de informes está abierta a cualquiera que llegue a este servidor. Crea una en Claves API para cerrarla.',
+      explorerReport: '2 · Informe', alias: 'Alias', report: 'Informe', explorerParams: '3 · Parámetros', chooseReport: 'Elige un informe.',
+      noParams: 'El informe no tiene parámetros.', send: 'Enviar', parameter: 'Parámetro', value: 'Valor', type: 'Tipo',
+      hiddenParams: 'Mostrar también los parámetros ocultos', paramsHelp: 'Solo se envían los marcados; los demás conservan el valor del informe.',
+      explorerOutput: '4 · Salida', format: 'Formato', formatText: 'Texto', method: 'Método', disposition: 'Respuesta', inline: 'En la página', attachment: 'Como descarga (download=1)',
+      requestTitle: 'La petición', copy: 'Copiar', copied: 'Copiado', run: 'Ejecutar', running: 'Ejecutando...', resultTitle: 'La respuesta', saveFile: 'Guardar el fichero',
+      connectionsTitle: 'Conexiones', newConnection: 'Nueva conexión',
+      connectionsHelp: 'Los alias de conexión que nombran los informes, en dbxconnections.ini de la carpeta de datos: el mismo fichero que leen los diseñadores de Delphi y .NET.',
+      database: 'Base de datos', connectionString: 'Conexión', kind: 'Tipo', kindDirect: 'Directa (un driver de base de datos en este servidor)', kindAgent: 'Reportman AI Agent (a través del Hub)',
+      provider: 'Base de datos', parameters: 'Parámetros', showAll: 'Mostrar todos los parámetros', agent: 'Agent', agentKey: 'Clave API del Agent',
+      cancel: 'Cancelar', test: 'Probar', save: 'Guardar', edit: 'Editar', delete: 'Borrar', testing: 'Probando...',
+      editConnection: 'Conexión ', newConnectionTitle: 'Nueva conexión', stored: '(guardada)', byDefault: '(por defecto: ', yes: 'sí', no: 'no',
+      confirmDeleteConnection: '¿Borrar la conexión ', connected: 'Conectado', noConnections: 'No hay conexiones.',
+      driversMissing: 'Este servidor solo abre SQLite. Para las demás bases de datos, instala sus drivers junto al servidor: ',
+      aliasesTitle: 'Alias de informes',
+      aliasesHelp: 'Cada alias es una carpeta de ficheros .rep (server.json); una carpeta relativa cuelga de informes/ en la carpeta de datos. La API nombra un informe por su alias y su ruta dentro de la carpeta.',
+      folder: 'Carpeta', path: 'Ruta', aliasName: 'ALIAS', aliasFolder: 'carpeta (por defecto, el alias en minúsculas)', saveAlias: 'Añadir o cambiar', confirmDeleteAlias: '¿Quitar el alias ',
+      keysTitle: 'Claves API',
+      keysHelp: 'Lo que presenta un programa para ejecutar informes (X-ReportmanServer-ApiKey, o apikey= en la URL), para todos los alias o algunos. Rotar da un secreto nuevo y el anterior deja de valer al momento.',
+      name: 'Nombre', key: 'Clave', aliases: 'Alias', lastUsed: 'Último uso', newKey: 'Nueva clave', keyName: 'Nombre (quién la usa)', keyAliases: 'Alias separados por comas (vacío: todos)',
+      create: 'Crear', rotate: 'Rotar', disable: 'Desactivar', enable: 'Activar', disabled: 'desactivada', all: 'todos', never: 'nunca', show: 'Ver',
+      keyCreatedText: 'Clave creada. Dásela al programa que la va a usar: ', confirmDeleteKey: '¿Borrar la clave ', confirmRotate: '¿Rotar la clave? La actual dejará de valer: ', noKeys: 'No hay claves.',
+      samplesTitle: 'Informes de ejemplo', installSamples: 'Instalar los ejemplos',
+      samplesHelp: 'Los informes de ejemplo de los diseñadores de Report Manager, con su base de datos SQLite: van a informes/Ejemplos y se añade la conexión SAMPLES. Nunca se sustituye un informe que ya esté.',
+      installed: 'instalado', notInstalled: 'sin instalar', openInExplorer: 'Probar en el explorador',
+      samplesDone: 'Hecho: {reports} informes copiados, base de datos {database}, conexión SAMPLES {connection}.', updated: 'actualizada', unchanged: 'sin cambios', added: 'añadida', present: 'ya estaba',
+      noSamples: 'Este servidor no lleva los informes de ejemplo.', error: 'Error'
+    },
+    en: {
+      loginBad: 'The key is not valid.', noKey: '(no key)', otherKey: 'Another key...', noParams: 'The report has no parameters.', send: 'Send', parameter: 'Parameter', value: 'Value', type: 'Type',
+      hiddenParams: 'Show the hidden parameters too', paramsHelp: 'Only the checked ones are sent; the others keep the value of the report.',
+      copied: 'Copied', running: 'Running...', saveFile: 'Save the file', edit: 'Edit', delete: 'Delete', testing: 'Testing...',
+      editConnection: 'Connection ', newConnectionTitle: 'New connection', stored: '(stored)', byDefault: '(default: ', yes: 'yes', no: 'no',
+      confirmDeleteConnection: 'Delete the connection ', connected: 'Connected', noConnections: 'There are no connections.',
+      driversMissing: 'This server opens SQLite only. For the other databases, install their drivers next to the server: ',
+      confirmDeleteAlias: 'Remove the alias ', rotate: 'Rotate', disable: 'Disable', enable: 'Enable', disabled: 'disabled', all: 'all', never: 'never', show: 'Show',
+      keyCreatedText: 'Key created. Give it to the program that will use it: ', confirmDeleteKey: 'Delete the key ', confirmRotate: 'Rotate the key? The current one stops working: ', noKeys: 'There are no keys.',
+      installed: 'installed', notInstalled: 'not installed', openInExplorer: 'Try in the explorer',
+      samplesDone: 'Done: {reports} reports copied, database {database}, SAMPLES connection {connection}.', updated: 'updated', unchanged: 'unchanged', added: 'added', present: 'already there',
+      noSamples: 'This server does not carry the sample reports.', error: 'Error'
+    }
+  };
+  var lang = (navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+  document.documentElement.lang = lang;
+  function t(key) {
+    var table = TEXTS[lang];
+    if (table && table[key] !== undefined) return table[key];
+    if (TEXTS.en[key] !== undefined) return TEXTS.en[key];
+    var node = document.querySelector('[data-t="' + key + '"]');
+    return node ? node.getAttribute('data-default') || node.textContent : key;
+  }
+  // The static texts: data-t is the text, data-tp the placeholder
+  Array.prototype.forEach.call(document.querySelectorAll('[data-t]'), function (node) {
+    node.setAttribute('data-default', node.textContent);
+    var table = TEXTS[lang];
+    var key = node.getAttribute('data-t');
+    if (table && table[key] !== undefined) node.textContent = table[key];
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tp]'), function (node) {
+    var table = TEXTS[lang];
+    var key = node.getAttribute('data-tp');
+    if (table && table[key] !== undefined) node.setAttribute('placeholder', table[key]);
+  });
+
+  // ---- helpers ----
+  function $(id) { return document.getElementById(id); }
+  function el(tag, attrs) {
+    var node = document.createElement(tag);
+    if (attrs) for (var k in attrs) {
+      if (!Object.prototype.hasOwnProperty.call(attrs, k) || attrs[k] === undefined || attrs[k] === null) continue;
+      if (k === 'text') node.textContent = attrs[k];
+      else if (k === 'class') node.className = attrs[k];
+      else if (k.indexOf('on') === 0) node.addEventListener(k.substring(2), attrs[k]);
+      else if (k === 'checked' || k === 'disabled' || k === 'hidden' || k === 'selected') node[k] = !!attrs[k];
+      else node.setAttribute(k, attrs[k]);
+    }
+    for (var i = 2; i < arguments.length; i++) {
+      var child = arguments[i];
+      if (child === null || child === undefined || child === false) continue;
+      node.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
+    }
+    return node;
+  }
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); return node; }
+  function show(node, visible) { node.hidden = !visible; }
+
+  var ADMIN = 'X-ReportmanServer-AdminKey';
+  var adminKey = '';
+  try { adminKey = sessionStorage.getItem('reportman.adminKey') || ''; } catch (e) { adminKey = ''; }
+  function remember(key) { adminKey = key; try { if (key) sessionStorage.setItem('reportman.adminKey', key); else sessionStorage.removeItem('reportman.adminKey'); } catch (e) { /* private window */ } }
+
+  /** A request to the console routes: the JSON answer, or an Error with the message of the server. */
+  function api(method, url, body) {
+    var headers = {};
+    if (adminKey) headers[ADMIN] = adminKey;
+    if (body !== undefined) headers['Content-Type'] = 'application/json';
+    return fetch(url, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) }).then(function (r) {
+      if (r.status === 401) { showLogin(); throw new Error(t('loginBad')); }
+      if (r.status === 204) return null;
+      return r.text().then(function (text) {
+        var value = null;
+        try { value = text ? JSON.parse(text) : null; } catch (e) { value = { error: text }; }
+        if (!r.ok) throw new Error((value && value.error) || (r.status + ' ' + r.statusText));
+        return value;
+      });
+    });
+  }
+  function fail(e) { alert(t('error') + ': ' + (e && e.message ? e.message : e)); }
+
+  // ---- start and login ----
+  var status = { auth: 'key', samples: false, providers: [] };
+  var health = { aliases: [] };
+  var loaded = {};
+
+  function showLogin() {
+    show($('app'), false);
+    show($('loginView'), true);
+    show($('logout'), false);
+    $('loginKey').focus();
+  }
+  function start() {
+    show($('loginView'), false);
+    show($('app'), true);
+    show($('logout'), status.auth === 'key');
+    loaded = {};
+    openTab(currentTab);
+  }
+  $('loginForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    remember($('loginKey').value.trim());
+    api('GET', '/api/console/check').then(function () { show($('loginError'), false); start(); }).catch(function () {
+      remember('');
+      $('loginError').textContent = t('loginBad');
+      show($('loginError'), true);
+      show($('loginView'), true);
+    });
+  });
+  $('logout').addEventListener('click', function () { remember(''); showLogin(); });
+
+  // ---- tabs ----
+  var currentTab = 'explorer';
+  function openTab(name) {
+    currentTab = name;
+    Array.prototype.forEach.call(document.querySelectorAll('#tabs button'), function (b) { b.classList.toggle('active', b.getAttribute('data-tab') === name); });
+    Array.prototype.forEach.call(document.querySelectorAll('section.tab'), function (s) { s.classList.toggle('active', s.id === 'tab-' + name); });
+    if (!loaded[name]) {
+      loaded[name] = true;
+      ({ explorer: loadExplorer, connections: loadConnections, aliases: loadAliases, keys: loadKeys, samples: loadSamples })[name]();
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#tabs button'), function (b) {
+    b.addEventListener('click', function () { openTab(b.getAttribute('data-tab')); });
+  });
+
+  // ---- API explorer ----
+  var keys = [];
+  var params = [];
+  var lastBlobUrl = null;
+  var codeTab = 'http';
+
+  function selectedKey() {
+    var v = $('exKey').value;
+    if (v === '') return '';
+    if (v === '*other') return $('exKeyOther').value.trim();
+    return v;
+  }
+  function reportHeaders() {
+    var h = {};
+    var key = selectedKey();
+    if (key && $('exKeyWhere').value === 'header') h['X-ReportmanServer-ApiKey'] = key;
+    return h;
+  }
+  function withKeyQuery(url) {
+    var key = selectedKey();
+    if (!key || $('exKeyWhere').value !== 'query') return url;
+    return url + (url.indexOf('?') < 0 ? '?' : '&') + 'apikey=' + encodeURIComponent(key);
+  }
+  /** A request to the reports API as a program makes it: the selected key, never the administrator's. */
+  function reportsApi(url) {
+    return fetch(withKeyQuery(url), { headers: reportHeaders() }).then(function (r) {
+      return r.text().then(function (text) {
+        var value = null;
+        try { value = text ? JSON.parse(text) : null; } catch (e) { value = { error: text }; }
+        if (!r.ok) throw new Error((value && value.error) || (r.status + ' ' + r.statusText));
+        return value;
+      });
+    });
+  }
+
+  function loadExplorer() {
+    Promise.all([api('GET', '/api/console/keys'), fetch('/api/health').then(function (r) { return r.json(); })]).then(function (res) {
+      keys = res[0] || [];
+      health = res[1] || { aliases: [] };
+      var select = clear($('exKey'));
+      select.appendChild(el('option', { value: '', text: t('noKey') }));
+      keys.forEach(function (k) {
+        if (k.disabled || !k.key) return;
+        select.appendChild(el('option', { value: k.key, text: k.name + ' (' + (k.aliases.indexOf('*') >= 0 ? t('all') : k.aliases.join(', ')) + ')' }));
+      });
+      select.appendChild(el('option', { value: '*other', text: t('otherKey') }));
+      if (keys.some(function (k) { return !k.disabled && k.key; })) select.selectedIndex = 1;
+      show($('exOpen'), keys.length === 0);
+      var aliases = clear($('exAlias'));
+      (health.aliases || []).forEach(function (a) { aliases.appendChild(el('option', { value: a, text: a })); });
+      if (pendingSample) { aliases.value = pendingSample.alias; }
+      loadReports();
+    }).catch(fail);
+  }
+
+  function flatten(node, out) {
+    node.reports.forEach(function (r) { out.push(r.path); });
+    node.folders.forEach(function (f) { flatten(f, out); });
+    return out;
+  }
+  function loadReports() {
+    var alias = $('exAlias').value;
+    var select = clear($('exReport'));
+    show($('exReportError'), false);
+    if (!alias) { renderParams([]); updateCode(); return; }
+    reportsApi('/api/reports/' + encodeURIComponent(alias) + '/tree').then(function (tree) {
+      var paths = flatten(tree, []);
+      paths.forEach(function (p) { select.appendChild(el('option', { value: p, text: p })); });
+      if (pendingSample && paths.indexOf(pendingSample.path) >= 0) select.value = pendingSample.path;
+      pendingSample = null;
+      loadParams();
+    }).catch(function (e) {
+      $('exReportError').textContent = e.message;
+      show($('exReportError'), true);
+      renderParams([]);
+      updateCode();
+    });
+  }
+  function loadParams() {
+    var alias = $('exAlias').value;
+    var path = $('exReport').value;
+    if (!alias || !path) { renderParams([]); updateCode(); return; }
+    reportsApi('/api/reports/' + encodeURIComponent(alias) + '/parameters?path=' + encodeURIComponent(path)).then(function (list) {
+      renderParams(list || []);
+      updateCode();
+    }).catch(function (e) {
+      $('exReportError').textContent = e.message;
+      show($('exReportError'), true);
+      renderParams([]);
+      updateCode();
+    });
+  }
+
+  function inputFor(p) {
+    var value = p.value || '';
+    var type = p.type;
+    var input;
+    if (type === 'Bool') {
+      input = el('select', {}, el('option', { value: 'true', text: 'true' }), el('option', { value: 'false', text: 'false' }));
+      input.value = /^(true|1|-1)$/i.test(value) ? 'true' : 'false';
+    } else if (type === 'Integer' || type === 'Double' || type === 'Currency') {
+      input = el('input', { type: 'number', step: type === 'Integer' ? '1' : 'any', value: value });
+    } else if (type === 'Date') {
+      input = el('input', { type: 'date', value: isoDate(value) });
+    } else if (type === 'DateTime') {
+      input = el('input', { type: 'datetime-local', value: isoDateTime(value) });
+    } else {
+      input = el('input', { type: 'text', value: value });
+    }
+    return input;
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function isoDate(text) {
+    if (/^\d{4}-\d{2}-\d{2}/.test(text)) return text.substring(0, 10);
+    var d = new Date(text);
+    return isNaN(d.getTime()) ? '' : d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function isoDateTime(text) {
+    if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(text)) return text.substring(0, 16);
+    var d = new Date(text);
+    return isNaN(d.getTime()) ? '' : isoDate(text) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+
+  function renderParams(list) {
+    params = [];
+    var box = clear($('exParams'));
+    box.className = '';
+    if (!$('exReport').value) { box.className = 'muted'; box.textContent = t('chooseReport'); return; }
+    if (list.length === 0) { box.className = 'muted'; box.textContent = t('noParams'); return; }
+    var hiddenToggle = el('input', { type: 'checkbox' });
+    var body = el('tbody');
+    list.forEach(function (p) {
+      var check = el('input', { type: 'checkbox' });
+      var input = inputFor(p);
+      input.addEventListener('input', function () { check.checked = true; updateCode(); });
+      input.addEventListener('change', function () { check.checked = true; updateCode(); });
+      check.addEventListener('change', updateCode);
+      var row = el('tr', {},
+        el('td', {}, check),
+        el('td', {}, el('div', { class: 'mono', text: p.name }), p.description ? el('div', { class: 'muted', text: p.description }) : null),
+        el('td', { class: 'muted', text: p.type + (p.visible ? '' : ' · hidden') }),
+        el('td', {}, input));
+      row.hidden = !p.visible;
+      body.appendChild(row);
+      params.push({ info: p, check: check, input: input, row: row });
+    });
+    hiddenToggle.addEventListener('change', function () {
+      params.forEach(function (x) { if (!x.info.visible) x.row.hidden = !hiddenToggle.checked; });
+    });
+    box.appendChild(el('p', { class: 'muted', text: t('paramsHelp') }));
+    box.appendChild(el('table', { class: 'params' },
+      el('thead', {}, el('tr', {}, el('th', { text: t('send') }), el('th', { text: t('parameter') }), el('th', { text: t('type') }), el('th', { text: t('value') }))),
+      body));
+    if (list.some(function (p) { return !p.visible; })) box.appendChild(el('label', { class: 'row', style: 'margin-top:8px' }, hiddenToggle, el('span', { text: t('hiddenParams') })));
+  }
+
+  /** The parameters to send: name → value (a JSON value for POST, text for GET). */
+  function chosenParams(asJson) {
+    var result = {};
+    params.forEach(function (x) {
+      if (!x.check.checked) return;
+      var v = x.input.value;
+      var type = x.info.type;
+      if (!asJson) { result[x.info.name] = v; return; }
+      if (type === 'Bool') result[x.info.name] = v === 'true';
+      else if ((type === 'Integer' || type === 'Double' || type === 'Currency') && v !== '' && !isNaN(Number(v))) result[x.info.name] = Number(v);
+      else result[x.info.name] = v;
+    });
+    return result;
+  }
+
+  /** The request the explorer would send: method, URL, headers and body. */
+  function buildRequest() {
+    var alias = $('exAlias').value;
+    var path = $('exReport').value;
+    var format = $('exFormat').value;
+    var method = $('exMethod').value;
+    var url = location.origin + '/api/reports/' + encodeURIComponent(alias) + '/execute?path=' + encodeURIComponent(path);
+    var headers = reportHeaders();
+    var body = null;
+    if (method === 'GET') {
+      url += '&format=' + format;
+      var values = chosenParams(false);
+      for (var name in values) url += '&' + encodeURIComponent(name) + '=' + encodeURIComponent(values[name]);
+    } else {
+      headers['Content-Type'] = 'application/json';
+      body = JSON.stringify({ parameters: chosenParams(true), format: format }, null, 2);
+    }
+    if ($('exDownload').value) url += '&download=1';
+    url = withKeyQuery(url);
+    return { method: method, url: url, headers: headers, body: body, format: format };
+  }
+
+  var EXTENSIONS = { pdf: 'pdf', metafile: 'rpmf', text: 'txt', csv: 'csv' };
+  function outputName(req) {
+    var path = $('exReport').value || 'report';
+    return path.replace(/^.*\//, '').replace(/\.rep$/i, '') + '.' + EXTENSIONS[req.format];
+  }
+  function psQuote(s) { return "'" + s.replace(/'/g, "''") + "'"; }
+  function shQuote(s) { return "'" + s.replace(/'/g, "'\\''") + "'"; }
+  function csQuote(s) { return '@"' + s.replace(/"/g, '""') + '"'; }
+  function pasQuote(s) { return "'" + s.replace(/'/g, "''") + "'"; }
+  function jsQuote(s) { return JSON.stringify(s); }
+
+  function code(req, kind) {
+    var file = outputName(req);
+    var h = req.headers;
+    var names = Object.keys(h);
+    var lines = [];
+    if (kind === 'http') {
+      var u = new URL(req.url);
+      lines.push(req.method + ' ' + u.pathname + u.search + ' HTTP/1.1');
+      lines.push('Host: ' + u.host);
+      names.forEach(function (n) { lines.push(n + ': ' + h[n]); });
+      if (req.body) { lines.push(''); lines.push(req.body); }
+    } else if (kind === 'curl') {
+      var parts = ['curl'];
+      if (req.method === 'POST') parts.push('-X POST');
+      names.forEach(function (n) { parts.push('-H ' + shQuote(n + ': ' + h[n])); });
+      if (req.body) parts.push('--data ' + shQuote(JSON.stringify(JSON.parse(req.body))));
+      parts.push('-o ' + shQuote(file));
+      parts.push(shQuote(req.url));
+      lines.push(parts.join(' \\\n  '));
+    } else if (kind === 'powershell') {
+      var hs = names.filter(function (n) { return n !== 'Content-Type'; }).map(function (n) { return psQuote(n) + ' = ' + psQuote(h[n]); });
+      var args = ['-Method ' + req.method, '-Uri ' + psQuote(req.url)];
+      if (hs.length) args.push('-Headers @{ ' + hs.join('; ') + ' }');
+      if (req.body) { args.push('-ContentType ' + psQuote('application/json')); args.push('-Body ' + psQuote(JSON.stringify(JSON.parse(req.body)))); }
+      args.push('-OutFile ' + psQuote(file));
+      lines.push('Invoke-WebRequest ' + args.join(' `\n  '));
+    } else if (kind === 'fetch') {
+      var init = ['  method: ' + jsQuote(req.method)];
+      if (names.length) init.push('  headers: { ' + names.map(function (n) { return jsQuote(n) + ': ' + jsQuote(h[n]); }).join(', ') + ' }');
+      if (req.body) init.push('  body: JSON.stringify(' + JSON.stringify(JSON.parse(req.body)) + ')');
+      lines.push('const response = await fetch(' + jsQuote(req.url) + ', {');
+      lines.push(init.join(',\n'));
+      lines.push('});');
+      lines.push('if (!response.ok) throw new Error((await response.json()).error);');
+      lines.push('const bytes = new Uint8Array(await response.arrayBuffer());');
+      lines.push('// Node.js: await (await import(\'node:fs/promises\')).writeFile(' + jsQuote(file) + ', bytes);');
+    } else if (kind === 'csharp') {
+      lines.push('using var client = new HttpClient();');
+      lines.push('using var request = new HttpRequestMessage(HttpMethod.' + (req.method === 'GET' ? 'Get' : 'Post') + ', ' + csQuote(req.url) + ');');
+      names.filter(function (n) { return n !== 'Content-Type'; }).forEach(function (n) { lines.push('request.Headers.Add(' + csQuote(n) + ', ' + csQuote(h[n]) + ');'); });
+      if (req.body) lines.push('request.Content = new StringContent(' + csQuote(JSON.stringify(JSON.parse(req.body))) + ', System.Text.Encoding.UTF8, "application/json");');
+      lines.push('using var response = await client.SendAsync(request);');
+      lines.push('response.EnsureSuccessStatusCode();');
+      lines.push('await File.WriteAllBytesAsync(' + csQuote(file) + ', await response.Content.ReadAsByteArrayAsync());');
+    } else if (kind === 'delphi') {
+      lines.push('uses System.SysUtils, System.Classes, System.Net.HttpClient, System.Net.URLClient;');
+      lines.push('');
+      lines.push('var');
+      lines.push('  Client: THTTPClient;');
+      lines.push('  Output: TFileStream;');
+      if (req.body) lines.push('  Body: TStringStream;');
+      lines.push('  Response: IHTTPResponse;');
+      lines.push('begin');
+      lines.push('  Client := THTTPClient.Create;');
+      lines.push('  Output := TFileStream.Create(' + pasQuote(file) + ', fmCreate);');
+      if (req.body) lines.push('  Body := TStringStream.Create(' + pasQuote(JSON.stringify(JSON.parse(req.body))) + ', TEncoding.UTF8);');
+      lines.push('  try');
+      names.filter(function (n) { return n !== 'Content-Type'; }).forEach(function (n) { lines.push('    Client.CustomHeaders[' + pasQuote(n) + '] := ' + pasQuote(h[n]) + ';'); });
+      if (req.body) {
+        lines.push('    Client.ContentType := ' + pasQuote('application/json') + ';');
+        lines.push('    Response := Client.Post(' + pasQuote(req.url) + ', Body, Output);');
+      } else {
+        lines.push('    Response := Client.Get(' + pasQuote(req.url) + ', Output);');
+      }
+      lines.push('    if Response.StatusCode <> 200 then');
+      lines.push('      raise Exception.CreateFmt(' + pasQuote('HTTP %d') + ', [Response.StatusCode]);');
+      lines.push('  finally');
+      if (req.body) lines.push('    Body.Free;');
+      lines.push('    Output.Free;');
+      lines.push('    Client.Free;');
+      lines.push('  end;');
+      lines.push('end;');
+    }
+    return lines.join('\n');
+  }
+  function updateCode() {
+    if (!$('exAlias').value || !$('exReport').value) { $('exCode').textContent = ''; $('exRun').disabled = true; return; }
+    $('exRun').disabled = false;
+    $('exCode').textContent = code(buildRequest(), codeTab);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#exCodeTabs button'), function (b) {
+    b.addEventListener('click', function () {
+      codeTab = b.getAttribute('data-code');
+      Array.prototype.forEach.call(document.querySelectorAll('#exCodeTabs button'), function (x) { x.classList.toggle('active', x === b); });
+      updateCode();
+    });
+  });
+  $('exCopy').addEventListener('click', function () {
+    var text = $('exCode').textContent;
+    var done = function () { var b = $('exCopy'); var old = b.textContent; b.textContent = t('copied'); setTimeout(function () { b.textContent = old; }, 1200); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () { fail(new Error('clipboard')); });
+  });
+  $('exKey').addEventListener('change', function () { show($('exKeyOtherBox'), $('exKey').value === '*other'); loadReports(); });
+  $('exKeyOther').addEventListener('change', loadReports);
+  $('exKeyWhere').addEventListener('change', updateCode);
+  $('exAlias').addEventListener('change', loadReports);
+  $('exReport').addEventListener('change', loadParams);
+  ['exFormat', 'exMethod', 'exDownload'].forEach(function (id) { $(id).addEventListener('change', updateCode); });
+
+  $('exRun').addEventListener('click', function () {
+    var req = buildRequest();
+    var started = performance.now();
+    var button = $('exRun');
+    button.disabled = true;
+    button.textContent = t('running');
+    show($('exResultPanel'), true);
+    var result = clear($('exResult'));
+    $('exStatus').textContent = req.method + ' ' + req.url;
+    show($('exSave'), false);
+    if (lastBlobUrl) { URL.revokeObjectURL(lastBlobUrl); lastBlobUrl = null; }
+    fetch(req.url, { method: req.method, headers: req.headers, body: req.body || undefined }).then(function (r) {
+      return r.arrayBuffer().then(function (buffer) {
+        var ms = Math.round(performance.now() - started);
+        var type = r.headers.get('content-type') || '';
+        $('exStatus').textContent = r.status + ' ' + r.statusText + ' · ' + type + ' · ' + buffer.byteLength + ' bytes · ' + ms + ' ms';
+        $('exStatus').className = 'mono ' + (r.ok ? 'ok' : 'bad');
+        var blob = new Blob([buffer], { type: type || 'application/octet-stream' });
+        lastBlobUrl = URL.createObjectURL(blob);
+        if (r.ok) {
+          var save = $('exSave');
+          save.href = lastBlobUrl;
+          save.download = outputName(req);
+          save.textContent = t('saveFile') + ' (' + save.download + ')';
+          show(save, true);
+        }
+        if (r.ok && type.indexOf('application/pdf') === 0) {
+          result.appendChild(el('iframe', { class: 'result-frame', src: lastBlobUrl, title: 'PDF' }));
+        } else if (type.indexOf('text/') === 0 || type.indexOf('application/json') === 0) {
+          var text = new TextDecoder('utf-8').decode(buffer);
+          if (type.indexOf('application/json') === 0) { try { text = JSON.stringify(JSON.parse(text), null, 2); } catch (e) { /* as it is */ } }
+          result.appendChild(el('pre', { text: text.length > 200000 ? text.substring(0, 200000) + '\n...' : text }));
+        } else {
+          result.appendChild(el('p', { class: 'muted', text: type + ': ' + buffer.byteLength + ' bytes' }));
+        }
+      });
+    }).catch(function (e) {
+      $('exStatus').textContent = e.message;
+      $('exStatus').className = 'mono bad';
+    }).then(function () {
+      button.disabled = false;
+      button.textContent = t('run');
+    });
+  });
+
+  // ---- connections ----
+  var providers = [];
+  var editing = null;
+  var paramInfo = [];
+  var paramInputs = {};
+
+  function loadConnections() {
+    Promise.all([api('GET', '/api/connections'), api('GET', '/api/connections/providers')]).then(function (res) {
+      providers = res[1] || [];
+      var missing = ['PostgreSQL', 'FirebirdSql.Data.FirebirdClient', 'MySQLConnector', 'SQLServer'].filter(function (n) { return !providers.some(function (p) { return p.name === n; }); });
+      var packages = { 'PostgreSQL': '@reportman/driver-postgres', 'FirebirdSql.Data.FirebirdClient': '@reportman/driver-firebird', 'MySQLConnector': '@reportman/driver-mysql', 'SQLServer': '@reportman/driver-mssql' };
+      $('connDrivers').textContent = t('driversMissing') + missing.map(function (n) { return packages[n]; }).join(', ') + '.';
+      show($('connDrivers'), missing.length === 4);
+      var select = clear($('connProvider'));
+      providers.forEach(function (p) { select.appendChild(el('option', { value: p.name, text: p.label })); });
+      renderConnections(res[0] || []);
+    }).catch(fail);
+  }
+  function providerLabel(name) {
+    var p = providers.filter(function (x) { return x.name === name; })[0];
+    return p ? p.label : name || '';
+  }
+  function renderConnections(list) {
+    var body = clear($('connList'));
+    if (list.length === 0) body.appendChild(el('tr', {}, el('td', { colspan: '4', class: 'muted', text: t('noConnections') })));
+    list.forEach(function (c) {
+      var testCell = el('div', { class: 'mono' });
+      body.appendChild(el('tr', {},
+        el('td', {}, el('strong', { text: c.alias })),
+        el('td', { text: c.kind === 'agent' ? 'Reportman AI Agent · Hub ' + (c.hubDatabaseId || '?') : providerLabel(c.providerFactory) }),
+        el('td', {}, el('div', { class: 'mono', text: c.connectionString || '' }), testCell),
+        el('td', { class: 'actions' },
+          el('button', { class: 'small', text: t('test'), onclick: function () {
+            testCell.className = 'mono muted';
+            testCell.textContent = t('testing');
+            api('POST', '/api/connections/' + encodeURIComponent(c.alias) + '/test').then(function (r) { showTest(testCell, r); }).catch(fail);
+          } }), ' ',
+          el('button', { class: 'small', text: t('edit'), onclick: function () { editConnection(c); } }), ' ',
+          el('button', { class: 'small danger', text: t('delete'), onclick: function () {
+            if (!confirm(t('confirmDeleteConnection') + c.alias + '?')) return;
+            api('DELETE', '/api/connections/' + encodeURIComponent(c.alias)).then(loadConnections).catch(fail);
+          } }))));
+    });
+  }
+  function showTest(node, r) {
+    node.className = 'mono ' + (r.ok ? 'ok' : 'bad');
+    node.textContent = (r.ok ? '✓ ' + t('connected') + (r.serverVersion ? ' · ' + r.serverVersion : '') : '✗ ' + r.message);
+    node.hidden = false;
+  }
+  function editConnection(c) {
+    editing = c;
+    show($('connEditor'), true);
+    show($('connTest'), false);
+    $('connEditorTitle').textContent = c ? t('editConnection') + c.alias : t('newConnectionTitle');
+    $('connAlias').value = c ? c.alias : '';
+    $('connAlias').disabled = !!c;
+    $('connKind').value = c ? c.kind : 'direct';
+    $('connHub').value = c && c.hubDatabaseId ? c.hubDatabaseId : '';
+    $('connAgentKey').value = '';
+    $('connAgentKey').placeholder = c && c.hasApiKey ? t('stored') : '';
+    if (c && c.providerFactory) $('connProvider').value = c.providerFactory;
+    $('connAll').checked = false;
+    kindChanged();
+    $('connEditor').scrollIntoView({ behavior: 'smooth' });
+  }
+  function kindChanged() {
+    var direct = $('connKind').value === 'direct';
+    show($('connDirect'), direct);
+    show($('connProviderBox'), direct);
+    show($('connAgent'), !direct);
+    if (direct) loadProviderParams();
+  }
+  function loadProviderParams() {
+    var name = $('connProvider').value;
+    if (!name) { clear($('connParams')); return; }
+    api('GET', '/api/connections/providers/' + encodeURIComponent(name) + '/parameters').then(function (list) {
+      paramInfo = list || [];
+      renderProviderParams();
+    }).catch(fail);
+  }
+  function storedValue(name) {
+    if (!editing || editing.providerFactory !== $('connProvider').value) return null;
+    var found = editing.parameters.filter(function (p) { return p.name.toLowerCase() === name.toLowerCase(); })[0];
+    return found || null;
+  }
+  function renderProviderParams() {
+    var box = clear($('connParams'));
+    var all = $('connAll').checked;
+    var previous = paramInputs;
+    paramInputs = {};
+    paramInfo.forEach(function (p) {
+      var stored = storedValue(p.name);
+      var current = previous[p.name] ? previous[p.name].value : (stored && stored.value !== null ? stored.value : '');
+      var input;
+      var defaultText = p.defaultValue ? t('byDefault') + p.defaultValue + ')' : '';
+      if (p.type === 'enum') {
+        input = el('select', {}, el('option', { value: '', text: defaultText || '' }));
+        Object.keys(p.enumValues || {}).forEach(function (v) { input.appendChild(el('option', { value: v, text: v })); });
+        input.value = current;
+      } else if (p.type === 'bool') {
+        input = el('select', {}, el('option', { value: '', text: defaultText }), el('option', { value: 'true', text: t('yes') }), el('option', { value: 'false', text: t('no') }));
+        input.value = /^true$/i.test(current) ? 'true' : /^false$/i.test(current) ? 'false' : '';
+      } else {
+        input = el('input', { type: p.isPassword ? 'password' : p.type === 'int' ? 'number' : 'text', value: p.isPassword ? '' : current, autocomplete: 'off' });
+        input.placeholder = p.isPassword && stored && stored.hasSecret ? t('stored') : defaultText;
+      }
+      paramInputs[p.name] = input;
+      var label = el('label', { class: 'field', title: p.description || '' }, el('span', { text: p.name }), input, p.description && p.isMain ? el('span', { class: 'hint', text: p.description }) : null);
+      label.hidden = !p.isMain && !all && !(current && current.length);
+      box.appendChild(label);
+    });
+  }
+  function connectionBody() {
+    var direct = $('connKind').value === 'direct';
+    if (!direct) return { kind: 'agent', hubDatabaseId: Number($('connHub').value) || null, apiKey: $('connAgentKey').value };
+    var parameters = [];
+    Object.keys(paramInputs).forEach(function (name) { parameters.push({ name: name, value: paramInputs[name].value }); });
+    return { kind: 'direct', providerFactory: $('connProvider').value, parameters: parameters };
+  }
+  $('connNew').addEventListener('click', function () { paramInputs = {}; editConnection(null); });
+  $('connKind').addEventListener('change', kindChanged);
+  $('connProvider').addEventListener('change', function () { paramInputs = {}; loadProviderParams(); });
+  $('connAll').addEventListener('change', renderProviderParams);
+  $('connCancel').addEventListener('click', function () { show($('connEditor'), false); editing = null; });
+  $('connTestBtn').addEventListener('click', function () {
+    var alias = $('connAlias').value.trim() || 'TEST';
+    var node = $('connTest');
+    node.hidden = false;
+    node.className = 'mono muted';
+    node.textContent = t('testing');
+    api('POST', '/api/connections/' + encodeURIComponent(alias) + '/test', connectionBody()).then(function (r) { showTest(node, r); }).catch(fail);
+  });
+  $('connSave').addEventListener('click', function () {
+    var alias = $('connAlias').value.trim();
+    if (!alias) { $('connAlias').focus(); return; }
+    api('PUT', '/api/connections/' + encodeURIComponent(alias), connectionBody()).then(function () {
+      show($('connEditor'), false);
+      editing = null;
+      loadConnections();
+    }).catch(fail);
+  });
+
+  // ---- aliases ----
+  function loadAliases() {
+    api('GET', '/api/console/aliases').then(function (list) {
+      var body = clear($('aliasList'));
+      (list || []).forEach(function (a) {
+        body.appendChild(el('tr', {},
+          el('td', {}, el('strong', { text: a.alias })),
+          el('td', { class: 'mono', text: a.folder }),
+          el('td', { class: 'mono muted', text: a.path || '' }),
+          el('td', { class: 'actions' },
+            el('button', { class: 'small', text: t('edit'), onclick: function () { $('aliasName').value = a.alias; $('aliasFolder').value = a.folder; $('aliasFolder').focus(); } }), ' ',
+            el('button', { class: 'small danger', text: t('delete'), disabled: list.length <= 1, onclick: function () {
+              if (!confirm(t('confirmDeleteAlias') + a.alias + '?')) return;
+              api('DELETE', '/api/console/aliases/' + encodeURIComponent(a.alias)).then(afterAliasChange).catch(fail);
+            } }))));
+      });
+    }).catch(fail);
+  }
+  function afterAliasChange() { loaded.explorer = false; loaded.samples = false; loadAliases(); }
+  $('aliasForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var name = $('aliasName').value.trim();
+    if (!name) { $('aliasName').focus(); return; }
+    api('PUT', '/api/console/aliases/' + encodeURIComponent(name), { folder: $('aliasFolder').value.trim() }).then(function () {
+      $('aliasName').value = '';
+      $('aliasFolder').value = '';
+      afterAliasChange();
+    }).catch(fail);
+  });
+
+  // ---- API keys ----
+  function maskKey(key) { return key ? key.substring(0, 9) + '…' + key.substring(key.length - 4) : '—'; }
+  function when(text) { if (!text) return t('never'); var d = new Date(text); return isNaN(d.getTime()) ? text : d.toLocaleString(); }
+  function loadKeys() {
+    api('GET', '/api/console/keys').then(function (list) {
+      list = list || [];
+      show($('keysOpen'), list.length === 0);
+      var body = clear($('keyList'));
+      if (list.length === 0) body.appendChild(el('tr', {}, el('td', { colspan: '5', class: 'muted', text: t('noKeys') })));
+      list.forEach(function (k) {
+        var keyCell = el('span', { class: 'mono', text: maskKey(k.key) });
+        body.appendChild(el('tr', {},
+          el('td', {}, el('strong', { text: k.name }), k.disabled ? el('span', {}, ' ', el('span', { class: 'badge bad', text: t('disabled') })) : null),
+          el('td', {}, keyCell, ' ', k.key ? el('button', { class: 'small', text: t('show'), onclick: function () { keyCell.textContent = k.key; } }) : null),
+          el('td', { text: k.aliases.indexOf('*') >= 0 ? t('all') : k.aliases.join(', ') }),
+          el('td', { class: 'muted', text: when(k.lastUsedUtc) }),
+          el('td', { class: 'actions' },
+            el('button', { class: 'small', text: t('rotate'), onclick: function () {
+              if (!confirm(t('confirmRotate') + k.name)) return;
+              api('POST', '/api/console/keys/' + encodeURIComponent(k.id) + '/rotate').then(function (r) { announceKey(r.key); afterKeyChange(); }).catch(fail);
+            } }), ' ',
+            el('button', { class: 'small', text: k.disabled ? t('enable') : t('disable'), onclick: function () {
+              api('PUT', '/api/console/keys/' + encodeURIComponent(k.id), { disabled: !k.disabled }).then(afterKeyChange).catch(fail);
+            } }), ' ',
+            el('button', { class: 'small danger', text: t('delete'), onclick: function () {
+              if (!confirm(t('confirmDeleteKey') + k.name + '?')) return;
+              api('DELETE', '/api/console/keys/' + encodeURIComponent(k.id)).then(afterKeyChange).catch(fail);
+            } }))));
+      });
+    }).catch(fail);
+  }
+  function afterKeyChange() { loaded.explorer = false; loadKeys(); }
+  function announceKey(key) {
+    var box = clear($('keyCreated'));
+    box.appendChild(document.createTextNode(t('keyCreatedText')));
+    box.appendChild(el('code', { text: key }));
+    show(box, true);
+  }
+  $('keyForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var name = $('keyName').value.trim();
+    if (!name) { $('keyName').focus(); return; }
+    var aliases = $('keyAliases').value.split(',').map(function (a) { return a.trim(); }).filter(function (a) { return a.length > 0; });
+    api('POST', '/api/console/keys', { name: name, aliases: aliases }).then(function (r) {
+      $('keyName').value = '';
+      $('keyAliases').value = '';
+      announceKey(r.key);
+      afterKeyChange();
+    }).catch(fail);
+  });
+
+  // ---- samples ----
+  var pendingSample = null;
+  function loadSamples() {
+    show($('samplesInstall'), status.samples);
+    api('GET', '/api/reports/samples?lang=' + lang).then(function (view) {
+      var box = clear($('samplesList'));
+      if (!status.samples) { box.appendChild(el('p', { class: 'muted', text: t('noSamples') })); return; }
+      (view.items || []).forEach(function (s) {
+        var thumb = el('div', { class: 'thumb' });
+        if (s.thumbnail) {
+          // The thumbnails need the administrator's key: fetched, then shown from memory
+          var headers = {};
+          if (adminKey) headers[ADMIN] = adminKey;
+          fetch(s.thumbnail, { headers: headers }).then(function (r) { return r.ok ? r.blob() : null; }).then(function (b) {
+            if (b) thumb.appendChild(el('img', { src: URL.createObjectURL(b), alt: s.title }));
+          }).catch(function () { /* no picture */ });
+        }
+        box.appendChild(el('div', { class: 'sample' }, thumb,
+          el('div', { class: 'body' },
+            el('div', { class: 'title', text: s.title }),
+            el('div', { class: 'desc', text: s.description }),
+            el('div', { class: 'row' },
+              el('span', { class: 'badge' + (s.installed ? ' ok' : ''), text: s.installed ? t('installed') : t('notInstalled') }),
+              el('span', { class: 'spacer' }),
+              s.installed && view.alias ? el('button', { class: 'small', text: t('openInExplorer'), onclick: function () {
+                pendingSample = { alias: view.alias, path: s.path };
+                loaded.explorer = false;
+                openTab('explorer');
+              } }) : null))));
+      });
+    }).catch(fail);
+  }
+  $('samplesInstall').addEventListener('click', function () {
+    api('POST', '/api/console/samples').then(function (r) {
+      var text = t('samplesDone').replace('{reports}', r.reports).replace('{database}', r.database ? t('updated') : t('unchanged')).replace('{connection}', r.connection ? t('added') : t('present'));
+      $('samplesResult').textContent = text;
+      show($('samplesResult'), true);
+      loaded.explorer = false;
+      loaded.connections = false;
+      loadSamples();
+    }).catch(fail);
+  });
+
+  // ---- start ----
+  fetch('/api/health').then(function (r) { return r.json(); }).then(function (h) {
+    health = h;
+    $('serverInfo').textContent = 'v' + h.version + ' · ' + h.engine;
+  }).catch(function () { /* shown by the API calls */ });
+  fetch('/api/console/status').then(function (r) { return r.json(); }).then(function (s) {
+    status = s;
+    if (s.auth === 'none') { start(); return; }
+    if (!adminKey) { showLogin(); return; }
+    api('GET', '/api/console/check').then(start).catch(function () { remember(''); showLogin(); });
+  }).catch(fail);
+})();
+</script>
+</body>
+</html>

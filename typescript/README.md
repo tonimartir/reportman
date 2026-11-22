@@ -21,7 +21,7 @@ Status: **preview**, versions `0.1.0-alpha.N` with the npm tag `next`
 | `@reportman/node` | Node.js host: open a `.rep`, describe its parameters (step 1), run it to PDF (step 2); SQLite (`node:sqlite`), system fonts, CLI `@reportman/pdf` | Node |
 | `@reportman/export` | Metafile → CSV (as C#), SVG and HTML (as the Delphi drivers); the text of line, dot matrix and receipt printers (`PrintOutText`) | browser, Node |
 | `@reportman/canvas` | The preview: the pages of a metafile on a Canvas 2D context, drawn as the PDF draws them | browser |
-| `@reportman/server` | The reports API of Reportman.Server (list, parameters, run to PDF, `.rpmf`, text, CSV) for `node:http`, Express and Fastify | Node |
+| `@reportman/server` | The reports API of Reportman.Server (list, parameters, run to PDF, `.rpmf`, text, CSV) for `node:http`, Express and Fastify; with a data folder, its console (connections, aliases, API keys, samples, API explorer) and the `reportman-server` command | Node |
 | `@reportman/driver-postgres` | PostgreSQL (`pg`), as Npgsql | Node |
 | `@reportman/driver-firebird` | Firebird (`node-firebird`), as FirebirdClient | Node |
 | `@reportman/driver-mysql` | MySQL and MariaDB (`mysql2`), as MySqlConnector | Node |
@@ -59,7 +59,7 @@ npm install
 npm run build        # tsc -b
 npm test             # vitest, against the sources
 npm run check:pure-js
-npm run check:dist   # the builds in plain Node, and the CLI on the samples
+npm run check:dist   # the builds in plain Node, the CLIs on the samples
 npm run check:browser  # the expression parity cases in a headless Edge or Chrome
 npm run check:canvas   # the canvas preview against the PDF rasterized by poppler (WSL on Windows)
 ```

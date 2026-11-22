@@ -12,13 +12,26 @@
 //
 // A key (X-ReportmanServer-ApiKey header or apikey in the query) opens the reports of its aliases;
 // without keys configured the API is open, for a server only its own programs reach.
+//
+// With a data folder (dataPath, laid out as the one of Reportman.Server) the server also keeps its
+// aliases, API keys and connections there, and answers the administration routes of
+// Reportman.Server (console.ts) and its console page at / (assets/console.html):
+//
+//   /api/connections[/{alias}[/test]], /api/connections/providers[/{name}/parameters]
+//   /api/console/aliases[/{alias}], /api/console/keys[/{id}[/rotate]], POST /api/console/samples
+//   /api/reports/samples[/thumbnails/{name}], GET /api/console/status
 
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { openReport, isSynchronousDataRequired, NoDataToPrintException, ParameterException, ReportException } from '@reportman/node';
 import type { ConnectionFactory, DatasetSource, FontOptions, NodeReport, OpenReportOptions, PdfClock } from '@reportman/node';
 import { TextDevice, decodeCp437, encodeUtf8, metafileToCsv, runReportToText } from '@reportman/export';
 import { writeRpmf } from '@reportman/metafile';
 import { FolderReportStore, ServerError } from './store.js';
+import { ConsoleApi, type ConsoleAnswer } from './console.js';
+import { ServerData } from './data.js';
+import { connectionFactories, type ServerDrivers } from './connections.js';
 
 /** A request, whatever the framework. */
 export interface ServerRequest {
@@ -47,13 +60,38 @@ export interface ApiKey {
 
 /** Options of createReportServer. */
 export interface ReportServerOptions {
-  /** The folder of .rep files of each alias. */
-  aliases: Readonly<Record<string, string>>;
-  /** The connections of the reports, by connection alias; or a function of the report alias. */
+  /**
+   * The folder of .rep files of each alias, fixed by the program. With a data folder they are
+   * served next to the aliases of its server.json (and the console does not change them).
+   */
+  aliases?: Readonly<Record<string, string>>;
+  /**
+   * The data folder, laid out as the one of Reportman.Server: informes/ (the report folders),
+   * server.json (the aliases), apikeys.json (the API keys), dbxconnections.ini (the connections)
+   * and ejemplos/ (the database of the sample reports). It turns on the console.
+   */
+  dataPath?: string;
+  /**
+   * The drivers of the connections of dbxconnections.ini (SQLite is built in): postgresql,
+   * firebird, mysql and sqlserver take a connection string, agent the Hub database and key.
+   */
+  drivers?: ServerDrivers;
+  /** The administrator's key of the console (X-ReportmanServer-AdminKey). */
+  adminKey?: string;
+  /** Open the console without a key: only for a server that just its own people reach. */
+  trusted?: boolean;
+  /** The Hub API that tests Agent connections (https://aiapi.reportman.es by default). */
+  agentApiUrl?: string;
+  /** Serve the console page at / (true with a data folder). */
+  consolePage?: boolean;
+  /**
+   * The connections of the reports, by connection alias; or a function of the report alias. They
+   * win over the ones of dbxconnections.ini with the same alias.
+   */
   connections?: Readonly<Record<string, ConnectionFactory>> | ((alias: string) => Readonly<Record<string, ConnectionFactory>>);
   /** Rows for datasets, as in openReport. */
   datasets?: Readonly<Record<string, DatasetSource>>;
-  /** The keys that open the API; without keys it is open. */
+  /** Keys that open the API, besides the ones of apikeys.json; without any key it is open. */
   apiKeys?: readonly ApiKey[];
   /** The culture of the runs (en-US by default). */
   culture?: string;
@@ -150,21 +188,48 @@ function bodyParameters(request: ServerRequest): { parameters: Record<string, un
 /** The reports API of Reportman.Server over folders of .rep files. */
 export class ReportServer {
   readonly store: FolderReportStore;
+  /** The console, with a data folder. */
+  readonly console: ConsoleApi | undefined;
   private readonly options: ReportServerOptions;
 
   constructor(options: ReportServerOptions) {
     this.options = options;
-    this.store = new FolderReportStore(options.aliases);
+    if (options.aliases === undefined && options.dataPath === undefined) throw new Error('createReportServer needs aliases, a dataPath or both.');
+    if (options.dataPath !== undefined) {
+      this.console = new ConsoleApi({
+        data: new ServerData(options.dataPath),
+        drivers: options.drivers ?? {},
+        adminKey: options.adminKey,
+        trusted: options.trusted,
+        agent: { apiUrl: options.agentApiUrl },
+      });
+    }
+    const data = this.console?.data;
+    // The aliases of server.json are read on each request: the console changes them
+    this.store = new FolderReportStore(() => ({ ...(data?.aliasFolders() ?? {}), ...(options.aliases ?? {}) }));
   }
 
-  /** The key of a request, or null without keys configured (the API is open). */
+  /** Whether a path is one this server answers: an adapter passes the others on. */
+  owns(path: string): boolean {
+    const p = path.toLowerCase().replace(/\/+$/, '') || '/';
+    if (p === '/api/health' || p === '/api/reports' || p.startsWith('/api/reports/')) return true;
+    if (this.console === undefined) return false;
+    if (p === '/api/connections' || p.startsWith('/api/connections/') || p.startsWith('/api/console/')) return true;
+    return this.options.consolePage !== false && (p === '/' || p === '/console');
+  }
+
+  /** The key of a request, or null without any key (the API is open). */
   private caller(request: ServerRequest): ApiKey | null {
-    const keys = this.options.apiKeys;
-    if (keys === undefined || keys.length === 0) return null;
+    const fixed = this.options.apiKeys ?? [];
+    const stored = this.console?.data.keys() ?? [];
+    if (fixed.length === 0 && stored.length === 0) return null;
     const given = request.headers[API_KEY_HEADER] ?? request.query.get('apikey') ?? '';
-    const key = keys.find((k) => k.key === given);
-    if (given.length === 0 || key === undefined) throw new ServerError(401, 'A valid API key is required.');
-    return key;
+    if (given.length === 0) throw new ServerError(401, 'A valid API key is required.');
+    const key = fixed.find((k) => k.key === given);
+    if (key !== undefined) return key;
+    const record = stored.length === 0 ? null : this.console!.data.authenticate(given);
+    if (record === null) throw new ServerError(401, 'A valid API key is required.');
+    return { key: given, name: record.name, aliases: record.aliases.includes('*') ? '*' : record.aliases };
   }
 
   private canRun(key: ApiKey | null, alias: string): boolean {
@@ -179,7 +244,9 @@ export class ReportServer {
 
   private async open(alias: string, reportPath: string): Promise<{ report: NodeReport; path: string }> {
     const stored = this.store.open(alias, reportPath);
-    const connections = typeof this.options.connections === 'function' ? this.options.connections(alias) : this.options.connections;
+    const given = typeof this.options.connections === 'function' ? this.options.connections(alias) : this.options.connections;
+    const fromFile = this.console === undefined ? {} : connectionFactories(this.console.connections, this.options.drivers ?? {});
+    const connections = { ...fromFile, ...(given ?? {}) };
     const fonts = this.options.fonts === undefined ? {} : this.options.fonts;
     const options: OpenReportOptions = {
       connections,
@@ -204,9 +271,25 @@ export class ReportServer {
   private async route(request: ServerRequest): Promise<ServerResponse> {
     const method = request.method.toUpperCase();
     const parts = request.path.replace(/\/+$/, '').split('/').filter((p) => p.length > 0).map((p) => decodeURIComponent(p));
-    if (parts[0]?.toLowerCase() !== 'api') return json(404, { error: 'Not found.' });
+    if (parts[0]?.toLowerCase() !== 'api') {
+      const page = parts.length === 0 || (parts.length === 1 && parts[0]!.toLowerCase() === 'console');
+      if (page && method === 'GET' && this.console !== undefined && this.options.consolePage !== false) return consolePage();
+      return json(404, { error: 'Not found.' });
+    }
     if (parts.length === 2 && parts[1]!.toLowerCase() === 'health' && method === 'GET') {
-      return json(200, { status: 'ok', version: this.options.version ?? '0.1.0-alpha.1', engine: 'typescript', aliases: this.store.listAliases() });
+      return json(200, {
+        status: 'ok',
+        version: this.options.version ?? '0.1.0-alpha.1',
+        engine: 'typescript',
+        aliases: this.store.listAliases(),
+        console: this.console !== undefined,
+      });
+    }
+    if (this.console !== undefined) {
+      const answer = await this.console.handle(method, parts.slice(1), request.query, request.headers, request.body);
+      if (answer !== null) return consoleResponse(answer);
+    } else if (['connections', 'console'].includes(parts[1]?.toLowerCase() ?? '')) {
+      return json(404, { error: 'The console needs a data folder (dataPath).' });
     }
     if (parts[1]?.toLowerCase() !== 'reports') return json(404, { error: 'Not found.' });
     const key = this.caller(request);
@@ -294,6 +377,36 @@ async function plainText(report: NodeReport, assign: Readonly<Record<string, unk
   device.emptyReportThrowException = true;
   const bytes = await report.executeWithDevice(device, (run) => runReportToText(run), null, { assign });
   return encodeUtf8(decodeCp437(bytes));
+}
+
+/** The response of a console route. */
+function consoleResponse(answer: ConsoleAnswer): ServerResponse {
+  if (answer.bytes !== undefined) {
+    const headers: Record<string, string> = { 'content-type': answer.contentType ?? 'application/octet-stream' };
+    if (answer.cacheControl !== undefined) headers['cache-control'] = answer.cacheControl;
+    return { status: answer.status, headers, body: answer.bytes };
+  }
+  if (answer.json === undefined) return { status: answer.status, headers: {}, body: new Uint8Array(0) };
+  return json(answer.status, answer.json);
+}
+
+let pageBytes: Uint8Array | undefined;
+
+/** The console page (assets/console.html of the package). */
+function consolePage(): ServerResponse {
+  pageBytes ??= new Uint8Array(readFileSync(fileURLToPath(new URL('../assets/console.html', import.meta.url))));
+  return {
+    status: 200,
+    headers: {
+      'content-type': 'text/html; charset=utf-8',
+      'cache-control': 'no-cache',
+      // The page talks only to this server, and no other site frames it
+      'content-security-policy':
+        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; frame-src 'self' blob:; object-src 'self' blob:; frame-ancestors 'none'",
+      'x-content-type-options': 'nosniff',
+    },
+    body: pageBytes,
+  };
 }
 
 // ParamType.ToString() of C#
