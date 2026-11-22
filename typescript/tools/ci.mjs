@@ -5,15 +5,22 @@
 //   - on Windows, with the Node of this computer, when it runs on Windows;
 //   - on Linux, in Docker (inside WSL when it runs on Windows), once per Node version: node:22 and
 //     node:24 (Debian bookworm slim). The containers use the host network, so the driver tests reach
-//     the test databases when they are up (they skip themselves otherwise).
+//     the test databases.
+// The test databases come first: the containers of the driver tests (PostgreSQL, Firebird, MySQL,
+// MariaDB and SQL Server, the ones the README of each driver describes) are started, or created
+// when they do not exist, and loaded with the samples (test/database.ts of each driver); the runs
+// then require them (REPORTMAN_REQUIRE_DATABASES=1: a server that does not answer fails the tests
+// instead of skipping them). Only these containers are touched.
 //
 //   npm run ci                          (from typescript/)
-//   node tools/ci.mjs [--windows] [--linux] [--node 22,24] [--distro Ubuntu] [--keep]
+//   node tools/ci.mjs [--windows] [--linux] [--node 22,24] [--distro Ubuntu] [--keep] [--no-databases]
 //
 // --windows / --linux run only that system; --node the Linux Node versions; --distro the WSL
-// distribution (the default one when omitted); --keep leaves the copies. The log of each run is in
-// the folder it prints. Exit code 0 when every step of every run passed.
+// distribution (the default one when omitted); --keep leaves the copies; --no-databases neither starts
+// nor requires the test databases (their tests skip themselves when no server answers). The log of
+// each run is in the folder it prints. Exit code 0 when every step of every run passed.
 import { spawn, spawnSync } from 'node:child_process';
+import { connect } from 'node:net';
 import { createWriteStream, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
@@ -35,6 +42,34 @@ const STEPS = [
   ['check:dist', ['run', 'check:dist']],
   // The expression parity in a Chromium-based browser of the computer (skipped where there is none)
   ['check:browser', ['run', 'check:browser']],
+];
+
+/**
+ * The containers of the driver tests, as the README of each driver creates them, the port the tests
+ * reach on localhost and the loader of its samples (test/database.ts, with its environment).
+ */
+const DATABASES = [
+  {
+    name: 'reportman-pg-test', port: 55432, loader: null,
+    run: ['-p', '55432:5432', '-e', 'POSTGRES_USER=reportman', '-e', 'POSTGRES_PASSWORD=rmtest_only', '-e', 'POSTGRES_DB=reportman_test', 'postgres:17-alpine'],
+  },
+  {
+    name: 'reportman-fb-test', port: 53050, loader: { driver: 'firebird', env: {} },
+    run: ['-p', '53050:3050', '-e', 'FIREBIRD_ROOT_PASSWORD=rmtest_root', '-e', 'FIREBIRD_USER=RMTEST', '-e', 'FIREBIRD_PASSWORD=rmtest_pw',
+      '-e', 'FIREBIRD_DATABASE=samples.fdb', '-e', 'FIREBIRD_DATABASE_DEFAULT_CHARSET=UTF8', 'firebirdsql/firebird:5'],
+  },
+  {
+    name: 'reportman-mysql-test', port: 53306, loader: { driver: 'mysql', env: {} },
+    run: ['-p', '53306:3306', '-e', 'MYSQL_ROOT_PASSWORD=rmtest_root', '-e', 'MYSQL_DATABASE=samples', '-e', 'MYSQL_USER=rmtest', '-e', 'MYSQL_PASSWORD=rmtest_pw', 'mysql:8.4'],
+  },
+  {
+    name: 'reportman-mariadb-test', port: 53307, loader: { driver: 'mysql', env: { RM_MYSQL_PORT: '53307' } },
+    run: ['-p', '53307:3306', '-e', 'MARIADB_ROOT_PASSWORD=rmtest_root', '-e', 'MARIADB_DATABASE=samples', '-e', 'MARIADB_USER=rmtest', '-e', 'MARIADB_PASSWORD=rmtest_pw', 'mariadb:11'],
+  },
+  {
+    name: 'reportman-mssql-test', port: 51433, loader: { driver: 'mssql', env: {} },
+    run: ['-p', '51433:1433', '-e', 'ACCEPT_EULA=Y', '-e', 'MSSQL_SA_PASSWORD=RmTest_only1!', 'mcr.microsoft.com/mssql/server:2022-latest'],
+  },
 ];
 
 const args = process.argv.slice(2);
@@ -64,6 +99,7 @@ const wantLinux = !onlyWindows;
 const nodeVersions = (option('--node') ?? '22,24').split(',').map((v) => v.trim()).filter(Boolean);
 const distro = option('--distro');
 const keep = args.includes('--keep');
+const databases = !args.includes('--no-databases');
 
 const work = mkdtempSync(join(tmpdir(), 'reportman-ci-'));
 const logs = join(work, 'logs');
@@ -98,6 +134,16 @@ console.log(`copy: ${files.length} files of typescript/ and samples/`);
 
 const results = [];
 
+// docker, through WSL on Windows
+const wslArgs = distro ? ['-d', distro] : [];
+const dockerCommand = onWindows ? ['wsl.exe', ...wslArgs, '--', 'docker'] : ['docker'];
+if (databases) {
+  console.log('\n== test databases');
+  const code = await ensureDatabases();
+  if (code !== 0) results.push({ run: 'test databases', code, log: '' });
+}
+const requireDatabases = databases && results.length === 0 ? '1' : '';
+
 if (wantWindows) {
   const copy = join(work, 'windows');
   mkdirSync(copy);
@@ -112,6 +158,7 @@ if (wantWindows) {
     const code = await runLogged(process.execPath, [join(copy, 'typescript', 'tools', 'ci.mjs'), '--here'], {
       cwd: join(copy, 'typescript'),
       log,
+      env: { ...process.env, REPORTMAN_REQUIRE_DATABASES: requireDatabases },
     });
     results.push({ run: name, code, log });
   }
@@ -147,6 +194,7 @@ if (wantLinux) {
       'run', '--rm', '--network', 'host',
       // the time zone of this computer, the one the fixtures of the drivers were written in
       '-e', `TZ=${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+      '-e', `REPORTMAN_REQUIRE_DATABASES=${requireDatabases}`,
       '-v', `${mountTar}:/src.tar:ro`,
       '-v', 'reportman-ci-npm-cache:/root/.npm',
       `node:${version}-bookworm-slim`,
@@ -191,11 +239,87 @@ async function runSteps(dir) {
   return 0;
 }
 
+/** Whether something listens on a port of localhost. */
+function listening(port) {
+  return new Promise((resolve) => {
+    const socket = connect({ host: '127.0.0.1', port });
+    socket.setTimeout(2000);
+    socket.on('connect', () => {
+      socket.destroy();
+      resolve(true);
+    });
+    socket.on('timeout', () => {
+      socket.destroy();
+      resolve(false);
+    });
+    socket.on('error', () => resolve(false));
+  });
+}
+
+/** Starts (or creates) the test databases, waits for them and loads their samples; 0 when all are ready. */
+async function ensureDatabases() {
+  const docker = (dockerArgs) => spawnSync(dockerCommand[0], [...dockerCommand.slice(1), ...dockerArgs], { encoding: 'utf8' });
+  let failed = 0;
+  for (const db of DATABASES) {
+    const state = docker(['inspect', '-f', '{{.State.Running}}', db.name]);
+    let action = 'running';
+    if (state.status !== 0) {
+      action = 'created';
+      const r = docker(['run', '-d', '--name', db.name, ...db.run]);
+      if (r.status !== 0) {
+        console.log(`  FAIL ${db.name}: docker run: ${(r.stderr || r.stdout).trim().split('\n')[0]}`);
+        failed++;
+        continue;
+      }
+    } else if (state.stdout.trim() !== 'true') {
+      action = 'started';
+      const r = docker(['start', db.name]);
+      if (r.status !== 0) {
+        console.log(`  FAIL ${db.name}: docker start: ${(r.stderr || r.stdout).trim().split('\n')[0]}`);
+        failed++;
+        continue;
+      }
+    }
+    // A new SQL Server takes the longest to answer
+    let ready = false;
+    for (let i = 0; i < 90 && !ready; i++) {
+      ready = await listening(db.port);
+      if (!ready) await new Promise((r) => setTimeout(r, 2000));
+    }
+    if (!ready) {
+      console.log(`  FAIL ${db.name}: nothing listens on port ${db.port}`);
+      failed++;
+      continue;
+    }
+    if (db.loader !== null) {
+      // The loader reloads only a database of another version; a server that has just started may
+      // refuse logins for a while, so it is tried again
+      let loaded = null;
+      for (let i = 0; i < 10; i++) {
+        loaded = spawnSync(process.execPath, [join(typescriptDir, 'packages', 'reportman-driver-' + db.loader.driver, 'test', 'database.ts')], {
+          cwd: join(typescriptDir, 'packages', 'reportman-driver-' + db.loader.driver),
+          encoding: 'utf8',
+          env: { ...process.env, ...db.loader.env },
+        });
+        if (loaded.status === 0) break;
+        await new Promise((r) => setTimeout(r, 5000));
+      }
+      if (loaded.status !== 0) {
+        console.log(`  FAIL ${db.name}: loading the samples: ${(loaded.stderr || loaded.stdout).trim().split('\n').slice(-1)[0]}`);
+        failed++;
+        continue;
+      }
+    }
+    console.log(`  ok   ${db.name} (${action}, port ${db.port})`);
+  }
+  return failed === 0 ? 0 : 1;
+}
+
 /** Runs a command, its output to the log; on the console only the lines of the steps. */
-function runLogged(command, commandArgs, { cwd, log }) {
+function runLogged(command, commandArgs, { cwd, log, env }) {
   return new Promise((resolve) => {
     const file = createWriteStream(log);
-    const child = spawn(command, commandArgs, { cwd });
+    const child = spawn(command, commandArgs, { cwd, env: env ?? process.env });
     let pending = '';
     let failing = false;
     const onData = (d) => {

@@ -69,12 +69,16 @@ function end(c: mysql2.Connection): Promise<void> {
 
 /** True when the test server answers (within a few seconds). */
 export async function isReachable(): Promise<boolean> {
+  let ok = false;
   try {
     await end(await open());
-    return true;
+    ok = true;
   } catch {
-    return false;
+    ok = false;
   }
+  if (!ok && process.env.REPORTMAN_REQUIRE_DATABASES === '1')
+    throw new Error('The MySQL test server does not answer, and the CI requires the test databases (REPORTMAN_REQUIRE_DATABASES)');
+  return ok;
 }
 
 /** The server: MySQL or MariaDB, and its version. */

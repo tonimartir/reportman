@@ -61,7 +61,10 @@ export async function isReachable(): Promise<boolean> {
     () => false,
   );
   const timeout = new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000).unref());
-  return Promise.race([attempt, timeout]);
+  const ok = await Promise.race([attempt, timeout]);
+  if (!ok && process.env.REPORTMAN_REQUIRE_DATABASES === '1')
+    throw new Error('The Firebird test server does not answer, and the CI requires the test databases (REPORTMAN_REQUIRE_DATABASES)');
+  return ok;
 }
 
 // The tables of samples.db with Firebird types: prices and rates as NUMERIC, dates as DATE, the

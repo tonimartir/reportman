@@ -43,15 +43,19 @@ export function npgsqlConnectionString(): string {
 /** Whether the test server answers. */
 export async function serverAvailable(): Promise<boolean> {
   const client = new pg.Client({ ...testConfig(), connectionTimeoutMillis: 3000 });
+  let ok = false;
   try {
     await client.connect();
     await client.query('SELECT 1');
-    return true;
+    ok = true;
   } catch {
-    return false;
+    ok = false;
   } finally {
     await client.end().catch(() => undefined);
   }
+  if (!ok && process.env.REPORTMAN_REQUIRE_DATABASES === '1')
+    throw new Error('The PostgreSQL test server does not answer, and the CI requires the test databases (REPORTMAN_REQUIRE_DATABASES)');
+  return ok;
 }
 
 // Bump when the tables below change: the loader reloads a database with another version.
