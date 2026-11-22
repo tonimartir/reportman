@@ -2,6 +2,9 @@
 // to PDF (step 2), with data from the connections and datasets the host gives.
 export { openReport, NodeReport } from './report.js';
 export type { OpenReportOptions, PdfOptions, RunOptions } from './report.js';
+// The clock option of openReport
+export { systemClock } from '@reportman/pdf';
+export type { PdfClock } from '@reportman/pdf';
 export { createDataHost } from './host.js';
 export type { ConnectionFactory, DatasetSource, DataSources } from './host.js';
 export { sqlite } from './sqlite.js';

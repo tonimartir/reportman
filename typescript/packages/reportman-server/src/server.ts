@@ -15,8 +15,8 @@
 
 import { gzipSync } from 'node:zlib';
 import { openReport, isSynchronousDataRequired, NoDataToPrintException, ParameterException, ReportException } from '@reportman/node';
-import type { ConnectionFactory, DatasetSource, FontOptions, NodeReport, OpenReportOptions } from '@reportman/node';
-import { metafileToCsv } from '@reportman/export';
+import type { ConnectionFactory, DatasetSource, FontOptions, NodeReport, OpenReportOptions, PdfClock } from '@reportman/node';
+import { TextDevice, decodeCp437, encodeUtf8, metafileToCsv, runReportToText } from '@reportman/export';
 import { writeRpmf } from '@reportman/metafile';
 import { FolderReportStore, ServerError } from './store.js';
 
@@ -64,8 +64,14 @@ export interface ReportServerOptions {
   fonts?: FontOptions | false;
   /** FILEEXISTS, image files, LOADFILE and GETINIVALUE may read files (false by default). */
   allowFileAccess?: boolean;
-  /** The text of the "text" format; without it that format answers 501. */
-  text?: (report: NodeReport, assign: Readonly<Record<string, unknown>>) => Promise<Uint8Array>;
+  /**
+   * The "text" format: the PLAIN text of Reportman.Server by default (PrintOutText with the PLAIN
+   * driver, its bytes read in code page 437 and answered in UTF-8); a function gives another one
+   * (another driver, a printer configuration), false turns the format off (501).
+   */
+  text?: ((report: NodeReport, assign: Readonly<Record<string, unknown>>) => Promise<Uint8Array>) | false;
+  /** The clock of TODAY, NOW and the dates of the PDF (the system clock by default). */
+  clock?: PdfClock;
   /** The version the health check gives (the one of the server's package by default). */
   version?: string;
 }
@@ -181,6 +187,7 @@ export class ReportServer {
       culture: this.options.culture,
       fonts,
       allowFileAccess: this.options.allowFileAccess,
+      clock: this.options.clock,
     };
     return { report: await openReport(stored.content, options), path: stored.path };
   }
@@ -263,8 +270,9 @@ export class ReportServer {
       bytes.set([0xef, 0xbb, 0xbf]);
       bytes.set(csv, 3);
     } else {
-      if (this.options.text === undefined) throw new ServerError(501, 'The text format is not supported by this server.');
-      bytes = await this.options.text(report, assign);
+      const text = this.options.text ?? plainText;
+      if (text === false) throw new ServerError(501, 'The text format is not supported by this server.');
+      bytes = await text(report, assign);
     }
     const fileName = path.replace(/^.*\//, '').replace(/\.rep$/i, '') + '.' + meta.extension;
     const disposition = download === '1' || download === 'true' ? 'attachment' : 'inline';
@@ -274,6 +282,18 @@ export class ReportServer {
       body: bytes,
     };
   }
+}
+
+/**
+ * The text format of Reportman.Server (ReportExecutionService.ExecuteToText): the report laid out
+ * and printed by PrintOutText with the PLAIN driver, a report without data an error; the bytes read
+ * in code page 437 (PrintResult) and answered in UTF-8.
+ */
+async function plainText(report: NodeReport, assign: Readonly<Record<string, unknown>>): Promise<Uint8Array> {
+  const device = new TextDevice({ driver: 'PLAIN' });
+  device.emptyReportThrowException = true;
+  const bytes = await report.executeWithDevice(device, (run) => runReportToText(run), null, { assign });
+  return encodeUtf8(decodeCp437(bytes));
 }
 
 // ParamType.ToString() of C#

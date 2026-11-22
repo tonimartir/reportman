@@ -1,0 +1,280 @@
+
+
+    Mare Nostrum Fine Foods                                             INVOICE
+
+    Muelle de Levante 12 ú 08039 Barcelona ú Spa
+    VAT ES-B00000000 ú +34 930 000 000 ú billing
+
+
+      BILL TO                                  Invoice number        2024/00001
+      Silver Spoon Kitchen                     Date                  02/01/2024
+      Attn. Emma Keller                        Customer code              C0014
+                                               Sales represe        Lukas Weber
+      174 Oak Avenue
+      03683 Toulouse
+      FRANCE
+
+
+
+     # SKU    Description                     Qty.Unit pr   Disc.       Amount
+
+     1 MN-20  Parmigiano Reggiano 24 Months      6     26.50            159.00
+              1 kg wedge
+     2 MN-70  Jijona Soft Nougat                24      7.50            180.00
+              300 g bar
+     3 MN-80  Cava Brut Nature                  12     11.40   5%       129.96
+              750 ml bottle
+     4 MN-40  Piquillo Peppers                  24      3.60   5%        82.08
+              290 g jar
+
+    Amounts in euros. Payment within 30 d               Subtotal        551.04
+    IBAN ES00 0000 0000 0000 0000 0000                   VAT 20%        110.21
+
+                                                 TOTAL (EUR)            661.25
+    Thank you for your business!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 1
+
+
+
+
+
+
+    Mare Nostrum Fine Foods                                             INVOICE
+
+    Muelle de Levante 12 ú 08039 Barcelona ú Spa
+    VAT ES-B00000000 ú +34 930 000 000 ú billing
+
+
+      BILL TO                                  Invoice number        2024/00002
+      Seaside Grocers                          Date                  02/01/2024
+      Attn. Hans Taylor                        Customer code              C0013
+                                               Sales represe      Claire Moreau
+      9 Church Lane
+      85833 Paris
+      FRANCE
+
+
+
+     # SKU    Description                     Qty.Unit pr   Disc.       Amount
+
+     1 MN-80  Chianti Classico                  12     15.80            189.60
+              750 ml bottle
+     2 MN-20  Goat Cheese Log                   36      4.90  10%       158.76
+              200 g log
+     3 MN-80  Sparkling Mineral Water           48      1.30             62.40
+              1 l bottle
+     4 MN-20  Parmigiano Reggiano 24 Months      5     26.50            132.50
+              1 kg wedge
+
+     5 MN-80  Albarino Rias Baixas              36     14.20            511.20
+              750 ml bottle
+                                                        Subtotal      1,054.46
+    Amounts in euros. Payment within 30 d
+    IBAN ES00 0000 0000 0000 0000 0000                   VAT 20%        210.89
+                                                 TOTAL (EUR)          1,265.35
+    Thank you for your business!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 2
+
+
+
+
+
+
+    Mare Nostrum Fine Foods                                             INVOICE
+
+    Muelle de Levante 12 ú 08039 Barcelona ú Spa
+    VAT ES-B00000000 ú +34 930 000 000 ú billing
+
+
+      BILL TO                                  Invoice number        2024/00003
+      Casa Verde Gourmet Shop                  Date                  03/01/2024
+      Attn. Pieter Silva                       Customer code              C0009
+                                               Sales represe        Lukas Weber
+      151 Park Avenue
+      67545 Toulouse
+      FRANCE
+
+
+
+     # SKU    Description                     Qty.Unit pr   Disc.       Amount
+
+     1 MN-40  Quince Paste                      36      3.90            140.40
+              400 g tray
+     2 MN-20  Parmigiano Reggiano 24 Months     24     26.50            636.00
+              1 kg wedge
+     3 MN-50  Carnaroli Risotto Rice             8      4.30             34.40
+              1 kg bag
+     4 MN-20  Pecorino Romano                   24     12.80   5%       291.84
+              500 g piece
+
+     5 MN-20  Tetilla Cheese                    10     15.60            156.00
+              1 kg piece
+     6 MN-10  Sherry Vinegar Reserva            12      6.40             76.80
+              250 ml bottle
+
+    Amounts in euros. Payment within 30 d               Subtotal      1,335.44
+    IBAN ES00 0000 0000 0000 0000 0000                   VAT 20%        267.09
+
+    Thank you for your business!                 TOTAL (EUR)          1,602.53
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 3
+
+
+
+
+
+
+    Mare Nostrum Fine Foods                                             INVOICE
+
+    Muelle de Levante 12 ú 08039 Barcelona ú Spa
+    VAT ES-B00000000 ú +34 930 000 000 ú billing
+
+
+      BILL TO                                  Invoice number        2024/00004
+      Aurora Bistro                            Date                  04/01/2024
+      Attn. Pieter Janssens                    Customer code              C0015
+                                               Sales represe        Lukas Weber
+      100 Park Avenue
+      56752 Cologne
+      GERMANY
+
+
+
+     # SKU    Description                     Qty.Unit pr   Disc.       Amount
+
+     1 MN-50  Carnaroli Risotto Rice            24      4.30  10%        92.88
+              1 kg bag
+                                                        Subtotal         92.88
+    Amounts in euros. Payment within 30 d
+    IBAN ES00 0000 0000 0000 0000 0000                   VAT 19%         17.65
+                                                 TOTAL (EUR)            110.53
+    Thank you for your business!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

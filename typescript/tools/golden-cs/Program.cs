@@ -23,7 +23,8 @@ using Reportman.Reporting.Design.Json;
 //
 //   golden-cs run <report.rep> <out.metafile.json> [--pdf out.pdf] [--sqlite db]
 //                 [--param NAME=value]... [--culture xx-XX] [--driver standard|freetype] [--fonts dir]
-//                 [--rpmf out.rpmf] [--rpmfz out.rpmf]
+//                 [--rpmf out.rpmf] [--rpmfz out.rpmf] [--csv out.csv]
+//                 [--text out.txt [--text-driver NAME] [--text-oem true|false] [--text-fullplain true]]
 //       Runs the report measured and printed with PrintOutPDFStandard (standard 14 fonts, no
 //       FreeType) and writes the metafile as JSON. Connections without a provider factory are
 //       opened as SQLite (SQLiteCore) on the --sqlite file, read only.
@@ -31,9 +32,21 @@ using Reportman.Reporting.Design.Json;
 //       compressed), --rpmfz the same compressed (zlib).
 //       --csv out.csv writes PrintOutCSV.ExportToCSV of all the pages (',' and '"'; the line
 //       ending is Environment.NewLine).
+//       --text out.txt runs it with PrintOutText as the device instead (measured and written on
+//       its character grid, no PDF) and saves the bytes it writes; --text-driver NAME forces the
+//       printer driver (PLAIN by default: PLAINFULL, EPSON, IBMPROPRINTER, HP-PCL...) and
+//       --text-oem true|false the OEM (cp850) conversion, else the printer configuration says;
+//       --text-fullplain true sets FullPlain.
+//       It prints the clock of the run (clock=yyyy-MM-ddTHH:mm:ss) for the dates of the report.
 //       --connection ALIAS=Provider|ConnectionString opens that report connection with an
 //       ADO.NET provider instead (Provider: SQLiteCore, PostgreSQL, FirebirdSql.Data.FirebirdClient,
 //       MySQLConnector or SQLServer, the names Reportman.Server registers); it wins over --sqlite.
+//
+//   golden-cs encoding <codepage> [out.json]
+//       How .NET writes text in a code page (Encoding.GetEncoding with CodePagesEncodingProvider),
+//       the bytes of PrintOutText: every UTF-16 code unit that does not become '?', and the
+//       strings of a few cases written directly (the code page of a driver) and through
+//       Encoding.Convert from UTF-8 (the OEMConvert path).
 //
 //   golden-cs sql <Provider|ConnectionString> <sql> [out.json]
 //       Runs a query with the provider and writes its schema (ColumnName, DataType name,
@@ -57,6 +70,7 @@ class Program
                 case "culture-json": return CultureJson(args);
                 case "sql": return Sql(args);
                 case "text-extent": return TextExtent(args);
+                case "encoding": return EncodingTable(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -191,11 +205,32 @@ class Program
         }
         report.AsyncExecution = false;
 
-        string pdfPath = Option(args, "--pdf");
-        PrintOutPDFBase printer = CreatePrinter(args);
-        printer.FileName = pdfPath ?? "";
-        printer.Compressed = false;
-        printer.Print(report.MetaFile);
+        string textPath = Option(args, "--text");
+        if (textPath != null)
+        {
+            // PrintOutText is then the device of the run: the report is measured on its character
+            // grid, so the layout (the metafile JSON) is not the one of the PDF. The driver is
+            // forced, as the OEM conversion when asked, so no reportman.ini of the computer decides.
+            var text = new PrintOutText();
+            text.ForceDriverName = Option(args, "--text-driver") ?? "PLAIN";
+            string oem = Option(args, "--text-oem");
+            if (oem != null)
+                text.OverrideOemConvert = oem == "true" ? PrintOutText.OemConvertOverride.True : PrintOutText.OemConvertOverride.False;
+            text.FullPlain = Option(args, "--text-fullplain") == "true";
+            // There is no PDF to take the creation date from: the clock of the run, for the dates
+            // the report prints
+            Console.WriteLine("clock=" + DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture));
+            text.Print(report.MetaFile);
+            File.WriteAllBytes(textPath, text.PrintResultStream.ToArray());
+        }
+        else
+        {
+            string pdfPath = Option(args, "--pdf");
+            PrintOutPDFBase printer = CreatePrinter(args);
+            printer.FileName = pdfPath ?? "";
+            printer.Compressed = false;
+            printer.Print(report.MetaFile);
+        }
 
         Output(MetaFileJson(report.MetaFile).ToString(Formatting.Indented), args[2]);
         // After the JSON, so the options do not change it: saving gives every page the version
@@ -398,6 +433,67 @@ class Program
         }
         Output(results.ToString(Formatting.Indented), args.Length > 2 ? args[2] : null);
         return 0;
+    }
+
+    static int EncodingTable(string[] args)
+    {
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        int codepage = int.Parse(args[1], CultureInfo.InvariantCulture);
+        Encoding encoding = Encoding.GetEncoding(codepage);
+        var result = new JObject();
+        result["codepage"] = codepage;
+        // [code unit, byte, byte...] for each code unit outside the surrogates that is not '?'
+        var map = new JArray();
+        for (int c = 0; c < 0x10000; c++)
+        {
+            if (c >= 0xD800 && c <= 0xDFFF)
+                continue;
+            byte[] b = encoding.GetBytes(new string((char)c, 1));
+            if (c != '?' && b.Length == 1 && b[0] == '?')
+                continue;
+            var entry = new JArray(c);
+            foreach (byte x in b)
+                entry.Add(x);
+            map.Add(entry);
+        }
+        result["map"] = map;
+        // The other way: the code units GetString gives for each byte alone
+        var decode = new JArray();
+        for (int b = 0; b < 256; b++)
+        {
+            var units = new JArray();
+            foreach (char ch in encoding.GetString(new byte[] { (byte)b }))
+                units.Add((int)ch);
+            decode.Add(units);
+        }
+        result["decode"] = decode;
+        // Surrogates, alone and in pairs, and a mix: what each path writes
+        string[] samples = { "A😀B", "A\uD83DB", "A\uDE00B", "\uD83D", "á€ā中�", "é" };
+        var cases = new JArray();
+        foreach (string s in samples)
+        {
+            var units = new JArray();
+            foreach (char ch in s)
+                units.Add((int)ch);
+            cases.Add(new JObject
+            {
+                ["units"] = units,
+                ["direct"] = ByteArray(encoding.GetBytes(s)),
+                ["convert"] = ByteArray(Encoding.Convert(Encoding.UTF8, encoding, Encoding.UTF8.GetBytes(s))),
+                ["utf8"] = ByteArray(Encoding.UTF8.GetBytes(s)),
+            });
+        }
+        result["cases"] = cases;
+        Output(result.ToString(Formatting.None), args.Length > 2 ? args[2] : null);
+        return 0;
+    }
+
+    static JArray ByteArray(byte[] bytes)
+    {
+        var result = new JArray();
+        foreach (byte b in bytes)
+            result.Add((int)b);
+        return result;
     }
 
     static JObject MetaFileJson(MetaFile meta)

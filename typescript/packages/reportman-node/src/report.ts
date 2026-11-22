@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { readReportXml, type Report } from '@reportman/lib';
-import type { MetaFile } from '@reportman/metafile';
+import type { MetaFile, PrintOut } from '@reportman/metafile';
 import { PdfDevice, systemClock, type PdfClock } from '@reportman/pdf';
 import {
   prepareReport,
@@ -41,8 +41,9 @@ export interface OpenReportOptions extends DataSources {
   fonts?: FontOptions | FontLibrary | false;
   /**
    * Called with the fresh copy of the report model each step runs (describeParameters,
-   * executeToPdf, executeToMetafile), before the engine prepares it: the host can adjust the
-   * report as its old host did, e.g. its language (`model.language = 4`) or a parameter default.
+   * executeToPdf, executeToMetafile, executeWithDevice), before the engine prepares it: the host
+   * can adjust the report as its old host did, e.g. its language (`model.language = 4`) or a
+   * parameter default.
    */
   beforeRun?: (model: Report) => void;
 }
@@ -53,7 +54,7 @@ export interface PdfOptions extends RunOptions {
   compressed?: boolean;
 }
 
-/** Options of one run (executeToPdf, executeToMetafile). */
+/** Options of one run (executeToPdf, executeToMetafile, executeWithDevice). */
 export interface RunOptions {
   /**
    * Cancels the run: it fails with the reason of the signal (an AbortError by default). The run
@@ -153,6 +154,31 @@ export class NodeReport {
     }
   }
 
+  /**
+   * Runs the report with the values given on the device of another output, which lays the report
+   * out as it prints it (the TextDevice of @reportman/export measures on its character grid), and
+   * gives the run to `print`: its answer is the result. The connections close after it.
+   *
+   * ```ts
+   * const text = await report.executeWithDevice(new TextDevice(), (run) => runReportToText(run), values);
+   * ```
+   */
+  async executeWithDevice<T>(
+    device: PrintOut,
+    print: (run: ReportRun) => Promise<T>,
+    values?: Readonly<Record<string, ParameterInput>> | null,
+    options: RunOptions = {},
+  ): Promise<T> {
+    options.signal?.throwIfAborted();
+    const run = await this.prepare(options, device);
+    try {
+      await this.setParameters(run, values, options);
+      return await withSignal(options.signal, () => print(run));
+    } finally {
+      await run.close();
+    }
+  }
+
   /** The values of the form (checked), or the assigned ones (set as they come). */
   private async setParameters(run: ReportRun, values: Readonly<Record<string, ParameterInput>> | null | undefined, options: RunOptions): Promise<void> {
     if (options.assign === undefined) {
@@ -168,7 +194,7 @@ export class NodeReport {
   }
 
   /** A fresh run of a fresh copy of the model: the engine converts and fills what it runs. */
-  private async prepare(runOptions: RunOptions = {}): Promise<ReportRun> {
+  private async prepare(runOptions: RunOptions = {}, device?: PrintOut): Promise<ReportRun> {
     const clock = this.options.clock ?? systemClock;
     const allowFileAccess = this.options.allowFileAccess ?? false;
     const host: EvalHost = {
@@ -190,7 +216,7 @@ export class NodeReport {
     if (this.options.beforeRun !== undefined) this.options.beforeRun(model);
     const { signal, onProgress } = runOptions;
     return prepareReport(model, {
-      device: new PdfDevice({ clock, fonts }),
+      device: device ?? new PdfDevice({ clock, fonts }),
       data: createDataHost(this.options),
       culture: this.options.culture ?? 'en-US',
       host,

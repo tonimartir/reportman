@@ -1,0 +1,350 @@
+
+
+    Page 1     5       5
+
+    Argentina             5       1
+
+    Riverside Cafe                      Buenos Aires
+
+
+    Little Italy Wine Bar               Cordoba
+
+
+
+    Corner Restaurant                   Rosario
+
+
+
+    Red Door Cafe                       Rosario
+
+
+
+    Customers of Argentina       4
+
+    Belgium               5       1
+    Le Petit Restaurant                 Antwerp
+
+
+
+    Saint Martin Delicatessen           Brussels
+
+
+
+    Riverside Grocers                   Brussels
+
+
+    Little Italy Restaurant             Brussels
+
+
+
+    Customers of Belgium         4
+
+    France                5       1
+
+    Market Square Wine Bar              Bordeaux
+
+
+    Red Door Bistro                     Marseille
+
+
+
+    Cedar Grocers                       Marseille
+
+
+
+    Harvest Moon Food Hall              Paris
+
+
+
+    Seaside Grocers                     Paris
+
+
+    Casa Verde Gourmet Shop             Toulouse
+
+
+
+    of 1           5
+
+
+
+
+
+
+    Page 2     5       5
+
+    France                5       2
+
+    Silver Spoon Kitchen                Toulouse
+
+
+    Customers of France          7
+
+    Germany               5       1
+
+    La Despensa Trattoria               Berlin
+
+
+
+    Village Foods                       Berlin
+
+
+    Cedar Foods                         Berlin
+
+
+
+    Aurora Bistro                       Cologne
+
+
+
+    Saint Martin Bistro                 Cologne
+
+
+
+    Blue Harbor Trattoria               Frankfurt
+
+
+    Atlas Grocers                       Hamburg
+
+
+
+    Customers of Germany         7
+
+    Italy                 5       1
+
+    Olive Tree Trattoria                Rome
+
+
+    Bella Vista Kitchen                 Rome
+
+
+
+    Gourmet Restaurant                  Rome
+
+
+
+    Atlas Restaurant                    Rome
+
+
+
+    Harvest Moon Gourmet Shop           Turin
+
+
+    Saint Martin Fine Foods             Turin
+
+
+
+    of 2           5
+
+
+
+
+
+
+    Page 3     5       5
+
+    Italy                 5       2
+
+    North Star Restaurant               Turin
+
+
+    Customers of Italy           7
+
+    Mexico                5       1
+
+    Harvest Moon Wine Bar               Guadalajara
+
+
+
+    Le Petit Bistro                     Mexico City
+
+
+    Golden Fork Cafe                    Mexico City
+
+
+
+    Green Valley Wine Bar               Monterrey
+
+
+
+    Customers of Mexico          4
+
+    Netherlands           5       1
+    Olive Tree Kitchen                  Amsterdam
+
+
+
+    El Rincon Trattoria                 Amsterdam
+
+
+
+    Red Door Market                     Rotterdam
+
+
+
+    La Despensa Cafe                    Utrecht
+
+
+    Bella Vista Food Hall               Utrecht
+
+
+
+    Customers of Netherlands     5
+
+    Portugal              5       1
+
+    Aurora Foods                        Braga
+
+
+    Sunny Coast Cafe                    Braga
+
+
+
+    Lighthouse Gourmet Shop             Coimbra
+
+
+
+    of 3           5
+
+
+
+
+
+
+    Page 4     5       5
+
+    Portugal              5       2
+
+    Royal Oak Cafe                      Porto
+
+
+    Little Italy Cafe                   Porto
+
+
+
+    Customers of Portugal        5
+
+    Spain                 5       1
+
+    Golden Fork Bistro                  Bilbao
+
+
+    Casa Verde Delicatessen             Bilbao
+
+
+
+    Gourmet Foods                       Madrid
+
+
+
+    Lighthouse Kitchen                  Madrid
+
+
+
+    Silver Spoon Fine Foods             Madrid
+
+
+    Royal Oak Foods                     Madrid
+
+
+
+    Corner Cafe                         Zaragoza
+
+
+
+    Customers of Spain           7
+
+    Switzerland           5       1
+    Lighthouse Food Hall                Basel
+
+
+
+    Harvest Moon Emporium               Geneva
+
+
+
+    Bella Vista Foods                   Geneva
+
+
+
+    Green Valley Trattoria              Zurich
+
+
+    Customers of Switzerland     4
+
+    United Kingdom        5       1
+
+    of 4           5
+
+
+
+
+
+
+    Page 5     0       005
+
+    United Kingdom        0       2
+
+    Market Square Market                Bristol
+
+
+    Casa Verde Trattoria                Edinburgh
+
+
+
+    Cedar Wine Bar                      Edinburgh
+
+
+
+    Old Mill Restaurant                 London
+
+
+
+    Customers of United Kingdom  4
+
+    United States         0       1
+    Le Petit Fine Foods                 Boston
+
+
+
+    Little Italy Delicatessen           Chicago
+
+
+
+    Olive Tree Foods                    Chicago
+
+
+    Village Trattoria                   Miami
+
+
+
+    Olive Tree Grocers                  San Francisco
+
+
+
+    Customers of United States   5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

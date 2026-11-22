@@ -1,0 +1,353 @@
+[
+  {
+    "name": "customers",
+    "report": "../../../../samples/customers.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:54"
+  },
+  {
+    "name": "customers-es",
+    "report": "../../../../samples/customers.rep",
+    "culture": "es-ES",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:54"
+  },
+  {
+    "name": "invoices",
+    "report": "../../../../samples/invoices.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:55"
+  },
+  {
+    "name": "invoices-range",
+    "report": "../../../../samples/invoices.rep",
+    "params": {
+      "FIRST_ORDER": "7",
+      "LAST_ORDER": "9"
+    },
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:55"
+  },
+  {
+    "name": "labels",
+    "report": "../../../../samples/labels.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:55"
+  },
+  {
+    "name": "contacts",
+    "report": "../../../../samples/contacts.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:56"
+  },
+  {
+    "name": "contacts-es",
+    "report": "../../../../samples/contacts.rep",
+    "culture": "es-ES",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:56"
+  },
+  {
+    "name": "year-over-year",
+    "report": "../../../../samples/year-over-year.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:57"
+  },
+  {
+    "name": "year-over-year-es",
+    "report": "../../../../samples/year-over-year.rep",
+    "culture": "es-ES",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:57"
+  },
+  {
+    "name": "syn-layout",
+    "report": "../../reportman-engine/test/fixtures/run/syn-layout.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:57"
+  },
+  {
+    "name": "syn-multipage",
+    "report": "../../reportman-engine/test/fixtures/run/syn-multipage.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:58"
+  },
+  {
+    "name": "syn-pagecount",
+    "report": "../../reportman-engine/test/fixtures/run/syn-pagecount.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:58"
+  },
+  {
+    "name": "syn-twopass",
+    "report": "../../reportman-engine/test/fixtures/run/syn-twopass.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:59"
+  },
+  {
+    "name": "syn-groups",
+    "report": "../../reportman-engine/test/fixtures/run/syn-groups.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:34:59"
+  },
+  {
+    "name": "syn-columns",
+    "report": "../../reportman-engine/test/fixtures/run/syn-columns.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:35:00"
+  },
+  {
+    "name": "syn-nodata",
+    "report": "../../reportman-engine/test/fixtures/run/syn-nodata.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:35:00"
+  },
+  {
+    "name": "syn-text.PLAIN",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:35:00"
+  },
+  {
+    "name": "syn-text.PLAINFULL",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "PLAINFULL",
+    "clock": "2026-11-22T02:35:00"
+  },
+  {
+    "name": "syn-text.EPSON",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSON",
+    "clock": "2026-11-22T02:35:01"
+  },
+  {
+    "name": "syn-text.EPSON-MASTER",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSON-MASTER",
+    "clock": "2026-11-22T02:35:01"
+  },
+  {
+    "name": "syn-text.EPSON-ESCP",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSON-ESCP",
+    "clock": "2026-11-22T02:35:01"
+  },
+  {
+    "name": "syn-text.EPSON-ESCPQ",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSON-ESCPQ",
+    "clock": "2026-11-22T02:35:02"
+  },
+  {
+    "name": "syn-text.IBMPROPRINTER",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "IBMPROPRINTER",
+    "clock": "2026-11-22T02:35:02"
+  },
+  {
+    "name": "syn-text.HP-PCL",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "HP-PCL",
+    "clock": "2026-11-22T02:35:02"
+  },
+  {
+    "name": "syn-text.VT100",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "VT100",
+    "clock": "2026-11-22T02:35:03"
+  },
+  {
+    "name": "syn-text.EPSONTMU210",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSONTMU210",
+    "clock": "2026-11-22T02:35:03"
+  },
+  {
+    "name": "syn-text.EPSONTMU210CUT",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSONTMU210CUT",
+    "clock": "2026-11-22T02:35:04"
+  },
+  {
+    "name": "syn-text.EPSONTM88II",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSONTM88II",
+    "clock": "2026-11-22T02:35:04"
+  },
+  {
+    "name": "syn-text.EPSONTM88IICUT",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSONTM88IICUT",
+    "clock": "2026-11-22T02:35:04"
+  },
+  {
+    "name": "syn-text.EPSONTM88CP850",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSONTM88CP850",
+    "clock": "2026-11-22T02:35:05"
+  },
+  {
+    "name": "syn-text.EPSONTM88CP858CUT",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSONTM88CP858CUT",
+    "clock": "2026-11-22T02:35:05"
+  },
+  {
+    "name": "syn-text.EPSONTM88UTF8",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSONTM88UTF8",
+    "clock": "2026-11-22T02:35:05"
+  },
+  {
+    "name": "syn-text.PLAIN-utf8",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "PLAIN",
+    "oem": false,
+    "clock": "2026-11-22T02:35:06"
+  },
+  {
+    "name": "syn-text.EPSON-ESCP-fullplain",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "EPSON-ESCP",
+    "fullPlain": true,
+    "clock": "2026-11-22T02:35:06"
+  },
+  {
+    "name": "syn-text.nodriver",
+    "report": "fixtures/text/syn-text.rep",
+    "driver": "",
+    "clock": "2026-11-22T02:35:07"
+  },
+  {
+    "name": "syn-text-receipt.PLAIN",
+    "report": "fixtures/text/syn-text-receipt.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:35:07"
+  },
+  {
+    "name": "syn-text-receipt.EPSON",
+    "report": "fixtures/text/syn-text-receipt.rep",
+    "driver": "EPSON",
+    "clock": "2026-11-22T02:35:07"
+  },
+  {
+    "name": "syn-text-receipt.HP-PCL",
+    "report": "fixtures/text/syn-text-receipt.rep",
+    "driver": "HP-PCL",
+    "clock": "2026-11-22T02:35:07"
+  },
+  {
+    "name": "syn-text-receipt.EPSONTMU210",
+    "report": "fixtures/text/syn-text-receipt.rep",
+    "driver": "EPSONTMU210",
+    "clock": "2026-11-22T02:35:08"
+  },
+  {
+    "name": "syn-text-receipt.EPSONTM88IICUT",
+    "report": "fixtures/text/syn-text-receipt.rep",
+    "driver": "EPSONTM88IICUT",
+    "clock": "2026-11-22T02:35:08"
+  },
+  {
+    "name": "syn-text-receipt.EPSONTM88UTF8CUT",
+    "report": "fixtures/text/syn-text-receipt.rep",
+    "driver": "EPSONTM88UTF8CUT",
+    "clock": "2026-11-22T02:35:09"
+  },
+  {
+    "name": "syn-text-qr.PLAIN",
+    "report": "fixtures/text/syn-text-qr.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:35:09"
+  },
+  {
+    "name": "syn-text-qr.EPSONTMU210",
+    "report": "fixtures/text/syn-text-qr.rep",
+    "driver": "EPSONTMU210",
+    "clock": "2026-11-22T02:35:09"
+  },
+  {
+    "name": "syn-text-qr.EPSONTM88II",
+    "report": "fixtures/text/syn-text-qr.rep",
+    "driver": "EPSONTM88II",
+    "clock": "2026-11-22T02:35:10"
+  },
+  {
+    "name": "syn-text-qr.EPSONTM88IICUT",
+    "report": "fixtures/text/syn-text-qr.rep",
+    "driver": "EPSONTM88IICUT",
+    "clock": "2026-11-22T02:35:10"
+  },
+  {
+    "name": "syn-text-qr.EPSONTM88CP858",
+    "report": "fixtures/text/syn-text-qr.rep",
+    "driver": "EPSONTM88CP858",
+    "clock": "2026-11-22T02:35:11"
+  },
+  {
+    "name": "syn-text-qr.EPSONTM88UTF8CUT",
+    "report": "fixtures/text/syn-text-qr.rep",
+    "driver": "EPSONTM88UTF8CUT",
+    "clock": "2026-11-22T02:35:11"
+  },
+  {
+    "name": "syn-text-lpi.PLAIN",
+    "report": "fixtures/text/syn-text-lpi.rep",
+    "driver": "PLAIN",
+    "clock": "2026-11-22T02:35:11"
+  },
+  {
+    "name": "syn-text-lpi.EPSON",
+    "report": "fixtures/text/syn-text-lpi.rep",
+    "driver": "EPSON",
+    "clock": "2026-11-22T02:35:12"
+  },
+  {
+    "name": "syn-text-lpi.EPSON-ESCPQ",
+    "report": "fixtures/text/syn-text-lpi.rep",
+    "driver": "EPSON-ESCPQ",
+    "clock": "2026-11-22T02:35:12"
+  },
+  {
+    "name": "syn-text-lpi.EPSONTMU210",
+    "report": "fixtures/text/syn-text-lpi.rep",
+    "driver": "EPSONTMU210",
+    "clock": "2026-11-22T02:35:12"
+  },
+  {
+    "name": "syn-text-lpi.EPSONTM88II",
+    "report": "fixtures/text/syn-text-lpi.rep",
+    "driver": "EPSONTM88II",
+    "clock": "2026-11-22T02:35:13"
+  },
+  {
+    "name": "customers.EPSON",
+    "report": "../../../../samples/customers.rep",
+    "driver": "EPSON",
+    "clock": "2026-11-22T02:35:13"
+  },
+  {
+    "name": "customers.EPSON-ESCP",
+    "report": "../../../../samples/customers.rep",
+    "driver": "EPSON-ESCP",
+    "clock": "2026-11-22T02:35:13"
+  },
+  {
+    "name": "customers.IBMPROPRINTER",
+    "report": "../../../../samples/customers.rep",
+    "driver": "IBMPROPRINTER",
+    "clock": "2026-11-22T02:35:14"
+  },
+  {
+    "name": "customers.HP-PCL",
+    "report": "../../../../samples/customers.rep",
+    "driver": "HP-PCL",
+    "clock": "2026-11-22T02:35:14"
+  },
+  {
+    "name": "invoices.EPSON-ESCP",
+    "report": "../../../../samples/invoices.rep",
+    "driver": "EPSON-ESCP",
+    "clock": "2026-11-22T02:35:15"
+  }
+]

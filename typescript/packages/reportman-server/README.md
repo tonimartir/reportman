@@ -20,14 +20,15 @@ Status: preview (`0.1.0-alpha.N`, npm tag `next`).
 | `GET /api/reports/{alias}/execute?path=&format=&NAME=value` | the output; `download=1` sends it as an attachment |
 | `POST /api/reports/{alias}/execute?path=&format=` | the same, the parameters in a JSON body `{ "parameters": {...}, "format": "pdf" }` or a form |
 
-`format` is `pdf` (default), `metafile` (the `.rpmf` of the viewers, compressed), `text` or `csv`
-(semicolons, quoted, UTF-8 with BOM). The parameters are set as Reportman.Server sets them: any
-parameter, hidden ones too, by alias or name; a text `yyyy-MM-dd[THH:mm[:ss]]` is a date.
+`format` is `pdf` (default), `metafile` (the `.rpmf` of the viewers, compressed), `text` (the
+PLAIN text of a line printer, laid out on its character grid, in UTF-8) or `csv` (semicolons, quoted,
+UTF-8 with BOM). The parameters are set as Reportman.Server sets them: any parameter, hidden ones
+too, by alias or name; a text `yyyy-MM-dd[THH:mm[:ss]]` is a date.
 
 Errors are JSON `{ error }`: 400 (a bad path, format or body), 401 (no valid key), 403 (the key does
 not run that alias), 404 (an unknown alias or report), 422 (the report has no data — `noData:
-true` — or fails in an item: `errorComponentName`, `errorComponentProperty`), 501 (`text` without
-a text output configured), 500 otherwise.
+true` — or fails in an item: `errorComponentName`, `errorComponentProperty`), 501 (`text` turned
+off), 500 otherwise.
 
 ## Use
 
@@ -58,7 +59,8 @@ A key goes in the `X-ReportmanServer-ApiKey` header, or as `apikey` in the query
 Options: `connections` (or a function of the alias), `datasets` (rows given by the program),
 `culture`, `fonts` (the system TrueType fonts by default, as the FreeType device of
 Reportman.Server; `false` for the standard 14 PDF fonts), `allowFileAccess` (false: a report does
-not read the disk), `text` (the text output).
+not read the disk), `text` (another text output, or `false`), `clock` (of TODAY, NOW and the
+dates of the PDF).
 
 ## Not here yet
 

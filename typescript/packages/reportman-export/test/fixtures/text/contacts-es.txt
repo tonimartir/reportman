@@ -1,0 +1,140 @@
+
+
+
+      MARE NOSTRUM FINE FOODS                             Printed o222/11/2
+      Contact directory
+
+    Customers and employees in one list: the dataset DIRECTORY is the union o
+
+    Customers
+
+    Name                 Company or role          City or region  Phone
+
+    Alba Pereira         Gourmet Restaurant       Rome            +39 721 740
+    Alba de Vries        Market Square Wine Bar   Bordeaux        +33 311 544
+    Ana Keller           Riverside Grocers        Brussels        +32 274 839
+
+    Anna Ruiz            Casa Verde Delicatessen  Bilbao          +34 353 223
+    Carmen Costa         Corner Cafe              Zaragoza        +34 697 688
+    Carmen Janssens      Saint Martin Bistro      Cologne         +49 898 934
+
+    Carmen Wilson        Lighthouse Food Hall     Basel           +41 258 552
+    Chiara Costa         La Despensa Cafe         Utrecht         +31 462 933
+    Chiara Moreau        Village Trattoria        Miami           +1 794 967 
+
+    Claire Johnson       Silver Spoon Fine Foods  Madrid          +34 535 962
+    Claire Ruiz          Red Door Cafe            Rosario         +54 192 973
+    David Conti          El Rincon Trattoria      Amsterdam       +31 907 789
+
+    David Ortega         Golden Fork Bistro       Bilbao          +34 366 809
+    Elena Garcia         Cedar Grocers            Marseille       +33 152 953
+    Emma Keller          Silver Spoon Kitchen     Toulouse        +33 232 761
+
+    Hans Peeters         Market Square Market     Bristol         +44 763 220
+    Hans Taylor          Seaside Grocers          Paris           +33 277 146
+    Hugo Brown           Village Foods            Berlin          +49 374 786
+
+    Hugo Castro          Gourmet Foods            Madrid          +34 543 307
+    Ines Bianchi         Green Valley Trattoria   Zurich          +41 569 748
+    Ines Taylor          Olive Tree Kitchen       Amsterdam       +31 675 948
+
+    Ines Weber           Aurora Foods             Braga           +351 654 59
+    Ines de Vries        Little Italy Restaurant  Brussels        +32 627 783
+    James Peeters        Atlas Restaurant         Rome            +39 159 853
+
+    James Silva          Le Petit Fine Foods      Boston          +1 726 524 
+    James Wilson         Bella Vista Kitchen      Rome            +39 340 123
+    Javier Schmidt       Olive Tree Foods         Chicago         +1 651 887 
+
+    Leon Schmidt         Sunny Coast Cafe         Braga           +351 765 98
+    Leon Smith           Saint Martin Delicatess  Brussels        +32 402 654
+    Luis Martin          Harvest Moon Food Hall   Paris           +33 799 410
+
+    Luis Ruiz            Red Door Market          Rotterdam       +31 696 414
+    Lukas Garcia         Atlas Grocers            Hamburg         +49 761 438
+    Lukas Silva          Lighthouse Gourmet Shop  Coimbra         +351 777 83
+
+    Marco Brown          Riverside Cafe           Buenos Aires    +54 314 539
+    Marco Martin         Le Petit Bistro          Mexico City     +52 289 663
+    Marco Romero         Cedar Foods              Berlin          +49 161 877
+
+    Marie Janssens       Bella Vista Food Hall    Utrecht         +31 659 848
+    Marie Weber          Little Italy Delicatess  Chicago         +1 972 375 
+    Mateo Bianchi        Bella Vista Foods        Geneva          +41 369 248
+
+
+    Report Manager sample report ú data: samples.db                      Page 1
+
+
+
+
+
+
+
+      MARE NOSTRUM FINE FOODS                             Printed o222/11/2
+      Contact directory
+
+    Customers and employees in one list: the dataset DIRECTORY is the union o
+
+    Customers
+
+    Name                 Company or role          City or region  Phone
+
+    Mateo Lopez          Saint Martin Fine Foods  Turin           +39 426 699
+    Mateo Moreau         Harvest Moon Wine Bar    Guadalajara     +52 591 361
+    Mia Weber            Red Door Bistro          Marseille       +33 712 997
+
+    Miguel Bakker        Royal Oak Foods          Madrid          +34 977 521
+    Miguel Romero        Lighthouse Kitchen       Madrid          +34 951 397
+    Miguel Silva         Golden Fork Cafe         Mexico City     +52 359 956
+
+    Miguel Taylor        Harvest Moon Emporium    Geneva          +41 925 574
+    Noah Fischer         Old Mill Restaurant      London          +44 699 453
+    Noah Keller          La Despensa Trattoria    Berlin          +49 915 637
+
+    Noah Ricci           Little Italy Cafe        Porto           +351 742 34
+    Oliver de Vries      Green Valley Wine Bar    Monterrey       +52 527 828
+    Olivia Muller        Olive Tree Trattoria     Rome            +39 265 367
+
+    Paolo Fernandez      Corner Restaurant        Rosario         +54 934 520
+    Pierre Bianchi       North Star Restaurant    Turin           +39 221 138
+    Pieter Castro        Le Petit Restaurant      Antwerp         +32 850 498
+
+    Pieter Janssens      Aurora Bistro            Cologne         +49 645 524
+    Pieter Pereira       Blue Harbor Trattoria    Frankfurt       +49 910 651
+    Pieter Silva         Casa Verde Gourmet Shop  Toulouse        +33 521 499
+
+    Sofia Brown          Harvest Moon Gourmet Sh  Turin           +39 792 999
+    Sofia Moreau         Little Italy Wine Bar    Cordoba         +54 675 984
+    Thomas Pereira       Olive Tree Grocers       San Francisco   +1 509 841 
+
+    Valentina Brown      Casa Verde Trattoria     Edinburgh       +44 724 354
+    Valentina Johnson    Cedar Wine Bar           Edinburgh       +44 432 542
+    Valentina Martin     Royal Oak Cafe           Porto           +351 464 52
+
+                                                 Contacts in this            63
+
+    Employees
+
+    Name                 Company or role          City or region  Phone
+
+    Claire Moreau        Sales Representative     Central Europe  Ext. 103
+    Daniel Costa         Sales Representative     Iberia          Ext. 102
+    Giulia Ricci         Sales Representative     Italy           Ext. 105
+
+    Laura Navarro        Sales Manager            Iberia          Ext. 101
+    Lukas Weber          Sales Representative     Central Europe  Ext. 104
+    Oliver Taylor        Key Account Manager      Export          Ext. 106
+
+    Valentina Herrera    Sales Representative     Export          Ext. 107
+                                                 Contacts in this             7
+
+
+     Total contacts                                                        70
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+@&l6D&lFP&d@(s0B(s0S&k0S
+
+
+&k4S      Left                           Right                                                    Centre
+      Bottom           VCentre         First line            One                         rotated
+&k0S
+
+&k4S      The quick brown fox jumps over   The quick brown fox jumps over                                             The quick 
+      the lazy dog, again and again:   the lazy dog, again and again:                        dog, again and again: until the
+      until the line wraps; twice.                                                                   wraps; twice.
+&k0S
+
+
+&k4S      The quick brown fox jumps    The quick brown fox jumps  Averyveryverylo   No wrap, too l
+      over the lazy dog, again            over the lazy dog, angwongwordthatdoesn
+      and again: until the line    and again: until the line  otfitinthebox
+      wraps; twice.                            wraps; twice.
+&k0S
+
+(sH        Size 6                                                                     Size 12
+        Size 7                                                                     Size 13
+(sH       Size 8                                                          Size 14
+&k4S      Size 9                                                  Size 15
+      Size 10                                                 Size 16
+&k0S    Size 11                              Size 20
+
+(sH        Step 1 1234567890                                                          Step 5 1234567890
+(sH       Step 2 1234567890                                               Step 6 1234567890
+&k4S      Step 3 1234567890                                       Step 7 1234567890
+      Step 4 1234567890
+&k0S
+&k4S      (s3BStyle 1&d@(s0B(s0S              (s1SStyle 2&d@(s0B(s0S              Style 4             Style 8&d@(s0B(s0S              (s3B(s1SStyle 3&d@(s0B(s0S
+      tfel ot thgiR                    AAAAAABBBBAAAAAAAAAABBBB                                     Cut at the page edge, it
+      A¤o, ¤and£, caf‚, ’gir, Ouvre, 100 ?, a, l, ??, ??, xï
+(sH       Size 8 and size 12 on one line                       then 12
+&k4S      Known red                RGB red                  (s3BRed bold&d@(s0B(s0S
+&k0S
+
+
+
+&k4S      1     English         English             Thank you for your order             LTR
+      2     Spanish         Espa¤ol             Gracias por su pedido                LTR
+      3     Greek           ????????            ???a??st??æe ??a t?? pa?a??e??a sa?  LTR
+      4     Russian         ???????             ??????? ?? ??? ?????                 LTR
+      5     Arabic          ???????             ????? ?? ??? ????                    RTL
+      6     Hebrew          ?????               ???? ?? ?????? ???                   RTL
+      7     Hindi           ??????              ???? ????? ?? ??? ???????            LTR
+      8     Thai            ???????             ????????????????????????????         LTR
+      9     Japanese        ???                 ?????????????                        LTR
+&k0S
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,11 +3,13 @@
 
 import http from 'node:http';
 import type { AddressInfo } from 'node:net';
+import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { sqlite } from '@reportman/node';
+import { decodeCp437 } from '@reportman/export';
 import { createReportServer, fastifyPlugin, nodeHandler, type ReportServerOptions } from '@reportman/server';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -17,6 +19,8 @@ const base: ReportServerOptions = {
   connections: { SAMPLES: sqlite(path.join(samples, 'samples.db')) },
   // The standard 14 fonts: the same layout on a machine without TrueType fonts (the CI images)
   fonts: false,
+  // The clock of the text fixture of PrintOutText (reportman-export/test/fixtures/text, contacts)
+  clock: { now: () => new Date('2026-11-22T02:34:56Z'), offsetMinutes: () => 0 },
 };
 
 async function listen(options: ReportServerOptions): Promise<{ url: string; close: () => Promise<void> }> {
@@ -93,6 +97,16 @@ describe('@reportman/server: execute', () => {
     expect(new TextDecoder().decode(csv.subarray(3))).toMatch(/^"[^"]*";/);
   });
 
+  it('runs a report to the PLAIN text of PrintOutText, read in code page 437 and sent in UTF-8', async () => {
+    const t = await get(open.url + '/api/reports/SAMPLES/execute?path=contacts.rep&format=text');
+    expect(t.status).toBe(200);
+    expect(t.headers.get('content-type')).toBe('text/plain; charset=utf-8');
+    expect(t.headers.get('content-disposition')).toBe('inline; filename="contacts.txt"');
+    // The bytes golden-cs wrote with PrintOutText (PLAIN, the same clock), as Reportman.Server answers them
+    const printed = new Uint8Array(fs.readFileSync(path.join(here, '../../reportman-export/test/fixtures/text/contacts.txt')));
+    expect(await t.text()).toBe(decodeCp437(printed));
+  });
+
   it('takes the parameters from the query, a JSON body or a form, the same values giving the same result', async () => {
     const all = await (await get(open.url + '/api/reports/SAMPLES/execute?path=invoices.rep&format=csv')).text();
     const query = await (await get(open.url + '/api/reports/SAMPLES/execute?path=invoices.rep&format=csv&FIRST_ORDER=7&LAST_ORDER=9')).text();
@@ -125,7 +139,13 @@ describe('@reportman/server: execute', () => {
     expect(await status('/api/reports/SAMPLES/execute?path=../samples/customers.rep')).toEqual([400, 'Invalid report path.']);
     expect(await status('/api/reports/SAMPLES/execute')).toEqual([400, 'A report path is required.']);
     expect(await status('/api/reports/NOPE/tree')).toEqual([404, "Alias 'NOPE' is not configured."]);
-    expect(await status('/api/reports/SAMPLES/execute?path=customers.rep&format=text')).toEqual([501, 'The text format is not supported by this server.']);
+    const off = await createReportServer({ ...base, text: false }).handle({
+      method: 'GET',
+      path: '/api/reports/SAMPLES/execute',
+      query: new URLSearchParams('path=customers.rep&format=text'),
+      headers: {},
+    });
+    expect([off.status, JSON.parse(new TextDecoder().decode(off.body)).error]).toEqual([501, 'The text format is not supported by this server.']);
   });
 });
 

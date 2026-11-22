@@ -1,0 +1,140 @@
+
+
+
+      MARE NOSTRUM FINE FOODS                             Printed o222/11/2
+      Year over year
+
+    Parallel unions of a dataset for each year, side by sideYears 2024 and 2025
+
+    Sales by category
+
+
+                                    2024                  2025
+    Category                 Orders  Sales (EUR)   Orders   Sales (EUR)  Change
+    Cheese & Dairy              101    27,046.32      100     27,416.54    1.4%
+
+    Coffee & Tea                 97    12,081.38       83      9,897.04  -18.1%
+    Cured Meats                  96    13,715.44      104     11,700.22  -14.7%
+    Olive Oil & Vinegar         112    23,696.98       90     19,501.54  -17.7%
+
+    Pasta, Rice & Grains        113     6,489.66      110      7,258.34   11.8%
+    Preserves                   122    12,259.34      148     12,610.94    2.9%
+    Sweets & Chocolate           99     8,510.04      105      9,632.48   13.2%
+
+    Wines & Beverages           113    16,165.12      111     17,046.72    5.5%
+     Total                      853   119,964.28      851    115,063.82
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 1
+
+
+
+
+
+
+
+      MARE NOSTRUM FINE FOODS                             Printed o222/11/2
+      Year over year
+
+    Parallel unions of a dataset for each year, side by sideYears 2024 and 2025
+
+
+    The ten best sold products
+
+
+      # Product 2024         Sales (E     Product 2025              Sales (EU
+      1 Hojiblanca Olive Oil   12,339.20  Hojiblanca Olive Oil Tin     8,691.20
+
+      2 Parmigiano Reggiano 2   8,808.60  Manchego Cured Cheese        6,697.02
+      3 Manchego Cured Cheese   6,416.70  Parmigiano Reggiano 24 M     5,697.50
+      4 Iberian Acorn-fed Ham   5,648.80  Single Origin Coffee Bea     5,375.16
+
+      5 Single Origin Coffee    5,144.58  Idiazabal Smoked Cheese      5,368.04
+      6 Chianti Classico        4,632.56  Tetilla Cheese               4,580.16
+      7 Bonito del Norte in O   3,862.60  Chianti Classico             4,291.28
+
+      8 Idiazabal Smoked Chee   3,596.56  Picual Extra Virgin Oliv     4,109.30
+      9 Tetilla Cheese          3,407.04  Pecorino Romano              3,965.44
+     10 Albarino Rias Baixas    3,339.84  Cava Brut Nature             3,905.64
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

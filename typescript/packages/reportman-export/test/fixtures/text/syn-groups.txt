@@ -1,0 +1,210 @@
+
+
+    Orders by country and city                       Page 1 group page 1
+
+
+     Argentina                                -2
+       Buenos Aires
+        2024/00057 Riverside Cafe               14/03/2024 0.00   0.00
+        2025/00324 Riverside Cafe               10/02/2025 0.00   0.00
+
+        2025/00342 Riverside Cafe               06/03/2025 0.00   0.00
+        3         0.000
+       Cordoba
+        2024/00063 Little Italy Wine Bar        20/03/2024 0.00   0.00
+        2024/00078 Little Italy Wine Bar        10/04/2024 0.00   0.00
+        2024/00129 Little Italy Wine Bar        21/06/2024 0.00   0.00
+        2024/00138 Little Italy Wine Bar        05/07/2024 0.00   0.00
+        2024/00195 Little Italy Wine Bar        20/09/2024 0.00   0.00
+        2025/00339 Little Italy Wine Bar        03/03/2025 0.00   0.00
+
+        2025/00534 Little Italy Wine Bar        21/11/2025 0.00   0.00
+        2025/00546 Little Italy Wine Bar        28/11/2025 0.00   0.00
+        8         0.000
+       Rosario
+        2024/00099 Corner Restaurant            10/05/2024 0.00   0.00
+        2024/00150 Corner Restaurant            26/07/2024 0.00   0.00
+        2024/00198 Corner Restaurant            26/09/2024 0.00   0.00
+        2024/00279 Red Door Cafe                18/12/2024 0.00   0.00
+        2025/00399 Red Door Cafe                30/05/2025 0.00   0.00
+
+        2025/00513 Corner Restaurant            06/11/2025 0.00   0.00
+        2025/00555 Red Door Cafe                05/12/2025 0.00   0.00
+        2025/00573 Red Door Cafe                18/12/2025 0.00   0.00
+        2025/00588 Red Door Cafe                29/12/2025 0.00   0.00
+        9         0.000
+     Orders of Argentina         20      0         0        0.0000
+
+     Belgium                                  -2
+       Antwerp
+        2024/00045 Le Petit Restaurant          27/02/2024 21.00  21.00
+        2025/00462 Le Petit Restaurant          08/09/2025 21.00  42.00
+        2025/00537 Le Petit Restaurant          24/11/2025 21.00  63.00
+
+        3         2.739
+       Brussels
+        2024/00030 Riverside Grocers            06/02/2024 21.00  84.00
+        2024/00069 Saint Martin Delicatessen    27/03/2024 21.00  105.00
+        2024/00075 Riverside Grocers            05/04/2024 21.00  126.00
+        2024/00135 Saint Martin Delicatessen    02/07/2024 21.00  147.00
+        2024/00144 Saint Martin Delicatessen    19/07/2024 21.00  168.00
+        2024/00162 Saint Martin Delicatessen    09/08/2024 21.00  189.00
+        2024/00180 Riverside Grocers            03/09/2024 21.00  210.00
+
+        2024/00249 Riverside Grocers            25/11/2024 21.00  231.00
+        2025/00378 Riverside Grocers            25/04/2025 21.00  252.00
+        2025/00495 Little Italy Restaurant      21/10/2025 21.00  273.00
+        10        6.364
+     Orders of Belgium           13      0         21       10.2611
+
+     France                                   -2
+       Bordeaux
+        2024/00114 Market Square Wine Bar       27/05/2024 20.00  293.00
+        2024/00231 Market Square Wine Bar       08/11/2024 20.00  313.00
+        2025/00432 Market Square Wine Bar       22/07/2025 20.00  333.00
+
+    Page sum 353.00             203              28744
+
+
+
+
+
+
+    Orders by country and city                       Page 2 group page 2
+
+
+     France                                   0
+        2025/00567 Market Square Wine Bar       15/12/2025 20.00  353.00
+        4         2.162
+       Marseille
+
+        2024/00105 Red Door Bistro              16/05/2024 20.00  373.00
+        2024/00111 Red Door Bistro              22/05/2024 20.00  393.00
+        2025/00480 Cedar Grocers                02/10/2025 20.00  413.00
+        2025/00507 Red Door Bistro              03/11/2025 20.00  433.00
+        2025/00510 Red Door Bistro              05/11/2025 20.00  453.00
+        2025/00576 Red Door Bistro              22/12/2025 20.00  473.00
+        2025/00579 Red Door Bistro              23/12/2025 20.00  493.00
+        7         3.182
+       Paris
+
+        2024/00006 Seaside Grocers              08/01/2024 20.00  513.00
+        2024/00177 Harvest Moon Food Hall       30/08/2024 20.00  533.00
+        2024/00222 Harvest Moon Food Hall       01/11/2024 20.00  553.00
+        2025/00336 Harvest Moon Food Hall       26/02/2025 20.00  573.00
+        2025/00375 Harvest Moon Food Hall       18/04/2025 20.00  593.00
+        2025/00390 Seaside Grocers              16/05/2025 20.00  613.00
+        2025/00423 Seaside Grocers              07/07/2025 20.00  633.00
+        2025/00528 Seaside Grocers              18/11/2025 20.00  653.00
+        8         3.077
+       Toulouse
+
+        2024/00003 Casa Verde Gourmet Shop      03/01/2024 20.00  673.00
+        2025/00294 Casa Verde Gourmet Shop      02/01/2025 20.00  693.00
+        2025/00345 Casa Verde Gourmet Shop      10/03/2025 20.00  713.00
+        2025/00489 Casa Verde Gourmet Shop      14/10/2025 20.00  733.00
+        4         1.429
+     Orders of France            23      0         20       9.7638
+
+     Germany                                  -2
+       Berlin
+        2024/00051 Cedar Foods                  08/03/2024 19.00  752.00
+
+        2024/00102 La Despensa Trattoria        14/05/2024 19.00  771.00
+        2024/00228 La Despensa Trattoria        07/11/2024 19.00  790.00
+        2024/00246 Village Foods                22/11/2024 19.00  809.00
+        2025/00300 Village Foods                09/01/2025 19.00  828.00
+        2025/00327 La Despensa Trattoria        13/02/2025 19.00  847.00
+        2025/00417 La Despensa Trattoria        26/06/2025 19.00  866.00
+        2025/00447 Cedar Foods                  13/08/2025 19.00  885.00
+        2025/00471 La Despensa Trattoria        19/09/2025 19.00  904.00
+        2025/00477 Cedar Foods                  29/09/2025 19.00  923.00
+        2025/00540 Cedar Foods                  26/11/2025 19.00  942.00
+        2025/00582 Village Foods                25/12/2025 19.00  961.00
+        12        3.353
+
+       Cologne
+        2024/00060 Aurora Bistro                18/03/2024 19.00  980.00
+        2024/00201 Aurora Bistro                01/10/2024 19.00  999.00
+        2024/00264 Saint Martin Bistro          06/12/2024 19.00  1,018.00
+        2025/00330 Aurora Bistro                17/02/2025 19.00  1,037.00
+        2025/00366 Saint Martin Bistro          08/04/2025 19.00  1,056.00
+        2025/00459 Saint Martin Bistro          01/09/2025 19.00  1,075.00
+        6         1.541
+
+       Hamburg
+    Page sum 761.00             123              28744
+
+
+
+
+
+
+    Orders by country and city                       Page 3 group page 2
+
+
+     Germany                                  0
+        2025/00429 Atlas Grocers                14/07/2025 19.00  1,094.00
+        2025/00474 Atlas Grocers                23/09/2025 19.00  1,113.00
+        2025/00504 Atlas Grocers                30/10/2025 19.00  1,132.00
+        3         0.740
+
+     Orders of Germany           21      0         19       8.7328
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,112 @@
+
+
+
+
+    Customers at 9.6 lines per inch
+
+    C0001   Gourmet Foods               Madrid
+    C0002   Golden Fork Bistro          Bilbao
+    C0003   Lighthouse Kitchen          Madrid
+    C0004   Silver Spoon Fine Foods     Madrid
+    C0005   Royal Oak Foods             Madrid
+    C0006   Casa Verde Delicatessen     Bilbao
+    C0007   Corner Cafe                 Zaragoza
+    C0008   Red Door Bistro             Marseille
+    C0009   Casa Verde Gourmet Shop     Toulouse
+    C0010   Cedar Grocers               Marseille
+    C0011   Harvest Moon Food Hall      Paris
+    C0012   Market Square Wine Bar      Bordeaux
+    C0013   Seaside Grocers             Paris
+    C0014   Silver Spoon Kitchen        Toulouse
+    C0015   Aurora Bistro               Cologne
+    C0016   Saint Martin Bistro         Cologne
+    C0017   La Despensa Trattoria       Berlin
+    C0018   Atlas Grocers               Hamburg
+    C0019   Blue Harbor Trattoria       Frankfurt
+    C0020   Village Foods               Berlin
+    C0021   Cedar Foods                 Berlin
+    C0022   Olive Tree Trattoria        Rome
+    C0023   Bella Vista Kitchen         Rome
+    C0024   Gourmet Restaurant          Rome
+    C0025   Harvest Moon Gourmet Shop   Turin
+    C0026   Atlas Restaurant            Rome
+    C0027   Saint Martin Fine Foods     Turin
+    C0028   North Star Restaurant       Turin
+    C0029   Royal Oak Cafe              Porto
+    C0030   Lighthouse Gourmet Shop     Coimbra
+    C0031   Aurora Foods                Braga
+    C0032   Sunny Coast Cafe            Braga
+    C0033   Little Italy Cafe           Porto
+    C0034   Olive Tree Kitchen          Amsterdam
+    C0035   El Rincon Trattoria         Amsterdam
+    C0036   La Despensa Cafe            Utrecht
+    C0037   Bella Vista Food Hall       Utrecht
+    C0038   Red Door Market             Rotterdam
+    C0039   Le Petit Restaurant         Antwerp
+    C0040   Saint Martin Delicatessen   Brussels
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

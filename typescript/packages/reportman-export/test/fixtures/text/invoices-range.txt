@@ -1,0 +1,210 @@
+
+
+    Mare Nostrum Fine Foods                                             INVOICE
+
+    Muelle de Levante 12 ú 08039 Barcelona ú Spa
+    VAT ES-B00000000 ú +34 930 000 000 ú billing
+
+
+      BILL TO                                  Invoice number        2024/00007
+      Lighthouse Gourmet Shop                  Date                  08/01/2024
+      Attn. Lukas Silva                        Customer code              C0030
+                                               Sales represe       Daniel Costa
+      47 River Walk
+      04724 Coimbra
+      PORTUGAL
+
+
+
+     # SKU    Description                     Qty.Unit pr   Disc.       Amount
+
+     1 MN-40  Cantabrian Anchovies              24      6.80            163.20
+              50 g can
+     2 MN-70  Polvorones                        12      5.20   5%        59.28
+              400 g box
+
+    Amounts in euros. Payment within 30 d               Subtotal        222.48
+    IBAN ES00 0000 0000 0000 0000 0000                   VAT 23%         51.17
+
+    Thank you for your business!                 TOTAL (EUR)            273.65
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 1
+
+
+
+
+
+
+    Mare Nostrum Fine Foods                                             INVOICE
+
+    Muelle de Levante 12 ú 08039 Barcelona ú Spa
+    VAT ES-B00000000 ú +34 930 000 000 ú billing
+
+
+      BILL TO                                  Invoice number        2024/00008
+      Casa Verde Delicatessen                  Date                  09/01/2024
+      Attn. Anna Ruiz                          Customer code              C0006
+                                               Sales represe      Laura Navarro
+      22 High Street
+      27056 Bilbao
+      SPAIN
+
+
+
+     # SKU    Description                     Qty.Unit pr   Disc.       Amount
+
+     1 MN-20  Idiazabal Smoked Cheese            6     13.40             80.40
+              500 g piece
+     2 MN-10  Lemon Infused Olive Oil           24      8.20  10%       177.12
+              250 ml bottle
+
+    Amounts in euros. Payment within 30 d               Subtotal        257.52
+    IBAN ES00 0000 0000 0000 0000 0000                   VAT 21%         54.08
+
+    Thank you for your business!                 TOTAL (EUR)            311.60
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 2
+
+
+
+
+
+
+    Mare Nostrum Fine Foods                                             INVOICE
+
+    Muelle de Levante 12 ú 08039 Barcelona ú Spa
+    VAT ES-B00000000 ú +34 930 000 000 ú billing
+
+
+      BILL TO                                  Invoice number        2024/00009
+      Old Mill Restaurant                      Date                  10/01/2024
+      Attn. Noah Fischer                       Customer code              C0045
+                                               Sales represe      Oliver Taylor
+      92 Garden Row
+      60760 London
+      UNITED KINGDOM
+
+
+
+     # SKU    Description                     Qty.Unit pr   Disc.       Amount
+
+     1 MN-30  Chorizo from Leon                  8      4.70             37.60
+              250 g piece
+     2 MN-80  Rioja Crianza                      4     12.90             51.60
+              750 ml bottle
+
+    Amounts in euros. Payment within 30 d               Subtotal         89.20
+    IBAN ES00 0000 0000 0000 0000 0000                    VAT 0%          0.00
+
+    Thank you for your business!                 TOTAL (EUR)             89.20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

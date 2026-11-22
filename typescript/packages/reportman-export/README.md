@@ -1,6 +1,7 @@
 # @reportman/export
 
-The outputs of a Report Manager metafile besides the PDF, with JavaScript only: CSV, SVG and HTML.
+The outputs of a Report Manager metafile besides the PDF, with JavaScript only: CSV, SVG and HTML,
+and the text of line, dot matrix and receipt printers.
 The metafile is what `@reportman/engine` lays a report out into (`executeToMetafile` of
 `@reportman/node`); these functions turn its pages into text, as the engines of Report Manager do:
 
@@ -10,6 +11,7 @@ The metafile is what `@reportman/engine` lays a report out into (`executeToMetaf
 | `metafileToSvg` | `ExportMetafileToSVG` of the Delphi engine (`rpsvgdriver.pas`) | one SVG document per page, and its image files |
 | `metafileToHtml` | `ExportMetafileToHtml` of the Delphi engine (`rphtmldriver.pas`) | one HTML document per page, and its image files |
 | `metafileToHtmlSingle` | `ExportMetafileToHtmlSingle` of the Delphi engine | one HTML document with every page, images inline |
+| `TextDevice` | `PrintOutText` of the C# engine | the bytes for a text printer (a layout device, see below) |
 
 The C# engine has no SVG or HTML output: those two are ports of the Delphi drivers, and give the
 documents Delphi writes from the same metafile, byte for byte (`test/svg-html.test.ts` checks them
@@ -76,6 +78,29 @@ under the other and the images inline (`data:` URIs).
 - `pages`: `{ index, fileName, text }` for each page; `files`: a `Map` of the image files by name.
 - `windows1252Bytes(text)`: the bytes Delphi writes, its `AnsiString` on a Windows-1252 system
   (`Ā` is `A`, what has no equivalent is `?`). The SVG declares `ISO-8859-1`, the HTML no charset.
+
+## Text
+
+`TextDevice` is the text device of the C# engine (`PrintOutText`): a report printed on a line
+printer is laid out on its character grid (a fixed width per character at the pitch its font size
+selects, a line per 1/6 inch), so it is run with this device instead of written from the metafile of
+a PDF run. Its result is the bytes for the printer, the escape codes of its driver included:
+
+```ts
+import { TextDevice, runReportToText } from '@reportman/export';
+
+const device = new TextDevice({ driver: 'PLAIN' });
+const bytes = await report.executeWithDevice(device, (run) => runReportToText(run));
+```
+
+The drivers: `PLAIN` (the default) and `PLAINFULL`, `EPSON`, `EPSON-MASTER`, `EPSON-ESCP`,
+`EPSON-ESCPQ`, `IBMPROPRINTER`, `HP-PCL`, `VT100`, and the receipt printers `EPSONTMU210` and the
+TM88 family, which draw their barcodes themselves (ESC/POS QR, PDF417 and 1D codes). The text is in
+code page 850 by default (`oemConvert: false` for UTF-8), as C# writes it without a `reportman.ini`;
+`printerConfig` gives what that file would say. Images are not printed, as in C# without a bitmap
+reader. `test/text.test.ts` checks the layout and the bytes against `PrintOutText` itself
+(`tools/golden-cs --text`), and the code pages against .NET. `decodeCp437` reads the bytes as
+Reportman.Server does for its `text` format.
 
 ## Where the Delphi behaviour is kept
 

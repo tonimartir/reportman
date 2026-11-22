@@ -1,0 +1,210 @@
+
+
+
+      MARE NOSTRUM FINE FOODS                             Printed o222/11/2
+      Customers by country
+
+    Every customer, grouped by country, with the contact person and the phone
+
+    Argentina
+
+    Code  Company               Contact         City        PhoneCustom
+
+    C0060 Corner Restaurant     Paolo Fernandez Rosario     +54 934 5221/09/
+    C0062 Little Italy Wine B   Sofia Moreau    Cordoba     +54 675 9115/12/
+    C0061 Red Door Cafe         Claire Ruiz     Rosario     +54 192 9009/11/
+
+    C0063 Riverside Cafe        Marco Brown     Buenos Air  +54 314 5226/11/
+                                              Customers in thi                4
+
+
+    Belgium
+
+    Code  Company               Contact         City        PhoneCustom
+    C0039 Le Petit Restaurant   Pieter Castro   Antwerp     +32 850 4220/02/
+    C0042 Little Italy Restau   Ines de Vries   Brussels    +32 627 7220/03/
+
+    C0041 Riverside Grocers     Ana Keller      Brussels    +32 274 8330/04/
+    C0040 Saint Martin Delica   Leon Smith      Brussels    +32 402 6003/01/
+
+                                              Customers in thi                4
+
+    France
+
+    Code  Company               Contact         City        PhoneCustom
+    C0009 Casa Verde Gourmet    Pieter Silva    Toulouse    +33 521 4331/08/
+
+    C0010 Cedar Grocers         Elena Garcia    Marseille   +33 152 9001/04/
+    C0011 Harvest Moon Food H   Luis Martin     Paris       +33 799 4228/08/
+    C0012 Market Square Wine    Alba de Vries   Bordeaux    +33 311 5009/10/
+
+    C0008 Red Door Bistro       Mia Weber       Marseille   +33 712 9229/08/
+    C0013 Seaside Grocers       Hans Taylor     Paris       +33 277 1009/02/
+    C0014 Silver Spoon Kitchen  Emma Keller     Toulouse    +33 232 7114/06/
+
+                                              Customers in thi                7
+
+    Germany
+
+    Code  Company               Contact         City        PhoneCustom
+
+    C0018 Atlas Grocers         Lukas Garcia    Hamburg     +49 761 4110/02/
+    C0015 Aurora Bistro         Pieter Janssens Cologne     +49 645 5118/11/
+    C0019 Blue Harbor Trattor   Pieter Pereira  Frankfurt   +49 910 6225/03/
+
+    C0021 Cedar Foods           Marco Romero    Berlin      +49 161 8229/01/
+    C0017 La Despensa Trattor   Noah Keller     Berlin      +49 915 6226/01/
+    C0016 Saint Martin Bistro   Carmen Janssens Cologne     +49 898 9224/03/
+
+    C0020 Village Foods         Hugo Brown      Berlin      +49 374 7227/06/
+                                              Customers in thi                7
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 1
+
+
+
+
+
+
+
+      MARE NOSTRUM FINE FOODS                             Printed o222/11/2
+      Customers by country
+
+    Every customer, grouped by country, with the contact person and the phone
+
+    Italy
+
+    Code  Company               Contact         City        PhoneCustom
+
+    C0026 Atlas Restaurant      James Peeters   Rome        +39 159 8223/11/
+    C0023 Bella Vista Kitchen   James Wilson    Rome        +39 340 1118/05/
+    C0024 Gourmet Restaurant    Alba Pereira    Rome        +39 721 7224/11/
+
+    C0025 Harvest Moon Gourme   Sofia Brown     Turin       +39 792 9112/09/
+    C0028 North Star Restaura   Pierre Bianchi  Turin       +39 221 1110/11/
+    C0022 Olive Tree Trattoria  Olivia Muller   Rome        +39 265 3114/09/
+
+    C0027 Saint Martin Fine F   Mateo Lopez     Turin       +39 426 6229/01/
+                                              Customers in thi                7
+
+
+    Mexico
+
+    Code  Company               Contact         City        PhoneCustom
+    C0059 Golden Fork Cafe      Miguel Silva    Mexico City +52 359 9224/03/
+    C0056 Green Valley Wine B   Oliver de Vries Monterrey   +52 527 8221/08/
+
+    C0058 Harvest Moon Wine B   Mateo Moreau    Guadalajara +52 591 3001/09/
+    C0057 Le Petit Bistro       Marco Martin    Mexico City +52 289 6003/10/
+
+                                              Customers in thi                4
+
+    Netherlands
+
+    Code  Company               Contact         City        PhoneCustom
+    C0037 Bella Vista Food Ha   Marie Janssens  Utrecht     +31 659 8119/07/
+
+    C0035 El Rincon Trattoria   David Conti     Amsterdam   +31 907 7002/07/
+    C0036 La Despensa Cafe      Chiara Costa    Utrecht     +31 462 9113/11/
+    C0034 Olive Tree Kitchen    Ines Taylor     Amsterdam   +31 675 9008/11/
+
+    C0038 Red Door Market       Luis Ruiz       Rotterdam   +31 696 4001/07/
+                                              Customers in thi                5
+
+
+    Portugal
+    Code  Company               Contact         City        PhoneCustom
+
+    C0031 Aurora Foods          Ines Weber      Braga       +351 654 116/12/
+    C0030 Lighthouse Gourmet    Lukas Silva     Coimbra     +351 777 001/09/
+
+    C0033 Little Italy Cafe     Noah Ricci      Porto       +351 742 226/08/
+    C0029 Royal Oak Cafe        Valentina Mart  Porto       +351 464 224/03/
+    C0032 Sunny Coast Cafe      Leon Schmidt    Braga       +351 765 006/10/
+
+                                              Customers in thi                5
+
+
+
+
+
+
+    Report Manager sample report ú data: samples.db                      Page 2
+
+
+
+
+
+
+
+      MARE NOSTRUM FINE FOODS                             Printed o222/11/2
+      Customers by country
+
+    Every customer, grouped by country, with the contact person and the phone
+
+    Spain
+
+    Code  Company               Contact         City        PhoneCustom
+
+    C0006 Casa Verde Delicate   Anna Ruiz       Bilbao      +34 353 2001/07/
+    C0007 Corner Cafe           Carmen Costa    Zaragoza    +34 697 6008/07/
+    C0002 Golden Fork Bistro    David Ortega    Bilbao      +34 366 8226/03/
+
+    C0001 Gourmet Foods         Hugo Castro     Madrid      +34 543 3006/01/
+    C0003 Lighthouse Kitchen    Miguel Romero   Madrid      +34 951 3117/02/
+    C0005 Royal Oak Foods       Miguel Bakker   Madrid      +34 977 5114/01/
+
+    C0004 Silver Spoon Fine F   Claire Johnson  Madrid      +34 535 9116/05/
+                                              Customers in thi                7
+
+
+    Switzerland
+
+    Code  Company               Contact         City        PhoneCustom
+    C0049 Bella Vista Foods     Mateo Bianchi   Geneva      +41 369 2111/01/
+    C0050 Green Valley Tratto   Ines Bianchi    Zurich      +41 569 7224/06/
+
+    C0047 Harvest Moon Empori   Miguel Taylor   Geneva      +41 925 5223/09/
+    C0048 Lighthouse Food Hall  Carmen Wilson   Basel       +41 258 5009/05/
+
+                                              Customers in thi                4
+
+    United Kingdom
+
+    Code  Company               Contact         City        PhoneCustom
+    C0043 Casa Verde Trattoria  Valentina Brown Edinburgh   +44 724 3111/03/
+
+    C0046 Cedar Wine Bar        Valentina John  Edinburgh   +44 432 5119/04/
+    C0044 Market Square Market  Hans Peeters    Bristol     +44 763 2227/04/
+    C0045 Old Mill Restaurant   Noah Fischer    London      +44 699 4009/10/
+
+                                              Customers in thi                4
+
+    United States
+
+    Code  Company               Contact         City        PhoneCustom
+
+    C0053 Le Petit Fine Foods   James Silva     Boston      +1 726 52003/05/
+    C0054 Little Italy Delica   Marie Weber     Chicago     +1 972 37113/03/
+    C0055 Olive Tree Foods      Javier Schmidt  Chicago     +1 651 88226/01/
+
+    C0052 Olive Tree Grocers    Thomas Pereira  San Franci  +1 509 84113/02/
+    C0051 Village Trattoria     Chiara Moreau   Miami       +1 794 96227/06/
+                                              Customers in thi                5
+
+
+     Total customers                                                       63
+
+
+
+
+
+
+
+
+
+
