@@ -17,6 +17,13 @@ const report = await openReport('sales.rep', {
 const pdf = await report.executeToPdf({ YEAR: 2025 });
 ```
 
+## Examples
+
+Eleven sample reports, with pictures of their pages, their `.rep` files and the PDFs
+`@reportman/node` makes of them, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
+them run: `npx @reportman/server --samples`.
+
 ## Options
 
 `reportmanAgent(options)` returns a connection factory for `connections`. The options are the values a C#

@@ -20,6 +20,16 @@ console key and listens on `http://127.0.0.1:8080/`. Open that address, enter th
 explorer runs the samples: it shows the exact request and gives the same call for curl,
 PowerShell, JavaScript, C# and Delphi.
 
+<p>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/invoices.png" width="180" alt="Invoices"></a>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/sales-by-category.png" width="180" alt="Sales by category"></a>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/product-catalog.png" width="180" alt="Product catalogue"></a>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/international.png" width="180" alt="International text"></a>
+</p>
+
+The eleven samples, with pictures of their pages, their `.rep` files and their PDFs, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples).
+
 | Option | |
 |---|---|
 | `--data <folder>` | the data folder (`./reportman-data`) |

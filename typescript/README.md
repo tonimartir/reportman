@@ -9,6 +9,11 @@ Status: **preview**, versions `4.1.0-alpha.N` with the npm tag `next`
 (`npm install @reportman/node@next`); the API may change until 4.1.0. The plan (in Spanish) is
 `docs/npm_typescript_plan.md` of the Delphi repository (`tonimartir/reportmandelphi`).
 
+**Examples:** the eleven sample reports, with pictures of their pages, their `.rep` files and the
+PDFs `@reportman/node` makes of them, are in the [examples gallery](examples/README.md), which also
+shows how to run them; every package's README points there. `npx @reportman/server --samples`
+runs them in a web console.
+
 ## Packages
 
 | Package | What | Runs in |

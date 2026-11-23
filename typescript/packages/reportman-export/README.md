@@ -20,6 +20,13 @@ against the Delphi engine itself, `tools/golden-delphi`).
 Status: preview (`4.1.0-alpha.N`, npm tag `next`). Browser and Node: the package does no I/O, it
 returns the documents and the files, and the host writes them.
 
+## Examples
+
+Eleven sample reports, with pictures of their pages, their `.rep` files and the PDFs
+`@reportman/node` makes of them, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
+them run: `npx @reportman/server --samples`.
+
 ## CSV
 
 ```ts

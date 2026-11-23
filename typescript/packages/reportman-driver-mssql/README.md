@@ -44,6 +44,13 @@ object with `connectionString`, `server` (Data Source), `database`, `user`, `pas
   data while it evaluates an expression (GETVALUEFROMSQL, a dataset opened on demand, REOPEN), as the C# engine
   does.
 
+## Examples
+
+Eleven sample reports, with pictures of their pages, their `.rep` files and the PDFs
+`@reportman/node` makes of them, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
+them run: `npx @reportman/server --samples`.
+
 ## The session
 
 The login sets fODBC as SqlClient does, and nothing is sent after it: the session has the ODBC defaults of the

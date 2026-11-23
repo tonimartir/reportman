@@ -26,6 +26,13 @@ connection string (its keys and synonyms, `host/port:path` in the database...) o
 values with the current culture of the C# engine (the date of a TIMESTAMP WITH TIME ZONE, a number or date
 sent to a text parameter).
 
+## Examples
+
+Eleven sample reports, with pictures of their pages, their `.rep` files and the PDFs
+`@reportman/node` makes of them, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
+them run: `npx @reportman/server --samples`.
+
 ## Types
 
 | Firebird | FirebirdClient type | Engine column | Value |

@@ -13,6 +13,13 @@ says how to convert it.
 Status: preview (`4.1.0-alpha.N`, npm tag `next`). Pure JavaScript; its only dependency is
 `fflate`. Browser and Node.
 
+## Examples
+
+Eleven sample reports, with pictures of their pages, their `.rep` files and the PDFs
+`@reportman/node` makes of them, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
+them run: `npx @reportman/server --samples`.
+
 ## Use
 
 ```ts

@@ -38,6 +38,13 @@ a NotSupportedException.
 `culture` is the culture of the run (`'en-US'` by default, as in openReport): the C# engine prints the
 MySqlDateTime of `AllowZeroDateTime=True` with its current culture.
 
+## Examples
+
+Eleven sample reports, with pictures of their pages, their `.rep` files and the PDFs
+`@reportman/node` makes of them, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
+them run: `npx @reportman/server --samples`.
+
 ## Types
 
 | MySQL | MySqlConnector type | Engine column | Value |

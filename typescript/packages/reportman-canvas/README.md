@@ -14,6 +14,13 @@ Status: preview (`4.1.0-alpha.N`, npm tag `next`). Browser (or a worker with an
 `OffscreenCanvas`); the drawing code works on an interface, so it also runs in Node with any object
 that has the methods of a 2D context.
 
+## Examples
+
+Eleven sample reports, with pictures of their pages, their `.rep` files and the PDFs
+`@reportman/node` makes of them, are in the
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
+them run: `npx @reportman/server --samples`.
+
 ## Use
 
 ```ts

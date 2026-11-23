@@ -10,6 +10,25 @@ charts, sections and groups, subreports, master/detail, parameters, the standard
 and, with the `fonts` option, embedded TrueType and OpenType fonts with HTML text, right to left
 and complex scripts, and PDF/A-3B.
 
+## Examples
+
+<p>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/invoices.png" width="180" alt="Invoices"></a>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/sales-by-category.png" width="180" alt="Sales by category"></a>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/product-catalog.png" width="180" alt="Product catalogue"></a>
+<a href="https://github.com/tonimartir/reportman/tree/main/typescript/examples"><img src="https://raw.githubusercontent.com/tonimartir/reportman/main/samples/thumbnails/international.png" width="180" alt="International text"></a>
+</p>
+
+Eleven sample reports (invoices, groups and totals, charts, EAN-13 barcodes, labels, HTML text,
+unions of datasets, nine languages in eight scripts) with their `.rep` files and the PDFs this
+package makes of them: the [examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples),
+which also shows how to run them from the command line and from a program. To see them run in a
+minute:
+
+```bash
+npx @reportman/server --samples     # the samples in a web console at http://127.0.0.1:8080/
+```
+
 ## Install
 
 ```bash
