@@ -776,7 +776,8 @@ namespace Reportman.Reporting
                     // 15 significant digits, as the Delphi engine and the .NET Framework: the shortest
                     // text that reads back as the same Double (.NET Core 3 and later) shows the noise
                     // of the binary value (0.1+0.2 as 0,30000000000000004; 4.35*100 as 434,99999999999994)
-                    aresult = FDouble.ToString("G15");
+                    // (a negative zero is "-0" for .NET Core 3 and later: the zero)
+                    aresult = FDouble == 0 ? "0" : FDouble.ToString("G15");
                     break;
                 case VariantType.DateTime:
                     aresult = FDateTime.ToString();
@@ -2329,8 +2330,12 @@ namespace Reportman.Reporting
                     return FDateTime.TimeOfDay == TimeSpan.Zero ? FDateTime.ToShortDateString() : FDateTime.ToString();
                 case VariantType.Decimal:
                     if (delphiMasks)
-                        return ((double)FDecimal).ToString("G15");
+                        return DelphiFormat.DecimalText(FDecimal);
                     return FDecimal.ToString("G29");
+                case VariantType.Double:
+                    if (delphiMasks)
+                        return DelphiFormat.FloatText(FDouble);
+                    return ToString();
                 default:
                     return ToString();
             }
@@ -2491,13 +2496,14 @@ namespace Reportman.Reporting
                 case VariantType.String:
                     string astring = Value;
                     if (displayformat.Length > 0)
-                        aresult = string.Format(displayformat, astring);
+                        // Delphi's Format (%s) in a report converted from Delphi, .NET's ({0}) in the others
+                        aresult = delphiMasks ? DelphiFormat.FormatString(displayformat, astring) : string.Format(displayformat, astring);
                     else
                         aresult = astring;
                     break;
                 case VariantType.Boolean:
                     bool bvalue = Value;
-                    aresult = string.Format(displayformat, bvalue.ToString());
+                    aresult = delphiMasks ? DelphiFormat.FormatString(displayformat, bvalue.ToString()) : string.Format(displayformat, bvalue.ToString());
                     break;
                 default:
                     aresult = "";

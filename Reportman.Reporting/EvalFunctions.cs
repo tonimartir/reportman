@@ -369,7 +369,11 @@ namespace Reportman.Reporting
             aresult = "";
             if (Params[0].VarType == VariantType.Null)
                 Params[0] = "";
-            aresult = Params[1].ToString(format, ParamType.Unknown, true, EvalObject != null && EvalObject.DelphiMasks);
+            bool delphiMasks = EvalObject != null && EvalObject.DelphiMasks;
+            // In the Delphi engine FORMATSTR formats numbers and dates and returns any other value as it is
+            if (delphiMasks && ((Params[1].VarType == VariantType.String) || (Params[1].VarType == VariantType.Boolean)))
+                return Params[1];
+            aresult = Params[1].ToString(format, ParamType.Unknown, true, delphiMasks);
             return aresult;
         }
     }

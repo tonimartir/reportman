@@ -175,7 +175,10 @@ class IdenFormatStr extends BuiltinFunction {
     const format = this.str(0)!;
     // C# parity: Params[0] cannot be Null here (checked above); the assignment is kept.
     if ((this.params[0]!.varType as VariantType) === VariantType.Null) this.params[0] = Variant.fromString('');
-    return Variant.fromString(this.params[1]!.toFormatString(this.ctx, format, ParamType.Unknown, true));
+    // In the Delphi engine FORMATSTR formats numbers and dates and returns any other value as it is
+    const value = this.params[1]!;
+    if (this.ctx.delphiMasks === true && (value.varType === VariantType.String || value.varType === VariantType.Boolean)) return value;
+    return Variant.fromString(value.toFormatString(this.ctx, format, ParamType.Unknown, true));
   }
 }
 

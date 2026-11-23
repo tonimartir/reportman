@@ -11,6 +11,7 @@ import { compositeFormat } from '../util/compositeformat.js';
 import { dateFormatMask, formatDateTime } from '../util/dateformat.js';
 import { RpDateTime, DateTimeKind } from '../util/datetime.js';
 import { delphiFormatSettings, formatDateTimeDelphi } from '../util/delphidateformat.js';
+import { delphiDecimalText, delphiFloatText, delphiFormatString } from '../util/delphiformat.js';
 import { delphiNumberMaskToDotNet } from '../util/delphinumbermask.js';
 import { CsDecimal } from '../util/decimal.js';
 import { formatDecimal, formatDouble, formatInteger } from '../util/numberformat.js';
@@ -508,7 +509,8 @@ export class Variant {
         // 15 significant digits, as the Delphi engine and the .NET Framework: the shortest text that
         // reads back as the same Double shows the noise of the binary value (0.1+0.2 as
         // 0,30000000000000004)
-        return formatDouble(this.n, 'G15', nfi);
+        // (a negative zero is "-0" for .NET Core 3 and later: the zero)
+        return this.n === 0 ? '0' : formatDouble(this.n, 'G15', nfi);
       case VariantType.DateTime:
         return formatDateTime(this.dt, '', ctx.culture, ctx.timeZone);
       case VariantType.String:
@@ -564,9 +566,12 @@ export class Variant {
         return this.dt.tickOfDay === 0 ? formatDateTime(this.dt, 'd', ctx.culture, ctx.timeZone) : this.toString(ctx);
       }
       case VariantType.Decimal:
-        // In a report converted from Delphi, the 15 digits of the Double it is in Delphi
-        if (delphi) return formatDouble(this.d.toDouble(), 'G15', ctx.culture.number);
+        // In a report converted from Delphi: the Currency or the Double it is in Delphi
+        if (delphi) return delphiDecimalText(this.d, ctx.culture.number);
         return formatDecimal(this.d, 'G29', ctx.culture.number);
+      case VariantType.Double:
+        if (delphi) return delphiFloatText(this.n, ctx.culture.number);
+        return this.toString(ctx);
       default:
         return this.toString(ctx);
     }
@@ -651,11 +656,12 @@ export class Variant {
       }
       case VariantType.String: {
         const astring = value.s;
-        if (displayformat.length > 0) return compositeFormat(displayformat, [astring]);
+        // Delphi's Format (%s) in a report converted from Delphi, .NET's ({0}) in the others
+        if (displayformat.length > 0) return delphi ? delphiFormatString(displayformat, astring) : compositeFormat(displayformat, [astring]);
         return astring;
       }
       case VariantType.Boolean:
-        return compositeFormat(displayformat, [value.b ? 'True' : 'False']);
+        return delphi ? delphiFormatString(displayformat, value.b ? 'True' : 'False') : compositeFormat(displayformat, [value.b ? 'True' : 'False']);
       default:
         return '';
     }

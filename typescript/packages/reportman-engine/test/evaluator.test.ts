@@ -361,6 +361,22 @@ describe('Variant.toFormatString with a parameter type', () => {
     const ninth = Variant.div(Variant.fromDecimal(CsDecimal.parseInvariant('80.0')), Variant.fromDecimal(CsDecimal.parseInvariant('9.0')), es);
     expect(ninth.toFormatString(es, '')).toBe('8,88888888888889');
     expect(ninth.toFormatString(net, '')).toBe('8,888888888888888888888888889');
+    // ... but with up to four decimals it is Delphi's Currency, which keeps its digits
+    expect(Variant.fromDecimal(CsDecimal.parseInvariant('922337203685477.5807')).toFormatString(es, '')).toBe('922337203685477,5807');
+    // A Double without mask as FloatToStr: the exponent without a plus sign or zeros
+    expect(Variant.fromDouble(1e20).toFormatString(es, '')).toBe('1E20');
+    expect(Variant.fromDouble(0.00001).toFormatString(es, '')).toBe('1E-5');
+    expect(Variant.fromDouble(1e20).toFormatString(net, '')).toBe('1E+20');
+    expect(Variant.fromDouble(-0).toString(net)).toBe('0');
+    // A text with a display format: Delphi's Format (%s), .NET's ({0}) in a report of the C# engine
+    const text = Variant.fromString('abc');
+    expect(text.toFormatString(es, '%s')).toBe('abc');
+    expect(text.toFormatString(es, '%-10s|')).toBe('abc       |');
+    expect(text.toFormatString(es, '%5s|%.2s|%%')).toBe('  abc|ab|%');
+    expect(text.toFormatString(es, '{0}')).toBe('{0}');
+    expect(text.toFormatString(es, '#,##0.00')).toBe('#,##0.00');
+    expect(text.toFormatString(net, '{0}')).toBe('abc');
+    expect(Variant.fromBoolean(true).toFormatString(es, '%s!')).toBe('True!');
   });
 
   it('gives defaults to Null values and hides zeros', () => {
