@@ -168,12 +168,28 @@ export function decodeImageForPdf(data: Uint8Array): DecodedBitmap | null {
 }
 
 /**
- * PrintOutPDFStandard.GetBitmapInfo (the size the Crop draw style fits): the size of the image
- * Skia decodes; bytes it cannot decode fail with the NullReferenceException of the C# code.
+ * The size the Crop draw style fits: the size of the image Skia decodes
+ * (PrintOutPDFStandard.GetBitmapInfo); null for bytes it cannot decode (a 15 bit bitmap, bytes that
+ * are no image), which are drawn as the stretch style draws them.
  *
  * C# decodes the JPEG and the BMP with Skia; here their size is read from their headers (the
  * first SOFn marker; the bitmap header as the BMP codec of Skia validates it), which is what Skia
  * reads, without checking that the rest of the image decodes.
+ */
+export function cropSizeOf(data: Uint8Array): { width: number; height: number } | null {
+  try {
+    return bitmapInfoOf(data);
+  } catch (e) {
+    if (!(e instanceof Error) || e.message !== NULL_REFERENCE) throw e;
+  }
+  // The decoder does not know the image: nothing to fit
+  return null;
+}
+
+/**
+ * The size of the image as the decoder gives it (GetBitmapInfo of the Skia providers of C#, which
+ * return null for bytes Skia does not decode; here the error of the old NullReferenceException,
+ * which cropSizeOf catches).
  */
 export function bitmapInfoOf(data: Uint8Array): { width: number; height: number } {
   if (startsWith(data, [0xff, 0xd8, 0xff])) {

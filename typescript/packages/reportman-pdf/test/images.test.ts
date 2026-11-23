@@ -13,6 +13,7 @@ import {
   PdfDevice,
   PngIncompleteError,
   bitmapInfoOf,
+  cropSizeOf,
   decodeImage,
   renderPdf,
 } from '@reportman/pdf';
@@ -149,12 +150,23 @@ describe('images in the PDF', () => {
     expect(device.graphicExtent(jpeg, { x: 9, y: 8 }, 0)).toEqual({ x: 9, y: 8 });
   });
 
-  it('gives the size Skia decodes to the Crop draw style, and fails where Skia decodes nothing', () => {
+  it('gives the size Skia decodes to the Crop draw style, and none where Skia decodes nothing', () => {
     expect(bitmapInfoOf(png(7, 5, 0, 8, () => [0]))).toEqual({ width: 7, height: 5 });
     expect(bitmapInfoOf(jpeg)).toEqual({ width: 3, height: 2 });
-    expect(() => bitmapInfoOf(new Uint8Array([1, 2, 3]))).toThrow('Object reference not set to an instance of an object.');
-    const meta = imageMeta([{ data: new Uint8Array([1, 2, 3]), style: ImageDrawStyleType.Crop }]);
-    expect(() => renderPdf(meta, { clock: fixedClock })).toThrow('Object reference not set');
+    expect(cropSizeOf(jpeg)).toEqual({ width: 3, height: 2 });
+    // Bytes that are no image: no size to fit (it was the NullReferenceException of C#), and the
+    // PDF draws them as the stretch style does
+    expect(cropSizeOf(new Uint8Array([1, 2, 3]))).toBeNull();
+    const crop = imageMeta([{ data: new Uint8Array([1, 2, 3]), style: ImageDrawStyleType.Crop }]);
+    const stretch = imageMeta([{ data: new Uint8Array([1, 2, 3]), style: ImageDrawStyleType.Stretch }]);
+    const render = (meta: typeof crop): string | Uint8Array => {
+      try {
+        return renderPdf(meta, { clock: fixedClock });
+      } catch (e) {
+        return String(e);
+      }
+    };
+    expect(render(crop)).toEqual(render(stretch));
   });
 
   it('fails clearly for the formats Skia decodes that are not ported', () => {

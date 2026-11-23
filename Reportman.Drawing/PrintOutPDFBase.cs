@@ -427,8 +427,18 @@ namespace Reportman.Drawing
                                     newStream.Seek(0, SeekOrigin.Begin);
                                     var binfoprov = this.GetBitmapInfoProvider();
                                     var binfo = binfoprov.GetBitmapInfo(newStream);
-                                    bitmapwidth = binfo.Width;
-                                    bitmapheight = binfo.Height;
+                                    if (binfo != null)
+                                    {
+                                        bitmapwidth = binfo.Width;
+                                        bitmapheight = binfo.Height;
+                                    }
+                                }
+                                // The decoder does not know the image (a 15 bit bitmap, bytes that are no image; it
+                                // was a NullReferenceException): nothing to fit, drawn as the stretch style draws it
+                                if ((bitmapwidth <= 0) || (bitmapheight <= 0))
+                                {
+                                    FPDFFile.Canvas.DrawImage(rec, stream, 0, false, false, intimageindex);
+                                    break;
                                 }
 
                                 /*                                  if (!BitmapUtil.GetJPegInfo(stream, out bitmapwidth, out bitmapheight))

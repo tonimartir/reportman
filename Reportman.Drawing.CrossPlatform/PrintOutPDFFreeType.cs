@@ -25,6 +25,9 @@ namespace Reportman.Drawing.CrossPlatform
                 BitmapInfo info = new BitmapInfo();
                 using (SkiaSharp.SKBitmap bitmap = SkiaSharp.SKBitmap.Decode(stream))
                 {
+                    // Not an image Skia decodes (a 15 bit bitmap): the caller asks the PDF writer
+                    if (bitmap == null)
+                        return null;
                     info.Width = bitmap.Width;
                     info.Height = bitmap.Height;
                 }

@@ -29,7 +29,7 @@ import type {
 } from '@reportman/metafile';
 import { FontInfoFt, StandardTextMeasurer, type FontInfoProvider, type FontLibrary } from '@reportman/text';
 import { getBitmapInfo, getJpegInfo } from './bitmaputil.js';
-import { bitmapInfoOf } from './imagecodec.js';
+import { cropSizeOf } from './imagecodec.js';
 import { PDFFile, POINTS_PER_INCH, randomDocumentId, systemClock } from './pdffile.js';
 import type { PdfClock } from './pdffile.js';
 
@@ -352,7 +352,12 @@ export class PdfDevice extends PrintOut {
             break;
           case ImageDrawStyleType.Crop: {
             // The image keeps its proportions, centered (the size from the decoder, Skia in C#)
-            const binfo = bitmapInfoOf(stream);
+            const binfo = cropSizeOf(stream);
+            if (binfo === null) {
+              // No size: not an image to fit; drawn as the stretch style draws it
+              canvas.drawImage(rec, stream, 0, false, false, intimageindex);
+              break;
+            }
             const propx = rec.width / binfo.width;
             const propy = rec.height / binfo.height;
             if (propy > propx) {

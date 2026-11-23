@@ -426,6 +426,11 @@ export class CanvasPreview {
             // The image keeps its proportions, centered
             const binfo = prepared.cropSize;
             if (binfo instanceof Error) throw binfo;
+            if (binfo === null) {
+              // The decoder does not know the image: nothing to fit, drawn as the stretch style draws it
+              canvas.drawImage(rec, prepared, entry.image, 0, false, false);
+              break;
+            }
             const propx = rec.width / binfo.width;
             const propy = rec.height / binfo.height;
             if (propy > propx) {

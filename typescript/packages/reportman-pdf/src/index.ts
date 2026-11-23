@@ -16,7 +16,7 @@ export {
 // Images: the JPEG and BMP readers of the PDF writer and the decoders of the other formats
 export { getJpegInfo, getBitmapInfo, BitmapFormatError } from './bitmaputil.js';
 export type { JpegInfo, BitmapInfoResult } from './bitmaputil.js';
-export { decodeImage, decodeImageForPdf, bitmapInfoOf, ImageFormatNotSupportedError } from './imagecodec.js';
+export { decodeImage, decodeImageForPdf, bitmapInfoOf, cropSizeOf, ImageFormatNotSupportedError } from './imagecodec.js';
 export type { DecodedBitmap } from './imagecodec.js';
 export { decodePng, isPngSignature, PngIncompleteError } from './pngdecoder.js';
 export { decodeGif, isGifSignature } from './gifdecoder.js';

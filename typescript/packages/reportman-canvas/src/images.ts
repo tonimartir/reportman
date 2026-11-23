@@ -2,7 +2,7 @@
 // the draw styles are computed with, the pixels it embeds, the errors that stop it), and how a
 // browser turns them into something a context draws.
 
-import { bitmapInfoOf, decodeImage, getBitmapInfo, getJpegInfo, isGifSignature, isPngSignature } from '@reportman/pdf';
+import { cropSizeOf as pdfCropSizeOf, decodeImage, getBitmapInfo, getJpegInfo, isGifSignature, isPngSignature } from '@reportman/pdf';
 import type { BitmapInfoResult } from '@reportman/pdf';
 import type { CanvasImage } from './context.js';
 
@@ -39,13 +39,13 @@ export interface PreparedImage {
   /** The size in pixels the PDF canvas draws the image with (DrawImage). */
   width: number;
   height: number;
-  /** The size the Crop style fits (the size Skia decodes in C#), or the error it gives. */
-  cropSize: { width: number; height: number } | Error;
+  /** The size the Crop style fits (the size Skia decodes in C#); null when it decodes nothing; or an error. */
+  cropSize: { width: number; height: number } | null | Error;
 }
 
 function cropSizeOf(bytes: Uint8Array): PreparedImage['cropSize'] {
   try {
-    return bitmapInfoOf(bytes);
+    return pdfCropSizeOf(bytes);
   } catch (e) {
     return e instanceof Error ? e : new Error(String(e));
   }
