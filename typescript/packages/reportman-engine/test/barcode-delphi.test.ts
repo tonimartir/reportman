@@ -22,6 +22,7 @@ import {
   readMsi,
   readPdf417,
   readPostNet,
+  readQr,
   type Bar,
 } from './barcode-readers.js';
 
@@ -34,8 +35,10 @@ interface DelphiCase {
   /** What the symbol says when it is not the text as it is (escapes, characters out of the code page). */
   expect?: string;
   delphi?: string;
+  /** The ECCLevel of the item. */
+  ECCLEVEL?: number;
 }
-const delphiCases = JSON.parse(fs.readFileSync(path.join(here, 'barcode-delphi-cases.json'), 'utf8')) as { pdf417: DelphiCase[] };
+const delphiCases = JSON.parse(fs.readFileSync(path.join(here, 'barcode-delphi-cases.json'), 'utf8')) as { pdf417: DelphiCase[]; qr: DelphiCase[] };
 
 interface Barcode {
   label: string;
@@ -277,5 +280,43 @@ describe('PDF417 against the Delphi engine', () => {
 
   it('every case that Delphi has wrong is one of those', () => {
     expect([...new Set(cases.map((c) => c.delphi))].sort()).toEqual(['character twice', 'codeword escape', 'error correction', 'last character', undefined]);
+  });
+});
+
+// The QR symbols of both engines are the same for the same text at the same error correction
+// level: the same version, mask and modules, with the same quiet zone of four modules (both
+// encoders are ports of ZXing). What differs is the number of the level in the item: ECCLevel 3 is
+// M here and H in Delphi (2 L, 3 M, 4 Q, 5 H and any other value L here; 1 M, 2 Q, 3 H and any
+// other value L in Delphi), so the same report gives another symbol in each engine. The fixture
+// of Delphi is drawn with the level that means the same.
+describe('QR against the Delphi engine', () => {
+  const reference = delphi('bc-delphi-qr');
+  const drawn = engine('bc-delphi-qr');
+  const cases = delphiCases.qr;
+  const level = (c: DelphiCase): string => ({ 3: 'M', 4: 'Q', 5: 'H' })[c.ECCLEVEL ?? -1] ?? 'L';
+
+  it.each(cases.filter((c) => c.delphi === undefined))('draws the modules of Delphi: $caption', async (c) => {
+    const ours = (await drawn).get(c.caption)!;
+    const theirs = reference.get(c.caption)!;
+    expect(theirs.bars.length).toBeGreaterThan(0);
+    expect(ours.bars.length).toBe(theirs.bars.length);
+    expect(ours.bars).toEqual(theirs.bars);
+  });
+
+  it.each(cases)('reads back as the text, at its error correction level: $caption', async (c) => {
+    const symbol = readQr((await drawn).get(c.caption)!.bars);
+    expect(symbol.text).toBe(c.text);
+    expect(symbol.level).toBe(level(c));
+  });
+
+  it.each(cases.filter((c) => c.delphi === 'code page'))('Delphi loses the characters code page 1252 does not have: $caption', async (c) => {
+    // DoPrint of Delphi keeps the text as an AnsiString (CurrentText) and the QR encoder gets it
+    // back from there: the euro sign survives (it is in code page 1252, and the text is then
+    // written in UTF-8), Greek, Chinese or an emoji do not. Here the whole text is written in
+    // UTF-8, the way Delphi writes the ones it can.
+    const theirs = readQr(reference.get(c.caption)!.bars);
+    expect(theirs.text).not.toBe(c.text);
+    expect(theirs.level).toBe(level(c));
+    expect(readQr((await drawn).get(c.caption)!.bars).text).toBe(c.text);
   });
 });

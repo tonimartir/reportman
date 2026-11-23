@@ -7,6 +7,7 @@
   { "name": "bc-qr", "report": "fixtures/barcode/bc-qr.rep" },
   { "name": "bc-qr40", "report": "fixtures/barcode/bc-qr40.rep" },
   { "name": "bc-qr-versions", "report": "fixtures/barcode/bc-qr-versions.rep" },
+  { "name": "bc-delphi-qr", "report": "fixtures/barcode/bc-delphi-qr.rep" },
   { "name": "bc-pdf417", "report": "fixtures/barcode/bc-pdf417.rep" },
   { "name": "bc-pdf417-ecc", "report": "fixtures/barcode/bc-pdf417-ecc.rep" },
   { "name": "bc-delphi-pdf417", "report": "fixtures/barcode/bc-delphi-pdf417.rep" },

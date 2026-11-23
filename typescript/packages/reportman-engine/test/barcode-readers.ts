@@ -178,6 +178,37 @@ export function readCode93(bars: readonly Bar[]): string {
 }
 
 // ---------------------------------------------------------------------------------------------
+// QR
+
+/** A QR symbol read back from its modules. */
+export interface QrSymbol {
+  /** The modules of a side (21 for version 1), without the quiet zone. */
+  size: number;
+  text: string;
+  /** L, M, Q or H. */
+  level: string;
+}
+
+/**
+ * A QR symbol drawn without rotation, read with the QRCodeReader of @zxing/library: the dark
+ * modules (the rectangles of the size of the smallest one; a background rectangle is not one) as
+ * a bit matrix with its quiet zone.
+ */
+export function readQr(bars: readonly Bar[]): QrSymbol {
+  const module = Math.min(...bars.map((b) => b[2]));
+  const dark = bars.filter((b) => b[2] === module && b[3] === module);
+  const left = Math.min(...dark.map((b) => b[0]));
+  const top = Math.min(...dark.map((b) => b[1]));
+  const size = Math.round((Math.max(...dark.map((b) => b[0] + b[2])) - left) / module);
+  const quiet = 4;
+  const matrix = new zxing.BitMatrix(size + 2 * quiet, size + 2 * quiet);
+  for (const b of dark) matrix.set(Math.round((b[0] - left) / module) + quiet, Math.round((b[1] - top) / module) + quiet);
+  const image = { getBlackMatrix: () => matrix } as unknown as zxingModule.BinaryBitmap;
+  const result = new zxing.QRCodeReader().decode(image, new Map([[zxing.DecodeHintType.PURE_BARCODE, true]]));
+  return { size, text: result.getText(), level: String(result.getResultMetadata().get(zxing.ResultMetadataType.ERROR_CORRECTION_LEVEL)) };
+}
+
+// ---------------------------------------------------------------------------------------------
 // PDF417
 
 /** A PDF417 symbol read back from its bars. */

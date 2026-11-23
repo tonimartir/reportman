@@ -538,6 +538,27 @@ report('bc-delphi-pdf417.rep', {
   ],
 });
 
+// QR against Delphi: the texts of barcode-delphi-cases.json at each error correction level
+// (numeric, alphanumeric and byte modes, ISO-8859-1, and the characters beyond it, written in
+// UTF-8), the background and boxes that are not square. The Delphi engine numbers the levels
+// otherwise (0 L, 1 M, 2 Q, 3 H): generate-barcode-delphi-fixtures.mjs runs it with the level that
+// means the same. Those marked "delphi" have characters code page 1252 does not have, which Delphi
+// loses.
+report('bc-delphi-qr.rep', {
+  db: false,
+  subs: [
+    subreport(
+      '',
+      grid(
+        delphiCases.qr.map(({ caption, text, expect: _expect, delphi: _delphi, ...o }) => ({
+          expression: q(text), caption, TYP: BarType.QR, WIDTH: 800, HEIGHT: 800, ...o,
+        })),
+        { cols: 3, cellW: 3580, cellH: 1150, rowsPerSection: 4 },
+      ),
+    ),
+  ],
+});
+
 // Data from samples.db: Code 128, QR and EAN-13 of each product, and BARCODEOP in the before
 // print expression of the section.
 report('bc-data.rep', {

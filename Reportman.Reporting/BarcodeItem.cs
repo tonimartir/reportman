@@ -215,7 +215,28 @@ namespace Reportman.Reporting
                             break;
                             // { EncodeHintType.MARGIN, 1 }
                     }
-                    ZXing.Common.BitMatrix qrResult = qrCode.encode(CurrentText, ZXing.BarcodeFormat.QR_CODE, widthPixels, heightPixels, hints);
+                    // A text with a character beyond ISO-8859-1 (the euro sign, Greek, Chinese) is
+                    // written in UTF-8 after its byte order mark and with no ECI segment, as the QR
+                    // encoder of the Delphi engine writes it. ZXing writes any other text in
+                    // ISO-8859-1, and such a character would be a question mark. Not for a driver
+                    // that draws the QR by itself: it gets the text, which it writes in its own
+                    // code page, and the modules of the symbol ZXing makes of it as before.
+                    bool nativeQr = adriver != null && adriver.SupportsNativeBarcode(MetaBarcodeSymbology.QR);
+                    string qrText = CurrentText;
+                    if (!nativeQr)
+                    {
+                        foreach (char c in CurrentText)
+                        {
+                            if (c > 0xFF)
+                            {
+                                hints.Add(ZXing.EncodeHintType.CHARACTER_SET, "UTF-8");
+                                hints.Add(ZXing.EncodeHintType.DISABLE_ECI, true);
+                                qrText = (char)0xFEFF + CurrentText;
+                                break;
+                            }
+                        }
+                    }
+                    ZXing.Common.BitMatrix qrResult = qrCode.encode(qrText, ZXing.BarcodeFormat.QR_CODE, widthPixels, heightPixels, hints);
                     int barcodeHeight = qrResult.Height;
                     int barcodeWidth = qrResult.Width;
 
@@ -229,7 +250,7 @@ namespace Reportman.Reporting
                     // — the symbol plus its default quiet zone — which is exactly the grid the
                     // drawn version below spreads over the box, so both outputs pick the same
                     // module size and leave the same white around the code.
-                    if (adriver != null && adriver.SupportsNativeBarcode(MetaBarcodeSymbology.QR))
+                    if (nativeQr)
                     {
                         MetaObjectBarcode nativo = new MetaObjectBarcode();
                         nativo.MetaType = MetaObjectType.Barcode;

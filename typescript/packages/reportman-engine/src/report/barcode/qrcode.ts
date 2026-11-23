@@ -6,8 +6,10 @@
 // @zxing/library, the TypeScript port of the same ZXing (modes, versions, the bit packing, the
 // Reed-Solomon blocks and the matrix with its patterns), which give the same bits. Three parts of
 // @zxing/library do not give what ZXing.Net 0.16.11 gives, and are the ZXing.Net ones here:
-// - the byte mode: ZXing.Net writes the text in ISO-8859-1 (a code unit outside it as '?')
-//   without an ECI segment; @zxing/library writes UTF-8;
+// - the byte mode: ZXing.Net writes the text in ISO-8859-1 without an ECI segment;
+//   @zxing/library writes UTF-8. A text with a character beyond ISO-8859-1 is written in UTF-8
+//   after its byte order mark, also without an ECI segment (BarcodeItem asks ZXing.Net for it:
+//   it is what the QR encoder of the Delphi engine writes);
 // - the version: ZXing.Net rounds the bytes of the data down ((bits + 7) / 8 in integers);
 //   @zxing/library does not, and takes a bigger version (or none: "Data too big") when the bits
 //   are a few more than a whole number of bytes;
@@ -61,6 +63,32 @@ export function latin1Bytes(text: string): Uint8Array {
     bytes[i] = c <= 0xff ? c : 0x3f;
   }
   return bytes;
+}
+
+/** Whether a text has a character beyond ISO-8859-1. */
+function beyondLatin1(text: string): boolean {
+  for (let i = 0; i < text.length; i++) if (text.charCodeAt(i) > 0xff) return true;
+  return false;
+}
+
+/**
+ * The UTF-8 bytes of a text after the byte order mark (EF BB BF), as Encoding.UTF8 of .NET writes
+ * "\uFEFF" + text: a surrogate without its pair is U+FFFD.
+ */
+export function utf8BomBytes(text: string): Uint8Array {
+  const bytes: number[] = [0xef, 0xbb, 0xbf];
+  for (let i = 0; i < text.length; i++) {
+    let c = text.charCodeAt(i);
+    if (c >= 0xd800 && c <= 0xdbff && i + 1 < text.length && text.charCodeAt(i + 1) >= 0xdc00 && text.charCodeAt(i + 1) <= 0xdfff) {
+      c = 0x10000 + ((c - 0xd800) << 10) + (text.charCodeAt(i + 1) - 0xdc00);
+      i++;
+    } else if (c >= 0xd800 && c <= 0xdfff) c = 0xfffd;
+    if (c < 0x80) bytes.push(c);
+    else if (c < 0x800) bytes.push(0xc0 | (c >> 6), 0x80 | (c & 0x3f));
+    else if (c < 0x10000) bytes.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f));
+    else bytes.push(0xf0 | (c >> 18), 0x80 | ((c >> 12) & 0x3f), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f));
+  }
+  return Uint8Array.from(bytes);
 }
 
 /**
@@ -194,14 +222,20 @@ function chooseMaskPattern(bits: BitArray, ecLevel: ErrorCorrectionLevel, versio
   return bestMaskPattern;
 }
 
-/** Encoder.encode of ZXing.Net with no character set: the matrix of the symbol. */
-function encode(content: string, ecLevel: ErrorCorrectionLevel): ByteMatrix {
-  // The default byte mode encoding, ISO-8859-1, writes no ECI segment
-  const mode = Encoder.chooseMode(content, 'ISO-8859-1');
+/**
+ * Encoder.encode of ZXing.Net: the matrix of the symbol. With no character set for a text of
+ * ISO-8859-1 (or any text, when utf8 is not allowed: a code unit beyond it is '?'); a text beyond
+ * it is "\uFEFF" + text with the character set UTF-8 and DISABLE_ECI.
+ */
+function encode(content: string, ecLevel: ErrorCorrectionLevel, allowUtf8: boolean): ByteMatrix {
+  const utf8 = allowUtf8 && beyondLatin1(content);
+  // The default byte mode encoding, ISO-8859-1, writes no ECI segment; a text beyond it is
+  // always byte mode (the byte order mark is no digit and no alphanumeric character)
+  const mode = utf8 ? Mode.BYTE : Encoder.chooseMode(content, 'ISO-8859-1');
   const headerBits = new BitArray();
   Encoder.appendModeInfo(mode, headerBits);
   const dataBits = new BitArray();
-  if (mode === Mode.BYTE) for (const b of latin1Bytes(content)) dataBits.appendBits(b, 8);
+  if (mode === Mode.BYTE) for (const b of utf8 ? utf8BomBytes(content) : latin1Bytes(content)) dataBits.appendBits(b, 8);
   else Encoder.appendBytes(content, mode, dataBits, 'ISO-8859-1');
   const version = recommendVersion(ecLevel, mode, headerBits, dataBits);
   const headerAndDataBits = new BitArray();
@@ -220,11 +254,14 @@ function encode(content: string, ecLevel: ErrorCorrectionLevel): ByteMatrix {
   return matrix;
 }
 
-/** QRCodeWriter.encode(text, QR_CODE, 0, 0, hints) of ZXing.Net 0.16.11, at the item's level. */
-export function qrMatrix(text: string, eccLevel: number): QrMatrix {
+/**
+ * QRCodeWriter.encode(text, QR_CODE, 0, 0, hints) of ZXing.Net 0.16.11, at the item's level; with
+ * allowUtf8, a text beyond ISO-8859-1 in UTF-8 (the drawn QR; not the one a device draws itself).
+ */
+export function qrMatrix(text: string, eccLevel: number, allowUtf8 = true): QrMatrix {
   // C# parity: ArgumentException("Found empty contents", contents) has an empty parameter name
   if (text.length === 0) throw argumentException('Found empty contents');
-  const input = encode(text, errorCorrectionLevel(eccLevel));
+  const input = encode(text, errorCorrectionLevel(eccLevel), allowUtf8);
   // renderResult with no size: one module per pixel and the quiet zone around
   const inputWidth = input.getWidth();
   const inputHeight = input.getHeight();

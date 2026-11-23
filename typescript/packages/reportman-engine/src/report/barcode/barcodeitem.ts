@@ -385,13 +385,16 @@ export class BarcodeItem extends PrintPosItem {
   }
 
   private printQr(adriver: PrintOut, aposx: number, aposy: number, metafile: MetaFile): void {
-    const qrResult = qrMatrix(this.currentText, this.eccLevel);
+    // A driver that draws the QR by itself writes the text in its own code page: the modules it is
+    // told are those of the ISO-8859-1 symbol, as before; a drawn QR keeps the characters beyond it
+    const nativeQr = adriver.supportsNativeBarcode(MetaBarcodeSymbology.QR);
+    const qrResult = qrMatrix(this.currentText, this.eccLevel, !nativeQr);
     const barcodeHeight = qrResult.height;
     const barcodeWidth = qrResult.width;
     const page = metafile.pages.get(metafile.currentPage);
     // The driver that draws the QR by itself gets the barcode, not its modules; Modules counts what
     // ZXing returned (the symbol plus its quiet zone), the grid the modules below spread over.
-    if (adriver.supportsNativeBarcode(MetaBarcodeSymbology.QR)) {
+    if (nativeQr) {
       const nativo = new MetaObjectBarcode();
       nativo.metaType = MetaObjectType.Barcode;
       nativo.left = aposx;
