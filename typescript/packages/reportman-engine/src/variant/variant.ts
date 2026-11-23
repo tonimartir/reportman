@@ -11,6 +11,7 @@ import { compositeFormat } from '../util/compositeformat.js';
 import { dateFormatMask, formatDateTime } from '../util/dateformat.js';
 import { RpDateTime, DateTimeKind } from '../util/datetime.js';
 import { delphiFormatSettings, formatDateTimeDelphi } from '../util/delphidateformat.js';
+import { delphiNumberMaskToDotNet } from '../util/delphinumbermask.js';
 import { CsDecimal } from '../util/decimal.js';
 import { formatDecimal, formatDouble, formatInteger } from '../util/numberformat.js';
 import { NumberStyles, tryParseDecimal, tryParseDouble } from '../util/numberparse.js';
@@ -134,6 +135,14 @@ export class Variant {
   /** An Integer (int32); the value wraps to 32 bits as a C# int conversion does. */
   static fromInteger(value: number): Variant {
     return new Variant(VariantType.Integer, int32(value));
+  }
+
+  /**
+   * The result of an operation between two Integer values: an Integer, or a Long when it does not
+   * fit (it wrapped around: 1000000*1000000 was -727379968), as the Int64 of the Delphi engine.
+   */
+  private static integerOrLong(value: bigint): Variant {
+    return value >= -2147483648n && value <= 2147483647n ? Variant.fromInteger(Number(value)) : Variant.fromLong(value);
   }
 
   /** A Long (int64); the value wraps to 64 bits. */
@@ -276,6 +285,11 @@ export class Variant {
       default:
         return false;
     }
+  }
+
+  /** A String without characters. */
+  get isEmptyString(): boolean {
+    return this.varType === VariantType.String && this.s.length === 0;
   }
 
   /** GetTypeString: "VariantType.Integer"... */
@@ -491,7 +505,10 @@ export class Variant {
       case VariantType.Decimal:
         return formatDecimal(this.d, '', nfi);
       case VariantType.Double:
-        return formatDouble(this.n, '', nfi);
+        // 15 significant digits, as the Delphi engine and the .NET Framework: the shortest text that
+        // reads back as the same Double shows the noise of the binary value (0.1+0.2 as
+        // 0,30000000000000004)
+        return formatDouble(this.n, 'G15', nfi);
       case VariantType.DateTime:
         return formatDateTime(this.dt, '', ctx.culture, ctx.timeZone);
       case VariantType.String:
@@ -530,12 +547,25 @@ export class Variant {
    * time column) without its date, a decimal without trailing zeros (G29). Midnight of day
    * 0001-01-01 is also DateTime.MinValue, a date: it keeps printing as a date.
    */
-  private displayText(ctx: VariantContext): string {
+  displayText(ctx: VariantContext): string {
+    const delphi = ctx.delphiMasks === true;
     switch (this.varType) {
-      case VariantType.DateTime:
-        if (this.dt.days === 0 && this.dt.tickOfDay !== 0) return formatDateTime(this.dt, 'T', ctx.culture, ctx.timeZone);
+      case VariantType.DateTime: {
+        const timeOnly = this.dt.days === 0 && this.dt.tickOfDay !== 0;
+        if (delphi) {
+          // A report converted from Delphi: the format settings Delphi takes from Windows (the short
+          // date, and the long time when it has one; a time alone, on the day zero of OLE too, is
+          // the long time)
+          const settings = delphiFormatSettings(ctx.culture);
+          const oleZero = this.dt.year === 1899 && this.dt.month === 12 && this.dt.day === 30;
+          return formatDateTimeDelphi(this.dt, timeOnly || (oleZero && this.dt.tickOfDay !== 0) ? 'tt' : 'c', settings);
+        }
+        if (timeOnly) return formatDateTime(this.dt, 'T', ctx.culture, ctx.timeZone);
         return this.dt.tickOfDay === 0 ? formatDateTime(this.dt, 'd', ctx.culture, ctx.timeZone) : this.toString(ctx);
+      }
       case VariantType.Decimal:
+        // In a report converted from Delphi, the 15 digits of the Double it is in Delphi
+        if (delphi) return formatDouble(this.d.toDouble(), 'G15', ctx.culture.number);
         return formatDecimal(this.d, 'G29', ctx.culture.number);
       default:
         return this.toString(ctx);
@@ -577,27 +607,11 @@ export class Variant {
     }
     const atype = value.varType;
     const isDateParam = paramtype === ParamType.Date || paramtype === ParamType.Time || paramtype === ParamType.DateTime;
-    if (!value.isNull) {
-      if (displayformat.length === 0) {
-        if (printnulls) {
-          if (isDateParam) {
-            displayformat = Variant.defaultDateTimeFormat(ctx, paramtype);
-            if (
-              atype === VariantType.Byte ||
-              atype === VariantType.Integer ||
-              atype === VariantType.Long ||
-              atype === VariantType.DateTime ||
-              atype === VariantType.Decimal ||
-              atype === VariantType.Double
-            ) {
-              const adate = value.toDateTime(ctx);
-              return formatDateTime(adate, dateFormatMask(displayformat), ctx.culture, ctx.timeZone);
-            }
-            return value.displayText(ctx);
-          }
-          return value.displayText(ctx);
-        }
-      }
+    const delphi = ctx.delphiMasks === true;
+    if (!value.isNull && displayformat.length === 0 && printnulls) {
+      // A date, or a number in a date parameter, in the default format of the type
+      if (isDateParam && (value.isNumber() || atype === VariantType.DateTime)) return Variant.defaultDateText(ctx, value.dateValue(ctx), paramtype);
+      return value.displayText(ctx);
     }
     switch (atype) {
       case VariantType.Null:
@@ -608,24 +622,32 @@ export class Variant {
       case VariantType.Decimal:
       case VariantType.Double:
         if (Variant.equals(value, Variant.fromInteger(0), ctx) && !printnulls) return '';
-        if (displayformat.length === 0) return value.displayText(ctx);
         if (isDateParam) {
-          const adate = value.toDateTime(ctx);
-          if (ctx.delphiDateMasks === true) return formatDateTimeDelphi(adate, displayformat, delphiFormatSettings(ctx.culture));
+          // A number in a date parameter is a date, with the mask or the default format of the
+          // type (PrintNulls does not change it)
+          const adate = value.dateValue(ctx);
+          if (displayformat.length === 0) return Variant.defaultDateText(ctx, adate, paramtype);
+          if (delphi) return formatDateTimeDelphi(adate, displayformat, delphiFormatSettings(ctx.culture));
           return formatDateTime(adate, dateFormatMask(displayformat), ctx.culture, ctx.timeZone);
         }
+        if (displayformat.length === 0) return value.displayText(ctx);
         if (displayformat[0] === '*') return formatDouble(value.toDouble(ctx), displayformat.substring(1), ctx.culture.number);
-        return formatDouble(value.toDouble(ctx), displayformat, ctx.culture.number);
+        return value.formatNumber(ctx, delphi ? delphiNumberMaskToDotNet(displayformat) : displayformat);
       case VariantType.DateTime: {
-        // Only a mask of the report follows Delphi: the default formats are patterns of .NET
-        if (ctx.delphiDateMasks === true && displayformat.length > 0)
-          return formatDateTimeDelphi(value.dt, displayformat, delphiFormatSettings(ctx.culture));
-        // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
-        // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
-        if (displayformat.length === 0 && paramtype !== ParamType.Date && value.dt.days === 0 && value.dt.tickOfDay !== 0)
-          displayformat = ctx.culture.date.longTimePattern;
-        if (displayformat.length === 0) displayformat = Variant.defaultDateTimeFormat(ctx, paramtype);
-        return formatDateTime(value.dt, dateFormatMask(displayformat), ctx.culture, ctx.timeZone);
+        // A mask of the report: Delphi's FormatDateTime for a report converted from Delphi
+        if (displayformat.length > 0) {
+          if (delphi) return formatDateTimeDelphi(value.dt, displayformat, delphiFormatSettings(ctx.culture));
+          return formatDateTime(value.dt, dateFormatMask(displayformat), ctx.culture, ctx.timeZone);
+        }
+        if (isDateParam && !delphi) {
+          // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
+          // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
+          if (paramtype !== ParamType.Date && value.dt.days === 0 && value.dt.tickOfDay !== 0)
+            return formatDateTime(value.dt, 'T', ctx.culture, ctx.timeZone);
+          return Variant.defaultDateText(ctx, value.dt, paramtype);
+        }
+        // No mask and no date type: as with PrintNulls (it gave the long date and time pattern)
+        return value.displayText(ctx);
       }
       case VariantType.String: {
         const astring = value.s;
@@ -637,6 +659,61 @@ export class Variant {
       default:
         return '';
     }
+  }
+
+  /**
+   * DateValue: the date of a value in a date parameter: a date, or a number as the OLE date it is
+   * in the Delphi engine (the conversion of a number to a date threw).
+   */
+  private dateValue(ctx: VariantContext): RpDateTime {
+    if (this.varType === VariantType.DateTime) return this.dt;
+    return RpDateTime.fromOADate(this.toDouble(ctx));
+  }
+
+  /**
+   * DefaultDateText: a date in the default format of its parameter type. The patterns of .NET are
+   * used as they are (through dateFormatMask the h of a 12 hour pattern became the 24 hour clock:
+   * "13:45:34 PM"); a report converted from Delphi takes the short date, the short time or both,
+   * as FormatVariant of the Delphi engine.
+   */
+  private static defaultDateText(ctx: VariantContext, value: RpDateTime, paramtype: ParamType): string {
+    if (ctx.delphiMasks === true) {
+      const mask = paramtype === ParamType.Date ? 'ddddd' : paramtype === ParamType.Time ? 't' : 'ddddd t';
+      return formatDateTimeDelphi(value, mask, delphiFormatSettings(ctx.culture));
+    }
+    return formatDateTime(value, Variant.defaultDateTimeFormat(ctx, paramtype), ctx.culture, ctx.timeZone);
+  }
+
+  /**
+   * FormatNumber: a number with a custom format of .NET: a Decimal and a Long with their own
+   * digits (through a Double, more than 15 digits were lost), and a negative value the mask rounds
+   * to zero as the zero (.NET keeps the sign: "-0,00"), as Delphi's FormatFloat.
+   */
+  private formatNumber(ctx: VariantContext, mask: string): string {
+    const nfi = ctx.culture.number;
+    try {
+      if (this.varType === VariantType.Decimal) {
+        const text = formatDecimal(this.d, mask, nfi);
+        if (this.d.compareTo(CsDecimal.zero) >= 0) return text;
+        const zero = formatDecimal(CsDecimal.zero, mask, nfi);
+        return formatDecimal(this.d.negate(), mask, nfi) === zero ? zero : text;
+      }
+      if (this.varType === VariantType.Long) {
+        const text = formatInteger(this.l, mask, nfi, 64);
+        if (this.l >= 0n || this.l === -9223372036854775808n) return text;
+        const zero = formatInteger(0n, mask, nfi, 64);
+        return formatInteger(-this.l, mask, nfi, 64) === zero ? zero : text;
+      }
+    } catch (e) {
+      // A standard format the type has not (R on a Decimal in the .NET Framework): as a Double,
+      // as always
+      if (!(e instanceof NetException) || e.netType !== 'FormatException') throw e;
+    }
+    const avalue = this.toDouble(ctx);
+    const text = formatDouble(avalue, mask, nfi);
+    if (!(avalue < 0)) return text;
+    const zero = formatDouble(0, mask, nfi);
+    return formatDouble(-avalue, mask, nfi) === zero ? zero : text;
   }
 
   // -------------------------------------------------------------------------------------------
@@ -824,7 +901,7 @@ export class Variant {
           case VariantType.Null:
             return a;
           case VariantType.Integer:
-            return Variant.fromInteger(a.n + b.n);
+            return Variant.integerOrLong(BigInt(a.n) + BigInt(b.n));
           case VariantType.Long:
             return Variant.fromLong(BigInt(a.n) + b.l);
           case VariantType.Double:
@@ -923,7 +1000,7 @@ export class Variant {
       case VariantType.Integer:
         switch (b.varType) {
           case VariantType.Integer:
-            return Variant.fromInteger(a.n - b.n);
+            return Variant.integerOrLong(BigInt(a.n) - BigInt(b.n));
           case VariantType.Long:
             return Variant.fromLong(BigInt(a.n) - b.l);
           case VariantType.Double:
@@ -1037,7 +1114,7 @@ export class Variant {
       case VariantType.Integer:
         switch (b.varType) {
           case VariantType.Integer:
-            return Variant.fromInteger(Math.imul(a.n, b.n));
+            return Variant.integerOrLong(BigInt(a.n) * BigInt(b.n));
           case VariantType.Long:
             return Variant.fromLong(BigInt(a.n) * b.l);
           case VariantType.Double:

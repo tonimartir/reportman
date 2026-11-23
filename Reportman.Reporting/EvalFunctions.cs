@@ -369,7 +369,7 @@ namespace Reportman.Reporting
             aresult = "";
             if (Params[0].VarType == VariantType.Null)
                 Params[0] = "";
-            aresult = Params[1].ToString(format, ParamType.Unknown, true, EvalObject != null && EvalObject.DelphiDateMasks);
+            aresult = Params[1].ToString(format, ParamType.Unknown, true, EvalObject != null && EvalObject.DelphiMasks);
             return aresult;
         }
     }
@@ -806,7 +806,14 @@ namespace Reportman.Reporting
             {
                 throw new NamedException(Translator.TranslateStr(438), "Round");
             }
-            r = Params[0].AsDecimal;
+            // The multiple is the second parameter (the first one was read again, so nothing was
+            // rounded). As Roundfloat of the Delphi engine: a multiple of zero leaves the number as it
+            // is, and the smallest multiple is 0.0001
+            r = Params[1].AsDecimal;
+            if (r == 0)
+                return (Variant)num;
+            if (r < 0.0001m)
+                r = 0.0001m;
             aresult = DoubleUtil.RoundDecimalUp(num, r);
             return aresult;
         }

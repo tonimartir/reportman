@@ -1,8 +1,8 @@
 
 
-    Page 1     5       5
+    Page 1     5       005
 
-    Argentina             5       1
+    Argentina             1       1
 
     Riverside Cafe                      Buenos Aires
 
@@ -21,7 +21,7 @@
 
     Customers of Argentina       4
 
-    Belgium               5       1
+    Belgium               1       1
     Le Petit Restaurant                 Antwerp
 
 
@@ -39,7 +39,7 @@
 
     Customers of Belgium         4
 
-    France                5       1
+    France                2       1
 
     Market Square Wine Bar              Bordeaux
 
@@ -70,16 +70,16 @@
 
 
 
-    Page 2     5       5
+    Page 2     5       005
 
-    France                5       2
+    France                2       2
 
     Silver Spoon Kitchen                Toulouse
 
 
     Customers of France          7
 
-    Germany               5       1
+    Germany               1       1
 
     La Despensa Trattoria               Berlin
 
@@ -109,7 +109,7 @@
 
     Customers of Germany         7
 
-    Italy                 5       1
+    Italy                 2       1
 
     Olive Tree Trattoria                Rome
 
@@ -140,16 +140,16 @@
 
 
 
-    Page 3     5       5
+    Page 3     5       005
 
-    Italy                 5       2
+    Italy                 2       2
 
     North Star Restaurant               Turin
 
 
     Customers of Italy           7
 
-    Mexico                5       1
+    Mexico                1       1
 
     Harvest Moon Wine Bar               Guadalajara
 
@@ -168,7 +168,7 @@
 
     Customers of Mexico          4
 
-    Netherlands           5       1
+    Netherlands           1       1
     Olive Tree Kitchen                  Amsterdam
 
 
@@ -190,7 +190,7 @@
 
     Customers of Netherlands     5
 
-    Portugal              5       1
+    Portugal              2       1
 
     Aurora Foods                        Braga
 
@@ -210,9 +210,9 @@
 
 
 
-    Page 4     5       5
+    Page 4     5       005
 
-    Portugal              5       2
+    Portugal              2       2
 
     Royal Oak Cafe                      Porto
 
@@ -223,7 +223,7 @@
 
     Customers of Portugal        5
 
-    Spain                 5       1
+    Spain                 1       1
 
     Golden Fork Bistro                  Bilbao
 
@@ -253,7 +253,7 @@
 
     Customers of Spain           7
 
-    Switzerland           5       1
+    Switzerland           1       1
     Lighthouse Food Hall                Basel
 
 
@@ -271,7 +271,7 @@
 
     Customers of Switzerland     4
 
-    United Kingdom        5       1
+    United Kingdom        2       1
 
     of 4           5
 
@@ -280,9 +280,9 @@
 
 
 
-    Page 5     0       005
+    Page 5     5       005
 
-    United Kingdom        0       2
+    United Kingdom        2       2
 
     Market Square Market                Bristol
 
@@ -301,7 +301,7 @@
 
     Customers of United Kingdom  4
 
-    United States         0       1
+    United States         1       1
     Le Petit Fine Foods                 Boston
 
 

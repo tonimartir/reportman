@@ -138,6 +138,17 @@ export class MetaPage {
     if (typeof value !== 'string') throw new TypeError('MetaPage.addString: the value must be a string');
     const existing = this.stringList.get(value);
     if (existing !== undefined) return existing;
+    const newValue = this.addNewString(value);
+    this.stringList.set(value, newValue);
+    return newValue;
+  }
+
+  /**
+   * Adds a string at a position of its own, even when the pool has the same text, and does not
+   * offer it to later equal strings: the place of a text that is written later (the page count),
+   * as NewWideString of the Delphi engine, which always appends.
+   */
+  addNewString(value: string): number {
     if (this.fPool.length < this.fPoolPos + value.length + 2) {
       const npool = new Uint16Array((this.fPool.length + value.length + 2) * 2);
       npool.set(this.fPool);
@@ -148,9 +159,7 @@ export class MetaPage {
       this.fPool[this.fPoolPos] = value.charCodeAt(i);
       this.fPoolPos++;
     }
-    const newValue = oldPos + 1;
-    this.stringList.set(value, newValue);
-    return newValue;
+    return oldPos + 1;
   }
 
   private poolString(position: number, size: number): string {

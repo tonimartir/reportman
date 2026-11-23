@@ -252,7 +252,9 @@ namespace Reportman.Reporting
             aobj.Type1Font = Type1Font;
             aobj.FontSize = FontSize;
             aobj.FontStyle = (short)FontStyle;
-            aobj.TextP = apage.AddString(TextObj.Text);
+            // The page counts are written into their text later: each one in a place of its own (shared,
+            // the last one written was the text of all the counts of the page)
+            aobj.TextP = (IsPageCount || IsGroupPageCount) ? apage.AddNewString(TextObj.Text) : apage.AddString(TextObj.Text);
             aobj.TextS = TextObj.Text.Length;
             aobj.WordWrap = WordWrap;
             aobj.LFontNameP = apage.AddString(LFontName);
@@ -689,6 +691,7 @@ namespace Reportman.Reporting
                     FOldString = "";
                     FUpdated = false;
                     FDataCount = 0;
+                    FValues.Clear();
                     if (Aggregate != Aggregate.None)
                     {
                         try
@@ -714,6 +717,7 @@ namespace Reportman.Reporting
                     FOldString = "";
                     FUpdated = false;
                     FDataCount = 0;
+                    FValues.Clear();
                     if ((Aggregate != Aggregate.None) && (Aggregate != Aggregate.General))
                     {
                         try
@@ -751,18 +755,18 @@ namespace Reportman.Reporting
                                         Value = Value + eval.Result;
                                     break;
                                 case AggregateType.Minimum:
-                                    if (eval.Result.VarType != VariantType.Null)
-                                    {
-                                        if (Value > eval.Result)
-                                            Value = eval.Result;
-                                    }
+                                    // The first value starts the minimum, as in the Delphi engine: compared
+                                    // with the initial value (0 by default) the minimum of positive values was 0
+                                    if (eval.Result.VarType == VariantType.Null)
+                                        FDataCount--;
+                                    else if ((FDataCount == 1) || (Value > eval.Result))
+                                        Value = eval.Result;
                                     break;
                                 case AggregateType.Maximum:
-                                    if (eval.Result.VarType != VariantType.Null)
-                                    {
-                                        if (Value < eval.Result)
-                                            Value = eval.Result;
-                                    }
+                                    if (eval.Result.VarType == VariantType.Null)
+                                        FDataCount--;
+                                    else if ((FDataCount == 1) || (Value < eval.Result))
+                                        Value = eval.Result;
                                     break;
                                 case AggregateType.Average:
                                     if (eval.Result.VarType == VariantType.Null)
@@ -783,7 +787,8 @@ namespace Reportman.Reporting
                                     else
                                     {
                                         FValues.Add(eval.Result);
-                                        Value = DoubleUtil.StandardDeviation(FValues);
+                                        // A report converted from Delphi: the sample deviation of its Math.StdDev
+                                        Value = Report.ConvertedFromDelphi ? DoubleUtil.SampleStandardDeviation(FValues) : DoubleUtil.StandardDeviation(FValues);
                                     }
                                     break;
 
@@ -815,6 +820,10 @@ namespace Reportman.Reporting
                                 Value = eval.Result;
                                 FSumValue = Value;
                                 FUpdated = true;
+                                // The group starts counting again, as in the Delphi engine: the average
+                                // divided by the rows of every group so far, and the deviation kept their values
+                                FDataCount = 0;
+                                FValues.Clear();
                             }
                             catch (Exception E)
                             {
@@ -846,6 +855,9 @@ namespace Reportman.Reporting
                         {
                             throw new ReportException(E.Message + (char)10 + Name + " Prop:AgIniValue", this, "AgIniValue");
                         }
+                        // The page starts counting again, as in the Delphi engine
+                        FDataCount = 0;
+                        FValues.Clear();
                         SubReportChanged(SubReportEvent.DataChange, "");
                     }
                     break;

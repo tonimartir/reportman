@@ -363,7 +363,8 @@ function numberToString(number: NumberBuffer, format: string, nMaxDigits: number
     }
     case 'R':
     case 'r':
-      if (number.kind !== 'FloatingPoint') throw formatException(NetMessages.badFormatSpecifier);
+      // .NET 5 and later: R on a Decimal is G (the .NET Framework refuses it)
+      if (number.kind !== 'FloatingPoint' && number.kind !== 'Decimal') throw formatException(NetMessages.badFormatSpecifier);
       return numberToString(number, format === 'R' ? 'G' : 'g', nMaxDigits, info);
     default:
       throw formatException(NetMessages.badFormatSpecifier);

@@ -6,6 +6,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   createContext,
+  CsDecimal,
   DatasetAlias,
   DateTimeKind,
   EvalException,
@@ -291,11 +292,75 @@ describe('Variant.toFormatString with a parameter type', () => {
 
   it('formats dates with the defaults of the parameter type', () => {
     expect(date.toFormatString(ctx, '', ParamType.Date, true)).toBe('3/5/2024');
-    // C# parity: DateFormatMask turns the h of "h:mm tt" into H (no am/pm in the mask) and keeps tt
-    expect(date.toFormatString(ctx, '', ParamType.Time, true)).toBe('14:07 PM');
-    expect(date.toFormatString(ctx, '', ParamType.DateTime, true)).toBe('Tuesday, March 5, 2024 14:07:09 PM');
-    expect(date.toFormatString(ctx, '', ParamType.Unknown, false)).toBe('Tuesday, March 5, 2024 14:07:09 PM');
+    // The default patterns of .NET as they are (through the mask translation the h of "h:mm tt"
+    // was the 24 hour clock: "14:07 PM")
+    expect(date.toFormatString(ctx, '', ParamType.Time, true)).toBe('2:07 PM');
+    expect(date.toFormatString(ctx, '', ParamType.DateTime, true)).toBe('Tuesday, March 5, 2024 2:07:09 PM');
+    // No mask and no date type: the same with and without PrintNulls
+    expect(date.toFormatString(ctx, '', ParamType.Unknown, false)).toBe('3/5/2024 2:07:09 PM');
+    expect(date.toFormatString(ctx, '', ParamType.Unknown, true)).toBe('3/5/2024 2:07:09 PM');
     expect(date.toFormatString(ctx, 'dd/mm/yyyy', ParamType.Date, false)).toBe('05/03/2024');
+  });
+
+  it('takes a number in a date parameter as its OLE date', () => {
+    // 45000.5 is 2023-03-15 12:00 (the conversion threw)
+    const number = Variant.fromDouble(45000.5);
+    expect(number.toFormatString(ctx, 'dd/mm/yyyy', ParamType.Date, true)).toBe('15/03/2023');
+    expect(number.toFormatString(ctx, '', ParamType.Date, true)).toBe('3/15/2023');
+    expect(number.toFormatString(ctx, '', ParamType.Date, false)).toBe('3/15/2023');
+    expect(Variant.fromInteger(45000).toFormatString(ctx, '', ParamType.Time, true)).toBe('12:00 AM');
+  });
+
+  it('formats numbers with their own digits and without a negative zero', () => {
+    const es = createContext('es-ES');
+    const dec = (text: string): Variant => Variant.fromDecimal(CsDecimal.parseInvariant(text));
+    // A negative value the mask rounds to zero is the zero (.NET writes "-0,00")
+    expect(Variant.fromDouble(-0.001).toFormatString(es, '#,##0.00')).toBe('0,00');
+    expect(dec('-0.001').toFormatString(es, '0')).toBe('0');
+    expect(dec('-0.004').toFormatString(es, '#,##0.00 €')).toBe('0,00 €');
+    expect(dec('-0.005').toFormatString(es, '0.00')).toBe('-0,01');
+    // A Decimal beyond 15 digits keeps them (through a Double it printed ...234,60)
+    expect(dec('12345678901234.57').toFormatString(es, '#,##0.00')).toBe('12.345.678.901.234,57');
+    expect(Variant.fromLong(999999999999999999n).toFormatString(es, '#,##0')).toBe('999.999.999.999.999.999');
+    // A Double without mask: 15 significant digits
+    expect(Variant.fromDouble(0.1 + 0.2).toFormatString(es, '')).toBe('0,3');
+    expect(Variant.fromDouble(4.35 * 100).toString(es)).toBe('435');
+    expect(Variant.fromDouble(1 / 3).toString(es)).toBe('0,333333333333333');
+  });
+
+  it('formats as the Delphi engine in a report converted from Delphi', () => {
+    const es = { ...createContext('es-ES'), delphiMasks: true };
+    const us = { ...createContext('en-US'), delphiMasks: true };
+    const n = Variant.fromDouble(12.5);
+    // % and the per mille sign are text, a comma anywhere groups (FormatFloat)
+    expect(n.toFormatString(es, '0.00%')).toBe('12,50%');
+    expect(n.toFormatString(es, '#,##0.00 %')).toBe('12,50 %');
+    expect(n.toFormatString(es, '0.00‰')).toBe('12,50‰');
+    const k = Variant.fromDouble(1234.5);
+    expect(k.toFormatString(es, '0,.00')).toBe('1.234,50');
+    expect(k.toFormatString(es, ',0.00')).toBe('1.234,50');
+    expect(k.toFormatString(es, '#,.00')).toBe('1.234,50');
+    expect(k.toFormatString(es, '#,')).toBe('1.235');
+    expect(k.toFormatString(es, '#.##0,00')).toBe('1.234,50000');
+    expect(k.toFormatString(es, '#,##0.00')).toBe('1.234,50');
+    // The same masks in a report of the C# engine keep the rules of .NET
+    const net = createContext('es-ES');
+    expect(n.toFormatString(net, '0.00%')).toBe('1250,00%');
+    expect(k.toFormatString(net, '#,')).toBe('1');
+    // Dates without a mask: the short date and short time of Delphi for the date types
+    const when = Variant.fromDateTime(RpDateTime.create(2023, 3, 15, 13, 45, 34));
+    expect(when.toFormatString(es, '', ParamType.DateTime, true)).toBe('15/03/2023 13:45');
+    expect(when.toFormatString(es, '', ParamType.Date, true)).toBe('15/03/2023');
+    expect(when.toFormatString(us, '', ParamType.Time, true)).toBe('1:45 PM');
+    expect(when.toFormatString(es, '', ParamType.Unknown, true)).toBe('15/03/2023 13:45:34');
+    expect(when.toFormatString(us, '', ParamType.Unknown, false)).toBe('3/15/2023 1:45:34 PM');
+    expect(Variant.fromDateTime(RpDateTime.create(2023, 3, 15)).toFormatString(es, '')).toBe('15/03/2023');
+    // A time alone, on the day zero of OLE (FLOATTODATETIME(0.75)) too
+    expect(Variant.fromDateTime(RpDateTime.fromOADate(0.75)).toFormatString(es, '')).toBe('18:00:00');
+    // A Decimal without mask: the 15 digits of Delphi's Double
+    const ninth = Variant.div(Variant.fromDecimal(CsDecimal.parseInvariant('80.0')), Variant.fromDecimal(CsDecimal.parseInvariant('9.0')), es);
+    expect(ninth.toFormatString(es, '')).toBe('8,88888888888889');
+    expect(ninth.toFormatString(net, '')).toBe('8,888888888888888888888888889');
   });
 
   it('gives defaults to Null values and hides zeros', () => {
@@ -305,6 +370,7 @@ describe('Variant.toFormatString with a parameter type', () => {
     expect(Variant.null.toFormatString(ctx, 'x', ParamType.Date, true)).toBe('');
     expect(Variant.fromInteger(0).toFormatString(ctx, '0.00', ParamType.Unknown, false)).toBe('');
     expect(Variant.fromInteger(5).toFormatString(ctx, '', ParamType.Unknown, false)).toBe('5');
-    expect(() => Variant.fromInteger(5).toFormatString(ctx, 'dd', ParamType.Date, true)).toThrow('Type conversion error');
+    // 5 is 1900-01-04 (the conversion of a number to a date threw)
+    expect(Variant.fromInteger(5).toFormatString(ctx, 'dd', ParamType.Date, true)).toBe('04');
   });
 });

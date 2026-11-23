@@ -41,6 +41,21 @@ export function standardDeviation(values: readonly number[]): number {
   return Math.sqrt(sq / values.length);
 }
 
+/**
+ * SampleStandardDeviation: the sample standard deviation (n - 1), as StdDev of the Math unit of
+ * Delphi; 0 for one value, as the Delphi engine gives its aggregate.
+ */
+export function sampleStandardDeviation(values: readonly number[]): number {
+  const count = values.length;
+  if (count < 2) return 0;
+  let sum = 0;
+  for (const v of values) sum += v;
+  const avg = sum / count;
+  let sq = 0;
+  for (const v of values) sq += (avg - v) * (avg - v);
+  return Math.sqrt(sq / (count - 1));
+}
+
 /** FormatCurrAdv(mask, number): number.ToString(mask). */
 export function formatCurrAdv(mask: string, number: number, info: NumberFormatData): string {
   return formatDouble(number, mask, info);

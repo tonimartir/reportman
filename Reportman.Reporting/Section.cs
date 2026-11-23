@@ -861,9 +861,9 @@ namespace Reportman.Reporting
             if (BackStyle != BackStyleType.Design)
             {
                 astream = GetStream();
-                if (astream == null)
-                    return;
-                if (astream.Length > 0)
+                // Without a background image only the background is left out, as in the Delphi engine
+                // (returning here, the section printed none of its items)
+                if ((astream != null) && (astream.Length > 0))
                 {
                     MetaObjectImage obj = new MetaObjectImage();
                     obj.MetaType = MetaObjectType.Image;

@@ -1083,7 +1083,7 @@ namespace Reportman.Reporting
                 ConvertedFromDelphi = true;
                 // The evaluator of the report may be there already (created with the report)
                 if (Evaluator != null)
-                    Evaluator.DelphiDateMasks = true;
+                    Evaluator.DelphiMasks = true;
             }
         }
         /// <summary>
@@ -1300,7 +1300,7 @@ namespace Reportman.Reporting
             Evaluator = new Evaluator();
             Evaluator.OnDatasetNeeded += Evaluator_OnDatasetNeeded;
             Evaluator.Language = Language;
-            Evaluator.DelphiDateMasks = ConvertedFromDelphi;
+            Evaluator.DelphiMasks = ConvertedFromDelphi;
         }
         SortedList<string, string> openingDatasets = new SortedList<string, string>();
         private void Evaluator_OnDatasetNeeded(DataNeededEventArgs args)

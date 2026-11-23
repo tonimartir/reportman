@@ -146,6 +146,19 @@ namespace Reportman.Drawing
             object avalue = stringlist[value];
             if (avalue != null)
                 return (int)avalue;
+            int newvalue = AddNewString(value);
+            stringlist.Add(value, newvalue);
+            return newvalue;
+        }
+        /// <summary>
+        /// Adds a string at a position of its own, even when the pool has the same text, and does not
+        /// offer it to later equal strings: the place of a text that is written later (the page count),
+        /// as NewWideString of the Delphi engine, which always appends.
+        /// </summary>
+        /// <param name="value">String to add</param>
+        /// <returns>Position where the string was added into the pool</returns>
+        public int AddNewString(string value)
+        {
             // Error en texto grande
             if (FPool.Length < (FPoolPos + value.Length + 2))
             {
@@ -160,9 +173,7 @@ namespace Reportman.Drawing
                 FPool[FPoolPos] = value[i];
                 FPoolPos++;
             }
-            int newvalue = OldFPoolPos + 1;
-            stringlist.Add(value, newvalue);
-            return newvalue;
+            return OldFPoolPos + 1;
         }
         /// <summary>
         /// Get the text value from the pool

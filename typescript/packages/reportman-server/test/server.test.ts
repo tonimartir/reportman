@@ -14,13 +14,18 @@ import { createReportServer, fastifyPlugin, nodeHandler, type ReportServerOption
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const samples = path.resolve(here, '../../../../samples');
+// The clock of the text fixture of PrintOutText (reportman-export/test/fixtures/text, contacts)
+const textCases = JSON.parse(fs.readFileSync(path.join(here, '../../reportman-export/test/fixtures/text/cases.json'), 'utf8')) as {
+  name: string;
+  clock: string;
+}[];
+const textClock = new Date(textCases.find((c) => c.name === 'contacts')!.clock + 'Z');
 const base: ReportServerOptions = {
   aliases: { SAMPLES: samples, Other: samples },
   connections: { SAMPLES: sqlite(path.join(samples, 'samples.db')) },
   // The standard 14 fonts: the same layout on a machine without TrueType fonts (the CI images)
   fonts: false,
-  // The clock of the text fixture of PrintOutText (reportman-export/test/fixtures/text, contacts)
-  clock: { now: () => new Date('2026-11-22T02:34:56Z'), offsetMinutes: () => 0 },
+  clock: { now: () => textClock, offsetMinutes: () => 0 },
 };
 
 async function listen(options: ReportServerOptions): Promise<{ url: string; close: () => Promise<void> }> {

@@ -1,6 +1,6 @@
 
 
-    Page 1     1    
+    Page 1          
 
     Argentina             1
 
@@ -47,7 +47,7 @@
 
 
     pages   1
-    France                1    
+    France                     
 
     Red Door Bistro
 
@@ -70,7 +70,7 @@
 
 
 
-    Page 2     1    
+    Page 2          
 
     Harvest Moon Food Hall
 
@@ -92,7 +92,7 @@
 
 
 
-    pages   1
+    pages   2
     Germany               1
 
     Aurora Bistro
@@ -131,7 +131,7 @@
 
 
     pages   1
-    Italy                 1    
+    Italy                      
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-    Page 3     1    
+    Page 3          
 
     Olive Tree Trattoria
 
@@ -177,7 +177,7 @@
 
 
 
-    pages   1
+    pages   2
     Mexico                1
 
     Green Valley Wine Bar
@@ -201,7 +201,7 @@
 
 
     pages   1
-    Netherlands           1    
+    Netherlands                
 
 
 
@@ -210,7 +210,7 @@
 
 
 
-    Page 4     1    
+    Page 4          
 
     Olive Tree Kitchen
 
@@ -237,7 +237,7 @@
 
 
 
-    pages   1
+    pages   2
     Portugal              1
 
     Royal Oak Cafe
@@ -266,7 +266,7 @@
 
 
     pages   1
-    Spain                 1    
+    Spain                      
     Gourmet Foods
 
 
@@ -280,7 +280,7 @@
 
 
 
-    Page 5     1    
+    Page 5          
 
     Golden Fork Bistro
 
@@ -312,7 +312,7 @@
 
 
 
-    pages   1
+    pages   2
     Switzerland           1
 
     Harvest Moon Emporium
@@ -336,7 +336,7 @@
 
 
     pages   1
-    United Kingdom        1    
+    United Kingdom             
     Casa Verde Trattoria
 
 
@@ -367,8 +367,8 @@
 
 
 
-    pages   6
-    United States         6
+    pages   2
+    United States         1
 
     Village Trattoria
 
@@ -395,7 +395,7 @@
 
 
 
-    pages   6
+    pages   1
 
 
 

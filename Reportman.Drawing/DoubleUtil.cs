@@ -80,6 +80,19 @@ namespace Reportman.Drawing
         }
 
         /// <summary>
+        /// The sample standard deviation (n - 1), as StdDev of the Math unit of Delphi; 0 for one value,
+        /// as the Delphi engine gives its aggregate.
+        /// </summary>
+        public static double SampleStandardDeviation(IEnumerable<double> values)
+        {
+            int count = values.Count();
+            if (count < 2)
+                return 0;
+            double avg = values.Average();
+            return Math.Sqrt(values.Sum(v => (avg - v) * (avg - v)) / (count - 1));
+        }
+
+        /// <summary>
         /// Format a number with a mask
         /// </summary>
         public static string FormatCurrAdv(string mask, double number)

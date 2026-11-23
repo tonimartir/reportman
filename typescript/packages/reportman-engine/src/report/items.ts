@@ -28,7 +28,7 @@ import {
 } from '@reportman/metafile';
 import { toUpperNet, trimNet } from '../util/chars.js';
 import { messageOf } from '../util/netexception.js';
-import { standardDeviation } from '../util/doubleutil.js';
+import { sampleStandardDeviation, standardDeviation } from '../util/doubleutil.js';
 import { ParamType, Variant, VariantType } from '../variant/variant.js';
 import { NotSupportedYetError } from '../data/errors.js';
 import { ReportException } from './errors.js';
@@ -659,7 +659,9 @@ export class ExpressionItem extends PrintItemText {
     aobj.type1Font = this.type1Font;
     aobj.fontSize = this.fontSize;
     aobj.fontStyle = (this.fontStyle << 16) >> 16;
-    aobj.textP = apage.addString(textObj.text);
+    // The page counts are written into their text later: each one in a place of its own (shared,
+    // the last one written was the text of all the counts of the page)
+    aobj.textP = this.isPageCount || this.isGroupPageCount ? apage.addNewString(textObj.text) : apage.addString(textObj.text);
     aobj.textS = textObj.text.length;
     aobj.wordWrap = this.wordWrap;
     aobj.lFontNameP = apage.addString(this.lFontName);
@@ -698,6 +700,7 @@ export class ExpressionItem extends PrintItemText {
         this.fOldString = '';
         this.fUpdated = false;
         this.fDataCount = 0;
+        this.fValues.length = 0;
         if (this.aggregate !== Aggregate.None) iniValue();
         break;
       case SubReportEvent.SubReportStart:
@@ -707,6 +710,7 @@ export class ExpressionItem extends PrintItemText {
         this.fOldString = '';
         this.fUpdated = false;
         this.fDataCount = 0;
+        this.fValues.length = 0;
         if (this.aggregate !== Aggregate.None && this.aggregate !== Aggregate.General) iniValue();
         break;
       case SubReportEvent.DataChange:
@@ -726,14 +730,14 @@ export class ExpressionItem extends PrintItemText {
                 if (result.varType !== VariantType.Null) this.value = Variant.add(this.value, result, ctx);
                 break;
               case AggregateType.Minimum:
-                if (result.varType !== VariantType.Null) {
-                  if (Variant.greaterThan(this.value, result, ctx)) this.value = result;
-                }
+                // The first value starts the minimum, as in the Delphi engine: compared with the
+                // initial value (0 by default) the minimum of positive values was 0
+                if (result.varType === VariantType.Null) this.fDataCount--;
+                else if (this.fDataCount === 1 || Variant.greaterThan(this.value, result, ctx)) this.value = result;
                 break;
               case AggregateType.Maximum:
-                if (result.varType !== VariantType.Null) {
-                  if (Variant.lessThan(this.value, result, ctx)) this.value = result;
-                }
+                if (result.varType === VariantType.Null) this.fDataCount--;
+                else if (this.fDataCount === 1 || Variant.lessThan(this.value, result, ctx)) this.value = result;
                 break;
               case AggregateType.Average:
                 if (result.varType === VariantType.Null) this.fDataCount--;
@@ -745,9 +749,11 @@ export class ExpressionItem extends PrintItemText {
               case AggregateType.StandardDeviation:
                 if (result.varType === VariantType.Null) this.fDataCount--;
                 else {
-                  // C# parity: the list of values is never cleared, not even by a group change
                   this.fValues.push(result.toDouble(ctx));
-                  this.value = Variant.fromDouble(standardDeviation(this.fValues));
+                  // A report converted from Delphi: the sample deviation of its Math.StdDev
+                  this.value = Variant.fromDouble(
+                    this.report.convertedFromDelphi ? sampleStandardDeviation(this.fValues) : standardDeviation(this.fValues),
+                  );
                 }
                 break;
             }
@@ -764,7 +770,13 @@ export class ExpressionItem extends PrintItemText {
         this.fUpdated = false;
         this.fOldString = '';
         if (this.aggregate === Aggregate.Group) {
-          if (toUpperNet(this.groupName) === toUpperNet(newgroup)) iniValue();
+          if (toUpperNet(this.groupName) === toUpperNet(newgroup)) {
+            iniValue();
+            // The group starts counting again, as in the Delphi engine: the average divided by the
+            // rows of every group so far, and the deviation kept their values
+            this.fDataCount = 0;
+            this.fValues.length = 0;
+          }
         }
         break;
       case SubReportEvent.PageChange:
@@ -773,6 +785,9 @@ export class ExpressionItem extends PrintItemText {
         if (this.aggregate === Aggregate.None) this.fUpdated = false;
         if (this.aggregate === Aggregate.Page) {
           iniValue();
+          // The page starts counting again, as in the Delphi engine
+          this.fDataCount = 0;
+          this.fValues.length = 0;
           this.subReportChanged(SubReportEvent.DataChange, '');
         }
         break;

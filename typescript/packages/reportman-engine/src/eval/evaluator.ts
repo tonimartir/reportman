@@ -490,9 +490,13 @@ export class Evaluator {
       this.sumDiff(auxiliar);
       if (!this.fChecking) {
         let right = auxiliar.v;
-        [auxiliar2, right] = coerceOperands(auxiliar2, right, ctx);
-        auxiliar.v = right;
-        fvalue.v = Variant.fromBoolean(op(auxiliar2, right));
+        const withNull = ctx.delphiMasks === true ? delphiNullComparison(aoperator, auxiliar2, right) : null;
+        if (withNull !== null) fvalue.v = Variant.fromBoolean(withNull);
+        else {
+          [auxiliar2, right] = coerceOperands(auxiliar2, right, ctx);
+          auxiliar.v = right;
+          fvalue.v = Variant.fromBoolean(op(auxiliar2, right));
+        }
       }
     }
   }
@@ -615,6 +619,38 @@ export class Evaluator {
     if (this.fParser.currentToken() === TokenType.Eof) this.fResult = Variant.fromBoolean(true);
     else this.fResult = this.evaluateExpression();
     return this.fResult;
+  }
+}
+
+/**
+ * Evaluator.DelphiNullComparison: the comparisons with Null of the Delphi engine, for a report
+ * converted from Delphi: Null is less than any value (for C# it is the greatest, so IIF(FIELD>0,...)
+ * of a null field took the other branch), and an empty text compared for equality with a value that
+ * is not a text is Null (ValidateNumbers of rptypeval.pas). null when the comparison has no Null.
+ */
+function delphiNullComparison(aoperator: string, left: Variant, right: Variant): boolean | null {
+  let leftNull = left.isNull;
+  let rightNull = right.isNull;
+  const equality = aoperator === '=' || aoperator === '==' || aoperator === '<>' || aoperator === '><';
+  if (equality) {
+    if (left.isEmptyString && right.varType !== VariantType.String) leftNull = true;
+    if (right.isEmptyString && left.varType !== VariantType.String) rightNull = true;
+  }
+  if (!leftNull && !rightNull) return null;
+  if (equality) {
+    const equal = leftNull && rightNull;
+    return aoperator === '=' || aoperator === '==' ? equal : !equal;
+  }
+  const comparison = leftNull ? (rightNull ? 0 : -1) : 1;
+  switch (aoperator) {
+    case '<':
+      return comparison < 0;
+    case '<=':
+      return comparison <= 0;
+    case '>':
+      return comparison > 0;
+    default:
+      return comparison >= 0;
   }
 }
 

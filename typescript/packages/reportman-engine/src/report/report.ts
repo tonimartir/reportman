@@ -148,7 +148,7 @@ class RunContext implements VariantContext {
   }
 
   /** The masks of Delphi for the dates of a report converted from Delphi (convertedFromDelphi). */
-  get delphiDateMasks(): boolean {
+  get delphiMasks(): boolean {
     return this.fromDelphi();
   }
 }

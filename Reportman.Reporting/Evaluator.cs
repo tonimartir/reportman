@@ -661,8 +661,13 @@ namespace Reportman.Reporting
                     sum_diff(ref auxiliar);
                     if (!FChecking)
                     {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 != auxiliar);
+                        if (DelphiNullComparison(aoperator, auxiliar2, auxiliar, out bool withNull))
+                            FValue = withNull;
+                        else
+                        {
+                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                            FValue = (auxiliar2 != auxiliar);
+                        }
                     }
                 }
                 else
@@ -673,8 +678,13 @@ namespace Reportman.Reporting
                     sum_diff(ref auxiliar);
                     if (!FChecking)
                     {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 == auxiliar);
+                        if (DelphiNullComparison(aoperator, auxiliar2, auxiliar, out bool withNull))
+                            FValue = withNull;
+                        else
+                        {
+                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                            FValue = (auxiliar2 == auxiliar);
+                        }
                     }
                 }
                 else
@@ -685,8 +695,13 @@ namespace Reportman.Reporting
                     sum_diff(ref auxiliar);
                     if (!FChecking)
                     {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 < auxiliar);
+                        if (DelphiNullComparison(aoperator, auxiliar2, auxiliar, out bool withNull))
+                            FValue = withNull;
+                        else
+                        {
+                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                            FValue = (auxiliar2 < auxiliar);
+                        }
                     }
                 }
                 else
@@ -697,8 +712,13 @@ namespace Reportman.Reporting
                     sum_diff(ref auxiliar);
                     if (!FChecking)
                     {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 <= auxiliar);
+                        if (DelphiNullComparison(aoperator, auxiliar2, auxiliar, out bool withNull))
+                            FValue = withNull;
+                        else
+                        {
+                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                            FValue = (auxiliar2 <= auxiliar);
+                        }
                     }
                 }
                 else
@@ -709,8 +729,13 @@ namespace Reportman.Reporting
                     sum_diff(ref auxiliar);
                     if (!FChecking)
                     {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 > auxiliar);
+                        if (DelphiNullComparison(aoperator, auxiliar2, auxiliar, out bool withNull))
+                            FValue = withNull;
+                        else
+                        {
+                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                            FValue = (auxiliar2 > auxiliar);
+                        }
                     }
                 }
                 else
@@ -721,13 +746,58 @@ namespace Reportman.Reporting
                     sum_diff(ref auxiliar);
                     if (!FChecking)
                     {
-                        CoerceOperands(ref auxiliar2, ref auxiliar);
-                        FValue = (auxiliar2 >= auxiliar);
+                        if (DelphiNullComparison(aoperator, auxiliar2, auxiliar, out bool withNull))
+                            FValue = withNull;
+                        else
+                        {
+                            CoerceOperands(ref auxiliar2, ref auxiliar);
+                            FValue = (auxiliar2 >= auxiliar);
+                        }
                     }
                 }
                 else
                     break;
             }
+        }
+        /// <summary>
+        /// The comparisons with Null of the Delphi engine, for a report converted from Delphi
+        /// (<see cref="DelphiMasks"/>): Null is less than any value (here it is the greatest, so
+        /// IIF(FIELD>0,...) of a null field took the other branch), and an empty text compared for
+        /// equality with a value that is not a text is Null (ValidateNumbers of rptypeval.pas).
+        /// False when the comparison has no Null: the operands are compared as always.
+        /// </summary>
+        private bool DelphiNullComparison(string aoperator, Variant left, Variant right, out bool result)
+        {
+            result = false;
+            if (!DelphiMasks)
+                return false;
+            bool leftNull = left.IsNull;
+            bool rightNull = right.IsNull;
+            bool equality = (aoperator == "=") || (aoperator == "==") || (aoperator == "<>") || (aoperator == "><");
+            if (equality)
+            {
+                if ((left.VarType == VariantType.String) && (right.VarType != VariantType.String) && (((string)left).Length == 0))
+                    leftNull = true;
+                if ((right.VarType == VariantType.String) && (left.VarType != VariantType.String) && (((string)right).Length == 0))
+                    rightNull = true;
+            }
+            if (!leftNull && !rightNull)
+                return false;
+            if (equality)
+            {
+                bool equal = leftNull && rightNull;
+                result = ((aoperator == "=") || (aoperator == "==")) ? equal : !equal;
+                return true;
+            }
+            int comparison = leftNull ? (rightNull ? 0 : -1) : 1;
+            switch (aoperator)
+            {
+                case "<": result = comparison < 0; break;
+                case "<=": result = comparison <= 0; break;
+                case ">": result = comparison > 0; break;
+                default: result = comparison >= 0; break;
+            }
+            return true;
         }
         private static void CoerceOperands(ref Variant value1, ref Variant value2)
         {
@@ -1065,7 +1135,7 @@ namespace Reportman.Reporting
         /// The report of the evaluator was converted from Delphi (<see cref="BaseReport.ConvertedFromDelphi"/>):
         /// FORMATSTR formats dates with the masks of Delphi.
         /// </summary>
-        public bool DelphiDateMasks;
+        public bool DelphiMasks;
 
         internal static void CheckFileFunctions(string name)
         {

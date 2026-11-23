@@ -235,9 +235,8 @@ export class SectionRuntime extends PrintItem {
     // Draw the background if needed
     if (this.backStyle !== BackStyleType.Design) {
       const astream = this.getStream();
-      // C# parity: a section with a background style and no background image prints no items
-      if (astream === null) return;
-      if (astream.length > 0)
+      // Without a background image only the background is left out, as in the Delphi engine
+      if (astream !== null && astream.length > 0)
         printSectionBackground(this.background, astream, metafile, aposx, aposy, this.printWidth, this.printHeight, this.drawStyle,
           this.dpires, this.backStyle === BackStyleType.Preview, this.sharedImage);
     }

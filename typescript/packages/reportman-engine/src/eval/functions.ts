@@ -406,6 +406,8 @@ class IdenFloatToDateTime extends BuiltinFunction {
   }
 }
 
+const ROUND_SMALLEST = CsDecimal.parseInvariant('0.0001');
+
 class IdenRound extends BuiltinFunction {
   constructor(e: Evaluator) {
     super(e, 'Round', 2, 'function Round(num:double,r:double):double');
@@ -415,8 +417,11 @@ class IdenRound extends BuiltinFunction {
     if (!this.params[0]!.isNumber()) throw this.typeError('Round');
     const num = this.params[0]!.toDecimal(this.ctx);
     if (!this.params[1]!.isNumber()) throw this.typeError('Round');
-    // C# parity: the multiple is read from Params[0], not Params[1].
-    const r = this.params[0]!.toDecimal(this.ctx);
+    // As Roundfloat of the Delphi engine: a multiple of zero leaves the number as it is, and the
+    // smallest multiple is 0.0001
+    let r = this.params[1]!.toDecimal(this.ctx);
+    if (r.isZero) return Variant.fromDecimal(num);
+    if (r.compareTo(ROUND_SMALLEST) < 0) r = ROUND_SMALLEST;
     return Variant.fromDecimal(roundDecimalUp(num, r));
   }
 }

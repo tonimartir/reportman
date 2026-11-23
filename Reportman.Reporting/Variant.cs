@@ -773,7 +773,10 @@ namespace Reportman.Reporting
                     aresult = FDecimal.ToString();
                     break;
                 case VariantType.Double:
-                    aresult = FDouble.ToString();
+                    // 15 significant digits, as the Delphi engine and the .NET Framework: the shortest
+                    // text that reads back as the same Double (.NET Core 3 and later) shows the noise
+                    // of the binary value (0.1+0.2 as 0,30000000000000004; 4.35*100 as 434,99999999999994)
+                    aresult = FDouble.ToString("G15");
                     break;
                 case VariantType.DateTime:
                     aresult = FDateTime.ToString();
@@ -1133,8 +1136,7 @@ namespace Reportman.Reporting
                             aresult.FInteger = avalue1.FInteger;
                             break;
                         case VariantType.Integer:
-                            aresult.FVarType = VariantType.Integer;
-                            aresult.FInteger = avalue1.FInteger + avalue2.FInteger;
+                            aresult = IntegerOrLong((long)avalue1.FInteger + avalue2.FInteger);
                             break;
                         case VariantType.Long:
                             aresult.FVarType = VariantType.Long;
@@ -1368,8 +1370,7 @@ namespace Reportman.Reporting
                     switch (avalue2.FVarType)
                     {
                         case VariantType.Integer:
-                            aresult.FVarType = VariantType.Integer;
-                            aresult.FInteger = avalue1.FInteger - avalue2.FInteger;
+                            aresult = IntegerOrLong((long)avalue1.FInteger - avalue2.FInteger);
                             break;
                         case VariantType.Long:
                             aresult.FVarType = VariantType.Long;
@@ -1556,6 +1557,25 @@ namespace Reportman.Reporting
         /// <summary>
         /// Binary multiplier arithmetic operator
         /// </summary>
+        /// <summary>
+        /// The result of an operation between two Integer values: an Integer, or a Long when it does
+        /// not fit (it wrapped around: 1000000*1000000 was -727379968), as the Int64 of the Delphi engine.
+        /// </summary>
+        private static Variant IntegerOrLong(long value)
+        {
+            Variant aresult = new Variant();
+            if ((value >= int.MinValue) && (value <= int.MaxValue))
+            {
+                aresult.FVarType = VariantType.Integer;
+                aresult.FInteger = (int)value;
+            }
+            else
+            {
+                aresult.FVarType = VariantType.Long;
+                aresult.FLong = value;
+            }
+            return aresult;
+        }
         public static Variant operator *(Variant avalue1, Variant avalue2)
         {
             Variant aresult = new Variant();
@@ -1593,8 +1613,7 @@ namespace Reportman.Reporting
                     switch (avalue2.FVarType)
                     {
                         case VariantType.Integer:
-                            aresult.FVarType = VariantType.Integer;
-                            aresult.FInteger = avalue1.FInteger * avalue2.FInteger;
+                            aresult = IntegerOrLong((long)avalue1.FInteger * avalue2.FInteger);
                             break;
                         case VariantType.Long:
                             aresult.FVarType = VariantType.Long;
@@ -2286,20 +2305,37 @@ namespace Reportman.Reporting
         /// (a sum of 380.5 and 5802 is 6182.5, but 17669.0 prints 17669). Midnight of day 0001-01-01
         /// is also DateTime.MinValue, a date: it keeps printing as a date.
         /// </summary>
-        private string DisplayText()
+        /// <remarks>
+        /// In a report converted from Delphi (delphiMasks) the texts are those of Delphi: a date with
+        /// the format settings Delphi takes from Windows (the short date, and the long time when it
+        /// has one; a time alone, on the day zero of OLE too, is the long time), and a Decimal with
+        /// the 15 digits of the Double it is in Delphi (80/9 is 8,88888888888889).
+        /// </remarks>
+        internal string DisplayText(bool delphiMasks = false)
         {
             switch (VarType)
             {
                 case VariantType.DateTime:
-                    if ((FDateTime.Date == DateTime.MinValue.Date) && (FDateTime.TimeOfDay != TimeSpan.Zero))
+                    bool timeOnly = (FDateTime.Date == DateTime.MinValue.Date) && (FDateTime.TimeOfDay != TimeSpan.Zero);
+                    if (delphiMasks)
+                    {
+                        DelphiFormatSettings settings = DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture);
+                        if (timeOnly || ((FDateTime.Date == OleZeroDate) && (FDateTime.TimeOfDay != TimeSpan.Zero)))
+                            return DelphiDateFormat.Format(FDateTime, "tt", settings);
+                        return DelphiDateFormat.Format(FDateTime, "c", settings);
+                    }
+                    if (timeOnly)
                         return FDateTime.ToLongTimeString();
                     return FDateTime.TimeOfDay == TimeSpan.Zero ? FDateTime.ToShortDateString() : FDateTime.ToString();
                 case VariantType.Decimal:
+                    if (delphiMasks)
+                        return ((double)FDecimal).ToString("G15");
                     return FDecimal.ToString("G29");
                 default:
                     return ToString();
             }
         }
+        private static readonly DateTime OleZeroDate = new DateTime(1899, 12, 30);
         private string DefaultDateTimeFormat(ParamType paramtype)
         {
             if (paramtype == ParamType.Date)
@@ -2332,8 +2368,9 @@ namespace Reportman.Reporting
             return ToString(displayformat, paramtype, printnulls, false);
         }
         /// <summary>
-        /// Formats a Variant, with a display format; a date with a display format of a report
-        /// converted from Delphi is formatted as Delphi does (<see cref="DelphiDateFormat"/>).
+        /// Formats a Variant, with a display format; in a report converted from Delphi the masks of
+        /// dates and numbers and the default texts are those of the Delphi engine
+        /// (<see cref="DelphiDateFormat"/>, <see cref="DelphiNumberMask"/>).
         /// </summary>
         /// <param name="displayformat">
         /// The formatting string, depending on current value
@@ -2345,12 +2382,12 @@ namespace Reportman.Reporting
         /// <param name="printnulls">
         /// For numeric values the 0 will return an empty string
         /// </param>
-        /// <param name="delphiDateMasks">
+        /// <param name="delphiMasks">
         /// The report was converted from Delphi (<see cref="BaseReport.ConvertedFromDelphi"/>): the
-        /// date masks are those of Delphi's FormatDateTime instead of .NET's
+        /// masks are those of Delphi's FormatDateTime and FormatFloat instead of .NET's
         /// </param>
         public string ToString(string displayformat, ParamType paramtype,
-            bool printnulls, bool delphiDateMasks)
+            bool printnulls, bool delphiMasks)
         {
             VariantType atype;
             Variant Value = this;
@@ -2387,34 +2424,15 @@ namespace Reportman.Reporting
                 }
             }
             atype = Value.VarType;
-            if (!Value.IsNull)
+            bool dateParam = (paramtype == ParamType.Date) || (paramtype == ParamType.Time) || (paramtype == ParamType.DateTime);
+            bool numeric = (atype == VariantType.Byte) || (atype == VariantType.Integer) || (atype == VariantType.Long) ||
+                (atype == VariantType.Decimal) || (atype == VariantType.Double);
+            if (!Value.IsNull && (displayformat.Length == 0) && printnulls)
             {
-                if (displayformat.Length == 0)
-                {
-                    if (printnulls)
-                    {
-                        if ((paramtype == ParamType.Date) ||
-                            (paramtype == ParamType.Time) ||
-                            (paramtype == ParamType.DateTime))
-                        {
-                            displayformat = DefaultDateTimeFormat(paramtype);
-                            if ((atype == VariantType.Byte) ||
-                                (atype == VariantType.Integer) ||
-                                (atype == VariantType.Long) ||
-                                (atype == VariantType.DateTime) ||
-                                (atype == VariantType.Decimal) ||
-                                (atype == VariantType.Double))
-                            {
-                                DateTime adate = Value;
-                                return adate.ToString(DateFormatMask(displayformat));
-                            }
-                            else
-                                return Value.DisplayText();
-                        }
-                        else
-                            return Value.DisplayText();
-                    }
-                }
+                // A date, or a number in a date parameter, in the default format of the type
+                if (dateParam && (numeric || (atype == VariantType.DateTime)))
+                    return DefaultDateText(Value.DateValue(), paramtype, delphiMasks);
+                return Value.DisplayText(delphiMasks);
             }
             string aresult = "";
             switch (atype)
@@ -2428,55 +2446,47 @@ namespace Reportman.Reporting
                 case VariantType.Double:
                     if ((Value == 0) && (!printnulls))
                         aresult = "";
-                    else
+                    else if (dateParam)
                     {
+                        // A number in a date parameter is a date, with the mask or the default format
+                        // of the type (PrintNulls does not change it)
+                        DateTime adate = Value.DateValue();
                         if (displayformat.Length == 0)
-                        {
-                            aresult = Value.DisplayText();
-                        }
+                            aresult = DefaultDateText(adate, paramtype, delphiMasks);
                         else
-                        {
-                            if ((paramtype == ParamType.Date) ||
-                                (paramtype == ParamType.Time) ||
-                                (paramtype == ParamType.DateTime))
-                            {
-                                if (displayformat.Length == 0)
-                                    displayformat = DefaultDateTimeFormat(paramtype);
-                                DateTime adate = Value;
-                                aresult = delphiDateMasks
-                                    ? DelphiDateFormat.Format(adate, displayformat, DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture))
-                                    : adate.ToString(DateFormatMask(displayformat));
-                            }
-                            else
-                            {
-                                if (displayformat[0] == '*')
-                                    aresult = DoubleUtil.FormatCurrAdv(displayformat.
-                                        Substring(1, displayformat.Length - 1), Value);
-                                else
-                                {
-                                    double avalue = Value;
-                                    aresult = avalue.ToString(displayformat);
-                                }
-                            }
-                        }
+                            aresult = delphiMasks
+                                ? DelphiDateFormat.Format(adate, displayformat, DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture))
+                                : adate.ToString(DateFormatMask(displayformat));
                     }
+                    else if (displayformat.Length == 0)
+                        aresult = Value.DisplayText(delphiMasks);
+                    else if (displayformat[0] == '*')
+                        aresult = DoubleUtil.FormatCurrAdv(displayformat.
+                            Substring(1, displayformat.Length - 1), Value);
+                    else
+                        aresult = Value.FormatNumber(delphiMasks ? DelphiNumberMask.ToDotNet(displayformat) : displayformat);
                     break;
                 case VariantType.DateTime:
                     DateTime dvalue = Value;
-                    // Only a mask of the report follows Delphi: the default formats are patterns of .NET
-                    if (delphiDateMasks && (displayformat.Length > 0))
+                    if (displayformat.Length > 0)
                     {
-                        aresult = DelphiDateFormat.Format(dvalue, displayformat, DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture));
-                        break;
+                        // A mask of the report: Delphi's FormatDateTime for a report converted from Delphi
+                        aresult = delphiMasks
+                            ? DelphiDateFormat.Format(dvalue, displayformat, DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture))
+                            : dvalue.ToString(DateFormatMask(displayformat));
                     }
-                    // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
-                    // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
-                    if ((displayformat.Length == 0) && (paramtype != ParamType.Date) && (dvalue.Date == DateTime.MinValue.Date) &&
-                        (dvalue.TimeOfDay != TimeSpan.Zero))
-                        displayformat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern;
-                    if (displayformat.Length == 0)
-                        displayformat = DefaultDateTimeFormat(paramtype);
-                    aresult = dvalue.ToString(DateFormatMask(displayformat));
+                    else if (dateParam && !delphiMasks)
+                    {
+                        // A time without a date (a time column: day 0001-01-01) is its time only, as Delphi's
+                        // FormatDateTime leaves out a zero date (midnight of that day is DateTime.MinValue, a date)
+                        if ((paramtype != ParamType.Date) && (dvalue.Date == DateTime.MinValue.Date) && (dvalue.TimeOfDay != TimeSpan.Zero))
+                            aresult = dvalue.ToLongTimeString();
+                        else
+                            aresult = DefaultDateText(dvalue, paramtype, false);
+                    }
+                    else
+                        // No mask and no date type: as with PrintNulls (it gave the long date and time pattern)
+                        aresult = Value.DisplayText(delphiMasks);
                     break;
                 case VariantType.String:
                     string astring = Value;
@@ -2494,6 +2504,73 @@ namespace Reportman.Reporting
                     break;
             }
             return aresult;
+        }
+        /// <summary>
+        /// The date of a value in a date parameter: a date, or a number as the OLE date it is in the
+        /// Delphi engine (the conversion of a number to a date threw).
+        /// </summary>
+        private DateTime DateValue()
+        {
+            if (FVarType == VariantType.DateTime)
+                return FDateTime;
+            double oleDate = this;
+            return DateTime.FromOADate(oleDate);
+        }
+        /// <summary>
+        /// A date in the default format of its parameter type. The patterns of .NET are used as they
+        /// are (through <see cref="DateFormatMask"/> the h of a 12 hour pattern became the 24 hour
+        /// clock: "13:45:34 PM"); a report converted from Delphi takes the short date, the short time
+        /// or both, as FormatVariant of the Delphi engine.
+        /// </summary>
+        private string DefaultDateText(DateTime value, ParamType paramtype, bool delphiMasks)
+        {
+            if (delphiMasks)
+            {
+                string mask = paramtype == ParamType.Date ? "ddddd" : (paramtype == ParamType.Time ? "t" : "ddddd t");
+                return DelphiDateFormat.Format(value, mask, DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture));
+            }
+            return value.ToString(DefaultDateTimeFormat(paramtype));
+        }
+        /// <summary>
+        /// A number with a custom format of .NET: a Decimal and a Long with their own digits (through
+        /// a Double, more than 15 digits were lost), and a negative value the mask rounds to zero as
+        /// the zero (.NET keeps the sign: "-0,00"), as Delphi's FormatFloat.
+        /// </summary>
+        private string FormatNumber(string mask)
+        {
+            string text, zero, positive;
+            try
+            {
+                switch (FVarType)
+                {
+                    case VariantType.Decimal:
+                        text = FDecimal.ToString(mask);
+                        if (FDecimal >= 0)
+                            return text;
+                        zero = 0m.ToString(mask);
+                        positive = (-FDecimal).ToString(mask);
+                        return positive == zero ? zero : text;
+                    case VariantType.Long:
+                        text = FLong.ToString(mask);
+                        if ((FLong >= 0) || (FLong == long.MinValue))
+                            return text;
+                        zero = 0L.ToString(mask);
+                        positive = (-FLong).ToString(mask);
+                        return positive == zero ? zero : text;
+                }
+            }
+            catch (FormatException)
+            {
+                // A standard format the type has not (R on a Decimal in the .NET Framework): as a
+                // Double, as always
+            }
+            double avalue = this;
+            text = avalue.ToString(mask);
+            if (!(avalue < 0))
+                return text;
+            zero = (0.0).ToString(mask);
+            positive = (-avalue).ToString(mask);
+            return positive == zero ? zero : text;
         }
         /// <summary>
         /// Type transformation using a IFormatProvider

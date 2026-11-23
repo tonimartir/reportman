@@ -20,7 +20,7 @@ export interface VariantContext {
    * The report was converted from Delphi (convertedFromDelphi): a date with a display format is
    * formatted with the masks of Delphi's FormatDateTime instead of those of .NET.
    */
-  readonly delphiDateMasks?: boolean;
+  readonly delphiMasks?: boolean;
 }
 
 export interface ContextOptions {
