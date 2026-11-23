@@ -2,8 +2,14 @@
 // barcode gives the bars the Delphi engine draws for it (fixtures/barcode/NAME.delphi.json.gz,
 // from generate-barcode-delphi-fixtures.mjs), rectangle by rectangle; and the bars read back, the
 // way a scanner reads them, as the text of the item. (barcode-parity.test.ts checks that the C#
-// engine gives these same metafiles.) Where the Delphi engine is the one that is wrong, the
-// difference is told here, case by case.
+// engine gives these same metafiles.)
+//
+// The fixtures are those of the Delphi engine after the fixes of rpmdbarcode.pas that this work
+// found (the loop of Code 93 extended, the weights of the Code 93 check characters, the Mod 10
+// check digit of MSI, the short bars of PostNet on the base line, the last character and the
+// repeated character of PDF417, its codeword escapes and its error correction levels 6 to 8, the
+// text of a QR beyond code page 1252): every barcode here is bar by bar the one of Delphi, but for
+// the cases of barcode-delphi-cases.json that keep a "delphi" mark.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +18,6 @@ import { describe, expect, it } from 'vitest';
 import { here, metaFileJson, runLikeGolden } from './golden-run.js';
 import { toAnsi } from '../src/report/barcode/pdf417.js';
 import {
-  elements,
   msiMod10,
   pdf417ErrorCorrection,
   pdf417Text,
@@ -28,12 +33,13 @@ import {
 
 const fixtures = path.join(here, 'fixtures/barcode');
 
-/** A case of barcode-delphi-cases.json: `delphi` says why the symbol of Delphi is not the one to give. */
+/** A case of barcode-delphi-cases.json. */
 interface DelphiCase {
   caption: string;
   text: string;
   /** What the symbol says when it is not the text as it is (escapes, characters out of the code page). */
   expect?: string;
+  /** The symbol of Delphi is another one: what it says. */
   delphi?: string;
   /** The ECCLevel of the item. */
   ECCLEVEL?: number;
@@ -70,23 +76,19 @@ async function engine(name: string): Promise<Map<string, Barcode>> {
   return out;
 }
 
+/** The same bars, one by one. */
+function expectSameBars(ours: Barcode, theirs: Barcode): void {
+  expect(theirs.bars.length).toBeGreaterThan(0);
+  expect(ours.bars.length).toBe(theirs.bars.length);
+  expect(ours.bars).toEqual(theirs.bars);
+}
+
 describe('linear barcodes against the Delphi engine', () => {
   const reference = delphi('bc-delphi-linear');
   const drawn = engine('bc-delphi-linear');
-  const labels = [...reference.keys()];
 
-  // Where Delphi is wrong the bars are others, each case in its test below: the check digit of
-  // MSI, the short bars of PostNet, the check characters of a Code 93 over 14 characters and the
-  // whole of Code 93 extended
-  const wrongInDelphi = (l: string): boolean =>
-    l.startsWith('msi ') || (l.startsWith('postnet ') && l !== 'postnet empty') || l === 'code93 15' || l === 'code93 36' || l.startsWith('code93x');
-
-  it.each(labels.filter((l) => !wrongInDelphi(l)))('draws the bars of Delphi: %s', async (label) => {
-    const ours = (await drawn).get(label)!;
-    const theirs = reference.get(label)!;
-    expect(theirs.bars.length).toBeGreaterThan(0);
-    expect(ours.bars.length).toBe(theirs.bars.length);
-    expect(ours.bars).toEqual(theirs.bars);
+  it.each([...reference.keys()])('draws the bars of Delphi: %s', async (label) => {
+    expectSameBars((await drawn).get(label)!, reference.get(label)!);
   });
 
   it.each([
@@ -96,36 +98,11 @@ describe('linear barcodes against the Delphi engine', () => {
     ['msi 20 digits', '98765432109876543210'],
     ['msi 80523', '80523'],
     ['msi empty', ''],
-  ])('MSI draws the bars of Delphi but for the check digit, the Mod 10 one: %s', async (label, text) => {
-    const ours = (await drawn).get(label)!.bars;
-    const theirs = reference.get(label)!.bars;
-    const read = readMsi(ours);
-    expect(read).toBe(text + String(msiMod10(text)));
-    // Code_MSI of Delphi adds the character codes of the digits (ord(FText[i])), not their
-    // values, and takes the alternate digits from the left: its check digit is another one
-    // (the same by chance for some texts), which a scanner that checks Mod 10 refuses
-    const delphiRead = readMsi(theirs);
-    expect(delphiRead.slice(0, -1)).toBe(text);
-    if (delphiRead === read) {
-      expect(ours).toEqual(theirs);
-      return;
-    }
-    // The same bars everywhere but in the check digit: eight elements before the three of the stop
-    const a = elements(ours);
-    const b = elements(theirs);
-    expect(a.length).toBe(b.length);
-    const check = a.length - 11;
-    expect(a.slice(0, check)).toEqual(b.slice(0, check));
-    expect(a.slice(check + 8)).toEqual(b.slice(check + 8));
-    expect(ours.length).toBe(theirs.length);
-    expect(ours[0]).toEqual(theirs[0]);
-    expect(ours[ours.length - 1]).toEqual(theirs[theirs.length - 1]);
+  ])('MSI reads as its digits and their Mod 10 check digit: %s', async (label, text) => {
+    expect(readMsi((await drawn).get(label)!.bars)).toBe(text + String(msiMod10(text)));
   });
 
-  it('the check digit of MSI that Delphi draws is not the Mod 10 one', () => {
-    // 123456: Mod 10 is 6, Delphi draws 2. When Delphi is fixed this fails: the bars are then
-    // the same and the test above compares them all.
-    expect(readMsi(reference.get('msi 123456')!.bars)).toBe('1234562');
+  it('the Mod 10 check digit of 123456 is 6', () => {
     expect(msiMod10('123456')).toBe(6);
   });
 
@@ -133,20 +110,12 @@ describe('linear barcodes against the Delphi engine', () => {
     ['postnet 12345', '12345'],
     ['postnet 801221905', '801221905'],
     ['postnet 0123456789', '0123456789'],
-  ])('PostNet draws the bars of Delphi with the short ones on the base line: %s', async (label, text) => {
-    const ours = (await drawn).get(label)!.bars;
-    const theirs = reference.get(label)!.bars;
-    expect(readPostNet(ours)).toEqual({ digits: text, aligned: 'bottom' });
-    // DoLines of Delphi draws a short bar from the top of the item (its height is 2/5 of it):
-    // the symbol upside down, which reads as other digits
-    expect(readPostNet(theirs)).toEqual({ digits: text, aligned: 'top' });
-    expect(ours.length).toBe(theirs.length);
-    const height = Math.max(...theirs.map((b) => b[3]));
-    for (let i = 0; i < ours.length; i++) {
-      const [left, top, width, h, color] = theirs[i]!;
-      // The same bar, a short one moved down to end where the tall ones end
-      expect(ours[i]).toEqual([left, top + (height - h), width, h, color]);
-    }
+  ])('PostNet reads as its digits, the short bars on the base line: %s', async (label, text) => {
+    expect(readPostNet((await drawn).get(label)!.bars)).toEqual({ digits: text, aligned: 'bottom' });
+  });
+
+  it('PostNet of no digits is its two frame bars', async () => {
+    expect(readPostNet((await drawn).get('postnet empty')!.bars)).toEqual({ digits: '', aligned: 'none' });
   });
 
   it('Codabar reads as its text between the start A and the stop B', async () => {
@@ -165,7 +134,7 @@ describe('linear barcodes against the Delphi engine', () => {
     expect(readMatrix25(d.get('matrix 5')!.bars)).toBe('5');
   });
 
-  it('Code 93 reads as its text', async () => {
+  it('Code 93 reads as its text, over the 14 characters where the weight of its K check character restarts too', async () => {
     const d = await drawn;
     expect(readCode93(d.get('code93 CODE93')!.bars)).toBe('CODE93');
     expect(readCode93(d.get('code93 14')!.bars)).toBe('ABCDEFGHIJKLMN');
@@ -173,32 +142,11 @@ describe('linear barcodes against the Delphi engine', () => {
     expect(readCode93(d.get('code93 36')!.bars)).toBe('THE QUICK BROWN FOX 0123456789-.$/+%');
   });
 
-  it.each(['code93 15', 'code93 36'])('Code 93 over 14 characters draws the bars of Delphi but for the check characters: %s', async (label) => {
-    const ours = (await drawn).get(label)!.bars;
-    const theirs = reference.get(label)!.bars;
-    // Code_93 of Delphi restarts the weight of the C check character where the weight of K has
-    // to restart (if weightK > 15 then weightC := 1): from the fifteenth character on both check
-    // characters are wrong, and a reader refuses the symbol
-    expect(() => readCode93(theirs)).toThrow();
-    const a = elements(ours);
-    const b = elements(theirs);
-    expect(a.length).toBe(b.length);
-    // Six elements per check character, before the seven of the stop
-    const check = a.length - 7 - 12;
-    expect(a.slice(0, check)).toEqual(b.slice(0, check));
-    expect(a.slice(check + 12)).toEqual(b.slice(check + 12));
-    expect(a.slice(check, check + 12)).not.toEqual(b.slice(check, check + 12));
-  });
-
-  it('Code 93 extended writes the text: Delphi writes a NUL before it and loses its last character', async () => {
-    // Code_93Extended of Delphi (rpmdbarcode.pas) walks the text from 0 to Length - 1: index 0 of
-    // an AnsiString is the last byte of its length (0), and the last character is never read
+  it('Code 93 extended reads as its text', async () => {
     const d = await drawn;
     expect(readCode93(d.get('code93x Code 93x')!.bars)).toBe('Code 93x');
-    expect(readCode93(reference.get('code93x Code 93x')!.bars)).toBe('\0Code 93');
-    // 23 characters of Code 93: readable with the check characters right
+    // 23 characters of Code 93
     expect(readCode93(d.get('code93x Hello, World!')!.bars)).toBe('Hello, World!');
-    expect(() => readCode93(reference.get('code93x Hello, World!')!.bars)).toThrow();
   });
 });
 
@@ -208,20 +156,9 @@ describe('PDF417 against the Delphi engine', () => {
   const cases = delphiCases.pdf417;
   /** What a reader gets: the bytes of the text in code page 1252, or what its escapes say. */
   const said = (c: DelphiCase): string => c.expect ?? toAnsi(c.text);
-  const read = (bars: readonly Bar[]): string => {
-    try {
-      return pdf417Text(readPdf417(bars).codewords);
-    } catch (e) {
-      return 'not readable: ' + String(e);
-    }
-  };
 
   it.each(cases.filter((c) => c.delphi === undefined))('draws the bars of Delphi: $caption', async (c) => {
-    const ours = (await drawn).get(c.caption)!;
-    const theirs = reference.get(c.caption)!;
-    expect(theirs.bars.length).toBeGreaterThan(0);
-    expect(ours.bars.length).toBe(theirs.bars.length);
-    expect(ours.bars).toEqual(theirs.bars);
+    expectSameBars((await drawn).get(c.caption)!, reference.get(c.caption)!);
   });
 
   it.each(cases)('reads back as the text, with the error correction of its level: $caption', async (c) => {
@@ -233,53 +170,16 @@ describe('PDF417 against the Delphi engine', () => {
     expect(symbol.codewords.slice(data.length)).toEqual(pdf417ErrorCorrection(data, k));
   });
 
-  // Where Delphi is wrong (rpmdbarcode.pas) the symbol is not its own. When Delphi is fixed these
-  // fail, and the cases lose their "delphi" mark: the bars are compared then.
-  it.each(cases.filter((c) => c.delphi === 'last character'))('Delphi loses a last character that is on its own: $caption', (c) => {
-    // TextToCodewords: while i < CodeLen stops before the last character of the text
-    expect(read(reference.get(c.caption)!.bars)).toBe(said(c).slice(0, -1));
+  // The one difference left: a character code page 1252 does not have. Delphi turns the text into
+  // an AnsiString with the best fit of Windows, which gives some of those characters a similar
+  // letter (the Greek capital omega, O); here every one of them is a question mark.
+  it.each(cases.filter((c) => c.delphi !== undefined))('Delphi writes a similar letter for a character out of code page 1252: $caption', (c) => {
+    expect(pdf417Text(readPdf417(reference.get(c.caption)!.bars).codewords)).toBe(c.delphi);
+    expect(c.delphi).not.toBe(said(c));
   });
 
-  it.each(cases.filter((c) => c.delphi === 'character twice'))('Delphi writes twice the character before one the text compaction does not have: $caption', (c) => {
-    // EncodeText: Position := Position - 2 goes back to the character before the one it could not
-    // write, already written, and the byte compaction that follows writes it again
-    const theirs = read(reference.get(c.caption)!.bars);
-    const text = said(c);
-    expect(theirs.length).toBeGreaterThan(text.length);
-    // The text with some characters doubled
-    let j = 0;
-    for (let i = 0; i < theirs.length; i++) {
-      if (theirs.charAt(i) === text.charAt(j)) j++;
-      else expect(theirs.charAt(i), theirs).toBe(theirs.charAt(i - 1));
-    }
-    expect(j).toBe(text.length);
-  });
-
-  it.each(cases.filter((c) => c.delphi === 'codeword escape'))('Delphi takes a codeword escape for a character: $caption', (c) => {
-    // EncodeText: a \\Cnnn over 127 is "not valid text" there, and the text goes on from its digits
-    expect(read(reference.get(c.caption)!.bars)).not.toBe(said(c));
-  });
-
-  it.each(cases.filter((c) => c.delphi === 'error correction'))(
-    'Delphi gives the levels 6 to 8 an error correction that is not the one of the data: $caption',
-    async (c) => {
-      // CalculateECC: StMods128, StMods256 and StMods512 hold the coefficients of the generator
-      // polynomial from the constant term up and are read as StMods is, from the highest power
-      // down. The data codewords are right, the 128, 256 or 512 after them are not: more errors
-      // than any reader corrects.
-      const theirs = readPdf417(reference.get(c.caption)!.bars);
-      const ours = readPdf417((await drawn).get(c.caption)!.bars);
-      const k = 2 ** (theirs.level + 1);
-      expect(k).toBeGreaterThanOrEqual(128);
-      const data = theirs.codewords.slice(0, theirs.codewords.length - k);
-      expect(ours.codewords.slice(0, data.length)).toEqual(data);
-      expect(theirs.codewords.slice(data.length)).not.toEqual(pdf417ErrorCorrection(data, k));
-      expect(ours.codewords.slice(data.length)).toEqual(pdf417ErrorCorrection(data, k));
-    },
-  );
-
-  it('every case that Delphi has wrong is one of those', () => {
-    expect([...new Set(cases.map((c) => c.delphi))].sort()).toEqual(['character twice', 'codeword escape', 'error correction', 'last character', undefined]);
+  it('only the best fit case is not the symbol of Delphi', () => {
+    expect(cases.filter((c) => c.delphi !== undefined).map((c) => c.caption)).toEqual(['best fit of Windows']);
   });
 });
 
@@ -295,28 +195,14 @@ describe('QR against the Delphi engine', () => {
   const cases = delphiCases.qr;
   const level = (c: DelphiCase): string => ({ 3: 'M', 4: 'Q', 5: 'H' })[c.ECCLEVEL ?? -1] ?? 'L';
 
-  it.each(cases.filter((c) => c.delphi === undefined))('draws the modules of Delphi: $caption', async (c) => {
-    const ours = (await drawn).get(c.caption)!;
-    const theirs = reference.get(c.caption)!;
-    expect(theirs.bars.length).toBeGreaterThan(0);
-    expect(ours.bars.length).toBe(theirs.bars.length);
-    expect(ours.bars).toEqual(theirs.bars);
+  it.each(cases)('draws the modules of Delphi: $caption', async (c) => {
+    expect(c.delphi).toBeUndefined();
+    expectSameBars((await drawn).get(c.caption)!, reference.get(c.caption)!);
   });
 
   it.each(cases)('reads back as the text, at its error correction level: $caption', async (c) => {
     const symbol = readQr((await drawn).get(c.caption)!.bars);
     expect(symbol.text).toBe(c.text);
     expect(symbol.level).toBe(level(c));
-  });
-
-  it.each(cases.filter((c) => c.delphi === 'code page'))('Delphi loses the characters code page 1252 does not have: $caption', async (c) => {
-    // DoPrint of Delphi keeps the text as an AnsiString (CurrentText) and the QR encoder gets it
-    // back from there: the euro sign survives (it is in code page 1252, and the text is then
-    // written in UTF-8), Greek, Chinese or an emoji do not. Here the whole text is written in
-    // UTF-8, the way Delphi writes the ones it can.
-    const theirs = readQr(reference.get(c.caption)!.bars);
-    expect(theirs.text).not.toBe(c.text);
-    expect(theirs.level).toBe(level(c));
-    expect(readQr((await drawn).get(c.caption)!.bars).text).toBe(c.text);
   });
 });

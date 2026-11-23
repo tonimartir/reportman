@@ -11,11 +11,12 @@
 // latch of the text submode it looks at the character after the next one. Both give a valid
 // symbol.
 //
-// What Delphi does wrong is not ported (test/barcode-delphi.test.ts has each case): it stops
-// before a last character that is on its own (while i < CodeLen), it steps back two characters
-// instead of one where the text compaction meets a character it cannot write, so the one before
-// it is written twice (Position := Position - 2), it takes a codeword escape (\Cnnn) for a
-// character, and for a text mode character over 127 it reads past its table.
+// Delphi encoded some texts wrong, which was not ported, and is fixed the same way now
+// (rpmdbarcode.pas): it stopped before a last character that is on its own (while i < CodeLen),
+// it stepped back two characters instead of one where the text compaction meets a character it
+// cannot write, so the one before it was written twice (Position := Position - 2), it took a
+// codeword escape (\Cnnn) for a character, and for a text mode character over 127 it read past
+// its table. test/barcode-delphi.test.ts compares the symbols with those of Delphi.
 
 import { BrushType, MetaObjectDraw, MetaObjectType, PenType, ShapeType, type MetaFile } from '@reportman/metafile';
 import { substringNet } from '../../util/chars.js';
@@ -83,7 +84,8 @@ const CP1252_HIGH =
 /**
  * ToAnsi: the text as the bytes PDF417 writes, a character per byte: the AnsiString the Delphi
  * engine encodes on a Western Windows (code page 1252: the euro sign is 0x80). A character the
- * code page does not have is a question mark.
+ * code page does not have is a question mark (Delphi, with the best fit of Windows, writes a
+ * similar letter for some of them: O for the Greek capital omega).
  */
 export function toAnsi(text: string): string {
   let ansi = '';
@@ -251,9 +253,9 @@ function textToCodewords(code: string, codewords: number[], nfi: NumberFormatDat
     currentMode = DataMode.Binary;
     w.add(901); // BinaryCompaction
   }
-  // Up to the last character: Delphi stops before it (while i < CodeLen), and a text that ends
-  // with a character on its own (one character, digits and a letter, text and an accented
-  // letter) loses it
+  // Up to the last character: stopping before it (while i < CodeLen, Delphi before its fix), a
+  // text that ends with a character on its own (one character, digits and a letter, text and an
+  // accented letter) lost it
   while (pos.value <= codeLen) {
     const before = pos.value;
     switch (currentMode) {
@@ -524,8 +526,8 @@ function encodeText(code: string, w: CodewordWriter, pos: { value: number }, cod
     let validtext = false;
     if (newChar <= 127) validtext = textValue(newChar) >= 0;
     if (!validtext && !isCodeword) {
-      // Back to the character the text compaction cannot write (Delphi goes back two, and the
-      // character before it is written again)
+      // Back to the character the text compaction cannot write (going back two, as Delphi did
+      // before its fix, the character before it is written again)
       pos.value = oldPosition;
       break;
     } else if (!isCodeword) {
@@ -600,8 +602,9 @@ function calculateECC(codewords: number[], numCodewords: number, eccLen: number)
   }
   // The tables of levels 6, 7 and 8 hold the coefficients of the generator polynomial from the
   // constant term up, and ST_MODS from the highest power down, the order the division below takes
-  // them in: they are read from their end. (Delphi reads them as they are, and the error
-  // correction codewords of those levels are not the ones of the data: no reader takes the symbol.)
+  // them in: they are read from their end. (Read as they are, as Delphi did before its fix, the
+  // error correction codewords of those levels are not the ones of the data: no reader takes the
+  // symbol.)
   else if (eccLen === 128) {
     for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(ST_MODS_128, eccLen - 1 - i));
   } else if (eccLen === 256) {

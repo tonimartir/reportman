@@ -1097,12 +1097,13 @@ namespace Reportman.Reporting {
         // to choose between a shift and a latch of the text submode it looks at the character
         // after the next one. Both give a valid symbol.
         //
-        // What Delphi does wrong is not ported (barcode-delphi.test.ts of the TypeScript engine
-        // has each case): it stops before a last character that is on its own (while i < CodeLen),
-        // it steps back two characters instead of one where the text compaction meets a character
-        // it cannot write, so the one before it is written twice (Position := Position - 2), it
-        // takes a codeword escape (\Cnnn) for a character, and for a text mode character over 127
-        // it reads past its table.
+        // Delphi encoded some texts wrong, which was not ported, and is fixed the same way now
+        // (rpmdbarcode.pas): it stopped before a last character that is on its own (while
+        // i < CodeLen), it stepped back two characters instead of one where the text compaction
+        // meets a character it cannot write, so the one before it was written twice (Position :=
+        // Position - 2), it took a codeword escape (\Cnnn) for a character, and for a text mode
+        // character over 127 it read past its table. barcode-delphi.test.ts of the TypeScript
+        // engine compares the symbols with those of Delphi.
 
         // The character at a position of Delphi (from 1)
         private static char At(string code, int position)
@@ -1117,7 +1118,8 @@ namespace Reportman.Reporting {
         /// <summary>
         /// The text as the bytes PDF417 writes, a character per byte: the AnsiString the Delphi
         /// engine encodes on a Western Windows (code page 1252: the euro sign is 0x80). A character
-        /// the code page does not have is a question mark.
+        /// the code page does not have is a question mark (Delphi, with the best fit of Windows,
+        /// writes a similar letter for some of them: O for the Greek capital omega).
         /// </summary>
         public static string ToAnsi(string text)
         {
@@ -1321,9 +1323,9 @@ namespace Reportman.Reporting {
                 codewords[numCodewords++] = 901; // BinaryCompaction
             }
 
-            // Up to the last character: Delphi stops before it (while i < CodeLen), and a text
-            // that ends with a character on its own (one character, digits and a letter, text and
-            // an accented letter) loses it
+            // Up to the last character: stopping before it (while i < CodeLen, Delphi before
+            // its fix), a text that ends with a character on its own (one character, digits and a
+            // letter, text and an accented letter) lost it
             while (position <= codeLen)
             {
                 int before = position;
@@ -1602,8 +1604,8 @@ namespace Reportman.Reporting {
 
                 if (!validtext && !isCodeword)
                 {
-                    // Back to the character the text compaction cannot write (Delphi goes back
-                    // two, and the character before it is written again)
+                    // Back to the character the text compaction cannot write (going back two,
+                    // as Delphi did before its fix, the character before it is written again)
                     position = oldPosition;
                     break;
                 }
@@ -1703,9 +1705,9 @@ namespace Reportman.Reporting {
             }
             // The tables of levels 6, 7 and 8 hold the coefficients of the generator polynomial
             // from the constant term up, and StMods from the highest power down, the order the
-            // division below takes them in: they are read from their end. (Delphi reads them as
-            // they are, and the error correction codewords of those levels are not the ones of
-            // the data: no reader takes the symbol.)
+            // division below takes them in: they are read from their end. (Read as they are, as
+            // Delphi did before its fix, the error correction codewords of those levels are not
+            // the ones of the data: no reader takes the symbol.)
             else if (eccLen == 128)
             {
                 for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods128[eccLen - 1 - i];

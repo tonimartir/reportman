@@ -30,6 +30,7 @@
     { "caption": "euro", "text": "a€b end of it" },
     { "caption": "accent inside", "text": "café con leche" },
     { "caption": "not in code page 1252", "text": "a日b end of it", "expect": "a?b end of it" },
+    { "caption": "best fit of Windows", "text": "aΩb end of it", "expect": "a?b end of it", "delphi": "aOb end of it" },
     { "caption": "escapes", "text": "esc \\065\\066 \\X41 \\\\ end", "expect": "esc AB A \\ end", "NUMCOLUMNS": 4 },
     { "caption": "rows and columns", "text": "123456789", "NUMCOLUMNS": 3, "NUMROWS": 5 },
     { "caption": "columns", "text": "Report Manager", "NUMCOLUMNS": 4 },
@@ -41,19 +42,19 @@
     { "caption": "level 3", "text": "ECC level 3", "ECCLEVEL": 3 },
     { "caption": "level 4", "text": "ECC level 4", "ECCLEVEL": 4 },
     { "caption": "level 5", "text": "ECC level 5", "ECCLEVEL": 5 },
-    { "caption": "level 6", "text": "ECC level 6", "ECCLEVEL": 6, "NUMCOLUMNS": 8, "HEIGHT": 900, "delphi": "error correction" },
-    { "caption": "level 7", "text": "ECC level 7", "ECCLEVEL": 7, "NUMCOLUMNS": 12, "MODUL": 1, "HEIGHT": 900, "delphi": "error correction" },
-    { "caption": "level 8", "text": "ECC level 8", "ECCLEVEL": 8, "NUMCOLUMNS": 16, "MODUL": 1, "HEIGHT": 900, "delphi": "error correction" },
+    { "caption": "level 6", "text": "ECC level 6", "ECCLEVEL": 6, "NUMCOLUMNS": 8, "HEIGHT": 900 },
+    { "caption": "level 7", "text": "ECC level 7", "ECCLEVEL": 7, "NUMCOLUMNS": 12, "MODUL": 1, "HEIGHT": 900 },
+    { "caption": "level 8", "text": "ECC level 8", "ECCLEVEL": 8, "NUMCOLUMNS": 16, "MODUL": 1, "HEIGHT": 900 },
     { "caption": "long text", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 0123456789 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 0123456789 ", "NUMCOLUMNS": 6, "HEIGHT": 900 },
-    { "caption": "one letter", "text": "A", "delphi": "last character" },
-    { "caption": "one digit", "text": "7", "delphi": "last character" },
-    { "caption": "one byte", "text": "é", "delphi": "last character" },
-    { "caption": "digits and a letter", "text": "12345678901234567890X", "delphi": "last character" },
-    { "caption": "text and the euro", "text": "Total: 100€", "delphi": "character twice" },
-    { "caption": "text and an accent", "text": "abcdefé", "delphi": "character twice" },
-    { "caption": "text, accents, text", "text": "Hello Ñandú", "delphi": "character twice" },
-    { "caption": "accents in a sentence", "text": "Señor Muñoz, 25 años", "delphi": "character twice" },
-    { "caption": "codeword escapes", "text": "AB\\C901\\C067", "expect": "ABC", "delphi": "codeword escape" }
+    { "caption": "one letter", "text": "A" },
+    { "caption": "one digit", "text": "7" },
+    { "caption": "one byte", "text": "é" },
+    { "caption": "digits and a letter", "text": "12345678901234567890X" },
+    { "caption": "text and the euro", "text": "Total: 100€" },
+    { "caption": "text and an accent", "text": "abcdefé" },
+    { "caption": "text, accents, text", "text": "Hello Ñandú" },
+    { "caption": "accents in a sentence", "text": "Señor Muñoz, 25 años" },
+    { "caption": "codeword escapes", "text": "AB\\C901\\C067", "expect": "ABC" }
   ],
   "qr": [
     { "caption": "hello L", "text": "Hello", "ECCLEVEL": 2 },
@@ -89,8 +90,8 @@
     { "caption": "background", "text": "Background", "ECCLEVEL": 2, "TRANSPARENT": false, "BACKCOLOR": 12632256, "BCOLOR": 8388608 },
     { "caption": "wide box", "text": "Wide", "ECCLEVEL": 3, "WIDTH": 2500, "HEIGHT": 700 },
     { "caption": "tall box", "text": "Tall", "ECCLEVEL": 4, "WIDTH": 500, "HEIGHT": 800 },
-    { "caption": "chinese", "text": "Euro € and 日本語", "ECCLEVEL": 3, "delphi": "code page" },
-    { "caption": "greek", "text": "αβγ ≠ ΑΒΓ", "ECCLEVEL": 2, "delphi": "code page" },
-    { "caption": "emoji", "text": "Emoji 😀 pair", "ECCLEVEL": 4, "delphi": "code page" }
+    { "caption": "chinese", "text": "Euro € and 日本語", "ECCLEVEL": 3 },
+    { "caption": "greek", "text": "αβγ ≠ ΑΒΓ", "ECCLEVEL": 2 },
+    { "caption": "emoji", "text": "Emoji 😀 pair", "ECCLEVEL": 4 }
   ]
 }

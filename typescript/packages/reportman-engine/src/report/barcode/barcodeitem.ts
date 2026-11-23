@@ -701,8 +701,8 @@ export class BarcodeItem extends PrintPosItem {
    * Code_MSI: MSI (Modified Plessey) as the Delphi engine draws it, the digits and a check digit,
    * always (the checksum property does not apply). The check digit is the Mod 10 one a scanner
    * checks (Luhn: from the right, every other digit doubled, the digits of the doubles added).
-   * Delphi means the same digit but adds the character codes of the digits instead of their
-   * values (and counts from the left), so its digit is another.
+   * (Delphi added the character codes of the digits instead of their values, from the left,
+   * until its Code_MSI was fixed the same way.)
    */
   private codeMSI(): string {
     const ftext = this.currentText;
@@ -814,8 +814,8 @@ export class BarcodeItem extends PrintPosItem {
       weightC++;
       if (weightC > 20) weightC = 1;
       weightK++;
-      // The weights of K go from 1 to 15 and start again (Delphi restarts the weight of C here
-      // instead: over 14 characters its check characters are wrong)
+      // The weights of K go from 1 to 15 and start again (the weight of C was restarted here
+      // instead, as in Delphi before its fix: over 14 characters the check characters were wrong)
       if (weightK > 15) weightK = 1;
     }
     checkK = i32(checkK + checkC);
@@ -924,8 +924,8 @@ export class BarcodeItem extends PrintPosItem {
       if (lt !== LineType.White || (lt === LineType.White && !this.transparent)) {
         const brushColor = penColor;
         const aheight = lt === LineType.Half ? idiv(Math.imul(this.printHeight, 2), 5) : this.printHeight;
-        // The short bars of PostNet stand on the base line of the tall ones (Delphi hangs them
-        // from the top: the symbol upside down)
+        // The short bars of PostNet stand on the base line of the tall ones (Delphi hung them
+        // from the top, the symbol upside down, before its fix)
         const atop = i32(this.printHeight - aheight);
         // a, b, c, d builds the rectangle we want to draw
         const [a, c] = placeRectangle(

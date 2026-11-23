@@ -737,8 +737,8 @@ namespace Reportman.Reporting
         // MSI (Modified Plessey), as the Delphi engine draws it: the digits and a check digit,
         // always (the Checksum property does not apply). The check digit is the Mod 10 one a
         // scanner checks (Luhn: from the right, every other digit doubled, the digits of the
-        // doubles added). Delphi means the same digit but adds the character codes of the digits
-        // instead of their values (and counts from the left), so its digit is another.
+        // doubles added). (Delphi added the character codes of the digits instead of their
+        // values, from the left, until its Code_MSI was fixed the same way.)
         private string Code_MSI()
         {
             string FText = CurrentText ?? "";
@@ -1359,9 +1359,9 @@ namespace Reportman.Reporting
                 if (weightC > 20)
                     weightC = 1;
                 weightK++;
-                // The weights of K go from 1 to 15 and start again. (Delphi restarts the weight
-                // of C here instead, and K never restarts: over 14 characters both check
-                // characters are wrong and a reader refuses the symbol.)
+                // The weights of K go from 1 to 15 and start again. (The weight of C was
+                // restarted here instead, as in Delphi before its fix: over 14 characters both
+                // check characters were wrong and a reader refused the symbol.)
                 if (weightK > 15)
                     weightK = 1;
             }
@@ -1868,7 +1868,7 @@ namespace Reportman.Reporting
                     else
                         aheight = PrintHeight;
                     // The short bars of PostNet stand on the base line of the tall ones (Delphi
-                    // hangs them from the top: the symbol upside down)
+                    // hung them from the top, the symbol upside down, before its fix)
                     int atop = PrintHeight - aheight;
                     a = new Point(xadd, atop);
                     b = new Point(xadd, atop + aheight);

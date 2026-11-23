@@ -316,9 +316,7 @@ report('bc-code128.rep', {
 // drawn as the Delphi engine draws them, and Code 93 (plain and extended) up to and over the 14
 // characters after which the weight of its K check character restarts: values, modules, ratios
 // (clamped to 2..3 for Codabar and 2.25..3 for the matrix), transparency and colour. No rotations:
-// the box of a rotated bar is another in Delphi. Delphi is wrong in some of them (the check digit
-// of MSI, the short bars of PostNet, the check characters of a long Code 93, Code 93 extended):
-// barcode-delphi.test.ts tells each difference.
+// the box of a rotated bar is another in Delphi.
 report('bc-delphi-linear.rep', {
   db: false,
   subs: [
@@ -520,8 +518,9 @@ report('bc-pdf417.rep', {
 
 // PDF417 against Delphi: the texts of barcode-delphi-cases.json, the compaction modes at their
 // edges (the last characters of a text, the digits that make a numeric compaction, a character
-// the text compaction does not have after text), sizes and error correction levels. Those marked
-// "delphi" there are the ones the Delphi engine encodes wrong.
+// the text compaction does not have after text), sizes and error correction levels. A case with
+// a "delphi" there is not the symbol of Delphi (its value is what the symbol of Delphi says): a
+// character code page 1252 does not have, which the best fit of Windows turns into a letter.
 const delphiCases = JSON.parse(fs.readFileSync(path.resolve(here, '../barcode-delphi-cases.json'), 'utf8'));
 report('bc-delphi-pdf417.rep', {
   db: false,
@@ -542,8 +541,7 @@ report('bc-delphi-pdf417.rep', {
 // (numeric, alphanumeric and byte modes, ISO-8859-1, and the characters beyond it, written in
 // UTF-8), the background and boxes that are not square. The Delphi engine numbers the levels
 // otherwise (0 L, 1 M, 2 Q, 3 H): generate-barcode-delphi-fixtures.mjs runs it with the level that
-// means the same. Those marked "delphi" have characters code page 1252 does not have, which Delphi
-// loses.
+// means the same.
 report('bc-delphi-qr.rep', {
   db: false,
   subs: [
