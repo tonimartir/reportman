@@ -1893,33 +1893,35 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        // The line spacing of a standard font, and no leading: the height of n lines is n line
+        // spacings, as in the Delphi engine since its "Normalize line spacing" (2025-12-10). The
+        // leading (150 for Helvetica and Times, 133 Courier, 255 Symbol) was added once to the
+        // height of every text and taken from the top of each line, which TextOut gave back: the
+        // lines were drawn where they are drawn now, but a text measured 0.135 of its size more
+        // (a section that grows, 27 twips more for each text of 10 points), the bottom and centre
+        // alignments were that much (or half) higher and the background of a line began above it.
         void GetStdLineSpacing(out int linespacing, out int leading)
         {
+            leading = 0;
             switch (FFont.Name)
             {
                 case PDFFontType.Helvetica:
                     linespacing = 1270;
-                    leading = 150;
                     break;
                 case PDFFontType.Courier:
                     linespacing = 1265;
-                    leading = 133;
                     break;
                 case PDFFontType.TimesRoman:
                     linespacing = 1257;
-                    leading = 150;
                     break;
                 case PDFFontType.Symbol:
                     linespacing = 1450;
-                    leading = 255;
                     break;
                 case PDFFontType.ZafDingbats:
                     linespacing = 1200;
-                    leading = 150;
                     break;
                 default:
                     linespacing = 1270;
-                    leading = 200;
                     break;
             }
         }

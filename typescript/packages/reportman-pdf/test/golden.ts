@@ -155,7 +155,8 @@ export function loadGolden(name: string): GoldenFixture {
       else if (jo.class === 'MetaObjectDraw') obj = new MetaObjectDraw();
       else throw new Error(name + ': the golden loader does not rebuild ' + jo.class);
       for (const [key, value] of Object.entries(jo)) {
-        if (key === 'class' || key === 'text' || key === 'lFontName' || key === 'wFontName') continue;
+        // The annotation text (golden-cs writes it too now) comes from the PDF, as before
+        if (key === 'class' || key === 'text' || key === 'lFontName' || key === 'wFontName' || key === 'annotation') continue;
         const field = fieldName(key);
         if (!(field in obj)) throw new Error(name + ': unknown field ' + key + ' of ' + jo.class);
         (obj as unknown as Record<string, unknown>)[field] = value;

@@ -6,21 +6,26 @@ export interface StdLineSpacing {
   leading: number;
 }
 
-/** The line spacing and leading of a standard font (PDFCanvas.GetStdLineSpacing). */
+/**
+ * The line spacing of a standard font, and no leading (PDFCanvas.GetStdLineSpacing): the height of
+ * n lines is n line spacings, as in the Delphi engine since its "Normalize line spacing"
+ * (2025-12-10). The leading (150 for Helvetica and Times, 133 Courier, 255 Symbol) was added once
+ * to the height of every text and taken from the top of each line, which the drawing gave back.
+ */
 export function getStdLineSpacing(fontName: PDFFontType): StdLineSpacing {
   switch (fontName) {
     case PDFFontType.Helvetica:
-      return { lineSpacing: 1270, leading: 150 };
+      return { lineSpacing: 1270, leading: 0 };
     case PDFFontType.Courier:
-      return { lineSpacing: 1265, leading: 133 };
+      return { lineSpacing: 1265, leading: 0 };
     case PDFFontType.TimesRoman:
-      return { lineSpacing: 1257, leading: 150 };
+      return { lineSpacing: 1257, leading: 0 };
     case PDFFontType.Symbol:
-      return { lineSpacing: 1450, leading: 255 };
+      return { lineSpacing: 1450, leading: 0 };
     case PDFFontType.ZafDingbats:
-      return { lineSpacing: 1200, leading: 150 };
+      return { lineSpacing: 1200, leading: 0 };
     default:
-      return { lineSpacing: 1270, leading: 200 };
+      return { lineSpacing: 1270, leading: 0 };
   }
 }
 

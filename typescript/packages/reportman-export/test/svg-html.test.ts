@@ -415,13 +415,12 @@ describe('the TypeScript engine against the Delphi engine', () => {
           break;
         }
         case 'fishes': {
-          // 1. The TypeScript engine (as the C# one) lays out two sections of each fish taller, by
-          //    24 and 35 twips (the vertical lines that fill them are as much longer), so what
-          //    follows moves down: 118 twips, 8 px, after the second fish of the page.
-          // 2. The notes (FISH.NOTES) end with a line break in samples.db: the TypeScript text
-          //    keeps it (<br/> at the end in the HTML, LF in the SVG), Delphi's does not.
-          // The images are the same bytes; the rest of the documents is equal.
-          const TOLERANCE_PX = 8;
+          // The notes (FISH.NOTES) end with line breaks in samples.db: the TypeScript text keeps
+          // them (<br/> at the end in the HTML, LF in the SVG), Delphi's does not (FireDAC trims
+          // the end of a text field, FormatOptions.StrsTrim). Everything is where Delphi puts it:
+          // the sections of each fish were 24 and 35 twips taller before the standard fonts lost
+          // their leading (as Delphi since 2025-12-10). The images are the same bytes.
+          const TOLERANCE_PX = 0;
           let moved = 0;
           for (const [file, delphi, ts] of documentPairs(c, out)) {
             if (!file.endsWith('.svg') && !file.endsWith('.html')) {
@@ -442,7 +441,7 @@ describe('the TypeScript engine against the Delphi engine', () => {
             }
             expect(p.pairs.length, file).toBe(file.endsWith('.svg') ? svgParts(ts).elements.length : htmlParts(ts).divs.length);
           }
-          expect(moved).toBeGreaterThan(0);
+          expect(moved).toBe(0);
           break;
         }
         case 'monthly-sales': {

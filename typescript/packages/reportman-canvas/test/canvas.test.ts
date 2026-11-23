@@ -258,9 +258,9 @@ describe('texts with the standard fonts', () => {
     const pdf = pdfOf(meta)[0]!;
     expectSameTexts(ctx.calls, pdf);
     expectSameRects(ctx.calls, pdf);
-    // The background is filled, not stroked, in the back color (from the top of the line, the
-    // leading of the font above the top of the text)
-    const bg = ctx.ops('rect').find((r) => near(r.points[0]![0], 1000) && near(r.points[0]![1], 1000 - 32))!;
+    // The background is filled, not stroked, in the back color, from the top of the line: the top
+    // of the text (a standard font has no leading above it, as in Delphi)
+    const bg = ctx.ops('rect').find((r) => near(r.points[0]![0], 1000) && near(r.points[0]![1], 1000))!;
     const after = ctx.calls.slice(ctx.calls.indexOf(bg) + 1, ctx.calls.indexOf(bg) + 3).map((c) => c.op);
     expect(after).toEqual(['fill', 'fillText']);
     expect(ctx.calls[ctx.calls.indexOf(bg) + 1]!.fillStyle).toBe('rgb(255,255,0)');

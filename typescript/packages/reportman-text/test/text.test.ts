@@ -49,10 +49,11 @@ describe('standard font helpers', () => {
     expect(pdfNameOf('Times New Roman#1 (ñ)')).toBe('Times#20New#20Roman#231#20#28#C3#B1#29');
     expect(utf8Bytes('€😀\ud800')).toEqual([0xe2, 0x82, 0xac, 0xf0, 0x9f, 0x98, 0x80, 0xef, 0xbf, 0xbd]);
   });
-  it('has the line spacing of each font', () => {
-    expect(getStdLineSpacing(PDFFontType.Helvetica)).toEqual({ lineSpacing: 1270, leading: 150 });
-    expect(getStdLineSpacing(PDFFontType.Courier)).toEqual({ lineSpacing: 1265, leading: 133 });
-    expect(getStdLineSpacing(PDFFontType.Linked)).toEqual({ lineSpacing: 1270, leading: 200 });
+  it('has the line spacing of each font, and no leading (as Delphi since 2025-12-10)', () => {
+    expect(getStdLineSpacing(PDFFontType.Helvetica)).toEqual({ lineSpacing: 1270, leading: 0 });
+    expect(getStdLineSpacing(PDFFontType.Courier)).toEqual({ lineSpacing: 1265, leading: 0 });
+    expect(getStdLineSpacing(PDFFontType.TimesRoman)).toEqual({ lineSpacing: 1257, leading: 0 });
+    expect(getStdLineSpacing(PDFFontType.Linked)).toEqual({ lineSpacing: 1270, leading: 0 });
   });
   it('gives the platform family name of a font', () => {
     const f = new PDFFont();
