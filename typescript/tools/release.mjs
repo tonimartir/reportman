@@ -1,16 +1,30 @@
-// Publishes the version every package shares (tools/set-version.mjs) and can be run again: it
-// publishes only the packages whose version is not on the registry yet, so a run that stopped
-// half way (a 2FA authorization that expired, a network error) is finished by running it again.
-// Then the tag latest, while there is no final version, follows the newest preview: npm gives
-// latest to the first version a package publishes, whatever --tag says (and the website shows the
-// version of latest). With --deprecate-0x, the versions of the 0.x line (the placeholder
-// 0.0.0-stage of npm and 0.1.0-alpha.1, before the line moved to 4.x) are deprecated once: two
-// commands a package, each one with its 2FA. Every command that writes asks for the 2FA of the
-// account (npm login first).
+// Publishes the version every package shares (tools/set-version.mjs) and can be run again: it does
+// only what the registry does not have yet, so a run that stopped half way is finished by running
+// it again.
 //
-//   node tools/release.mjs [--tag next] [--dry-run] [--deprecate-0x]
+// By default the versions are staged (npm stage publish, npm 11.15 or later): staging asks for no
+// 2FA, and the staged versions are approved together in the Staged Packages tab of the account
+// settings on npmjs.com, with one 2FA for the whole batch. A version already staged is not staged
+// again: the run says it waits for its approval. Once they are approved, running it again moves
+// the tag latest (below). --direct publishes with npm publish as before: one 2FA per package.
+//
+// The tag latest, while there is no final version, follows the newest preview: npm gives latest to
+// the first version a package publishes, whatever --tag says (and the website shows the version of
+// latest). With --deprecate-0x, the versions of the 0.x line (the placeholder 0.0.0-stage of npm
+// and 0.1.0-alpha.1, before the line moved to 4.x) are deprecated once.
+//
+// Moving a tag and deprecating ask for the 2FA of the account with a login session (npm login),
+// one prompt a package. With NPM_STAGE_TOKEN set to a granular access token of the account with the
+// permission "Read and write (stage only)" and "Bypass two-factor authentication" (created on
+// npmjs.com, for the @reportman packages), every command runs with that token and none of them asks
+// for the 2FA: the token cannot publish, only stage, move tags and deprecate, and what it stages
+// waits for the approval with the 2FA. The token is read by npm from the environment (the run
+// writes a temporary npmrc that names the variable, never its value).
+//
+//   node tools/release.mjs [--tag next] [--dry-run] [--direct] [--deprecate-0x]
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -18,23 +32,60 @@ import { fileURLToPath } from 'node:url';
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
+const direct = args.includes('--direct');
 const deprecate0x = args.includes('--deprecate-0x');
 const tagIndex = args.indexOf('--tag');
 const tag = tagIndex >= 0 ? args[tagIndex + 1] : 'next';
-const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const windows = process.platform === 'win32';
+const npm = windows ? 'npm.cmd' : 'npm';
+const REGISTRY = '//registry.npmjs.org/';
+
+// The stage-only token: a temporary npmrc that names the variable (npm expands ${NPM_STAGE_TOKEN})
+const tokenConfig = [];
+if (process.env.NPM_STAGE_TOKEN) {
+  const npmrc = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'rm-release-')), '.npmrc');
+  fs.writeFileSync(npmrc, `${REGISTRY}:_authToken=\${NPM_STAGE_TOKEN}\n`, { mode: 0o600 });
+  process.on('exit', () => fs.rmSync(path.dirname(npmrc), { recursive: true, force: true }));
+  tokenConfig.push('--userconfig', npmrc);
+}
+
+// Run by npm (npm run release:publish), the npm that runs it, without a shell; run by hand, the npm
+// of the PATH (npm.cmd through the shell on Windows, an argument with spaces quoted)
+const npmCli = /npm-cli\.js$/.test(process.env.npm_execpath ?? '') ? process.env.npm_execpath : null;
+const quote = (a) => (windows && /\s/.test(a) ? `"${a}"` : a);
 
 /** Runs npm; quiet ones return their output, the others share the terminal (the 2FA prompts). */
 function run(npmArgs, { quiet = false } = {}) {
-  const r = spawnSync(npm, npmArgs, { cwd: root, encoding: 'utf8', shell: process.platform === 'win32', stdio: quiet ? 'pipe' : 'inherit' });
-  return { ok: r.status === 0, out: (r.stdout ?? '').trim() };
+  const all = [...npmArgs, ...tokenConfig];
+  const options = { cwd: root, encoding: 'utf8', stdio: quiet ? 'pipe' : 'inherit' };
+  const r = npmCli !== null ? spawnSync(process.execPath, [npmCli, ...all], options) : spawnSync(npm, all.map(quote), { ...options, shell: windows });
+  return { ok: r.status === 0, out: (r.stdout ?? '').trim(), err: (r.stderr ?? '').trim() };
 }
 
-/** What the registry has of a package: its versions, tags and deprecations (null: not there). */
+/** What the registry has of a package: its versions and tags (null: not there). */
 function registry(name) {
   const r = run(['view', name, 'versions', 'dist-tags', '--json'], { quiet: true });
   if (!r.ok || r.out === '') return null;
   const data = JSON.parse(r.out);
-  return { versions: data.versions ?? [], tags: data['dist-tags'] ?? {} };
+  return { versions: [].concat(data.versions ?? []), tags: data['dist-tags'] ?? {} };
+}
+
+/**
+ * What npm stage list says of a version of a package: 'pending' (staged, waiting for its approval),
+ * 'approved' (the registry may take some minutes to show it) or null (not staged, or rejected: it
+ * can be staged again).
+ */
+function stageStatus(name, ver) {
+  const r = run(['stage', 'list', name, '--json'], { quiet: true });
+  if (!r.ok) {
+    // A dry run may have no login: it stages nothing, so it does not need to know
+    if (dryRun) return null;
+    throw new Error(`npm stage list ${name} failed: ${r.err || r.out}`);
+  }
+  const items = r.out === '' ? [] : [].concat(JSON.parse(r.out)).filter((i) => String(i.version) === ver);
+  const status = items.map((i) => String(i.status ?? '')).find((s) => !/reject/i.test(s));
+  if (status === undefined) return null;
+  return /approv|publish|promot/i.test(status) ? 'approved' : 'pending';
 }
 
 /** semver order (numbers, then a version without prerelease after one with it). */
@@ -61,6 +112,15 @@ function compare(a, b) {
   return 0;
 }
 
+// Staged publishing needs npm 11.15
+if (!direct) {
+  const v = run(['--version'], { quiet: true }).out;
+  if (!/^\d+\.\d+\.\d+/.test(v) || compare(v.replace(/-.*/, ''), '11.15.0') < 0) {
+    console.error(`npm ${v} cannot stage (npm stage publish needs npm 11.15.0 or later): update it (npm install -g npm@11) or publish with --direct`);
+    process.exit(1);
+  }
+}
+
 const packages = fs
   .readdirSync(path.join(root, 'packages'))
   .map((d) => path.join(root, 'packages', d, 'package.json'))
@@ -76,12 +136,33 @@ const version = versions[0];
 const final = !version.includes('-');
 const failed = [];
 
-// 1. The packages whose version is not on the registry
+// 1. The packages whose version is not on the registry: published, or staged (once)
 const missing = packages.filter((p) => !(registry(p.name)?.versions ?? []).includes(version));
-console.log(`${packages.length} packages at ${version}; to publish: ${missing.length === 0 ? 'none' : missing.map((p) => p.name).join(', ')}`);
+console.log(`${packages.length} packages at ${version}; not on the registry: ${missing.length === 0 ? 'none' : missing.map((p) => p.name).join(', ')}`);
+const waiting = [];
 for (const p of missing) {
-  console.log(`\n== npm publish ${p.name}@${version} --tag ${tag}`);
-  if (!run(['publish', '--workspace=' + p.name, '--tag', tag, ...(dryRun ? ['--dry-run'] : [])]).ok) failed.push(p.name + ' (publish)');
+  if (direct) {
+    console.log(`\n== npm publish ${p.name}@${version} --tag ${tag}`);
+    if (!run(['publish', '--workspace=' + p.name, '--tag', tag, ...(dryRun ? ['--dry-run'] : [])]).ok) failed.push(p.name + ' (publish)');
+    continue;
+  }
+  const status = stageStatus(p.name, version);
+  if (status !== null) {
+    waiting.push(p.name + (status === 'approved' ? ' (approved, not on the registry yet)' : ''));
+    continue;
+  }
+  console.log(`\n== npm stage publish ${p.name}@${version} --tag ${tag}`);
+  if (run(['stage', 'publish', '--workspace=' + p.name, '--tag', tag, ...(dryRun ? ['--dry-run'] : [])]).ok) waiting.push(p.name);
+  else failed.push(p.name + ' (stage)');
+}
+if (waiting.length > 0 && !dryRun) {
+  if (failed.length > 0) console.error(`\nNot staged (run it again to finish): ${failed.join(', ')}`);
+  console.log(`
+${waiting.length} versions staged, not on the registry yet: ${waiting.join(', ')}.
+Approve them in the Staged Packages tab of the account settings on npmjs.com (select them all,
+Approve: one 2FA for the batch). Then run this again (npm run release:publish) to move the tag
+latest; the registry may take some minutes to show an approved version.`);
+  process.exit(failed.length > 0 ? 1 : 0);
 }
 
 // 2. latest: the newest preview until there is a final version (a final one is published as latest)
@@ -115,4 +196,4 @@ if (failed.length > 0) {
   console.error(`\nNot done (run it again to finish): ${failed.join(', ')}`);
   process.exit(1);
 }
-console.log(`\n${dryRun ? 'Dry run: nothing written' : 'Done'}: ${packages.length} packages at ${version}. npm may stage the new versions: approve them in the Staged Packages tab of the account settings on npmjs.com.`);
+console.log(`\n${dryRun ? 'Dry run: nothing written' : 'Done'}: ${packages.length} packages at ${version}.`);

@@ -73,14 +73,20 @@ Every package has the same version, the one the Delphi and C# engines share at e
 (4.x). `npm run version:set -- 4.1.0-alpha.2` sets it on all of them, on the references between
 them and in `package-lock.json` (edit the status lines of the README files by hand);
 `npm run release:next` checks that they share it, builds from scratch, runs the tests and
-`check:dist`, and publishes them with the tag `next` (after `npm login`; `tools/release.mjs`).
-The publishing can be run again (`npm run release:publish`): it publishes only the packages whose
-version is not on the registry yet, and moves the tag `latest`, which npm gives to the first
-version of a package and the website shows, to the newest preview while there is no final
-version. Every command that writes asks for the 2FA of the account. The registry takes some
-minutes to show a new version everywhere: a package may look missing for a while. For a package
-that does not exist yet, npm stages the first version (staged publishing): it waits in the
-**Staged Packages** tab of the account settings on npmjs.com until it is approved there.
+`check:dist`, and stages them with the tag `next` (`tools/release.mjs`, npm 11.15 or later):
+`npm stage publish` asks for no 2FA, and the staged versions are approved together in the
+**Staged Packages** tab of the account settings on npmjs.com, with one 2FA for the batch. Then
+`npm run release:publish` (it can be run again: it does only what the registry does not have yet)
+moves the tag `latest`, which npm gives to the first version of a package and the website shows,
+to the newest preview while there is no final version. The registry takes some minutes to show a
+new version everywhere: a package may look missing for a while.
+
+Moving a tag asks for the 2FA once a package with a login session. With `NPM_STAGE_TOKEN` set in
+the terminal to a granular access token of the account with the permission **Read and write
+(stage only)** and **Bypass two-factor authentication** (for the `@reportman` packages, created on
+npmjs.com), every command of the release runs with that token and none asks for the 2FA: such a
+token cannot publish, only stage, move tags and deprecate, and what it stages waits for the
+approval. `--direct` publishes with `npm publish` instead (one 2FA a package).
 
 ### Continuous integration, on this computer
 
