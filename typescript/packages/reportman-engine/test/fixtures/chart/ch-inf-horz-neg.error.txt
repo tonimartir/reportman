@@ -1,1 +1,0 @@
-ERROR System.OverflowException: Negating the minimum value of a twos complement number is invalid.

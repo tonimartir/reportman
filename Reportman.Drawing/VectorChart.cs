@@ -160,9 +160,23 @@ namespace Reportman.Drawing
                 bool asBars = itemKind != ChartType.Line && itemKind != ChartType.Point && itemKind != ChartType.Area
                     && itemKind != ChartType.Splines && itemKind != ChartType.Arrow;
                 int previousX = 0, previousY = 0;
+                bool havePrevious = false;
                 for (int j = 0; j < item.Values.Count; j++)
                 {
                     double value = item.Values[j];
+                    // The range leaves out the values that are not finite: an infinity is drawn to
+                    // the edge of the plot, off the scale, and NaN is not drawn (a line breaks
+                    // there). Converted to twips they were a bar of 2^31 twips, or an
+                    // OverflowException taking the size of it.
+                    if (double.IsNaN(value))
+                    {
+                        havePrevious = false;
+                        continue;
+                    }
+                    if (double.IsPositiveInfinity(value))
+                        value = max;
+                    else if (double.IsNegativeInfinity(value))
+                        value = min;
                     int color = j < item.Colors.Count && item.Colors[j] >= 0 ? item.Colors[j] : seriesColor;
                     if (horizontal)
                     {
@@ -187,7 +201,7 @@ namespace Reportman.Drawing
                         int cx = x + slot / 2;
                         if (itemKind == ChartType.Area)
                             Box(page, Math.Min(yZero, yValue), x + 1, Math.Max(1, slot - 2), Math.Max(1, Math.Abs(yValue - yZero)), color);
-                        if (j > 0 && itemKind != ChartType.Point && itemKind != ChartType.Area)
+                        if (havePrevious && itemKind != ChartType.Point && itemKind != ChartType.Area)
                             Segment(page, previousX, previousY, cx, yValue, color);
                         if (itemKind == ChartType.Point || series.MarkStyle > 0 || points <= 12)
                         {
@@ -196,6 +210,7 @@ namespace Reportman.Drawing
                         }
                         previousX = cx;
                         previousY = yValue;
+                        havePrevious = true;
                     }
                 }
             }

@@ -187,8 +187,17 @@ export function drawVectorChart(
       itemKind !== ChartType.Arrow;
     let previousX = 0;
     let previousY = 0;
+    let havePrevious = false;
     for (let j = 0; j < item.values.length; j++) {
-      const value = item.values[j]!;
+      let value = item.values[j]!;
+      // The range leaves out the values that are not finite: an infinity is drawn to the edge of
+      // the plot, off the scale, and NaN is not drawn (a line breaks there)
+      if (Number.isNaN(value)) {
+        havePrevious = false;
+        continue;
+      }
+      if (value === Infinity) value = max;
+      else if (value === -Infinity) value = min;
       const color = j < item.colors.length && item.colors[j]! >= 0 ? item.colors[j]! : seriesColor;
       if (horizontal) {
         const barHeight = Math.max(1, roundInt((slot * 0.7) / seriesCount));
@@ -209,13 +218,14 @@ export function drawVectorChart(
         const cx = i32(x + idiv(slot, 2));
         if (itemKind === ChartType.Area)
           box(page, Math.min(yZero, yValue), i32(x + 1), Math.max(1, slot - 2), Math.max(1, absInt(i32(yValue - yZero))), color);
-        if (j > 0 && itemKind !== ChartType.Point && itemKind !== ChartType.Area) segment(page, previousX, previousY, cx, yValue, color);
+        if (havePrevious && itemKind !== ChartType.Point && itemKind !== ChartType.Area) segment(page, previousX, previousY, cx, yValue, color);
         if (itemKind === ChartType.Point || series.markStyle > 0 || points <= 12) {
           const radius = Math.max(30, idiv(lineHeight, 5));
           shape(page, i32(yValue - radius), i32(cx - radius), radius * 2, radius * 2, ShapeType.Circle, color, PenType.Solid, color);
         }
         previousX = cx;
         previousY = yValue;
+        havePrevious = true;
       }
     }
   }
