@@ -106,6 +106,9 @@ const cases: [string, BarcodeType, string][] = [
   ['text_auto', BarcodeType.Code128, 'Code-128 abc'],
   ['control_a', BarcodeType.Code128A, 'AB\tC'],
   ['control_auto', BarcodeType.Code128, 'ab\tcd'],
+  // A control character in Code 128 C: code set A, which has it (code set B does not)
+  ['control_c', BarcodeType.Code128C, '12\t34'],
+  ['control_c_end', BarcodeType.Code128C, '1234\t'],
 ];
 
 describe('Code 128 and GS1-128 read back', () => {

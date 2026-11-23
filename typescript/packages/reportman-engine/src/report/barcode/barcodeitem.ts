@@ -22,7 +22,6 @@ import {
 } from '@reportman/metafile';
 import { substringNet, trimNet } from '../../util/chars.js';
 import { messageOf, NamedException } from '../../util/netexception.js';
-import { NumberStyles, parseInt32 } from '../../util/numberparse.js';
 import { ParamType, Variant } from '../../variant/variant.js';
 import { NotSupportedYetError } from '../../data/errors.js';
 import { ReportException } from '../errors.js';
@@ -552,13 +551,12 @@ export class BarcodeItem extends PrintPosItem {
   }
 
   /** GetEAN: the text with its last digit replaced by the EAN check digit. */
-  private getEAN(nr: string): string {
+  private getEAN(name: string, nr: string): string {
     let sum = 0;
     const tmp = substringNet(nr, 0, nr.length - 1);
     let fak = tmp.length;
-    const nfi = this.report.evaluator.context.culture.number;
     for (let i = 0; i < tmp.length; i++) {
-      const digit = parseInt32(tmp.charAt(i), NumberStyles.Integer, nfi);
+      const digit = digitOf(name, tmp, i, this.currentText);
       if (fak % 2 === 0) sum = i32(sum + digit * 1);
       else sum = i32(sum + Math.imul(digit, 3));
       fak--;
@@ -590,16 +588,16 @@ export class BarcodeItem extends PrintPosItem {
     let retresult = '';
     if (this.checksum) {
       tmp = '0000000000000' + this.currentText;
-      tmp = this.getEAN(substringNet(tmp, tmp.length - 12, 12) + '0');
+      tmp = this.getEAN('EAN13', substringNet(tmp, tmp.length - 12, 12) + '0');
     } else tmp = this.currentText;
     // Startcode
     let result = '505';
     // Avoid to process a code that is shorter to 13 characters
     if (tmp.length >= 13) {
-      const lk = charAt(tmp, 0) - 48;
+      const lk = digitOf('EAN13', tmp, 0, this.currentText);
       tmp = substringNet(tmp, 1, 12);
       for (let i = 0; i < 6; i++) {
-        const index = charAt(tmp, i) - 48;
+        const index = digitOf('EAN13', tmp, i, this.currentText);
         switch (cell(PARITY_EAN13, lk, i)) {
           case 'A':
             for (let j = 0; j < 4; j++) result += cell(EAN_A, index, j);
@@ -615,7 +613,7 @@ export class BarcodeItem extends PrintPosItem {
       result += '05050';
       for (let i = 6; i < 12; i++)
         for (let j = 0; j < 4; j++) {
-          const index = charAt(tmp, i) - 48;
+          const index = digitOf('EAN13', tmp, i, this.currentText);
           result += cell(EAN_C, index, j);
         }
       // Stopcode
@@ -630,7 +628,7 @@ export class BarcodeItem extends PrintPosItem {
     let retResult = '';
     if (this.checksum) {
       tmp = '00000000' + this.currentText;
-      tmp = this.getEAN(substringNet(tmp, tmp.length - 7, 7) + '0');
+      tmp = this.getEAN('EAN8', substringNet(tmp, tmp.length - 7, 7) + '0');
     } else tmp = this.currentText;
     // Startcode
     let result = '505';
@@ -638,13 +636,13 @@ export class BarcodeItem extends PrintPosItem {
     if (tmp.length >= 8) {
       for (let i = 0; i < 4; i++)
         for (let j = 0; j < 4; j++) {
-          const index = charAt(tmp, i) - 48;
+          const index = digitOf('EAN8', tmp, i, this.currentText);
           result += cell(EAN_A, index, j);
         }
       result += '05050';
       for (let i = 4; i < 8; i++)
         for (let j = 0; j < 4; j++) {
-          const index = charAt(tmp, i) - 48;
+          const index = digitOf('EAN8', tmp, i, this.currentText);
           result += cell(EAN_C, index, j);
         }
       // Stopcode
@@ -659,9 +657,9 @@ export class BarcodeItem extends PrintPosItem {
     let result = '5050'; // Startcode
     for (let i = 0; i < Math.trunc(ftext.length / 2); i++)
       for (let j = 0; j < 5; j++) {
-        let index = charAt(ftext, i * 2) - 48;
+        let index = digitOf('Interleaved 2 of 5', ftext, i * 2);
         result += cell(TABLE_2_5, index, j) === '1' ? '6' : '5';
-        index = charAt(ftext, i * 2 + 1) - 48;
+        index = digitOf('Interleaved 2 of 5', ftext, i * 2 + 1);
         result += cell(TABLE_2_5, index, j) === '1' ? '1' : '0';
       }
     result += '605'; // Stopcode
@@ -673,7 +671,7 @@ export class BarcodeItem extends PrintPosItem {
     let result = '606050'; // Startcode
     for (let i = 0; i < ftext.length; i++)
       for (let j = 0; j < 5; j++) {
-        const index = charAt(ftext, i) - 48;
+        const index = digitOf('Industrial 2 of 5', ftext, i);
         result += cell(TABLE_2_5, index, j) === '1' ? '60' : '50';
       }
     result += '605060'; // Stopcode
@@ -685,7 +683,7 @@ export class BarcodeItem extends PrintPosItem {
     let result = '705050'; // Startcode
     for (let i = 0; i < ftext.length; i++) {
       for (let j = 0; j < 5; j++) {
-        const index = charAt(ftext, i) - 48;
+        const index = digitOf('Matrix 2 of 5', ftext, i);
         let c = cell(TABLE_2_5, index, j) === '1' ? 49 : 48;
         // The first, third and fifth elements of a digit are bars
         if (j % 2 === 0) c = c + 5;
@@ -958,10 +956,14 @@ function findCodabar(c: string): number {
   return -1;
 }
 
-/** DigitOf: the digit of a numeric symbology; a text that is not all digits has no symbol. */
-function digitOf(name: string, text: string, index: number): number {
-  const digit = text.charCodeAt(index) - 48;
-  if (digit < 0 || digit > 9) throw new NamedException(name + ' bad Data: ' + text, text);
+/**
+ * DigitOf: the digit of a numeric symbology; a text that is not all digits has no symbol. `data`
+ * is the text of the item, for the message, when `text` is one the symbology made from it (the
+ * padded text of an EAN with its check digit).
+ */
+function digitOf(name: string, text: string, index: number, data: string = text): number {
+  const digit = charAt(text, index) - 48;
+  if (digit < 0 || digit > 9) throw new NamedException(name + ' bad Data: ' + data, data);
   return digit;
 }
 

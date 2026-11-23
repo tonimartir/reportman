@@ -535,11 +535,12 @@ namespace Reportman.Reporting
                 if (simbologia == MetaBarcodeSymbology.PDF417)
                 {
                     if (NumColumns > 0) hints[ZXing.EncodeHintType.PDF417_DIMENSIONS] = new ZXing.PDF417.Internal.Dimensions(NumColumns, NumColumns, 3, 90);
-                    if (ECCLevel >= 0 && ECCLevel <= 8) hints[ZXing.EncodeHintType.ERROR_CORRECTION] = ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L0 + ECCLevel;
+                    int ecc = ECCLevel > 8 ? 8 : ECCLevel;
+                    if (ecc >= 0) hints[ZXing.EncodeHintType.ERROR_CORRECTION] = ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L0 + ecc;
                     if (Truncated) hints[ZXing.EncodeHintType.PDF417_COMPACT] = true;
                     columns = NumColumns;
                     rows = NumRows;
-                    flags = (Truncated ? 1 : 0) | ((ECCLevel >= 0 && ECCLevel <= 8 ? ECCLevel : 2) << 8);
+                    flags = (Truncated ? 1 : 0) | ((ecc >= 0 ? ecc : 2) << 8);
                 }
                 if (simbologia == MetaBarcodeSymbology.Code128)
                     columns = BarType == BarcodeType.Code128A ? 1 : BarType == BarcodeType.Code128B ? 2 : BarType == BarcodeType.Code128C ? 3 : 0;
@@ -664,7 +665,7 @@ namespace Reportman.Reporting
             }
         }
 
-        private string GetEAN(string nr)
+        private string GetEAN(string name, string nr)
         {
             int i, fak, sum;
             string tmp;
@@ -675,9 +676,9 @@ namespace Reportman.Reporting
             for (i = 0; i < tmp.Length; i++)
             {
                 if ((fak % 2) == 0)
-                    sum = sum + System.Convert.ToInt32("" + tmp[i]) * 1;
+                    sum = sum + DigitOf(name, CurrentText, tmp, i) * 1;
                 else
-                    sum = sum + System.Convert.ToInt32("" + tmp[i]) * 3;
+                    sum = sum + DigitOf(name, CurrentText, tmp, i) * 3;
                 fak--;
             }
             if ((sum % 10) == 0)
@@ -715,9 +716,15 @@ namespace Reportman.Reporting
         // any other character): a text that is not all digits has no symbol
         private static int DigitOf(string name, string text, int index)
         {
+            return DigitOf(name, text, text, index);
+        }
+        // The same for a text the symbology made from the data of the item (data, in the message):
+        // the padded text of an EAN with its check digit
+        private static int DigitOf(string name, string data, string text, int index)
+        {
             int digit = text[index] - '0';
             if (digit < 0 || digit > 9)
-                throw new NamedException(name + " bad Data: " + text, text);
+                throw new NamedException(name + " bad Data: " + data, data);
             return digit;
         }
         // Pattern for Barcode MSI: each digit is its four bits, a 0 a narrow bar and a wide space,
@@ -908,7 +915,7 @@ namespace Reportman.Reporting
             if (Checksum)
             {
                 tmp = "0000000000000" + CurrentText;
-                tmp = GetEAN(tmp.Substring(tmp.Length - 12, 12) + "0");
+                tmp = GetEAN("EAN13", tmp.Substring(tmp.Length - 12, 12) + "0");
             }
             else
                 tmp = CurrentText;
@@ -918,12 +925,12 @@ namespace Reportman.Reporting
             //Avoid to process a code that is shorter to 13 characters
             if (tmp.Length >= 13)
             {
-                LK = ((int)tmp[0]) - ((int)'0');
+                LK = DigitOf("EAN13", CurrentText, tmp, 0);
                 tmp = tmp.Substring(1, 12);
                 int index;
                 for (i = 0; i < 6; i++)
                 {
-                    index = ((int)tmp[i]) - ((int)'0');
+                    index = DigitOf("EAN13", CurrentText, tmp, i);
                     switch (tabelle_ParityEAN13[LK, i])
                     {
                         case 'A':
@@ -944,7 +951,7 @@ namespace Reportman.Reporting
                 for (i = 6; i < 12; i++)
                     for (j = 0; j < 4; j++)
                     {
-                        index = ((int)tmp[i]) - ((int)'0');
+                        index = DigitOf("EAN13", CurrentText, tmp, i);
                         result = result + tabelle_EAN_C[index, j];
                     }
                 // Stopcode
@@ -962,7 +969,7 @@ namespace Reportman.Reporting
             if (Checksum)
             {
                 tmp = "00000000" + CurrentText;
-                tmp = GetEAN(tmp.Substring(tmp.Length - 7, 7) + "0");
+                tmp = GetEAN("EAN8", tmp.Substring(tmp.Length - 7, 7) + "0");
             }
             else
                 tmp = CurrentText;
@@ -975,7 +982,7 @@ namespace Reportman.Reporting
                 for (i = 0; i < 4; i++)
                     for (j = 0; j < 4; j++)
                     {
-                        index = ((int)tmp[i]) - ((int)'0');
+                        index = DigitOf("EAN8", CurrentText, tmp, i);
                         result = result + tabelle_EAN_A[index, j];
                     }
                 result = result + "05050";
@@ -983,7 +990,7 @@ namespace Reportman.Reporting
                 for (i = 4; i < 8; i++)
                     for (j = 0; j < 4; j++)
                     {
-                        index = ((int)tmp[i]) - ((int)'0');
+                        index = DigitOf("EAN8", CurrentText, tmp, i);
                         result = result + tabelle_EAN_C[index, j];
                     }
                 // Stopcode
@@ -1016,13 +1023,13 @@ namespace Reportman.Reporting
             for (i = 0; i < FText.Length / 2; i++)
                 for (j = 0; j < 5; j++)
                 {
-                    index = ((int)FText[i * 2]) - ((int)'0');
+                    index = DigitOf("Interleaved 2 of 5", FText, i * 2);
                     if (tabelle_2_5[index, j] == '1')
                         c = '6';
                     else
                         c = '5';
                     result = result + c;
-                    index = ((int)FText[i * 2 + 1]) - ((int)'0');
+                    index = DigitOf("Interleaved 2 of 5", FText, i * 2 + 1);
                     if (tabelle_2_5[index, j] == '1')
                         c = '1';
                     else
@@ -1041,7 +1048,7 @@ namespace Reportman.Reporting
             for (i = 0; i < FText.Length; i++)
                 for (j = 0; j < 5; j++)
                 {
-                    index = ((int)FText[i]) - ((int)'0');
+                    index = DigitOf("Industrial 2 of 5", FText, i);
                     if (tabelle_2_5[index, j] == '1')
                         result = result + "60";
                     else
@@ -1061,7 +1068,7 @@ namespace Reportman.Reporting
             {
                 for (j = 0; j < 5; j++)
                 {
-                    index = ((int)FText[i]) - ((int)'0');
+                    index = DigitOf("Matrix 2 of 5", FText, i);
                     if (tabelle_2_5[index, j] == '1')
                         c = '1';
                     else
@@ -1571,12 +1578,13 @@ namespace Reportman.Reporting
                     }
                     else
                     {
-                        if (current != SetB)
+                        int other = ValueIn(SetB, codes[p]) >= 0 ? SetB : SetA;
+                        if (current != other)
                         {
-                            SwitchTo(SetB, values);
-                            current = SetB;
+                            SwitchTo(other, values);
+                            current = other;
                         }
-                        p = WriteAt(codes, SetB, p, values);
+                        p = WriteAt(codes, other, p, values);
                     }
                 }
             }

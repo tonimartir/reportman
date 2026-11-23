@@ -127,12 +127,13 @@ function encodeFixed(codes: number[], aset: number, values: number[]): void {
       }
       p = writeAt(codes, SET_C, p, values);
     } else {
-      if (current !== SET_B) {
-        switchTo(SET_B, values);
-        current = SET_B;
+      // A character that does not make a pair: code set B, or A for a control character
+      const other = valueIn(SET_B, codes[p]!) >= 0 ? SET_B : SET_A;
+      if (current !== other) {
+        switchTo(other, values);
+        current = other;
       }
-      // C# parity: a control character in code set B is the value -1 (an error when it is drawn)
-      p = writeAt(codes, SET_B, p, values);
+      p = writeAt(codes, other, p, values);
     }
   }
 }

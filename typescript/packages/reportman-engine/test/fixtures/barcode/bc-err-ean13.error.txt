@@ -1,1 +1,1 @@
-ERROR Reportman.Reporting.ReportException: The input string 'A' was not in a correct format.:Error calculating barcode
+ERROR Reportman.Reporting.ReportException: EAN13 bad Data: 12345678901A:Error calculating barcode

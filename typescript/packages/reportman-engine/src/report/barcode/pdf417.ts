@@ -68,6 +68,8 @@ export function getRealErrorLevel(_numRows: number, _numColumns: number, eccLeve
     else if (numCodewords < 321) return 4;
     else return 5;
   }
+  // Above 8 is 8, as in Delphi (its ECCLevel setter)
+  if (eccLevel > 8) return 8;
   return eccLevel;
 }
 
@@ -250,8 +252,9 @@ function textToCodewords(code: string, codewords: number[], nfi: NumberFormatDat
   } else if (goodForTextCompaction(code, pos.value, codeLen)) {
     currentMode = DataMode.Text;
   } else {
+    // No latch here: encodeBinary writes it (901, or 924 for a multiple of six bytes). Written here
+    // too, the symbol began 901 901 (or 901 924): @zxing/library reads the second one as a byte
     currentMode = DataMode.Binary;
-    w.add(901); // BinaryCompaction
   }
   // Up to the last character: stopping before it (while i < CodeLen, Delphi before its fix), a
   // text that ends with a character on its own (one character, digits and a letter, text and an
@@ -269,6 +272,9 @@ function textToCodewords(code: string, codewords: number[], nfi: NumberFormatDat
         encodeNumeric(code, w, pos, codeLen);
         break;
     }
+    // The whole text written: no latch to a mode for nothing (it was a latch to the byte
+    // compaction, 901, before the padding, that @zxing/library reads as one more character, 0x84)
+    if (pos.value > codeLen) break;
     if (goodForNumericCompaction(code, pos.value, codeLen)) {
       if (currentMode !== DataMode.Numeric) {
         currentMode = DataMode.Numeric;
@@ -284,10 +290,8 @@ function textToCodewords(code: string, codewords: number[], nfi: NumberFormatDat
         throw new Error('PDF417: the text compaction cannot write the escape at character ' + String(before) + ' of the text');
       }
     } else {
-      if (currentMode !== DataMode.Binary) {
-        w.add(901);
-        currentMode = DataMode.Binary;
-      }
+      // encodeBinary writes the latch
+      currentMode = DataMode.Binary;
     }
   }
   return w.numCodewords;
@@ -490,7 +494,8 @@ function getNextCharacter(code: string, next: NextCharacter, pos: { value: numbe
           next.newChar = v;
         }
       } else if (nc === 88 || nc === 120) {
-        const v = tryParseHex(substringNet(code, position + 2, 2));
+        // The hex digits there are at the end of the text, as the Copy of Delphi
+        const v = tryParseHex(substringNet(code, position + 2, Math.min(2, codeLen - position - 2)));
         next.newChar = v ?? 0;
         pos.value += 4;
       } else if (nc === 92) {
@@ -524,7 +529,8 @@ function encodeText(code: string, w: CodewordWriter, pos: { value: number }, cod
     const newChar = next.newChar;
     const isCodeword = next.codeword;
     let validtext = false;
-    if (newChar <= 127) validtext = textValue(newChar) >= 0;
+    // A negative codeword escape is written, and drawing it says it is an invalid codeword
+    if (newChar >= 0 && newChar <= 127) validtext = textValue(newChar) >= 0;
     if (!validtext && !isCodeword) {
       // Back to the character the text compaction cannot write (going back two, as Delphi did
       // before its fix, the character before it is written again)
@@ -638,12 +644,19 @@ export interface Pdf417Codewords {
   numErrorCodewords: number;
 }
 
+/** The codewords of the largest PDF417 symbol: 90 rows of 30 columns. */
+export const MAX_SYMBOL_CODEWORDS = 2700;
+
 export function generateCodewords(text: string, eccLevelIn: number, numRowsIn: number, numColsIn: number, nfi: NumberFormatData): Pdf417Codewords {
   const codewords: number[] = new Array<number>(2701).fill(0);
   const numCodewords = textToCodewords(toAnsi(text), codewords, nfi);
   const errorLevel = getRealErrorLevel(numRowsIn, numColsIn, eccLevelIn, numCodewords);
   const numErrorCodewords = castInt32(Math.pow(2, errorLevel + 1));
   const { xSize, ySize } = calculateSize(numCodewords, errorLevel, numRowsIn, numColsIn);
+  if (xSize * ySize > MAX_SYMBOL_CODEWORDS)
+    throw new Error(
+      `PDF417: ${ySize} rows and ${xSize} columns are ${xSize * ySize} codewords, more than the ${MAX_SYMBOL_CODEWORDS} of the largest symbol (90 rows and 30 columns)`,
+    );
   const cells = Math.imul(xSize, ySize);
   const padded = i32(numCodewords + i32(i32(cells - numCodewords) - numErrorCodewords));
   if (padded < 0) throw new Error('Barcode code too large');

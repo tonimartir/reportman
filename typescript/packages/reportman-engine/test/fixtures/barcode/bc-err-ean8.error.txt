@@ -1,1 +1,1 @@
-ERROR Reportman.Reporting.ReportException: Index was outside the bounds of the array.:Error calculating barcode
+ERROR Reportman.Reporting.ReportException: EAN8 bad Data: 1234567X:Error calculating barcode

@@ -1,1 +1,1 @@
-ERROR Reportman.Reporting.ReportException: Index was outside the bounds of the array.
+ERROR Reportman.Reporting.ReportException: Matrix 2 of 5 bad Data: 1A

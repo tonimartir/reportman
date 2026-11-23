@@ -1148,6 +1148,7 @@ namespace Reportman.Reporting {
                 else if (numCodewords < 321) return 4;
                 else return 5;
             }
+            if (eccLevel > 8) return 8;
             return eccLevel;
         }
         
@@ -1319,8 +1320,10 @@ namespace Reportman.Reporting {
             }
             else
             {
+                // No latch here: EncodeBinary writes it (901, or 924 for a multiple of six bytes).
+                // Written here too, the symbol began 901 901 (or 901 924): a reader of
+                // @zxing/library reads the second one as a byte, one more character (or garbage).
                 currentMode = TStDataMode.dmBinary;
-                codewords[numCodewords++] = 901; // BinaryCompaction
             }
 
             // Up to the last character: stopping before it (while i < CodeLen, Delphi before
@@ -1341,6 +1344,12 @@ namespace Reportman.Reporting {
                         EncodeNumeric(code, codewords, ref numCodewords, ref position, codeLen);
                         break;
                 }
+                // The whole text written: no latch to a mode for nothing (after the last character
+                // nothing is good for the numeric or the text compaction, and it was a latch to the
+                // byte compaction, 901, before the padding: a reader of @zxing/library reads it as
+                // one more character, 0x84)
+                if (position > codeLen)
+                    break;
 
                 if (GoodForNumericCompaction(code, position, codeLen, out count))
                 {
@@ -1367,11 +1376,8 @@ namespace Reportman.Reporting {
                 }
                 else
                 {
-                    if (currentMode != TStDataMode.dmBinary)
-                    {
-                        codewords[numCodewords++] = 901;
-                        currentMode = TStDataMode.dmBinary;
-                    }
+                    // EncodeBinary writes the latch
+                    currentMode = TStDataMode.dmBinary;
                 }
             }
         }
@@ -1559,7 +1565,7 @@ namespace Reportman.Reporting {
                     }
                     else if (next == 'X' || next == 'x')
                     {
-                        if (int.TryParse(code.Substring(position + 2, 2), System.Globalization.NumberStyles.HexNumber, null, out newChar)) position += 4;
+                        if (int.TryParse(code.Substring(position + 2, System.Math.Min(2, codeLen - position - 2)), System.Globalization.NumberStyles.HexNumber, null, out newChar)) position += 4;
                         else { newChar = 0; position += 4; }
                     }
                     else if (next == '\\')
@@ -1600,7 +1606,7 @@ namespace Reportman.Reporting {
                 position = next + 1;
 
                 bool validtext = false;
-                if (newChar <= 127) validtext = TSPDF417TextCompaction[newChar].Value >= 0;
+                if (newChar >= 0 && newChar <= 127) validtext = TSPDF417TextCompaction[newChar].Value >= 0;
 
                 if (!validtext && !isCodeword)
                 {
@@ -1742,6 +1748,9 @@ namespace Reportman.Reporting {
             for (int j = 0; j < eccLen; j++) codewords[numCodewords + j] = (int)baseReg[eccLen - 1 - j];
         }
 
+        /// <summary>The codewords of the largest PDF417 symbol: 90 rows of 30 columns.</summary>
+        public const int MaxSymbolCodewords = 2700;
+
         public static void GenerateCodewords(string text, int eccLevelIn, int numRowsIn, int numColsIn, out int[] codewordsOut, out int xSize, out int ySize, out int numCodewords, out int numErrorCodewords, out int totalCodewords)
         {
             int[] codewords = new int[2701];
@@ -1751,6 +1760,9 @@ namespace Reportman.Reporting {
             numErrorCodewords = (int)System.Math.Pow(2, errorLevel + 1);
             
             CalculateSize(numCodewords, errorLevel, numRowsIn, numColsIn, out xSize, out ySize, out totalCodewords);
+            if ((long)xSize * ySize > MaxSymbolCodewords)
+                throw new System.Exception("PDF417: " + ySize + " rows and " + xSize + " columns are " + ((long)xSize * ySize)
+                    + " codewords, more than the " + MaxSymbolCodewords + " of the largest symbol (90 rows and 30 columns)");
             
             if (numCodewords + (xSize * ySize - numCodewords - numErrorCodewords) < 0)
                 throw new System.Exception("Barcode code too large");

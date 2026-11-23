@@ -1,1 +1,1 @@
-ERROR Reportman.Reporting.ReportException: Index and length must refer to a location within the string. (Parameter 'length'):Error calculating barcode
+ERROR Reportman.Reporting.ReportException: PDF417: the text compaction cannot write the escape at character 5 of the text:Error calculating barcode
