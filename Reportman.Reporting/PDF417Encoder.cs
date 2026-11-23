@@ -1701,17 +1701,22 @@ namespace Reportman.Reporting {
             {
                 for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods[eccLen][i];
             }
+            // The tables of levels 6, 7 and 8 hold the coefficients of the generator polynomial
+            // from the constant term up, and StMods from the highest power down, the order the
+            // division below takes them in: they are read from their end. (Delphi reads them as
+            // they are, and the error correction codewords of those levels are not the ones of
+            // the data: no reader takes the symbol.)
             else if (eccLen == 128)
             {
-                for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods128[i];
+                for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods128[eccLen - 1 - i];
             }
             else if (eccLen == 256)
             {
-                for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods256[i];
+                for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods256[eccLen - 1 - i];
             }
             else if (eccLen == 512)
             {
-                for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods512[i];
+                for (int i = 0; i < eccLen; i++) coeffReg[i] = StMods512[eccLen - 1 - i];
             }
             
             for (int i = 0; i < eccLen; i++) baseReg[i] = 0;

@@ -597,12 +597,17 @@ function calculateECC(codewords: number[], numCodewords: number, eccLen: number)
     const row = ST_MODS[eccLen];
     if (row === undefined && eccLen > 0) throw indexOutOfRange();
     for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(row!, i));
-  } else if (eccLen === 128) {
-    for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(ST_MODS_128, i));
+  }
+  // The tables of levels 6, 7 and 8 hold the coefficients of the generator polynomial from the
+  // constant term up, and ST_MODS from the highest power down, the order the division below takes
+  // them in: they are read from their end. (Delphi reads them as they are, and the error
+  // correction codewords of those levels are not the ones of the data: no reader takes the symbol.)
+  else if (eccLen === 128) {
+    for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(ST_MODS_128, eccLen - 1 - i));
   } else if (eccLen === 256) {
-    for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(ST_MODS_256, i));
+    for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(ST_MODS_256, eccLen - 1 - i));
   } else if (eccLen === 512) {
-    for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(ST_MODS_512, i));
+    for (let i = 0; i < eccLen; i++) seti(coeffReg, i, geti(ST_MODS_512, eccLen - 1 - i));
   }
   for (let i = 0; i < eccLen; i++) seti(baseReg, i, 0);
   for (let i = numCodewords; i < i32(numCodewords + eccLen); i++) seti(codewords, i, 0);

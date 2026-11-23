@@ -2708,7 +2708,7 @@
 <POSX type="Integer">7160</POSX>
 <POSY type="Integer">1150</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#Lorem ipsum dolor sit amet#44# consectetur adipiscing elit#46# 0123456789 Lorem ipsum dolor sit amet#44# consectetur adipiscing elit#46# 0123456789 #39#</EXPRESSION>
+<EXPRESSION type="WideString">#39#ECC level 6#39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -2718,9 +2718,9 @@
 <BCOLOR type="Integer">0</BCOLOR>
 <BACKCOLOR type="Integer">16777215</BACKCOLOR>
 <TRANSPARENT type="Boolean">True</TRANSPARENT>
-<NUMCOLUMNS type="Integer">6</NUMCOLUMNS>
+<NUMCOLUMNS type="Integer">8</NUMCOLUMNS>
 <NUMROWS type="Integer">0</NUMROWS>
-<ECCLEVEL type="Integer">-1</ECCLEVEL>
+<ECCLEVEL type="Integer">6</ECCLEVEL>
 <TRUNCATED type="Boolean">False</TRUNCATED>
 </COMPONENT>
 <COMPONENT>
@@ -2754,13 +2754,13 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">long text</WIDETEXT>
+<WIDETEXT type="WideString">level 6</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode84</NAME>
 <CLASSNAME type="WideString">TRPBARCODE</CLASSNAME>
 <WIDTH type="Integer">3400</WIDTH>
-<HEIGHT type="Integer">700</HEIGHT>
+<HEIGHT type="Integer">900</HEIGHT>
 <PRINTCONDITION type="WideString"></PRINTCONDITION>
 <DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
 <DOAFTERPRINT type="WideString"></DOAFTERPRINT>
@@ -2768,8 +2768,8 @@
 <POSX type="Integer">0</POSX>
 <POSY type="Integer">2300</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#A#39#</EXPRESSION>
-<MODUL type="Integer">2</MODUL>
+<EXPRESSION type="WideString">#39#ECC level 7#39#</EXPRESSION>
+<MODUL type="Integer">1</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
 <CHECKSUM type="Boolean">False</CHECKSUM>
@@ -2778,9 +2778,9 @@
 <BCOLOR type="Integer">0</BCOLOR>
 <BACKCOLOR type="Integer">16777215</BACKCOLOR>
 <TRANSPARENT type="Boolean">True</TRANSPARENT>
-<NUMCOLUMNS type="Integer">0</NUMCOLUMNS>
+<NUMCOLUMNS type="Integer">12</NUMCOLUMNS>
 <NUMROWS type="Integer">0</NUMROWS>
-<ECCLEVEL type="Integer">-1</ECCLEVEL>
+<ECCLEVEL type="Integer">7</ECCLEVEL>
 <TRUNCATED type="Boolean">False</TRUNCATED>
 </COMPONENT>
 <COMPONENT>
@@ -2814,13 +2814,13 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">one letter</WIDETEXT>
+<WIDETEXT type="WideString">level 7</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode86</NAME>
 <CLASSNAME type="WideString">TRPBARCODE</CLASSNAME>
 <WIDTH type="Integer">3400</WIDTH>
-<HEIGHT type="Integer">700</HEIGHT>
+<HEIGHT type="Integer">900</HEIGHT>
 <PRINTCONDITION type="WideString"></PRINTCONDITION>
 <DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
 <DOAFTERPRINT type="WideString"></DOAFTERPRINT>
@@ -2828,8 +2828,8 @@
 <POSX type="Integer">3580</POSX>
 <POSY type="Integer">2300</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#7#39#</EXPRESSION>
-<MODUL type="Integer">2</MODUL>
+<EXPRESSION type="WideString">#39#ECC level 8#39#</EXPRESSION>
+<MODUL type="Integer">1</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
 <CHECKSUM type="Boolean">False</CHECKSUM>
@@ -2838,9 +2838,9 @@
 <BCOLOR type="Integer">0</BCOLOR>
 <BACKCOLOR type="Integer">16777215</BACKCOLOR>
 <TRANSPARENT type="Boolean">True</TRANSPARENT>
-<NUMCOLUMNS type="Integer">0</NUMCOLUMNS>
+<NUMCOLUMNS type="Integer">16</NUMCOLUMNS>
 <NUMROWS type="Integer">0</NUMROWS>
-<ECCLEVEL type="Integer">-1</ECCLEVEL>
+<ECCLEVEL type="Integer">8</ECCLEVEL>
 <TRUNCATED type="Boolean">False</TRUNCATED>
 </COMPONENT>
 <COMPONENT>
@@ -2874,13 +2874,13 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">one digit</WIDETEXT>
+<WIDETEXT type="WideString">level 8</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode88</NAME>
 <CLASSNAME type="WideString">TRPBARCODE</CLASSNAME>
 <WIDTH type="Integer">3400</WIDTH>
-<HEIGHT type="Integer">700</HEIGHT>
+<HEIGHT type="Integer">900</HEIGHT>
 <PRINTCONDITION type="WideString"></PRINTCONDITION>
 <DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
 <DOAFTERPRINT type="WideString"></DOAFTERPRINT>
@@ -2888,7 +2888,7 @@
 <POSX type="Integer">7160</POSX>
 <POSY type="Integer">2300</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39##233##39#</EXPRESSION>
+<EXPRESSION type="WideString">#39#Lorem ipsum dolor sit amet#44# consectetur adipiscing elit#46# 0123456789 Lorem ipsum dolor sit amet#44# consectetur adipiscing elit#46# 0123456789 #39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -2898,7 +2898,7 @@
 <BCOLOR type="Integer">0</BCOLOR>
 <BACKCOLOR type="Integer">16777215</BACKCOLOR>
 <TRANSPARENT type="Boolean">True</TRANSPARENT>
-<NUMCOLUMNS type="Integer">0</NUMCOLUMNS>
+<NUMCOLUMNS type="Integer">6</NUMCOLUMNS>
 <NUMROWS type="Integer">0</NUMROWS>
 <ECCLEVEL type="Integer">-1</ECCLEVEL>
 <TRUNCATED type="Boolean">False</TRUNCATED>
@@ -2934,7 +2934,7 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">one byte</WIDETEXT>
+<WIDETEXT type="WideString">long text</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode90</NAME>
@@ -2948,7 +2948,7 @@
 <POSX type="Integer">0</POSX>
 <POSY type="Integer">3450</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#12345678901234567890X#39#</EXPRESSION>
+<EXPRESSION type="WideString">#39#A#39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -2994,7 +2994,7 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">digits and a letter</WIDETEXT>
+<WIDETEXT type="WideString">one letter</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode92</NAME>
@@ -3008,7 +3008,7 @@
 <POSX type="Integer">3580</POSX>
 <POSY type="Integer">3450</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#Total#58# 100#8364##39#</EXPRESSION>
+<EXPRESSION type="WideString">#39#7#39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -3054,7 +3054,7 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">text and the euro</WIDETEXT>
+<WIDETEXT type="WideString">one digit</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode94</NAME>
@@ -3068,7 +3068,7 @@
 <POSX type="Integer">7160</POSX>
 <POSY type="Integer">3450</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#abcdef#233##39#</EXPRESSION>
+<EXPRESSION type="WideString">#39##233##39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -3114,13 +3114,13 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">text and an accent</WIDETEXT>
+<WIDETEXT type="WideString">one byte</WIDETEXT>
 </COMPONENT>
 </SECTION>
 <SECTION>
 <NAME type="WideString">TRpSection4</NAME>
 <WIDTH type="Integer">10758</WIDTH>
-<HEIGHT type="Integer">1150</HEIGHT>
+<HEIGHT type="Integer">2300</HEIGHT>
 <PRINTCONDITION type="WideString"></PRINTCONDITION>
 <DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
 <DOAFTERPRINT type="WideString"></DOAFTERPRINT>
@@ -3170,7 +3170,7 @@
 <POSX type="Integer">0</POSX>
 <POSY type="Integer">0</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#Hello #209#and#250##39#</EXPRESSION>
+<EXPRESSION type="WideString">#39#12345678901234567890X#39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -3216,7 +3216,7 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">text#44# accents#44# text</WIDETEXT>
+<WIDETEXT type="WideString">digits and a letter</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode98</NAME>
@@ -3230,7 +3230,7 @@
 <POSX type="Integer">3580</POSX>
 <POSY type="Integer">0</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#Se#241#or Mu#241#oz#44# 25 a#241#os#39#</EXPRESSION>
+<EXPRESSION type="WideString">#39#Total#58# 100#8364##39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -3276,7 +3276,7 @@
 <SINGLELINE type="Boolean">False</SINGLELINE>
 <MULTIPAGE type="Boolean">False</MULTIPAGE>
 <PRINTSTEP type="Integer">0</PRINTSTEP>
-<WIDETEXT type="WideString">accents in a sentence</WIDETEXT>
+<WIDETEXT type="WideString">text and the euro</WIDETEXT>
 </COMPONENT>
 <COMPONENT>
 <NAME type="WideString">TRpBarcode100</NAME>
@@ -3290,7 +3290,7 @@
 <POSX type="Integer">7160</POSX>
 <POSY type="Integer">0</POSY>
 <ALIGN type="Integer">0</ALIGN>
-<EXPRESSION type="WideString">#39#AB#92#C901#92#C067#39#</EXPRESSION>
+<EXPRESSION type="WideString">#39#abcdef#233##39#</EXPRESSION>
 <MODUL type="Integer">2</MODUL>
 <RATIO type="Double">2</RATIO>
 <TYP type="Integer">16</TYP>
@@ -3316,6 +3316,186 @@
 <ANNOTATION type="WideString"></ANNOTATION>
 <POSX type="Integer">7160</POSX>
 <POSY type="Integer">900</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">7</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">text and an accent</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="WideString">TRpBarcode102</NAME>
+<CLASSNAME type="WideString">TRPBARCODE</CLASSNAME>
+<WIDTH type="Integer">3400</WIDTH>
+<HEIGHT type="Integer">700</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="WideString"></ANNOTATION>
+<POSX type="Integer">0</POSX>
+<POSY type="Integer">1150</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<EXPRESSION type="WideString">#39#Hello #209#and#250##39#</EXPRESSION>
+<MODUL type="Integer">2</MODUL>
+<RATIO type="Double">2</RATIO>
+<TYP type="Integer">16</TYP>
+<CHECKSUM type="Boolean">False</CHECKSUM>
+<DISPLAYFORMAT type="WideString"></DISPLAYFORMAT>
+<ROTATION type="Integer">0</ROTATION>
+<BCOLOR type="Integer">0</BCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<NUMCOLUMNS type="Integer">0</NUMCOLUMNS>
+<NUMROWS type="Integer">0</NUMROWS>
+<ECCLEVEL type="Integer">-1</ECCLEVEL>
+<TRUNCATED type="Boolean">False</TRUNCATED>
+</COMPONENT>
+<COMPONENT>
+<NAME type="WideString">TRpLabel103</NAME>
+<CLASSNAME type="WideString">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">3480</WIDTH>
+<HEIGHT type="Integer">200</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="WideString"></ANNOTATION>
+<POSX type="Integer">0</POSX>
+<POSY type="Integer">2050</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">7</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">text#44# accents#44# text</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="WideString">TRpBarcode104</NAME>
+<CLASSNAME type="WideString">TRPBARCODE</CLASSNAME>
+<WIDTH type="Integer">3400</WIDTH>
+<HEIGHT type="Integer">700</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="WideString"></ANNOTATION>
+<POSX type="Integer">3580</POSX>
+<POSY type="Integer">1150</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<EXPRESSION type="WideString">#39#Se#241#or Mu#241#oz#44# 25 a#241#os#39#</EXPRESSION>
+<MODUL type="Integer">2</MODUL>
+<RATIO type="Double">2</RATIO>
+<TYP type="Integer">16</TYP>
+<CHECKSUM type="Boolean">False</CHECKSUM>
+<DISPLAYFORMAT type="WideString"></DISPLAYFORMAT>
+<ROTATION type="Integer">0</ROTATION>
+<BCOLOR type="Integer">0</BCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<NUMCOLUMNS type="Integer">0</NUMCOLUMNS>
+<NUMROWS type="Integer">0</NUMROWS>
+<ECCLEVEL type="Integer">-1</ECCLEVEL>
+<TRUNCATED type="Boolean">False</TRUNCATED>
+</COMPONENT>
+<COMPONENT>
+<NAME type="WideString">TRpLabel105</NAME>
+<CLASSNAME type="WideString">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">3480</WIDTH>
+<HEIGHT type="Integer">200</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="WideString"></ANNOTATION>
+<POSX type="Integer">3580</POSX>
+<POSY type="Integer">2050</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<WFONTNAME type="WideString">Arial</WFONTNAME>
+<LFONTNAME type="WideString">Helvetica</LFONTNAME>
+<BIDIMODE type="Integer">0</BIDIMODE>
+<TYPE1FONT type="Integer">0</TYPE1FONT>
+<FONTSIZE type="Integer">7</FONTSIZE>
+<FONTROTATION type="Integer">0</FONTROTATION>
+<FONTSTYLE type="Integer">0</FONTSTYLE>
+<FONTCOLOR type="Integer">0</FONTCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<CUTTEXT type="Boolean">False</CUTTEXT>
+<ALIGNMENT type="Integer">0</ALIGNMENT>
+<VALIGNMENT type="Integer">0</VALIGNMENT>
+<INTERLINE type="Integer">0</INTERLINE>
+<WORDWRAP type="Boolean">False</WORDWRAP>
+<WORDBREAK type="Boolean">False</WORDBREAK>
+<SINGLELINE type="Boolean">False</SINGLELINE>
+<MULTIPAGE type="Boolean">False</MULTIPAGE>
+<PRINTSTEP type="Integer">0</PRINTSTEP>
+<WIDETEXT type="WideString">accents in a sentence</WIDETEXT>
+</COMPONENT>
+<COMPONENT>
+<NAME type="WideString">TRpBarcode106</NAME>
+<CLASSNAME type="WideString">TRPBARCODE</CLASSNAME>
+<WIDTH type="Integer">3400</WIDTH>
+<HEIGHT type="Integer">700</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="WideString"></ANNOTATION>
+<POSX type="Integer">7160</POSX>
+<POSY type="Integer">1150</POSY>
+<ALIGN type="Integer">0</ALIGN>
+<EXPRESSION type="WideString">#39#AB#92#C901#92#C067#39#</EXPRESSION>
+<MODUL type="Integer">2</MODUL>
+<RATIO type="Double">2</RATIO>
+<TYP type="Integer">16</TYP>
+<CHECKSUM type="Boolean">False</CHECKSUM>
+<DISPLAYFORMAT type="WideString"></DISPLAYFORMAT>
+<ROTATION type="Integer">0</ROTATION>
+<BCOLOR type="Integer">0</BCOLOR>
+<BACKCOLOR type="Integer">16777215</BACKCOLOR>
+<TRANSPARENT type="Boolean">True</TRANSPARENT>
+<NUMCOLUMNS type="Integer">0</NUMCOLUMNS>
+<NUMROWS type="Integer">0</NUMROWS>
+<ECCLEVEL type="Integer">-1</ECCLEVEL>
+<TRUNCATED type="Boolean">False</TRUNCATED>
+</COMPONENT>
+<COMPONENT>
+<NAME type="WideString">TRpLabel107</NAME>
+<CLASSNAME type="WideString">TRPLABEL</CLASSNAME>
+<WIDTH type="Integer">3480</WIDTH>
+<HEIGHT type="Integer">200</HEIGHT>
+<PRINTCONDITION type="WideString"></PRINTCONDITION>
+<DOBEFOREPRINT type="WideString"></DOBEFOREPRINT>
+<DOAFTERPRINT type="WideString"></DOAFTERPRINT>
+<ANNOTATION type="WideString"></ANNOTATION>
+<POSX type="Integer">7160</POSX>
+<POSY type="Integer">2050</POSY>
 <ALIGN type="Integer">0</ALIGN>
 <WFONTNAME type="WideString">Arial</WFONTNAME>
 <LFONTNAME type="WideString">Helvetica</LFONTNAME>

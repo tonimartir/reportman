@@ -257,7 +257,25 @@ describe('PDF417 against the Delphi engine', () => {
     expect(read(reference.get(c.caption)!.bars)).not.toBe(said(c));
   });
 
+  it.each(cases.filter((c) => c.delphi === 'error correction'))(
+    'Delphi gives the levels 6 to 8 an error correction that is not the one of the data: $caption',
+    async (c) => {
+      // CalculateECC: StMods128, StMods256 and StMods512 hold the coefficients of the generator
+      // polynomial from the constant term up and are read as StMods is, from the highest power
+      // down. The data codewords are right, the 128, 256 or 512 after them are not: more errors
+      // than any reader corrects.
+      const theirs = readPdf417(reference.get(c.caption)!.bars);
+      const ours = readPdf417((await drawn).get(c.caption)!.bars);
+      const k = 2 ** (theirs.level + 1);
+      expect(k).toBeGreaterThanOrEqual(128);
+      const data = theirs.codewords.slice(0, theirs.codewords.length - k);
+      expect(ours.codewords.slice(0, data.length)).toEqual(data);
+      expect(theirs.codewords.slice(data.length)).not.toEqual(pdf417ErrorCorrection(data, k));
+      expect(ours.codewords.slice(data.length)).toEqual(pdf417ErrorCorrection(data, k));
+    },
+  );
+
   it('every case that Delphi has wrong is one of those', () => {
-    expect([...new Set(cases.map((c) => c.delphi))].sort()).toEqual(['character twice', 'codeword escape', 'last character', undefined]);
+    expect([...new Set(cases.map((c) => c.delphi))].sort()).toEqual(['character twice', 'codeword escape', 'error correction', 'last character', undefined]);
   });
 });
