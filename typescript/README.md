@@ -72,6 +72,23 @@ npm run check:canvas   # the canvas preview against the PDF rasterized by popple
 npm run check:dfm -- <folder>   # @reportman/dfm against Delphi on the DFM reports of a folder (tools/golden-dfm)
 ```
 
+### The live demo
+
+`demo/` is the page of `https://reportman.es/demo/`: the samples run in the visitor's browser
+(step 1 the form of the parameters, step 2 the preview with `@reportman/canvas` and the PDF), from
+the sources of the packages. The data is read with sql.js (SQLite in WebAssembly, a dev dependency
+used by the page only) with the behaviour of the `sqlite()` connection of `@reportman/node`; the
+fonts are open fonts in WOFF2 (`demo/public/fonts`, with their licences: Liberation, DejaVu, Noto,
+the Japanese one subset to the characters of the samples), chosen by the Linux names the reports
+carry.
+
+```bash
+npm run demo -- dev --site <Delphi repository>/doc      # http://127.0.0.1:5180/ (--site for the stylesheet)
+npm run demo -- check                                   # every sample in a headless Edge or Chrome: each PDF must be the one @reportman/node writes
+npm run demo -- build --out <Delphi repository>/doc/demo  # the static site, committed there (doc/ is reportman.es)
+npm run demo -- thumbs                                  # the small thumbnails of the list (ImageMagick)
+```
+
 ### Releases
 
 Every package has the same version, the one the Delphi and C# engines share at each release

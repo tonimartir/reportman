@@ -1,0 +1,16 @@
+{
+  // Type check of the demo page (Vite builds it from the sources; tsc checks it against the
+  // declarations of the built packages): npm run build, then npx tsc -p demo
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": []
+  },
+  "include": ["src"]
+}
