@@ -1,6 +1,6 @@
 {
   "name": "@reportman/text",
-  "version": "4.1.0-alpha.1",
+  "version": "4.1.0-alpha.2",
   "description": "Report Manager text measurement: the standard 14 PDF font metrics and the line breaking of the engine.",
   "license": "MPL-2.0",
   "type": "module",
@@ -34,6 +34,6 @@
     "brotli": "^2.1.0",
     "fflate": "^0.8.3",
     "fontkit": "^3.0.0",
-    "@reportman/metafile": "4.1.0-alpha.1"
+    "@reportman/metafile": "4.1.0-alpha.2"
   }
 }
