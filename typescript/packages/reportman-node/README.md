@@ -15,7 +15,10 @@ and complex scripts, and PDF/A-3B.
 ```bash
 npm install @reportman/node@next
 npm install @reportman/driver-postgres@next   # or driver-firebird, driver-mysql, driver-mssql, driver-http
+npm install @reportman/dfm@next               # only for reports saved by Delphi in a DFM form
 ```
+
+Reports saved as XML need no `@reportman/dfm` (see [Command line](#command-line)).
 
 Node 22.12 or later. The packages are ES modules only; a CommonJS program loads them with
 `require('@reportman/node')` (Node's `require(esm)`).

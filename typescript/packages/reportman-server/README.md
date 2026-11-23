@@ -31,7 +31,7 @@ PowerShell, JavaScript, C# and Delphi.
 | `--standard-fonts` | the 14 standard PDF fonts instead of the TrueType fonts of the system |
 
 Reports saved by Delphi in a DFM form are served too when `@reportman/dfm` is installed next to
-the server (it converts them to XML as they are opened). SQLite is built in. For other databases
+the server (it converts them to XML as they are opened); reports saved as XML do not need it. SQLite is built in. For other databases
 install their drivers next to the server and they are used: `@reportman/driver-postgres`, `@reportman/driver-firebird`, `@reportman/driver-mysql`,
 `@reportman/driver-mssql`, and `@reportman/driver-http` for the Reportman AI Agent.
 
