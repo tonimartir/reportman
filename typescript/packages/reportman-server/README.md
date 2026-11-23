@@ -28,7 +28,8 @@ PowerShell, JavaScript, C# and Delphi.
 </p>
 
 The eleven samples, with pictures of their pages, their `.rep` files and their PDFs, are in the
-[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples).
+[examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples), and the
+[live demo](https://reportman.es/demo/) runs them in the browser with nothing installed.
 
 | Option | |
 |---|---|

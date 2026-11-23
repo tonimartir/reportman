@@ -22,8 +22,9 @@ and complex scripts, and PDF/A-3B.
 Eleven sample reports (invoices, groups and totals, charts, EAN-13 barcodes, labels, HTML text,
 unions of datasets, nine languages in eight scripts) with their `.rep` files and the PDFs this
 package makes of them: the [examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples),
-which also shows how to run them from the command line and from a program. To see them run in a
-minute:
+which also shows how to run them from the command line and from a program. To see them run, the
+[live demo](https://reportman.es/demo/) runs them in your browser with nothing installed
+(parameters, preview and PDF), and on your computer:
 
 ```bash
 npx @reportman/server --samples     # the samples in a web console at http://127.0.0.1:8080/

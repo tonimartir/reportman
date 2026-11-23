@@ -26,6 +26,7 @@ Eleven sample reports, with pictures of their pages, their `.rep` files and the 
 `@reportman/node` makes of them, are in the
 [examples gallery](https://github.com/tonimartir/reportman/tree/main/typescript/examples). To see
 them run: `npx @reportman/server --samples`.
+Or live in your browser, with nothing installed: the [live demo](https://reportman.es/demo/).
 
 ## The packages
 

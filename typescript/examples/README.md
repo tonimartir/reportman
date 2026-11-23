@@ -7,7 +7,11 @@ the Delphi and .NET designers open, and they give the same pages in the three en
 
 ## Try them
 
-In a minute, without writing code:
+In your browser, with nothing installed: the **[live demo](https://reportman.es/demo/)** runs
+every sample on the page itself (the form of its parameters, the preview of its pages and its PDF),
+with the same packages.
+
+In a minute on your computer, without writing code:
 
 ```bash
 npx @reportman/server --samples

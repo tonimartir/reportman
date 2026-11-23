@@ -11,8 +11,9 @@ Status: **preview**, versions `4.1.0-alpha.N` with the npm tag `next`
 
 **Examples:** the eleven sample reports, with pictures of their pages, their `.rep` files and the
 PDFs `@reportman/node` makes of them, are in the [examples gallery](examples/README.md), which also
-shows how to run them; every package's README points there. `npx @reportman/server --samples`
-runs them in a web console.
+shows how to run them; every package's README points there. The
+[live demo](https://reportman.es/demo/) runs them in the browser, and `npx @reportman/server --samples`
+in a web console.
 
 ## Packages
 
