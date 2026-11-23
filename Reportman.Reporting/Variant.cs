@@ -1610,9 +1610,6 @@ namespace Reportman.Reporting
             return avalue1;
         }
         /// <summary>
-        /// Binary multiplier arithmetic operator
-        /// </summary>
-        /// <summary>
         /// The result of an operation between two Integer values: an Integer, or a Long when it does
         /// not fit (it wrapped around: 1000000*1000000 was -727379968), as the Int64 of the Delphi engine.
         /// </summary>
@@ -1631,6 +1628,9 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Binary multiplier arithmetic operator
+        /// </summary>
         public static Variant operator *(Variant avalue1, Variant avalue2)
         {
             Variant aresult = new Variant();
