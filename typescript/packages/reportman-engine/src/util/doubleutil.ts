@@ -105,13 +105,30 @@ export function roundDecimalUp(number: CsDecimal, multiple: CsDecimal): CsDecima
   return aresult;
 }
 
-/** CompareValue: -1, 0 or 1; a difference below epsilon is equal. */
-export function compareValue(p1: CsDecimal, p2: CsDecimal, epsilon: CsDecimal): number {
-  let aresult = 0;
-  const dif = p1.sub(p2).abs();
-  epsilon = epsilon.abs();
-  if (dif.compareTo(epsilon) >= 0) aresult = p1.compareTo(p2) < 0 ? -1 : 1;
-  return aresult;
+/** DoubleResolution of the Math unit of Delphi: 1E-15 by the fuzz factor (1000). */
+const DOUBLE_RESOLUTION = 1e-12;
+
+/**
+ * CompareValue of the Math unit of Delphi, the COMPAREVALUE of the Delphi engine, on doubles (a
+ * decimal is converted): 0 when the values differ in epsilon or less (SameValue), else -1 when the
+ * first one is the lower and 1 when it is not. With an epsilon of 0 the epsilon is the resolution
+ * of the values, Max(Min(Abs(p1), Abs(p2)) * 1E-12, 1E-12); a negative epsilon makes nothing equal.
+ * (Equal values with an epsilon of 0 gave 1, and a difference of exactly epsilon was not equal.)
+ */
+export function compareValue(p1: CsDecimal | number, p2: CsDecimal | number, epsilon: CsDecimal | number): number {
+  const a = typeof p1 === 'number' ? p1 : p1.toDouble();
+  const b = typeof p2 === 'number' ? p2 : p2.toDouble();
+  let e = typeof epsilon === 'number' ? epsilon : epsilon.toDouble();
+  if (e === 0) {
+    // Min and Max as Delphi writes them (if A < B then A else B), for the NaN
+    const absA = Math.abs(a);
+    const absB = Math.abs(b);
+    const resolution = (absA < absB ? absA : absB) * DOUBLE_RESOLUTION;
+    e = resolution > DOUBLE_RESOLUTION ? resolution : DOUBLE_RESOLUTION;
+  }
+  const same = a > b ? a - b <= e : b - a <= e;
+  if (same) return 0;
+  return a < b ? -1 : 1;
 }
 
 // ---------------------------------------------------------------------------------------------

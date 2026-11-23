@@ -1016,6 +1016,8 @@ namespace Reportman.Reporting
                         {
                             using (Evaluator eval = new Evaluator())
                             {
+                                // The expression is evaluated as those of its report
+                                eval.DelphiMasks = (Report != null) && Report.ConvertedFromDelphi;
                                 string nvalue = aparam.Value.ToString();
                                 eval.Expression = nvalue;
                                 nvalue = eval.Evaluate().ToString();

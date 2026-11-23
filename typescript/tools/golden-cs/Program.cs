@@ -18,9 +18,11 @@ using Reportman.Reporting.Design.Json;
 //       The report as read by ReportReader (no ConvertToDotNet), serialised with the designer's
 //       camelCase JSON settings (ReportBatchJsonAdapter.ReportJsonSettings).
 //
-//   golden-cs eval <cases.json> [out.json] [--culture en-US]
+//   golden-cs eval <cases.json> [out.json] [--culture en-US] [--delphi]
 //       cases.json: [{ "expr": "1+2", "format": "#,##0.00" }, ...]. For each case: the result
 //       type, ToString(), the formatted text when a format is given, or the error.
+//       --delphi evaluates and formats as in a report converted from Delphi
+//       (Evaluator.DelphiMasks, set from BaseReport.ConvertedFromDelphi).
 //
 //   golden-cs run <report.rep> <out.metafile.json> [--pdf out.pdf] [--sqlite db]
 //                 [--param NAME=value]... [--culture xx-XX] [--driver standard|freetype] [--fonts dir]
@@ -137,6 +139,8 @@ class Program
         SetCulture(args);
         // The cases of LOADFILE and GETINIVALUE read the files of the fixtures
         Evaluator.AllowFileFunctions = true;
+        // As in a report converted from Delphi
+        bool delphi = Array.IndexOf(args, "--delphi") >= 0;
         JArray cases = JArray.Parse(File.ReadAllText(args[1]));
         var results = new JArray();
         foreach (JObject c in cases)
@@ -150,12 +154,13 @@ class Program
             try
             {
                 var ev = new Evaluator();
+                ev.DelphiMasks = delphi;
                 ev.Expression = expr;
                 Variant v = ev.Evaluate();
                 r["type"] = v.VarType.ToString();
                 r["text"] = v.ToString();
                 if (format != null)
-                    r["formatted"] = v.ToString(format, ParamType.Unknown, true);
+                    r["formatted"] = v.ToString(format, ParamType.Unknown, true, delphi);
             }
             catch (Exception e)
             {

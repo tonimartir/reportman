@@ -7,7 +7,7 @@
 //   logicalAND  AND
 //   comparations  <> >< == = < <= > >=  (operands coerced with VariantCoercion)
 //   sum_diff    + -                   (+ is Variant.ExpressionSum)
-//   mul_div     * /
+//   mul_div     * /                   (in - * / a text that is a number is the number)
 //   dosign      unary - + NOT, IIF, function calls
 //   parentesis  ( )
 //   operand     identifiers and literals
@@ -423,7 +423,8 @@ export class Evaluator {
       if (!this.fChecking) fvalue.v = idenf!.value;
       else fvalue.v = Variant.null;
     } else if (aoperator === '-') {
-      if (!this.fChecking) fvalue.v = Variant.negate(fvalue.v, this.context);
+      // A text that is a number is negated as the number
+      if (!this.fChecking) fvalue.v = Variant.negate(Variant.expressionOperand(fvalue.v, this.context), this.context);
     } else if (aoperator === 'NOT') {
       if (!this.fChecking) fvalue.v = Variant.fromBoolean(!fvalue.v.toBool(this.context));
     }
@@ -432,6 +433,7 @@ export class Evaluator {
   private mulDiv(fvalue: Ref): void {
     const p = this.fParser;
     const auxiliar = new ValueRef();
+    const operand = (v: Variant): Variant => Variant.expressionOperand(v, this.context);
     this.dosign(fvalue);
     while (p.currentToken() === TokenType.Operator) {
       const aoperator = p.tokenString();
@@ -439,12 +441,13 @@ export class Evaluator {
         p.nextToken();
         const auxiliar2 = fvalue.v;
         this.dosign(auxiliar);
-        if (!this.fChecking) fvalue.v = Variant.mul(auxiliar2, auxiliar.v, this.context);
+        // A text that is a number is the number (Variant.expressionOperand)
+        if (!this.fChecking) fvalue.v = Variant.mul(operand(auxiliar2), operand(auxiliar.v), this.context);
       } else if (aoperator === '/') {
         p.nextToken();
         const auxiliar2 = fvalue.v;
         this.dosign(auxiliar);
-        if (!this.fChecking) fvalue.v = Variant.div(auxiliar2, auxiliar.v, this.context);
+        if (!this.fChecking) fvalue.v = Variant.div(operand(auxiliar2), operand(auxiliar.v), this.context);
       } else break;
     }
   }
@@ -452,6 +455,7 @@ export class Evaluator {
   private sumDiff(fvalue: Ref): void {
     const p = this.fParser;
     const auxiliar = new ValueRef();
+    const operand = (v: Variant): Variant => Variant.expressionOperand(v, this.context);
     this.mulDiv(fvalue);
     while (p.currentToken() === TokenType.Operator) {
       const aoperator = p.tokenString();
@@ -465,7 +469,8 @@ export class Evaluator {
         p.nextToken();
         const auxiliar2 = fvalue.v;
         this.mulDiv(auxiliar);
-        fvalue.v = Variant.sub(auxiliar2, auxiliar.v, this.context);
+        // A text that is a number is the number (Variant.expressionOperand)
+        fvalue.v = Variant.sub(operand(auxiliar2), operand(auxiliar.v), this.context);
       } else break;
     }
   }

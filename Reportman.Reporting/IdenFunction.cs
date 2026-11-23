@@ -44,6 +44,17 @@ namespace Reportman.Reporting
             }
         }
         /// <summary>
+        /// The report of the evaluator was converted from Delphi (<see cref="Evaluator.DelphiMasks"/>):
+        /// a function that gives another result in the Delphi engine gives that one.
+        /// </summary>
+        protected bool DelphiMasks
+        {
+            get
+            {
+                return (EvalObject != null) && EvalObject.DelphiMasks;
+            }
+        }
+        /// <summary>
         /// Setting a value to a function is not possible, a exception is thrown
         /// </summary>
         /// <param name="avalue"></param>

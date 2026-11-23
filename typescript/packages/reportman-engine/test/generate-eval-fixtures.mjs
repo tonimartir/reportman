@@ -4,6 +4,9 @@
 //                                            cases whose output depends on the host time zone)
 //   test/fixtures/eval-golden.<culture>.json what the C# engine gives for them (golden-cs eval)
 //                                            under en-US, es-ES and pt-BR
+//   test/fixtures/eval-delphi-cases.json     the cases of a report converted from Delphi
+//   test/fixtures/eval-delphi.<culture>.json what the C# engine gives for them with DelphiMasks
+//                                            (golden-cs eval --delphi)
 //
 // Dates come from TODAY (the only date source of an expression), so the date the fixtures were
 // generated on is recorded (the first case, TODAY formatted yyyy-mm-dd) and the test pins its
@@ -80,7 +83,29 @@ for (const e of [
   "NULL+'a'", "'a'+NULL", 'NULL-NULL', 'NULL*NULL', 'NULL/2', '2/NULL', 'NULL+TRUE', 'TODAY+NULL', 'NULL+TODAY', 'TODAY-NULL',
   '3+TODAY-TODAY', 'TODAY-(TODAY-1)', '(TODAY+0.75)-TODAY', 'TODAY-TODAY', '5-TODAY', 'INT(5)-TODAY', '2.5D-TODAY', '2.5-TODAY',
   'TODAY+0.1D', 'TODAY+1E7', 'TODAY+1E8', 'TODAY+(0D/0)', 'TODAY+3000000', 'TODAY-800000',
+  // A text that is a number in - * / and the sign is the number (Variant.ExpressionOperand)
+  "'6'-2", "6-'2'", "'6'-'2'", "'2'*3", "3*'2'", "'2'*'3'", "6/'2'", "'6'/2", "'6'/'2'", 'STR(2)*2', "-'6'", "- '1,5'", "-'1.5'", "'1.5'*2",
+  "'1,5'*2", "'1e2'-1", "'(4)'*2", "' 3 '/2", "'10'/'4'", "'3'*'3'*'3'", "'x'-'y'", "'x'*'y'", "'x'/'y'", "'1'/'0'", "'6'/0", "6/'0'", "'6'-NULL",
+  "NULL-'6'", "'6'*NULL", "'a'-NULL", "TODAY-'1'", "'1'-TODAY", "'2'*TRUE", "'6'-2.5D", "'6'*2.5", "'6'/INT(4)", "'2147483647'*2", "'1e400'*2",
+  "'NaN'*2", "IIF(TRUE,1,'a'-1)", "IIF(TRUE,1,'a'*1)", "'12345678901234567890123456789012'*1",
+  // A date plus a date is the date of the sum of their OLE dates (a date plus a time), and a number
+  // minus a date the date of the difference, as the Delphi engine computes with TDateTime values
+  'FLOATTODATETIME(45000)+FLOATTODATETIME(0.5)', 'FLOATTODATETIME(0.5)+FLOATTODATETIME(45000)', 'FLOATTODATETIME(45000.25)+FLOATTODATETIME(0.5)',
+  'FLOATTODATETIME(0.25)+FLOATTODATETIME(0.5)', 'FLOATTODATETIME(0.75)+FLOATTODATETIME(0.75)', 'FLOATTODATETIME(45000)+FLOATTODATETIME(45000)',
+  'FLOATTODATETIME(45000)+FLOATTODATETIME(-1.5)', 'FLOATTODATETIME(-1.25)+FLOATTODATETIME(-1.25)', 'FLOATTODATETIME(45000)+FLOATTODATETIME(0)',
+  'FLOATTODATETIME(1500000)+FLOATTODATETIME(1500000)', 'FLOATTODATETIME(-600000)+FLOATTODATETIME(-600000)', 'TODAY+TODAY', '(TODAY+TIME)>=TODAY', '(TODAY+TIME)<TODAY+1',
+  '(TIME+TODAY)<TODAY+1', 'YEAR(TODAY+TIME)=YEAR(TODAY)', 'DAY(TODAY+TIME)=DAY(TODAY)', 'ABS((TODAY+TIME)-NOW)<0.001', 'YEAR(TIME+TIME)', '(TIME+TIME)>=0',
+  '1-FLOATTODATETIME(45000)', '45001-FLOATTODATETIME(45000)', '45001.5-FLOATTODATETIME(45000)', '2.5D-FLOATTODATETIME(1)', 'INT(5)-FLOATTODATETIME(1)',
+  '100000-FLOATTODATETIME(45000)', '100000.0-FLOATTODATETIME(45000)', 'YEAR(100000-FLOATTODATETIME(45000))', 'NULL-FLOATTODATETIME(45000)', '0-FLOATTODATETIME(45000)',
+  '1E300-FLOATTODATETIME(1)', '-1E7-FLOATTODATETIME(1)', '(0D/0)-FLOATTODATETIME(1)', 'INT(922337203685477.5807)-FLOATTODATETIME(1)', '5-TODAY<0',
+  '(TODAY+5)-TODAY', "'6'-FLOATTODATETIME(1)", 'FLOATTODATETIME(45000)-1', 'FLOATTODATETIME(45000)-FLOATTODATETIME(44000)',
 ]) add(e);
+// (the text of TODAY+TIME has the time of the clock: only its date is compared)
+add("FORMATSTR('yyyy-mm-dd',TODAY+TIME)");
+add("FORMATSTR('yyyy-mm-dd',TIME+TODAY)");
+add('TODAY+FLOATTODATETIME(0.75)', 'yyyy-mm-dd hh:nn:ss');
+add('FLOATTODATETIME(45000)+FLOATTODATETIME(0.5)', 'yyyy-mm-dd hh:nn:ss');
+add('1-FLOATTODATETIME(45000)', 'yyyy-mm-dd hh:nn:ss');
 
 // --- Comparisons and logic ----------------------------------------------------------------------
 for (const op of ['=', '<>', '<', '>', '<=', '>=']) {
@@ -154,6 +179,34 @@ for (const e of [
   "NOT ISINTEGER('5')", '-ABS(5)', '-ABS(-5)', 'NOT ISNUMERIC(\'a\')', "UPPERCASE(LOWERCASE('AbC'))", 'MAX(MAX(1,2),3)',
   'TODAY()', 'NOW()', 'TRUE()', "LEFT 'abc',1", "LEFT('abc' 1)", "LEFT('abc',1", "LEFT('abc';1)", 'UNKNOWNFN(1)', "M.LEFT('a',1)",
   "[LEFT]('abc',1)", 'ABS', 'ABS 5', 'NULL(1)',
+  // A negative count, an empty pattern and the ordinal POS (as the Delphi engine)
+  "LEFT('',-1)", "LEFT('abc',-100)", "RIGHT('',-1)", "RIGHT('abc',-100)", "REPLACESTR('','','X')", "REPLACESTR('abcabc','B','X')",
+  "REPLACESTR('ABCabc','b','x')", "REPLACESTR('ÁBC','á','x')", "POS('','')", "POS('a','')", "POS('é','e'#769)", "POS('ss','straße')", "POS('B','aBc')",
+  "POS('abc','abc')", "POS('abcd','abc')", "POS(#173,'a'#173'b')", "POS('😀','a😀')", "SUBSTR('abcdef',0,0)", "SUBSTR('abcdef',-5,2)", "SUBSTR('abcdef',1,-2)",
+  // COMPAREVALUE as CompareValue of Delphi's Math unit, on doubles
+  'COMPAREVALUE(1,1,0)', 'COMPAREVALUE(1,1.001,0.001)', 'COMPAREVALUE(1,2,0)', 'COMPAREVALUE(2,1,0)', 'COMPAREVALUE(0,0,0)', 'COMPAREVALUE(1.5,1.5,0)',
+  'COMPAREVALUE(1,1.0000000000001,0)', 'COMPAREVALUE(1,1.000000000001,0)', 'COMPAREVALUE(1000000,1000000.0000001,0)', 'COMPAREVALUE(1000000,1000000.00001,0)',
+  'COMPAREVALUE(0,0.000000000001,0)', 'COMPAREVALUE(0,0.00000000001,0)', 'COMPAREVALUE(0.1+0.2,0.3,0)', 'COMPAREVALUE(0.1D+0.2D,0.3D,0)', 'COMPAREVALUE(1,0.9,0.1)',
+  'COMPAREVALUE(1,0.8,0.1)', 'COMPAREVALUE(1,2,1)', 'COMPAREVALUE(1,2,-1)', 'COMPAREVALUE(1,1,-0.1)', 'COMPAREVALUE(3,1,2)', 'COMPAREVALUE(1,3,2)', 'COMPAREVALUE(2.5,1.5,1)',
+  'COMPAREVALUE(0.3,0.1,0.2)', 'COMPAREVALUE(0.1,0.3,0.2)', 'COMPAREVALUE(1.15,1.1,0.05)', 'COMPAREVALUE(1.15D,1.1D,0.05D)', 'COMPAREVALUE(INT(1),INT(2),INT(1))',
+  'COMPAREVALUE(-5,-5,0)', 'COMPAREVALUE(-5,-6,0)', 'COMPAREVALUE(1E300,1E300,0)', 'COMPAREVALUE(1E300,1.0000000000001E300,0)', 'COMPAREVALUE(1E300,1.00000000001E300,0)',
+  'COMPAREVALUE(1E300,-1E300,0)', 'COMPAREVALUE(1E308*10,1E308*10,0)', 'COMPAREVALUE(0D/0,1,0)', 'COMPAREVALUE(1,0D/0,0)', 'COMPAREVALUE(1,2,1E308*10)',
+  'COMPAREVALUE(123456789012,123456789012.1,0)', 'COMPAREVALUE(123456789012,123456789012.2,0)', "COMPAREVALUE('1',1,0)", 'COMPAREVALUE(TODAY,TODAY,0)',
+  // MONTHNAME of any number (rounded half to even), DAY, MONTH and YEAR of a number (an OLE date) and INT of a date
+  'MONTHNAME(1.5)', 'MONTHNAME(2.5)', 'MONTHNAME(3.5)', 'MONTHNAME(0.5)', 'MONTHNAME(0.6)', 'MONTHNAME(12.5)', 'MONTHNAME(12.6)', 'MONTHNAME(2.5D)', 'MONTHNAME(3D)',
+  'MONTHNAME(3.0)', 'MONTHNAME(-1)', 'MONTHNAME(-0.5)', 'MONTHNAME(1E10)', 'MONTHNAME(INT(4294967297))', 'MONTHNAME(0D/0)', 'MONTHNAME(TRUE)', "MONTHNAME('3')",
+  'MONTHNAME(FLOATTODATETIME(45000))', 'DAY(45000)', 'MONTH(45000)', 'YEAR(45000)', 'DAY(45000.5)', 'DAY(45000.5D)', 'DAY(INT(45000))', 'MONTH(INT(45000))',
+  'YEAR(45000.5D)', 'DAY(0)', 'MONTH(0)', 'YEAR(0)', 'DAY(-1)', 'DAY(-1.5)', 'DAY(-0.5)', 'DAY(45000.9999999999)', 'YEAR(2958465)', 'YEAR(2958466)', 'YEAR(-657434)',
+  'YEAR(-657435)', 'DAY(3000000)', 'DAY(1E10)', "DAY('a')", "DAY('45000')", 'DAY(TRUE)', 'MONTH(TRUE)', 'YEAR(TRUE)', 'DAY(FLOATTODATETIME(45000))', 'DAY(TIME)',
+  'INT(TODAY)', 'INT(TODAY+0.75)', 'INT(TODAY)=INT(NOW)', 'INT(FLOATTODATETIME(45000))', 'INT(FLOATTODATETIME(45000.75))', 'INT(FLOATTODATETIME(-1.5))',
+  'INT(FLOATTODATETIME(0.5))', 'INT(TIME)', 'INT(TRUE)', 'TODAY-INT(TODAY)', 'FLOATTODATETIME(INT(TODAY))=TODAY',
+  // VAL reads an exponent, and a number a Decimal does not hold is a Double
+  "VAL('1e3')", "VAL('1E3')", "VAL('1e+3')", "VAL('1E-3')", "VAL('1,5e2')", "VAL('1.5e2')", "VAL('1e')", "VAL('e3')", "VAL('1e400')", "VAL('1E-400')", "VAL('1E28')",
+  "VAL('1E29')", "VAL('79228162514264337593543950336')", "VAL('1.5')", "VAL('1,5')", "VAL('1.000')", "VAL('1,000')", "VAL('1.000,5')", "VAL('1,000.5')", "VAL('1.5.5')",
+  "VAL(' 12 ')", "VAL('-1')", "VAL('+1')", "VAL('1-')", "VAL('(1)')", "VAL('$1')", "VAL('abc')", "VAL(' ')", "VAL('.5')", "VAL(',5')", "VAL('5.')", "VAL('5,')",
+  "VAL('NaN')", "VAL('1'#0)", "VAL('007')", "VAL('0.1')*3", "VAL('10')/VAL('4')", 'VAL(2.5D)', 'VAL(INT(5))', 'VAL(TODAY)',
+  "ISNUMERIC('1.5.5')", "ISNUMERIC('1.000')", "ISNUMERIC('1,000')", "ISNUMERIC('5.')", "ISNUMERIC('5,')", "ISNUMERIC('1.5e2')", "ISNUMERIC('1,5e2')", "ISNUMERIC('1..5')",
+  "ISNUMERIC('1,,5')", "ISNUMERIC('1e400')", "ISNUMERIC('1-')", "ISINTEGER('1.000')", "ISINTEGER('$10')", "ISINTEGER('0x10')", "ISINTEGER('1e3')",
 ]) add(e);
 
 // --- The functions of the Delphi engine (EvalFunctionsDelphi.cs) ---------------------------------
@@ -327,34 +380,113 @@ for (const culture of cultures) {
   }
 }
 
+// --- A report converted from Delphi (golden-cs eval --delphi; ctx.delphiMasks) -------------------
+// What the C# engine gives with Evaluator.DelphiMasks, as BaseReport.ConvertedFromDelphi sets it:
+// the expressions the flag changes, and beside them some it must leave as they are. The values
+// were compared with the Delphi evaluator (tools/golden-delphi-eval, compare.mjs ... --delphi).
+//
+//   test/fixtures/eval-delphi-cases.json       the cases
+//   test/fixtures/eval-delphi.<culture>.json   what golden-cs eval --delphi gives for them
+const delphiCases = [];
+const addDelphi = (expr, format) => delphiCases.push(format === undefined ? { expr } : { expr, format });
+addDelphi('TODAY', 'yyyy-mm-dd');
+// Comparisons with Null: Null is the smallest value, and an empty text is Null against a value
+// that is not a text
+for (const op of ['=', '<>', '<', '>', '<=', '>=']) {
+  for (const [a, b] of [['NULL', '0'], ['0', 'NULL'], ['NULL', '-5'], ['NULL', "'a'"], ["'a'", 'NULL'], ['NULL', 'NULL'], ['NULL', 'TODAY'],
+    ['TODAY', 'NULL'], ['NULL', 'TRUE'], ["''", '0'], ['0', "''"], ["''", "''"], ["''", 'NULL'], ['NULL', "''"], ["''", "'a'"], ['1', '2']]) {
+    addDelphi(`${a} ${op} ${b}`);
+  }
+}
+for (const e of ['IIF(NULL>0,1,2)', 'IIF(NULL<0,1,2)', "EVALTEXT('NULL<0')", "CHECKEXPRESSION('NULL<0','bad')", 'MAX(1,NULL)']) addDelphi(e);
+// The texts without a mask (dates as the short date and the long time of Windows, a decimal with
+// the 15 digits of a Double) and the masks of FormatFloat and FormatDateTime
+for (const v of ['1.50', '80/9.0', '1/3', '2.5D', '1E20', '0.000001', '1234567.891', '-0.0', 'INT(5)', 'TRUE', "'a'", 'NULL', 'FLOATTODATETIME(45000)',
+  'FLOATTODATETIME(45000.75)', 'FLOATTODATETIME(0.75)', 'FLOATTODATETIME(-1.5)']) {
+  for (const f of ['', '0.00', '0.00%', '#,##0.00', '0,.00', 'dd/mm/yyyy', 'hh:nn:ss', 'c', 'ddddd', 'mmmm', 'm/d/yy h:nn am/pm']) addDelphi(v, f);
+}
+for (const e of ["FORMATSTR('dd/mm/yyyy hh:nn',FLOATTODATETIME(45000.75))", "FORMATSTR('mmmm',FLOATTODATETIME(45000))", "FORMATSTR('0.00%',12.5)",
+  "FORMATNUM('#,',1234.5)", "FORMATSTR('',1.50)", "FORMATSTR('',FLOATTODATETIME(45000))"]) addDelphi(e);
+// The text of a number or a date in STR and in a + with a text: as the texts without a mask
+for (const v of ['1.50', '1.5', '1.0', '1.00', '-1.50', '0.0', '1.10*3', '1/3', '2/3', '10/4', '80/9', '80/9.0', '1/0.3', '100/7.0', '0.1+0.2', '1234567.891',
+  '123456789.123456789', '12345678901234.56', '0.0001', '0.000001', '1E20', '2.5D', '1', 'INT(5)', 'TRUE', 'NULL', "'a'", 'FLOATTODATETIME(45000)',
+  'FLOATTODATETIME(45000.5)', 'FLOATTODATETIME(0.5)', 'FLOATTODATETIME(-1.5)', 'FLOATTODATETIME(1)', "STRINGTOBIN('QQ==')"]) {
+  addDelphi(`STR(${v})`);
+  addDelphi(`'x'+${v}`);
+  addDelphi(`${v}+'x'`);
+}
+for (const e of ["'7'+1.50", "1.50+'7'", "STR(1.50)+'a'", "'a'+1.50+2.50", "1.50+2.50+'a'", "EVALTEXT('''x''+1.10')", "EVALTEXT('STR(1.50)')", 'LENGTH(STR(1/3))',
+  "STR(1.50)='1,5'"]) addDelphi(e);
+// REPLACESTR ignores the case (StringReplace with rfIgnoreCase) and SUBSTR gives nothing for an
+// index below 1; LEFT, RIGHT and POS are the same in every report
+for (const e of ["REPLACESTR('abcabc','B','X')", "REPLACESTR('abcabc','b','X')", "REPLACESTR('ABCabc','b','x')", "REPLACESTR('aAaA','a','b')", "REPLACESTR('abc','ABC','')",
+  "REPLACESTR('aaa','AA','b')", "REPLACESTR('abc','','X')", "REPLACESTR('','','X')", "REPLACESTR('','a','X')", "REPLACESTR('abc','b','')", "REPLACESTR('a.b','.','-')",
+  "REPLACESTR('ÁBC','á','x')", "REPLACESTR('ñandú','Ñ','N')", "REPLACESTR('straße','SS','x')", "REPLACESTR('STRASSE','ß','x')", "REPLACESTR('İstanbul','i','x')",
+  "REPLACESTR('ISTANBUL','ı','x')", "REPLACESTR('Σσς','σ','x')", "REPLACESTR('ΑΒΓ','β','x')", "REPLACESTR('ЖЗИ','з','x')", "REPLACESTR('ÿ','Ÿ','x')",
+  "REPLACESTR('µ','Μ','x')", "REPLACESTR('ſ','S','x')", "REPLACESTR('ǅ','ǆ','x')", "REPLACESTR('ǆ','Ǆ','x')", "REPLACESTR('ά','Ά','x')", "REPLACESTR('ａ','Ａ','x')",
+  "REPLACESTR('𐐨','𐐀','x')", "REPLACESTR('e'#769,'E','x')", "REPLACESTR('Hello World','WORLD','you')", "REPLACESTR('a😀B','b','c')", "REPLACESTR(NULL,'a','b')",
+  "REPLACESTR('a',NULL,'b')", "REPLACESTR('a','a',NULL)", "REPLACESTR(1,'b','c')", "EVALTEXT('REPLACESTR(''aBc'',''b'',''x'')')",
+  "SUBSTR('abcdef',0,3)", "SUBSTR('abcdef',-1,3)", "SUBSTR('abcdef',1,0)", "SUBSTR('abcdef',2,-1)", "SUBSTR('abcdef',2,3)", "SUBSTR('abcdef',5,10)",
+  "SUBSTR('abcdef',7,2)", "SUBSTR('abcdef',1,100)", "SUBSTR('',0,1)", "SUBSTR('',1,1)", "SUBSTR('abcdef',0,0)", "SUBSTR('abcdef',-10,0)", "SUBSTR('abcdef',-10,20)",
+  "SUBSTR(NULL,0,1)", "SUBSTR('abc','0',1)", "SUBSTR('abc',0,'1')", "SUBSTR('abc',INT(0),INT(2))", "SUBSTR('a😀b',0,2)",
+  "LEFT('abc',-1)", "RIGHT('abc',-1)", "LEFT('abc',2)", "RIGHT('abc',2)", "POS('','abc')", "POS('b','abc')", "POS('B','abc')", "POS('e','e'#769)", "POS('ab','a'#173'b')"]) {
+  addDelphi(e);
+}
+// MONTHNAME gives the long month names of the locale as Delphi has them
+for (let month = 0; month <= 13; month++) addDelphi(`MONTHNAME(${month})`);
+for (const e of ['MONTHNAME(1.5)', 'MONTHNAME(2.5)', 'MONTHNAME(3.5)', 'MONTHNAME(12.5)', 'MONTHNAME(12.6)', 'MONTHNAME(0.5)', 'MONTHNAME(10.5D)', 'MONTHNAME(INT(3))',
+  'MONTHNAME(-1)', 'MONTHNAME(1E10)', 'MONTHNAME(FLOATTODATETIME(45000))', 'MONTHNAME(FLOATTODATETIME(0.5))', 'MONTHNAME(TODAY)', 'MONTHNAME(NULL)', "MONTHNAME('a')",
+  'MONTHNAME(TRUE)', "UPPERCASE(MONTHNAME(9))", "EVALTEXT('MONTHNAME(3)')", 'DAY(45000)', 'MONTH(45000)', 'YEAR(45000)', 'INT(FLOATTODATETIME(45000.75))']) addDelphi(e);
+// VAL and ISNUMERIC read a text without thousands separators, as StrToFloat of Delphi (ISINTEGER
+// never took them)
+for (const s of ['1.5', '1,5', '1.000', '1,000', '1.000,5', '1,000.5', '1.5.5', '1,5,5', '1..5', '1,,5', '123', ' 12 ', '-1', '+1', '1-', '(1)', '$1', 'abc', '', ' ',
+  '.5', ',5', '5.', '5,', '1e3', '1E3', '1e+3', '1E-3', '1,5e2', '1.5e2', '1e', 'e3', '1e400', '1E-400', '1E29', '79228162514264337593543950336', '12345678901234567890',
+  '0.1', '0,1', '1.50', '1,50', '007', 'NaN', '1 000', '0x10', '$10']) {
+  addDelphi(`VAL(${q(s)})`);
+  addDelphi(`ISNUMERIC(${q(s)})`);
+  addDelphi(`ISINTEGER(${q(s)})`);
+}
+for (const e of ['VAL(5)', 'VAL(5.5)', 'VAL(2.5D)', 'VAL(NULL)', 'VAL(TRUE)', "VAL('1'#0)", "VAL('0,1')*3", "VAL('0.1')*3", "VAL('1')+VAL('2')", 'ISNUMERIC(1)', 'ISNUMERIC(NULL)',
+  'ISINTEGER(12)', "EVALTEXT('VAL(''1.5'')')", "EVALTEXT('ISNUMERIC(''1.5'')')"]) addDelphi(e);
+
 fs.mkdirSync(fixtures, { recursive: true });
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'rm-eval-'));
-for (const culture of cultures) {
-  const all = [...cases, ...(rangeCases[culture] ?? [])];
+// The results of golden-cs eval for some cases, as the lines of a fixture: [type, text] or
+// [type, text, formatted]; an error is ["!", class, message]. The first case is the date.
+const runGolden = (all, culture, ...options) => {
   const inFile = path.join(tmp, 'cases.json');
   const outFile = path.join(tmp, 'out.json');
   fs.writeFileSync(inFile, JSON.stringify(all.map(({ expr, format }) => (format === undefined ? { expr } : { expr, format }))));
-  execFileSync(golden, ['eval', inFile, outFile, '--culture', culture]);
+  execFileSync(golden, ['eval', inFile, outFile, '--culture', culture, ...options]);
   const results = JSON.parse(fs.readFileSync(outFile, 'utf8').replace(/^\uFEFF/, ''));
   const dates = new Set([results[0].formatted]);
   // the date must not have changed during the run
-  execFileSync(golden, ['eval', inFile, outFile, '--culture', culture]);
+  execFileSync(golden, ['eval', inFile, outFile, '--culture', culture, ...options]);
   const again = JSON.parse(fs.readFileSync(outFile, 'utf8').replace(/^\uFEFF/, ''));
   dates.add(again[0].formatted);
   if (dates.size !== 1) throw new Error('The date changed while generating; run again');
-  // One line per result: [type, text] or [type, text, formatted]; an error is ["!", class, message].
   const rows = results.map((r) =>
     JSON.stringify(r.error !== undefined ? ['!', r.error, r.message] : r.formatted !== undefined ? [r.type, r.text, r.formatted] : [r.type, r.text]),
   );
+  return { today: results[0].formatted, rows };
+};
+for (const culture of cultures) {
+  const { today: generated, rows } = runGolden([...cases, ...(rangeCases[culture] ?? [])], culture);
   const extra = (rangeCases[culture] ?? []).map((c) => JSON.stringify(c));
-  const head = { culture, today: results[0].formatted, timeZone };
+  const head = { culture, today: generated, timeZone };
   fs.writeFileSync(
     path.join(fixtures, `eval-golden.${culture}.json`),
     JSON.stringify(head).slice(0, -1) + ',\n"extra":[\n' + extra.join(',\n') + '\n],\n"results":[\n' + rows.join(',\n') + '\n]}\n',
   );
-  console.log(culture, results.length, 'results');
+  const converted = runGolden(delphiCases, culture, '--delphi');
+  fs.writeFileSync(
+    path.join(fixtures, `eval-delphi.${culture}.json`),
+    JSON.stringify({ culture, today: converted.today, timeZone }).slice(0, -1) + ',\n"results":[\n' + converted.rows.join(',\n') + '\n]}\n',
+  );
+  console.log(culture, rows.length, 'results;', converted.rows.length, 'as a report converted from Delphi');
 }
 fs.writeFileSync(path.join(fixtures, 'eval-cases.json'), '[\n' + cases.map((c) => JSON.stringify(c)).join(',\n') + '\n]\n');
+fs.writeFileSync(path.join(fixtures, 'eval-delphi-cases.json'), '[\n' + delphiCases.map((c) => JSON.stringify(c)).join(',\n') + '\n]\n');
 fs.rmSync(tmp, { recursive: true, force: true });
-console.log('cases', cases.length);
+console.log('cases', cases.length, '; converted from Delphi', delphiCases.length);

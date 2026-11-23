@@ -3,7 +3,7 @@
 
 import {
   argumentNull,
-  indexOfCulture,
+  replaceIgnoringCaseDelphi,
   replaceNet,
   substringNet,
   toLowerNet,
@@ -13,10 +13,11 @@ import {
 import { fromBase64String } from '../util/base64.js';
 import { CsDecimal } from '../util/decimal.js';
 import { compareValue, numberToText, roundDecimalUp } from '../util/doubleutil.js';
-import { argumentException, invalidCastException, NamedException, nullReferenceException, UnNamedException, divideByZeroException, overflowException, NetMessages } from '../util/netexception.js';
+import { argumentException, invalidCastException, NamedException, NetException, nullReferenceException, UnNamedException, divideByZeroException, overflowException, NetMessages } from '../util/netexception.js';
 import { convertDecimalToInt64, NumberStyles, parseDecimal, parseDouble, parseInt32, roundHalfEvenDouble } from '../util/numberparse.js';
 import { parseDateTime } from '../util/dateparse.js';
 import { DateTimeKind, RpDateTime } from '../util/datetime.js';
+import { delphiFormatSettings } from '../util/delphidateformat.js';
 import { ansiDecode, ansiEncode, formatMaskText, indyBase64Decode, iniReadString, utf8Decode } from '../util/delphitext.js';
 import { TO_SIMPLIFIED_FROM, TO_SIMPLIFIED_TO, TO_TRADITIONAL_FROM, TO_TRADITIONAL_TO } from './chinesetables.js';
 import { ParamType, Variant, VariantType } from '../variant/variant.js';
@@ -40,8 +41,24 @@ abstract class BuiltinFunction extends IdenFunction {
     return this.evalObject!.context;
   }
 
+  /** The report was converted from Delphi (IdenFunction.DelphiMasks). */
+  protected get delphi(): boolean {
+    return this.evalObject!.context.delphiMasks === true;
+  }
+
   protected typeError(name: string): NamedException {
     return new NamedException(this.translate(438), name);
+  }
+
+  /**
+   * IdenDay.DateOf: the date of the parameter of DAY, MONTH and YEAR: a date, or a number as the
+   * OLE date it is in the Delphi engine (the days since 30/12/1899: DAY(45000) is 15; it was a
+   * type error).
+   */
+  protected dateOf(value: Variant, functionName: string): RpDateTime {
+    if (value.varType === VariantType.DateTime) return value.toDateTime(this.ctx);
+    if (!value.isNumber()) throw this.typeError(functionName);
+    return RpDateTime.fromOADate(value.toDouble(this.ctx));
   }
 
   /** (string)Params[i] with the null of a non text value. */
@@ -110,8 +127,7 @@ class IdenDay extends BuiltinFunction {
   protected getValue(): Variant {
     const p = this.params[0]!;
     if (p.varType === VariantType.Null) return Variant.null;
-    if (p.varType !== VariantType.DateTime) throw this.typeError('DAY');
-    return Variant.fromInteger(p.toDateTime(this.ctx).day);
+    return Variant.fromInteger(this.dateOf(p, 'DAY').day);
   }
 }
 
@@ -122,8 +138,7 @@ class IdenMonth extends BuiltinFunction {
   protected getValue(): Variant {
     const p = this.params[0]!;
     if (p.varType === VariantType.Null) return Variant.null;
-    if (p.varType !== VariantType.DateTime) throw this.typeError('MONTH');
-    return Variant.fromInteger(p.toDateTime(this.ctx).month);
+    return Variant.fromInteger(this.dateOf(p, 'MONTH').month);
   }
 }
 
@@ -147,9 +162,18 @@ class IdenMonthName extends BuiltinFunction {
   protected getValue(): Variant {
     const p = this.params[0]!;
     if (p.varType === VariantType.Null) return Variant.null;
-    if (p.varType === VariantType.Integer) return Variant.fromString(getMonthName(p.toInt(this.ctx), this.ev.language));
-    if (p.varType === VariantType.DateTime) return Variant.fromString(getMonthName(p.toDateTime(this.ctx).month, this.ev.language));
-    throw this.typeError('MONTHNAME');
+    let month: number;
+    if (p.varType === VariantType.DateTime) month = p.toDateTime(this.ctx).month;
+    else if (p.isNumber()) {
+      // Any number is a month, rounded as the Delphi engine converts it to an Integer (half to
+      // even: 1.5 and 2.5 are February); only an Integer was not a type error
+      const rounded = roundHalfEvenDouble(p.toDouble(this.ctx));
+      month = rounded >= 1 && rounded <= 12 ? rounded : 0;
+    } else throw this.typeError('MONTHNAME');
+    // In a report converted from Delphi, the long month names of the locale as Delphi has them
+    // (enero), not the tables of this engine (Enero, by the language)
+    if (this.delphi) return Variant.fromString(month >= 1 && month <= 12 ? delphiFormatSettings(this.ctx.culture).longMonthNames[month - 1]! : '');
+    return Variant.fromString(getMonthName(month, this.ev.language));
   }
 }
 
@@ -160,9 +184,7 @@ class IdenYear extends BuiltinFunction {
   protected getValue(): Variant {
     const p = this.params[0]!;
     if (p.varType === VariantType.Null) return Variant.null;
-    if (p.varType === VariantType.DateTime) return Variant.fromInteger(p.toDateTime(this.ctx).year);
-    // C# parity: the error names MONTHNAME.
-    throw this.typeError('MONTHNAME');
+    return Variant.fromInteger(this.dateOf(p, 'YEAR').year);
   }
 }
 
@@ -204,6 +226,8 @@ class IdenLeft extends BuiltinFunction {
     let count = this.params[1]!.toInt(this.ctx);
     const s = notNull(astring);
     if (s.length < count) count = s.length;
+    // Nothing for a negative count, as Copy of Delphi (Substring threw)
+    if (count < 0) count = 0;
     return Variant.fromString(substringNet(s, 0, count));
   }
 }
@@ -219,6 +243,11 @@ class IdenReplaceStr extends BuiltinFunction {
     const source = this.params[0]!.toString(this.ctx);
     const oldpattern = this.params[1]!.toString(this.ctx);
     const newpattern = this.params[2]!.toString(this.ctx);
+    // An empty pattern replaces nothing, as StringReplace of Delphi (Replace threw). In a report
+    // converted from Delphi the pattern is found whatever its case, as the Delphi engine replaces
+    // (rfIgnoreCase)
+    if (oldpattern.length === 0) return Variant.fromString(source);
+    if (this.delphi) return Variant.fromString(replaceIgnoringCaseDelphi(source, oldpattern, newpattern));
     return Variant.fromString(replaceNet(source, oldpattern, newpattern));
   }
 }
@@ -233,6 +262,8 @@ class IdenRight extends BuiltinFunction {
     let count = this.params[1]!.toInt(this.ctx);
     const s = notNull(astring);
     if (s.length < count) count = s.length;
+    // Nothing for a negative count, as the Delphi engine (Substring threw)
+    if (count < 0) count = 0;
     return Variant.fromString(substringNet(s, s.length - count, count));
   }
 }
@@ -271,7 +302,9 @@ class IdenIsNumeric extends BuiltinFunction {
   protected getValue(): Variant {
     if (this.params[0]!.varType !== VariantType.String) throw this.typeError('ISNUMERIC');
     try {
-      parseDouble(this.str(0)!, NumberStyles.Float | NumberStyles.AllowThousands, this.ctx.culture.number);
+      // In a report converted from Delphi the text has no thousands separators, as StrToFloat of
+      // Delphi: in es-ES ISNUMERIC('1.5') is False
+      parseDouble(this.str(0)!, this.delphi ? NumberStyles.Float : NumberStyles.Float | NumberStyles.AllowThousands, this.ctx.culture.number);
       return Variant.fromBoolean(true);
     } catch {
       return Variant.fromBoolean(false);
@@ -316,7 +349,11 @@ class IdenPos extends BuiltinFunction {
     const substring = this.str(0);
     const fullstring = notNull(this.str(1));
     if (substring === null) throw argumentNull('value');
-    return Variant.fromInteger(indexOfCulture(fullstring, substring) + 1);
+    // As Pos of Delphi: the characters as they are, and an empty text is not found. The search of
+    // the culture found an empty text at 1, skipped the characters the collation ignores
+    // (POS('ab','a'#173'b') was 1) and found nothing inside a combining sequence (POS('e','e'#769)
+    // was 0)
+    return Variant.fromInteger(substring.length === 0 ? 0 : fullstring.indexOf(substring) + 1);
   }
 }
 
@@ -331,7 +368,9 @@ class IdenSubStr extends BuiltinFunction {
     const index = this.params[1]!.toInt(this.ctx);
     let count = this.params[2]!.toInt(this.ctx);
     if (astring.length < ((count - index) | 0)) count = astring.length;
-    if (count <= 0) return Variant.fromString('');
+    // In a report converted from Delphi, nothing when the index is below 1, as the Delphi engine
+    // (here it is the first character: SUBSTR('abcdef',0,3) is abc)
+    if (count <= 0 || (this.delphi && index < 1)) return Variant.fromString('');
     // SafeSubstring: Skip(startIndex).Take(length) over the UTF-16 code units.
     const start = Math.max(0, (index - 1) | 0);
     return Variant.fromString(astring.substring(start, Math.min(astring.length, start + count)));
@@ -389,7 +428,10 @@ class IdenStr extends BuiltinFunction {
   }
   protected getValue(): Variant {
     const p = this.params[0]!;
-    if (p.varType !== VariantType.Null) return Variant.fromString(p.toString(this.ctx));
+    // In a report converted from Delphi, the text the Delphi engine gives: a decimal without the
+    // zeros of its scale and with 15 digits (STR(1.50) is 1,5), a date as the short date of
+    // Windows, with the long time when it has one
+    if (p.varType !== VariantType.Null) return Variant.fromString(this.delphi ? p.displayText(this.ctx) : p.toString(this.ctx));
     return Variant.fromString('');
   }
 }
@@ -458,9 +500,10 @@ class IdenCompareValue extends BuiltinFunction {
     if (!this.params[0]!.isNumber()) throw this.typeError('CompareValue');
     if (!this.params[1]!.isNumber()) throw this.typeError('CompareValue');
     if (!this.params[2]!.isNumber()) throw this.typeError('CompareValue');
-    const p1 = this.params[0]!.toDecimal(this.ctx);
-    const p2 = this.params[1]!.toDecimal(this.ctx);
-    const p3 = this.params[2]!.toDecimal(this.ctx);
+    // The values as doubles, as CompareValue of Delphi compares them
+    const p1 = this.params[0]!.toDouble(this.ctx);
+    const p2 = this.params[1]!.toDouble(this.ctx);
+    const p3 = this.params[2]!.toDouble(this.ctx);
     return Variant.fromInteger(compareValue(p1, p2, p3));
   }
 }
@@ -470,8 +513,14 @@ class IdenInt extends BuiltinFunction {
     super(e, 'Int', 1, 'function Int(num:double):integer');
   }
   protected getValue(): Variant {
-    if (!this.params[0]!.isNumber()) throw this.typeError('Int');
-    const num = this.params[0]!.toDecimal(this.ctx);
+    const p = this.params[0]!;
+    // A date is its OLE date, as in the Delphi engine: INT(TODAY) is the number of the day (it was
+    // a type error)
+    if (p.varType === VariantType.DateTime) {
+      return Variant.fromLong(convertDecimalToInt64(CsDecimal.fromDouble(p.toDateTime(this.ctx).toOADate()).truncate()));
+    }
+    if (!p.isNumber()) throw this.typeError('Int');
+    const num = p.toDecimal(this.ctx);
     return Variant.fromLong(convertDecimalToInt64(num.truncate()));
   }
 }
@@ -486,7 +535,17 @@ class IdenVal extends BuiltinFunction {
     if (!this.params[0]!.isString()) throw this.typeError('Val');
     const astring = notNull(this.str(0));
     if (astring.length < 1) return Variant.fromInteger(0);
-    return Variant.fromDecimal(parseDecimal(astring, NumberStyles.Number, this.ctx.culture.number));
+    // An exponent is read, as the Delphi engine reads it: VAL('1e3') is 1000 (it threw). In a
+    // report converted from Delphi the text has no thousands separators, as StrToFloat of Delphi:
+    // in es-ES VAL('1.5') is an error (else the point is skipped: 15)
+    const styles = this.delphi ? NumberStyles.Float : NumberStyles.Number | NumberStyles.AllowExponent;
+    try {
+      return Variant.fromDecimal(parseDecimal(astring, styles, this.ctx.culture.number));
+    } catch (e) {
+      if (!(e instanceof NetException) || e.netType !== 'OverflowException') throw e;
+    }
+    // A number a Decimal does not hold (1e30) is a Double
+    return Variant.fromDouble(parseDouble(astring, styles, this.ctx.culture.number));
   }
 }
 

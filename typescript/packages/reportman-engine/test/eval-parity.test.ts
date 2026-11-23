@@ -2,7 +2,9 @@
 // (plus the per-culture date value checks) is evaluated as golden-cs eval does (a new Evaluator,
 // Evaluate, VarType, ToString() and ToString(format, Unknown, true)) and compared with the C#
 // output under en-US, es-ES and pt-BR: the same type, text and formatted text, or the same error
-// class and message. Regenerate with test/generate-eval-fixtures.mjs.
+// class and message. The same for a report converted from Delphi (golden-cs eval --delphi and a
+// context with delphiMasks), with the cases of fixtures/eval-delphi-cases.json. Regenerate with
+// test/generate-eval-fixtures.mjs.
 
 import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
@@ -33,6 +35,7 @@ interface Golden {
 
 const read = <T>(name: string): T => JSON.parse(fs.readFileSync(fileURLToPath(new URL(`./fixtures/${name}`, import.meta.url)), 'utf8')) as T;
 const cases = read<Case[]>('eval-cases.json');
+const delphiCases = read<Case[]>('eval-delphi-cases.json');
 
 // The host time zone of Node, as .NET's TimeZoneInfo.Local on the same machine.
 const hostTimeZone: LocalTimeZone = {
@@ -91,6 +94,31 @@ for (const culture of ['en-US', 'es-ES', 'pt-BR', 'de-DE', 'fr-FR']) {
         }
       }
       expect(compared).toBeGreaterThan(5000);
+      expect(differences.slice(0, 40).join('\n')).toBe('');
+    });
+  });
+
+  // A report converted from Delphi: golden-cs eval --delphi (Evaluator.DelphiMasks) against a
+  // context with delphiMasks, for the expressions the flag changes (eval-delphi-cases.json)
+  describe(`expression parity with the C# engine, report converted from Delphi (${culture})`, () => {
+    const golden = read<Golden>(`eval-delphi.${culture}.json`);
+    const [y, m, d] = golden.today.split('-').map(Number) as [number, number, number];
+    const now = () => RpDateTime.create(y, m, d, 12, 0, 0, 0, DateTimeKind.Local);
+    const ctx = { ...createContext(culture, { timeZone: hostTimeZone, now }), delphiMasks: true };
+    const host = { now, fileExists: () => false, fileFunctions: true };
+
+    it('gives the same results', () => {
+      expect(golden.results.length).toBe(delphiCases.length);
+      const differences: string[] = [];
+      for (let i = 0; i < delphiCases.length; i++) {
+        const c = delphiCases[i]!;
+        const expected = golden.results[i]!;
+        const actual = wellFormed(run(c, ctx, host));
+        if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+          differences.push(`${JSON.stringify(c)}\n   C#: ${JSON.stringify(expected)}\n   TS: ${JSON.stringify(actual)}`);
+        }
+      }
+      expect(delphiCases.length).toBeGreaterThan(200);
       expect(differences.slice(0, 40).join('\n')).toBe('');
     });
   });

@@ -1036,6 +1036,22 @@ namespace Reportman.Reporting
             return false;
         }
         /// <summary>
+        /// An operand of the -, * and / of an expression (and of the sign): a text that is a number
+        /// is that number, as the Delphi engine converts it ('6'-2 is 4, STR(2)*2 is 4, both operands
+        /// may be texts; it was a type conversion error). A text that is not a number stays a text,
+        /// and the operator fails with it as always. The text is read as the + reads it
+        /// (<see cref="ExpressionSum(Variant, Variant)"/>).
+        /// </summary>
+        public static Variant ExpressionOperand(Variant avalue)
+        {
+            if (avalue.FVarType == VariantType.String)
+            {
+                if (TryTextAsNumber(avalue.FString, out Variant number))
+                    return number;
+            }
+            return avalue;
+        }
+        /// <summary>
         /// The + of an expression, as SumTRpValue in the Delphi engine. A number plus a text is the
         /// sum when the text is a number (10+'7' is 17), as Delphi converts it, and otherwise both
         /// texts joined, the number written as STR() writes it: POSTEN+UPOS is '10a', as
@@ -1044,17 +1060,32 @@ namespace Reportman.Reporting
         /// </summary>
         public static Variant ExpressionSum(Variant avalue1, Variant avalue2)
         {
+            return ExpressionSum(avalue1, avalue2, false);
+        }
+        /// <summary>
+        /// The + of an expression (<see cref="ExpressionSum(Variant, Variant)"/>), in a report converted
+        /// from Delphi or not: in a converted one the number joined to a text is written as the Delphi
+        /// engine writes it, a decimal without the zeros of its scale and with 15 digits ('x'+1.10 is
+        /// x1,1; in a report of this engine, x1,10).
+        /// </summary>
+        /// <param name="avalue1">The left operand</param>
+        /// <param name="avalue2">The right operand</param>
+        /// <param name="delphiMasks">
+        /// The report was converted from Delphi (<see cref="BaseReport.ConvertedFromDelphi"/>)
+        /// </param>
+        public static Variant ExpressionSum(Variant avalue1, Variant avalue2, bool delphiMasks)
+        {
             if (avalue1.IsNumber() && avalue2.FVarType == VariantType.String)
             {
                 if (TryTextAsNumber(avalue2.FString, out Variant number2))
                     return avalue1 + number2;
-                return avalue1.ToString() + avalue2.FString;
+                return (delphiMasks ? avalue1.DisplayText(true) : avalue1.ToString()) + avalue2.FString;
             }
             if (avalue1.FVarType == VariantType.String && avalue2.IsNumber())
             {
                 if (TryTextAsNumber(avalue1.FString, out Variant number1))
                     return number1 + avalue2;
-                return avalue1.FString + avalue2.ToString();
+                return avalue1.FString + (delphiMasks ? avalue2.DisplayText(true) : avalue2.ToString());
             }
             return avalue1 + avalue2;
         }
@@ -1293,6 +1324,13 @@ namespace Reportman.Reporting
                             aresult.FDateTime = avalue1.FDateTime.AddDays(
                                 (double)avalue2.FDecimal);
                             break;
+                        case VariantType.DateTime:
+                            // A date plus a date, as the Delphi engine adds two TDateTime values:
+                            // the date of the sum of their OLE dates, so a date plus a time
+                            // (TODAY+TIME) is the date with the time. It was a type error
+                            aresult.FVarType = VariantType.DateTime;
+                            aresult.FDateTime = DateTime.FromOADate(avalue1.FDateTime.ToOADate() + avalue2.FDateTime.ToOADate());
+                            break;
                         default:
                             throw new UnNamedException(Translator.TranslateStr(438) +
                                 " Variant+ " + avalue1.GetTypeString() + "-" +
@@ -1325,6 +1363,18 @@ namespace Reportman.Reporting
                         avalue2.GetTypeString());
             }
 
+            return aresult;
+        }
+        /// <summary>
+        /// A number minus a date, as the Delphi engine subtracts a TDateTime from a number: the
+        /// date of the number minus the OLE date of the date (it gave the date minus the number:
+        /// the operands the other way round).
+        /// </summary>
+        private static Variant NumberMinusDate(double number, DateTime date)
+        {
+            Variant aresult = new Variant();
+            aresult.FVarType = VariantType.DateTime;
+            aresult.FDateTime = DateTime.FromOADate(number - date.ToOADate());
             return aresult;
         }
         /// <summary>
@@ -1386,8 +1436,7 @@ namespace Reportman.Reporting
                             aresult.FDecimal = avalue1.FInteger - avalue2.FDecimal;
                             break;
                         case VariantType.DateTime:
-                            aresult.FVarType = VariantType.DateTime;
-                            aresult.FDateTime = avalue2.FDateTime.AddDays(-avalue1.FInteger);
+                            aresult = NumberMinusDate(avalue1.FInteger, avalue2.FDateTime);
                             break;
                         default:
                             throw new UnNamedException(Translator.TranslateStr(438));
@@ -1413,8 +1462,7 @@ namespace Reportman.Reporting
                             aresult.FDecimal = (decimal)avalue1.FLong - avalue2.FDecimal;
                             break;
                         case VariantType.DateTime:
-                            aresult.FVarType = VariantType.DateTime;
-                            aresult.FDateTime = avalue2.FDateTime.AddDays(-avalue1.FLong);
+                            aresult = NumberMinusDate(avalue1.FLong, avalue2.FDateTime);
                             break;
                         default:
                             throw new UnNamedException(Translator.TranslateStr(438));
@@ -1440,8 +1488,7 @@ namespace Reportman.Reporting
                             aresult.FDouble = avalue1.FDouble - (double)avalue2.FDecimal;
                             break;
                         case VariantType.DateTime:
-                            aresult.FVarType = VariantType.DateTime;
-                            aresult.FDateTime = avalue2.FDateTime.AddDays(-avalue1.FDouble);
+                            aresult = NumberMinusDate(avalue1.FDouble, avalue2.FDateTime);
                             break;
                         default:
                             throw new UnNamedException(Translator.TranslateStr(438));
@@ -1468,8 +1515,7 @@ namespace Reportman.Reporting
                             aresult.FDecimal = avalue1.FDecimal - avalue2.FDecimal;
                             break;
                         case VariantType.DateTime:
-                            aresult.FVarType = VariantType.DateTime;
-                            aresult.FDateTime = avalue2.FDateTime.AddDays(-(double)avalue1.FDecimal);
+                            aresult = NumberMinusDate((double)avalue1.FDecimal, avalue2.FDateTime);
                             break;
                         default:
                             throw new UnNamedException(Translator.TranslateStr(438));

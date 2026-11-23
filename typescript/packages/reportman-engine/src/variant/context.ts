@@ -17,8 +17,11 @@ export interface VariantContext {
   /** DateTime.Now: the date of a parsed text with a time only. */
   readonly now: () => RpDateTime;
   /**
-   * The report was converted from Delphi (convertedFromDelphi): a date with a display format is
-   * formatted with the masks of Delphi's FormatDateTime instead of those of .NET.
+   * The report was converted from Delphi (convertedFromDelphi; Evaluator.DelphiMasks of C#): the
+   * masks of dates and numbers are those of Delphi's FormatDateTime and FormatFloat instead of
+   * those of .NET, and the operators and functions that give another result in the Delphi engine
+   * give that one (the comparisons with Null, the text of a number in STR and in a + with a text,
+   * REPLACESTR, SUBSTR, MONTHNAME, VAL, ISNUMERIC).
    */
   readonly delphiMasks?: boolean;
 }

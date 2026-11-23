@@ -847,20 +847,37 @@ export class Variant {
   }
 
   /**
+   * ExpressionOperand, an operand of the -, * and / of an expression (and of the sign): a text that
+   * is a number is that number, as the Delphi engine converts it ('6'-2 is 4, STR(2)*2 is 4; it was
+   * a type conversion error). A text that is not a number stays a text, and the operator fails
+   * with it as always.
+   */
+  static expressionOperand(v: Variant, ctx: VariantContext): Variant {
+    if (v.varType === VariantType.String) {
+      const number = Variant.tryTextAsNumber(v.s, ctx);
+      if (number !== undefined) return number;
+    }
+    return v;
+  }
+
+  /**
    * ExpressionSum, the + of an expression: a number plus a text is the sum when the text is a
    * number (10+'7' is 17), otherwise both texts joined (10+'a' is '10a'); anything else is the +
    * of two variants.
    */
   static expressionSum(a: Variant, b: Variant, ctx: VariantContext): Variant {
+    // In a report converted from Delphi the number is written as the Delphi engine writes it: a
+    // decimal without the zeros of its scale and with 15 digits ('x'+1.10 is x1,1; else x1,10)
+    const numberText = (v: Variant): string => (ctx.delphiMasks === true ? v.displayText(ctx) : v.toString(ctx));
     if (a.isNumber() && b.varType === VariantType.String) {
       const number2 = Variant.tryTextAsNumber(b.s, ctx);
       if (number2 !== undefined) return Variant.add(a, number2, ctx);
-      return Variant.fromString(a.toString(ctx) + b.s);
+      return Variant.fromString(numberText(a) + b.s);
     }
     if (a.varType === VariantType.String && b.isNumber()) {
       const number1 = Variant.tryTextAsNumber(a.s, ctx);
       if (number1 !== undefined) return Variant.add(number1, b, ctx);
-      return Variant.fromString(a.s + b.toString(ctx));
+      return Variant.fromString(a.s + numberText(b));
     }
     return Variant.add(a, b, ctx);
   }
@@ -980,6 +997,11 @@ export class Variant {
             return Variant.fromDateTime(a.dt.addDays(Number(b.l)));
           case VariantType.Decimal:
             return Variant.fromDateTime(a.dt.addDays(b.d.toDouble()));
+          case VariantType.DateTime:
+            // A date plus a date, as the Delphi engine adds two TDateTime values: the date of the
+            // sum of their OLE dates, so a date plus a time (TODAY+TIME) is the date with the time.
+            // It was a type error
+            return Variant.fromDateTime(RpDateTime.fromOADate(a.dt.toOADate() + b.dt.toOADate()));
           default:
             throw error();
         }
@@ -995,6 +1017,15 @@ export class Variant {
       default:
         throw error();
     }
+  }
+
+  /**
+   * NumberMinusDate: a number minus a date, as the Delphi engine subtracts a TDateTime from a
+   * number: the date of the number minus the OLE date of the date (it gave the date minus the
+   * number: the operands the other way round).
+   */
+  private static numberMinusDate(number: number, date: RpDateTime): Variant {
+    return Variant.fromDateTime(RpDateTime.fromOADate(number - date.toOADate()));
   }
 
   /** operator - (binary). */
@@ -1014,8 +1045,7 @@ export class Variant {
           case VariantType.Decimal:
             return Variant.fromDecimal(CsDecimal.fromInteger(a.n).sub(b.d));
           case VariantType.DateTime:
-            // C# parity: a number minus a date is the date minus the number.
-            return Variant.fromDateTime(b.dt.addDays(-a.n));
+            return Variant.numberMinusDate(a.n, b.dt);
           default:
             throw error();
         }
@@ -1030,8 +1060,7 @@ export class Variant {
           case VariantType.Decimal:
             return Variant.fromDecimal(CsDecimal.fromInteger(a.l).sub(b.d));
           case VariantType.DateTime:
-            // C# parity: -avalue1.FLong is the long negated, then converted to double.
-            return Variant.fromDateTime(b.dt.addDays(Number(BigInt.asIntN(64, -a.l))));
+            return Variant.numberMinusDate(Number(a.l), b.dt);
           default:
             throw error();
         }
@@ -1045,7 +1074,7 @@ export class Variant {
           case VariantType.Decimal:
             return Variant.fromDouble(a.n - b.d.toDouble());
           case VariantType.DateTime:
-            return Variant.fromDateTime(b.dt.addDays(-a.n));
+            return Variant.numberMinusDate(a.n, b.dt);
           default:
             throw error();
         }
@@ -1060,7 +1089,7 @@ export class Variant {
           case VariantType.Decimal:
             return Variant.fromDecimal(a.d.sub(b.d));
           case VariantType.DateTime:
-            return Variant.fromDateTime(b.dt.addDays(-a.d.toDouble()));
+            return Variant.numberMinusDate(a.d.toDouble(), b.dt);
           default:
             throw error();
         }

@@ -6,6 +6,10 @@
 //     pinned to the day the golden file was generated on.
 //   node compare.mjs cases <culture> <outdir> <cases.json>
 //     Any cases ([{expr, format?}]): both engines run now, with the clock of the computer.
+//   ... --delphi
+//     C# as in a report converted from Delphi (golden-cs eval --delphi: Evaluator.DelphiMasks).
+//     With "fixtures", the cases and the golden files of that mode (eval-delphi-cases.json and
+//     eval-delphi.<culture>.json). The files written are named <name>-delphi.
 //
 // Writes in <outdir>: delphi.<name>.<culture>.json, cs.<name>.<culture>.json and
 // diffs.<name>.<culture>.json (the differences: {i, expr, format, kind, delphi, cs}), and prints
@@ -31,20 +35,21 @@ const delphiExe = process.env.REPORTMAN_DELPHI_EVAL ?? path.join(here, 'bin_x86/
 const csExe = path.join(repoTools, 'golden-cs/bin/Release/net10.0/golden-cs.exe');
 const fixtures = path.join(repoTools, '../packages/reportman-engine/test/fixtures');
 
-const [mode, culture, outDir, casesFile] = process.argv.slice(2);
+const delphiMode = process.argv.includes('--delphi');
+const [mode, culture, outDir, casesFile] = process.argv.slice(2).filter((a) => a !== '--delphi');
 if (!['fixtures', 'cases'].includes(mode) || !culture || !outDir || (mode === 'cases' && !casesFile)) {
-  console.error('node compare.mjs fixtures <culture> <outdir> | cases <culture> <outdir> <cases.json>');
+  console.error('node compare.mjs fixtures <culture> <outdir> [--delphi] | cases <culture> <outdir> <cases.json> [--delphi]');
   process.exit(2);
 }
 fs.mkdirSync(outDir, { recursive: true });
 const read = (f) => JSON.parse(fs.readFileSync(f, 'utf8').replace(/^\uFEFF/, ''));
 const write = (f, v) => fs.writeFileSync(f, JSON.stringify(v));
 const row = (r) => (Array.isArray(r) ? r : r.error !== undefined ? ['!', r.error, r.message] : r.formatted !== undefined ? [r.type, r.text, r.formatted] : [r.type, r.text]);
-const name = mode === 'fixtures' ? 'fixtures' : path.basename(casesFile).replace(/\.json$/, '');
+const name = (mode === 'fixtures' ? 'fixtures' : path.basename(casesFile).replace(/\.json$/, '')) + (delphiMode ? '-delphi' : '');
 const tmp = (n) => path.join(outDir, `tmp.${name}.${culture}.${n}.json`);
 const runCs = (cases, n) => {
   write(tmp(n + '.in'), cases);
-  execFileSync(csExe, ['eval', tmp(n + '.in'), tmp(n + '.out'), '--culture', culture]);
+  execFileSync(csExe, ['eval', tmp(n + '.in'), tmp(n + '.out'), '--culture', culture, ...(delphiMode ? ['--delphi'] : [])]);
   const r = read(tmp(n + '.out')).map(row);
   fs.rmSync(tmp(n + '.in'));
   fs.rmSync(tmp(n + '.out'));
@@ -63,8 +68,8 @@ let cases;
 let cs;
 let today;
 if (mode === 'fixtures') {
-  const golden = read(path.join(fixtures, `eval-golden.${culture}.json`));
-  cases = [...read(path.join(fixtures, 'eval-cases.json')), ...golden.extra].map(({ expr, format }) => (format === undefined ? { expr } : { expr, format }));
+  const golden = read(path.join(fixtures, delphiMode ? `eval-delphi.${culture}.json` : `eval-golden.${culture}.json`));
+  cases = [...read(path.join(fixtures, delphiMode ? 'eval-delphi-cases.json' : 'eval-cases.json')), ...(golden.extra ?? [])].map(({ expr, format }) => (format === undefined ? { expr } : { expr, format }));
   cs = golden.results;
   today = golden.today;
 } else {

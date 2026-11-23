@@ -132,13 +132,23 @@ namespace Reportman.Reporting
             Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
-                if (Params[0].VarType != VariantType.DateTime)
-                {
-                    throw new NamedException(Translator.TranslateStr(438), "DAY");
-                }
-                aresult = ((DateTime)Params[0]).Day;
+                aresult = DateOf(Params[0], "DAY").Day;
             }
             return aresult;
+        }
+        /// <summary>
+        /// The date of the parameter of DAY, MONTH and YEAR: a date, or a number as the OLE date
+        /// it is in the Delphi engine (the days since 30/12/1899: DAY(45000) is 15; it was a type
+        /// error).
+        /// </summary>
+        internal static DateTime DateOf(Variant value, string functionName)
+        {
+            if (value.VarType == VariantType.DateTime)
+                return value;
+            if (!value.IsNumber())
+                throw new NamedException(Translator.TranslateStr(438), functionName);
+            double oleDate = value;
+            return DateTime.FromOADate(oleDate);
         }
     }
     class IdenMonth : IdenFunction
@@ -155,11 +165,7 @@ namespace Reportman.Reporting
             Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
-                if (Params[0].VarType != VariantType.DateTime)
-                {
-                    throw new NamedException(Translator.TranslateStr(438), "MONTH");
-                }
-                aresult = ((DateTime)Params[0]).Month;
+                aresult = IdenDay.DateOf(Params[0], "MONTH").Month;
             }
             return aresult;
         }
@@ -178,17 +184,26 @@ namespace Reportman.Reporting
             Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
-                if (Params[0].VarType == VariantType.Integer)
+                int month;
+                if (Params[0].VarType == VariantType.DateTime)
+                    month = ((DateTime)Params[0]).Month;
+                else if (Params[0].IsNumber())
                 {
-                    aresult = GetMonthName(Params[0].AsInteger, EvalObject.Language);
-                }
-                else
-                    if (Params[0].VarType == VariantType.DateTime)
-                {
-                    aresult = GetMonthName(((DateTime)Params[0]).Month, EvalObject.Language);
+                    // Any number is a month, rounded as the Delphi engine converts it to an Integer
+                    // (half to even: 1.5 and 2.5 are February); only an Integer was not a type error
+                    double number = Params[0];
+                    double rounded = Math.Round(number, MidpointRounding.ToEven);
+                    month = (rounded >= 1) && (rounded <= 12) ? (int)rounded : 0;
                 }
                 else
                     throw new NamedException(Translator.TranslateStr(438), "MONTHNAME");
+                // In a report converted from Delphi, the long month names of the locale as Delphi
+                // has them (enero), not the tables of this engine (Enero, by the language)
+                if (DelphiMasks)
+                    aresult = (month >= 1) && (month <= 12)
+                        ? DelphiDateFormat.SettingsFor(System.Globalization.CultureInfo.CurrentCulture).LongMonthNames[month - 1] : "";
+                else
+                    aresult = GetMonthName(month, EvalObject.Language);
             }
             return aresult;
         }
@@ -338,12 +353,7 @@ namespace Reportman.Reporting
             Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
-                if (Params[0].VarType == VariantType.DateTime)
-                {
-                    aresult = ((DateTime)Params[0]).Year;
-                }
-                else
-                    throw new NamedException(Translator.TranslateStr(438), "MONTHNAME");
+                aresult = IdenDay.DateOf(Params[0], "YEAR").Year;
             }
             return aresult;
         }
@@ -418,6 +428,9 @@ namespace Reportman.Reporting
                 int count = Params[1];
                 if (astring.Length < count)
                     count = astring.Length;
+                // Nothing for a negative count, as Copy of Delphi (Substring threw)
+                if (count < 0)
+                    count = 0;
                 aresult = astring.Substring(0, count);
             }
             return aresult;
@@ -450,7 +463,15 @@ namespace Reportman.Reporting
             String source = Params[0].ToString();
             String oldpattern = Params[1].ToString();
             String newpattern = Params[2].ToString();
-            aresult = source.Replace(oldpattern, newpattern);
+            // An empty pattern replaces nothing, as StringReplace of Delphi (Replace threw). In a
+            // report converted from Delphi the pattern is found whatever its case, as the Delphi
+            // engine replaces (rfIgnoreCase)
+            if (oldpattern.Length == 0)
+                aresult = source;
+            else if (DelphiMasks)
+                aresult = DelphiCase.ReplaceIgnoringCase(source, oldpattern, newpattern);
+            else
+                aresult = source.Replace(oldpattern, newpattern);
             return aresult;
         }
     }
@@ -472,6 +493,9 @@ namespace Reportman.Reporting
                 int count = Params[1];
                 if (astring.Length < count)
                     count = astring.Length;
+                // Nothing for a negative count, as the Delphi engine (Substring threw)
+                if (count < 0)
+                    count = 0;
                 aresult = astring.Substring(astring.Length - count, count);
             }
             return aresult;
@@ -546,7 +570,12 @@ namespace Reportman.Reporting
             Variant aresult = true;
             try
             {
-                System.Convert.ToDouble((String)Params[0]);
+                // In a report converted from Delphi the text has no thousands separators, as
+                // StrToFloat of Delphi: in es-ES ISNUMERIC('1.5') is False
+                if (DelphiMasks)
+                    double.Parse((String)Params[0], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.CurrentCulture);
+                else
+                    System.Convert.ToDouble((String)Params[0]);
             }
             catch
             {
@@ -623,7 +652,12 @@ namespace Reportman.Reporting
             {
                 String substring = Params[0];
                 String fullstring = Params[1];
-                aresult = fullstring.IndexOf(substring) + 1;
+                // As Pos of Delphi: the characters as they are, and an empty text is not found. The
+                // search of the culture found an empty text at 1, skipped the characters the
+                // collation ignores (POS('ab','a'#173'b') was 1) and found nothing inside a
+                // combining sequence (POS('e','e'#769) was 0)
+                int index = fullstring.IndexOf(substring, StringComparison.Ordinal);
+                aresult = substring.Length == 0 ? 0 : index + 1;
             }
             return aresult;
         }
@@ -649,7 +683,9 @@ namespace Reportman.Reporting
                     int count = Params[2];
                     if (astring.Length < (count - index))
                         count = astring.Length;
-                    if (count <= 0)
+                    // In a report converted from Delphi, nothing when the index is below 1, as the
+                    // Delphi engine (here it is the first character: SUBSTR('abcdef',0,3) is abc)
+                    if (count <= 0 || (DelphiMasks && (index < 1)))
                         aresult = "";
                     else
                     {
@@ -753,7 +789,10 @@ namespace Reportman.Reporting
             Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
-                aresult = Params[0].ToString();
+                // In a report converted from Delphi, the text the Delphi engine gives: a decimal without
+                // the zeros of its scale and with 15 digits (STR(1.50) is 1,5), a date as the short
+                // date of Windows, with the long time when it has one
+                aresult = DelphiMasks ? Params[0].DisplayText(true) : Params[0].ToString();
             }
             else
                 aresult = "";
@@ -885,7 +924,8 @@ namespace Reportman.Reporting
                 throw new NamedException(Translator.TranslateStr(438), "CompareValue");
             }
             Variant aresult = new Variant();
-            aresult = DoubleUtil.CompareValue(Params[0], Params[1], Params[2]);
+            // The values as doubles, as CompareValue of Delphi compares them
+            aresult = DoubleUtil.CompareValue((double)Params[0], (double)Params[1], (double)Params[2]);
             return aresult;
         }
     }
@@ -901,11 +941,19 @@ namespace Reportman.Reporting
         protected override Variant GetValue()
         {
             Variant aresult = new Variant();
-            if (!Params[0].IsNumber())
+            decimal num;
+            // A date is its OLE date, as in the Delphi engine: INT(TODAY) is the number of the day
+            // (it was a type error)
+            if (Params[0].VarType == VariantType.DateTime)
+                num = (decimal)((DateTime)Params[0]).ToOADate();
+            else
             {
-                throw new NamedException(Translator.TranslateStr(438), "Int");
+                if (!Params[0].IsNumber())
+                {
+                    throw new NamedException(Translator.TranslateStr(438), "Int");
+                }
+                num = Params[0];
             }
-            decimal num = Params[0];
 #if REPMAN_DOTNET1
 			long num2 = System.Convert.ToInt64(num);
 #else
@@ -947,7 +995,21 @@ namespace Reportman.Reporting
                 aresult = 0;
                 return aresult;
             }
-            aresult = System.Convert.ToDecimal(astring);
+            // An exponent is read, as the Delphi engine reads it: VAL('1e3') is 1000 (it threw). In
+            // a report converted from Delphi the text has no thousands separators, as StrToFloat of
+            // Delphi: in es-ES VAL('1.5') is an error (here the point is skipped: 15)
+            System.Globalization.NumberStyles styles = DelphiMasks
+                ? System.Globalization.NumberStyles.Float
+                : System.Globalization.NumberStyles.Number | System.Globalization.NumberStyles.AllowExponent;
+            try
+            {
+                aresult = decimal.Parse(astring, styles, System.Globalization.CultureInfo.CurrentCulture);
+            }
+            catch (OverflowException)
+            {
+                // A number a Decimal does not hold (1e30) is a Double
+                aresult = double.Parse(astring, styles, System.Globalization.CultureInfo.CurrentCulture);
+            }
             return aresult;
         }
     }

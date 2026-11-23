@@ -121,53 +121,40 @@ export function replaceNet(s: string, oldValue: string, newValue: string): strin
   return s.split(oldValue).join(newValue);
 }
 
-// Code points the ICU root collation ignores completely: controls other than the white space
-// controls, the soft hyphen and the zero width / bidi formatting characters.
-const IGNORABLE = /[\u0000-\u0008\u000e-\u001f\u007f-\u009f\u00ad\u200b-\u200f\u202a-\u202e\u2060-\u2064\ufeff]/;
-// Code points that extend the previous grapheme: a match can neither start nor end before them.
-const EXTEND = /[\p{M}\u200c\u200d]/u;
-
-function isIgnorable(c: string): boolean {
-  return IGNORABLE.test(c);
-}
-
-function isBoundary(s: string, i: number): boolean {
-  if (i <= 0 || i >= s.length) return true;
-  const prev = s.charCodeAt(i - 1);
-  const cur = s.charCodeAt(i);
-  // (CR LF is no unit: the C# engine finds "\n" inside "\r\n", as Delphi's Pos)
-  if (prev >= 0xd800 && prev <= 0xdbff && cur >= 0xdc00 && cur <= 0xdfff) return false;
-  return !EXTEND.test(String.fromCodePoint(s.codePointAt(i)!));
+/**
+ * AnsiUpperCase of Delphi (CharUpperBuff of Windows), which StringReplace uses to ignore the case
+ * (DelphiCase.Upper of C#): one character for one, and only the letters whose upper case comes back
+ * to them in lower case, so the final sigma, the micro sign, the long s and the dotless i stay as
+ * they are (they are other letters than the sigma, the mu, the s and the i).
+ */
+export function upperCaseDelphi(s: string): string {
+  let r = '';
+  for (const ch of s) {
+    let u = toUpperNet(ch);
+    if (u !== ch && (u.length !== ch.length || toLowerNet(u) !== ch)) u = ch;
+    r += u;
+  }
+  return r;
 }
 
 /**
- * String.IndexOf(string) with the current culture, as .NET 5+ does it with ICU: a match starts and
- * ends on a grapheme boundary (so "e" is not found inside "e" + U+0301; "\n" is found inside "\r\n"),
- * and the characters the collation ignores (NUL and other controls, the soft hyphen, zero width
- * characters) are skipped, so an ignorable-only value is found at 0. Case and accents count.
- * Canonical equivalence (a precomposed "\u00e9" against "e" + U+0301) is not applied.
+ * StringReplace(source, oldPattern, newPattern, [rfReplaceAll, rfIgnoreCase]) of Delphi: every
+ * occurrence of the pattern, from left to right, whatever its case; an empty pattern replaces
+ * nothing.
  */
-export function indexOfCulture(source: string, value: string): number {
-  let pattern = '';
-  for (const c of value) if (!isIgnorable(c)) pattern += c;
-  if (pattern.length === 0) return 0;
-  for (let i = 0; i < source.length; i++) {
-    if (isIgnorable(source[i]!) || !isBoundary(source, i)) continue;
-    let j = i;
-    let k = 0;
-    while (k < pattern.length && j < source.length) {
-      const c = source[j]!;
-      if (k > 0 && isIgnorable(c)) {
-        j++;
-        continue;
-      }
-      if (c !== pattern[k]) break;
-      j++;
-      k++;
-    }
-    if (k === pattern.length && isBoundary(source, j)) return i;
+export function replaceIgnoringCaseDelphi(source: string, oldPattern: string, newPattern: string): string {
+  if (oldPattern.length === 0) return source;
+  const upperSource = upperCaseDelphi(source);
+  const upperPattern = upperCaseDelphi(oldPattern);
+  let r = '';
+  let position = 0;
+  for (;;) {
+    const index = upperSource.indexOf(upperPattern, position);
+    if (index < 0) break;
+    r += source.substring(position, index) + newPattern;
+    position = index + upperPattern.length;
   }
-  return -1;
+  return r + source.substring(position);
 }
 
 /** Throws the ArgumentNullException of a null string argument. */

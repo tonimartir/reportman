@@ -120,9 +120,16 @@ tools/golden-cs/bin/Release/net10.0/golden-cs eval cases.json out.json --culture
 tools/golden-cs/bin/Release/net10.0/golden-cs run ../samples/customers.rep meta.json --pdf out.pdf --sqlite ../samples/samples.db
 ```
 
+`golden-cs eval ... --delphi` evaluates as in a report converted from Delphi (`Evaluator.DelphiMasks`
+of C#, `delphiMasks` of the context here): where the C# engine works with another behaviour than
+the Delphi one, only such a report takes the Delphi behaviour. The expression fixtures have both
+modes (`packages/reportman-engine/test/generate-eval-fixtures.mjs`).
+
 Where the reference is the Delphi engine (Delphi 13, Win32): `tools/golden-delphi` runs a report
 as `printreptopdf` does (its metafile, SVG, HTML and PDF), `tools/golden-dfm` reads and writes DFM
-as `System.Classes` does, and `tools/golden-delphi-dates` gives the format settings and
+as `System.Classes` does, `tools/golden-delphi-eval` evaluates expressions with the Delphi
+evaluator (its `compare.mjs` compares them with `golden-cs eval`, with `--delphi` as a converted
+report), and `tools/golden-delphi-dates` gives the format settings and
 `FormatDateTime` of each culture: a report converted from Delphi formats its dates with the masks
 of Delphi (`packages/reportman-engine/test/generate-delphi-date-fixtures.mjs`). Each folder has its
 `build.bat`. The barcodes are checked against Delphi too: `generate-barcode-delphi-fixtures.mjs`

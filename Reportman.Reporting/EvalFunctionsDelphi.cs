@@ -366,6 +366,66 @@ namespace Reportman.Reporting
     }
 
     /// <summary>
+    /// The case of Delphi's AnsiUpperCase (CharUpperBuff of Windows), which StringReplace uses to
+    /// ignore the case: one character for one, and only the letters whose upper case comes back to
+    /// them in lower case, so the final sigma, the micro sign, the long s and the dotless i stay as
+    /// they are (they are other letters than the sigma, the mu, the s and the i).
+    /// </summary>
+    internal static class DelphiCase
+    {
+        /// <summary>The text in upper case, with the length it had.</summary>
+        public static string Upper(string text)
+        {
+            var sb = new StringBuilder(text.Length);
+            int i = 0;
+            while (i < text.Length)
+            {
+                char ch = text[i];
+                if (ch < 0x80)
+                {
+                    sb.Append((ch >= 'a') && (ch <= 'z') ? (char)(ch - 32) : ch);
+                    i++;
+                    continue;
+                }
+                int count = char.IsSurrogatePair(text, i) ? 2 : 1;
+                string c = text.Substring(i, count);
+                string u = c.ToUpperInvariant();
+                if ((u != c) && ((u.Length != count) || (u.ToLowerInvariant() != c)))
+                    u = c;
+                sb.Append(u);
+                i += count;
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// StringReplace(source, oldPattern, newPattern, [rfReplaceAll, rfIgnoreCase]): every
+        /// occurrence of the pattern, from left to right, whatever its case; an empty pattern
+        /// replaces nothing.
+        /// </summary>
+        public static string ReplaceIgnoringCase(string source, string oldPattern, string newPattern)
+        {
+            if (oldPattern.Length == 0)
+                return source;
+            string upperSource = Upper(source);
+            string upperPattern = Upper(oldPattern);
+            var sb = new StringBuilder(source.Length);
+            int position = 0;
+            while (true)
+            {
+                int index = upperSource.IndexOf(upperPattern, position, StringComparison.Ordinal);
+                if (index < 0)
+                    break;
+                sb.Append(source, position, index - position);
+                sb.Append(newPattern);
+                position = index + upperPattern.Length;
+            }
+            sb.Append(source, position, source.Length - position);
+            return sb.ToString();
+        }
+    }
+
+    /// <summary>
     /// ReadString of Delphi's TMemIniFile: the sections and names ignore the case, the first section
     /// and the first name of a repeated one count, spaces around '=' are removed, lines starting
     /// with ';' are comments; a file without a byte order mark is ANSI.

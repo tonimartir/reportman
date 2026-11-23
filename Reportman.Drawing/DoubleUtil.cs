@@ -176,21 +176,40 @@ namespace Reportman.Drawing
             return aresult;
         }
         /// <summary>
-        /// Compare values, but an difference lower than epsilon will return as equal
+        /// Compare values, but a difference not greater than epsilon will return as equal: the
+        /// values as doubles (<see cref="CompareValue(double, double, double)"/>)
         /// </summary>
         public static int CompareValue(decimal p1, decimal p2, decimal epsilon)
         {
-            int aresult = 0;
-            decimal dif = Math.Abs(p1 - p2);
-            epsilon = Math.Abs(epsilon);
-            if (dif >= epsilon)
+            return CompareValue((double)p1, (double)p2, (double)epsilon);
+        }
+        /// <summary>
+        /// The resolution of a Double in the Math unit of Delphi (DoubleResolution: 1E-15 by the
+        /// fuzz factor, 1000): what two doubles may differ and still be the same value.
+        /// </summary>
+        private const double DoubleResolution = 1E-12;
+        /// <summary>
+        /// CompareValue of the Math unit of Delphi, the COMPAREVALUE of the Delphi engine: 0 when
+        /// the values differ in epsilon or less (SameValue), else -1 when the first one is the
+        /// lower and 1 when it is not. With an epsilon of 0 the epsilon is the resolution of the
+        /// values, Max(Min(Abs(p1), Abs(p2)) * 1E-12, 1E-12); a negative epsilon makes nothing equal.
+        /// (Equal values with an epsilon of 0 gave 1, and a difference of exactly epsilon was not
+        /// equal.)
+        /// </summary>
+        public static int CompareValue(double p1, double p2, double epsilon)
+        {
+            if (epsilon == 0)
             {
-                if (p1 < p2)
-                    aresult = -1;
-                else
-                    aresult = 1;
+                // Min and Max as Delphi writes them (if A < B then A else B), for the NaN
+                double a = Math.Abs(p1);
+                double b = Math.Abs(p2);
+                double resolution = (a < b ? a : b) * DoubleResolution;
+                epsilon = resolution > DoubleResolution ? resolution : DoubleResolution;
             }
-            return aresult;
+            bool same = p1 > p2 ? (p1 - p2) <= epsilon : (p2 - p1) <= epsilon;
+            if (same)
+                return 0;
+            return p1 < p2 ? -1 : 1;
         }
         // Function cortesy of Hamza Al-Aradi (AradBox@hotmail.com)
         // Altered to support negative and not show fractionary

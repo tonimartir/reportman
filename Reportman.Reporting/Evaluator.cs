@@ -554,8 +554,9 @@ namespace Reportman.Reporting
             {
                 if (aoperator == "-")
                 {
+                    // A text that is a number is negated as the number
                     if (!FChecking)
-                        FValue = -FValue;
+                        FValue = -Variant.ExpressionOperand(FValue);
                 }
                 else
                     if (aoperator == "NOT")
@@ -584,7 +585,8 @@ namespace Reportman.Reporting
                     {
                         try
                         {
-                            FValue = auxiliar2 * auxiliar;
+                            // A text that is a number is the number (Variant.ExpressionOperand)
+                            FValue = Variant.ExpressionOperand(auxiliar2) * Variant.ExpressionOperand(auxiliar);
                         }
                         catch
                         {
@@ -602,7 +604,7 @@ namespace Reportman.Reporting
                     {
                         try
                         {
-                            FValue = auxiliar2 / auxiliar;
+                            FValue = Variant.ExpressionOperand(auxiliar2) / Variant.ExpressionOperand(auxiliar);
                         }
                         catch
                         {
@@ -630,7 +632,7 @@ namespace Reportman.Reporting
                     auxiliar2 = FValue;
                     mul_div(ref auxiliar);
                     // A number plus a text that is not a number joins both texts
-                    FValue = Variant.ExpressionSum(auxiliar2, auxiliar);
+                    FValue = Variant.ExpressionSum(auxiliar2, auxiliar, DelphiMasks);
                 }
                 else
                     if (aoperator == "-")
@@ -638,7 +640,8 @@ namespace Reportman.Reporting
                     FParser.NextToken();
                     auxiliar2 = FValue;
                     mul_div(ref auxiliar);
-                    FValue = auxiliar2 - auxiliar;
+                    // A text that is a number is the number (Variant.ExpressionOperand)
+                    FValue = Variant.ExpressionOperand(auxiliar2) - Variant.ExpressionOperand(auxiliar);
                 }
                 else
                     break;
@@ -980,6 +983,8 @@ namespace Reportman.Reporting
                 Evaluator eval = new Evaluator();
                 eval.AliasList = AliasList;
                 eval.FIdentifierList = FIdentifierList;
+                // The text of EVALTEXT is evaluated as the report it belongs to
+                eval.DelphiMasks = DelphiMasks;
                 eval.Expression = text;
                 eval.Evaluate();
                 return eval.Result;
@@ -1133,7 +1138,9 @@ namespace Reportman.Reporting
         public static bool AllowFileFunctions;
         /// <summary>
         /// The report of the evaluator was converted from Delphi (<see cref="BaseReport.ConvertedFromDelphi"/>):
-        /// FORMATSTR formats dates with the masks of Delphi.
+        /// FORMATSTR formats with the masks of Delphi, and the operators and functions that give
+        /// another result in the Delphi engine give that one (the comparisons with Null, the text of
+        /// a number in STR and in a + with a text, REPLACESTR, SUBSTR, MONTHNAME, VAL, ISNUMERIC).
         /// </summary>
         public bool DelphiMasks;
 
