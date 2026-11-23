@@ -2,6 +2,20 @@
 // engine): the high level encoding of a text into PDF417 codewords (numeric, text and binary
 // compaction, the escapes of the text compaction), the symbol size, the Reed-Solomon error
 // correction and the drawing of the rows into the metafile, a filled rectangle per bar.
+//
+// The positions in the text are the ones of Delphi, from 1: the encoder of Delphi
+// (TextToCodewords and the routines it calls, rpmdbarcode.pas) chooses the compaction modes with
+// them, and the symbol of a text is the one Delphi draws only with the same choices. Two of them
+// are its own: it never counts the last character of the text when it looks ahead for digits or
+// for text (goodForNumericCompaction, goodForTextCompaction), and to choose between a shift and a
+// latch of the text submode it looks at the character after the next one. Both give a valid
+// symbol.
+//
+// What Delphi does wrong is not ported (test/barcode-delphi.test.ts has each case): it stops
+// before a last character that is on its own (while i < CodeLen), it steps back two characters
+// instead of one where the text compaction meets a character it cannot write, so the one before
+// it is written twice (Position := Position - 2), it takes a codeword escape (\Cnnn) for a
+// character, and for a text mode character over 127 it reads past its table.
 
 import { BrushType, MetaObjectDraw, MetaObjectType, PenType, ShapeType, type MetaFile } from '@reportman/metafile';
 import { substringNet } from '../../util/chars.js';
@@ -56,10 +70,38 @@ export function getRealErrorLevel(_numRows: number, _numColumns: number, eccLeve
   return eccLevel;
 }
 
+/** The character code at a position of Delphi (from 1), with the .NET bounds check. */
+function at(code: string, position: number): number {
+  return charAt(code, position - 1);
+}
+
+// The characters of code page 1252 from 0x80 to 0x9F
+const CP1252_HIGH =
+  '\u20AC\u0081\u201A\u0192\u201E\u2026\u2020\u2021\u02C6\u2030\u0160\u2039\u0152\u008D\u017D\u008F' +
+  '\u0090\u2018\u2019\u201C\u201D\u2022\u2013\u2014\u02DC\u2122\u0161\u203A\u0153\u009D\u017E\u0178';
+
+/**
+ * ToAnsi: the text as the bytes PDF417 writes, a character per byte: the AnsiString the Delphi
+ * engine encodes on a Western Windows (code page 1252: the euro sign is 0x80). A character the
+ * code page does not have is a question mark.
+ */
+export function toAnsi(text: string): string {
+  let ansi = '';
+  for (let i = 0; i < text.length; i++) {
+    const c = text.charCodeAt(i);
+    if (c <= 0xff) ansi += text.charAt(i);
+    else {
+      const high = CP1252_HIGH.indexOf(text.charAt(i));
+      ansi += high >= 0 ? String.fromCharCode(0x80 + high) : '?';
+    }
+  }
+  return ansi;
+}
+
 /** The count of digits from position, and whether they are worth a numeric compaction (more than 13). */
 function goodForNumericCompaction(code: string, position: number, codeLen: number): boolean {
   let count = 0;
-  while (position + count < codeLen && charAt(code, position + count) >= 48 && charAt(code, position + count) <= 57) count++;
+  while (position + count < codeLen && at(code, position + count) >= 48 && at(code, position + count) <= 57) count++;
   return count > 13;
 }
 
@@ -70,12 +112,9 @@ function isGoodTextValue(v: number): boolean {
 
 function goodForTextCompaction(code: string, position: number, codeLen: number): boolean {
   let count = 0;
-  while (position + count < codeLen && isGoodTextValue(charAt(code, position + count)) && count <= 5) count++;
-  if (count > 5 || (position + count >= codeLen && count > 0)) {
-    if (count === 1) return false;
-    return true;
-  }
-  return false;
+  while (position + count < codeLen && isGoodTextValue(at(code, position + count)) && count <= 5) count++;
+  if (count === 1) return false;
+  return count > 5 || (position + count >= codeLen && count > 0);
 }
 
 /** Six bytes as five base 900 digits. */
@@ -115,21 +154,19 @@ function isNumericString(s: string): boolean {
 function convertToBase900(s: string, a: number[]): number {
   if (!isNumericString(s)) throw new Error('ConvertToBase900: S should be a numeric string');
   const d: number[] = [];
-  for (let i = 0; i < s.length; i++) d.push(s.charCodeAt(i));
+  for (let i = 0; i < s.length; i++) d.push(s.charCodeAt(i) - 48);
   let lenD = d.length;
-  let firstDigit = -1;
-  for (let i = lenD - 1; i >= 0; i--) {
-    d[i] = (d[i]! - 48) & 0xffff;
-    if (d[i] !== 0) firstDigit = i;
-  }
-  if (firstDigit === -1) return 0;
+  // FirstDigit of Delphi (from 1): the first digit that is not zero
+  let firstDigit = 0;
+  for (let i = lenD; i >= 1; i--) if (d[i - 1] !== 0) firstDigit = i;
+  if (firstDigit === 0) return 0;
   let sp = 0;
   const digits: number[] = new Array<number>(45).fill(0);
   let done = false;
   while (!done) {
     if (lenD - firstDigit <= 8) {
       let dividend = 0;
-      for (let i = firstDigit; i < lenD; i++) dividend = dividend * 10 + d[i]!;
+      for (let i = firstDigit; i <= lenD; i++) dividend = dividend * 10 + d[i - 1]!;
       while (dividend !== 0) {
         seti(digits, sp, dividend % 900);
         sp++;
@@ -142,14 +179,19 @@ function convertToBase900(s: string, a: number[]): number {
       rem = rem + d[lenD - 1]! * 10;
       lenD--;
       let dividend = 0;
-      for (let i = firstDigit; i < lenD; i++) {
-        dividend = dividend * 10 + d[i]!;
-        d[i] = Math.trunc(dividend / 9) & 0xffff;
+      for (let i = firstDigit; i <= lenD; i++) {
+        dividend = dividend * 10 + d[i - 1]!;
+        d[i - 1] = Math.trunc(dividend / 9);
         dividend = dividend % 9;
       }
       seti(digits, sp, dividend * 100 + rem);
       sp++;
-      if (d[firstDigit] === 0) firstDigit++;
+      // FirstDigit stays where it is: Delphi compares the digit with the character '0', which a
+      // digit already turned into its value never is. So the digits that become zero at the
+      // front are still divided, and the number gets base 900 digits that are zero at its front:
+      // the 38 digits of a full chunk of encodeNumeric (39 with the 1 before them) are always 15
+      // codewords, which is what a reader takes as a group. Without those zeros they would be
+      // 13, and the reader would take two of the next chunk with them.
     }
   }
   let idx = 0;
@@ -196,7 +238,7 @@ class CodewordWriter {
 function textToCodewords(code: string, codewords: number[], nfi: NumberFormatData): number {
   for (let i = 0; i <= 2700; i++) seti(codewords, i, 900); // PadCodeword
   const w = new CodewordWriter(codewords);
-  const pos = { value: 0 };
+  const pos = { value: 1 };
   const codeLen = code.length;
   if (codeLen === 0) return w.numCodewords;
   let currentMode: DataMode;
@@ -209,8 +251,10 @@ function textToCodewords(code: string, codewords: number[], nfi: NumberFormatDat
     currentMode = DataMode.Binary;
     w.add(901); // BinaryCompaction
   }
-  w.newTextCodeword = true;
-  while (pos.value < codeLen) {
+  // Up to the last character: Delphi stops before it (while i < CodeLen), and a text that ends
+  // with a character on its own (one character, digits and a letter, text and an accented
+  // letter) loses it
+  while (pos.value <= codeLen) {
     const before = pos.value;
     switch (currentMode) {
       case DataMode.Binary:
@@ -232,16 +276,10 @@ function textToCodewords(code: string, codewords: number[], nfi: NumberFormatDat
       if (currentMode !== DataMode.Text) {
         w.add(900); // TextCompaction
         currentMode = DataMode.Text;
-        w.newTextCodeword = true;
       } else if (pos.value === before) {
-        // C# parity: the text compaction stops at a character it cannot write (an escape of a
-        // value above 127 or without a text value, \G...), and this loop calls it again at the
-        // same position for ever: the C# engine never finishes this barcode.
-        throw new Error(
-          'PDF417: the text compaction cannot write the escape at position ' +
-            String(before) +
-            ' of the text (the C# engine loops for ever on it)',
-        );
+        // The text compaction stopped at an escape it cannot write (\ddd or \Xhh of a character
+        // without a text value, \G) and would be called again at the same position for ever
+        throw new Error('PDF417: the text compaction cannot write the escape at character ' + String(before) + ' of the text');
       }
     } else {
       if (currentMode !== DataMode.Binary) {
@@ -257,8 +295,6 @@ function countBytes(code: string, position: number, codeLen: number): number {
   let result = 0;
   let done = false;
   while (!done) {
-    // C# parity: the count goes one past the end of the text (<=): binary data that ends the text
-    // reads past its end (IndexOutOfRangeException)
     if (
       result + position <= codeLen &&
       !goodForNumericCompaction(code, position + result, codeLen) &&
@@ -280,10 +316,10 @@ function encodeBinary(code: string, w: CodewordWriter, pos: { value: number }, c
   const a = [0, 0, 0, 0, 0, 0, 0];
   while (i < binaryDataSize) {
     if (binaryDataSize - i < 6) {
-      w.add(charAt(code, position + i) & 0xff);
+      w.add(at(code, position + i) & 0xff);
       i++;
     } else {
-      const bytes = [0, 1, 2, 3, 4, 5].map((k) => charAt(code, position + i + k) & 0xff);
+      const bytes = [0, 1, 2, 3, 4, 5].map((k) => at(code, position + i + k) & 0xff);
       convertBytesToBase900(bytes, a);
       for (let j = 0; j < 5; j++) w.add(a[j]!);
       i += 6;
@@ -295,9 +331,8 @@ function encodeBinary(code: string, w: CodewordWriter, pos: { value: number }, c
 function collectDigits(code: string, pos: { value: number }, codeLen: number): string {
   const startPos = pos.value;
   const maxDigitChunk = 38;
-  while (pos.value < codeLen && pos.value - startPos < maxDigitChunk && charAt(code, pos.value) >= 48 && charAt(code, pos.value) <= 57)
-    pos.value++;
-  if (pos.value - startPos > 0) return '1' + code.substring(startPos, pos.value);
+  while (pos.value <= codeLen && pos.value - startPos < maxDigitChunk && at(code, pos.value) >= 48 && at(code, pos.value) <= 57) pos.value++;
+  if (pos.value - startPos > 0) return '1' + code.substring(startPos - 1, pos.value - 1);
   return '';
 }
 
@@ -471,19 +506,26 @@ function getNextCharacter(code: string, next: NextCharacter, pos: { value: numbe
 }
 
 function encodeText(code: string, w: CodewordWriter, pos: { value: number }, codeLen: number, nfi: NumberFormatData): void {
+  w.newTextCodeword = true;
   let currentTextSubmode = TextMode.Alpha;
   let curValue = -1;
   let curMode: number = TextMode.None;
   let done = false;
   const next: NextCharacter = { newChar: 0, codeword: false };
-  while (pos.value < codeLen && !done) {
+  // getNextCharacter counts from 0
+  const pos0 = { value: 0 };
+  while (pos.value <= codeLen && !done) {
     const oldPosition = pos.value;
-    getNextCharacter(code, next, pos, codeLen, nfi);
+    pos0.value = pos.value - 1;
+    getNextCharacter(code, next, pos0, codeLen, nfi);
+    pos.value = pos0.value + 1;
     const newChar = next.newChar;
     const isCodeword = next.codeword;
     let validtext = false;
     if (newChar <= 127) validtext = textValue(newChar) >= 0;
     if (!validtext && !isCodeword) {
+      // Back to the character the text compaction cannot write (Delphi goes back two, and the
+      // character before it is written again)
       pos.value = oldPosition;
       break;
     } else if (!isCodeword) {
@@ -496,10 +538,12 @@ function encodeText(code: string, w: CodewordWriter, pos: { value: number }, cod
       w.add(newChar);
     } else {
       if ((currentTextSubmode & curMode) === 0) {
+        // A shift when the submode goes on, a latch when it does not: Delphi asks the character
+        // after the next one (Code[Position + 1], with Position already at the next one)
         let useShift = true;
         if (pos.value < codeLen) {
-          const nextCode = charAt(code, pos.value);
-          if (nextCode <= 127 && (currentTextSubmode & textMode(nextCode)) === 0) useShift = false;
+          const after = at(code, pos.value + 1);
+          useShift = after <= 127 && (currentTextSubmode & textMode(after)) !== 0;
         }
         currentTextSubmode = changeTextSubmode(currentTextSubmode, selectBestTextMode(curMode), useShift, w);
       }
@@ -588,7 +632,7 @@ export interface Pdf417Codewords {
 
 export function generateCodewords(text: string, eccLevelIn: number, numRowsIn: number, numColsIn: number, nfi: NumberFormatData): Pdf417Codewords {
   const codewords: number[] = new Array<number>(2701).fill(0);
-  const numCodewords = textToCodewords(text, codewords, nfi);
+  const numCodewords = textToCodewords(toAnsi(text), codewords, nfi);
   const errorLevel = getRealErrorLevel(numRowsIn, numColsIn, eccLevelIn, numCodewords);
   const numErrorCodewords = castInt32(Math.pow(2, errorLevel + 1));
   const { xSize, ySize } = calculateSize(numCodewords, errorLevel, numRowsIn, numColsIn);

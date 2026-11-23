@@ -1,1 +1,0 @@
-ERROR Reportman.Reporting.ReportException: Index was outside the bounds of the array.:Error calculating barcode

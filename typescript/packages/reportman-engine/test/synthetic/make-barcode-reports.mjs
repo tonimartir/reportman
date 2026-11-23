@@ -7,6 +7,10 @@
 // they have no database, so Delphi runs them as they are.
 //
 //   node test/synthetic/make-barcode-reports.mjs      (from packages/reportman-engine)
+//
+// With --cases CASES.json OUT.rep it writes one report instead, with no database: a barcode (and a
+// label "cN" under it) per case of the list, each one { text, type (a name of BarType), ... the
+// properties of the item }. generate-pdf417-fixtures.mjs runs it with Delphi.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -165,7 +169,7 @@ function report(file, { props: p = {}, data = [], subs = [], db = true }) {
     ...data,
     ...subs,
   ].join('\n')}\n</REPORT>\n`;
-  fs.writeFileSync(path.join(out, file), xml);
+  fs.writeFileSync(path.resolve(out, file), xml);
   written.push(file);
   compCount = 0;
   secCount = 0;
@@ -194,6 +198,16 @@ function grid(cases, { cols = 3, cellW = 3500, cellH = 1100, rowsPerSection = 4,
     sections.push(section('detail', { HEIGHT: Math.ceil(Math.min(perSection, cases.length - s) / cols) * cellH }, comps));
   }
   return sections;
+}
+
+// ---------------------------------------------------------------------------------------------
+// One report from a list of cases
+
+if (process.argv[2] === '--cases') {
+  const list = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
+  const items = list.map(({ text, type, ...o }, i) => ({ expression: q(text), caption: 'c' + i, TYP: BarType[type], WIDTH: 3400, HEIGHT: 900, ...o }));
+  report(path.resolve(process.argv[4]), { db: false, subs: [subreport('', grid(items))] });
+  process.exit(0);
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -504,6 +518,26 @@ report('bc-pdf417.rep', {
   ],
 });
 
+// PDF417 against Delphi: the texts of barcode-delphi-cases.json, the compaction modes at their
+// edges (the last characters of a text, the digits that make a numeric compaction, a character
+// the text compaction does not have after text), sizes and error correction levels. Those marked
+// "delphi" there are the ones the Delphi engine encodes wrong.
+const delphiCases = JSON.parse(fs.readFileSync(path.resolve(here, '../barcode-delphi-cases.json'), 'utf8'));
+report('bc-delphi-pdf417.rep', {
+  db: false,
+  subs: [
+    subreport(
+      '',
+      grid(
+        delphiCases.pdf417.map(({ caption, text, expect: _expect, delphi: _delphi, ...o }) => ({
+          expression: q(text), caption, TYP: BarType.PDF417, MODUL: 2, WIDTH: 3400, HEIGHT: 700, ...o,
+        })),
+        { cols: 3, cellW: 3580, cellH: 1150, rowsPerSection: 4 },
+      ),
+    ),
+  ],
+});
+
 // Data from samples.db: Code 128, QR and EAN-13 of each product, and BARCODEOP in the before
 // print expression of the section.
 report('bc-data.rep', {
@@ -577,8 +611,7 @@ const errorCases = {
   'bc-err-pdf417x': { expression: q('hex \\X4'), TYP: BarType.PDF417 },
   'bc-err-pdf417cw': { expression: q('cw \\C999'), TYP: BarType.PDF417 },
   'bc-err-pdf417neg': { expression: q('cw \\C-12'), TYP: BarType.PDF417 },
-  'bc-err-pdf417bin': { expression: q('ÀÁÂÃÄÅ'), TYP: BarType.PDF417 },
-  'bc-err-pdf417bin2': { expression: q('Ñandú, ¿qué?'), TYP: BarType.PDF417 },
+  'bc-err-pdf417esc': { expression: q('esc \\200 no text value'), TYP: BarType.PDF417 },
   'bc-err-pdf417ecc': { expression: q('ecc 9'), TYP: BarType.PDF417, ECCLEVEL: 9 },
   'bc-err-pdf417rows': { expression: q('rows'), TYP: BarType.PDF417, NUMCOLUMNS: 1, NUMROWS: 99 },
   'bc-err-expression': { expression: 'UNKNOWNFN(1)', TYP: BarType.C128 },

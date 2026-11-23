@@ -1,6 +1,6 @@
 // Barcodes beyond what golden-cs can show: the barcode object of a device that draws barcodes by
 // itself (an ESC/POS receipt printer, never the PDF device of golden-cs) and the PDF417 escapes
-// the C# engine never finishes encoding.
+// the text compaction cannot write.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -93,15 +93,18 @@ describe('a device that draws barcodes by itself', () => {
 });
 
 describe('PDF417 escapes', () => {
-  // C# parity: the text compaction stops at an escape it cannot write and TextToCodewords calls it
-  // again at the same position for ever; the TypeScript engine fails instead of hanging.
-  it.each(['esc \\200 hangs', '\\005 no text value', 'G macro \\G123456 x', 'hex \\XZZ bad', 'hex \\XFF high'])(
-    'fails clearly where the C# engine never finishes: %s',
+  // The text compaction stops at an escape it cannot write (a character without a text value, the
+  // \G macro) and would be called again at the same position for ever: an error, as in C#
+  // (bc-err-pdf417esc of the parity cases).
+  it.each(['esc \\200 high', '\\005 no text value', 'G macro \\G123456 x', 'hex \\XZZ bad', 'hex \\XFF high'])(
+    'fails clearly on an escape the text compaction cannot write: %s',
     async (text) => {
       const report = model('bc-err-pdf417x');
       const item = report.subReports[0]!.sections[0]!.components[0] as BarcodeModel;
       item.expression = "'" + text + "'";
-      await expect(execute(report, new PdfDevice())).rejects.toThrow(/the C# engine loops for ever on it\):Error calculating barcode/);
+      await expect(execute(report, new PdfDevice())).rejects.toThrow(
+        /PDF417: the text compaction cannot write the escape at character \d+ of the text:Error calculating barcode/,
+      );
     },
   );
 

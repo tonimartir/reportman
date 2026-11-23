@@ -10,9 +10,32 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import { describe, expect, it } from 'vitest';
 import { here, metaFileJson, runLikeGolden } from './golden-run.js';
-import { elements, msiMod10, readCodabar, readCode93, readMatrix25, readMsi, readPostNet, type Bar } from './barcode-readers.js';
+import { toAnsi } from '../src/report/barcode/pdf417.js';
+import {
+  elements,
+  msiMod10,
+  pdf417ErrorCorrection,
+  pdf417Text,
+  readCodabar,
+  readCode93,
+  readMatrix25,
+  readMsi,
+  readPdf417,
+  readPostNet,
+  type Bar,
+} from './barcode-readers.js';
 
 const fixtures = path.join(here, 'fixtures/barcode');
+
+/** A case of barcode-delphi-cases.json: `delphi` says why the symbol of Delphi is not the one to give. */
+interface DelphiCase {
+  caption: string;
+  text: string;
+  /** What the symbol says when it is not the text as it is (escapes, characters out of the code page). */
+  expect?: string;
+  delphi?: string;
+}
+const delphiCases = JSON.parse(fs.readFileSync(path.join(here, 'barcode-delphi-cases.json'), 'utf8')) as { pdf417: DelphiCase[] };
 
 interface Barcode {
   label: string;
@@ -173,5 +196,68 @@ describe('linear barcodes against the Delphi engine', () => {
     // 23 characters of Code 93: readable with the check characters right
     expect(readCode93(d.get('code93x Hello, World!')!.bars)).toBe('Hello, World!');
     expect(() => readCode93(reference.get('code93x Hello, World!')!.bars)).toThrow();
+  });
+});
+
+describe('PDF417 against the Delphi engine', () => {
+  const reference = delphi('bc-delphi-pdf417');
+  const drawn = engine('bc-delphi-pdf417');
+  const cases = delphiCases.pdf417;
+  /** What a reader gets: the bytes of the text in code page 1252, or what its escapes say. */
+  const said = (c: DelphiCase): string => c.expect ?? toAnsi(c.text);
+  const read = (bars: readonly Bar[]): string => {
+    try {
+      return pdf417Text(readPdf417(bars).codewords);
+    } catch (e) {
+      return 'not readable: ' + String(e);
+    }
+  };
+
+  it.each(cases.filter((c) => c.delphi === undefined))('draws the bars of Delphi: $caption', async (c) => {
+    const ours = (await drawn).get(c.caption)!;
+    const theirs = reference.get(c.caption)!;
+    expect(theirs.bars.length).toBeGreaterThan(0);
+    expect(ours.bars.length).toBe(theirs.bars.length);
+    expect(ours.bars).toEqual(theirs.bars);
+  });
+
+  it.each(cases)('reads back as the text, with the error correction of its level: $caption', async (c) => {
+    const symbol = readPdf417((await drawn).get(c.caption)!.bars);
+    expect(pdf417Text(symbol.codewords)).toBe(said(c));
+    const k = 2 ** (symbol.level + 1);
+    const data = symbol.codewords.slice(0, symbol.codewords.length - k);
+    expect(data.length).toBe(symbol.codewords[0]);
+    expect(symbol.codewords.slice(data.length)).toEqual(pdf417ErrorCorrection(data, k));
+  });
+
+  // Where Delphi is wrong (rpmdbarcode.pas) the symbol is not its own. When Delphi is fixed these
+  // fail, and the cases lose their "delphi" mark: the bars are compared then.
+  it.each(cases.filter((c) => c.delphi === 'last character'))('Delphi loses a last character that is on its own: $caption', (c) => {
+    // TextToCodewords: while i < CodeLen stops before the last character of the text
+    expect(read(reference.get(c.caption)!.bars)).toBe(said(c).slice(0, -1));
+  });
+
+  it.each(cases.filter((c) => c.delphi === 'character twice'))('Delphi writes twice the character before one the text compaction does not have: $caption', (c) => {
+    // EncodeText: Position := Position - 2 goes back to the character before the one it could not
+    // write, already written, and the byte compaction that follows writes it again
+    const theirs = read(reference.get(c.caption)!.bars);
+    const text = said(c);
+    expect(theirs.length).toBeGreaterThan(text.length);
+    // The text with some characters doubled
+    let j = 0;
+    for (let i = 0; i < theirs.length; i++) {
+      if (theirs.charAt(i) === text.charAt(j)) j++;
+      else expect(theirs.charAt(i), theirs).toBe(theirs.charAt(i - 1));
+    }
+    expect(j).toBe(text.length);
+  });
+
+  it.each(cases.filter((c) => c.delphi === 'codeword escape'))('Delphi takes a codeword escape for a character: $caption', (c) => {
+    // EncodeText: a \\Cnnn over 127 is "not valid text" there, and the text goes on from its digits
+    expect(read(reference.get(c.caption)!.bars)).not.toBe(said(c));
+  });
+
+  it('every case that Delphi has wrong is one of those', () => {
+    expect([...new Set(cases.map((c) => c.delphi))].sort()).toEqual(['character twice', 'codeword escape', 'last character', undefined]);
   });
 });

@@ -1088,7 +1088,55 @@ namespace Reportman.Reporting {
      675, 410, 389, 244,  31, 121, 303, 263
         };
         // PDF417 Logic ported from Delphi
-        
+        //
+        // The positions in the text are the ones of Delphi, from 1: the encoder of Delphi
+        // (TextToCodewords and the routines it calls, rpmdbarcode.pas) chooses the compaction
+        // modes with them, and the symbol of a text is the one Delphi draws only with the same
+        // choices. Two of them are its own: it never counts the last character of the text when it
+        // looks ahead for digits or for text (GoodForNumericCompaction, GoodForTextCompaction), and
+        // to choose between a shift and a latch of the text submode it looks at the character
+        // after the next one. Both give a valid symbol.
+        //
+        // What Delphi does wrong is not ported (barcode-delphi.test.ts of the TypeScript engine
+        // has each case): it stops before a last character that is on its own (while i < CodeLen),
+        // it steps back two characters instead of one where the text compaction meets a character
+        // it cannot write, so the one before it is written twice (Position := Position - 2), it
+        // takes a codeword escape (\Cnnn) for a character, and for a text mode character over 127
+        // it reads past its table.
+
+        // The character at a position of Delphi (from 1)
+        private static char At(string code, int position)
+        {
+            return code[position - 1];
+        }
+
+        // The characters of code page 1252 from 0x80 to 0x9F
+        private const string Cp1252High = "\u20AC\u0081\u201A\u0192\u201E\u2026\u2020\u2021\u02C6\u2030\u0160\u2039\u0152\u008D\u017D\u008F"
+            + "\u0090\u2018\u2019\u201C\u201D\u2022\u2013\u2014\u02DC\u2122\u0161\u203A\u0153\u009D\u017E\u0178";
+
+        /// <summary>
+        /// The text as the bytes PDF417 writes, a character per byte: the AnsiString the Delphi
+        /// engine encodes on a Western Windows (code page 1252: the euro sign is 0x80). A character
+        /// the code page does not have is a question mark.
+        /// </summary>
+        public static string ToAnsi(string text)
+        {
+            System.Text.StringBuilder ansi = null;
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
+                if (c <= 0xFF)
+                {
+                    if (ansi != null) ansi.Append(c);
+                    continue;
+                }
+                if (ansi == null) ansi = new System.Text.StringBuilder(text, 0, i, text.Length);
+                int high = Cp1252High.IndexOf(c);
+                ansi.Append(high >= 0 ? (char)(0x80 + high) : '?');
+            }
+            return ansi == null ? text : ansi.ToString();
+        }
+
         public static int GetRealErrorLevel(int numRows, int numColumns, int eccLevel, int numCodewords)
         {
             if (eccLevel < 0)
@@ -1104,13 +1152,13 @@ namespace Reportman.Reporting {
         public static bool GoodForNumericCompaction(string code, int position, int codeLen, out int count)
         {
             count = 0;
-            while (position + count < codeLen && code[position + count] >= '0' && code[position + count] <= '9')
+            while (position + count < codeLen && At(code, position + count) >= '0' && At(code, position + count) <= '9')
             {
                 count++;
             }
             return count > 13;
         }
-        
+
         public static bool IsGoodTextValue(char v)
         {
             if (v > 127) return false;
@@ -1120,17 +1168,12 @@ namespace Reportman.Reporting {
         public static bool GoodForTextCompaction(string code, int position, int codeLen, out int count)
         {
             count = 0;
-            while (position + count < codeLen && IsGoodTextValue(code[position + count]) && count <= 5)
+            while (position + count < codeLen && IsGoodTextValue(At(code, position + count)) && count <= 5)
             {
                 count++;
             }
-            if (count > 5 || (position + count >= codeLen && count > 0))
-            {
-                if (count == 1) return false;
-                return true;
-            }
             if (count == 1) return false;
-            return false;
+            return count > 5 || (position + count >= codeLen && count > 0);
         }
 
         public static void ConvertBytesToBase900(byte[] s, int[] a)
@@ -1175,38 +1218,39 @@ namespace Reportman.Reporting {
         public static void ConvertToBase900(string s, int[] a, out int lenA)
         {
             if (!IsNumericString(s)) throw new System.Exception("ConvertToBase900: S should be a numeric string");
-            
-            char[] d = s.ToCharArray();
+
+            int[] d = new int[s.Length];
             int lenD = d.Length;
-            
-            int firstDigit = -1;
-            for (int i = lenD - 1; i >= 0; i--)
+
+            // FirstDigit of Delphi (from 1): the first digit that is not zero
+            int firstDigit = 0;
+            for (int i = lenD; i >= 1; i--)
             {
-                d[i] = (char)(d[i] - '0');
-                if (d[i] != 0) firstDigit = i;
+                d[i - 1] = s[i - 1] - '0';
+                if (d[i - 1] != 0) firstDigit = i;
             }
-            
-            if (firstDigit == -1)
+
+            if (firstDigit == 0)
             {
                 lenA = 0;
                 return;
             }
-            
+
             int sp = 0;
-            int[] digits = new int[45]; // MAX_DIGITS_NUM in delphi
-            
+            int[] digits = new int[45];
+
             bool done = false;
             while (!done)
             {
                 if (lenD - firstDigit <= 8)
                 {
-                    long dividend = 0;
-                    for (int i = firstDigit; i < lenD; i++)
-                        dividend = (dividend * 10) + d[i];
-                        
+                    int dividend = 0;
+                    for (int i = firstDigit; i <= lenD; i++)
+                        dividend = (dividend * 10) + d[i - 1];
+
                     while (dividend != 0)
                     {
-                        digits[sp] = (int)(dividend % 900);
+                        digits[sp] = dividend % 900;
                         sp++;
                         dividend = dividend / 900;
                     }
@@ -1218,22 +1262,28 @@ namespace Reportman.Reporting {
                     lenD--;
                     rem = rem + (d[lenD - 1] * 10);
                     lenD--;
-                    
+
                     int dividend = 0;
-                    for (int i = firstDigit; i < lenD; i++)
+                    for (int i = firstDigit; i <= lenD; i++)
                     {
-                        dividend = (dividend * 10) + d[i];
-                        d[i] = (char)(dividend / 9);
+                        dividend = (dividend * 10) + d[i - 1];
+                        d[i - 1] = dividend / 9;
                         dividend = dividend % 9;
                     }
-                    
+
                     digits[sp] = (dividend * 100) + rem;
                     sp++;
-                    
-                    if (d[firstDigit] == 0) firstDigit++;
+
+                    // FirstDigit stays where it is: Delphi compares the digit with the character
+                    // '0', which a digit already turned into its value never is. So the digits
+                    // that become zero at the front are still divided, and the number gets base
+                    // 900 digits that are zero at its front: the 38 digits of a full chunk of
+                    // EncodeNumeric (39 with the 1 before them) are always 15 codewords, which is
+                    // what a reader takes as a group. Without those zeros they would be 13, and
+                    // the reader would take two of the next chunk with them.
                 }
             }
-            
+
             int idx = 0;
             while (sp > 0)
             {
@@ -1243,17 +1293,17 @@ namespace Reportman.Reporting {
             }
             lenA = idx;
         }
-        
+
         public enum TStDataMode { dmBinary, dmText, dmNumeric }
         
         public static void TextToCodewords(string code, int[] codewords, out int numCodewords)
         {
             for (int i = 0; i <= 2700; i++) codewords[i] = 900; // PadCodeword
             numCodewords = 1;
-            int position = 0;
+            int position = 1;
             int codeLen = code.Length;
             if (codeLen == 0) return;
-            
+
             TStDataMode currentMode;
             int count;
             if (GoodForNumericCompaction(code, position, codeLen, out count))
@@ -1270,24 +1320,26 @@ namespace Reportman.Reporting {
                 currentMode = TStDataMode.dmBinary;
                 codewords[numCodewords++] = 901; // BinaryCompaction
             }
-            
-            bool newTextCodeword = true;
-            
-            while (position < codeLen)
+
+            // Up to the last character: Delphi stops before it (while i < CodeLen), and a text
+            // that ends with a character on its own (one character, digits and a letter, text and
+            // an accented letter) loses it
+            while (position <= codeLen)
             {
+                int before = position;
                 switch (currentMode)
                 {
                     case TStDataMode.dmBinary:
                         EncodeBinary(code, codewords, ref numCodewords, ref position, codeLen);
                         break;
                     case TStDataMode.dmText:
-                        EncodeText(code, codewords, ref numCodewords, ref position, codeLen, ref newTextCodeword);
+                        EncodeText(code, codewords, ref numCodewords, ref position, codeLen);
                         break;
                     case TStDataMode.dmNumeric:
                         EncodeNumeric(code, codewords, ref numCodewords, ref position, codeLen);
                         break;
                 }
-                
+
                 if (GoodForNumericCompaction(code, position, codeLen, out count))
                 {
                     if (currentMode != TStDataMode.dmNumeric)
@@ -1302,7 +1354,13 @@ namespace Reportman.Reporting {
                     {
                         codewords[numCodewords++] = 900; // TextCompaction
                         currentMode = TStDataMode.dmText;
-                        newTextCodeword = true;
+                    }
+                    else if (position == before)
+                    {
+                        // The text compaction stopped at an escape it cannot write (\ddd or \Xhh
+                        // of a character without a text value, \G) and would be called again at
+                        // the same position for ever
+                        throw new System.Exception("PDF417: the text compaction cannot write the escape at character " + position + " of the text");
                     }
                 }
                 else
@@ -1341,25 +1399,25 @@ namespace Reportman.Reporting {
         {
             int binaryDataSize = CountBytes(code, position, codeLen);
             bool multipleOfSix = (binaryDataSize % 6 == 0);
-            
+
             if (multipleOfSix) codewords[numCodewords++] = 924;
             else codewords[numCodewords++] = 901;
-            
+
             int i = 0;
             int[] a = new int[7];
             while (i < binaryDataSize)
             {
                 if (binaryDataSize - i < 6)
                 {
-                    codewords[numCodewords++] = (byte)code[position + i];
+                    codewords[numCodewords++] = (byte)At(code, position + i);
                     i++;
                 }
                 else
                 {
                     byte[] bytes = new byte[6] {
-                        (byte)code[position + i], (byte)code[position + i + 1],
-                        (byte)code[position + i + 2], (byte)code[position + i + 3],
-                        (byte)code[position + i + 4], (byte)code[position + i + 5]
+                        (byte)At(code, position + i), (byte)At(code, position + i + 1),
+                        (byte)At(code, position + i + 2), (byte)At(code, position + i + 3),
+                        (byte)At(code, position + i + 4), (byte)At(code, position + i + 5)
                     };
                     ConvertBytesToBase900(bytes, a);
                     for (int j = 0; j < 5; j++)
@@ -1374,12 +1432,12 @@ namespace Reportman.Reporting {
         {
             int startPos = position;
             int maxDigitChunk = 38;
-            while (position < codeLen && position - startPos < maxDigitChunk && code[position] >= '0' && code[position] <= '9')
+            while (position <= codeLen && position - startPos < maxDigitChunk && At(code, position) >= '0' && At(code, position) <= '9')
             {
                 position++;
             }
             if (position - startPos > 0)
-                return "1" + code.Substring(startPos, position - startPos);
+                return "1" + code.Substring(startPos - 1, position - startPos);
             return "";
         }
 
@@ -1522,24 +1580,30 @@ namespace Reportman.Reporting {
         }
 
         
-        private static void EncodeText(string code, int[] codewords, ref int numCodewords, ref int position, int codeLen, ref bool newTextCodeword)
+        private static void EncodeText(string code, int[] codewords, ref int numCodewords, ref int position, int codeLen)
         {
+            bool newTextCodeword = true;
             TSPDF417TextCompactionMode currentTextSubmode = TSPDF417TextCompactionMode.cmAlpha;
             TSPDF417TextCompactionData curChar = new TSPDF417TextCompactionData(-1, TSPDF417TextCompactionMode.cmNone);
             bool done = false;
             int newChar = 0;
             bool isCodeword = false;
-            
-            while (position < codeLen && !done)
+
+            while (position <= codeLen && !done)
             {
                 int oldPosition = position;
-                GetNextCharacter(code, ref newChar, ref isCodeword, ref position, codeLen);
-                
+                // GetNextCharacter counts from 0
+                int next = position - 1;
+                GetNextCharacter(code, ref newChar, ref isCodeword, ref next, codeLen);
+                position = next + 1;
+
                 bool validtext = false;
                 if (newChar <= 127) validtext = TSPDF417TextCompaction[newChar].Value >= 0;
-                
+
                 if (!validtext && !isCodeword)
                 {
+                    // Back to the character the text compaction cannot write (Delphi goes back
+                    // two, and the character before it is written again)
                     position = oldPosition;
                     break;
                 }
@@ -1558,17 +1622,20 @@ namespace Reportman.Reporting {
                 {
                     if ((currentTextSubmode & curChar.Mode) == 0)
                     {
+                        // A shift when the submode goes on, a latch when it does not: Delphi asks
+                        // the character after the next one (Code[Position + 1], with Position
+                        // already at the next one)
                         bool useShift = true;
                         if (position < codeLen)
                         {
-                            char nextCode = code[position];
-                            if (nextCode <= 127 && (currentTextSubmode & TSPDF417TextCompaction[nextCode].Mode) == 0) useShift = false;
+                            char after = At(code, position + 1);
+                            useShift = after <= 127 && (currentTextSubmode & TSPDF417TextCompaction[after].Mode) != 0;
                         }
                         currentTextSubmode = ChangeTextSubmode(currentTextSubmode, SelectBestTextMode(curChar), useShift, codewords, ref numCodewords, ref newTextCodeword);
                     }
                     if (newTextCodeword) { codewords[numCodewords] = 30 * curChar.Value; newTextCodeword = false; } else { codewords[numCodewords++] += curChar.Value; newTextCodeword = true; }
                 }
-                
+
                 int dummy;
                 if (GoodForNumericCompaction(code, position, codeLen, out dummy)) done = true;
             }
@@ -1671,7 +1738,7 @@ namespace Reportman.Reporting {
         public static void GenerateCodewords(string text, int eccLevelIn, int numRowsIn, int numColsIn, out int[] codewordsOut, out int xSize, out int ySize, out int numCodewords, out int numErrorCodewords, out int totalCodewords)
         {
             int[] codewords = new int[2701];
-            TextToCodewords(text, codewords, out numCodewords);
+            TextToCodewords(ToAnsi(text), codewords, out numCodewords);
             
             int errorLevel = GetRealErrorLevel(numRowsIn, numColsIn, eccLevelIn, numCodewords);
             numErrorCodewords = (int)System.Math.Pow(2, errorLevel + 1);
