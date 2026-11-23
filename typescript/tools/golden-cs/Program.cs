@@ -52,6 +52,10 @@ using Reportman.Reporting.Design.Json;
 //   golden-cs sql <Provider|ConnectionString> <sql> [out.json]
 //       Runs a query with the provider and writes its schema (ColumnName, DataType name,
 //       ColumnSize, DataTypeName) and rows as JSON: how the C# engine sees a database's types.
+//
+//   golden-cs barcode <cases.json> <out.json>
+//       What the barcode item encodes for each case, without a report: the PDF417 codewords or
+//       the bar pattern of a linear symbology (see Barcode below).
 class Program
 {
     static int Main(string[] args)
@@ -76,6 +80,7 @@ class Program
                 case "lcmap": return LcMap(args);
                 case "zxing-width": return ZxingWidth(args);
                 case "delphi-dates": return DelphiDates(args);
+                case "barcode": return Barcode(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -473,6 +478,63 @@ class Program
             {
                 results.Add(JValue.CreateNull());
             }
+        }
+        File.WriteAllText(args[2], results.ToString(Formatting.None), new UTF8Encoding(false));
+        return 0;
+    }
+
+    /// <summary>
+    /// barcode CASES.json OUT.json: what the barcode item encodes, without running a report. CASES
+    /// is an array of { "type": a BarcodeType name, "text", "checksum", "ratio", "ecc", "rows",
+    /// "cols" } (all but type and text optional). For CodePDF417 the result is { "rows", "cols",
+    /// "data" (the count of data codewords, the first one), "codewords" (data, padding and error
+    /// correction) }; for the linear symbologies { "pattern" }, the bars and spaces of
+    /// BarcodeItem.CalculateBarcode ('5'-'8' bars, '0'-'3' spaces, 'A'-'D' short bars); or { "error" }.
+    /// </summary>
+    static int Barcode(string[] args)
+    {
+        JArray cases = JArray.Parse(File.ReadAllText(args[1]));
+        var results = new JArray();
+        Type encoder = typeof(BarcodeItem).Assembly.GetType("Reportman.Reporting.PDF417Encoder", true);
+        System.Reflection.MethodInfo generate = encoder.GetMethod("GenerateCodewords",
+            System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+        foreach (JObject c in cases)
+        {
+            var r = new JObject();
+            try
+            {
+                BarcodeType type = (BarcodeType)Enum.Parse(typeof(BarcodeType), (string)c["type"]);
+                string text = (string)c["text"];
+                if (type == BarcodeType.CodePDF417)
+                {
+                    object[] p = { text, (int?)c["ecc"] ?? -1, (int?)c["rows"] ?? 0, (int?)c["cols"] ?? 0, null, 0, 0, 0, 0, 0 };
+                    generate.Invoke(null, p);
+                    int[] codewords = (int[])p[4];
+                    int xSize = (int)p[5], ySize = (int)p[6];
+                    r["rows"] = ySize;
+                    r["cols"] = xSize;
+                    r["data"] = codewords[0];
+                    var list = new JArray();
+                    for (int i = 0; i < xSize * ySize; i++)
+                        list.Add(codewords[i]);
+                    r["codewords"] = list;
+                }
+                else
+                {
+                    var item = new BarcodeItem();
+                    item.BarType = type;
+                    item.Checksum = (bool?)c["checksum"] ?? false;
+                    item.Ratio = (double?)c["ratio"] ?? 2.0;
+                    item.CurrentText = text;
+                    r["pattern"] = item.CalculateBarcode();
+                }
+            }
+            catch (Exception e)
+            {
+                Exception inner = e is System.Reflection.TargetInvocationException && e.InnerException != null ? e.InnerException : e;
+                r["error"] = inner.Message;
+            }
+            results.Add(r);
         }
         File.WriteAllText(args[2], results.ToString(Formatting.None), new UTF8Encoding(false));
         return 0;

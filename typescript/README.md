@@ -125,6 +125,8 @@ as `printreptopdf` does (its metafile, SVG, HTML and PDF), `tools/golden-dfm` re
 as `System.Classes` does, and `tools/golden-delphi-dates` gives the format settings and
 `FormatDateTime` of each culture: a report converted from Delphi formats its dates with the masks
 of Delphi (`packages/reportman-engine/test/generate-delphi-date-fixtures.mjs`). Each folder has its
-`build.bat`.
+`build.bat`. The barcodes are checked against Delphi too: `generate-barcode-delphi-fixtures.mjs`
+keeps the bars `golden-delphi` draws for the `bc-delphi-*` reports, and `barcode-delphi.test.ts`
+compares them with the bars of this engine and reads the symbols back.
 
 License: MPL-2.0, like the C# engine.

@@ -1,6 +1,7 @@
 [
   { "name": "product-catalog", "report": "../../../../samples/product-catalog.rep" },
   { "name": "bc-linear", "report": "fixtures/barcode/bc-linear.rep" },
+  { "name": "bc-delphi-linear", "report": "fixtures/barcode/bc-delphi-linear.rep" },
   { "name": "bc-code128", "report": "fixtures/barcode/bc-code128.rep" },
   { "name": "bc-rotation", "report": "fixtures/barcode/bc-rotation.rep" },
   { "name": "bc-qr", "report": "fixtures/barcode/bc-qr.rep" },
@@ -11,6 +12,9 @@
   { "name": "bc-data", "report": "fixtures/barcode/bc-data.rep" },
   { "name": "bc-op", "report": "fixtures/barcode/bc-op.rep" },
   { "name": "bc-err-matrix", "report": "fixtures/barcode/bc-err-matrix.rep" },
+  { "name": "bc-err-msi", "report": "fixtures/barcode/bc-err-msi.rep" },
+  { "name": "bc-err-postnet", "report": "fixtures/barcode/bc-err-postnet.rep" },
+  { "name": "bc-err-codabar", "report": "fixtures/barcode/bc-err-codabar.rep" },
   { "name": "bc-err-i25", "report": "fixtures/barcode/bc-err-i25.rep" },
   { "name": "bc-err-code93", "report": "fixtures/barcode/bc-err-code93.rep" },
   { "name": "bc-err-ean13", "report": "fixtures/barcode/bc-err-ean13.rep" },

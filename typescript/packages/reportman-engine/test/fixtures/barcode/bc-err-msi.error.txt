@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: MSI bad Data: 12A4:Error calculating barcode

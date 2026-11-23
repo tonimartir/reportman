@@ -3,8 +3,8 @@
 // metafile, each bar (or dark QR module) a filled rectangle; a rotation turns the corners of
 // each bar and draws the rectangle that bounds them.
 //
-// C# parity: the item draws no human-readable text, MSI, PostNet and Codabar draw nothing (their
-// encoders are empty in C#) and the item has no GetExtension of its own (PrintPosItem's).
+// C# parity: the item draws no human-readable text and has no GetExtension of its own
+// (PrintPosItem's).
 
 import { BarcodeItem as BarcodeModel, BarcodeType } from '@reportman/lib';
 import {
@@ -110,6 +110,20 @@ const CODE93X: readonly string[] = [
   'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ']K', ']L', ']M', ']N', ']O',
   ']W', '}A', '}B', '}C', '}D', '}E', '}F', '}G', '}H', '}I', '}J', '}K', '}L', '}M', '}N', '}O',
   '}P', '}Q', '}R', '}S', '}T', '}U', '}V', '}W', '}X', '}Y', '}Z', ']P', ']Q', ']R', ']S', ']T',
+];
+
+// Pattern for Barcode MSI: each digit is its four bits, a 0 a narrow bar and a wide space, a 1 a
+// wide bar and a narrow space
+const TABLE_MSI = ['51515151', '51515160', '51516051', '51516060', '51605151', '51605160', '51606051', '51606060', '60515151', '60515160'];
+// Pattern for Barcode PostNet: a tall bar ('5') or a short one ('A') and a space
+const TABLE_POSTNET = [
+  '5151A1A1A1', 'A1A1A15151', 'A1A151A151', 'A1A15151A1', 'A151A1A151', 'A151A151A1', 'A15151A1A1', '51A1A1A151', '51A1A151A1', '51A151A1A1',
+];
+const TABLE_CODABAR: readonly (readonly [string, string])[] = [
+  ['1', '5050615'], ['2', '5051506'], ['3', '6150505'], ['4', '5060515'], ['5', '6050515'], ['6', '5150506'],
+  ['7', '5150605'], ['8', '5160505'], ['9', '6051505'], ['0', '5050516'], ['-', '5051605'], ['$', '5061505'],
+  [':', '6050606'], ['/', '6060506'], ['.', '6060605'], ['+', '5060606'], ['A', '5061515'], ['B', '5151506'],
+  ['C', '5051516'], ['D', '5051615'],
 ];
 
 /** The line types of DoLines: half is a black line with 2/5 height (used for PostNet). */
@@ -481,10 +495,13 @@ export class BarcodeItem extends PrintPosItem {
         data = this.code93Extended();
         break;
       case BarcodeType.CodeMSI:
+        data = this.codeMSI();
+        break;
       case BarcodeType.CodePostNet:
+        data = this.codePostNet();
+        break;
       case BarcodeType.CodeCodabar:
-        // C# parity: Code_MSI, Code_PostNet and Code_Codabar return an empty pattern
-        data = '';
+        data = this.codeCodabar();
         break;
       case BarcodeType.CodeEAN8:
         data = this.codeEAN8();
@@ -504,12 +521,13 @@ export class BarcodeItem extends PrintPosItem {
       case BarcodeType.Code39Extended:
       case BarcodeType.CodeEAN8:
       case BarcodeType.CodeEAN13:
+      case BarcodeType.CodeCodabar:
         if (this.ratio < 2.0) this.ratio = 2.0;
         if (this.ratio > 3.0) this.ratio = 3.0;
         break;
       case BarcodeType.Code_2_5_matrix:
         if (this.ratio < 2.25) this.ratio = 2.25;
-        if (this.ratio > 3.25) this.ratio = 3.25;
+        if (this.ratio > 3.0) this.ratio = 3.0;
         break;
     }
     const m = this.modules;
@@ -664,16 +682,69 @@ export class BarcodeItem extends PrintPosItem {
     let result = '705050'; // Startcode
     for (let i = 0; i < ftext.length; i++) {
       for (let j = 0; j < 5; j++) {
-        // C# parity: the digit read is the one at i * 2 + 1, past the end of any text of one
-        // character or more (IndexOutOfRangeException)
-        const index = charAt(ftext, i * 2 + 1) - 48;
+        const index = charAt(ftext, i) - 48;
         let c = cell(TABLE_2_5, index, j) === '1' ? 49 : 48;
-        if (j % 2 !== 0) c = c + 5;
+        // The first, third and fifth elements of a digit are bars
+        if (j % 2 === 0) c = c + 5;
         result += String.fromCharCode(c);
       }
       result += '0';
     }
     result += '70505'; // Stopcode
+    return result;
+  }
+
+  /**
+   * Code_MSI: MSI (Modified Plessey) as the Delphi engine draws it, the digits and a check digit,
+   * always (the checksum property does not apply). The check digit is the one of Delphi, computed
+   * from the character codes of the digits and not from their values, with the 32 bit arithmetic
+   * of Delphi: it is not the Mod 10 digit a scanner checks.
+   */
+  private codeMSI(): string {
+    const ftext = this.currentText;
+    let result = '60'; // Startcode
+    let checkEven = 0;
+    let checkOdd = 0;
+    for (let i = 0; i < ftext.length; i++) {
+      const digit = digitOf('MSI', ftext, i);
+      if (i % 2 !== 0) checkOdd = i32(Math.imul(checkOdd, 10) + ftext.charCodeAt(i));
+      else checkEven = i32(checkEven + ftext.charCodeAt(i));
+      result += TABLE_MSI[digit]!;
+    }
+    let checksum = i32(quersumme(Math.imul(checkOdd, 2)) + checkEven);
+    checksum = checksum % 10;
+    if (checksum > 0) checksum = 10 - checksum;
+    if (checksum < 0) throw indexOutOfRange();
+    result += TABLE_MSI[checksum]!;
+    result += '515'; // Stopcode
+    return result;
+  }
+
+  /**
+   * Code_PostNet: PostNet as the Delphi engine draws it, the frame bars around the digits of the
+   * text (the check digit of the ZIP code is part of the text: the engine does not add it).
+   */
+  private codePostNet(): string {
+    const ftext = this.currentText;
+    let result = '51';
+    for (let i = 0; i < ftext.length; i++) result += TABLE_POSTNET[digitOf('PostNet', ftext, i)]!;
+    result += '5';
+    return result;
+  }
+
+  /**
+   * Code_Codabar: Codabar as the Delphi engine draws it, the text between the start character A
+   * and the stop character B, which the engine adds (they are not part of the text).
+   */
+  private codeCodabar(): string {
+    const ftext = this.currentText;
+    let result = TABLE_CODABAR[findCodabar('A')]![1] + '0';
+    for (let i = 0; i < ftext.length; i++) {
+      const idx = findCodabar(ftext.charAt(i));
+      if (idx < 0) throw new NamedException('Codabar bad Data: ' + ftext, ftext);
+      result += TABLE_CODABAR[idx]![1] + '0';
+    }
+    result += TABLE_CODABAR[findCodabar('B')]![1];
     return result;
   }
 
@@ -871,6 +942,28 @@ function findCode39IDX(z: string): number {
 function findCode93(c: string): number {
   for (let i = 0; i < 47; i++) if (TABLE_93[i]![0] === c) return i;
   return -1;
+}
+
+function findCodabar(c: string): number {
+  for (let i = 0; i < TABLE_CODABAR.length; i++) if (TABLE_CODABAR[i]![0] === c) return i;
+  return -1;
+}
+
+/** DigitOf: the digit of a numeric symbology; a text that is not all digits has no symbol. */
+function digitOf(name: string, text: string, index: number): number {
+  const digit = text.charCodeAt(index) - 48;
+  if (digit < 0 || digit > 9) throw new NamedException(name + ' bad Data: ' + text, text);
+  return digit;
+}
+
+/** Quersumme: the sum of the decimal digits of a number; 0 for a negative one, as in Delphi. */
+function quersumme(x: number): number {
+  let sum = 0;
+  while (x > 0) {
+    sum = sum + (x % 10);
+    x = Math.trunc(x / 10);
+  }
+  return sum;
 }
 
 /** Code128.table[v].data with the .NET bounds check. */

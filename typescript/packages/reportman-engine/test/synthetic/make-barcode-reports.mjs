@@ -2,7 +2,9 @@
 // XML reports, with constant expressions or over samples.db, that cover every symbology of
 // BarcodeItem, the checksums, value lengths, modules and ratios, rotations, QR sizes and error
 // correction levels, PDF417 rows, columns, error correction and compaction modes, the code set
-// switching of automatic Code 128, BARCODEOP and the errors of the C# engine.
+// switching of automatic Code 128, BARCODEOP and the errors of the C# engine. The bc-delphi-*
+// reports are the ones compared with the Delphi engine too (generate-barcode-delphi-fixtures.mjs):
+// they have no database, so Delphi runs them as they are.
 //
 //   node test/synthetic/make-barcode-reports.mjs      (from packages/reportman-engine)
 
@@ -156,10 +158,10 @@ function subreport(alias, sections, o = {}) {
 }
 
 const written = [];
-function report(file, { props: p = {}, data = [], subs = [] }) {
+function report(file, { props: p = {}, data = [], subs = [], db = true }) {
   dataCount = 0;
   const xml = `<?xml version="1.0" standalone="no"?>\n<!DOCTYPE REPORT_MANAGER_2>\n<REPORT>\n${props({ ...REPORT_DEFAULTS, ...p })}\n${[
-    database(),
+    ...(db ? [database()] : []),
     ...data,
     ...subs,
   ].join('\n')}\n</REPORT>\n`;
@@ -213,7 +215,7 @@ report('bc-linear.rep', {
           // 2 of 5 industrial
           { expression: q('1234'), TYP: BarType.IND25, MODUL: 8 },
           { expression: q('90817'), TYP: BarType.IND25, MODUL: 9, RATIO: dbl(2.75), TRANSPARENT: false, BCOLOR: 255 },
-          // 2 of 5 matrix: only the empty text does not fail (C# reads past the end)
+          // 2 of 5 matrix (the empty text: the others are in bc-delphi-linear)
           { expression: q(''), TYP: BarType.MAT25, RATIO: dbl(2) },
           // Code 39: unknown characters skipped, checksum, ratios
           { expression: q('CODE 39'), TYP: BarType.C39, MODUL: 8 },
@@ -228,7 +230,7 @@ report('bc-linear.rep', {
           { expression: q('THE QUICK BROWN FOX 0123456789-.$/+%'), TYP: BarType.C93, MODUL: 3, WIDTH: 3400 },
           { expression: q('Hello, World!'), TYP: BarType.C93X, MODUL: 4 },
           { expression: q('code93 extended é'), TYP: BarType.C93X, MODUL: 3, TRANSPARENT: false },
-          // MSI, PostNet and Codabar draw nothing in C#
+          // MSI, PostNet and Codabar (more of them in bc-delphi-linear)
           { expression: q('123456'), TYP: BarType.MSI },
           { expression: q('12345'), TYP: BarType.POSTNET },
           { expression: q('A1234B'), TYP: BarType.CODABAR },
@@ -290,6 +292,48 @@ report('bc-code128.rep', {
           { expression: q('HELLO') + '+#10+' + q('world') + '+#10+' + q('1234'), TYP: BarType.C128, MODUL: 7, caption: 'mixed A B C' },
           { expression: q('9999') + '+#27+' + q('99'), TYP: BarType.C128, caption: 'C A C' },
           { expression: q('Ratio ignored'), TYP: BarType.C128, RATIO: dbl(3), MODUL: 8, TRANSPARENT: false },
+        ],
+      ),
+    ),
+  ],
+});
+
+// The symbologies the C# engine did not draw (MSI, PostNet, Codabar) or failed on (2 of 5 matrix),
+// drawn as the Delphi engine draws them, and Code 93 (plain and extended) up to and over the 14
+// characters after which the weight of its K check character restarts: values, modules, ratios
+// (clamped to 2..3 for Codabar and 2.25..3 for the matrix), transparency and colour. No rotations:
+// the box of a rotated bar is another in Delphi.
+report('bc-delphi-linear.rep', {
+  db: false,
+  subs: [
+    subreport(
+      '',
+      grid(
+        [
+          { expression: q('123456'), TYP: BarType.MSI, caption: 'msi 123456' },
+          { expression: q('12345'), TYP: BarType.MSI, MODUL: 8, RATIO: dbl(2.5), caption: 'msi 12345' },
+          { expression: q('0'), TYP: BarType.MSI, caption: 'msi 0' },
+          { expression: q('98765432109876543210'), TYP: BarType.MSI, MODUL: 4, TRANSPARENT: false, caption: 'msi 20 digits' },
+          { expression: q('80523'), TYP: BarType.MSI, MODUL: 9, RATIO: dbl(3), BCOLOR: 8388608, caption: 'msi 80523' },
+          { expression: q(''), TYP: BarType.MSI, caption: 'msi empty' },
+          { expression: q('12345'), TYP: BarType.POSTNET, caption: 'postnet 12345' },
+          { expression: q('801221905'), TYP: BarType.POSTNET, MODUL: 6, RATIO: dbl(3), caption: 'postnet 801221905' },
+          { expression: q('0123456789'), TYP: BarType.POSTNET, MODUL: 5, TRANSPARENT: false, BCOLOR: 255, caption: 'postnet 0123456789' },
+          { expression: q(''), TYP: BarType.POSTNET, caption: 'postnet empty' },
+          { expression: q('1234'), TYP: BarType.CODABAR, caption: 'codabar 1234' },
+          { expression: q('0123456789-$:/.+'), TYP: BarType.CODABAR, MODUL: 5, RATIO: dbl(2.5), caption: 'codabar all' },
+          { expression: q('40156'), TYP: BarType.CODABAR, MODUL: 8, RATIO: dbl(3.5), TRANSPARENT: false, caption: 'codabar 40156' },
+          { expression: q('12.50+3'), TYP: BarType.CODABAR, MODUL: 7, RATIO: dbl(1.5), caption: 'codabar 12.50+3' },
+          { expression: q(''), TYP: BarType.CODABAR, caption: 'codabar empty' },
+          { expression: q('1234'), TYP: BarType.MAT25, caption: 'matrix 1234' },
+          { expression: q('9081726354'), TYP: BarType.MAT25, MODUL: 6, RATIO: dbl(3.5), caption: 'matrix 9081726354' },
+          { expression: q('5'), TYP: BarType.MAT25, MODUL: 8, RATIO: dbl(2), TRANSPARENT: false, caption: 'matrix 5' },
+          { expression: q('CODE93'), TYP: BarType.C93, MODUL: 8, caption: 'code93 CODE93' },
+          { expression: q('ABCDEFGHIJKLMN'), TYP: BarType.C93, MODUL: 4, caption: 'code93 14' },
+          { expression: q('ABCDEFGHIJKLMNO'), TYP: BarType.C93, MODUL: 4, caption: 'code93 15' },
+          { expression: q('THE QUICK BROWN FOX 0123456789-.$/+%'), TYP: BarType.C93, MODUL: 3, WIDTH: 3400, caption: 'code93 36' },
+          { expression: q('Code 93x'), TYP: BarType.C93X, MODUL: 4, caption: 'code93x Code 93x' },
+          { expression: q('Hello, World!'), TYP: BarType.C93X, MODUL: 4, caption: 'code93x Hello, World!' },
         ],
       ),
     ),
@@ -499,19 +543,26 @@ const ops = [
   "BARCODEOP(5000,CURRENTPOSY+2600,1500,400,'''Rotated''','',6,8,2,45.5,False,0)",
   "BARCODEOP(8500,CURRENTPOSY+2600,1500,400,'''QR draws nothing''','',17,8,2,0,False,0)",
   "BARCODEOP(574,CURRENTPOSY+3300,3000,400,'123456','00000000',0,9,2,0,False,0)",
+  "BARCODEOP(4000,CURRENTPOSY+3300,3000,400,'''4321''','',2,9,2.5,0,False,0)",
+  "BARCODEOP(7500,CURRENTPOSY+3300,3000,400,'''24680''','',11,9,2,0,False,0)",
+  "BARCODEOP(574,CURRENTPOSY+3900,3000,400,'''28001''','',12,9,2,0,False,255)",
+  "BARCODEOP(4000,CURRENTPOSY+3900,3000,400,'''12-34''','',13,9,2,0,False,0)",
 ];
 report('bc-op.rep', {
   subs: [
     subreport('', [
       section('detail', { HEIGHT: 3800, DOBEFOREPRINT: ops.slice(0, 7).join(';') }, [label('BARCODEOP 1', { POSY: 3500 })]),
-      section('detail', { HEIGHT: 3800, DOBEFOREPRINT: ops.slice(7).join(';') }, [expr(ops[0].replace('CURRENTPOSY', '3000'), { POSY: 3500, WIDTH: 3000 })]),
+      section('detail', { HEIGHT: 4600, DOBEFOREPRINT: ops.slice(7).join(';') }, [expr(ops[0].replace('CURRENTPOSY', '3000'), { POSY: 4400, WIDTH: 3000 })]),
     ]),
   ],
 });
 
 // The errors of the C# engine, a report each.
 const errorCases = {
-  'bc-err-matrix': { expression: q('12'), TYP: BarType.MAT25 },
+  'bc-err-matrix': { expression: q('1A'), TYP: BarType.MAT25 },
+  'bc-err-msi': { expression: q('12A4'), TYP: BarType.MSI },
+  'bc-err-postnet': { expression: q('1234-5'), TYP: BarType.POSTNET },
+  'bc-err-codabar': { expression: q('12E4'), TYP: BarType.CODABAR },
   'bc-err-i25': { expression: q('12A4'), TYP: BarType.I25 },
   'bc-err-code93': { expression: q('lower'), TYP: BarType.C93 },
   'bc-err-ean13': { expression: q('12345678901A'), TYP: BarType.EAN13, CHECKSUM: true },
@@ -535,7 +586,7 @@ for (const [name, c] of Object.entries(errorCases)) {
   report(name + '.rep', { subs: [subreport('', [section('detail', { HEIGHT: 1000 }, [barcode(expression, { WIDTH: 3000, HEIGHT: 800, ...o })])])] });
 }
 report('bc-err-op.rep', {
-  subs: [subreport('', [section('detail', { HEIGHT: 1000, DOBEFOREPRINT: "BARCODEOP(574,0,3000,500,'''12''','',2,10,2,0,False,0)" }, [label('op')])])],
+  subs: [subreport('', [section('detail', { HEIGHT: 1000, DOBEFOREPRINT: "BARCODEOP(574,0,3000,500,'''1A''','',2,10,2,0,False,0)" }, [label('op')])])],
 });
 
 console.log(written.join('\n'));

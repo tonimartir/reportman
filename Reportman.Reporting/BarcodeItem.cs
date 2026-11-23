@@ -616,6 +616,7 @@ namespace Reportman.Reporting
                 case BarcodeType.Code39Extended:
                 case BarcodeType.CodeEAN8:
                 case BarcodeType.CodeEAN13:
+                case BarcodeType.CodeCodabar:
                     if (Ratio < 2.0)
                         Ratio = 2.0;
                     if (Ratio > 3.0)
@@ -624,8 +625,8 @@ namespace Reportman.Reporting
                 case BarcodeType.Code_2_5_matrix:
                     if (Ratio < 2.25)
                         Ratio = 2.25;
-                    if (Ratio > 3.25)
-                        Ratio = 3.25;
+                    if (Ratio > 3.0)
+                        Ratio = 3.0;
                     break;
             }
             modules[0] = Modul;
@@ -689,17 +690,151 @@ namespace Reportman.Reporting
             aresult.Append(DoConvert(Code128.Stop));
             return aresult.ToString();
         }
+        // The digit of a numeric symbology (the TRpDigit of Delphi, which reads past its table for
+        // any other character): a text that is not all digits has no symbol
+        private static int DigitOf(string name, string text, int index)
+        {
+            int digit = text[index] - '0';
+            if (digit < 0 || digit > 9)
+                throw new NamedException(name + " bad Data: " + text, text);
+            return digit;
+        }
+        // Pattern for Barcode MSI: each digit is its four bits, a 0 a narrow bar and a wide space,
+        // a 1 a wide bar and a narrow space
+        private static string[] tabelle_MSI = new string[10] {
+            "51515151",    // 0
+            "51515160",    // 1
+            "51516051",    // 2
+            "51516060",    // 3
+            "51605151",    // 4
+            "51605160",    // 5
+            "51606051",    // 6
+            "51606060",    // 7
+            "60515151",    // 8
+            "60515160"     // 9
+        };
+        // The sum of the decimal digits of a number (Quersumme); 0 for a negative one, as in Delphi
+        private static int Quersumme(int x)
+        {
+            int sum = 0;
+            while (x > 0)
+            {
+                sum = sum + (x % 10);
+                x = x / 10;
+            }
+            return sum;
+        }
+        // MSI (Modified Plessey), as the Delphi engine draws it: the digits and a check digit,
+        // always (the Checksum property does not apply). The check digit is the one of Delphi,
+        // computed from the character codes of the digits and not from their values, with the
+        // 32 bit arithmetic of Delphi: it is not the Mod 10 digit a scanner checks.
         private string Code_MSI()
         {
-            return "";
+            string FText = CurrentText ?? "";
+            StringBuilder result = new StringBuilder("60");    // Startcode
+            int check_even = 0;
+            int check_odd = 0;
+            for (int i = 0; i < FText.Length; i++)
+            {
+                int digit = DigitOf("MSI", FText, i);
+                unchecked
+                {
+                    if ((i % 2) != 0)
+                        check_odd = check_odd * 10 + FText[i];
+                    else
+                        check_even = check_even + FText[i];
+                }
+                result.Append(tabelle_MSI[digit]);
+            }
+            int checksum = Quersumme(unchecked(check_odd * 2)) + check_even;
+            checksum = checksum % 10;
+            if (checksum > 0)
+                checksum = 10 - checksum;
+            result.Append(tabelle_MSI[checksum]);
+            result.Append("515");    // Stopcode
+            return result.ToString();
         }
+        // Pattern for Barcode PostNet: a tall bar ('5') or a short one ('A') and a space
+        private static string[] tabelle_PostNet = new string[10] {
+            "5151A1A1A1",    // 0
+            "A1A1A15151",    // 1
+            "A1A151A151",    // 2
+            "A1A15151A1",    // 3
+            "A151A1A151",    // 4
+            "A151A151A1",    // 5
+            "A15151A1A1",    // 6
+            "51A1A1A151",    // 7
+            "51A1A151A1",    // 8
+            "51A151A1A1"     // 9
+        };
+        // PostNet, as the Delphi engine draws it: the frame bars around the digits of the text (the
+        // check digit of the ZIP code is part of the text: the engine does not add it)
         private string Code_PostNet()
         {
-            return "";
+            string FText = CurrentText ?? "";
+            StringBuilder result = new StringBuilder("51");
+            for (int i = 0; i < FText.Length; i++)
+                result.Append(tabelle_PostNet[DigitOf("PostNet", FText, i)]);
+            result.Append("5");
+            return result.ToString();
         }
+        private struct Codabar
+        {
+            public char c;
+            public string data;
+            public Codabar(char c1, string data1)
+            {
+                c = c1;
+                data = data1;
+            }
+            public static Codabar[] table = new Codabar[20] {
+                new Codabar('1',"5050615"),
+                new Codabar('2',"5051506"),
+                new Codabar('3',"6150505"),
+                new Codabar('4',"5060515"),
+                new Codabar('5',"6050515"),
+                new Codabar('6',"5150506"),
+                new Codabar('7',"5150605"),
+                new Codabar('8',"5160505"),
+                new Codabar('9',"6051505"),
+                new Codabar('0',"5050516"),
+                new Codabar('-',"5051605"),
+                new Codabar('$',"5061505"),
+                new Codabar(':',"6050606"),
+                new Codabar('/',"6060506"),
+                new Codabar('.',"6060605"),
+                new Codabar('+',"5060606"),
+                new Codabar('A',"5061515"),
+                new Codabar('B',"5151506"),
+                new Codabar('C',"5051516"),
+                new Codabar('D',"5051615")
+            };
+        }
+        private static int Find_Codabar(char c)
+        {
+            for (int i = 0; i < Codabar.table.Length; i++)
+            {
+                if (Codabar.table[i].c == c)
+                    return i;
+            }
+            return -1;
+        }
+        // Codabar, as the Delphi engine draws it: the text between the start character A and the
+        // stop character B, which the engine adds (they are not part of the text)
         private string Code_Codabar()
         {
-            return "";
+            string FText = CurrentText ?? "";
+            StringBuilder result = new StringBuilder(Codabar.table[Find_Codabar('A')].data + "0");
+            for (int i = 0; i < FText.Length; i++)
+            {
+                int idx = Find_Codabar(FText[i]);
+                // Delphi reads before its table for a character Codabar does not have
+                if (idx < 0)
+                    throw new NamedException("Codabar bad Data: " + FText, FText);
+                result.Append(Codabar.table[idx].data + "0");
+            }
+            result.Append(Codabar.table[Find_Codabar('B')].data);
+            return result.ToString();
         }
         private static char[,] tabelle_ParityEAN13 = new char[10, 6] {
         {'A', 'A', 'A', 'A', 'A', 'A'},    // 0
@@ -916,13 +1051,14 @@ namespace Reportman.Reporting
             {
                 for (j = 0; j < 5; j++)
                 {
-                    index = ((int)FText[i * 2 + 1]) - ((int)'0');
+                    index = ((int)FText[i]) - ((int)'0');
                     if (tabelle_2_5[index, j] == '1')
                         c = '1';
                     else
                         c = '0';
-                    //			  if odd(j) then
-                    if ((j % 2) != 0)
+                    // if odd(j) then, with the j of Delphi (1 to 5): the first, third and fifth
+                    // elements of a digit are bars
+                    if ((j % 2) == 0)
                         c = (char)((int)c + 5);
                     result = result + c;
                 }

@@ -1,0 +1,1 @@
+ERROR Reportman.Reporting.ReportException: Codabar bad Data: 12E4:Error calculating barcode
