@@ -557,6 +557,24 @@ report('bc-delphi-qr.rep', {
   ],
 });
 
+// The QR at every rotation (the Delphi engine draws it upright before its fix): the symbol turned
+// about its centre, in a square box and in a wide one (the symbol centred in it).
+report('bc-delphi-qr-rotation.rep', {
+  db: false,
+  subs: [
+    subreport(
+      '',
+      grid(
+        [
+          ...rotations.map((r) => ({ expression: q('QR rotated'), caption: 'qr ' + r, TYP: BarType.QR, ROTATION: r, WIDTH: 800, HEIGHT: 800 })),
+          ...rotations.map((r) => ({ expression: q('Wide box'), caption: 'qr wide ' + r, TYP: BarType.QR, ROTATION: r, WIDTH: 1300, HEIGHT: 700, TRANSPARENT: r % 900 === 0 })),
+        ],
+        { cols: 3, cellW: 3580, cellH: 1600, rowsPerSection: 3 },
+      ),
+    ),
+  ],
+});
+
 // Data from samples.db: Code 128, QR and EAN-13 of each product, and BARCODEOP in the before
 // print expression of the section.
 report('bc-data.rep', {

@@ -206,3 +206,45 @@ describe('QR against the Delphi engine', () => {
     expect(symbol.level).toBe(level(c));
   });
 });
+
+/**
+ * The bars of a symbol turned by a multiple of 90 degrees put upright again: each bar turned back
+ * about the centre of the symbol (the engine turns x' = x cos + y sin, y' = -x sin + y cos).
+ */
+function upright(bars: readonly Bar[], rotation: number): Bar[] {
+  const left = Math.min(...bars.map((b) => b[0]));
+  const top = Math.min(...bars.map((b) => b[1]));
+  const cx = (left + Math.max(...bars.map((b) => b[0] + b[2]))) / 2;
+  const cy = (top + Math.max(...bars.map((b) => b[1] + b[3]))) / 2;
+  const alpha = ((rotation / 10) * Math.PI) / 180;
+  const cos = Math.round(Math.cos(alpha));
+  const sin = Math.round(Math.sin(alpha));
+  return bars.map((b) => {
+    const x = b[0] + b[2] / 2 - cx;
+    const y = b[1] + b[3] / 2 - cy;
+    const ux = x * cos - y * sin;
+    const uy = x * sin + y * cos;
+    const [w, h] = sin === 0 ? [b[2], b[3]] : [b[3], b[2]];
+    return [Math.round(cx + ux - w / 2), Math.round(cy + uy - h / 2), w, h, b[4]] as unknown as Bar;
+  });
+}
+
+describe('QR at every rotation against the Delphi engine', () => {
+  // The Delphi engine drew the QR upright whatever its Rotation before its fix (2026-11-23); now
+  // both turn it about its centre, each module the box around its turned corners
+  const reference = delphi('bc-delphi-qr-rotation');
+  const drawn = engine('bc-delphi-qr-rotation');
+
+  it.each([...reference.keys()])('draws the modules of Delphi: %s', async (label) => {
+    expectSameBars((await drawn).get(label)!, reference.get(label)!);
+  });
+
+  it.each([...reference.keys()].filter((label) => Number(label.split(' ').pop()) % 900 === 0))(
+    'reads back as the text when turned by a multiple of 90 degrees: %s',
+    async (label) => {
+      const rotation = Number(label.split(' ').pop());
+      const text = label.startsWith('qr wide') ? 'Wide box' : 'QR rotated';
+      expect(readQr(upright((await drawn).get(label)!.bars, rotation)).text).toBe(text);
+    },
+  );
+});
