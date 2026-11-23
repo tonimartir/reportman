@@ -10,7 +10,7 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import { describe, expect, it } from 'vitest';
 import { here, metaFileJson, runLikeGolden } from './golden-run.js';
-import { readCodabar, readCode93, readMatrix25, readMsi, readPostNet, type Bar } from './barcode-readers.js';
+import { elements, msiMod10, readCodabar, readCode93, readMatrix25, readMsi, readPostNet, type Bar } from './barcode-readers.js';
 
 const fixtures = path.join(here, 'fixtures/barcode');
 
@@ -49,8 +49,13 @@ describe('linear barcodes against the Delphi engine', () => {
   const drawn = engine('bc-delphi-linear');
   const labels = [...reference.keys()];
 
-  // Code 93 extended is not what Delphi draws: see below
-  it.each(labels.filter((l) => !l.startsWith('code93x')))('draws the bars of Delphi: %s', async (label) => {
+  // Where Delphi is wrong the bars are others, each case in its test below: the check digit of
+  // MSI, the short bars of PostNet, the check characters of a Code 93 over 14 characters and the
+  // whole of Code 93 extended
+  const wrongInDelphi = (l: string): boolean =>
+    l.startsWith('msi ') || (l.startsWith('postnet ') && l !== 'postnet empty') || l === 'code93 15' || l === 'code93 36' || l.startsWith('code93x');
+
+  it.each(labels.filter((l) => !wrongInDelphi(l)))('draws the bars of Delphi: %s', async (label) => {
     const ours = (await drawn).get(label)!;
     const theirs = reference.get(label)!;
     expect(theirs.bars.length).toBeGreaterThan(0);
@@ -58,22 +63,64 @@ describe('linear barcodes against the Delphi engine', () => {
     expect(ours.bars).toEqual(theirs.bars);
   });
 
-  it('MSI reads as its digits and a check digit', async () => {
-    const d = await drawn;
-    expect(readMsi(d.get('msi 123456')!.bars).slice(0, -1)).toBe('123456');
-    expect(readMsi(d.get('msi 12345')!.bars).slice(0, -1)).toBe('12345');
-    expect(readMsi(d.get('msi 0')!.bars).slice(0, -1)).toBe('0');
-    expect(readMsi(d.get('msi 20 digits')!.bars).slice(0, -1)).toBe('98765432109876543210');
-    expect(readMsi(d.get('msi 80523')!.bars).slice(0, -1)).toBe('80523');
-    expect(readMsi(d.get('msi empty')!.bars).length).toBe(1);
+  it.each([
+    ['msi 123456', '123456'],
+    ['msi 12345', '12345'],
+    ['msi 0', '0'],
+    ['msi 20 digits', '98765432109876543210'],
+    ['msi 80523', '80523'],
+    ['msi empty', ''],
+  ])('MSI draws the bars of Delphi but for the check digit, the Mod 10 one: %s', async (label, text) => {
+    const ours = (await drawn).get(label)!.bars;
+    const theirs = reference.get(label)!.bars;
+    const read = readMsi(ours);
+    expect(read).toBe(text + String(msiMod10(text)));
+    // Code_MSI of Delphi adds the character codes of the digits (ord(FText[i])), not their
+    // values, and takes the alternate digits from the left: its check digit is another one
+    // (the same by chance for some texts), which a scanner that checks Mod 10 refuses
+    const delphiRead = readMsi(theirs);
+    expect(delphiRead.slice(0, -1)).toBe(text);
+    if (delphiRead === read) {
+      expect(ours).toEqual(theirs);
+      return;
+    }
+    // The same bars everywhere but in the check digit: eight elements before the three of the stop
+    const a = elements(ours);
+    const b = elements(theirs);
+    expect(a.length).toBe(b.length);
+    const check = a.length - 11;
+    expect(a.slice(0, check)).toEqual(b.slice(0, check));
+    expect(a.slice(check + 8)).toEqual(b.slice(check + 8));
+    expect(ours.length).toBe(theirs.length);
+    expect(ours[0]).toEqual(theirs[0]);
+    expect(ours[ours.length - 1]).toEqual(theirs[theirs.length - 1]);
   });
 
-  it('PostNet reads as its digits', async () => {
-    const d = await drawn;
-    expect(readPostNet(d.get('postnet 12345')!.bars).digits).toBe('12345');
-    expect(readPostNet(d.get('postnet 801221905')!.bars).digits).toBe('801221905');
-    expect(readPostNet(d.get('postnet 0123456789')!.bars).digits).toBe('0123456789');
-    expect(readPostNet(d.get('postnet empty')!.bars).digits).toBe('');
+  it('the check digit of MSI that Delphi draws is not the Mod 10 one', () => {
+    // 123456: Mod 10 is 6, Delphi draws 2. When Delphi is fixed this fails: the bars are then
+    // the same and the test above compares them all.
+    expect(readMsi(reference.get('msi 123456')!.bars)).toBe('1234562');
+    expect(msiMod10('123456')).toBe(6);
+  });
+
+  it.each([
+    ['postnet 12345', '12345'],
+    ['postnet 801221905', '801221905'],
+    ['postnet 0123456789', '0123456789'],
+  ])('PostNet draws the bars of Delphi with the short ones on the base line: %s', async (label, text) => {
+    const ours = (await drawn).get(label)!.bars;
+    const theirs = reference.get(label)!.bars;
+    expect(readPostNet(ours)).toEqual({ digits: text, aligned: 'bottom' });
+    // DoLines of Delphi draws a short bar from the top of the item (its height is 2/5 of it):
+    // the symbol upside down, which reads as other digits
+    expect(readPostNet(theirs)).toEqual({ digits: text, aligned: 'top' });
+    expect(ours.length).toBe(theirs.length);
+    const height = Math.max(...theirs.map((b) => b[3]));
+    for (let i = 0; i < ours.length; i++) {
+      const [left, top, width, h, color] = theirs[i]!;
+      // The same bar, a short one moved down to end where the tall ones end
+      expect(ours[i]).toEqual([left, top + (height - h), width, h, color]);
+    }
   });
 
   it('Codabar reads as its text between the start A and the stop B', async () => {
@@ -96,13 +143,35 @@ describe('linear barcodes against the Delphi engine', () => {
     const d = await drawn;
     expect(readCode93(d.get('code93 CODE93')!.bars)).toBe('CODE93');
     expect(readCode93(d.get('code93 14')!.bars)).toBe('ABCDEFGHIJKLMN');
+    expect(readCode93(d.get('code93 15')!.bars)).toBe('ABCDEFGHIJKLMNO');
+    expect(readCode93(d.get('code93 36')!.bars)).toBe('THE QUICK BROWN FOX 0123456789-.$/+%');
+  });
+
+  it.each(['code93 15', 'code93 36'])('Code 93 over 14 characters draws the bars of Delphi but for the check characters: %s', async (label) => {
+    const ours = (await drawn).get(label)!.bars;
+    const theirs = reference.get(label)!.bars;
+    // Code_93 of Delphi restarts the weight of the C check character where the weight of K has
+    // to restart (if weightK > 15 then weightC := 1): from the fifteenth character on both check
+    // characters are wrong, and a reader refuses the symbol
+    expect(() => readCode93(theirs)).toThrow();
+    const a = elements(ours);
+    const b = elements(theirs);
+    expect(a.length).toBe(b.length);
+    // Six elements per check character, before the seven of the stop
+    const check = a.length - 7 - 12;
+    expect(a.slice(0, check)).toEqual(b.slice(0, check));
+    expect(a.slice(check + 12)).toEqual(b.slice(check + 12));
+    expect(a.slice(check, check + 12)).not.toEqual(b.slice(check, check + 12));
   });
 
   it('Code 93 extended writes the text: Delphi writes a NUL before it and loses its last character', async () => {
     // Code_93Extended of Delphi (rpmdbarcode.pas) walks the text from 0 to Length - 1: index 0 of
     // an AnsiString is the last byte of its length (0), and the last character is never read
-    const label = 'code93x Code 93x';
-    expect(readCode93((await drawn).get(label)!.bars)).toBe('Code 93x');
-    expect(readCode93(reference.get(label)!.bars)).toBe('\0Code 93');
+    const d = await drawn;
+    expect(readCode93(d.get('code93x Code 93x')!.bars)).toBe('Code 93x');
+    expect(readCode93(reference.get('code93x Code 93x')!.bars)).toBe('\0Code 93');
+    // 23 characters of Code 93: readable with the check characters right
+    expect(readCode93(d.get('code93x Hello, World!')!.bars)).toBe('Hello, World!');
+    expect(() => readCode93(reference.get('code93x Hello, World!')!.bars)).toThrow();
   });
 });

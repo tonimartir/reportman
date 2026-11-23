@@ -696,25 +696,27 @@ export class BarcodeItem extends PrintPosItem {
 
   /**
    * Code_MSI: MSI (Modified Plessey) as the Delphi engine draws it, the digits and a check digit,
-   * always (the checksum property does not apply). The check digit is the one of Delphi, computed
-   * from the character codes of the digits and not from their values, with the 32 bit arithmetic
-   * of Delphi: it is not the Mod 10 digit a scanner checks.
+   * always (the checksum property does not apply). The check digit is the Mod 10 one a scanner
+   * checks (Luhn: from the right, every other digit doubled, the digits of the doubles added).
+   * Delphi means the same digit but adds the character codes of the digits instead of their
+   * values (and counts from the left), so its digit is another.
    */
   private codeMSI(): string {
     const ftext = this.currentText;
     let result = '60'; // Startcode
-    let checkEven = 0;
-    let checkOdd = 0;
-    for (let i = 0; i < ftext.length; i++) {
-      const digit = digitOf('MSI', ftext, i);
-      if (i % 2 !== 0) checkOdd = i32(Math.imul(checkOdd, 10) + ftext.charCodeAt(i));
-      else checkEven = i32(checkEven + ftext.charCodeAt(i));
-      result += TABLE_MSI[digit]!;
+    for (let i = 0; i < ftext.length; i++) result += TABLE_MSI[digitOf('MSI', ftext, i)]!;
+    let sum = 0;
+    let twice = true;
+    for (let i = ftext.length - 1; i >= 0; i--) {
+      let digit = ftext.charCodeAt(i) - 48;
+      if (twice) {
+        digit = digit * 2;
+        if (digit > 9) digit = digit - 9;
+      }
+      sum = i32(sum + digit);
+      twice = !twice;
     }
-    let checksum = i32(quersumme(Math.imul(checkOdd, 2)) + checkEven);
-    checksum = checksum % 10;
-    if (checksum > 0) checksum = 10 - checksum;
-    if (checksum < 0) throw indexOutOfRange();
+    const checksum = (10 - (sum % 10)) % 10;
     result += TABLE_MSI[checksum]!;
     result += '515'; // Stopcode
     return result;
@@ -809,8 +811,9 @@ export class BarcodeItem extends PrintPosItem {
       weightC++;
       if (weightC > 20) weightC = 1;
       weightK++;
-      // C# parity: the K weight never restarts (the weight of C is reset instead)
-      if (weightK > 15) weightC = 1;
+      // The weights of K go from 1 to 15 and start again (Delphi restarts the weight of C here
+      // instead: over 14 characters its check characters are wrong)
+      if (weightK > 15) weightK = 1;
     }
     checkK = i32(checkK + checkC);
     checkC = checkC % 47;
@@ -918,12 +921,15 @@ export class BarcodeItem extends PrintPosItem {
       if (lt !== LineType.White || (lt === LineType.White && !this.transparent)) {
         const brushColor = penColor;
         const aheight = lt === LineType.Half ? idiv(Math.imul(this.printHeight, 2), 5) : this.printHeight;
+        // The short bars of PostNet stand on the base line of the tall ones (Delphi hangs them
+        // from the top: the symbol upside down)
+        const atop = i32(this.printHeight - aheight);
         // a, b, c, d builds the rectangle we want to draw
         const [a, c] = placeRectangle(
-          { x: xadd, y: 0 },
-          { x: xadd, y: aheight },
-          { x: i32(xadd + awidth), y: aheight },
-          { x: i32(xadd + awidth), y: 0 },
+          { x: xadd, y: atop },
+          { x: xadd, y: i32(atop + aheight) },
+          { x: i32(xadd + awidth), y: i32(atop + aheight) },
+          { x: i32(xadd + awidth), y: atop },
           origin,
           this.rotation,
         );
@@ -954,16 +960,6 @@ function digitOf(name: string, text: string, index: number): number {
   const digit = text.charCodeAt(index) - 48;
   if (digit < 0 || digit > 9) throw new NamedException(name + ' bad Data: ' + text, text);
   return digit;
-}
-
-/** Quersumme: the sum of the decimal digits of a number; 0 for a negative one, as in Delphi. */
-function quersumme(x: number): number {
-  let sum = 0;
-  while (x > 0) {
-    sum = sum + (x % 10);
-    x = Math.trunc(x / 10);
-  }
-  return sum;
 }
 
 /** Code128.table[v].data with the .NET bounds check. */

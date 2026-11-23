@@ -713,43 +713,32 @@ namespace Reportman.Reporting
             "60515151",    // 8
             "60515160"     // 9
         };
-        // The sum of the decimal digits of a number (Quersumme); 0 for a negative one, as in Delphi
-        private static int Quersumme(int x)
-        {
-            int sum = 0;
-            while (x > 0)
-            {
-                sum = sum + (x % 10);
-                x = x / 10;
-            }
-            return sum;
-        }
         // MSI (Modified Plessey), as the Delphi engine draws it: the digits and a check digit,
-        // always (the Checksum property does not apply). The check digit is the one of Delphi,
-        // computed from the character codes of the digits and not from their values, with the
-        // 32 bit arithmetic of Delphi: it is not the Mod 10 digit a scanner checks.
+        // always (the Checksum property does not apply). The check digit is the Mod 10 one a
+        // scanner checks (Luhn: from the right, every other digit doubled, the digits of the
+        // doubles added). Delphi means the same digit but adds the character codes of the digits
+        // instead of their values (and counts from the left), so its digit is another.
         private string Code_MSI()
         {
             string FText = CurrentText ?? "";
             StringBuilder result = new StringBuilder("60");    // Startcode
-            int check_even = 0;
-            int check_odd = 0;
             for (int i = 0; i < FText.Length; i++)
+                result.Append(tabelle_MSI[DigitOf("MSI", FText, i)]);
+            int sum = 0;
+            bool twice = true;
+            for (int i = FText.Length - 1; i >= 0; i--)
             {
-                int digit = DigitOf("MSI", FText, i);
-                unchecked
+                int digit = FText[i] - '0';
+                if (twice)
                 {
-                    if ((i % 2) != 0)
-                        check_odd = check_odd * 10 + FText[i];
-                    else
-                        check_even = check_even + FText[i];
+                    digit = digit * 2;
+                    if (digit > 9)
+                        digit = digit - 9;
                 }
-                result.Append(tabelle_MSI[digit]);
+                sum = sum + digit;
+                twice = !twice;
             }
-            int checksum = Quersumme(unchecked(check_odd * 2)) + check_even;
-            checksum = checksum % 10;
-            if (checksum > 0)
-                checksum = 10 - checksum;
+            int checksum = (10 - (sum % 10)) % 10;
             result.Append(tabelle_MSI[checksum]);
             result.Append("515");    // Stopcode
             return result.ToString();
@@ -1349,8 +1338,11 @@ namespace Reportman.Reporting
                 if (weightC > 20)
                     weightC = 1;
                 weightK++;
+                // The weights of K go from 1 to 15 and start again. (Delphi restarts the weight
+                // of C here instead, and K never restarts: over 14 characters both check
+                // characters are wrong and a reader refuses the symbol.)
                 if (weightK > 15)
-                    weightC = 1;
+                    weightK = 1;
             }
             checkK = checkK + checkC;
 
@@ -1854,10 +1846,13 @@ namespace Reportman.Reporting
                         aheight = PrintHeight * 2 / 5;
                     else
                         aheight = PrintHeight;
-                    a = new Point(xadd, 0);
-                    b = new Point(xadd, aheight);
-                    c = new Point(xadd + awidth, aheight);
-                    d = new Point(xadd + awidth, 0);
+                    // The short bars of PostNet stand on the base line of the tall ones (Delphi
+                    // hangs them from the top: the symbol upside down)
+                    int atop = PrintHeight - aheight;
+                    a = new Point(xadd, atop);
+                    b = new Point(xadd, atop + aheight);
+                    c = new Point(xadd + awidth, atop + aheight);
+                    d = new Point(xadd + awidth, atop);
                     // a,b,c,d builds the rectangle we want to draw
 
 

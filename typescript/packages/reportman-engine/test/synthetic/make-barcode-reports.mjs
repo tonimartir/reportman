@@ -225,7 +225,7 @@ report('bc-linear.rep', {
           // Code 39 extended
           { expression: q('Code39ext!'), TYP: BarType.C39X, MODUL: 5 },
           { expression: q('a-b.c ~ é'), TYP: BarType.C39X, MODUL: 5, CHECKSUM: true },
-          // Code 93 and extended (the C# weights of the K check)
+          // Code 93 and extended
           { expression: q('CODE93'), TYP: BarType.C93, MODUL: 8 },
           { expression: q('THE QUICK BROWN FOX 0123456789-.$/+%'), TYP: BarType.C93, MODUL: 3, WIDTH: 3400 },
           { expression: q('Hello, World!'), TYP: BarType.C93X, MODUL: 4 },
@@ -302,7 +302,9 @@ report('bc-code128.rep', {
 // drawn as the Delphi engine draws them, and Code 93 (plain and extended) up to and over the 14
 // characters after which the weight of its K check character restarts: values, modules, ratios
 // (clamped to 2..3 for Codabar and 2.25..3 for the matrix), transparency and colour. No rotations:
-// the box of a rotated bar is another in Delphi.
+// the box of a rotated bar is another in Delphi. Delphi is wrong in some of them (the check digit
+// of MSI, the short bars of PostNet, the check characters of a long Code 93, Code 93 extended):
+// barcode-delphi.test.ts tells each difference.
 report('bc-delphi-linear.rep', {
   db: false,
   subs: [
