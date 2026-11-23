@@ -1103,6 +1103,9 @@ export class Variant {
           case VariantType.Decimal:
             return Variant.fromDateTime(a.dt.addDays(-b.d.toDouble()));
           case VariantType.DateTime:
+            // A time without a date is kept on the day 0001-01-01: against a date, each one counts
+            // as its OLE value, as in the Delphi engine (NOW-TIME gave the days since the year 1)
+            if ((a.dt.days === 0) !== (b.dt.days === 0)) return Variant.fromDouble(a.dt.toOADate() - b.dt.toOADate());
             return Variant.fromDouble(a.dt.totalDaysSince(b.dt));
           default:
             throw error();

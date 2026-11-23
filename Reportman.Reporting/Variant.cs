@@ -1546,8 +1546,16 @@ namespace Reportman.Reporting
                             break;
                         case VariantType.DateTime:
                             aresult.FVarType = VariantType.Double;
-                            TimeSpan ndist = (avalue1.FDateTime - avalue2.FDateTime);
-                            aresult.FDouble = ndist.TotalDays;
+                            // A time without a date is kept on the day 0001-01-01: against a date, each one
+                            // counts as its OLE value, as in the Delphi engine (NOW-TIME gave the days since
+                            // the year 1, not the date)
+                            if ((avalue1.FDateTime.Ticks < TimeSpan.TicksPerDay) != (avalue2.FDateTime.Ticks < TimeSpan.TicksPerDay))
+                                aresult.FDouble = avalue1.FDateTime.ToOADate() - avalue2.FDateTime.ToOADate();
+                            else
+                            {
+                                TimeSpan ndist = (avalue1.FDateTime - avalue2.FDateTime);
+                                aresult.FDouble = ndist.TotalDays;
+                            }
                             break;
                         default:
                             throw new UnNamedException(Translator.TranslateStr(438));

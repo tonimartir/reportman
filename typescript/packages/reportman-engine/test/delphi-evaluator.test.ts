@@ -483,6 +483,11 @@ describe('a date plus a date and a number minus a date (every report)', () => {
       expect(iso(ev, 'TODAY+TIME')).toBe('2024-02-29 13:45:30');
       expect(iso(ev, 'TIME+TODAY')).toBe('2024-02-29 13:45:30');
       expect(text(ev, '(TODAY+TIME)-NOW')).toBe('0');
+      // A date minus a time without a date: the OLE values of both (45351 is 29-2-2024; it gave
+      // the days since the year 1). Two times, and two dates, are subtracted as always
+      expect(text(ev, 'INT(NOW-TIME)')).toBe('45351');
+      expect(text(ev, 'TIME-TIME')).toBe('0');
+      expect(text(ev, 'FLOATTODATETIME(45001)-FLOATTODATETIME(45000)')).toBe('1');
       expect(iso(ev, 'TODAY+FLOATTODATETIME(0.75)')).toBe('2024-02-29 18:00:00');
       expect(num(ev, 'YEAR(TIME+TIME)')).toBe(1899);
       // A date .NET does not hold (after the year 9999) is an error
