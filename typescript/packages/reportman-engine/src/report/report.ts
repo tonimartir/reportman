@@ -1671,6 +1671,10 @@ export class ReportRuntime {
     penWidth: number,
     penColor: number,
   ): boolean {
+    // GRAPHICOP, IMAGEOP, BARCODEOP and TEXTOP take (Top, Left, ...) in the Delphi engine, as their help
+    // says; the C# engine reads them as (Left, Top, ...), and reports written for it rely on that
+    // order. A report converted from Delphi keeps the order of Delphi
+    if (this.convertedFromDelphi) [left, top] = [top, left];
     const obj = new MetaObjectDraw();
     obj.metaType = MetaObjectType.Draw;
     obj.top = top;
@@ -1737,6 +1741,10 @@ export class ReportRuntime {
     previewOnly: boolean,
     image: string,
   ): boolean {
+    // GRAPHICOP, IMAGEOP, BARCODEOP and TEXTOP take (Top, Left, ...) in the Delphi engine, as their help
+    // says; the C# engine reads them as (Left, Top, ...), and reports written for it rely on that
+    // order. A report converted from Delphi keeps the order of Delphi
+    if (this.convertedFromDelphi) [left, top] = [top, left];
     const astream = this.evaluator.getStreamFromExpression(image);
     if (astream !== null) {
       const obj = new MetaObjectImage();
@@ -1772,6 +1780,10 @@ export class ReportRuntime {
     calcChecksum: boolean,
     brushColor: number,
   ): boolean {
+    // GRAPHICOP, IMAGEOP, BARCODEOP and TEXTOP take (Top, Left, ...) in the Delphi engine, as their help
+    // says; the C# engine reads them as (Left, Top, ...), and reports written for it rely on that
+    // order. A report converted from Delphi keeps the order of Delphi
+    if (this.convertedFromDelphi) [left, top] = [top, left];
     return barcodeOp(this, left, top, width, height, expression, displayFormat, barType, modul, ratio, rotation, calcChecksum, brushColor);
   }
 
@@ -1796,6 +1808,10 @@ export class ReportRuntime {
     backColor: number,
     transparent: boolean,
   ): boolean {
+    // GRAPHICOP, IMAGEOP, BARCODEOP and TEXTOP take (Top, Left, ...) in the Delphi engine, as their help
+    // says; the C# engine reads them as (Left, Top, ...), and reports written for it rely on that
+    // order. A report converted from Delphi keeps the order of Delphi
+    if (this.convertedFromDelphi) [left, top] = [top, left];
     const obj = new MetaObjectText();
     obj.left = left;
     obj.top = top;

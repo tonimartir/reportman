@@ -594,6 +594,25 @@ function dateMasks(file, driver) {
 dateMasks('syn-delphi-masks.rep', 0);
 dateMasks('syn-net-masks.rep', 8);
 
+// The report functions that draw take (Top, Left, ...) in the Delphi engine. The C# engine reads
+// them as (Left, Top, ...) (syn-layout), but in a report converted from Delphi (dbExpress
+// connection) it keeps the order of Delphi: the text at left 400 and top 3000, and so on.
+report('syn-delphi-ops.rep', {
+  databases: [database({ DRIVER: 0 })],
+  subs: [
+    subreport('', [
+      section('detail', {
+        HEIGHT: 1200,
+        DOBEFOREPRINT: "TEXTOP(3000,400,1500,300,'textop','Helvetica','Arial',8,0,1,255,0,False,1,False,False,0,16777215,True)",
+      }, [
+        label('Operations', { WIDTH: 3000 }),
+        expr('GRAPHICOP(2000,600,900,200,6,0,0,0,10,8421504)', { POSY: 300, WIDTH: 2000 }),
+        expr("BARCODEOP(5000,700,2500,400,'''12345''','',6,10,2,0,False,0)", { POSY: 600, WIDTH: 2000 }),
+      ]),
+    ]),
+  ],
+});
+
 // Nothing to print: a report that prints only with data and a dataset without rows.
 report('syn-nodata.rep', {
   props: { PRINTONLYIFDATAAVAILABLE: true },

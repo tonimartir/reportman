@@ -1452,6 +1452,15 @@ namespace Reportman.Reporting
             int Height, int DrawStyle, int BrushStyle, int BrushColor,
             int PenStyle, int PenWidth, int PenColor)
         {
+            // GRAPHICOP, IMAGEOP, BARCODEOP and TEXTOP take (Top, Left, ...) in the Delphi engine, as their
+            // help says; this engine reads them as (Left, Top, ...), and reports written for it rely on
+            // that order. A report converted from Delphi keeps the order of Delphi
+            if (ConvertedFromDelphi)
+            {
+                int delphiTop = Left;
+                Left = Top;
+                Top = delphiTop;
+            }
             MetaObjectDraw obj = new MetaObjectDraw();
             obj.MetaType = MetaObjectType.Draw;
             obj.Top = Top; obj.Left = Left; obj.Height = Height; obj.Width = Width;
@@ -1500,6 +1509,15 @@ namespace Reportman.Reporting
             int Height, int DrawStyle, int dpires, bool PreviewOnly,
             string Image)
         {
+            // GRAPHICOP, IMAGEOP, BARCODEOP and TEXTOP take (Top, Left, ...) in the Delphi engine, as their
+            // help says; this engine reads them as (Left, Top, ...), and reports written for it rely on
+            // that order. A report converted from Delphi keeps the order of Delphi
+            if (ConvertedFromDelphi)
+            {
+                int delphiTop = Left;
+                Left = Top;
+                Top = delphiTop;
+            }
             MemoryStream astream;
             // Search for the image
             bool aresult = false;
@@ -1523,6 +1541,15 @@ namespace Reportman.Reporting
             int BarType, int Modul, double Ratio, double Rotation,
             bool CalcChecksum, int BrushColor)
         {
+            // GRAPHICOP, IMAGEOP, BARCODEOP and TEXTOP take (Top, Left, ...) in the Delphi engine, as their
+            // help says; this engine reads them as (Left, Top, ...), and reports written for it rely on
+            // that order. A report converted from Delphi keeps the order of Delphi
+            if (ConvertedFromDelphi)
+            {
+                int delphiTop = Left;
+                Left = Top;
+                Top = delphiTop;
+            }
             Variant FValue;
             string data;
             BarcodeItem barcode = new BarcodeItem();
@@ -1550,6 +1577,13 @@ namespace Reportman.Reporting
             bool RightToLeft, PrintStepType PrintStep, int BackColor,
             bool Transparent)
         {
+            // As GraphicOp: the order of Delphi, (Top, Left, ...), in a report converted from Delphi
+            if (ConvertedFromDelphi)
+            {
+                int delphiTop = Left;
+                Left = Top;
+                Top = delphiTop;
+            }
             MetaObjectText obj = new MetaObjectText();
             obj.Left = Left; obj.Top = Top; obj.Height = Height; obj.Width = Width;
             obj.FontSize = (short)FontSize;
