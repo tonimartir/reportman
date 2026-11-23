@@ -1,6 +1,6 @@
 {
   "name": "@reportman/export",
-  "version": "4.1.0-alpha.2",
+  "version": "4.1.0-alpha.3",
   "description": "Report Manager outputs of a metafile besides the PDF: CSV, plain text, SVG and HTML.",
   "license": "MPL-2.0",
   "type": "module",
@@ -30,7 +30,7 @@
     "tag": "next"
   },
   "dependencies": {
-    "@reportman/metafile": "4.1.0-alpha.2",
-    "@reportman/text": "4.1.0-alpha.2"
+    "@reportman/metafile": "4.1.0-alpha.3",
+    "@reportman/text": "4.1.0-alpha.3"
   }
 }

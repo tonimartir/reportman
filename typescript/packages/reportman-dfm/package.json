@@ -1,6 +1,6 @@
 {
   "name": "@reportman/dfm",
-  "version": "4.1.0-alpha.2",
+  "version": "4.1.0-alpha.3",
   "description": "Report Manager DFM to XML converter: reads a .rep saved by Delphi in its DFM forms (text, binary, compressed) and gives the XML the Delphi engine writes for it, which @reportman/lib reads.",
   "license": "MPL-2.0",
   "type": "module",

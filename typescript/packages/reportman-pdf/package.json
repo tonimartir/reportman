@@ -1,6 +1,6 @@
 {
   "name": "@reportman/pdf",
-  "version": "4.1.0-alpha.2",
+  "version": "4.1.0-alpha.3",
   "description": "Report Manager PDF output: renders a metafile to PDF and measures text for the layout.",
   "license": "MPL-2.0",
   "type": "module",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "fflate": "^0.8.3",
-    "@reportman/metafile": "4.1.0-alpha.2",
-    "@reportman/text": "4.1.0-alpha.2"
+    "@reportman/metafile": "4.1.0-alpha.3",
+    "@reportman/text": "4.1.0-alpha.3"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@reportman/lib",
-  "version": "4.1.0-alpha.2",
+  "version": "4.1.0-alpha.3",
   "description": "Report Manager report model: the document (the camelCase JSON of the engine model), its undo history and the .rep XML reader.",
   "license": "MPL-2.0",
   "type": "module",

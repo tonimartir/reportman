@@ -1,6 +1,6 @@
 {
   "name": "@reportman/driver-postgres",
-  "version": "4.1.0-alpha.2",
+  "version": "4.1.0-alpha.3",
   "description": "PostgreSQL for Report Manager in Node.js (pg, pure JavaScript), with the behaviour of Npgsql, the provider of the C# engine.",
   "license": "MPL-2.0",
   "type": "module",
@@ -31,10 +31,10 @@
   },
   "dependencies": {
     "pg": "^8.16.0",
-    "@reportman/engine": "4.1.0-alpha.2"
+    "@reportman/engine": "4.1.0-alpha.3"
   },
   "devDependencies": {
     "@types/pg": "^8.23.1",
-    "@reportman/node": "4.1.0-alpha.2"
+    "@reportman/node": "4.1.0-alpha.3"
   }
 }

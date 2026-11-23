@@ -279,7 +279,7 @@ export class ReportServer {
     if (parts.length === 2 && parts[1]!.toLowerCase() === 'health' && method === 'GET') {
       return json(200, {
         status: 'ok',
-        version: this.options.version ?? '4.1.0-alpha.2',
+        version: this.options.version ?? '4.1.0-alpha.3',
         engine: 'typescript',
         aliases: this.store.listAliases(),
         console: this.console !== undefined,
