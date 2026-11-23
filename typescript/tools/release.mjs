@@ -54,20 +54,34 @@ if (process.env.NPM_STAGE_TOKEN) {
 const npmCli = /npm-cli\.js$/.test(process.env.npm_execpath ?? '') ? process.env.npm_execpath : null;
 const quote = (a) => (windows && /\s/.test(a) ? `"${a}"` : a);
 
-/** Runs npm; quiet ones return their output, the others share the terminal (the 2FA prompts). */
-function run(npmArgs, { quiet = false } = {}) {
+/**
+ * Runs npm; quiet ones return their output, the others share the terminal (the 2FA prompts).
+ * keepErr shows the error output too, after the command, and returns it (to tell one error).
+ */
+function run(npmArgs, { quiet = false, keepErr = false } = {}) {
   const all = [...npmArgs, ...tokenConfig];
-  const options = { cwd: root, encoding: 'utf8', stdio: quiet ? 'pipe' : 'inherit' };
+  const options = { cwd: root, encoding: 'utf8', stdio: quiet ? 'pipe' : keepErr ? ['inherit', 'inherit', 'pipe'] : 'inherit' };
   const r = npmCli !== null ? spawnSync(process.execPath, [npmCli, ...all], options) : spawnSync(npm, all.map(quote), { ...options, shell: windows });
+  if (keepErr && !quiet && r.stderr) process.stderr.write(r.stderr);
   return { ok: r.status === 0, out: (r.stdout ?? '').trim(), err: (r.stderr ?? '').trim() };
 }
 
-/** What the registry has of a package: its versions and tags (null: not there). */
+/**
+ * What the registry has of a package: its versions and tags (null: not there). --prefer-online:
+ * npm keeps what it read of a package for some minutes, and a version just approved would look
+ * missing.
+ */
 function registry(name) {
-  const r = run(['view', name, 'versions', 'dist-tags', '--json'], { quiet: true });
+  const r = run(['view', name, 'versions', 'dist-tags', '--json', '--prefer-online'], { quiet: true });
   if (!r.ok || r.out === '') return null;
   const data = JSON.parse(r.out);
   return { versions: [].concat(data.versions ?? []), tags: data['dist-tags'] ?? {} };
+}
+
+/** Whether the registry has a version of a package, asking it now (not npm's cache). */
+function hasVersion(name, ver) {
+  const r = run(['view', `${name}@${ver}`, 'version', '--prefer-online'], { quiet: true });
+  return r.ok && r.out.replace(/['"]/g, '') === ver;
 }
 
 /**
@@ -140,6 +154,10 @@ const failed = [];
 const missing = packages.filter((p) => !(registry(p.name)?.versions ?? []).includes(version));
 console.log(`${packages.length} packages at ${version}; not on the registry: ${missing.length === 0 ? 'none' : missing.map((p) => p.name).join(', ')}`);
 const waiting = [];
+// Published although the registry did not list them yet: an approved version leaves npm stage
+// list before npm view shows it, and staging it again is refused (E409, "Cannot stage previously
+// published version"). They are published: their tag is moved like the others.
+const justPublished = new Set();
 for (const p of missing) {
   if (direct) {
     console.log(`\n== npm publish ${p.name}@${version} --tag ${tag}`);
@@ -151,9 +169,17 @@ for (const p of missing) {
     waiting.push(p.name + (status === 'approved' ? ' (approved, not on the registry yet)' : ''));
     continue;
   }
+  if (hasVersion(p.name, version)) {
+    justPublished.add(p.name);
+    continue;
+  }
   console.log(`\n== npm stage publish ${p.name}@${version} --tag ${tag}`);
-  if (run(['stage', 'publish', '--workspace=' + p.name, '--tag', tag, ...(dryRun ? ['--dry-run'] : [])]).ok) waiting.push(p.name);
-  else failed.push(p.name + ' (stage)');
+  const staged = run(['stage', 'publish', '--workspace=' + p.name, '--tag', tag, ...(dryRun ? ['--dry-run'] : [])], { keepErr: true });
+  if (staged.ok) waiting.push(p.name);
+  else if (/E409|previously published/i.test(staged.err)) {
+    console.log(`   ${p.name}@${version} is published already (the registry did not show it yet): not an error`);
+    justPublished.add(p.name);
+  } else failed.push(p.name + ' (stage)');
 }
 if (waiting.length > 0 && !dryRun) {
   if (failed.length > 0) console.error(`\nNot staged (run it again to finish): ${failed.join(', ')}`);
@@ -168,7 +194,7 @@ latest; the registry may take some minutes to show an approved version.`);
 // 2. latest: the newest preview until there is a final version (a final one is published as latest)
 for (const p of packages) {
   const reg = registry(p.name);
-  if (reg === null || !reg.versions.includes(version)) continue;
+  if (reg === null || (!reg.versions.includes(version) && !justPublished.has(p.name))) continue;
   const latest = reg.tags.latest;
   if (latest !== undefined && compare(latest, version) >= 0) continue;
   if (latest !== undefined && !latest.includes('-') && !final) continue;

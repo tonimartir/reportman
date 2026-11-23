@@ -98,7 +98,9 @@ them and in `package-lock.json` (edit the status lines of the README files by ha
 `npm run release:next` checks that they share it, builds from scratch, runs the tests and
 `check:dist`, and stages them with the tag `next` (`tools/release.mjs`, npm 11.15 or later):
 `npm stage publish` asks for no 2FA, and the staged versions are approved together in the
-**Staged Packages** tab of the account settings on npmjs.com, with one 2FA for the batch. Then
+**Staged Packages** tab of the account settings on npmjs.com, with one 2FA for the batch (the tab
+may show them in pages: on 23-11-2026 it approved ten of the fifteen; `npm stage list` says what
+is left). Then
 `npm run release:publish` (it can be run again: it does only what the registry does not have yet)
 moves the tag `latest`, which npm gives to the first version of a package and the website shows,
 to the newest preview while there is no final version. The registry takes some minutes to show a
