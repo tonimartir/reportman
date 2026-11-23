@@ -287,7 +287,11 @@ export function shapeText(font: FkFont, text: string, rtl: boolean, scripts: str
   }
   const le = font._layoutEngine;
   const engine = le.engine as FkOTEngine | undefined;
-  const isOT = engine !== undefined && engine.constructor.name === 'OTLayoutEngine';
+  // fontkit's OTLayoutEngine, which always has its GSUB and GPOS processors as fields (null when
+  // the font lacks the table); the other engine, AATLayoutEngine (morx), has neither. Not by the
+  // name of its class: a bundler that minifies (Vite, webpack) renames it, and then every font
+  // took the AAT path and Arabic and Hebrew came out unshaped and in the wrong order.
+  const isOT = engine !== undefined && Object.prototype.hasOwnProperty.call(engine, 'GSUBProcessor');
   if (engine !== undefined && !isOT) return shapeWithFontkitLayout(font, text, rtl, scripts, language, s, baseCluster);
   // fontkit creates its kern table processor and its fallback mark positioning in its own layout,
   // when the font needs them: one layout before this one leaves them made

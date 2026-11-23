@@ -6,10 +6,12 @@
 //                                              website, for responsive.css)
 //   node demo/demo.mjs build [--out <folder>]  the static site into <folder> (demo/dist by default),
 //                                              for doc/demo of the Delphi repository
-//   node demo/demo.mjs check                   every sample run in a headless Edge or Chrome, each
-//                                              PDF compared with the one @reportman/node writes
+//   node demo/demo.mjs check                   the site built as published, every sample run in a
+//                                              headless Edge or Chrome, each PDF compared with the
+//                                              one @reportman/node writes
 //   node demo/demo.mjs thumbs                  the small thumbnails of the list (ImageMagick)
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import http from 'node:http';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
@@ -33,7 +35,7 @@ function sampleFiles() {
   return readdirSync(samples).filter((f) => /\.rep$/i.test(f) || f === 'samples.db' || f === 'samples.ini');
 }
 
-const TYPES = { '.rep': 'application/xml', '.db': 'application/octet-stream', '.ini': 'text/plain; charset=utf-8', '.png': 'image/png', '.css': 'text/css', '.wasm': 'application/wasm' };
+const TYPES = { '.rep': 'application/xml', '.db': 'application/octet-stream', '.ini': 'text/plain; charset=utf-8', '.png': 'image/png', '.css': 'text/css', '.wasm': 'application/wasm', '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.woff2': 'font/woff2' };
 const typeOf = (f) => TYPES[f.slice(f.lastIndexOf('.'))] ?? 'application/octet-stream';
 
 /** Serves a file of the disk. */
@@ -84,26 +86,7 @@ if (command === 'dev') {
   server.printUrls();
 } else if (command === 'build') {
   const out = resolve(option('out') ?? join(demo, 'dist'));
-  await build(
-    config({
-      config: {
-        build: {
-          outDir: out,
-          emptyOutDir: true,
-          target: 'es2022',
-          assetsDir: 'assets',
-          // The engine, the PDF writer, the text shaper and the preview: one module of 1.7 MB (0.6 gzipped)
-          chunkSizeWarningLimit: 2500,
-          rollupOptions: { input: { index: join(demo, 'index.html'), indexes: join(demo, 'indexes.html') } },
-        },
-      },
-    }),
-  );
-  for (const f of sampleFiles()) {
-    mkdirSync(dirname(join(out, 'samples', f)), { recursive: true });
-    cpSync(join(samples, f), join(out, 'samples', f));
-  }
-  cpSync(wasm, join(out, 'sql-wasm.wasm'));
+  await buildSite(out, false);
   console.log('demo built into ' + out);
 } else if (command === 'check') {
   process.exit(await check());
@@ -116,6 +99,36 @@ if (command === 'dev') {
 } else {
   console.error('usage: node demo/demo.mjs dev|build|check|thumbs');
   process.exit(2);
+}
+
+/**
+ * The static site into a folder: the pages (minified, as published), the samples and sql.js.
+ * withCheck adds the check page, so the check runs the code the website serves.
+ */
+async function buildSite(out, withCheck) {
+  const input = { index: join(demo, 'index.html'), indexes: join(demo, 'indexes.html') };
+  if (withCheck) input.check = join(demo, 'check.html');
+  await build(
+    config({
+      config: {
+        logLevel: 'error',
+        build: {
+          outDir: out,
+          emptyOutDir: true,
+          target: 'es2022',
+          assetsDir: 'assets',
+          // The engine, the PDF writer, the text shaper and the preview: one module of 1.7 MB (0.6 gzipped)
+          chunkSizeWarningLimit: 2500,
+          rollupOptions: { input },
+        },
+      },
+    }),
+  );
+  for (const f of sampleFiles()) {
+    mkdirSync(dirname(join(out, 'samples', f)), { recursive: true });
+    cpSync(join(samples, f), join(out, 'samples', f));
+  }
+  cpSync(wasm, join(out, 'sql-wasm.wasm'));
 }
 
 /** A Chromium-based browser of this computer (as tools/check-browser.mjs finds it). */
@@ -176,30 +189,35 @@ async function check() {
       req.on('data', (c) => chunks.push(c));
       req.on('end', () => r(Buffer.concat(chunks)));
     });
-  const server = await createServer(
-    config({
-      plugins: [
-        {
-          name: 'reportman-demo-check',
-          configureServer(s) {
-            s.middlewares.use('/__pdf', async (req, res) => {
-              const q = new URL(req.url, 'http://x').searchParams;
-              pdfs.set(`${q.get('name')} ${q.get('mode')}`, await body(req));
-              res.end('ok');
-            });
-            s.middlewares.use('/__result', async (req, res) => {
-              const text = (await body(req)).toString('utf8');
-              res.end('ok');
-              report(text);
-            });
-          },
-        },
-      ],
-      config: { server: { host: '127.0.0.1', port: 0, hmr: false, fs: { allow: [ts, samples] } } },
-    }),
-  );
-  await server.listen();
-  const url = server.resolvedUrls.local[0] + 'check.html';
+  // The site as it is published (minified: a minifier renames classes, and code that looks at
+  // their names breaks only there), with the check page, served as the website serves it
+  const site = mkdtempSync(join(tmpdir(), 'reportman-demo-site-'));
+  await buildSite(site, true);
+  const server = http.createServer(async (req, res) => {
+    const url = new URL(req.url, 'http://x');
+    if (url.pathname === '/__pdf') {
+      pdfs.set(`${url.searchParams.get('name')} ${url.searchParams.get('mode')}`, await body(req));
+      res.end('ok');
+      return;
+    }
+    if (url.pathname === '/__result') {
+      const text = (await body(req)).toString('utf8');
+      res.end('ok');
+      report(text);
+      return;
+    }
+    const file = join(site, decodeURIComponent(url.pathname));
+    if (!file.startsWith(site) || !existsSync(file) || !statSync(file).isFile()) {
+      res.statusCode = 404;
+      res.end();
+      return;
+    }
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Content-Type', typeOf(file));
+    res.end(readFileSync(file));
+  });
+  await new Promise((r) => server.listen(0, '127.0.0.1', r));
+  const url = `http://127.0.0.1:${server.address().port}/check.html`;
   const profile = mkdtempSync(join(tmpdir(), 'reportman-demo-'));
   const child = spawn(browser, ['--headless=new', '--disable-gpu', '--no-first-run', `--user-data-dir=${profile}`, url], { stdio: 'ignore' });
   const timeout = new Promise((r) => setTimeout(() => r('RESULT: no answer from the browser in 10 minutes'), 600000).unref());
@@ -208,10 +226,11 @@ async function check() {
     text = await Promise.race([result, timeout]);
   } finally {
     child.kill();
-    await server.close();
+    await new Promise((r) => server.close(r));
     await new Promise((r) => setTimeout(r, 500));
     try {
       rmSync(profile, { recursive: true, force: true });
+      rmSync(site, { recursive: true, force: true });
     } catch {
       // the browser may still hold its profile for a moment
     }
