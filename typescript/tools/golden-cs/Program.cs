@@ -176,13 +176,13 @@ class Program
 
     static readonly ReportBatchJsonAdapter Adapter = new ReportBatchJsonAdapter();
 
-    /// <summary>A .rep as the designer's server reads it (ReportDocumentService.FromXml).</summary>
+    /// <summary>A .rep as the designer's server reads it (ReportDocumentService.FromXml: not converted to .Net).</summary>
     static Report ReportFromXml(string path)
     {
         var report = new Report();
         using (var stream = new MemoryStream(File.ReadAllBytes(path), false))
         {
-            report.LoadFromStream(stream);
+            report.LoadFromStream(stream, false);
         }
         report.UpdateReferences();
         return report;

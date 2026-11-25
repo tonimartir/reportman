@@ -2890,7 +2890,21 @@ namespace Reportman.Reporting
             if (!Enum.TryParse<VariantType>(typeStr, out var vtype))
                 throw new Newtonsoft.Json.JsonSerializationException($"Unknown VariantType: {typeStr}");
 
-            object value = valueToken.ToObject<object>();
+            object value;
+            // The integer types written, not the one of the JSON number (a whole number is a long,
+            // so an Integer parameter came back as a Long)
+            switch (vtype)
+            {
+                case VariantType.Integer:
+                    value = valueToken.ToObject<int>();
+                    break;
+                case VariantType.Byte:
+                    value = valueToken.ToObject<byte>();
+                    break;
+                default:
+                    value = valueToken.ToObject<object>();
+                    break;
+            }
 
             if (vtype == VariantType.DateTime && value is DateTime aDate)
             {

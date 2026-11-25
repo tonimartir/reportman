@@ -77,6 +77,10 @@ namespace Reportman.Reporting
         {
             foreach (DataInfo dinfo in rp.DataInfo)
             {
+                // The conversion writes the same query in the .Net form: the setter of SQL would clear
+                // its explanation
+                string explanation = dinfo.SQLExplanation;
+                string explanationError = dinfo.SQLExplanationError;
                 DatabaseInfo baseinfo = rp.DatabaseInfo[dinfo.DatabaseAlias];
                 if (baseinfo != null)
                 {
@@ -194,6 +198,8 @@ namespace Reportman.Reporting
                     index = sql.IndexOf(':');
                 }
                 dinfo.SQL = sql;
+                dinfo.SQLExplanation = explanation;
+                dinfo.SQLExplanationError = explanationError;
             }
             foreach (DatabaseInfo dbinfo in rp.DatabaseInfo)
             {
@@ -442,6 +448,8 @@ namespace Reportman.Reporting
         private void FillStringsNoTrim(Strings list)
         {
             string avalue = GetAsString();
+            if (avalue.Length == 0)
+                return;
             int index = avalue.IndexOf((char)10);
             while (index >= 0)
             {
@@ -449,19 +457,17 @@ namespace Reportman.Reporting
                 avalue = avalue.Substring(index + 1, avalue.Length - (index + 1));
                 index = avalue.IndexOf((char)10);
             }
-            if (avalue.Length > 0)
-                AddLineNoTrim(list, avalue);
+            // The last language also when it is empty: a text that ends with the separator has an
+            // empty last language (the writer joins the languages, it does not end them)
+            AddLineNoTrim(list, avalue);
         }
         private static void AddLineNoTrim(Strings list, string line)
         {
-            // El separador de idiomas en WIDETEXT es CRLF: el CR no forma parte del texto.
-            // Versiones anteriores partían solo por LF y dejaban CR acumulados al final de
-            // cada idioma; se eliminan aquí (autorrepara informes ya corrompidos). Los
-            // elementos compuestos solo de CR son residuos de esa fuga, no idiomas reales.
-            string clean = line.TrimEnd((char)13);
-            if (clean.Length == 0 && line.Length > 0)
-                return;
-            list.Add(clean);
+            // The separator of the languages in WIDETEXT is CR LF: the CR is not part of the text.
+            // Older versions split by LF only and kept one more CR at the end of each language on
+            // every save; they are removed here (it repairs those reports). A language made only of
+            // CRs is an empty language of those reports: it is kept, so the next ones do not move.
+            list.Add(line.TrimEnd((char)13));
         }
         private void FillStrings(Strings list)
         {
@@ -477,9 +483,16 @@ namespace Reportman.Reporting
             if (avalue.Length > 0)
                 list.Add(avalue);
         }
+        /// <summary>Windows-1252 from 128 to 159 (from 160 to 255 it is Latin-1)</summary>
+        private static readonly char[] Cp1252High = {
+            '€', '\u0081', '‚', 'ƒ', '„', '…', '†', '‡',
+            'ˆ', '‰', 'Š', '‹', 'Œ', '\u008D', 'Ž', '\u008F',
+            '\u0090', '‘', '’', '“', '”', '•', '–', '—',
+            '˜', '™', 'š', '›', 'œ', '\u009D', 'ž', 'Ÿ' };
         private string GetAsString()
         {
             StringBuilder aresult = new StringBuilder(propvalue.Length);
+            bool wide = false;
             int i = 0;
             while (i < propvalue.Length)
             {
@@ -501,6 +514,8 @@ namespace Reportman.Reporting
                             i++;
                         }
                         aresult.Append((char)anumber);
+                        if (anumber > 255)
+                            wide = true;
                     }
                     else
                     {
@@ -510,6 +525,19 @@ namespace Reportman.Reporting
                 }
                 else
                     i++;
+            }
+            // Delphi writes a String property as the bytes of its ANSI code page (Windows-1252 in the
+            // West: the euro is 128, the quotes 145 to 148), this engine as UTF-16 code units: a String
+            // without codes above 255 has its 128 to 159 read as Windows-1252 (as UTF-16 they are C1
+            // control characters, not text). Delphi writes as WideString what its code page can not hold.
+            if (!wide && proptype == "String")
+            {
+                for (int j = 0; j < aresult.Length; j++)
+                {
+                    char c = aresult[j];
+                    if (c >= '\u0080' && c <= '\u009F')
+                        aresult[j] = Cp1252High[c - 0x80];
+                }
             }
             return aresult.ToString();
         }
@@ -649,6 +677,10 @@ namespace Reportman.Reporting
                     }
                     if (propname != "/EMBEDDEDFILE")
                         throw new NamedException("Embededed file not closed:" + propname, "Embedded file");
+                    // Without STREAM (other writers, a hand edit) the file is empty: the writer and
+                    // the PDF driver read its stream
+                    if (efile.Stream == null)
+                        efile.Stream = new MemoryStream();
                     areport.EmbeddedFiles.Add(efile);
                 }
                 else
@@ -732,6 +764,12 @@ namespace Reportman.Reporting
                     if (subrep.ParentSection == null)
                         throw new NamedException("ParentSection not found:" + subrep.ParentSec, subrep.ParentSec);
                 }
+            }
+            // The sections after every PARENTSUBREPORT: the section of a child sets its parent, also
+            // when the child comes later (reports saved before this version name the child itself)
+            for (int i = 0; i < areport.SubReports.Count; i++)
+            {
+                SubReport subrep = areport.SubReports[i];
                 for (int j = 0; j < subrep.Sections.Count; j++)
                 {
                     Section sec = subrep.Sections[j];
@@ -744,9 +782,11 @@ namespace Reportman.Reporting
                         {
                             sec.ChildSubReport.ParentSection = sec;
                         }
-                        if (sec.ChildSubReport.ParentSubReport != sec.ChildSubReport)
+                        // The subreport of the section (it was the child itself, so PARENTSUBREPORT
+                        // was saved with the child's own name)
+                        if (sec.ChildSubReport.ParentSubReport != subrep)
                         {
-                            sec.ChildSubReport.ParentSubReport = sec.ChildSubReport;
+                            sec.ChildSubReport.ParentSubReport = subrep;
                         }
                     }
 					if (sec.SubReportName.Length > 0)
@@ -1441,6 +1481,7 @@ namespace Reportman.Reporting
                 case ParamType.ExpreA:
                 case ParamType.ExpreB:
                 case ParamType.Subst:
+                case ParamType.SubstExpre:
                 case ParamType.List:
                 case ParamType.SubsExpreList:
                 case ParamType.InitialValue:
@@ -2227,7 +2268,17 @@ namespace Reportman.Reporting
         }
         private static string RpDoubleToStr(double avalue)
         {
+#if NETFRAMEWORK
+            // .NET Framework writes 15 digits (0.30000000000000004 as 0.3); .NET Core 3.0 and later,
+            // Delphi and TypeScript the shortest text that reads back as the same double
+            string text = avalue.ToString("R", numberformat);
+            double back;
+            if (!double.TryParse(text, NumberStyles.Float, numberformat, out back) || !back.Equals(avalue))
+                text = avalue.ToString("G17", numberformat);
+            return text;
+#else
             return avalue.ToString(numberformat);
+#endif
         }
         private static void WritePropertyD(string propname, double propvalue, Stream astream)
         {
@@ -2662,7 +2713,8 @@ namespace Reportman.Reporting
             }
             WritePropertyS("DESCRIPTION", aparam.Descriptions, astream);
             WritePropertyS("HINT", aparam.Hints, astream);
-            WritePropertyS("ERRORMESSAGE", aparam.ErrorMessage, astream);
+            // Every language, as DESCRIPTION and HINT (ErrorMessage is the one of the current language)
+            WritePropertyS("ERRORMESSAGE", aparam.ErrorMessages, astream);
             WritePropertyS("VALIDATION", aparam.Validation, astream);
             WritePropertyS("SEARCH", aparam.Search, astream);
             WritePropertyBool("VISIBLE", aparam.Visible, astream);
@@ -2683,6 +2735,7 @@ namespace Reportman.Reporting
                 case ParamType.ExpreA:
                 case ParamType.ExpreB:
                 case ParamType.Subst:
+                case ParamType.SubstExpre:
                 case ParamType.List:
                 case ParamType.SubsExpreList:
                 case ParamType.InitialValue:
@@ -2944,8 +2997,14 @@ namespace Reportman.Reporting
                 WritePropertyS("CREATIONDATE", efile.CreationDate, astream);
                 WritePropertyS("MODIFICATIONDATE", efile.ModificationDate, astream);
                 WritePropertyI("RELATIONSHIP", (int)efile.AFRelationShip, astream);
-                efile.Stream.Seek(0, SeekOrigin.Begin);
-                WritePropertyB("STREAM", efile.Stream, astream);
+                // A file without contents (made by code) is written empty
+                if (efile.Stream == null)
+                    WritePropertyB("STREAM", new MemoryStream(), astream);
+                else
+                {
+                    efile.Stream.Seek(0, SeekOrigin.Begin);
+                    WritePropertyB("STREAM", efile.Stream, astream);
+                }
                 astring = "</EMBEDDEDFILE>";
                 StreamUtil.SWriteLine(astream, astring);
             }

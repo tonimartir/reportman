@@ -135,15 +135,9 @@ namespace Reportman.Reporting
         {
             get
             {
-                if (ErrorMessages.Length > Report.Language)
-                    return Strings.GetStringByIndex(ErrorMessages, Report.Language);
-                else
-                {
-                    if (ErrorMessages.Length > 0)
-                        return Strings.GetStringByIndex(ErrorMessages, 0);
-                    else
-                        return "";
-                }
+                // As Description and Hint: the line of the language, else the first one (the length
+                // of the text was compared with the language index, not the number of lines)
+                return Strings.GetStringByIndex(ErrorMessages ?? "", Report.Language);
             }
             set
             {
@@ -369,7 +363,8 @@ namespace Reportman.Reporting
             p.Alias = Alias;
             p.Datasets = (Strings)Datasets.Clone();
             p.Descriptions = Descriptions;
-            p.ErrorMessage = ErrorMessage;
+            // Every language (ErrorMessage is the one of the current language)
+            p.ErrorMessages = ErrorMessages;
             p.FValue = FValue;
             p.Hint = Hint;
             p.Hints = Hints;

@@ -25,8 +25,14 @@ namespace Reportman.Drawing
         /// </summary>
         public static double DateTimeToDelphiDateTime(DateTime avalue)
         {
-            TimeSpan difdate = avalue - FIRST_DELPHI_DAY;
-            return difdate.TotalDays;
+            double days = (avalue - FIRST_DELPHI_DAY).TotalDays;
+            if (days >= 0)
+                return days;
+            // Before 30 Dec 1899 a TDateTime (an OLE date, what DelphiDateToDateTime reads) is the day
+            // with the sign and the time of that day subtracted: 06:00 of 29 Dec 1899 is -1.25, not
+            // -0.75 (the days since, which moved the date on every save: -700.3, -699.7, -698.3)
+            double day = Math.Floor(days);
+            return day - (days - day);
         }
         /// <summary>
         /// Converts a <see cref="DateTime"/> value to a Firebird SQL literal string representation including hours, minutes, and seconds.
@@ -46,8 +52,9 @@ namespace Reportman.Drawing
         /// </summary>
         public static double DateTimeToDelphiDate(DateTime avalue)
         {
-            TimeSpan difdate = avalue - FIRST_DELPHI_DAY;
-            return difdate.Days + difdate.Hours / 24 + difdate.Minutes / (24 * 60) + difdate.Seconds / (24 * 60 * 60);
+            // The day of the date: TimeSpan.Days truncates towards zero, so a date before
+            // 30 Dec 1899 with a time was the next day (the hours, minutes and seconds added 0)
+            return Math.Floor((avalue - FIRST_DELPHI_DAY).TotalDays);
         }
         /// <summary>
         /// Calculates the sql literal date value, to include it in sql sentences

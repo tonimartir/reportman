@@ -114,8 +114,16 @@ namespace Reportman.Drawing
     {
         /// <summary>Name of the embedded file as it will appear in the PDF file specification</summary>
         public string FileName;
-        /// <summary>In-memory content of the embedded file</summary>
+        /// <summary>In-memory content of the embedded file (in JSON, <see cref="StreamBase64"/>: getting
+        /// MemoryStream.ReadTimeout throws, so a report with an embedded file could not be serialized)</summary>
+        [NonSerialized]
         public MemoryStream Stream;
+        /// <summary>The content of the embedded file as Base64, as the images of sections and image items</summary>
+        public string StreamBase64
+        {
+            get { return Stream == null ? null : Convert.ToBase64String(Stream.ToArray()); }
+            set { Stream = value == null ? null : new MemoryStream(Convert.FromBase64String(value)); }
+        }
         /// <summary>MIME type (PDF Subtype) describing the content of the embedded file</summary>
         public string MimeType;
         /// <summary>PDF object number assigned to this embedded file while the PDF is being written</summary>

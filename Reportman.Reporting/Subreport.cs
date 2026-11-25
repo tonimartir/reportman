@@ -302,10 +302,11 @@ namespace Reportman.Reporting
         {
             get
             {
-                if (Sections.Count == 0)
+                // Without a detail section both are -1 (it was 1)
+                int first = FirstSectionThatIs(SectionType.Detail);
+                if (first < 0)
                     return 0;
-                else
-                    return (LastSectionThatIs(SectionType.Detail) - FirstSectionThatIs(SectionType.Detail)) + 1;
+                return (LastSectionThatIs(SectionType.Detail) - first) + 1;
             }
         }
         /// <summary>

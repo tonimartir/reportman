@@ -2151,11 +2151,9 @@ namespace Reportman.Reporting
         {
             SubReports.Remove(sub);
 
-            for (int i = 0; i < sub.Sections.Count; i++)
-            {
-                Section sec = sub.Sections[i];
-                sub.DeleteSection(sec);
-            }
+            // DeleteSection removes the section from the list: counting up skipped every other one
+            while (sub.Sections.Count > 0)
+                sub.DeleteSection(sub.Sections[0]);
             Components.Remove(sub.Name);
             sub.Dispose();
         }
@@ -3918,6 +3916,13 @@ end;
                         }
                         else
                             sec.ChildSubReport = Components[sec.ChildSubReportName] as SubReport;
+                        // The links the JSON does not carry, as the XML reader sets them (the parent
+                        // subreport is what makes a subreport a child when the report runs)
+                        if (sec.ChildSubReport != null)
+                        {
+                            sec.ChildSubReport.ParentSubReport = subrep;
+                            sec.ChildSubReport.ParentSection = sec;
+                        }
                     }
                 }
             }
