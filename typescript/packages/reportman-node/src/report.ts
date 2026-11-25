@@ -1,5 +1,5 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
-import { readReportXml, type Report } from '@reportman/lib';
+import { hydrateReport, readReportXml, serializeReport, type Report } from '@reportman/lib';
 import type { MetaFile, PrintOut } from '@reportman/metafile';
 import { PdfDevice, systemClock, type PdfClock } from '@reportman/pdf';
 import {
@@ -95,15 +95,28 @@ function assignedValue(value: unknown): Variant | string | number | boolean | nu
 
 /** A report opened from a .rep file: the two steps of a run, parameters and PDF. */
 export class NodeReport {
-  private readonly bytes: Uint8Array;
+  private readonly bytes: Uint8Array | undefined;
+  /** The document of a report opened from a model (openReportModel), hydrated afresh for each step. */
+  private readonly document: string | undefined;
   private readonly options: OpenReportOptions;
   /** The report model as read from the file (the camelCase JSON of the engine model). */
   readonly model: Report;
 
-  constructor(bytes: Uint8Array, options: OpenReportOptions = {}) {
-    this.bytes = bytes;
+  /** A report of a .rep file's bytes (XML), or of a report model (a copy of it is taken). */
+  constructor(source: Uint8Array | Report, options: OpenReportOptions = {}) {
     this.options = options;
-    this.model = readReportXml(bytes);
+    if (source instanceof Uint8Array) {
+      this.bytes = source;
+      this.model = readReportXml(source);
+    } else {
+      this.document = JSON.stringify(serializeReport(source));
+      this.model = this.fresh();
+    }
+  }
+
+  /** A fresh copy of the model: each step converts and fills what it runs. */
+  private fresh(): Report {
+    return this.bytes !== undefined ? readReportXml(this.bytes) : hydrateReport(JSON.parse(this.document!));
   }
 
   /**
@@ -218,7 +231,7 @@ export class NodeReport {
         : fontsOption instanceof FontLibrary
           ? fontsOption
           : fontLibrary(fontsOption);
-    const model = readReportXml(this.bytes);
+    const model = this.fresh();
     if (this.options.beforeRun !== undefined) this.options.beforeRun(model);
     const { signal, onProgress } = runOptions;
     return prepareReport(model, {
@@ -312,6 +325,14 @@ export async function openReport(source: string | Uint8Array, options: OpenRepor
     if (dfm !== undefined && dfm.isDfm(bytes)) bytes = dfm.dfmToXml(bytes);
   }
   return new NodeReport(bytes, options);
+}
+
+/**
+ * Opens a report from its model: one the web designer edits (hydrateReport of its JSON) or a
+ * program builds. The model is copied; changing it afterwards does not change the report.
+ */
+export function openReportModel(model: Report, options: OpenReportOptions = {}): NodeReport {
+  return new NodeReport(model, options);
 }
 
 /** What @reportman/node uses of @reportman/dfm, an optional peer dependency. */

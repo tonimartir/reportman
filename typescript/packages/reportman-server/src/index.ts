@@ -2,9 +2,10 @@
 // files, framework independent, with adapters for node:http, Express and Fastify; with a data
 // folder, its console too (connections, aliases, API keys, the sample reports and an API explorer).
 export { createReportServer, ReportServer, errorResponse } from './server.js';
-export type { ApiKey, ReportServerOptions, ServerRequest, ServerResponse } from './server.js';
-export { FolderReportStore, ServerError } from './store.js';
-export type { ReportEntry, ReportFolderNode } from './store.js';
+export { attachmentDisposition } from './server.js';
+export type { ApiKey, HttpServerLike, ReportServerOptions, ServerRequest, ServerResponse } from './server.js';
+export { FolderReportStore, ServerError, eTagOf, modifiedUtcOf } from './store.js';
+export type { FolderReportStoreOptions, ReportEntry, ReportFolderNode, ServerErrorKind, StoredReport } from './store.js';
 export { nodeHandler, fastifyPlugin, toServerRequest } from './node.js';
 export { ConsoleApi, ADMIN_KEY_HEADER } from './console.js';
 export type { ConsoleOptions } from './console.js';

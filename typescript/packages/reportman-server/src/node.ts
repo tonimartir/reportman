@@ -2,7 +2,7 @@
 // ones of node:http) and Fastify.
 
 import type { IncomingMessage, ServerResponse as NodeResponse } from 'node:http';
-import type { ReportServer, ServerRequest, ServerResponse } from './server.js';
+import type { HttpServerLike, ServerRequest, ServerResponse } from './server.js';
 
 /** The body of a node:http request, or of one a framework already read (Express's body parsers). */
 async function readBody(req: IncomingMessage & { body?: unknown }): Promise<Uint8Array | undefined> {
@@ -35,7 +35,7 @@ export async function toServerRequest(req: IncomingMessage & { body?: unknown; o
   const url = new URL(req.originalUrl ?? req.url ?? '/', 'http://localhost');
   const headers: Record<string, string | undefined> = {};
   for (const [k, v] of Object.entries(req.headers)) headers[k.toLowerCase()] = Array.isArray(v) ? v.join(', ') : v;
-  return { method: req.method ?? 'GET', path: url.pathname, query: url.searchParams, headers, body: await readBody(req) };
+  return { method: req.method ?? 'GET', path: url.pathname, query: url.searchParams, headers, body: await readBody(req), remoteAddress: req.socket?.remoteAddress };
 }
 
 function send(res: NodeResponse, response: ServerResponse): void {
@@ -47,9 +47,10 @@ function send(res: NodeResponse, response: ServerResponse): void {
 
 /**
  * A node:http request listener: http.createServer(nodeHandler(server)). In Express,
- * app.use(nodeHandler(server)): a path the server does not answer (ReportServer.owns) goes to next().
+ * app.use(nodeHandler(server)): a path the server does not answer (owns) goes to next(). The
+ * server is a ReportServer, a DesignerServer of @reportman/designer-server or any HttpServerLike.
  */
-export function nodeHandler(server: ReportServer): (req: IncomingMessage, res: NodeResponse, next?: (err?: unknown) => void) => void {
+export function nodeHandler(server: HttpServerLike): (req: IncomingMessage, res: NodeResponse, next?: (err?: unknown) => void) => void {
   return (req, res, next) => {
     const path = new URL((req as { originalUrl?: string }).originalUrl ?? req.url ?? '/', 'http://localhost').pathname;
     if (!server.owns(path) && next !== undefined) {
@@ -84,7 +85,7 @@ interface FastifyReplyLike {
  * A Fastify plugin: fastify.register(fastifyPlugin(server)). The bodies of the routes reach the
  * server as they came (a parser of every content type as bytes, inside the plugin only).
  */
-export function fastifyPlugin(server: ReportServer): (fastify: FastifyLike, _opts: unknown, done: () => void) => void {
+export function fastifyPlugin(server: HttpServerLike): (fastify: FastifyLike, _opts: unknown, done: () => void) => void {
   return (fastify, _opts, done) => {
     fastify.addContentTypeParser(/.*/, { parseAs: 'buffer' }, (_req, body, next) => next(null, body));
     const handler = async (request: { raw: IncomingMessage; body?: unknown }, reply: FastifyReplyLike): Promise<void> => {
@@ -95,12 +96,7 @@ export function fastifyPlugin(server: ReportServer): (fastify: FastifyLike, _opt
       for (const [k, v] of Object.entries(response.headers)) reply.header(k, v);
       reply.send(response.body);
     };
-    fastify.all('/api/health', handler);
-    fastify.all('/api/reports/*', handler);
-    if (server.console !== undefined) {
-      for (const route of ['/api/connections', '/api/connections/*', '/api/console/*']) fastify.all(route, handler);
-      if (server.owns('/')) for (const route of ['/', '/console']) fastify.all(route, handler);
-    }
+    for (const route of server.routes()) fastify.all(route, handler);
     done();
   };
 }

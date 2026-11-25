@@ -1,6 +1,6 @@
 // Report Manager for Node.js: open a .rep report, describe its parameters (step 1) and run it
 // to PDF (step 2), with data from the connections and datasets the host gives.
-export { openReport, NodeReport } from './report.js';
+export { openReport, openReportModel, NodeReport } from './report.js';
 export type { OpenReportOptions, PdfOptions, RunOptions } from './report.js';
 // The clock option of openReport
 export { systemClock } from '@reportman/pdf';

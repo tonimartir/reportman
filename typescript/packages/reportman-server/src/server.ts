@@ -44,6 +44,18 @@ export interface ServerRequest {
   /** Header names in lower case. */
   headers: Readonly<Record<string, string | undefined>>;
   body?: Uint8Array;
+  /** The address of the client (the socket's), when the adapter knows it. */
+  remoteAddress?: string;
+}
+
+/** A server an adapter (nodeHandler, fastifyPlugin) plugs into a framework. */
+export interface HttpServerLike {
+  /** Whether a path is one this server answers: an adapter passes the others on. */
+  owns(path: string): boolean;
+  /** Answers a request. */
+  handle(request: ServerRequest): Promise<ServerResponse>;
+  /** The route patterns of a Fastify plugin ('/api/reports/*'...). */
+  routes(): string[];
 }
 
 /** A response, whatever the framework. */
@@ -114,6 +126,8 @@ export interface ReportServerOptions {
   clock?: PdfClock;
   /** The version the health check gives (the one of the server's package by default). */
   version?: string;
+  /** The callers design reports (canDesign of the sample reports): a designer is mounted next to it. */
+  canDesign?: boolean;
 }
 
 const FORMATS: Record<string, { contentType: string; extension: string }> = {
@@ -188,7 +202,7 @@ function bodyParameters(request: ServerRequest): { parameters: Record<string, un
 }
 
 /** The reports API of Reportman.Server over folders of .rep files. */
-export class ReportServer {
+export class ReportServer implements HttpServerLike {
   readonly store: FolderReportStore;
   /** The console, with a data folder. */
   readonly console: ConsoleApi | undefined;
@@ -204,6 +218,7 @@ export class ReportServer {
         adminKey: options.adminKey,
         trusted: options.trusted,
         agent: { apiUrl: options.agentApiUrl },
+        canDesign: options.canDesign,
       });
     }
     const data = this.console?.data;
@@ -218,6 +233,16 @@ export class ReportServer {
     if (this.console === undefined) return false;
     if (p === '/api/connections' || p.startsWith('/api/connections/') || p.startsWith('/api/console/')) return true;
     return this.options.consolePage !== false && (p === '/' || p === '/console');
+  }
+
+  /** The route patterns of a Fastify plugin. */
+  routes(): string[] {
+    const routes = ['/api/health', '/api/reports/*'];
+    if (this.console !== undefined) {
+      routes.push('/api/connections', '/api/connections/*', '/api/console/*');
+      if (this.owns('/')) routes.push('/', '/console');
+    }
+    return routes;
   }
 
   /** The key of a request, or null without any key (the API is open). */
@@ -244,21 +269,27 @@ export class ReportServer {
     if (!this.canRun(key, alias)) throw new ServerError(403, `This API key does not run the reports of '${alias}'.`);
   }
 
-  private async open(alias: string, reportPath: string): Promise<{ report: NodeReport; path: string }> {
-    const stored = this.store.open(alias, reportPath);
+  /**
+   * The options a report of an alias opens with: the connections of dbxconnections.ini and the
+   * ones of the program (those win), the datasets, culture, fonts, file access and clock of the
+   * server. The designer server opens its reports with them too.
+   */
+  openOptions(alias: string): OpenReportOptions {
     const given = typeof this.options.connections === 'function' ? this.options.connections(alias) : this.options.connections;
     const fromFile = this.console === undefined ? {} : connectionFactories(this.console.connections, this.options.drivers ?? {});
-    const connections = { ...fromFile, ...(given ?? {}) };
-    const fonts = this.options.fonts === undefined ? {} : this.options.fonts;
-    const options: OpenReportOptions = {
-      connections,
+    return {
+      connections: { ...fromFile, ...(given ?? {}) },
       datasets: this.options.datasets,
       culture: this.options.culture,
-      fonts,
+      fonts: this.options.fonts === undefined ? {} : this.options.fonts,
       allowFileAccess: this.options.allowFileAccess,
       clock: this.options.clock,
     };
-    return { report: await openReport(stored.content, options), path: stored.path };
+  }
+
+  private async open(alias: string, reportPath: string): Promise<{ report: NodeReport; path: string }> {
+    const stored = this.store.open(alias, reportPath);
+    return { report: await openReport(stored.content, this.openOptions(alias)), path: stored.path };
   }
 
   /** Answers a request (a path outside /api/ is not found). */

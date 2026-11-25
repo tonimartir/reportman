@@ -17,6 +17,7 @@ const packages = [
   'driver-mssql',
   'export',
   'server',
+  'designer-server',
   'canvas',
   'dfm',
 ];

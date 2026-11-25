@@ -104,7 +104,7 @@ routes and answers of Reportman.Server's `ConnectionsController`, `ConsoleContro
 | `GET /api/console/status` | public: whether the console needs a key (of this server alone) |
 
 The answers are those of Reportman.Server: the tests replay a recording of its answers to the same
-requests (`test/golden-http`, which lists what is compared and what is not). This server adds
+requests (`test/golden-http` of @reportman/designer-server, which lists what is compared and what is not). This server adds
 `parameters/describe`, `console/status`, the `console` field of the health check and the 501 of a
 `text` format turned off.
 

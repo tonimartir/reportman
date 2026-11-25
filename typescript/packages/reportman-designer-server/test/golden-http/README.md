@@ -38,7 +38,7 @@ in the private repository of Reportman.Server). It runs only when `REPORTMAN_GOL
 this folder:
 
 ```powershell
-$env:REPORTMAN_GOLDEN_HTTP = "<this repository>\typescript\packages\reportman-server\test\golden-http"
+$env:REPORTMAN_GOLDEN_HTTP = "<this repository>\typescript\packages\reportman-designer-server\test\golden-http"
 dotnet test Reportman.Server.Tests --filter GoldenHttpRecorder
 ```
 

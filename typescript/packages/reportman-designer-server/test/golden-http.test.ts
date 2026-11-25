@@ -1,4 +1,5 @@
-// golden-http: the requests of golden-http/cases.json replayed against @reportman/server, in order,
+// golden-http: the requests of golden-http/cases.json replayed against the Node servers (the designer
+// server and the report server it mounts, @reportman/server), in order,
 // on a fresh data folder with the sample reports installed, and each answer compared with the one
 // Reportman.Server (C#) gave (golden-http/recorded.json, see golden-http/README.md). C# is the
 // reference: a difference is a bug of the Node server, unless it is listed in DIFFERENCES below
@@ -55,9 +56,6 @@ const EXTENSIONS: Record<string, string[]> = {
 /** Cases whose route the Node server does not answer yet (the designer protocol, P3). */
 const PENDING = new Set<string>([
   ...cases.filter((c) => c.path.startsWith('/api/designer/')).map((c) => c.name),
-  // canDesign: true with the designer
-  'samples-es',
-  'samples-zh',
   'designer-tree-after-writes',
 ]);
 

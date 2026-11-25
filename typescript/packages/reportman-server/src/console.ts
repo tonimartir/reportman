@@ -38,6 +38,8 @@ export interface ConsoleOptions {
   trusted?: boolean;
   /** Where an Agent connection is tested. */
   agent?: AgentTestOptions;
+  /** Whether the callers design reports (canDesign of the sample reports): a designer is mounted. */
+  canDesign?: boolean;
 }
 
 /** The body of PUT /api/connections/{alias} and POST .../test (SaveRequest). */
@@ -357,7 +359,7 @@ export class ConsoleApi {
         installed: target !== null && existsSync(path.join(folder, s.file)),
         prompt: s.prompt,
       }));
-      return ok({ alias: target?.alias ?? null, canDesign: false, canInstall: source !== null, items });
+      return ok({ alias: target?.alias ?? null, canDesign: this.options.canDesign === true, canInstall: source !== null, items });
     }
     if (rest.length === 2 && rest[0]!.toLowerCase() === 'thumbnails' && method === 'GET') {
       const name = rest[1]!;

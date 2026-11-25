@@ -1,0 +1,38 @@
+{
+  "name": "@reportman/designer-server",
+  "version": "4.1.0-alpha.3",
+  "description": "Report Manager web designer for Node.js: the designer protocol of Reportman.Server (open, save, preview, functions, expressions, datasets) over folders of .rep files, and the <reportman-designer> element served from your own app. No AI: the assistant stays in Reportman.Server.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonimartir/reportman.git",
+    "directory": "typescript/packages/reportman-designer-server"
+  },
+  "homepage": "https://reportman.es",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
+  "dependencies": {
+    "@reportman/server": "4.1.0-alpha.3",
+    "@reportman/node": "4.1.0-alpha.3",
+    "@reportman/engine": "4.1.0-alpha.3",
+    "@reportman/lib": "4.1.0-alpha.3"
+  }
+}

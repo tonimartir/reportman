@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "../reportman-server"
+    },
+    {
+      "path": "../reportman-node"
+    },
+    {
+      "path": "../reportman-engine"
+    },
+    {
+      "path": "../reportman-lib"
+    }
+  ]
+}
