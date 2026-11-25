@@ -1,7 +1,7 @@
 // The JSON of the designer's requests, read as Reportman.Server reads it (Newtonsoft with the engine's
-// converters). One difference matters to the engine: VariantJsonConverter.ReadJson does not keep the
-// type a Variant was written with ({"type": "Integer", "value": 1}); it assigns the value Newtonsoft
-// read (Variant.AssignFromObject), so the type comes from the JSON token: an integer is a long, a
+// converters). One difference matters to the engine: VariantJsonConverter.ReadJson keeps the type a
+// Variant was written with ({"type": "Integer", "value": 1}) only for Integer and Byte; otherwise it
+// assigns the value Newtonsoft read (Variant.AssignFromObject), so the type comes from the JSON token: an integer is a long, a
 // number with a fraction or an exponent a double, a text in ISO date and time form a DateTime (the
 // reader's DateParseHandling; one in UTC or with an offset taken to the local time), any other text a
 // string, true or false a boolean, null a Null. Reading the request here does the same, before the
@@ -23,11 +23,21 @@ class JsonNumber {
   ) {}
 }
 
+/** Math.Round(double): half to even. */
+function bankersRound(x: number): number {
+  const r = Math.round(x);
+  return Math.abs(x % 1) === 0.5 && r % 2 !== 0 ? r - 1 : r;
+}
+
 /** The Variant C# makes of a {type, value} it reads. */
 function csVariant(v: Record<string, unknown>): Record<string, unknown> {
   const value = v.value;
   if (value === undefined) return { type: 'Null', value: null };
-  if (value instanceof JsonNumber) return { type: value.float ? 'Double' : 'Long', value: value.value };
+  if (value instanceof JsonNumber) {
+    // An Integer or a Byte keeps its type (it came back as a Long); Convert.ToInt32 of a number with a fraction
+    if (v.type === 'Integer' || v.type === 'Byte') return { type: v.type, value: value.float ? bankersRound(value.value) : value.value };
+    return { type: value.float ? 'Double' : 'Long', value: value.value };
+  }
   if (value === null) return { type: 'Null', value: null };
   if (typeof value === 'boolean') return { type: 'Boolean', value };
   if (typeof value === 'string') {

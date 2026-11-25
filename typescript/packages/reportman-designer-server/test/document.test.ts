@@ -38,13 +38,13 @@ describe('designerDocument: the JSON of the C# engine', () => {
 });
 
 describe('parseDesignerJson: the Variants as Newtonsoft reads them', () => {
-  it('types a Variant by its JSON token, not by the type it was written with', () => {
+  it('types a Variant by its JSON token, not by the type it was written with (but an Integer or a Byte)', () => {
     const text =
       '{"a":{"type":"Integer","value":1},"b":{"type":"Double","value":2.0},"c":{"type":"Decimal","value":1e3},"d":{"type":"String","value":"2025-01-02T03:04:05"},' +
       '"e":{"type":"DateTime","value":"2025-01-02"},"f":{"type":"Binary","value":"AAEC"},"g":{"type":"String","value":null},"h":{"type":"Boolean","value":true},' +
-      '"i":{"name":"eTag","value":7},"j":{"type":"Long"}}';
+      '"i":{"name":"eTag","value":7},"j":{"type":"Long"},"k":{"type":"Byte","value":2.5},"l":{"type":"Long","value":3}}';
     expect(parseDesignerJson(text)).toEqual({
-      a: { type: 'Long', value: 1 },
+      a: { type: 'Integer', value: 1 },
       b: { type: 'Double', value: 2 },
       c: { type: 'Double', value: 1000 },
       d: { type: 'DateTime', value: '2025-01-02T03:04:05' },
@@ -54,6 +54,9 @@ describe('parseDesignerJson: the Variants as Newtonsoft reads them', () => {
       h: { type: 'Boolean', value: true },
       i: { name: 'eTag', value: 7 },
       j: { type: 'Null', value: null },
+      // Convert.ToInt32 / ToByte of a number with a fraction: half to even
+      k: { type: 'Byte', value: 2 },
+      l: { type: 'Long', value: 3 },
     });
   });
 });

@@ -225,14 +225,9 @@ export class ReportParam implements ParamLike {
     return getStringByIndex(this.hints, this.report.language);
   }
 
-  /**
-   * The error message in the report language, else the first one.
-   * C# parity: the length of the whole text is compared with the language index.
-   */
+  /** The error message in the report language, else the first one (as description and hint). */
   get errorMessage(): string {
-    if (this.errorMessages.length > this.report.language) return getStringByIndex(this.errorMessages, this.report.language);
-    if (this.errorMessages.length > 0) return getStringByIndex(this.errorMessages, 0);
-    return '';
+    return getStringByIndex(this.errorMessages, this.report.language);
   }
 
   /** GetMultiValue: the selected values joined by commas ("" for other types). */

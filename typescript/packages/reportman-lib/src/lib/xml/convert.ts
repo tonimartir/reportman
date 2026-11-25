@@ -100,6 +100,9 @@ export function convertToDotNet(report: Report): boolean {
 /** ReportReader.ConvertToDotNet. */
 function readerConvertToDotNet(rp: Report, driver: DriverType, providerFactory: string): void {
   for (const dinfo of rp.dataInfo) {
+    // The conversion writes the same query in the .Net form: the setter of SQL would clear its explanation
+    const explanation = dinfo.sqlExplanation;
+    const explanationError = dinfo.sqlExplanationError;
     const baseIndex = indexOfAlias(rp.databaseInfo, dinfo.databaseAlias);
     const baseinfo = baseIndex >= 0 ? rp.databaseInfo[baseIndex] : undefined;
     if (baseinfo !== undefined && baseinfo.driver === DriverType.BDE && dinfo.bdeType === DatasetType.Table) {
@@ -155,6 +158,8 @@ function readerConvertToDotNet(rp: Report, driver: DriverType, providerFactory: 
       index = sql.indexOf(":");
     }
     setSql(dinfo, sql);
+    dinfo.sqlExplanation = explanation;
+    dinfo.sqlExplanationError = explanationError;
   }
   for (const dbinfo of rp.databaseInfo) {
     if (dbinfo.driver !== DriverType.Mybase && dbinfo.driver !== DriverType.HttpAgent) {

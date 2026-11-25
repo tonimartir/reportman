@@ -31,7 +31,6 @@ import {
   Report,
   UndoCue,
   VariantType,
-  convertToDotNet,
   exportSubReport,
   exportSubReportXml,
   hydrateReport,
@@ -102,11 +101,9 @@ const sha = (data: string | Uint8Array) =>
     .update(typeof data === "string" ? Buffer.from(data, "latin1") : data)
     .digest("hex");
 
-/** The report of a .rep as the designer's server reads one (C# LoadFromStream and UpdateReferences). */
+/** The report of a .rep as the designer's server reads one (C# LoadFromStream without converting it to .Net, and UpdateReferences). */
 function serverReport(rep: string): Report {
-  const report = readReportXml(readBytes(rep));
-  convertToDotNet(report);
-  return updateReferences(report);
+  return updateReferences(readReportXml(readBytes(rep)));
 }
 
 /** The report of its JSON as the designer's server reads it (DeserializeObject and UpdateReferences). */

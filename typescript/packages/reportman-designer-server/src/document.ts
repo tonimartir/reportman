@@ -10,7 +10,7 @@
 // Fields C# keeps as they come (it deserializes them from the designer's JSON and writes them
 // back) are kept when the document has them; members C# derives are always derived again.
 
-import { convertToDotNet, hydrateReport, readReportXml, serializeReport, SectionType, updateReferences, VariantType, type Report } from '@reportman/lib';
+import { hydrateReport, readReportXml, serializeReport, SectionType, updateReferences, VariantType, type Report } from '@reportman/lib';
 
 type Json = Record<string, unknown>;
 
@@ -162,11 +162,14 @@ export function modelFromDocument(document: Json): Report {
   return model;
 }
 
-/** The model of a .rep (XML, plain or zlib) as Reportman.Server reads one (LoadFromStream, converted to .Net, UpdateReferences). */
+/**
+ * The model of a .rep (XML, plain or zlib) as Reportman.Server reads one (LoadFromStream without
+ * converting it to .Net, UpdateReferences): a report of the Delphi engine is converted only to run,
+ * so the designer saves it as it was (converted, its SQL parameters and drivers changed and it
+ * stopped working in Delphi).
+ */
 export function modelFromXml(bytes: Uint8Array): Report {
-  const model = readReportXml(bytes);
-  convertToDotNet(model);
-  return updateReferences(model);
+  return updateReferences(readReportXml(bytes));
 }
 
 /** The report as Reportman.Server sends it to the designer (the JSON of its engine's Report). */
@@ -199,8 +202,8 @@ export function designerDocument(model: Report): Json {
     sub.firstPageFooter = first(SectionType.PageFooter);
     sub.lastPageFooter = last(SectionType.PageFooter);
     sub.firstDetail = first(SectionType.Detail);
-    // C# parity: (last - first) + 1 whenever there is a section, 1 without any detail
-    sub.detailCount = sections.length === 0 ? 0 : last(SectionType.Detail) - first(SectionType.Detail) + 1;
+    // (last - first) + 1, 0 without any detail
+    sub.detailCount = first(SectionType.Detail) < 0 ? 0 : last(SectionType.Detail) - first(SectionType.Detail) + 1;
     sub.lastDetail = last(SectionType.Detail);
     sub.groupCount = count(SectionType.GroupHeader);
     for (const section of sections) {
@@ -218,8 +221,7 @@ export function designerDocument(model: Report): Json {
     p.description = descriptions.length === 0 ? '' : stringByIndex(descriptions, language);
     p.userVisible = p.visible === true && p.neverVisible !== true;
     p.hint = hints.length === 0 ? '' : stringByIndex(hints, language);
-    // C# parity: ErrorMessage compares the length of the text (not its lines) with the language
-    p.errorMessage = errors.length > language ? stringByIndex(errors, language) : errors.length > 0 ? stringByIndex(errors, 0) : '';
+    p.errorMessage = errors.length === 0 ? '' : stringByIndex(errors, language);
     defaults(p, { lastValue: nullVariant() });
     const value = model.params[i]?.value;
     if (value !== undefined && value.type === VariantType.DateTime && value.value instanceof Date && typeof p.value === 'object' && p.value !== null)

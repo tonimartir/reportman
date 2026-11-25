@@ -90,6 +90,12 @@ const AlignmentFlags_AlignVCenter = 32;
 const AlignmentFlags_AlignBottom = 16;
 
 /** StringUtil.IsAlpha: ['0'..'9','a'..'z','A'..'Z','(',')','.',' ',';',':','_','=']. */
+/** Windows-1252 from 128 to 159 (from 160 to 255 it is Latin-1). */
+const CP1252_HIGH = [
+  0x20ac, 0x0081, 0x201a, 0x0192, 0x201e, 0x2026, 0x2020, 0x2021, 0x02c6, 0x2030, 0x0160, 0x2039, 0x0152, 0x008d, 0x017d, 0x008f,
+  0x0090, 0x2018, 0x2019, 0x201c, 0x201d, 0x2022, 0x2013, 0x2014, 0x02dc, 0x2122, 0x0161, 0x203a, 0x0153, 0x009d, 0x017e, 0x0178,
+];
+
 function isAlpha(c: number): boolean {
   return (
     (c >= 48 && c <= 57) ||
@@ -354,10 +360,16 @@ class ReportXmlReader {
 
   // ---- Values ----
 
-  /** The value as text: only IsAlpha characters, #code# for any other; line breaks are dropped. */
+  /**
+   * The value as text: only IsAlpha characters, #code# for any other; line breaks are dropped. A
+   * String without codes above 255 has its 128 to 159 read as Windows-1252: Delphi writes a String
+   * property as the bytes of its ANSI code page (the euro is 128, the quotes 145 to 148), the .Net
+   * engine as UTF-16 code units (there they are C1 control characters, not text).
+   */
   private getAsString(): string {
     const pv = this.propvalue;
     const units: number[] = [];
+    let wide = false;
     let i = 0;
     while (i < pv.length) {
       const c = pv.charCodeAt(i);
@@ -376,10 +388,14 @@ class ReportXmlReader {
         }
         // (char)anumber: the low 16 bits
         units.push(anumber & 0xffff);
+        if (anumber > 255) wide = true;
       } else if (isAlpha(c)) {
         units.push(c);
         i++;
       } else i++;
+    }
+    if (!wide && this.proptype === "String") {
+      for (let j = 0; j < units.length; j++) if (units[j] >= 0x80 && units[j] <= 0x9f) units[j] = CP1252_HIGH[units[j] - 0x80];
     }
     return codeUnitsToString(units);
   }
@@ -414,16 +430,20 @@ class ReportXmlReader {
     if (avalue.length > 0) list.push(avalue);
   }
 
-  /** The label texts (WIDETEXT): lines split by LF, the CR of CR LF is not part of the text. */
+  /**
+   * The label texts (WIDETEXT): lines split by LF, the CR of CR LF is not part of the text, and a
+   * text that ends with the separator has an empty last language.
+   */
   private fillStringsNoTrim(list: string[]): void {
     let avalue = this.getAsString();
+    if (avalue.length === 0) return;
     let index = avalue.indexOf("\n");
     while (index >= 0) {
       addLineNoTrim(list, avalue.substring(0, index));
       avalue = avalue.substring(index + 1);
       index = avalue.indexOf("\n");
     }
-    if (avalue.length > 0) addLineNoTrim(list, avalue);
+    addLineNoTrim(list, avalue);
   }
 
   /** The bytes of a binary property: hexadecimal of the declared size. */
@@ -522,6 +542,8 @@ class ReportXmlReader {
             throw new ReportReaderError("Embededed file property not closed:" + this.propname, "Embedded file");
           this.findNextName();
         }
+        // Without STREAM (other writers, a hand edit) the file is empty: the writer reads it
+        if (efile.streamBase64 === undefined) efile.streamBase64 = "";
         rp.embeddedFiles.push(efile);
       } else if (this.tag() === "SUBREPORT") {
         this.findNextName();
@@ -601,13 +623,17 @@ class ReportXmlReader {
         setParentSubReport(subrep, lookup(subrep.parentSub, (i) => i instanceof SubReport, "SubReport") as SubReport);
       if (subrep.parentSec.length > 0)
         setParentSection(subrep, lookup(subrep.parentSec, (i) => i instanceof Section, "Section") as Section);
+    }
+    // The sections after every PARENTSUBREPORT: the section of a child sets its parent, also when
+    // the child comes later (reports saved before named the child itself)
+    for (const subrep of rp.subReports) {
       for (const sec of subrep.sections) {
         if (sec.childSubReportName.length > 0) {
           const child = lookup(sec.childSubReportName, (i) => i instanceof SubReport, "SubReport") as SubReport;
           setChildSubReport(sec, child);
           setParentSection(child, sec);
-          // C# parity: the reader makes the child subreport its own parent subreport.
-          setParentSubReport(child, child);
+          // The subreport of the section (it was the child itself)
+          setParentSubReport(child, subrep);
         }
         if (sec.subReportName.length > 0) {
           sec.subReportName = subrep.name;
@@ -1269,6 +1295,7 @@ class ReportXmlReader {
       case ParamType.ExpreA:
       case ParamType.ExpreB:
       case ParamType.Subst:
+      case ParamType.SubstExpre:
       case ParamType.List:
       case ParamType.SubsExpreList:
       case ParamType.InitialValue:
@@ -1814,14 +1841,13 @@ class ReportXmlReader {
   }
 }
 
-/** One label text: the CR before the LF is dropped, and a line made only of CRs is no text. */
+/** One label text: the CRs at its end are dropped. */
 function addLineNoTrim(list: string[], line: string): void {
   // The language separator in WIDETEXT is CR LF: the CR is not part of the text. Older versions
-  // split only on LF and left CRs at the end of each language; they are removed here (repairing
-  // reports already damaged). Items made only of CRs are leftovers of that, not real languages.
-  const clean = csTrimEndChar(line, 13);
-  if (clean.length === 0 && line.length > 0) return;
-  list.push(clean);
+  // split only on LF and kept one more CR at the end of each language on every save; they are
+  // removed here (it repairs those reports). A language made only of CRs is an empty language of
+  // those reports: it is kept, so the next ones do not move.
+  list.push(csTrimEndChar(line, 13));
 }
 
 /** The C# BidiMode setter: only the list of modes (rightToLeft is derived at the end of the read). */

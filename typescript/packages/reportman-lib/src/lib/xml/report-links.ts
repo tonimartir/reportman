@@ -102,6 +102,15 @@ export function updateReferences(report: Report): Report {
       // C# parity: a name that names nothing leaves the link as it was.
       const child = resolveChildSubReport(report, section);
       if (child !== undefined) setChildSubReport(section, child.subReport);
+      // The links the JSON does not carry, as the XML reader sets them (the parent subreport is
+      // what makes a subreport a child when the report runs)
+      if ((section.childSubReportName ?? "").length > 0) {
+        const linked = childSubReports.get(section)?.subReport;
+        if (linked) {
+          setParentSubReport(linked, subReport);
+          setParentSection(linked, section);
+        }
+      }
     }
   }
   return report;

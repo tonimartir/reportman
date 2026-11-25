@@ -404,38 +404,6 @@ function writeDataInfo(w: XmlLines, dinfo: DataInfo): void {
   w.B("PARALLELUNION", dinfo.parallelUnion);
 }
 
-/** Strings.GetStringByIndex: the line of that index (of the first one when there is none). */
-function getStringByIndex(text: string, index: number): string {
-  const list: string[] = [];
-  let partial = "";
-  for (let i = 0; i < text.length; i++) {
-    const c = text.charCodeAt(i);
-    if (c === 13) {
-      list.push(partial);
-      partial = "";
-      if (i < text.length - 1 && text.charCodeAt(i + 1) === 10) i++;
-    } else if (c === 10) {
-      list.push(partial);
-      partial = "";
-    } else partial += text[i];
-  }
-  list.push(partial);
-  if (index < 0) index = 0;
-  return index < list.length ? list[index] : list[0];
-}
-
-/**
- * Param.ErrorMessage: the message of the report's current language. C# parity: the writer saves
- * only that one, and the getter compares the length of the text (not the number of lines) with
- * the language.
- */
-function currentErrorMessage(param: Param, language: number): string {
-  const messages = newlineText(param.errorMessages);
-  if (messages.length > language) return getStringByIndex(messages, language);
-  if (messages.length > 0) return getStringByIndex(messages, 0);
-  return "";
-}
-
 const TYPE_CONVERSION_ERROR = "Type conversion error";
 
 /** The C# Variant a value of this model is: its type, or the one of the JavaScript value when they disagree. */
@@ -468,16 +436,22 @@ function delphiMilliseconds(value: unknown): number {
   return wall.getTime() - Date.UTC(1899, 11, 30);
 }
 
-/** DateUtil.DateTimeToDelphiDateTime: TimeSpan.TotalDays since 1899-12-30. */
+/**
+ * DateUtil.DateTimeToDelphiDateTime: TimeSpan.TotalDays since 1899-12-30; before that day, the OLE
+ * date (a TDateTime): the day with its sign and the time of that day subtracted, 06:00 of
+ * 1899-12-29 is -1.25 (the days since, -0.75, moved the date on every save).
+ */
 function delphiDateTime(value: unknown): number {
   const ticks = delphiMilliseconds(value) * 10000;
-  return ticks / 864000000000;
+  const days = ticks / 864000000000;
+  if (days >= 0) return days;
+  const day = Math.floor(days);
+  return day - (days - day);
 }
 
-/** DateUtil.DateTimeToDelphiDate: the whole days (TimeSpan.Days, truncated towards zero). */
+/** DateUtil.DateTimeToDelphiDate: the day of the date (Math.Floor of the days; before 1899-12-30 with a time it was the next day). */
 function delphiDate(value: unknown): number {
-  const ms = delphiMilliseconds(value);
-  return (ms - (ms % 86400000)) / 86400000;
+  return Math.floor((delphiMilliseconds(value) * 10000) / 864000000000);
 }
 
 /** DateTime.ToString() with the en-US culture: M/d/yyyy h:mm:ss tt. */
@@ -610,7 +584,8 @@ function writeParam(w: XmlLines, aparam: Param, report: Report): void {
   w.S("INTNAME", aparam.name);
   w.S("DESCRIPTION", newlineText(aparam.descriptions));
   w.S("HINT", newlineText(aparam.hints));
-  w.S("ERRORMESSAGE", currentErrorMessage(aparam, report.language ?? -1));
+  // Every language, as DESCRIPTION and HINT
+  w.S("ERRORMESSAGE", newlineText(aparam.errorMessages));
   w.S("VALIDATION", aparam.validation);
   w.S("SEARCH", aparam.search);
   w.B("VISIBLE", aparam.visible);
@@ -631,6 +606,7 @@ function writeParam(w: XmlLines, aparam: Param, report: Report): void {
     case ParamType.ExpreA:
     case ParamType.ExpreB:
     case ParamType.Subst:
+    case ParamType.SubstExpre:
     case ParamType.List:
     case ParamType.SubsExpreList:
     case ParamType.InitialValue:
@@ -903,8 +879,6 @@ function writeEmbeddedFile(w: XmlLines, efile: EmbeddedFile): void {
   w.S("CREATIONDATE", efile.creationDate);
   w.S("MODIFICATIONDATE", efile.modificationDate);
   w.I("RELATIONSHIP", efile.afRelationShip);
-  // C# parity: an embedded file without contents (its Stream is null) cannot be saved.
-  if (efile.streamBase64 === undefined || efile.streamBase64 === null)
-    throw new ReportWriterError("Object reference not set to an instance of an object.");
-  w.Bin("STREAM", base64Bytes(efile.streamBase64));
+  // A file without contents (made by code) is written empty
+  w.Bin("STREAM", base64Bytes(efile.streamBase64 ?? ""));
 }

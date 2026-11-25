@@ -219,6 +219,81 @@ function writerEmbedded() {
   ]);
 }
 
+/**
+ * The reader and writer fixes of 26-11-2026 (the same in the three engines): String values in the
+ * bytes of Windows-1252 (as Delphi writes them) and WideString ones, empty languages of a label, an
+ * embedded file without STREAM, a SubstExpre value, a child subreport before its parent (and a
+ * grandchild), master-detail datasets and parameters of several datasets (export and import).
+ */
+function writerFixes() {
+  const W = (name, value) => `<${name} type="WideString">${rpString(value)}</${name}>`;
+  const dataset = (alias, name, extra) => ["<DATAINFO>", S("ALIAS", alias), S("NAME", name), S("DATABASEALIAS", "CONN"), S("SQL", "SELECT 1"), ...extra, "</DATAINFO>"];
+  const parameter = (alias, name, type, extra) => ["<PARAMETER>", S("NAME", alias), S("INTNAME", name), I("PARAMTYPE", type), ...extra, "</PARAMETER>"];
+  const section = (name, type, extra) => ["<SECTION>", S("NAME", name), I("SECTIONTYPE", type), ...extra, "</SECTION>"];
+  return lines([
+    '<?xml version="1.0" standalone="no"?>',
+    "<!DOCTYPE REPORT_MANAGER_2>",
+    "<REPORT>",
+    I("LANGUAGE", 1),
+    S("DOCTITLE", "Informe \u0080 \u0093x\u0094 \u00e9"),
+    W("DOCAUTHOR", "\u041f\u0440\u0438 \u20ac"),
+    S("DOCSUBJECT", "\u041f\u0440\u0438 \u0080"),
+    B("REPORTACTIONDRAWERBEFORE", true),
+    "<DATABASEINFO>",
+    S("ALIAS", "CONN"),
+    S("NAME", "TRPDATABASEINFOITEM1"),
+    I("DRIVER", 9),
+    "</DATABASEINFO>",
+    dataset("A", "TRPDATAINFOITEM1", [S("SQLEXPLANATION", "All of A")]),
+    dataset("B", "TRPDATAINFOITEM2", [S("DATASOURCE", "A"), S("DATAUNIONS", "U-ID")]),
+    dataset("C", "TRPDATAINFOITEM3", []),
+    dataset("D", "TRPDATAINFOITEM4", []),
+    dataset("U", "TRPDATAINFOITEM5", []),
+    parameter("P1", "TRPPARAM1", 0, [S("DATASETS", "A"), S("VALUE", "\u0080")]),
+    parameter("P2", "TRPPARAM2", 0, [S("DATASETS", "D")]),
+    parameter("P3", "TRPPARAM3", 1, [I("VALUE", 7)]),
+    parameter("P4", "TRPPARAM4", 0, [S("DATASETS", "B\r\nD")]),
+    parameter("PSUBSTE", "TRPPARAM5", 13, [S("VALUE", "WHERE A=1")]),
+    parameter("PERR", "TRPPARAM6", 0, [S("ERRORMESSAGE", "E0\nE1\nE2")]),
+    parameter("PDATE", "TRPPARAM7", 5, [D("VALUE", "-700.3")]),
+    parameter("P\u041f", "TRPPARAM8", 0, [W("ITEMS", "Uno\r\n\u0414\u0432a\r\n"), W("VALUE", "\u041f\uffff")]),
+    "<SUBREPORT>",
+    S("NAME", "CHILD"),
+    S("ALIAS", "B"),
+    S("PARENTSUBREPORT", "CHILD"),
+    S("PARENTSECTION", "SM1"),
+    section("SC1", 2, [S("CHILDSUBREPORT", "GRAND")]),
+    "</SUBREPORT>",
+    "<SUBREPORT>",
+    S("NAME", "MAIN"),
+    S("ALIAS", "A"),
+    section("SM1", 2, [
+      S("CHILDSUBREPORT", "CHILD"),
+      component("LMID", "TRPLABEL", [S("WIDETEXT", "Default\r\n\r\nLang1")]),
+      component("LTRAIL", "TRPLABEL", [S("WIDETEXT", "Default\r\n")]),
+      component("LCR", "TRPLABEL", [S("WIDETEXT", "X\r\r\n\r\r\nZ\r")]),
+      component("LANSI", "TRPLABEL", [S("WIDETEXT", "\u0080"), S("ANNOTATION", "\u0093A\u0094")]),
+    ]),
+    "</SUBREPORT>",
+    "<SUBREPORT>",
+    S("NAME", "GRAND"),
+    S("ALIAS", "C"),
+    section("SG1", 2, []),
+    "</SUBREPORT>",
+    "<SUBREPORT>",
+    S("NAME", "OTHER"),
+    S("ALIAS", "D"),
+    section("SO1", 3, []),
+    section("SO2", 5, []),
+    "</SUBREPORT>",
+    "<EMBEDDEDFILE>",
+    S("FILENAME", "nocontent.txt"),
+    S("MIMETYPE", "text/plain"),
+    "</EMBEDDEDFILE>",
+    "</REPORT>",
+  ]);
+}
+
 /** A report with a null operation date (see undoNullDate). */
 function writerNullDate() {
   return lines([
@@ -240,6 +315,7 @@ const synthetic = {
   "writer-kitchen-sink": writerKitchenSink(),
   "writer-null-date": writerNullDate(),
   "writer-embedded": writerEmbedded(),
+  "writer-fixes": writerFixes(),
 };
 for (const [name, text] of Object.entries(synthetic)) fs.writeFileSync(path.join(syntheticDir, name + ".rep"), Buffer.from(text, "latin1"));
 // zlib: the stream format of the kitchen sink is XMLZlib; this one is also compressed on disk.
@@ -470,6 +546,12 @@ importable.forEach((target, k) => {
   }
   if (k % 50 === 0) importsList.push({ target: "-", source: target.id, from: "new" });
 });
+for (const [t, s] of [
+  ["synthetic-writer-fixes", "synthetic-writer-fixes"],
+  ["synthetic-writer-kitchen-sink", "synthetic-writer-fixes"],
+  ["synthetic-writer-fixes", "synthetic-writer-kitchen-sink"],
+])
+  for (const from of ["rep", "json"]) importsList.push({ target: t, source: s, from, withJson: true });
 for (const t of ["synthetic-writer-kitchen-sink", "engine-repsamples-bold"]) {
   for (const s of ["synthetic-writer-kitchen-sink", "engine-repsamples-bold", "samples-customers"])
     for (const from of ["rep", "json"]) importsList.push({ target: t, source: s, from, withJson: true });

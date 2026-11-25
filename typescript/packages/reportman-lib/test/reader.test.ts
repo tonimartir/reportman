@@ -105,8 +105,9 @@ describe("values of the synthetic reports", () => {
     expect(Buffer.from(image.streamBase64, "base64")).toEqual(Buffer.from(Array.from({ length: 70 }, (_, i) => (i * 37) & 255)));
     expect(image.rotation).toBe(90);
     const labels = sec0.components.filter((c) => c instanceof LabelItem) as LabelItem[];
-    // C# parity: a language left empty (CR LF CR LF) is dropped as a leftover CR
-    expect(labels[0].allStrings).toEqual(["Default text", "Language 0", "Language 2", "Last"]);
+    // A language left empty (CR LF CR LF) is a language, also one made only of the CRs older
+    // versions left (CR CR LF): the next ones do not move
+    expect(labels[0].allStrings).toEqual(["Default text", "Language 0", "", "Language 2", "", "Last"]);
     // "TRPLABEL1" is the key of "TRpLabel1": both uppercase ones are renamed
     expect(labels.map((l) => l.name)).toEqual(["TRpLabel0", "TRpLabel1", "TRPLABEL2", "TRPLABEL3"]);
     // two items named "Same": both keep the name, the list holds the first
