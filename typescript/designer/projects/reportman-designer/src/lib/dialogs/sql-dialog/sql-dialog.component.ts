@@ -64,6 +64,11 @@ export class SqlDialogComponent extends Ventana<PeticionSqlDialog, string | unde
   public currentComponentRef?: ComponentRef<SqlDialogComponent> = undefined;
   /** The host's AI, when it provides one. */
   protected ai: DesignerAi | null;
+
+  /** The AI's controls (the chat, the audit): a designer whose host has the AI. */
+  protected get aiChat(): boolean {
+    return this.ai !== null && (this.ai.enabled?.() ?? true);
+  }
   protected schema: DesignerAiSchemaInfo | null = null;
   protected chatOpen = readFlag(CHAT_OPEN_KEY, true);
   protected bottomTab: "data" | "audit" = "data";

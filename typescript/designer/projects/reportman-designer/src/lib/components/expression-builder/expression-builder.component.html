@@ -1,5 +1,5 @@
 <split class="expression-builder" cacheId="exprDialog">
-  <div split-area [size]="ai && chatOpen ? 66 : 100" [minSize]="420" cacheSubId="editor" class="builder-main">
+  <div split-area [size]="aiChat && chatOpen ? 66 : 100" [minSize]="420" cacheSubId="editor" class="builder-main">
     <!-- The expression -->
     <div class="top-section">
       <rp-expression-editor
@@ -34,7 +34,7 @@
         <boton estilo="normal" icono="refresh" (clicked)="refreshColumns()" [title]="stringActualizar">{{ stringActualizar }}</boton>
         <boton estilo="normal" icono="spellcheck" (clicked)="checkSyntax()">{{ t.t('Expr_CheckSyntax') }}</boton>
         <boton estilo="normal" icono="play_arrow" (clicked)="evaluate()">{{ t.t('Expr_Evaluate') }}</boton>
-        @if (ai) {
+        @if (aiChat) {
           <button type="button" class="rpd-tool rpd-tool-text" [class.is-active]="chatOpen" (click)="toggleChat()" [attr.aria-pressed]="chatOpen" [attr.aria-label]="t.t('Ai_ChatToggle')" [title]="t.t('Ai_ChatToggle')">
             <span class="material-icons" aria-hidden="true">forum</span>
           </button>
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  @if (ai && chatOpen) {
+  @if (aiChat && chatOpen) {
     <div split-area [size]="34" [minSize]="300" cacheSubId="chat" class="builder-chat">
       <rp-ai-chat
         mode="suggestion"

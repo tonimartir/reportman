@@ -43,6 +43,8 @@ export async function defineDesignerElement(): Promise<void> {
           get aiLoginUrl() { return elementConfig.api('/ai-login'); },
           get aiAccount() { return elementConfig.aiAccount; },
           aiAvailable: () => elementConfig.ai,
+          // no-ai: no AI control at all (the server may have no AI, as @reportman/designer-server)
+          aiEnabled: () => elementConfig.ai,
           get aiCallbackPath() { return elementConfig.aiCallbackPath; },
           monacoUrl: elementConfig.asset('assets/monaco-editor/min/vs'),
           getToken: () => (elementConfig.getToken ? elementConfig.getToken() : null),

@@ -216,6 +216,12 @@ export interface DesignerAi {
   creditsTooltip(): string;
   /** Whether this person may use the AI at all (the host decides: here, whoever designs). */
   readonly available: Signal<boolean>;
+  /**
+   * Whether the AI is part of this designer at all (a host without it, the element's no-ai): false
+   * hides every AI control (the chats, the audit), while the services the editors also use (the
+   * schema of a connection for the SQL completion) keep working. True when missing.
+   */
+  readonly enabled?: () => boolean;
   /** The Reportman AI account, for the account card on top of every chat; without it, no card. */
   readonly account?: DesignerAiAccount;
   /** The SQL autocompletion switch (persisted by the host). */

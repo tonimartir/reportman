@@ -1,7 +1,7 @@
 <div class="backdrop">
-  <div class="modal" [class.with-chat]="ai && chatOpen">
+  <div class="modal" [class.with-chat]="aiChat && chatOpen">
     <split class="sql-split" cacheId="sqlDialog">
-      <div split-area [size]="ai && chatOpen ? 68 : 100" [minSize]="420" cacheSubId="editor" class="sql-main">
+      <div split-area [size]="aiChat && chatOpen ? 68 : 100" [minSize]="420" cacheSubId="editor" class="sql-main">
         <rp-sql-editor
           class="sql-editor"
           [document]="expression"
@@ -21,8 +21,8 @@
           <boton estilo="confirmacion" color="negativo" (clicked)="cancel()">{{ t.TranslateStr(94) }}</boton>
           <span class="rpd-spacer"></span>
           <boton estilo="normal" icono="play_arrow" (clicked)="open()" [title]="'Ctrl+Enter'">{{ t.t('Sql_GetData') }}</boton>
-          @if (ai) {
-            <boton estilo="normal" icono="fact_check" (clicked)="audit()" [disabled]="auditTracker.busy() || !(ai.available())">{{ t.t('Ai_AuditRun') }}</boton>
+          @if (aiChat) {
+            <boton estilo="normal" icono="fact_check" (clicked)="audit()" [disabled]="auditTracker.busy() || !(ai?.available() ?? false)">{{ t.t('Ai_AuditRun') }}</boton>
             <button type="button" class="rpd-tool rpd-tool-text" [class.is-active]="chatOpen" (click)="toggleChat()" [attr.aria-pressed]="chatOpen" [attr.aria-label]="t.t('Ai_ChatToggle')" [title]="t.t('Ai_ChatToggle')">
               <span class="material-icons" aria-hidden="true">forum</span>
             </button>
@@ -35,7 +35,7 @@
               {{ t.t('Sql_Data') }}
               @if (error) { <span class="material-icons sql-tab-warn" aria-hidden="true">error_outline</span> }
             </button>
-            @if (ai) {
+            @if (aiChat) {
               <button type="button" class="rpd-tab" role="tab" [class.is-active]="bottomTab === 'audit'" [attr.aria-selected]="bottomTab === 'audit'" (click)="bottomTab = 'audit'">
                 {{ t.t('Ai_Audit') }}
                 @if (auditTracker.busy()) { <span class="sql-tab-dot is-busy" aria-hidden="true"></span> }
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      @if (ai && chatOpen) {
+      @if (aiChat && chatOpen) {
         <div split-area [size]="32" [minSize]="300" cacheSubId="chat" class="sql-chat">
           <rp-ai-chat
             mode="suggestion"

@@ -65,6 +65,15 @@ export class ExpressionBuilderComponent implements OnInit, OnChanges {
   protected evaluation = signal<{ value: string; type: string } | { error: string } | null>(null);
   private checkTimer?: any;
 
+  /** The AI's chat: a designer whose host has the AI. */
+
+  protected get aiChat(): boolean {
+
+    return this.ai !== null && (this.ai.enabled?.() ?? true);
+
+  }
+
+
   constructor(
     protected t: TranslationService,
     private reportService: NgxReportmanLibService,

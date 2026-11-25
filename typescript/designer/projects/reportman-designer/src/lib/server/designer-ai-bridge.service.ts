@@ -54,7 +54,8 @@ export class DesignerAiBridgeService implements DesignerAi {
   readonly creditsRatio = computed(() => this.aiAccount.creditsRatio());
   readonly usingBag = computed(() => this.aiAccount.usingBag());
   /** As the host says (Reportman.Server: whoever designs); without a Reportman AI login, the installation's guest credits pay. */
-  readonly available = computed(() => this.host.aiAvailable());
+  readonly available = computed(() => this.enabled() && this.host.aiAvailable());
+  readonly enabled = (): boolean => this.host.aiEnabled?.() ?? true;
   /** The Reportman AI account: the card on top of every chat. */
   readonly account = this.aiAccount;
   /**

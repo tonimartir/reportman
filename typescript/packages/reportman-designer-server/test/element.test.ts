@@ -51,6 +51,8 @@ describe('@reportman/designer-server: the element', () => {
     expect(html).toContain('<reportman-designer no-ai api-base="/reportman/api" report="REPORTS/sales.rep" lang="en">');
     // Nothing from another site
     expect(page.headers['content-security-policy']).toContain("default-src 'self'");
+    // The preview shows its PDF in a blob: frame
+    expect(page.headers['content-security-policy']).toContain("frame-src 'self' blob:");
     expect(html).not.toMatch(/https?:\/\//);
   });
 

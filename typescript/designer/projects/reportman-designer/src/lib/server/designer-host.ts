@@ -19,6 +19,11 @@ export interface DesignerHost {
    * the designer re-evaluates it. Default: yes.
    */
   aiAvailable?: () => boolean;
+  /**
+   * Whether the AI is part of this designer at all: false shows no AI control (the element's
+   * no-ai, a server without the AI such as @reportman/designer-server). Default: yes.
+   */
+  aiEnabled?: () => boolean;
   /** The host's own session ended (the bridge answered LoginRequired): back to its login. */
   sessionLost?: () => void;
   /**

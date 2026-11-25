@@ -114,9 +114,9 @@ function page(request: ServerRequest, base: string): ServerResponse {
       'content-type': 'text/html; charset=utf-8',
       'cache-control': 'no-cache',
       'x-content-type-options': 'nosniff',
-      // Nothing from another site; Monaco's workers start from blob: URLs
+      // Nothing from another site; Monaco's workers start from blob: URLs and the preview shows its PDF in a blob: frame
       'content-security-policy':
-        "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; worker-src 'self' blob:; connect-src 'self'; frame-ancestors 'self'",
+        "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; worker-src 'self' blob:; connect-src 'self'; frame-src 'self' blob:; object-src 'self' blob:; frame-ancestors 'self'",
     },
     body: new TextEncoder().encode(html),
   };
