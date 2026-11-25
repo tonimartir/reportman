@@ -20,7 +20,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync } from "node:zlib";
 import { unzlibSync } from "fflate";
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   ChangeObjectOperation,
   ChangeOperationItem,
@@ -307,6 +307,13 @@ function normalizeRoundTrip(json: any): any {
 }
 
 describe("a written report reads back as the same report", () => {
+  // An undo operation without a date reads as "now": the two reads must see the same clock
+  beforeEach(() => {
+    vi.useFakeTimers({ now: new Date("2026-01-02T03:04:05.678Z"), toFake: ["Date"] });
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
   for (const r of bundle.reports.filter((r) => !r.write.error)) {
     it(r.id, () => {
       const first = readReportXml(readBytes(r.rep));
