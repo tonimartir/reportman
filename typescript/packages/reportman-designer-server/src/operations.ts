@@ -261,8 +261,8 @@ export class DesignerOperations {
   }
 
   /** A fresh run of the report, with the connections, culture, fonts and clock of the alias. */
-  private run(model: Report, context: OperationContext, subReportIndexes?: number[]): Promise<ReportRun> {
-    return openReportModel(model, this.reports.openOptions(this.aliasOf(context))).prepareRun({ subReportIndexes });
+  private run(model: Report, context: OperationContext): Promise<ReportRun> {
+    return openReportModel(model, this.reports.openOptions(this.aliasOf(context))).prepareRun();
   }
 
   /** The culture of the server (the translator of the engine's texts follows it). */
@@ -590,7 +590,7 @@ export class DesignerOperations {
   async exportSubReport(report: ReportDocument, subreportIndex: number): Promise<EvaluateResult> {
     const model = this.model(report);
     if (!Number.isInteger(subreportIndex) || subreportIndex < 0 || subreportIndex >= model.subReports.length)
-      throw new Error('Index was out of range. Must be non-negative and less than the size of the collection.');
+      throw new Error("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')");
     throw new Error(WRITER_PENDING);
   }
 
