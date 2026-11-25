@@ -14,6 +14,17 @@ let failed = false;
 
 for (const name of readdirSync(packagesDir)) {
   const pkg = JSON.parse(readFileSync(join(packagesDir, name, 'package.json'), 'utf8'));
+  // A package for the browser (the <reportman-designer> element) is not loaded in Node: its build
+  // is checked by tools/check-designer.mjs
+  if (pkg.exports['.'].browser !== undefined) {
+    try {
+      console.log(execFileSync(process.execPath, [join(root, 'tools', 'check-designer.mjs')], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim());
+    } catch (e) {
+      failed = true;
+      console.error((e.stderr?.toString() || e.message).trim());
+    }
+    continue;
+  }
   const entry = join(packagesDir, name, pkg.exports['.'].default);
   try {
     const mod = await import(pathToFileURL(entry).href);

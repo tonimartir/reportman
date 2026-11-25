@@ -1,0 +1,78 @@
+<div
+  [ngClass]="{
+    'flex flex-col items-center justify-center gap-5 bg-white p-5': true,
+    'max-h-[90vh] min-h-48 max-w-[90vw] min-w-[320px] text-lg': !pres.estrecha,
+    'max-h-[85vh] min-h-[20vh] w-[95vw] text-2xl': pres.estrecha,
+  }"
+>
+  <div class="text-5xl font-medium">{{ stringFont }}</div>
+  <div class="flex w-full gap-2">
+    <entrada-select
+      estilo="report"
+      class="grow basis-8"
+      [(valor)]="selectedFont"
+      (valorChange)="updatePreview()"
+    >
+      @for (f of fonts; track f) {
+        <opcion-select
+          [valor]="f"
+          [style.font-family]="f"
+          class="text-lg"
+          [nombre]="f"
+        ></opcion-select>
+      }
+    </entrada-select>
+    <div class="flex shrink-0 gap-1 rounded contain-content">
+      <button
+        (click)="italic = !italic; updatePreview()"
+        [ngClass]="{
+          'hover-effect active-effect flex grow basis-8 items-center justify-center bg-zinc-100 p-2': true,
+          'bg-zinc-300': italic,
+        }"
+        [title]="translator.TranslateStr(549)"
+      >
+        <span ngIcon="matFormatItalic" [size]="14" color="#0f1015"></span>
+      </button>
+      <button
+        (click)="bold = !bold; updatePreview()"
+        [ngClass]="{
+          'hover-effect active-effect flex grow basis-8 items-center justify-center bg-zinc-100 p-2': true,
+          'bg-zinc-300': bold,
+        }"
+        [title]="translator.TranslateStr(547)"
+      >
+        <span ngIcon="matFormatBold" [size]="14" color="#0f1015"></span>
+      </button>
+      <button
+        (click)="underline = !underline; updatePreview()"
+        [ngClass]="{
+          'hover-effect active-effect flex grow basis-8 items-center justify-center bg-zinc-100 p-2': true,
+          'bg-zinc-300': underline,
+        }"
+        [title]="translator.TranslateStr(548)"
+      >
+        <span ngIcon="matFormatUnderlined" [size]="14" color="#0f1015"></span>
+      </button>
+      <button
+        (click)="strikeout = !strikeout; updatePreview()"
+        [ngClass]="{
+          'hover-effect active-effect flex grow basis-8 items-center justify-center bg-zinc-100 p-2': true,
+          'bg-zinc-300': strikeout,
+        }"
+        [title]="translator.TranslateStr(550)"
+      >
+        <span ngIcon="matFormatStrikethrough" [size]="14" color="#0f1015"></span>
+      </button>
+    </div>
+  </div>
+  <div
+    class="flex min-h-10 min-w-64 items-center justify-center rounded border border-zinc-300 text-2xl"
+    [ngStyle]="previewStyle"
+  >
+    Lorem ipsum dolor
+  </div>
+  <div class="flex gap-5">
+    <boton estilo="confirmacion" color="positivo" (click)="confirm()">{{ stringOk }}</boton>
+    <boton estilo="confirmacion" color="negativo" (click)="cancel()">{{ stringCancel }}</boton>
+  </div>
+</div>

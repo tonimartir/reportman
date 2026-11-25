@@ -1,0 +1,47 @@
+{
+  "name": "reportman-designer-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The Angular workspace of the Report Manager web designer: the designer library (projects/reportman-designer) and the <reportman-designer> element (projects/reportman-designer-element), built into the npm package @reportman/designer (../packages/reportman-designer). Not part of the npm workspaces of typescript/.",
+  "license": "MPL-2.0",
+  "scripts": {
+    "ng": "ng",
+    "build:package": "node -r ./scripts/ng-exit.cjs node_modules/@angular/cli/bin/ng.js build reportman-designer-element --configuration production,package && node ../tools/check-designer.mjs",
+    "build:element": "node -r ./scripts/ng-exit.cjs node_modules/@angular/cli/bin/ng.js build reportman-designer-element --configuration production",
+    "build:element:nomonaco": "node -r ./scripts/ng-exit.cjs node_modules/@angular/cli/bin/ng.js build reportman-designer-element --configuration production,nomonaco",
+    "build:lib": "node -r ./scripts/ng-exit.cjs node_modules/@angular/cli/bin/ng.js build reportman-designer",
+    "test": "ng test reportman-designer --watch=false"
+  },
+  "packageManager": "npm@11.8.0",
+  "dependencies": {
+    "@angular/animations": "^21.2.25",
+    "@angular/cdk": "^21.2.14",
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/elements": "^21.2.25",
+    "@angular/forms": "^21.2.0",
+    "@angular/material": "^21.2.14",
+    "@angular/platform-browser": "^21.2.0",
+    "@monaco-editor/loader": "^1.7.0",
+    "fabric": "^7.4.0",
+    "fflate": "^0.8.3",
+    "i18next": "^26.4.2",
+    "marked": "^17.0.6",
+    "monaco-editor": "^0.55.1",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.3"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.24",
+    "@angular/cli": "^21.2.24",
+    "@angular/compiler-cli": "^21.2.0",
+    "@fontsource/roboto": "^5.2.6",
+    "jsdom": "^28.0.0",
+    "material-icons": "^1.13.14",
+    "ng-packagr": "^21.2.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}

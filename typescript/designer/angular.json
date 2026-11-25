@@ -1,0 +1,189 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": false
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "reportman-designer": {
+      "projectType": "library",
+      "root": "projects/reportman-designer",
+      "sourceRoot": "projects/reportman-designer/src",
+      "prefix": "rp",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/reportman-designer/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/reportman-designer/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/reportman-designer/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "reportman-designer-element": {
+      "projectType": "application",
+      "root": "projects/reportman-designer-element",
+      "sourceRoot": "projects/reportman-designer-element/src",
+      "prefix": "rp",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/reportman-designer-element/src/main.ts",
+            "index": false,
+            "tsConfig": "projects/reportman-designer-element/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "outputPath": {
+              "base": "dist/reportman-designer-element",
+              "browser": ""
+            },
+            "outputHashing": "none",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/reportman-designer-element/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min",
+                "output": "/assets/monaco-editor/min"
+              },
+              {
+                "glob": "roboto-*-{300,400,500}-normal.woff2",
+                "input": "node_modules/@fontsource/roboto/files",
+                "output": "/assets/fonts"
+              },
+              {
+                "glob": "material-icons.woff2",
+                "input": "node_modules/material-icons/iconfont",
+                "output": "/assets/fonts"
+              },
+              {
+                "glob": "fonts.css",
+                "input": "projects/reportman-designer-element/fonts",
+                "output": "/assets/fonts"
+              },
+              {
+                "glob": "LICENSE",
+                "input": "node_modules/@fontsource/roboto",
+                "output": "/assets/fonts/roboto"
+              },
+              {
+                "glob": "LICENSE",
+                "input": "node_modules/material-icons",
+                "output": "/assets/fonts/material-icons"
+              }
+            ],
+            "styles": [
+              {
+                "input": "projects/reportman-designer-element/src/styles.scss",
+                "bundleName": "reportman-designer",
+                "inject": false
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3MB",
+                  "maximumError": "5MB"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
+            "package": {
+              "outputPath": {
+                "base": "../packages/reportman-designer/dist",
+                "browser": ""
+              },
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/reportman-designer-element/public"
+                },
+                {
+                  "glob": "roboto-*-{300,400,500}-normal.woff2",
+                  "input": "node_modules/@fontsource/roboto/files",
+                  "output": "/assets/fonts"
+                },
+                {
+                  "glob": "material-icons.woff2",
+                  "input": "node_modules/material-icons/iconfont",
+                  "output": "/assets/fonts"
+                },
+                {
+                  "glob": "fonts.css",
+                  "input": "projects/reportman-designer-element/fonts",
+                  "output": "/assets/fonts"
+                },
+                {
+                  "glob": "LICENSE",
+                  "input": "node_modules/@fontsource/roboto",
+                  "output": "/assets/fonts/roboto"
+                },
+                {
+                  "glob": "LICENSE",
+                  "input": "node_modules/material-icons",
+                  "output": "/assets/fonts/material-icons"
+                }
+              ]
+            },
+            "nomonaco": {
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/reportman-designer-element/public"
+                },
+                {
+                  "glob": "roboto-*-{300,400,500}-normal.woff2",
+                  "input": "node_modules/@fontsource/roboto/files",
+                  "output": "/assets/fonts"
+                },
+                {
+                  "glob": "material-icons.woff2",
+                  "input": "node_modules/material-icons/iconfont",
+                  "output": "/assets/fonts"
+                },
+                {
+                  "glob": "fonts.css",
+                  "input": "projects/reportman-designer-element/fonts",
+                  "output": "/assets/fonts"
+                },
+                {
+                  "glob": "LICENSE",
+                  "input": "node_modules/@fontsource/roboto",
+                  "output": "/assets/fonts/roboto"
+                },
+                {
+                  "glob": "LICENSE",
+                  "input": "node_modules/material-icons",
+                  "output": "/assets/fonts/material-icons"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    }
+  }
+}

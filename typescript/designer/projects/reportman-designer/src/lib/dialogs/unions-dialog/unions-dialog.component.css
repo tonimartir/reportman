@@ -1,0 +1,145 @@
+:host {
+  display: block;
+  font-family: var(--rpd-font);
+  font-size: var(--rpd-fs-lg);
+  color: var(--rpd-text);
+}
+
+.ud {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 760px;
+  max-width: 92vw;
+  max-height: 90vh;
+  padding: 14px 16px;
+  background: var(--rpd-surface);
+  overflow: auto;
+}
+
+.ud.narrow {
+  width: 95vw;
+  padding: 10px;
+}
+
+.ud-title {
+  margin-bottom: 2px;
+}
+
+.ud-lists,
+.ud-options {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ud.narrow .ud-lists,
+.ud.narrow .ud-options {
+  flex-direction: column;
+}
+
+.ud-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ud-lists > .ud-col:first-child,
+.ud-how {
+  flex: 0 0 240px;
+}
+
+.ud.narrow .ud-lists > .ud-col:first-child,
+.ud.narrow .ud-how {
+  flex: 0 0 auto;
+}
+
+.ud-grow {
+  flex: 1 1 0;
+}
+
+.ud-list {
+  width: 100%;
+  min-height: 180px;
+  padding: 2px;
+  border: 1px solid var(--rpd-border);
+  border-radius: var(--rpd-radius);
+  background: var(--rpd-surface);
+  font: inherit;
+  color: inherit;
+  outline: none;
+}
+
+.ud-list:focus {
+  border-color: var(--rpd-accent);
+}
+
+.ud-list option {
+  padding: 2px 4px;
+}
+
+.ud-moves {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 18px;
+}
+
+.ud.narrow .ud-moves {
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 0;
+}
+
+.ud-moves boton {
+  display: flex;
+}
+
+.ud-field-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 90px;
+  max-height: 140px;
+  overflow: auto;
+  border: 1px solid var(--rpd-border);
+  border-radius: var(--rpd-radius);
+  background: var(--rpd-surface);
+}
+
+.ud-fields.is-disabled .rpd-field-label,
+.ud-fields.is-disabled .ud-field-list {
+  color: var(--rpd-text-3);
+  background: var(--rpd-surface-2);
+}
+
+.ud-columns {
+  min-height: 32px;
+  color: var(--rpd-text-2);
+  overflow-wrap: anywhere;
+}
+
+.ud-problem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border: 1px solid var(--rpd-warn);
+  border-radius: var(--rpd-radius);
+  color: var(--rpd-warn);
+  background: #fff8e1;
+}
+
+.ud-problem .material-icons {
+  font-size: 16px;
+}
+
+.ud-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 8px;
+}

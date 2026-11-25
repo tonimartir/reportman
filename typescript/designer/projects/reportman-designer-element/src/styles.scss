@@ -1,0 +1,62 @@
+// The designer's stylesheet inside <reportman-designer>'s shadow root (the element links it there:
+// reportman-designer.css). The page's rules never match in here; what it would still pass down is
+// what is inherited (font, color, line height…), so :host starts from `all: initial`.
+@use '@angular/material' as mat;
+@use '../../reportman-designer/src/lib/styles/designer-utilities';
+@use '../../reportman-designer/src/lib/styles/designer';
+
+:host {
+  all: initial;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  // Material's tokens on the host: a shadow root has no html element to hang them from.
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: -2,
+    )
+  );
+  @include mat.form-field-density(-3);
+  color-scheme: light;
+  background-color: #fff;
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+// The page can still force a value on the host itself (a `* { … !important }` matches it and beats
+// :host), and everything in here would inherit it: the designer's two roots restart from ours.
+report-editor,
+.cdk-overlay-container {
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  letter-spacing: normal;
+  text-align: start;
+  text-transform: none;
+  white-space: normal;
+}
+
+// Material Icons' class: its @font-face is the document's (the element adds the font link to the
+// page), but the class rule has to be in here to match.
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

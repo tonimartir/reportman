@@ -33,6 +33,7 @@
     "@reportman/server": "4.1.0-alpha.3",
     "@reportman/node": "4.1.0-alpha.3",
     "@reportman/engine": "4.1.0-alpha.3",
-    "@reportman/lib": "4.1.0-alpha.3"
+    "@reportman/lib": "4.1.0-alpha.3",
+    "@reportman/designer": "4.1.0-alpha.3"
   }
 }

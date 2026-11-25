@@ -1,0 +1,46 @@
+/* The Angular workspace of the web designer. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    /* @reportman/lib, the report model, is a package of the npm workspace next to this one: its
+       sources are compiled here, its dependencies taken from this workspace's node_modules, so a
+       build never needs an npm install in typescript/. */
+    "paths": {
+      "@reportman/lib": ["../packages/reportman-lib/src/index.ts"],
+      "@reportman/ngx-designer": ["./projects/reportman-designer/src/public-api"],
+      "i18next": ["./node_modules/i18next"],
+      "fflate": ["./node_modules/fflate"]
+    },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/reportman-designer/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/reportman-designer/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/reportman-designer-element/tsconfig.app.json"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "reportman-designer-express-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Report Manager web designer inside an Express application.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "dependencies": {
+    "@reportman/designer-server": "next",
+    "@reportman/server": "next",
+    "express": "^5.1.0"
+  }
+}

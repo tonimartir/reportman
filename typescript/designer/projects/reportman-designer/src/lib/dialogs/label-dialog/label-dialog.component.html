@@ -1,0 +1,34 @@
+<div class="flex flex-col gap-4 bg-white p-4">
+  @if (titulo) {
+    <div class="text-4xl font-bold">{{ titulo }}</div>
+  }
+  <textarea
+    #entradaTexto
+    [placeholder]="placeholder"
+    [(ngModel)]="texto"
+    class="h-full max-h-[700px] min-h-24 w-full max-w-[1200px] min-w-sm resize rounded-xs border border-gray-300 p-1.5 shadow-sm"
+    [style.width]="ancho"
+    [style.height]="alto"
+  ></textarea>
+  <div class="flex justify-end gap-4">
+    <boton
+      #botonPositivo
+      (clicked)="confirm(texto)"
+      estilo="confirmacion"
+      color="positivo"
+      class="min-w-28"
+    >
+      {{ t.TranslateStr(93) }}
+    </boton>
+
+    <boton
+      #botonNegativo
+      (clicked)="cancel()"
+      estilo="confirmacion"
+      color="negativo"
+      class="min-w-28"
+    >
+      {{ t.TranslateStr(94) }}
+    </boton>
+  </div>
+</div>

@@ -1,0 +1,228 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: block;
+  font-family: var(--rpd-font);
+  font-size: var(--rpd-fs-lg);
+  color: var(--rpd-text);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: var(--rpd-surface);
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  width: 84vw;
+  height: 86vh;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.modal.with-chat {
+  width: 94vw;
+}
+
+.sql-split {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.sql-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden !important;
+  padding-right: 2px;
+}
+
+.sql-editor {
+  flex: 3 1 0;
+  min-height: 140px;
+}
+
+.sql-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.sql-bottom {
+  flex: 2 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 90px;
+  overflow: hidden;
+  border: 1px solid var(--rpd-border);
+  border-radius: 4px;
+}
+
+.sql-bottom-tabs {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2px;
+  padding: 0 4px;
+  background: var(--rpd-surface-2);
+  border-bottom: 1px solid var(--rpd-border-soft);
+}
+
+.sql-bottom-tabs .rpd-tab {
+  height: 26px;
+}
+
+.sql-tab-warn {
+  font-size: 14px !important;
+  color: var(--rpd-danger);
+}
+
+.sql-tab-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rpd-border);
+}
+
+.sql-tab-dot.is-ok { background: var(--rpd-ok); }
+.sql-tab-dot.is-stale { background: #e69b00; }
+.sql-tab-dot.is-busy { background: var(--rpd-accent); animation: sql-pulse 1s ease-in-out infinite; }
+
+@keyframes sql-pulse {
+  50% { opacity: 0.3; }
+}
+
+.sql-bottom-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.sql-chat {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden !important;
+  border: 1px solid var(--rpd-border);
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--rpd-fs);
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--rpd-surface-2);
+}
+
+th, td {
+  padding: 3px 8px;
+  border-right: 1px solid var(--rpd-border-soft);
+  border-bottom: 1px solid var(--rpd-border-soft);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  color: var(--rpd-text-2);
+  font-weight: 600;
+}
+
+th small {
+  color: var(--rpd-text-3);
+  font-weight: 400;
+}
+
+tbody tr:hover {
+  background: var(--rpd-hover);
+}
+
+.sql-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 8px;
+  padding: 8px 10px;
+  border: 1px solid #e6a5a5;
+  border-radius: 4px;
+  background: #fdf3f3;
+  color: #8a1f1f;
+  font-size: var(--rpd-fs);
+}
+
+.sql-error .material-icons { font-size: 16px; line-height: 16px; }
+
+.sql-error pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+}
+
+.sql-audit-progress {
+  margin: 6px 8px 0;
+  border: 1px solid var(--rpd-border-soft);
+  border-radius: 4px;
+}
+
+.sql-audit-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--rpd-border-soft);
+  border-radius: 4px;
+  background: var(--rpd-surface-2);
+  color: var(--rpd-text-2);
+  font-size: var(--rpd-fs);
+  line-height: 1.5;
+}
+
+.sql-audit-note .material-icons { font-size: 16px; line-height: 18px; color: var(--rpd-text-3); }
+
+.sql-audit-note.is-stale {
+  border-color: #f1dfa6;
+  background: #fffaeb;
+  color: #6b4e00;
+}
+
+.sql-audit-note.is-stale .material-icons { color: #b8860b; }
+
+/* The markdown itself is the designer's global .rpd-md, the same as the chat's. */
+.sql-audit-text {
+  padding: 8px 12px 2px;
+  font-size: var(--rpd-fs-lg);
+}
+
+.sql-audit-foot {
+  display: flex;
+  padding: 0 8px 6px;
+}

@@ -1,0 +1,116 @@
+<div class="ud" [class.narrow]="pres.estrecha">
+  <div class="text-4xl ud-title">{{ title }}</div>
+
+  <div class="ud-lists">
+    <div class="ud-col">
+      <label class="rpd-field-label" for="ud-available">{{ t.TranslateStr(1100) }}</label>
+      <select
+        #availableList
+        id="ud-available"
+        class="ud-list"
+        size="10"
+        [attr.aria-label]="t.TranslateStr(1100) + ' - ' + t.TranslateStr(876)"
+        [(ngModel)]="selectedAvailable"
+        (dblclick)="addSelected()"
+        (keydown.enter)="addSelected()"
+      >
+        @for (name of available; track $index) {
+          <option [ngValue]="name">{{ name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="ud-moves">
+      <boton icono="chevron_right" [title]="t.TranslateStr(948)" [disabled]="!selectedAvailable" (clicked)="addSelected()"></boton>
+      <boton icono="chevron_left" [title]="t.TranslateStr(949)" [disabled]="selectedIndex < 0" (clicked)="removeSelected()"></boton>
+      <boton class="ud-move" icono="arrow_upward" [disabled]="selectedIndex <= 0" (clicked)="moveSelected(-1)">{{ t.TranslateStr(27) }}</boton>
+      <boton
+        class="ud-move"
+        icono="arrow_downward"
+        [disabled]="selectedIndex < 0 || selectedIndex >= settings.entries.length - 1"
+        (clicked)="moveSelected(1)"
+        >{{ t.TranslateStr(29) }}</boton
+      >
+    </div>
+
+    <div class="ud-col ud-grow">
+      <label class="rpd-field-label" for="ud-unions">{{ t.TranslateStr(1083) }}</label>
+      <select
+        id="ud-unions"
+        class="ud-list ud-unions"
+        size="10"
+        [ngModel]="selectedIndex"
+        (ngModelChange)="selectEntry($event)"
+        (keydown.delete)="removeSelected()"
+      >
+        @for (entry of settings.entries; track $index; let i = $index) {
+          <option [ngValue]="i">{{ entry }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="ud-options">
+    <div class="ud-col ud-how">
+      <entrada-checkbox
+        class="ud-parallel"
+        [attr.title]="t.TranslateStr(1441)"
+        [etiqueta]="t.TranslateStr(1440)"
+        [valor]="settings.parallel"
+        (valorChange)="setParallel($event)"
+      ></entrada-checkbox>
+      <entrada-checkbox
+        class="ud-group"
+        [etiqueta]="t.TranslateStr(1084)"
+        [valor]="settings.group"
+        (valorChange)="setGroup($event)"
+      ></entrada-checkbox>
+      <label class="rpd-field">
+        <span class="rpd-field-label">{{ t.TranslateStr(164) }}</span>
+        <input
+          class="rpd-input ud-index"
+          type="text"
+          [ngModel]="settings.indexFields"
+          (ngModelChange)="setIndexFields($event)"
+        />
+      </label>
+    </div>
+
+    <div class="ud-col ud-grow ud-fields" [class.is-disabled]="!fieldsEnabled">
+      <span class="rpd-field-label" id="ud-fields-label">{{ t.TranslateStr(1444) }}</span>
+      <div class="ud-field-list" role="group" [attr.aria-label]="t.TranslateStr(877)">
+        @for (item of fieldItems; track item.name; let i = $index) {
+          <entrada-checkbox
+            [etiqueta]="item.name"
+            [valor]="item.checked"
+            [disabled]="!fieldsEnabled"
+            (valorChange)="toggleField(i, $event)"
+          ></entrada-checkbox>
+        }
+      </div>
+      <input
+        class="rpd-input ud-fields-text"
+        type="text"
+        placeholder="F1;F2"
+        aria-labelledby="ud-fields-label"
+        [disabled]="!fieldsEnabled"
+        [ngModel]="fieldsText"
+        (ngModelChange)="fieldsText = $event; setFieldsOfSelected($event, false)"
+      />
+    </div>
+  </div>
+
+  <div class="ud-columns">{{ columnsText }}</div>
+
+  @if (problem) {
+    <div class="ud-problem" role="alert">
+      <span class="material-icons" aria-hidden="true">warning_amber</span>
+      <span class="ud-problem-text">{{ problem }}</span>
+    </div>
+  }
+
+  <div class="ud-actions">
+    <boton estilo="confirmacion" color="positivo" (clicked)="confirm()">{{ t.TranslateStr(93) }}</boton>
+    <boton estilo="confirmacion" color="negativo" (clicked)="cancel()">{{ t.TranslateStr(94) }}</boton>
+  </div>
+</div>

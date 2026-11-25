@@ -1,0 +1,94 @@
+<split class="expression-builder" cacheId="exprDialog">
+  <div split-area [size]="ai && chatOpen ? 66 : 100" [minSize]="420" cacheSubId="editor" class="builder-main">
+    <!-- The expression -->
+    <div class="top-section">
+      <rp-expression-editor
+        class="editor"
+        [document]="expression"
+        [items]="allItems"
+        [parameters]="parameters"
+        (contentChange)="onExpressionChange($event)"
+      ></rp-expression-editor>
+      <div class="status" aria-live="polite">
+        @if (checking()) {
+          <span class="status-item muted"><span class="material-icons" aria-hidden="true">hourglass_top</span></span>
+        } @else if (syntax(); as s) {
+          @if (s.valid) {
+            <span class="status-item ok"><span class="material-icons" aria-hidden="true">check_circle</span> {{ t.t('Expr_SyntaxOk') }}</span>
+          } @else {
+            <span class="status-item error"><span class="material-icons" aria-hidden="true">error_outline</span> {{ s.message }}</span>
+          }
+        }
+        @if (evaluation(); as e) {
+          @if (isError(e)) {
+            <span class="status-item error"><span class="material-icons" aria-hidden="true">error_outline</span> {{ e.error }}</span>
+          } @else {
+            <span class="status-item result"><span class="material-icons" aria-hidden="true">play_arrow</span> <b>{{ e.value }}</b> <small>{{ t.TranslateStr(193) }}: {{ e.type }}</small></span>
+          }
+        }
+      </div>
+      <div class="toolbar">
+        <boton estilo="confirmacion" color="positivo" class="bg-white" (clicked)="accept()">{{ stringOk }}</boton>
+        <boton estilo="confirmacion" color="negativo" class="bg-white" (clicked)="cancel()">{{ stringCancel }}</boton>
+        <span class="rpd-spacer"></span>
+        <boton estilo="normal" icono="refresh" (clicked)="refreshColumns()" [title]="stringActualizar">{{ stringActualizar }}</boton>
+        <boton estilo="normal" icono="spellcheck" (clicked)="checkSyntax()">{{ t.t('Expr_CheckSyntax') }}</boton>
+        <boton estilo="normal" icono="play_arrow" (clicked)="evaluate()">{{ t.t('Expr_Evaluate') }}</boton>
+        @if (ai) {
+          <button type="button" class="rpd-tool rpd-tool-text" [class.is-active]="chatOpen" (click)="toggleChat()" [attr.aria-pressed]="chatOpen" [attr.aria-label]="t.t('Ai_ChatToggle')" [title]="t.t('Ai_ChatToggle')">
+            <span class="material-icons" aria-hidden="true">forum</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Categories, items and help -->
+    <div class="bottom-section">
+      <div class="categories" role="listbox" [attr.aria-label]="t.t('Expr_Categories')">
+        <ul>
+          @for (cat of categories; track cat) {
+            <li role="option" [attr.aria-selected]="cat === selectedCategory" [class.selected]="cat === selectedCategory" (click)="selectCategory(cat)">
+              {{ cat }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="categories items" role="listbox">
+        <ul>
+          @for (item of items; track item.name) {
+            <li role="option" [attr.aria-selected]="item === selectedItem" [class.selected]="item === selectedItem" (click)="selectItem(item)" (dblclick)="insertSelection(item)" [title]="item.model || item.name">
+              {{ item.name }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="description">
+        @if (selectedItem) {
+          <p><strong>{{ selectedItem.name }}</strong></p>
+          @if (selectedItem.model && selectedItem.model !== selectedItem.name) { <p><code>{{ selectedItem.model }}</code></p> }
+          @if (selectedItem.hint) { <p>{{ selectedItem.hint }}</p> }
+          <boton estilo="normal" icono="arrow_upward" (clicked)="insertSelection(selectedItem)">{{ t.t('Expr_Insert') }}</boton>
+        } @else {
+          <p class="hint">{{ t.t('Expr_PickItem') }}</p>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (ai && chatOpen) {
+    <div split-area [size]="34" [minSize]="300" cacheSubId="chat" class="builder-chat">
+      <rp-ai-chat
+        mode="suggestion"
+        scope="expression"
+        [showSchema]="false"
+        [compactHeader]="true"
+        [initialMessage]="t.t('Ai_ExprChatInitial')"
+        suggestionLabelKey="Ai_SuggestedExpression"
+        suggestionLanguage="reportman"
+        appliedMessageKey="Ai_ExpressionApplied"
+        [handler]="chatHandler"
+        (apply)="applySuggestion($event)"
+      ></rp-ai-chat>
+    </div>
+  }
+</split>

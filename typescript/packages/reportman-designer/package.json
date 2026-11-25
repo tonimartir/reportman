@@ -1,0 +1,36 @@
+{
+  "name": "@reportman/designer",
+  "version": "4.1.0-alpha.3",
+  "description": "Report Manager web report designer as a custom element, <reportman-designer>, for any page whatever its framework: it brings its own Angular, Material and Monaco inside a shadow root. Its server is @reportman/designer-server (Node.js) or Reportman.Server (.NET).",
+  "license": "MPL-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonimartir/reportman.git",
+    "directory": "typescript/packages/reportman-designer"
+  },
+  "homepage": "https://reportman.es",
+  "module": "./dist/main.js",
+  "exports": {
+    ".": {
+      "browser": "./dist/main.js",
+      "default": "./dist/main.js"
+    },
+    "./package.json": "./package.json",
+    "./*": "./dist/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": true,
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
+  "dependencies": {
+    "monaco-editor": "0.55.1"
+  },
+  "scripts": {
+    "prepack": "node ../../tools/check-designer.mjs"
+  }
+}

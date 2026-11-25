@@ -1,0 +1,115 @@
+<div #list class="rpd-panel-body">
+  @if (undoOperationsDesc.length === 0) {
+    <div class="rpd-empty">
+      <span class="material-icons" aria-hidden="true">history_toggle_off</span>
+      <p>{{ t.t('DesignerNoChangesYet') }}</p>
+    </div>
+  } @else {
+    @for (
+      op of undoOperationsDesc.slice(listLimit * currentPage - listLimit, listLimit * currentPage);
+      track $index
+    ) {
+      <div class="rpd-hist-row" [class.is-alt]="op.groupId % 2 === 1">
+        <div class="rpd-hist-main">
+          <span
+            class="material-icons rpd-hist-ico"
+            [title]="operationText(op.operation)"
+            aria-hidden="true"
+            >{{ operationIcon(op.operation) }}</span
+          >
+          <span class="rpd-hist-name">{{ op.componentName || operationText(op.operation) }}</span>
+          @if (op.componentClass) {
+            <span class="rpd-hist-class">{{ op.componentClass }}</span>
+          }
+          <span class="rpd-spacer"></span>
+          <span class="rpd-hist-time">{{ op.date | date: "shortTime" }}</span>
+        </div>
+        @if (op.parentName || op.oldParentName || op.oldItemIndex !== undefined) {
+          <div class="rpd-hist-detail">
+            @if (op.parentName) {
+              <span>en {{ op.parentName }}</span>
+            }
+            @if (op.oldParentName) {
+              <span> · antes en {{ op.oldParentName }}</span>
+            }
+            @if (op.oldItemIndex !== undefined) {
+              <span> · posición anterior {{ op.oldItemIndex }}</span>
+            }
+          </div>
+        }
+        @if (op.properties.length > 0) {
+          <div class="rpd-hist-detail">
+            <button
+              class="rpd-link"
+              type="button"
+              (click)="toggleProperties(op); $event.stopPropagation()"
+            >
+              {{ op.expandedProperties ? "Ocultar" : "Ver" }} {{ op.properties.length }}
+              {{ op.properties.length === 1 ? "propiedad" : "propiedades" }}
+            </button>
+            @if (op.expandedProperties) {
+              <ul class="rpd-hist-props">
+                @for (p of op.properties; track $index) {
+                  <li>
+                    <b>{{ p.propertyName }}</b>
+                    @if (p.oldValue !== undefined) {
+                      <span class="rpd-old"> {{ p.oldValue }}</span>
+                    }
+                    <span class="rpd-new"> {{ p.newValue }}</span>
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+        }
+      </div>
+    }
+  }
+</div>
+@if (cuePages.length > 1) {
+  <div class="rpd-pager">
+    @if (cuePages.length > 3 && currentPage >= 3) {
+      <button
+        class="rpd-btn"
+        (click)="currentPage = 1; searchedPage.set(currentPage); list.scrollTop = 0"
+      >
+        1
+      </button>
+      <span>…</span>
+    }
+    @for (page of cuePages; track $index) {
+      @if (
+        cuePages.length <= 3 ||
+        (currentPage < 3 && page <= 3) ||
+        (page >= currentPage - 1 && page <= currentPage) ||
+        (page <= currentPage + 1 && page >= currentPage) ||
+        (currentPage >= cuePages.length - 2 && page > cuePages.length - 3 && page <= currentPage + 1)
+      ) {
+        <button
+          class="rpd-btn"
+          [class.is-on]="currentPage === page"
+          [disabled]="currentPage === page"
+          (click)="currentPage = page; searchedPage.set(currentPage); list.scrollTop = 0"
+        >
+          {{ page }}
+        </button>
+      }
+    }
+    @if (cuePages.length > 3 && currentPage <= cuePages.length - 2) {
+      <span>…</span>
+      <button
+        class="rpd-btn"
+        (click)="currentPage = cuePages.length; searchedPage.set(currentPage); list.scrollTop = 0"
+      >
+        {{ cuePages.length }}
+      </button>
+    }
+    <span>Ir a</span>
+    <input
+      class="rpd-input"
+      type="number"
+      [(ngModel)]="searchedPage"
+      (keydown)="$event.key === 'Enter' ? enterSearchPageInput() : undefined"
+    />
+  </div>
+}

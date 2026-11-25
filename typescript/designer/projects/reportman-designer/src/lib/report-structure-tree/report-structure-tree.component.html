@@ -1,0 +1,247 @@
+<div #elemento #origin="cdkOverlayOrigin" cdkOverlayOrigin class="rpd-panel-head">
+  <input type="file" #fileInput accept=".rep" (change)="onFileSelected($event)" hidden />
+  <span class="rpd-panel-title">{{ heading }}</span>
+  <span class="rpd-spacer"></span>
+  <boton
+    class="rpd-sm"
+    estilo="report"
+    [disabled]="!upEnabled()"
+    (clicked)="upClick()"
+    icono="arrow_upward"
+    [title]="t.t('DesignerMoveUp')"
+  ></boton>
+  <boton
+    class="rpd-sm"
+    estilo="report"
+    [disabled]="!downEnabled()"
+    (clicked)="downClick()"
+    icono="arrow_downward"
+    [title]="t.t('DesignerMoveDown')"
+  ></boton>
+  <boton
+    class="rpd-sm"
+    estilo="report"
+    [obtenerOpciones]="getNewOptions | bind: this"
+    [ocultarFlechaOpciones]="true"
+    icono="matAdd"
+    [title]="t.TranslateStr(149)"
+  ></boton>
+  <boton
+    class="rpd-sm"
+    estilo="report"
+    [disabled]="selectedItem?.className !== 'TRPSUBREPORT'"
+    (clicked)="subreportDuplicate(selectedItem)"
+    icono="matFileCopyOutline"
+    [title]="t.t('DesignerDuplicateSubreport')"
+  ></boton>
+  <boton
+    class="rpd-sm"
+    estilo="report"
+    [disabled]="!selectedItem"
+    (clicked)="deleteItem(selectedItem!)"
+    icono="matDeleteOutline"
+    [title]="t.TranslateStr(150)"
+  ></boton>
+  <boton
+    class="rpd-sm"
+    estilo="report"
+    [obtenerOpciones]="getStructureOptions | bind: this"
+    [ocultarFlechaOpciones]="true"
+    icono="bootstrapThreeDots"
+    [title]="t.t('DesignerMoreOptions')"
+  ></boton>
+</div>
+
+@if (report) {
+  <div class="rpd-panel-body rpd-tree" role="tree">
+    <!-- Report -->
+    <div
+      class="rpd-tree-row d0 is-group"
+      [class.is-selected]="selectedItem === report"
+      role="treeitem"
+      (click)="onSelect(report)"
+    >
+      <span class="material-icons rpd-tree-ico" aria-hidden="true">description</span>
+      <span class="rpd-tree-label">Report</span>
+    </div>
+
+    <!-- Databases -->
+    @if (report.databaseInfo && report.databaseInfo.length) {
+      <div class="rpd-tree-row d1 is-group" role="treeitem" (click)="toggleNode('dbs')">
+        <span class="material-icons rpd-tree-twisty" aria-hidden="true">{{
+          isExpanded("dbs") ? "expand_more" : "chevron_right"
+        }}</span>
+        <span class="material-icons rpd-tree-ico" aria-hidden="true">storage</span>
+        <span class="rpd-tree-label"
+          >{{ traducciones.conexiones }}
+          <span class="rpd-tree-count">({{ report.databaseInfo.length }})</span></span
+        >
+      </div>
+      @if (isExpanded("dbs")) {
+        @for (db of report.databaseInfo; track db) {
+          <div
+            class="rpd-tree-row d2"
+            [class.is-selected]="selectedItem === db"
+            role="treeitem"
+            (click)="onSelect(db)"
+          >
+            <span class="material-icons rpd-tree-ico" aria-hidden="true">dns</span>
+            <span class="rpd-tree-label">{{ db.alias }}</span>
+          </div>
+        }
+      }
+    }
+
+    <!-- Datasets -->
+    @if (report.dataInfo && report.dataInfo.length) {
+      <div class="rpd-tree-row d1 is-group" role="treeitem" (click)="toggleNode('datasets')">
+        <span class="material-icons rpd-tree-twisty" aria-hidden="true">{{
+          isExpanded("datasets") ? "expand_more" : "chevron_right"
+        }}</span>
+        <span class="material-icons rpd-tree-ico" aria-hidden="true">table_chart</span>
+        <span class="rpd-tree-label"
+          >{{ traducciones.datos }}
+          <span class="rpd-tree-count">({{ report.dataInfo.length }})</span></span
+        >
+      </div>
+      @if (isExpanded("datasets")) {
+        @for (ds of report.dataInfo; track ds) {
+          <div
+            class="rpd-tree-row d2"
+            [class.is-selected]="selectedItem === ds"
+            role="treeitem"
+            (click)="onSelect(ds)"
+          >
+            <span class="material-icons rpd-tree-ico" aria-hidden="true">table_rows</span>
+            <span class="rpd-tree-label">{{ ds.alias }}</span>
+            @if (ai && ds.sql) {
+              <!-- The audit is how the AI knows what the dataset does: a dot says whether it is there. -->
+              <span class="rpd-tree-audit" [class.is-ok]="!!ds.sqlExplanation" [class.is-error]="!ds.sqlExplanation && !!ds.sqlExplanationError"
+                [title]="ds.sqlExplanation ? t.t('Ai_Audit') : (ds.sqlExplanationError || t.t('Ai_AuditNone'))" aria-hidden="true"></span>
+            }
+          </div>
+        }
+      }
+    }
+
+    <!-- Parameters -->
+    @if (report.params && report.params.length) {
+      <div class="rpd-tree-row d1 is-group" role="treeitem" (click)="toggleNode('params')">
+        <span class="material-icons rpd-tree-twisty" aria-hidden="true">{{
+          isExpanded("params") ? "expand_more" : "chevron_right"
+        }}</span>
+        <span class="material-icons rpd-tree-ico" aria-hidden="true">tune</span>
+        <span class="rpd-tree-label"
+          >{{ traducciones.parametros }}
+          <span class="rpd-tree-count">({{ report.params.length }})</span></span
+        >
+      </div>
+      @if (isExpanded("params")) {
+        @for (param of report.params; track param) {
+          <div
+            class="rpd-tree-row d2"
+            [class.is-selected]="selectedItem === param"
+            role="treeitem"
+            (click)="onSelect(param)"
+          >
+            <span class="material-icons rpd-tree-ico" aria-hidden="true">label</span>
+            <span class="rpd-tree-label">{{ param.alias }}</span>
+          </div>
+        }
+      }
+    }
+
+    <!-- Subreports -->
+    @if (report.subReports && report.subReports.length) {
+      <div class="rpd-tree-row d1 is-group" role="treeitem" (click)="toggleNode('subreports')">
+        <span class="material-icons rpd-tree-twisty" aria-hidden="true">{{
+          isExpanded("subreports") ? "expand_more" : "chevron_right"
+        }}</span>
+        <span class="material-icons rpd-tree-ico" aria-hidden="true">layers</span>
+        <span class="rpd-tree-label"
+          >{{ traducciones.subinformes }}
+          <span class="rpd-tree-count">({{ report.subReports.length }})</span></span
+        >
+      </div>
+      @if (isExpanded("subreports")) {
+        @for (sub of report.subReports; track sub) {
+          <!-- The twisty folds; the row selects, and unfolds if it was folded. -->
+          <div
+            [id]="sub.name"
+            class="rpd-tree-row d2"
+            [class.is-selected]="selectedItem === sub"
+            role="treeitem"
+            (click)="expandedNodes.add(getNodeId('sub', sub.name)); subReportClick(sub, $event)"
+            (contextmenu)="subReportClick(sub, $event)"
+            (dblclick)="subreportDblClick(sub)"
+          >
+            <span
+              class="material-icons rpd-tree-twisty"
+              aria-hidden="true"
+              (click)="toggleNode(getNodeId('sub', sub.name)); $event.stopPropagation()"
+              >{{ isExpanded(getNodeId("sub", sub.name)) ? "expand_more" : "chevron_right" }}</span
+            >
+            <span class="material-icons rpd-tree-ico" aria-hidden="true">article</span>
+            @if (editingSubreportName === sub) {
+              <input
+                #inputName
+                class="rpd-tree-input"
+                [(ngModel)]="editingName"
+                (click)="$event.stopPropagation()"
+                (keydown.enter)="subReportNameEnter()"
+                (focus)="subReportNameSelectAll($event)"
+                (blur)="subReportNameEnter()"
+                (keydown.escape)="cancelEditSubreportName()"
+              />
+            } @else {
+              <span class="rpd-tree-label">{{ subreportDisplayName(sub) }}</span>
+            }
+          </div>
+
+          @if (isExpanded(getNodeId("sub", sub.name)) && sub.sections && sub.sections.length) {
+            @if (getDatasetAlias(sub.alias); as datasetAlias) {
+              <div
+                class="rpd-tree-row d3"
+                [class.is-selected]="selectedItem === datasetAlias"
+                role="treeitem"
+                (click)="onSelectDataSetSubreport(datasetAlias, sub)"
+              >
+                <span class="material-icons rpd-tree-ico" aria-hidden="true">table_rows</span>
+                <span class="rpd-tree-label">{{ sub.alias }}</span>
+              </div>
+            }
+            @for (section of sub.sections; track section) {
+              <div
+                [id]="section.name"
+                class="rpd-tree-row d3"
+                [class.is-selected]="selectedItem === section"
+                role="treeitem"
+                (click)="onSelect(section)"
+              >
+                <span class="material-icons rpd-tree-ico" aria-hidden="true">horizontal_split</span>
+                <span class="rpd-tree-label">{{ sectionDisplayName(section) }}</span>
+              </div>
+            }
+          }
+        }
+      }
+    }
+  </div>
+}
+
+<!-- Context menu -->
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin ?? origin"
+  [cdkConnectedOverlayOpen]="abierto"
+  [cdkConnectedOverlayOffsetX]="1"
+  [cdkConnectedOverlayOffsetY]="1"
+  [cdkConnectedOverlayViewportMargin]="5"
+  [cdkConnectedOverlayFlexibleDimensions]="true"
+  [cdkConnectedOverlayGrowAfterOpen]="true"
+  [cdkConnectedOverlayScrollStrategy]="overlayScrollStrategy"
+  (overlayOutsideClick)="onOutsideClick()"
+  (detach)="onOverlayDetach()"
+>
+  <menu [opciones]="opciones" (seleccionado)="opcionSeleccionada($event)"></menu>
+</ng-template>

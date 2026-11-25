@@ -6,3 +6,6 @@ out/
 # The repository .gitignore ignores every packages/ folder (NuGet); these are npm workspaces.
 !packages/
 !packages/*
+
+# The Angular workspace of the designer: its cache
+.angular/

@@ -1,0 +1,119 @@
+<div class="backdrop">
+  <div class="modal" [class.with-chat]="ai && chatOpen">
+    <split class="sql-split" cacheId="sqlDialog">
+      <div split-area [size]="ai && chatOpen ? 68 : 100" [minSize]="420" cacheSubId="editor" class="sql-main">
+        <rp-sql-editor
+          class="sql-editor"
+          [document]="expression"
+          [databaseAlias]="databaseAlias"
+          [schemaName]="schemaName"
+          [hubSchemaId]="hubSchemaId"
+          [parameters]="parameters"
+          [schema]="schema"
+          (execute)="open()"
+          (contentChange)="onSqlChange($event)"
+          (aiProgress)="chat?.progress($event)"
+          (aiLog)="chat?.log?.line($event)"
+        ></rp-sql-editor>
+
+        <div class="sql-actions">
+          <boton estilo="confirmacion" color="positivo" (clicked)="confirm()">{{ t.TranslateStr(93) }}</boton>
+          <boton estilo="confirmacion" color="negativo" (clicked)="cancel()">{{ t.TranslateStr(94) }}</boton>
+          <span class="rpd-spacer"></span>
+          <boton estilo="normal" icono="play_arrow" (clicked)="open()" [title]="'Ctrl+Enter'">{{ t.t('Sql_GetData') }}</boton>
+          @if (ai) {
+            <boton estilo="normal" icono="fact_check" (clicked)="audit()" [disabled]="auditTracker.busy() || !(ai.available())">{{ t.t('Ai_AuditRun') }}</boton>
+            <button type="button" class="rpd-tool rpd-tool-text" [class.is-active]="chatOpen" (click)="toggleChat()" [attr.aria-pressed]="chatOpen" [attr.aria-label]="t.t('Ai_ChatToggle')" [title]="t.t('Ai_ChatToggle')">
+              <span class="material-icons" aria-hidden="true">forum</span>
+            </button>
+          }
+        </div>
+
+        <div class="sql-bottom">
+          <div class="sql-bottom-tabs" role="tablist">
+            <button type="button" class="rpd-tab" role="tab" [class.is-active]="bottomTab === 'data'" [attr.aria-selected]="bottomTab === 'data'" (click)="bottomTab = 'data'">
+              {{ t.t('Sql_Data') }}
+              @if (error) { <span class="material-icons sql-tab-warn" aria-hidden="true">error_outline</span> }
+            </button>
+            @if (ai) {
+              <button type="button" class="rpd-tab" role="tab" [class.is-active]="bottomTab === 'audit'" [attr.aria-selected]="bottomTab === 'audit'" (click)="bottomTab = 'audit'">
+                {{ t.t('Ai_Audit') }}
+                @if (auditTracker.busy()) { <span class="sql-tab-dot is-busy" aria-hidden="true"></span> }
+                @else if (auditStale()) { <span class="sql-tab-dot is-stale" aria-hidden="true"></span> }
+                @else if (auditHtml()) { <span class="sql-tab-dot is-ok" aria-hidden="true"></span> }
+                @else { <span class="sql-tab-dot" aria-hidden="true"></span> }
+              </button>
+            }
+          </div>
+          <div class="sql-bottom-body">
+            @if (bottomTab === 'data') {
+              @if (error) {
+                <div class="sql-error" role="alert">
+                  <span class="material-icons" aria-hidden="true">error_outline</span>
+                  <pre>{{ error }}</pre>
+                </div>
+              }
+              @if (dataset) {
+                <table>
+                  <thead>
+                    <tr>
+                      @for (col of dataset.columns; track $index) {
+                        <th>{{ col.name }} <small>({{ col.dbType }})</small></th>
+                      }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (row of dataset.rows; track $index) {
+                      <tr>
+                        @for (value of row.values; track $index) {
+                          <td>{{ value }}</td>
+                        }
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              }
+            } @else {
+              @if (auditTracker.busy()) {
+                <rp-ai-usage-header class="sql-audit-progress" [tracker]="auditTracker" [showGauge]="false" scope="sql" (stop)="stopAudit()"></rp-ai-usage-header>
+              }
+              @if (auditStale()) {
+                <div class="sql-audit-note is-stale"><span class="material-icons" aria-hidden="true">history</span> {{ t.t('Ai_AuditStale') }}</div>
+              }
+              @if (auditError()) {
+                <div class="sql-error" role="alert"><span class="material-icons" aria-hidden="true">error_outline</span><pre>{{ auditError() }}</pre></div>
+              }
+              @if (auditHtml()) {
+                <div class="sql-audit-text rpd-md" [innerHTML]="auditHtml()" (click)="onAuditEvent($event)" (keydown)="onAuditEvent($event)"></div>
+                <div class="sql-audit-foot">
+                  <button type="button" class="rpd-report-btn" (click)="reportAudit()" [title]="t.t('Ai_Report')" [attr.aria-label]="t.t('Ai_Report')">
+                    <span class="material-icons" aria-hidden="true">thumb_down</span>
+                  </button>
+                </div>
+              } @else if (!auditTracker.busy() && !auditError()) {
+                <div class="sql-audit-note"><span class="material-icons" aria-hidden="true">fact_check</span> {{ t.t('Ai_AuditNone') }}</div>
+              }
+            }
+          </div>
+        </div>
+      </div>
+
+      @if (ai && chatOpen) {
+        <div split-area [size]="32" [minSize]="300" cacheSubId="chat" class="sql-chat">
+          <rp-ai-chat
+            mode="suggestion"
+            scope="sql"
+            [showSchema]="false"
+            [compactHeader]="true"
+            [initialMessage]="t.t('Ai_SqlChatInitial')"
+            suggestionLabelKey="Ai_SuggestedSql"
+            suggestionLanguage="sql"
+            appliedMessageKey="Ai_SqlApplied"
+            [handler]="chatHandler"
+            (apply)="applySql($event)"
+          ></rp-ai-chat>
+        </div>
+      }
+    </split>
+  </div>
+</div>

@@ -35,7 +35,7 @@ export async function toServerRequest(req: IncomingMessage & { body?: unknown; o
   const url = new URL(req.originalUrl ?? req.url ?? '/', 'http://localhost');
   const headers: Record<string, string | undefined> = {};
   for (const [k, v] of Object.entries(req.headers)) headers[k.toLowerCase()] = Array.isArray(v) ? v.join(', ') : v;
-  return { method: req.method ?? 'GET', path: url.pathname, query: url.searchParams, headers, body: await readBody(req), remoteAddress: req.socket?.remoteAddress };
+  return { method: req.method ?? 'GET', path: url.pathname, query: url.searchParams, headers, body: await readBody(req), remoteAddress: req.socket?.remoteAddress, raw: req };
 }
 
 function send(res: NodeResponse, response: ServerResponse): void {

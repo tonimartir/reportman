@@ -1,0 +1,76 @@
+<div
+  [ngClass]="{
+    'flex flex-col gap-4 bg-white p-5': true,
+    'max-h-[90vh] min-h-48 max-w-[90vw] min-w-96': !pres.estrecha,
+    'max-h-[85vh] min-h-[20vh] w-[95vw]': pres.estrecha,
+  }"
+>
+  <div class="p-2 text-center text-5xl font-medium">{{ stringTitle }}</div>
+
+  <div class="grid auto-rows-fr grid-cols-2 items-center gap-y-5">
+    <div class="flex items-center gap-2">
+      <entrada-checkbox
+        estilo="report"
+        [size]="16"
+        [(valor)]="gridOptions.gridVisible"
+      ></entrada-checkbox>
+      <label class="font-medium">{{ stringVisible }}</label>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <entrada-checkbox
+        estilo="report"
+        [size]="16"
+        [(valor)]="gridOptions.gridEnabled"
+      ></entrada-checkbox>
+      <label class="font-medium">{{ stringEnabled }}</label>
+    </div>
+
+    <label class="font-medium">{{ stringHorizontal }}</label>
+    <input
+      class="flex grow basis-8 rounded bg-zinc-100 p-2"
+      [(ngModel)]="gridOptions.gridWidth"
+      type="number"
+      step="0.0001"
+      inputmode="decimal"
+    />
+
+    <label class="font-medium">{{ stringVertical }}</label>
+    <input
+      class="flex grow basis-8 rounded bg-zinc-100 p-2"
+      [(ngModel)]="gridOptions.gridHeight"
+      type="number"
+      step="0.0001"
+      inputmode="decimal"
+    />
+
+    <label class="font-medium">{{ stringGridType }}</label>
+    <entrada-select estilo="report" class="grow basis-8" [(valor)]="gridOptions.gridLines">
+      <opcion-select [valor]="false" [nombre]="stringPoints"></opcion-select>
+      <opcion-select [valor]="true" [nombre]="stringLines"></opcion-select>
+    </entrada-select>
+
+    <label class="font-medium">{{ stringColor }}</label>
+    <label
+      for="colorRejilla"
+      class="hover-effect active-effect relative flex grow basis-8 items-center gap-1.5 rounded bg-zinc-100 p-1.5"
+    >
+      <input
+        class="invisible absolute left-0 h-full w-0 self-end"
+        id="colorRejilla"
+        [(ngModel)]="gridOptions.gridColor"
+        type="color"
+      />
+      <div
+        class="size-6 shrink-0 rounded-sm"
+        [style.background-color]="gridOptions.gridColor"
+      ></div>
+      <span>{{ gridOptions.gridColor }}</span>
+    </label>
+  </div>
+
+  <div class="mt-4 flex flex-row justify-center gap-5">
+    <boton estilo="confirmacion" color="positivo" (clicked)="confirm()">{{ stringOk }}</boton>
+    <boton estilo="confirmacion" color="negativo" (clicked)="cancel()">{{ stringCancel }}</boton>
+  </div>
+</div>

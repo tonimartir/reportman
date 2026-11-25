@@ -46,6 +46,11 @@ export interface ServerRequest {
   body?: Uint8Array;
   /** The address of the client (the socket's), when the adapter knows it. */
   remoteAddress?: string;
+  /**
+   * The request of the framework (node:http's IncomingMessage, Express's Request, Fastify's raw
+   * request), for a hook that looks at the program's own session (the designer's authorize).
+   */
+  raw?: unknown;
 }
 
 /** A server an adapter (nodeHandler, fastifyPlugin) plugs into a framework. */

@@ -1,0 +1,13 @@
+<div class="backdrop">
+  <div class="modal" [class.narrow]="pres.estrecha">
+    <report-expression-builder
+      #expressionBuilder
+      class="builder"
+      (cancelClicked)="cancel()"
+      (okClicked)="confirm($event)"
+      [report]="report"
+      [expression]="expression"
+      [reportDatasetHelper]="reportDatasetHelper"
+    ></report-expression-builder>
+  </div>
+</div>

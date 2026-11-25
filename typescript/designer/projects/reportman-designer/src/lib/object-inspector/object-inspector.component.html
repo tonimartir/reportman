@@ -1,0 +1,564 @@
+<input type="file" #fileInput accept=".png,.jpg,.jpeg,.bmp" hidden />
+<div class="rpd-panel-head">
+  <span class="rpd-panel-title">{{ heading }}</span>
+  <entrada-texto
+    class="rpd-head-search"
+    [placeholder]="translator.t('DesignerSearchObject')"
+    [(valor)]="itemSearchValue"
+    (enter)="searchObject()"
+  ></entrada-texto>
+  <boton
+    class="rpd-sm"
+    estilo="report"
+    icono="ionListOutline"
+    [obtenerOpciones]="getReportMenuOptions | bind: this"
+    [ocultarFlechaOpciones]="true"
+    [title]="translator.t('DesignerReportObjects')"
+  ></boton>
+</div>
+
+<div class="rpd-panel-body">
+  @if (properties.length > 0) {
+    <cdk-accordion [multi]="true">
+      <cdk-accordion-item #accordionExpressionsItem="cdkAccordionItem" [expanded]="true">
+        <button
+          type="button"
+          class="rpd-section-head"
+          (click)="accordionExpressionsItem.toggle()"
+        >
+          <span class="material-icons" aria-hidden="true">{{
+            accordionExpressionsItem.expanded ? "expand_more" : "chevron_right"
+          }}</span>
+          {{ translator.t('DesignerSectionExpressions') }}
+        </button>
+        @if (accordionExpressionsItem.expanded) {
+          @for (prop of properties; track prop.name) {
+            @if (!specialNames.includes(prop.name)) {
+              @if (prop.type === PropertyTypeDesign.Category) {
+                <div class="rpd-prop-category">{{ prop.label }}</div>
+              } @else {
+                <ng-container
+                  *ngTemplateOutlet="propertyTemplate; context: { $implicit: prop }"
+                ></ng-container>
+              }
+            }
+          }
+        }
+      </cdk-accordion-item>
+
+      @if (properties.some(prop => specialNames.includes(prop.name))) {
+        <cdk-accordion-item #accordionDesignItem="cdkAccordionItem" [expanded]="true">
+          <button type="button" class="rpd-section-head" (click)="accordionDesignItem.toggle()">
+            <span class="material-icons" aria-hidden="true">{{
+              accordionDesignItem.expanded ? "expand_more" : "chevron_right"
+            }}</span>
+            {{ translator.t('DesignerSectionDesign') }}
+          </button>
+          @if (accordionDesignItem.expanded) {
+            @if (isSinglePrintPosItem) {
+              <div class="rpd-prop">
+                <div class="rpd-prop-label"><span>{{ translator.t('DesignerLayers') }}</span></div>
+                <div class="rpd-prop-value">
+                  <div class="rpd-seg">
+                    <button type="button" (click)="bringToFront()" [title]="translator.t('DesignerBringToFront')">
+                      <span class="material-icons" aria-hidden="true">flip_to_front</span>
+                    </button>
+                    <button type="button" (click)="sendToBack()" [title]="translator.t('DesignerSendToBack')">
+                      <span class="material-icons" aria-hidden="true">flip_to_back</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
+            @for (prop of properties; track prop.name) {
+              @if (specialNames.includes(prop.name)) {
+                @switch (prop.name) {
+                  @case ("align") {
+                    <div class="rpd-prop">
+                      <div class="rpd-prop-label" [title]="prop.label">
+                        <span>{{ prop.label }}</span>
+                      </div>
+                      <div class="rpd-prop-value">
+                        <div class="rpd-seg">
+                          @for (option of prop.possibleValues; track $index; let i = $index) {
+                            <button
+                              type="button"
+                              [class.is-on]="prop.valueInteger === i"
+                              (click)="prop.valueInteger = i"
+                              [title]="prop.possibleValues[i]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[i]"
+                            >
+                              <span class="material-icons" aria-hidden="true">{{
+                                [
+                                  "block",
+                                  "vertical_align_bottom",
+                                  "keyboard_tab",
+                                  "south_east",
+                                  "swap_horiz",
+                                  "swap_vert",
+                                  "fullscreen",
+                                ][i]
+                              }}</span>
+                            </button>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  @case ("alignment") {
+                    <div class="rpd-prop">
+                      <div class="rpd-prop-label" [title]="prop.label">
+                        <span>{{ prop.label }}</span>
+                      </div>
+                      <div class="rpd-prop-value">
+                        <div class="rpd-seg">
+                          <button
+                            type="button"
+                            [class.is-on]="prop.valueInteger === 0"
+                            (click)="prop.valueInteger = 0"
+                            [title]="prop.possibleValues[0]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[0]"
+                          >
+                            <span class="material-icons" aria-hidden="true">format_align_left</span>
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="prop.valueInteger === 2"
+                            (click)="prop.valueInteger = 2"
+                            [title]="prop.possibleValues[2]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[2]"
+                          >
+                            <span class="material-icons" aria-hidden="true"
+                              >format_align_center</span
+                            >
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="prop.valueInteger === 1"
+                            (click)="prop.valueInteger = 1"
+                            [title]="prop.possibleValues[1]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[1]"
+                          >
+                            <span class="material-icons" aria-hidden="true"
+                              >format_align_right</span
+                            >
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="prop.valueInteger === 3"
+                            (click)="prop.valueInteger = 3"
+                            [title]="prop.possibleValues[3]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[3]"
+                          >
+                            <span class="material-icons" aria-hidden="true"
+                              >format_align_justify</span
+                            >
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  @case ("vAlignment") {
+                    <div class="rpd-prop">
+                      <div class="rpd-prop-label" [title]="prop.label">
+                        <span>{{ prop.label }}</span>
+                      </div>
+                      <div class="rpd-prop-value">
+                        <div class="rpd-seg">
+                          <button
+                            type="button"
+                            [class.is-on]="prop.valueInteger === 0"
+                            (click)="prop.valueInteger = 0"
+                            [title]="prop.possibleValues[0]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[0]"
+                          >
+                            <span class="material-icons" aria-hidden="true">vertical_align_top</span>
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="prop.valueInteger === 2"
+                            (click)="prop.valueInteger = 2"
+                            [title]="prop.possibleValues[2]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[2]"
+                          >
+                            <span class="material-icons" aria-hidden="true"
+                              >vertical_align_center</span
+                            >
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="prop.valueInteger === 1"
+                            (click)="prop.valueInteger = 1"
+                            [title]="prop.possibleValues[1]" [attr.aria-label]="prop.label + ': ' + prop.possibleValues[1]"
+                          >
+                            <span class="material-icons" aria-hidden="true"
+                              >vertical_align_bottom</span
+                            >
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  @case ("lFontName") {
+                    <!-- The Linux font follows the Windows one: nothing to edit here. -->
+                  }
+                  @case ("wFontName") {
+                    <div class="rpd-prop">
+                      <div class="rpd-prop-label" [title]="prop.label">
+                        <span>{{ prop.label }}</span>
+                      </div>
+                      <div class="rpd-prop-value">
+                        <button
+                          type="button"
+                          class="rpd-btn rpd-btn-fill"
+                          (click)="setFontStyleClick(prop)"
+                        >
+                          <span>{{ prop.displayValue }}</span>
+                        </button>
+                      </div>
+                    </div>
+                  }
+                  @case ("type1Font") {
+                    <div class="rpd-prop">
+                      <div class="rpd-prop-label" [title]="prop.label">
+                        <span>{{ prop.label }}</span>
+                      </div>
+                      <div class="rpd-prop-value">
+                        <entrada-select [ariaLabel]="prop.label" [(valor)]="prop.valueInteger">
+                          @for (option of prop.possibleValues; track $index; let i = $index) {
+                            <opcion-select [valor]="i" [nombre]="option"></opcion-select>
+                          }
+                        </entrada-select>
+                      </div>
+                    </div>
+                  }
+                  @case ("fontStyle") {
+                    <div class="rpd-prop">
+                      <div class="rpd-prop-label" [title]="prop.label">
+                        <span>{{ prop.label }}</span>
+                      </div>
+                      <div class="rpd-prop-value">
+                        <div class="rpd-seg">
+                          <button
+                            type="button"
+                            [class.is-on]="isBold()"
+                            (click)="isBold.set(!isBold()); changeFontStyle(prop)"
+                            [title]="translator.TranslateStr(547)"
+                          >
+                            <span class="material-icons" aria-hidden="true">format_bold</span>
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="isItalic()"
+                            (click)="isItalic.set(!isItalic()); changeFontStyle(prop)"
+                            [title]="translator.TranslateStr(549)"
+                          >
+                            <span class="material-icons" aria-hidden="true">format_italic</span>
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="isUnderline()"
+                            (click)="isUnderline.set(!isUnderline()); changeFontStyle(prop)"
+                            [title]="translator.TranslateStr(548)"
+                          >
+                            <span class="material-icons" aria-hidden="true">format_underlined</span>
+                          </button>
+                          <button
+                            type="button"
+                            [class.is-on]="isStrikedThrough()"
+                            (click)="
+                              isStrikedThrough.set(!isStrikedThrough()); changeFontStyle(prop)
+                            "
+                            [title]="translator.TranslateStr(550)"
+                          >
+                            <span class="material-icons" aria-hidden="true"
+                              >format_strikethrough</span
+                            >
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  @default {
+                    <ng-container
+                      *ngTemplateOutlet="propertyTemplate; context: { $implicit: prop }"
+                    ></ng-container>
+                  }
+                }
+              }
+            }
+          }
+        </cdk-accordion-item>
+      }
+    </cdk-accordion>
+  } @else {
+    <div class="rpd-empty">
+      <span class="material-icons" aria-hidden="true">touch_app</span>
+      <p>{{ translator.t('DesignerSelectObjectHint') }}</p>
+    </div>
+  }
+</div>
+
+<!-- One row of the grid per property: its name on the left, its editor on the right. Texts that
+     need room (the label text, SQL, multiline) take the whole width under their name. -->
+<ng-template #propertyTemplate let-prop>
+  @switch (prop.type) {
+    @case (PropertyTypeDesign.String) {
+      @if (prop.name === "text") {
+        <div class="rpd-prop-wide">
+          <span class="rpd-prop-caption">{{ prop.label }}</span>
+          <div class="rpd-prop-row">
+            <textarea
+              class="rpd-textarea"
+              [(ngModel)]="prop.valueStringTmp"
+              (keydown.enter)="prop.commitValue()"
+              (blur)="prop.commitValue()"
+              (keydown.escape)="prop.cancelValue($event)" [attr.aria-label]="prop.label"
+            ></textarea>
+            <button
+              type="button"
+              class="rpd-btn"
+              (click)="pedirTexto(prop)"
+              [title]="translator.t('DesignerEditInWindow')"
+            >
+              <span class="material-icons" aria-hidden="true">open_in_full</span>
+            </button>
+          </div>
+        </div>
+      } @else {
+        <div class="rpd-prop">
+          <div class="rpd-prop-label" [title]="prop.label">
+            <span>{{ prop.label }}</span>
+          </div>
+          <div class="rpd-prop-value">
+            <input
+              class="rpd-input"
+              type="text"
+              [(ngModel)]="prop.valueStringTmp"
+              (keydown.enter)="prop.commitValue()"
+              (blur)="prop.commitValue()"
+              (keydown.escape)="prop.cancelValue($event)" [attr.aria-label]="prop.label"
+            />
+          </div>
+        </div>
+      }
+    }
+    @case (PropertyTypeDesign.Integer) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <input
+            class="rpd-input"
+            type="number"
+            [(ngModel)]="prop.valueIntegerTmp"
+            (keydown.enter)="prop.commitValue()"
+            (blur)="prop.commitValue()"
+            (keydown.escape)="prop.cancelValue($event)" [attr.aria-label]="prop.label"
+          />
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Color) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <label class="rpd-color" [for]="prop.name">
+            <input [id]="prop.name" [(ngModel)]="prop.valueString" type="color" [attr.aria-label]="prop.label" />
+            <span class="rpd-color-swatch" [style.background-color]="prop.valueString"></span>
+            <span>{{ prop.valueString }}</span>
+          </label>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Number)
+    @case (PropertyTypeDesign.Twips) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <input
+            class="rpd-input"
+            type="number"
+            step="0.01"
+            [(ngModel)]="prop.valueDoubleTmp"
+            (keydown.enter)="prop.commitValue()"
+            (blur)="prop.commitValue()"
+            (keydown.escape)="prop.cancelValue($event)" [attr.aria-label]="prop.label"
+          />
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Boolean) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <entrada-checkbox [ariaLabel]="prop.label" [(valor)]="prop.valueBool"></entrada-checkbox>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Date) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <input class="rpd-input" type="datetime-local" [(ngModel)]="prop.valueDateTime" [attr.aria-label]="prop.label" />
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.FontStyle)
+    @case (PropertyTypeDesign.FontName) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <button type="button" class="rpd-btn rpd-btn-fill" (click)="setFontStyleClick(prop)">
+            <span>{{ prop.displayValue }}</span>
+          </button>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Expression) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <input
+            class="rpd-input"
+            type="text"
+            [(ngModel)]="prop.valueStringTmp"
+            (keydown.enter)="prop.commitValue()"
+            (blur)="prop.commitValue()"
+            (keydown.escape)="prop.cancelValue($event)" [attr.aria-label]="prop.label"
+          />
+          <button
+            type="button"
+            class="rpd-btn"
+            (click)="prop.stringPropertyClick()"
+            [title]="translator.t('DesignerOpenExpressionEditor')"
+          >
+            <span class="material-icons" aria-hidden="true">more_horiz</span>
+          </button>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Unions) {
+      <!-- The datasets a MyBase dataset joins: typed separated by commas, or edited in the dialog -->
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <input
+            class="rpd-input"
+            type="text"
+            [(ngModel)]="prop.valueStringTmp"
+            (keydown.enter)="prop.commitValue()"
+            (blur)="prop.commitValue()"
+            (keydown.escape)="prop.cancelValue($event)" [attr.aria-label]="prop.label"
+          />
+          <button
+            type="button"
+            class="rpd-btn"
+            (click)="prop.stringPropertyClick()"
+            [title]="translator.t('DesignerOpenEditor')"
+          >
+            <span class="material-icons" aria-hidden="true">more_horiz</span>
+          </button>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Sql)
+    @case (PropertyTypeDesign.StringMultiline) {
+      <div class="rpd-prop-wide">
+        <span class="rpd-prop-caption">{{ prop.label }}</span>
+        <div class="rpd-prop-row">
+          <textarea
+            class="rpd-textarea"
+            [(ngModel)]="prop.valueStringTmp"
+            (keydown.enter)="prop.commitValue()"
+            (blur)="prop.commitValue()"
+            (keydown.escape)="prop.cancelValue($event)" [attr.aria-label]="prop.label"
+          ></textarea>
+          <button
+            type="button"
+            class="rpd-btn"
+            (click)="prop.stringPropertyClick()"
+            [title]="translator.t('DesignerOpenEditor')"
+          >
+            <span class="material-icons" aria-hidden="true">more_horiz</span>
+          </button>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Variant) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <button
+            type="button"
+            class="rpd-btn rpd-btn-fill"
+            (click)="prop.variantPropertyClick()"
+          >
+            <span>{{ prop.displayValue }}</span>
+          </button>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Binary) {
+      <div class="rpd-prop-wide">
+        <span class="rpd-prop-caption">{{ prop.label }}</span>
+        <textarea class="rpd-textarea" [(ngModel)]="prop.valueBinary" [attr.aria-label]="prop.label"></textarea>
+      </div>
+    }
+    @case (PropertyTypeDesign.Image) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <boton
+            class="rpd-fill"
+            estilo="report"
+            icono="matImageOutline"
+            [obtenerOpciones]="prop.getImageOptions | bind: prop"
+          >
+            <span>{{ prop.sizeLabel }}</span>
+          </boton>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.Enum) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <entrada-select [ariaLabel]="prop.label" [(valor)]="prop.valueInteger">
+            @for (option of prop.possibleValues; track $index; let i = $index) {
+              <opcion-select [valor]="i" [nombre]="option"></opcion-select>
+            }
+          </entrada-select>
+        </div>
+      </div>
+    }
+    @case (PropertyTypeDesign.StringEnum) {
+      <div class="rpd-prop">
+        <div class="rpd-prop-label" [title]="prop.label">
+          <span>{{ prop.label }}</span>
+        </div>
+        <div class="rpd-prop-value">
+          <entrada-select [ariaLabel]="prop.label" [(valor)]="prop.valueString">
+            @for (option of prop.possibleValues; track $index; let i = $index) {
+              <opcion-select [valor]="prop.possibleValues[i]" [nombre]="option"></opcion-select>
+            }
+          </entrada-select>
+        </div>
+      </div>
+    }
+  }
+</ng-template>

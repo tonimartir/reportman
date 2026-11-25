@@ -11,7 +11,7 @@ import type { ServerRequest, ServerResponse } from '@reportman/server';
 
 /** Options of the element's files. */
 export interface DesignerElementOptions {
-  /** The folder of the element's files (the package @reportman/designer); found by default. */
+  /** The folder of the element's files (the dist of the package @reportman/designer); found by default. */
   folder?: string;
   /** The folder of Monaco's minified files (monaco-editor/min); found by default. */
   monaco?: string;
@@ -50,7 +50,10 @@ let elementFolder: string | undefined | null = null;
 let monacoFolder: string | undefined | null = null;
 
 function folders(options: DesignerElementOptions): { element: string | undefined; monaco: string | undefined } {
-  if (elementFolder === null) elementFolder = packageFolder('@reportman/designer');
+  if (elementFolder === null) {
+    const element = packageFolder('@reportman/designer');
+    elementFolder = element === undefined ? undefined : path.join(element, 'dist');
+  }
   if (monacoFolder === null) {
     const monaco = packageFolder('monaco-editor');
     monacoFolder = monaco === undefined ? undefined : path.join(monaco, 'min');
@@ -97,7 +100,6 @@ function page(request: ServerRequest, base: string): ServerResponse {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Report Manager designer</title>
-<link rel="stylesheet" href="${base}/designer/styles.css">
 <style>html, body { margin: 0; height: 100%; } reportman-designer { display: block; height: 100vh; }</style>
 <script type="module" src="${base}/designer/main.js"></script>
 </head>

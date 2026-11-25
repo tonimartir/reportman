@@ -1,0 +1,795 @@
+// The designer's visual system. One scale and one set of controls for the whole editor (bar,
+// structure tree, property grid, history, menus, selects) and for whatever the host docks into it
+// (the copilot), so no panel can drift from the others again.
+//
+// Density is the desktop designer's: 11 px text, 22 px rows and controls, 26 px tool buttons.
+// Loaded globally (angular.json) because menus and select panels render in the CDK overlay,
+// outside every component.
+
+:root, :host {
+  --rpd-font: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --rpd-fs: 11px;
+  --rpd-fs-sm: 10px;
+  --rpd-fs-lg: 12px;
+  --rpd-ctl: 22px;
+  --rpd-row: 22px;
+  --rpd-tool: 26px;
+  --rpd-radius: 3px;
+
+  --rpd-surface: #fff;
+  --rpd-surface-2: #f6f7f9;
+  --rpd-surface-3: #eceef2;
+  --rpd-border: #d5d9e0;
+  --rpd-border-soft: #e7eaee;
+  --rpd-text: #1f2328;
+  --rpd-text-2: #57606a;
+  --rpd-text-3: #8c959f;
+  --rpd-accent: #0078d4;
+  --rpd-accent-strong: #005a9e;
+  --rpd-accent-bg: #e5f1fb;
+  --rpd-accent-border: #9cc9ee;
+  --rpd-hover: #edf0f3;
+  --rpd-danger: #c62828;
+  --rpd-ok: #2e7d32;
+  --rpd-warn: #b26a00;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Root
+// ---------------------------------------------------------------------------------------------
+
+.rpd {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  font-family: var(--rpd-font);
+  font-size: var(--rpd-fs);
+  line-height: 1.35;
+  color: var(--rpd-text);
+  background: var(--rpd-surface-3);
+
+  *, *::before, *::after { box-sizing: border-box; }
+  * { scrollbar-width: thin; scrollbar-color: #c3c9d1 transparent; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  [hidden] { display: none !important; }
+  .material-icons { font-size: 16px; line-height: 1; width: 1em; height: 1em; overflow: hidden; flex: 0 0 auto; user-select: none; }
+}
+
+.rpd-spacer { flex: 1 1 0; min-width: 0; }
+.rpd-grow { flex: 1 1 0; min-height: 0; }
+.rpd cdk-accordion, .rpd cdk-accordion-item { display: block; }
+.rpd-zoom { width: 62px; }
+.rpd-head-search { flex: 1 1 auto; min-width: 0; }
+.rpd-panel-head .rpd-input { height: 20px; }
+
+// Dialogs the designer opens (expression, SQL, fonts, grid): same family and scale.
+.rp-designer-dialog {
+  font-family: var(--rpd-font);
+  font-size: var(--rpd-fs-lg);
+  color: var(--rpd-text);
+  --mat-dialog-container-shape: 6px;
+
+  *, *::before, *::after { box-sizing: border-box; }
+  input, select, textarea, button { font: inherit; }
+  .mat-mdc-dialog-surface { border-radius: 6px; }
+  // Dialog titles: one size, the same in every dialog.
+  .text-4xl, .text-5xl { font-size: 15px; font-weight: 600; line-height: 1.3; }
+}
+
+// ---------------------------------------------------------------------------------------------
+// Bar and tool buttons
+// ---------------------------------------------------------------------------------------------
+
+.rpd-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2px;
+  flex: 0 0 auto;
+  height: 34px;
+  padding: 3px 6px;
+  background: var(--rpd-surface);
+  border-bottom: 1px solid var(--rpd-border);
+  overflow: hidden;
+}
+
+// The tool groups never shrink; the report name (in the first group) gives way instead, so the
+// bar stays on one line down to about 850 px.
+.rpd-bar-group { display: inline-flex; align-items: center; gap: 1px; min-width: 0; flex: 0 0 auto; }
+.rpd-bar-group:has(.rpd-title) { flex: 0 1 auto; }
+.rpd-sep { flex: 0 0 1px; width: 1px; height: 18px; margin: 0 5px; background: var(--rpd-border); }
+
+.rpd-title {
+  flex: 0 1 auto;
+  min-width: 48px;
+  max-width: 340px;
+  padding: 0 4px 0 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--rpd-fs-lg);
+  font-weight: 600;
+
+  small { font-size: var(--rpd-fs); font-weight: 400; color: var(--rpd-text-3); }
+}
+
+.rpd-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: var(--rpd-tool);
+  min-width: var(--rpd-tool);
+  padding: 0 5px;
+  border: 1px solid transparent;
+  border-radius: var(--rpd-radius);
+  background: transparent;
+  color: var(--rpd-text);
+  font-family: var(--rpd-font);
+  font-size: var(--rpd-fs);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover:not(:disabled) { background: var(--rpd-hover); }
+  &:active:not(:disabled) { background: var(--rpd-accent-bg); }
+  &:focus-visible { outline: 2px solid var(--rpd-accent-border); outline-offset: -1px; }
+  &:disabled { opacity: 0.36; cursor: default; }
+  &.is-active { background: var(--rpd-accent-bg); border-color: var(--rpd-accent-border); color: var(--rpd-accent-strong); }
+
+  .material-icons, mat-icon { font-size: 16px; width: 16px; height: 16px; line-height: 16px; margin: 0; }
+  .rpd-tool-caret { font-size: 14px; width: 10px; margin: 0 -2px 0 -3px; opacity: 0.6; }
+}
+
+.rpd-tool-text { padding: 0 8px 0 6px; }
+.rpd-tool-primary {
+  padding: 0 10px 0 7px;
+  background: var(--rpd-accent);
+  color: #fff;
+  font-weight: 600;
+
+  &:hover:not(:disabled) { background: var(--rpd-accent-strong); }
+  &:active:not(:disabled) { background: var(--rpd-accent-strong); }
+}
+
+// Small tool buttons for panel headers: <boton class="rpd-sm">.
+.rpd-sm .rpd-tool, .rpd-tool.rpd-tool-sm { height: 20px; min-width: 20px; padding: 0 2px; }
+// A tool button that fills its cell and reads as a value: <boton class="rpd-fill">.
+.rpd-fill { display: flex; flex: 1 1 auto; min-width: 0; }
+.rpd-fill .rpd-tool {
+  width: 100%;
+  height: var(--rpd-ctl);
+  justify-content: flex-start;
+  padding: 0 6px;
+  border-color: var(--rpd-border);
+  background: var(--rpd-surface);
+  overflow: hidden;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Layout: left column (structure over properties), canvas, right dock, status bar
+// ---------------------------------------------------------------------------------------------
+
+.rpd-body { display: flex; flex: 1 1 auto; flex-direction: row; min-height: 0; min-width: 0; position: relative; }
+
+.rpd-shield { position: absolute; top: 0; bottom: 0; left: 0; z-index: 30; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(1px); cursor: progress; }
+.rpd-shield-card { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--rpd-border); border-radius: 8px; background: var(--rpd-surface); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14); color: var(--rpd-text); font-size: var(--rpd-fs-lg); cursor: default; }
+.rpd-shield-spinner { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--rpd-accent-border); border-top-color: var(--rpd-accent); animation: rpd-spin 0.9s linear infinite; }
+.rpd-shield-stop { border-color: #e2a5a0; color: var(--rpd-danger); }
+@keyframes rpd-spin { to { transform: rotate(360deg); } }
+
+// The failed run, over the canvas: readable, selectable and copyable until it is closed.
+.rpd-run-error { flex: 0 0 auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4px 8px; padding: 6px 8px; border-bottom: 1px solid #e2a5a0; background: #fdecea; color: var(--rpd-text); }
+.rpd-run-error-icon { color: var(--rpd-danger); font-size: 20px; margin-top: 1px; }
+// A narrow canvas puts the buttons under the text instead of squeezing the text into a column.
+.rpd-run-error-body { flex: 1 1 200px; min-width: 0; }
+.rpd-run-error-title { font-weight: 600; color: var(--rpd-danger); }
+.rpd-run-error-text { margin: 2px 0 0; max-height: 9em; overflow: auto; font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; }
+.rpd-run-error-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 2px; }
+
+.rpd-left, .rpd-right {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--rpd-surface);
+}
+
+.rpd-center {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 120px;
+  min-height: 0;
+  overflow: hidden;
+  background: #dfe3e8;
+}
+
+.rpd-gutter-v, .rpd-gutter-h {
+  flex: 0 0 4px;
+  background: var(--rpd-border);
+  background-clip: content-box;
+  transition: background-color 0.12s;
+  touch-action: none;
+  user-select: none;
+
+  &:hover, &.is-dragging { background-color: var(--rpd-accent); }
+}
+.rpd-gutter-v { padding: 0 1.5px; cursor: col-resize; }
+.rpd-gutter-h { padding: 1.5px 0; cursor: row-resize; }
+
+.rpd-panel { display: flex; flex-direction: column; min-height: 0; min-width: 0; overflow: hidden; background: var(--rpd-surface); }
+
+.rpd-panel-head {
+  display: flex;
+  flex: 0 0 26px;
+  align-items: center;
+  gap: 1px;
+  height: 26px;
+  padding: 0 3px 0 8px;
+  background: var(--rpd-surface-2);
+  border-bottom: 1px solid var(--rpd-border-soft);
+}
+
+.rpd-panel-title {
+  margin-right: 6px;
+  color: var(--rpd-text-2);
+  font-size: var(--rpd-fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rpd-panel-body { flex: 1 1 auto; min-height: 0; overflow: auto; }
+
+.rpd-dock-tabs {
+  display: flex;
+  flex: 0 0 28px;
+  align-items: stretch;
+  gap: 2px;
+  height: 28px;
+  padding: 0 3px 0 4px;
+  background: var(--rpd-surface-2);
+  border-bottom: 1px solid var(--rpd-border);
+
+  .rpd-tool { align-self: center; }
+}
+
+.rpd-dock-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: -1px;
+  padding: 0 9px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--rpd-text-2);
+  font-size: var(--rpd-fs-lg);
+  cursor: pointer;
+
+  &:hover { color: var(--rpd-text); }
+  &.is-active { color: var(--rpd-accent-strong); border-bottom-color: var(--rpd-accent); font-weight: 600; }
+  .material-icons { font-size: 15px; }
+}
+
+.rpd-dock-pane { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; overflow: hidden; }
+
+.rpd-status {
+  display: flex;
+  flex: 0 0 22px;
+  align-items: center;
+  gap: 12px;
+  height: 22px;
+  padding: 0 8px;
+  background: var(--rpd-surface-2);
+  border-top: 1px solid var(--rpd-border);
+  color: var(--rpd-text-2);
+  font-size: var(--rpd-fs-sm);
+  white-space: nowrap;
+  overflow: hidden;
+
+  b { color: var(--rpd-text); font-weight: 600; }
+  .material-icons { font-size: 13px; }
+}
+
+.rpd-status-item { display: inline-flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.rpd-status-dot { flex: 0 0 7px; width: 7px; height: 7px; border-radius: 50%; background: #e69b00; }
+
+.rpd-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  min-height: 72px;
+  padding: 12px;
+  color: var(--rpd-text-3);
+  text-align: center;
+
+  .material-icons { font-size: 22px; opacity: 0.7; }
+  p { margin: 0; }
+}
+
+// ---------------------------------------------------------------------------------------------
+// Structure tree
+// ---------------------------------------------------------------------------------------------
+
+.rpd-tree { padding: 2px 0; }
+
+.rpd-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: var(--rpd-row);
+  padding-right: 6px;
+  border-left: 2px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover { background: var(--rpd-hover); }
+  &.is-selected { background: var(--rpd-accent-bg); border-left-color: var(--rpd-accent); }
+  &.is-group .rpd-tree-label { font-weight: 600; }
+  &.d0 { padding-left: 4px; }
+  &.d1 { padding-left: 16px; }
+  &.d2 { padding-left: 30px; }
+  &.d3 { padding-left: 44px; }
+}
+
+.rpd .rpd-tree-twisty { flex: 0 0 14px; width: 14px; font-size: 16px; color: var(--rpd-text-3); }
+.rpd .rpd-tree-ico { font-size: 14px; color: var(--rpd-text-2); }
+.rpd-tree-row.is-selected .rpd-tree-ico { color: var(--rpd-accent-strong); }
+.rpd-tree-label { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.rpd-tree-count { color: var(--rpd-text-3); font-weight: 400; }
+.rpd-tree-audit { flex: 0 0 6px; width: 6px; height: 6px; margin-left: 6px; border-radius: 50%; background: var(--rpd-border); }
+.rpd-tree-audit.is-ok { background: var(--rpd-ok); }
+.rpd-tree-audit.is-error { background: var(--rpd-danger); }
+.rpd-tree-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 18px;
+  padding: 0 4px;
+  border: 1px solid var(--rpd-accent);
+  border-radius: 2px;
+  background: #fff;
+  outline: none;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Property grid and its controls
+// ---------------------------------------------------------------------------------------------
+
+.rpd-section-head {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  height: 22px;
+  padding: 0 6px 0 2px;
+  border: 0;
+  border-bottom: 1px solid var(--rpd-border-soft);
+  background: var(--rpd-surface-2);
+  color: var(--rpd-text-2);
+  font-size: var(--rpd-fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover { color: var(--rpd-text); }
+}
+
+.rpd-prop {
+  display: grid;
+  grid-template-columns: minmax(64px, 40%) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: 24px;
+  border-bottom: 1px solid var(--rpd-border-soft);
+}
+
+.rpd-prop-label {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0 6px 0 8px;
+  border-right: 1px solid var(--rpd-border-soft);
+  background: #fafbfc;
+  color: var(--rpd-text-2);
+
+  > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+.rpd-prop-value { display: flex; align-items: center; gap: 2px; min-width: 0; padding: 0 2px; }
+
+.rpd-prop-wide {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 3px 4px 5px 8px;
+  border-bottom: 1px solid var(--rpd-border-soft);
+
+  > .rpd-prop-caption { color: var(--rpd-text-2); }
+  > .rpd-prop-row { display: flex; align-items: stretch; gap: 3px; min-width: 0; }
+}
+
+.rpd-prop-category {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--rpd-border-soft);
+  background: var(--rpd-surface-2);
+  font-weight: 600;
+}
+
+.rpd-input, .rpd-textarea {
+  width: 100%;
+  min-width: 0;
+  height: var(--rpd-ctl);
+  padding: 0 5px;
+  border: 1px solid var(--rpd-border);
+  border-radius: var(--rpd-radius);
+  background: var(--rpd-surface);
+  outline: none;
+
+  &:hover { border-color: #b8bfc9; }
+  &:focus { border-color: var(--rpd-accent); box-shadow: 0 0 0 2px var(--rpd-accent-bg); }
+  &::placeholder { color: var(--rpd-text-3); }
+  &:disabled { opacity: 0.5; }
+}
+
+.rpd-textarea { height: auto; min-height: 44px; padding: 3px 5px; line-height: 1.35; resize: vertical; }
+
+// Inside the grid the cell is the frame: editors show their border only on hover and focus.
+.rpd-prop-value > .rpd-input,
+.rpd-prop-value entrada-select .rpd-select {
+  border-color: transparent;
+  background: transparent;
+
+  &:hover { border-color: var(--rpd-border); background: var(--rpd-surface); }
+  &:focus { border-color: var(--rpd-accent); background: var(--rpd-surface); }
+}
+.rpd-prop-value entrada-select { flex: 1 1 auto; min-width: 0; }
+
+// A value that opens a dialog (font, variant): reads as text, with the same "…" the expression
+// editors have, and shows its frame on hover like the other editors of the grid.
+.rpd-prop-value > .rpd-btn-fill {
+  border-color: transparent;
+  background: transparent;
+
+  &::after {
+    content: 'more_horiz';
+    margin-left: auto;
+    padding-left: 4px;
+    color: var(--rpd-text-3);
+    font-family: 'Material Icons';
+    font-size: 14px;
+    line-height: 1;
+  }
+  &:hover { border-color: var(--rpd-border); background: var(--rpd-surface); }
+}
+
+.rpd-field { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.rpd-field-label { color: var(--rpd-text-2); font-size: var(--rpd-fs-sm); }
+
+.rpd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  height: var(--rpd-ctl);
+  min-width: var(--rpd-ctl);
+  padding: 0 6px;
+  border: 1px solid var(--rpd-border);
+  border-radius: var(--rpd-radius);
+  background: var(--rpd-surface);
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover:not(:disabled) { background: var(--rpd-hover); }
+  &:disabled { opacity: 0.4; cursor: default; }
+  &.is-on { background: var(--rpd-accent-bg); border-color: var(--rpd-accent-border); color: var(--rpd-accent-strong); }
+  &.is-on:disabled { opacity: 1; }
+  > span:not(.material-icons) { overflow: hidden; text-overflow: ellipsis; }
+}
+.rpd-btn .material-icons { font-size: 14px; line-height: 1; }
+.rpd-btn-fill { flex: 1 1 auto; justify-content: flex-start; min-width: 0; overflow: hidden; }
+// Dialog buttons: a little taller, and the confirming one filled.
+.rpd-btn-lg { height: 26px; padding: 0 12px; font-family: var(--rpd-font); font-size: var(--rpd-fs-lg); color: var(--rpd-text); }
+.rpd-btn-primary {
+  border-color: var(--rpd-accent);
+  background: var(--rpd-accent);
+  color: #fff;
+  font-weight: 600;
+
+  &:hover:not(:disabled) { border-color: var(--rpd-accent-strong); background: var(--rpd-accent-strong); }
+}
+
+.rpd-seg {
+  display: inline-flex;
+  border: 1px solid var(--rpd-border);
+  border-radius: var(--rpd-radius);
+  background: var(--rpd-surface);
+  overflow: hidden;
+
+  > button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    min-width: 20px;
+    padding: 0 2px;
+    border: 0;
+    border-right: 1px solid var(--rpd-border-soft);
+    background: transparent;
+    cursor: pointer;
+
+    &:last-child { border-right: 0; }
+    &:hover { background: var(--rpd-hover); }
+    &.is-on { background: var(--rpd-accent-bg); color: var(--rpd-accent-strong); }
+  }
+}
+.rpd .rpd-seg .material-icons { font-size: 14px; }
+
+.rpd-color {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  height: var(--rpd-ctl);
+  padding: 0 5px;
+  border-radius: var(--rpd-radius);
+  cursor: pointer;
+
+  &:hover { background: var(--rpd-hover); }
+  input { position: absolute; left: 0; bottom: 0; width: 0; height: 0; padding: 0; border: 0; opacity: 0; }
+}
+.rpd-color-swatch { flex: 0 0 14px; width: 14px; height: 14px; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 2px; }
+
+.rpd-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--rpd-ctl);
+  padding: 0 5px;
+  cursor: pointer;
+
+  input { width: 13px; height: 13px; margin: 0; accent-color: var(--rpd-accent); cursor: pointer; }
+}
+
+// ---------------------------------------------------------------------------------------------
+// The combobox: a square chip. Same height and type as the round chips of options, square
+// corners so it reads as "a list to choose from".
+// ---------------------------------------------------------------------------------------------
+
+.rpd-select.mat-mdc-select {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  height: var(--rpd-ctl);
+  padding: 0 1px 0 6px;
+  border: 1px solid var(--rpd-border);
+  border-radius: var(--rpd-radius);
+  background: var(--rpd-surface);
+  cursor: pointer;
+  --mat-select-trigger-text-font: var(--rpd-font);
+  --mat-select-trigger-text-size: var(--rpd-fs);
+  --mat-select-trigger-text-line-height: 20px;
+  --mat-select-trigger-text-weight: 400;
+  --mat-select-trigger-text-tracking: 0;
+  --mat-select-enabled-trigger-text-color: var(--rpd-text);
+  --mat-select-placeholder-text-color: var(--rpd-text-3);
+  --mat-select-enabled-arrow-color: var(--rpd-text-2);
+  --mat-select-focused-arrow-color: var(--rpd-accent);
+
+  &:hover { border-color: #b8bfc9; }
+  &:focus, &[aria-expanded='true'] { border-color: var(--rpd-accent); box-shadow: 0 0 0 2px var(--rpd-accent-bg); outline: none; }
+  .mat-mdc-select-trigger { width: 100%; height: 100%; gap: 0; }
+  .mat-mdc-select-arrow-wrapper { height: 18px; padding-left: 1px; transform: none; }
+  .mat-mdc-select-arrow { width: 16px; }
+  .mat-mdc-select-arrow svg { width: 20px; height: 20px; }
+}
+
+// Leading icon and caption for a standalone square chip (the copilot's schema selector).
+.rpd-select-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  height: var(--rpd-ctl);
+  padding: 0 0 0 6px;
+  border: 1px solid var(--rpd-border);
+  border-radius: var(--rpd-radius);
+  background: var(--rpd-surface);
+  font-size: var(--rpd-fs);
+
+  &:hover { border-color: #b8bfc9; }
+  &:focus-within { border-color: var(--rpd-accent); box-shadow: 0 0 0 2px var(--rpd-accent-bg); }
+  cursor: pointer;
+  > .material-icons { font-size: 14px; color: var(--rpd-text-2); }
+  > .rpd-select-chip-caption { color: var(--rpd-text-2); white-space: nowrap; }
+  .rpd-select.mat-mdc-select { flex: 1 1 auto; border: 0; box-shadow: none; padding-left: 0; background: transparent; height: 20px; font-weight: 600; --mat-select-trigger-text-weight: 600; }
+}
+
+// Right before the name of a cloud schema whose Agent is not connected,
+// in the open list and in the closed one.
+.rpd-offline-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: #e53935;
+  vertical-align: middle;
+}
+
+// Right after the name of one of the cloud's example databases (isExample): the public ones, for anybody without a
+// login or a key, read-only. As Reportman.Web's `.badge.example` (database-config); the text is not translated.
+// Global: the app's pages (connections, wizard) use it too.
+.rp-demo-badge {
+  display: inline-block;
+  flex-shrink: 0;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  background: #ff980022;
+  color: #ff9800;
+}
+
+.rpd-select-panel.mat-mdc-select-panel {
+  min-width: 120px;
+  max-height: 320px;
+  padding: 3px 0;
+  border: 1px solid var(--rpd-border);
+  border-radius: 4px;
+  --mat-select-panel-background-color: #fff;
+  --mat-select-container-elevation-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  --mat-option-selected-state-layer-color: var(--rpd-accent-bg);
+  --mat-option-hover-state-layer-color: var(--rpd-hover);
+  --mat-option-focus-state-layer-color: var(--rpd-hover);
+  --mat-option-label-text-font: var(--rpd-font);
+  --mat-option-label-text-size: var(--rpd-fs);
+  --mat-option-label-text-line-height: 16px;
+  --mat-option-label-text-tracking: 0;
+  --mat-option-label-text-weight: 400;
+
+  .mat-mdc-option { min-height: 24px; padding: 0 10px; }
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) { background: var(--rpd-accent-bg); }
+  .mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text { color: var(--rpd-accent-strong); font-weight: 600; }
+  .mat-mdc-option .mat-pseudo-checkbox { display: none; }
+}
+
+// ---------------------------------------------------------------------------------------------
+// Menus (Material menu panels and the tree's popup)
+// ---------------------------------------------------------------------------------------------
+
+.rp-designer-menu.mat-mdc-menu-panel {
+  min-width: 168px;
+  max-width: 360px;
+  border: 1px solid var(--rpd-border);
+  border-radius: 4px;
+  --mat-menu-container-color: #fff;
+  --mat-menu-container-elevation-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  --mat-menu-item-hover-state-layer-color: var(--rpd-hover);
+  --mat-menu-item-focus-state-layer-color: var(--rpd-hover);
+  --mat-menu-item-label-text-font: var(--rpd-font);
+  --mat-menu-item-label-text-size: var(--rpd-fs-lg);
+  --mat-menu-item-label-text-line-height: 16px;
+  --mat-menu-item-label-text-tracking: 0;
+  --mat-menu-item-label-text-weight: 400;
+  --mat-menu-item-icon-size: 16px;
+
+  .mat-mdc-menu-content { padding: 3px 0; }
+  .mat-mdc-menu-item { min-height: 26px; padding: 0 12px 0 10px; }
+  .mat-mdc-menu-item .mat-icon { width: 16px; height: 16px; margin-right: 8px; font-size: 16px; }
+  .mat-mdc-menu-submenu-icon { width: 16px; height: 10px; }
+}
+
+// ---------------------------------------------------------------------------------------------
+// History
+// ---------------------------------------------------------------------------------------------
+
+.rpd-hist-row {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--rpd-border-soft);
+
+  &.is-alt { background: #fafbfc; }
+}
+.rpd-hist-main { display: flex; align-items: center; gap: 6px; min-height: 18px; min-width: 0; }
+.rpd .rpd-hist-ico { font-size: 14px; color: var(--rpd-text-2); }
+.rpd-hist-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.rpd-hist-class, .rpd-hist-time { color: var(--rpd-text-3); font-size: var(--rpd-fs-sm); white-space: nowrap; }
+.rpd-hist-detail { margin: 1px 0 0 20px; color: var(--rpd-text-2); font-size: var(--rpd-fs-sm); }
+.rpd-hist-props { display: flex; flex-direction: column; gap: 2px; margin: 3px 0 0; padding: 0; list-style: none; overflow-wrap: anywhere; }
+.rpd-old { color: var(--rpd-danger); text-decoration: line-through; }
+.rpd-new { color: var(--rpd-ok); }
+.rpd-link { padding: 0; border: 0; background: none; color: var(--rpd-accent); font-size: var(--rpd-fs-sm); cursor: pointer; &:hover { text-decoration: underline; } }
+.rpd-pager {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 6px;
+  border-top: 1px solid var(--rpd-border-soft);
+  color: var(--rpd-text-2);
+
+  .rpd-input { width: 44px; }
+}
+
+// ---- What the AI writes (chat, AI log, SQL audit): markdown the way chat pages show it ----
+.rpd-md {
+  overflow-wrap: anywhere;
+  white-space: normal;
+  line-height: 1.5;
+
+  > :first-child { margin-top: 0; }
+  > :last-child { margin-bottom: 0; }
+  p { margin: 0 0 6px; }
+  h1, h2, h3, h4 { margin: 10px 0 4px; font-weight: 600; line-height: 1.3; }
+  h1 { font-size: 15px; }
+  h2 { font-size: 14px; }
+  h3, h4 { font-size: 13px; }
+  ul, ol { margin: 0 0 6px; padding-left: 20px; }
+  li { margin: 1px 0; }
+  li > p { margin: 0; }
+  a { color: var(--rpd-accent-strong); text-decoration: underline; }
+  strong { font-weight: 600; }
+  blockquote { margin: 0 0 6px; padding: 2px 10px; border-left: 3px solid var(--rpd-border); color: var(--rpd-text-2); }
+  hr { border: 0; border-top: 1px solid var(--rpd-border-soft); margin: 8px 0; }
+  // No ligatures: Cascadia Code would draw ">=" as "≥", which is not what the SQL says.
+  code { padding: 1px 4px; border-radius: 3px; background: var(--rpd-surface-3); font: var(--rpd-fs)/1.4 'Cascadia Code', Consolas, monospace; font-variant-ligatures: none; }
+  table { display: block; max-width: 100%; overflow-x: auto; margin: 0 0 6px; border-collapse: collapse; font-size: var(--rpd-fs); }
+  th, td { padding: 3px 7px; border: 1px solid var(--rpd-border-soft); text-align: left; vertical-align: top; }
+  th { background: var(--rpd-surface-2); font-weight: 600; }
+
+  // Fenced code: dark block with its language and a Copy action, as chat pages do.
+  .rp-code { margin: 0 0 6px; border: 1px solid #2d2f3a; border-radius: 6px; overflow: hidden; background: #1e1f26; }
+  .rp-code-head { display: flex; align-items: center; justify-content: space-between; padding: 2px 8px; background: #2a2c36; color: #b9bccb; font-size: var(--rpd-fs-sm); }
+  .rp-code-lang { text-transform: lowercase; }
+  .rp-code-copy { padding: 1px 6px; border-radius: 3px; cursor: pointer; user-select: none; }
+  .rp-code-copy:hover, .rp-code-copy:focus-visible { background: #3a3d4a; color: #fff; outline: none; }
+  .rp-code pre { margin: 0; padding: 7px 9px; overflow-x: auto; white-space: pre; }
+  .rp-code code { padding: 0; background: transparent; color: #e3e5ee; }
+
+  // The model's reasoning (<think>): open while it thinks, folded once it answers.
+  .rp-think { margin: 0 0 6px; border: 1px solid var(--rpd-border-soft); border-radius: 6px; background: var(--rpd-surface-2); }
+  .rp-think summary { padding: 3px 8px; color: var(--rpd-text-2); font-size: var(--rpd-fs-sm); cursor: pointer; user-select: none; }
+  .rp-think[open] summary { border-bottom: 1px solid var(--rpd-border-soft); }
+  .rp-think-body { padding: 5px 9px; color: var(--rpd-text-2); font-size: var(--rpd-fs-sm); }
+}
+
+// The report action on everything the AI writes: always visible, quiet until pointed at.
+.rpd-report-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--rpd-text-3);
+  cursor: pointer;
+
+  .material-icons { font-size: 15px; }
+  &:hover, &:focus-visible { background: #fdecea; color: var(--rpd-danger); outline: none; }
+}

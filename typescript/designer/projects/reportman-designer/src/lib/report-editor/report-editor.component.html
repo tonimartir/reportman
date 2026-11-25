@@ -1,0 +1,250 @@
+<div class="rpd">
+  <!-- One bar: what the host adds (back, name, preview, save) and the editor's own tools. -->
+  <div class="rpd-bar">
+    <ng-content select="[rpdBarStart]"></ng-content>
+    <span class="rpd-sep"></span>
+    <div class="rpd-bar-group">
+      <boton
+        estilo="report"
+        [obtenerOpciones]="getReportMenuOptions | bind: this"
+        icono="ionMenuOutline"
+        [title]="L.reportOptions"
+      ></boton>
+      <boton
+        estilo="report"
+        icono="tablerArrowBackUp"
+        [disabled]="!report?.undoCue?.undoOperations?.length"
+        (click)="undoClick()"
+        [title]="L.undo"
+      ></boton>
+      <boton
+        estilo="report"
+        icono="tablerArrowForwardUp"
+        [disabled]="!report?.undoCue?.redoOperations?.length"
+        (click)="redoClick()"
+        [title]="L.redo"
+      ></boton>
+      <entrada-select
+        class="rpd-zoom"
+        [(valor)]="reportDesign.zoom"
+        (valorChange)="onZoomChange($event)"
+      >
+        @for (z of zoomOptions; track z) {
+          <opcion-select [valor]="z.value" [nombre]="z.label"></opcion-select>
+        }
+      </entrada-select>
+    </div>
+    <span class="rpd-sep"></span>
+    <div class="rpd-bar-group">
+      @for (designElement of designElementsArray; track designElement) {
+        <boton
+          estilo="report"
+          [icono]="designElement.icon"
+          [obtenerOpciones]="
+            designElement.designElement === DesignElementType.Shape
+              ? elementDesignOptions.bind(this, designElement)
+              : undefined
+          "
+          [activo]="designElementsMap.get(designElement.designElement)"
+          (clicked)="toolElementClicked(designElement.designElement)"
+          [title]="designElement.label"
+        ></boton>
+      }
+    </div>
+    <span class="rpd-sep"></span>
+    <div class="rpd-bar-group">
+      <boton
+        estilo="report"
+        icono="matDeleteOutline"
+        [disabled]="!selectedPosItems()"
+        (clicked)="deleteClicked()"
+        [title]="L.delete"
+      ></boton>
+      <boton
+        estilo="report"
+        icono="matContentCutSharp"
+        [disabled]="!selectedPosItems()"
+        (clicked)="cutClicked()"
+        [title]="L.cut"
+      ></boton>
+      <boton
+        estilo="report"
+        icono="matContentCopy"
+        [disabled]="!selectedPosItems()"
+        (clicked)="copyClicked()"
+        [title]="L.copy"
+      ></boton>
+      <boton
+        estilo="report"
+        icono="matContentPaste"
+        [disabled]="!sectionSelected()"
+        (clicked)="pasteClicked()"
+        [title]="L.paste"
+      ></boton>
+    </div>
+    <span class="rpd-spacer"></span>
+    <ng-content select="[rpdBarEnd]"></ng-content>
+    <span class="rpd-sep"></span>
+    <div class="rpd-bar-group">
+      <button
+        type="button"
+        class="rpd-tool"
+        [class.is-active]="rightPanel === 'history'"
+        (click)="toggleRight('history')"
+        [attr.aria-label]="L.history"
+        [attr.aria-pressed]="rightPanel === 'history'"
+        [matTooltip]="L.history"
+        [matTooltipShowDelay]="400"
+      >
+        <span class="material-icons" aria-hidden="true">history</span>
+      </button>
+      @if (copilot) {
+        <button
+          type="button"
+          class="rpd-tool rpd-tool-text"
+          [class.is-active]="rightPanel === 'copilot'"
+          (click)="toggleRight('copilot')"
+        >
+          <span class="material-icons" aria-hidden="true">auto_awesome</span>
+          {{ L.copilot }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="rpd-body">
+    <!-- While the AI rewrites the report the document is locked (the Delphi designer blocks edits
+         too); the dock stays usable so the person can follow or stop it. -->
+    @if (aiBusy()) {
+      <div class="rpd-shield" [style.right.px]="rightPanel ? rightWidth + 6 : 0" role="status" aria-live="polite">
+        <div class="rpd-shield-card">
+          <span class="rpd-shield-spinner" aria-hidden="true"></span>
+          <span>{{ aiBusyText() || L.aiWorking }}</span>
+          <button type="button" class="rpd-tool rpd-tool-text rpd-shield-stop" (click)="aiStopRequested.emit()">
+            <span class="material-icons" aria-hidden="true">stop_circle</span> {{ L.aiStop }}
+          </button>
+        </div>
+      </div>
+    }
+    <!-- Left column, as in the desktop designer: structure over properties. -->
+    <aside #leftCol class="rpd-left" [style.width.px]="leftWidth">
+      @if (report) {
+        <report-structure-tree
+          #reportStructure
+          [report]="report"
+          [reportEditor]="this"
+          [heading]="L.structure"
+          class="rpd-panel"
+          [style.flex]="'0 0 ' + treeHeight + 'px'"
+        ></report-structure-tree>
+        <div class="rpd-gutter-h" (pointerdown)="startResize('tree', $event)"></div>
+      }
+      @if (canvas) {
+        <object-inspector
+          [reportEditor]="this"
+          #objectInspector
+          [heading]="L.properties"
+          class="rpd-panel rpd-grow"
+        ></object-inspector>
+      }
+    </aside>
+    <div class="rpd-gutter-v" (pointerdown)="startResize('left', $event)"></div>
+
+    <main class="rpd-center">
+      @if (runError(); as e) {
+        <!-- The failed run stays here, readable and copyable, until it is closed or the report runs again. -->
+        <div class="rpd-run-error" role="alert">
+          <span class="material-icons rpd-run-error-icon" aria-hidden="true">error</span>
+          <div class="rpd-run-error-body">
+            <div class="rpd-run-error-title">{{ tx('DesignerRunErrorTitle') }}</div>
+            <pre class="rpd-run-error-text">{{ e.message }}</pre>
+          </div>
+          <div class="rpd-run-error-actions">
+            @if (e.component) {
+              <button type="button" class="rpd-tool rpd-tool-text" (click)="selectComponentByName(e.component)">
+                <span class="material-icons" aria-hidden="true">my_location</span> {{ txNum(21) }} {{ e.component }}
+              </button>
+            }
+            <button type="button" class="rpd-tool" (click)="copyRunError()" [attr.aria-label]="tx('Copy')" [title]="tx('Copy')">
+              <span class="material-icons" aria-hidden="true">content_copy</span>
+            </button>
+            <button type="button" class="rpd-tool" (click)="runError.set(null)" [attr.aria-label]="tx('Close')" [title]="tx('Close')">
+              <span class="material-icons" aria-hidden="true">close</span>
+            </button>
+          </div>
+        </div>
+      }
+      <top-ruler
+        style="height: 17px; width: 3000px"
+        [style.margin-left.px]="topRulerMargin.margin"
+        [style.width.px]="3000 * reportDesign.zoom"
+        [zoom]="reportDesign.zoom"
+      ></top-ruler>
+      <div #canvasContainer class="canvas-wrapper" (scroll)="onScroll()"></div>
+    </main>
+
+    <!-- Right dock: the copilot the host projects and the change history, in tabs. -->
+    <div
+      class="rpd-gutter-v"
+      [hidden]="!rightPanel"
+      (pointerdown)="startResize('right', $event)"
+    ></div>
+    <aside #rightCol class="rpd-right" [hidden]="!rightPanel" [style.width.px]="rightWidth">
+      <div class="rpd-dock-tabs">
+        @if (copilot) {
+          <button
+            type="button"
+            class="rpd-dock-tab"
+            [class.is-active]="rightPanel === 'copilot'"
+            (click)="setRight('copilot')"
+          >
+            <span class="material-icons" aria-hidden="true">auto_awesome</span>{{ L.copilot }}
+          </button>
+        }
+        <button
+          type="button"
+          class="rpd-dock-tab"
+          [class.is-active]="rightPanel === 'history'"
+          (click)="setRight('history')"
+        >
+          <span class="material-icons" aria-hidden="true">history</span>{{ L.history }}
+        </button>
+        <span class="rpd-spacer"></span>
+        <button
+          type="button"
+          class="rpd-tool rpd-tool-sm"
+          (click)="setRight('')"
+          [matTooltip]="L.closePanel"
+          [matTooltipShowDelay]="400"
+        >
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <div class="rpd-dock-pane" [hidden]="rightPanel !== 'copilot'">
+        <ng-content select="[rpdCopilot]"></ng-content>
+      </div>
+      @if (rightPanel === "history") {
+        <div class="rpd-dock-pane">
+          @if (report?.undoCue) {
+            <cue-list [report]="report"></cue-list>
+          }
+        </div>
+      }
+    </aside>
+  </div>
+
+  <div class="rpd-status">
+    @if (statusSelection; as sel) {
+      <span class="rpd-status-item">
+        <span class="material-icons" aria-hidden="true">select_all</span><b>{{ sel.name }}</b>
+        {{ sel.kind }}
+      </span>
+    }
+    @if (report?.modified) {
+      <span class="rpd-status-item"><span class="rpd-status-dot"></span>{{ L.modified }}</span>
+    }
+    <span class="rpd-spacer"></span>
+    <ng-content select="[rpdStatus]"></ng-content>
+    <span class="rpd-status-item">{{ zoomLabel }}</span>
+  </div>
+</div>

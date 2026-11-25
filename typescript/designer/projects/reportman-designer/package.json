@@ -1,0 +1,31 @@
+{
+  "name": "@reportman/ngx-designer",
+  "version": "4.1.0-alpha.3",
+  "private": true,
+  "description": "Report Manager web report designer for Angular: the editor, the SQL and expression editors, and the Reportman AI copilot through Reportman.Server. Not published yet: use the element, @reportman/designer.",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonimartir/reportman.git",
+    "directory": "typescript/designer/projects/reportman-designer"
+  },
+  "homepage": "https://reportman.es",
+  "peerDependencies": {
+    "@angular/cdk": "^21.2.0",
+    "@angular/common": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/material": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "rxjs": "~7.8.0"
+  },
+  "dependencies": {
+    "@monaco-editor/loader": "^1.7.0",
+    "fabric": "^7.4.0",
+    "marked": "^17.0.6",
+    "monaco-editor": "^0.55.1",
+    "tslib": "^2.3.0",
+    "@reportman/lib": "4.1.0-alpha.3"
+  },
+  "sideEffects": false
+}

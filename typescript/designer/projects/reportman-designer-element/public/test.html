@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>reportman-designer · test</title>
+  <!--
+    A page with no framework that hosts the designer. Served by Reportman.Server (same origin): the
+    session is its cookie. ?report=ALIAS/path.rep chooses the report; &lang=en, &readonly, &noai.
+    The page's styles below are hostile on purpose: none of them may show inside the designer.
+  -->
+  <style>
+    * { font-family: 'Comic Sans MS', cursive !important; }
+    html, body { margin: 0; height: 100%; }
+    body { font-size: 22px; color: darkred; line-height: 3; text-align: center; }
+    button { background: hotpink !important; border: 4px dashed lime !important; }
+    header { height: 44px; line-height: 44px; padding: 0 12px; background: #222; color: #fff; overflow: hidden; white-space: nowrap; font-size: 14px; text-align: left; }
+    #host { height: calc(100% - 44px); }
+  </style>
+  <script type="module" src="./main.js"></script>
+</head>
+<body>
+  <header>Page without a framework · <span id="log">waiting for events…</span></header>
+  <div id="host"></div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const designer = document.createElement('reportman-designer');
+    designer.setAttribute('report', params.get('report') || 'INFORMES/Ejemplos/customers.rep');
+    designer.setAttribute('lang', params.get('lang') || 'en');
+    designer.setAttribute('closable', '');
+    if (params.has('readonly')) designer.setAttribute('readonly', '');
+    if (params.has('noai')) designer.setAttribute('no-ai', '');
+    // &apibase=/api/... (where the routes hang) and &aiaccount=host (the host's AI account).
+    if (params.get('apibase')) designer.setAttribute('api-base', params.get('apibase'));
+    if (params.get('aiaccount')) designer.setAttribute('ai-account', params.get('aiaccount'));
+    const log = document.getElementById('log');
+    window.designerEvents = [];
+    for (const name of ['saved', 'executed', 'closed', 'sessionlost']) {
+      designer.addEventListener(name, (event) => {
+        const detail = name === 'executed' ? { pageCount: event.detail?.pageCount } : event.detail;
+        window.designerEvents.push({ name, detail });
+        log.textContent = name + ' ' + JSON.stringify(detail ?? null);
+      });
+    }
+    document.getElementById('host').appendChild(designer);
+  </script>
+</body>
+</html>
