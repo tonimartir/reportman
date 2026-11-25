@@ -11,6 +11,7 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import {
   CsDecimal,
+  DateTimeKind,
   DatasetAlias,
   EvalException,
   EvalIdenExpression,
@@ -184,7 +185,7 @@ function dateTimeJson(d: RpDateTime): string {
   const iso = d.toIsoString();
   const [whole, fraction] = iso.split('.');
   const trimmed = (fraction ?? '').replace(/0+$/, '');
-  return whole + (trimmed.length > 0 ? '.' + trimmed : '') + (d.kind === 2 ? 'Z' : '');
+  return whole + (trimmed.length > 0 ? '.' + trimmed : '') + (d.kind === DateTimeKind.Utc ? 'Z' : '');
 }
 
 /** A value of a row as Newtonsoft writes the object of the DataRow (DBNull as null). */
