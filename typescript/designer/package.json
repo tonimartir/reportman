@@ -10,7 +10,7 @@
     "build:element": "node -r ./scripts/ng-exit.cjs node_modules/@angular/cli/bin/ng.js build reportman-designer-element --configuration production",
     "build:element:nomonaco": "node -r ./scripts/ng-exit.cjs node_modules/@angular/cli/bin/ng.js build reportman-designer-element --configuration production,nomonaco",
     "build:lib": "node -r ./scripts/ng-exit.cjs node_modules/@angular/cli/bin/ng.js build reportman-designer",
-    "test": "ng test reportman-designer --watch=false"
+    "test": "node -r ./scripts/ng-test-exit.cjs node_modules/@angular/cli/bin/ng.js test reportman-designer --watch=false"
   },
   "packageManager": "npm@11.8.0",
   "dependencies": {
