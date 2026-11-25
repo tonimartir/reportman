@@ -8,3 +8,5 @@ packages/reportman-export/test/fixtures/** binary
 # The XML the Delphi engine writes for the DFM reports @reportman/dfm converts, compared byte for byte
 packages/reportman-dfm/test/cases/** binary
 packages/reportman-dfm/test/fixtures/** binary
+# What the C# engine writes, compared byte for byte by the tests of the .rep writer
+packages/reportman-lib/test/fixtures/writer/** binary

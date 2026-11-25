@@ -19,7 +19,7 @@ in a web console.
 
 | Package | What | Runs in |
 |---|---|---|
-| `@reportman/lib` | The report model (the camelCase JSON of the engine model, shared with the web designer), its undo history, and the `.rep` XML reader | browser, Node |
+| `@reportman/lib` | The report model (the camelCase JSON of the engine model, shared with the web designer), its undo history, and the `.rep` XML reader and writer | browser, Node |
 | `@reportman/metafile` | The metafile: the device-independent pages a report is laid out into, and the layout device contract (measure text, draw a page) | browser, Node |
 | `@reportman/text` | Text measurement: the standard 14 PDF fonts, and TrueType/OpenType fonts with fontkit (shaping, fallback, bidi with bidi-js), HTML text, the engine's line breaking | browser, Node |
 | `@reportman/pdf` | Metafile → PDF (standard fonts, or embedded font subsets; images; PDF/A-3B); also the layout device that measures text while the report is laid out | browser, Node |
