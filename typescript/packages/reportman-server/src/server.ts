@@ -24,7 +24,9 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
+import path from 'node:path';
 import { openReport, isSynchronousDataRequired, NoDataToPrintException, ParameterException, ReportException } from '@reportman/node';
+import { createContext, variantFromModel } from '@reportman/engine';
 import type { ConnectionFactory, DatasetSource, FontOptions, NodeReport, OpenReportOptions, PdfClock } from '@reportman/node';
 import { TextDevice, decodeCp437, encodeUtf8, metafileToCsv, runReportToText } from '@reportman/export';
 import { writeRpmf } from '@reportman/metafile';
@@ -281,7 +283,10 @@ export class ReportServer {
         status: 'ok',
         version: this.options.version ?? '4.1.0-alpha.3',
         engine: 'typescript',
+        // As Reportman.Server; null without a data folder
+        dataPath: this.options.dataPath === undefined ? null : path.resolve(this.options.dataPath),
         aliases: this.store.listAliases(),
+        // Of the Node server alone: whether it has the console (a data folder)
         console: this.console !== undefined,
       });
     }
@@ -304,7 +309,9 @@ export class ReportServer {
     if (action === 'tree' && method === 'GET') return json(200, this.store.getTree(alias));
     if (action === 'parameters' && method === 'GET') {
       const { report } = await this.open(alias, reportPath);
-      // The shape of Reportman.Server: every parameter but the never visible ones
+      // The shape of Reportman.Server: every parameter but the never visible ones, the value as
+      // Variant.ToString gives it in the culture of the server
+      const ctx = createContext(this.options.culture ?? 'en-US');
       return json(
         200,
         report.model.params
@@ -315,7 +322,7 @@ export class ReportServer {
             description: p.descriptions[0] ?? '',
             hint: p.hints[0] ?? '',
             visible: p.visible,
-            value: p.value?.value === null || p.value?.value === undefined ? '' : String(p.value.value),
+            value: variantFromModel(p.value).toString(ctx),
             allowNulls: p.allowNulls,
           })),
       );
@@ -358,10 +365,11 @@ export class ReportServer {
       bytes = await text(report, assign);
     }
     const fileName = path.replace(/^.*\//, '').replace(/\.rep$/i, '') + '.' + meta.extension;
-    const disposition = download === '1' || download === 'true' ? 'attachment' : 'inline';
+    // A download as ASP.NET's File(bytes, type, name) writes it; inline as Reportman.Server sets it
+    const disposition = download === '1' || download === 'true' ? attachmentDisposition(fileName) : `inline; filename="${fileName}"`;
     return {
       status: 200,
-      headers: { 'content-type': meta.contentType, 'content-disposition': `${disposition}; filename="${fileName}"` },
+      headers: { 'content-type': meta.contentType, 'content-disposition': disposition },
       body: bytes,
     };
   }
@@ -377,6 +385,25 @@ async function plainText(report: NodeReport, assign: Readonly<Record<string, unk
   device.emptyReportThrowException = true;
   const bytes = await report.executeWithDevice(device, (run) => runReportToText(run), null, { assign });
   return encodeUtf8(decodeCp437(bytes));
+}
+
+// tchar of RFC 7230 (HttpRuleParser.IsTokenChar)
+const TOKEN = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
+
+/**
+ * The Content-Disposition of a download as ASP.NET writes it (ContentDispositionHeaderValue with
+ * SetHttpFileName): the name in ASCII (others as '_'), quoted when it is not a token, and the
+ * name in UTF-8 as filename* (RFC 5987).
+ */
+export function attachmentDisposition(fileName: string): string {
+  const ascii = [...fileName].map((c) => (c.charCodeAt(0) > 0x7f ? '_' : c)).join('');
+  const name = TOKEN.test(ascii) ? ascii : '"' + ascii.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+  let star = "UTF-8''";
+  for (const byte of new TextEncoder().encode(fileName)) {
+    const c = String.fromCharCode(byte);
+    star += byte > 0x7f || !TOKEN.test(c) || c === '*' || c === "'" || c === '%' ? '%' + byte.toString(16).toUpperCase().padStart(2, '0') : c;
+  }
+  return `attachment; filename=${name}; filename*=${star}`;
 }
 
 /** The response of a console route. */

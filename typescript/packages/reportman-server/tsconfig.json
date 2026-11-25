@@ -16,6 +16,12 @@
       "path": "../reportman-node"
     },
     {
+      "path": "../reportman-engine"
+    },
+    {
+      "path": "../reportman-lib"
+    },
+    {
       "path": "../reportman-export"
     },
     {

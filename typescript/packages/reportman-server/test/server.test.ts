@@ -88,7 +88,8 @@ describe('@reportman/server: execute', () => {
     expect(r.headers.get('content-disposition')).toBe('inline; filename="customers.pdf"');
     expect(new TextDecoder('latin1').decode((await bytes(r)).subarray(0, 5))).toBe('%PDF-');
     const d = await get(open.url + '/api/reports/SAMPLES/execute?path=customers&download=1');
-    expect(d.headers.get('content-disposition')).toBe('attachment; filename="customers.pdf"');
+    // As ASP.NET's File(bytes, type, name): the name, and the name in UTF-8 (RFC 5987)
+    expect(d.headers.get('content-disposition')).toBe("attachment; filename=customers.pdf; filename*=UTF-8''customers.pdf");
   });
 
   it('runs a report to a compressed metafile and to CSV (semicolons, with BOM)', async () => {

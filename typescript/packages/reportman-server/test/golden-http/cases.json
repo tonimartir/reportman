@@ -1,0 +1,1059 @@
+{
+  "description": "golden-http: the same requests to Reportman.Server (C#; its answers recorded into recorded.json, see README.md) and to @reportman/server (Node, test/golden-http.test.ts), in order, on a fresh data folder with the sample reports installed (alias INFORMES, folder Ejemplos, connection SAMPLES). In a body, {$case, $path} is a value of the answer to an earlier case, {$base64file} a sample report in base64, {$json} the JSON text of a value. In an answer, mask replaces values by \"<masked>\", decode turns base64 into text and pdf replaces a base64 PDF by its page count.",
+  "cases": [
+    {
+      "name": "health",
+      "method": "GET",
+      "path": "/api/health",
+      "mask": [
+        "version",
+        "engine",
+        "dataPath"
+      ]
+    },
+    {
+      "name": "aliases",
+      "method": "GET",
+      "path": "/api/reports/aliases"
+    },
+    {
+      "name": "tree",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/tree"
+    },
+    {
+      "name": "parameters-contacts",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/contacts.rep"
+    },
+    {
+      "name": "parameters-customers",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/customers.rep"
+    },
+    {
+      "name": "parameters-fishes",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/fishes.rep"
+    },
+    {
+      "name": "parameters-international",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/international.rep"
+    },
+    {
+      "name": "parameters-invoices",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/invoices.rep"
+    },
+    {
+      "name": "parameters-labels",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/labels.rep"
+    },
+    {
+      "name": "parameters-letter",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/letter.rep"
+    },
+    {
+      "name": "parameters-monthly-sales",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/monthly-sales.rep"
+    },
+    {
+      "name": "parameters-product-catalog",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/product-catalog.rep"
+    },
+    {
+      "name": "parameters-sales-by-category",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/sales-by-category.rep"
+    },
+    {
+      "name": "parameters-year-over-year",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/year-over-year.rep"
+    },
+    {
+      "name": "csv-contacts",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/contacts.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-customers",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-fishes",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/fishes.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-international",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/international.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-invoices",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-labels",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/labels.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-letter",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/letter.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-monthly-sales",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/monthly-sales.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-product-catalog",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/product-catalog.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-sales-by-category",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/sales-by-category.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "csv-year-over-year",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/year-over-year.rep&format=csv",
+      "expect": "text"
+    },
+    {
+      "name": "text-contacts",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/contacts.rep&format=text",
+      "expect": "text"
+    },
+    {
+      "name": "text-customers",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=text",
+      "expect": "text"
+    },
+    {
+      "name": "text-invoices",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=text",
+      "expect": "text"
+    },
+    {
+      "name": "pdf-customers",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep",
+      "expect": "pdf"
+    },
+    {
+      "name": "pdf-customers-download",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=pdf&download=1",
+      "expect": "pdf"
+    },
+    {
+      "name": "pdf-customers-post",
+      "method": "POST",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep",
+      "expect": "pdf"
+    },
+    {
+      "name": "metafile-customers",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=metafile",
+      "expect": "metafile"
+    },
+    {
+      "name": "csv-invoices-query",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv&FIRST_ORDER=7&LAST_ORDER=9",
+      "expect": "text"
+    },
+    {
+      "name": "csv-invoices-json",
+      "method": "POST",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep",
+      "json": {
+        "parameters": {
+          "FIRST_ORDER": 7,
+          "LAST_ORDER": 9
+        },
+        "format": "csv"
+      },
+      "expect": "text"
+    },
+    {
+      "name": "csv-invoices-json-case",
+      "method": "POST",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep",
+      "json": {
+        "Parameters": {
+          "first_order": "7",
+          "last_order": "9"
+        },
+        "FORMAT": "csv"
+      },
+      "expect": "text"
+    },
+    {
+      "name": "csv-invoices-form",
+      "method": "POST",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep",
+      "form": {
+        "FIRST_ORDER": "7",
+        "LAST_ORDER": "9",
+        "format": "csv"
+      },
+      "expect": "text"
+    },
+    {
+      "name": "csv-invoices-query-and-body",
+      "method": "POST",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv&FIRST_ORDER=1&LAST_ORDER=9",
+      "json": {
+        "parameters": {
+          "FIRST_ORDER": 8
+        }
+      },
+      "expect": "text"
+    },
+    {
+      "name": "error-unknown-alias-tree",
+      "method": "GET",
+      "path": "/api/reports/NOPE/tree"
+    },
+    {
+      "name": "error-unknown-alias-execute",
+      "method": "GET",
+      "path": "/api/reports/NOPE/execute?path=customers.rep"
+    },
+    {
+      "name": "error-missing-report",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/nope.rep"
+    },
+    {
+      "name": "error-missing-report-parameters",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/parameters?path=Ejemplos/nope.rep"
+    },
+    {
+      "name": "error-path-outside",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=../server.json"
+    },
+    {
+      "name": "error-unknown-format",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=xls"
+    },
+    {
+      "name": "error-bad-parameter",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv&FIRST_ORDER=abc"
+    },
+    {
+      "name": "error-bad-json",
+      "method": "POST",
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep",
+      "raw": "{not json",
+      "contentType": "application/json"
+    },
+    {
+      "name": "samples-es",
+      "method": "GET",
+      "path": "/api/reports/samples?lang=es"
+    },
+    {
+      "name": "samples-zh",
+      "method": "GET",
+      "path": "/api/reports/samples?lang=zh"
+    },
+    {
+      "name": "thumbnail",
+      "method": "GET",
+      "path": "/api/reports/samples/thumbnails/fishes.png",
+      "expect": "binary"
+    },
+    {
+      "name": "thumbnail-outside",
+      "method": "GET",
+      "path": "/api/reports/samples/thumbnails/..%2Fsamples.ini",
+      "expect": "status"
+    },
+    {
+      "name": "connections",
+      "method": "GET",
+      "path": "/api/connections"
+    },
+    {
+      "name": "connection-samples",
+      "method": "GET",
+      "path": "/api/connections/SAMPLES"
+    },
+    {
+      "name": "connection-test-samples",
+      "method": "POST",
+      "path": "/api/connections/SAMPLES/test",
+      "mask": [
+        "serverVersion"
+      ]
+    },
+    {
+      "name": "console-aliases",
+      "method": "GET",
+      "path": "/api/console/aliases"
+    },
+    {
+      "name": "console-keys",
+      "method": "GET",
+      "path": "/api/console/keys"
+    },
+    {
+      "name": "designer-read-customers",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Ejemplos/customers.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-read-invoices",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Ejemplos/invoices.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-read-labels",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Ejemplos/labels.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-read-sales-by-category",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Ejemplos/sales-by-category.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-read-international",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Ejemplos/international.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-read-base64",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "expression": {
+          "$base64file": "customers.rep"
+        }
+      }
+    },
+    {
+      "name": "designer-read-no-name",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0
+      }
+    },
+    {
+      "name": "designer-read-bad-name",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "customers.rep"
+      }
+    },
+    {
+      "name": "designer-read-missing",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Ejemplos/nope.rep"
+      }
+    },
+    {
+      "name": "designer-read-unknown-alias",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "NOPE/customers.rep"
+      }
+    },
+    {
+      "name": "designer-functions",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 1,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        }
+      }
+    },
+    {
+      "name": "designer-functions-columns",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 3,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        }
+      }
+    },
+    {
+      "name": "designer-functions-columns-sbc",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 3,
+        "report": {
+          "$case": "designer-read-sales-by-category",
+          "$path": "report"
+        }
+      }
+    },
+    {
+      "name": "designer-functions-no-report",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 1
+      }
+    },
+    {
+      "name": "designer-check-valid",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 13,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "INV.QUANTITY*INV.UNIT_PRICE+1"
+      }
+    },
+    {
+      "name": "designer-check-param",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 13,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "FIRST_ORDER+LAST_ORDER"
+      }
+    },
+    {
+      "name": "designer-check-unknown-field",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 13,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "INV.NOPE+1"
+      }
+    },
+    {
+      "name": "designer-check-syntax-error",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 13,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "1 +* (2"
+      }
+    },
+    {
+      "name": "designer-check-second-line",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 13,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "1+\n2+)"
+      }
+    },
+    {
+      "name": "designer-evaluate-constant",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 4,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "2*21"
+      }
+    },
+    {
+      "name": "designer-evaluate-string",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 4,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "UPPERCASE('abc')+'d'"
+      }
+    },
+    {
+      "name": "designer-evaluate-field",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 4,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "INV.ORDER_NUMBER"
+      }
+    },
+    {
+      "name": "designer-evaluate-unqualified-field",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 4,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "COMPANY_NAME"
+      }
+    },
+    {
+      "name": "designer-evaluate-param",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 4,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "FIRST_ORDER"
+      }
+    },
+    {
+      "name": "designer-evaluate-error",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 4,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "1/0"
+      }
+    },
+    {
+      "name": "designer-evaluate-syntax-error",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 4,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "expression": "1+"
+      }
+    },
+    {
+      "name": "designer-dataset",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 6,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        },
+        "datasetName": "CUST",
+        "expression": "SELECT CUSTOMER_ID, CODE, COMPANY_NAME, VAT_RATE, CUSTOMER_SINCE FROM CUSTOMERS WHERE CUSTOMER_ID < 4 ORDER BY CUSTOMER_ID"
+      }
+    },
+    {
+      "name": "designer-dataset-report-sql",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 6,
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "datasetName": "inv",
+        "expression": ""
+      }
+    },
+    {
+      "name": "designer-dataset-bad-sql",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 6,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        },
+        "datasetName": "CUST",
+        "expression": "SELECT NOPE FROM NOWHERE"
+      }
+    },
+    {
+      "name": "designer-dataset-unknown",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 6,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        },
+        "datasetName": "NOPE",
+        "expression": "SELECT 1"
+      }
+    },
+    {
+      "name": "designer-all-table-columns",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 5,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        }
+      }
+    },
+    {
+      "name": "designer-export-report",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 8,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        }
+      },
+      "decode": [
+        "evaluateResult.value"
+      ]
+    },
+    {
+      "name": "designer-export-report-stored",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 8,
+        "reportName": "INFORMES/Ejemplos/labels.rep"
+      },
+      "decode": [
+        "evaluateResult.value"
+      ]
+    },
+    {
+      "name": "designer-export-subreport",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 7,
+        "report": {
+          "$case": "designer-read-sales-by-category",
+          "$path": "report"
+        },
+        "expression": "0"
+      },
+      "decode": [
+        "evaluateResult.value"
+      ]
+    },
+    {
+      "name": "designer-import",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 9,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        },
+        "expression": {
+          "$base64file": "labels.rep"
+        }
+      }
+    },
+    {
+      "name": "designer-import-empty",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 10,
+        "expression": {
+          "$base64file": "customers.rep"
+        }
+      }
+    },
+    {
+      "name": "designer-import-empty-with-report",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 10,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        },
+        "expression": {
+          "$base64file": "customers.rep"
+        }
+      }
+    },
+    {
+      "name": "designer-duplicate",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 11,
+        "reportName": "INFORMES/Ejemplos/customers.rep",
+        "expression": "INFORMES/Copias/customers-copy.rep"
+      }
+    },
+    {
+      "name": "designer-read-duplicated",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Copias/customers-copy.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-import-name",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 12,
+        "reportName": "INFORMES/Copias/imported.rep",
+        "expression": {
+          "$base64file": "labels.rep"
+        }
+      }
+    },
+    {
+      "name": "designer-read-imported",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Copias/imported.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-unknown-operation",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 2,
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        }
+      }
+    },
+    {
+      "name": "designer-write-new",
+      "method": "POST",
+      "path": "/api/designer/WriteReport",
+      "json": {
+        "reportName": "INFORMES/Copias/written.rep",
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        }
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-read-written",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 0,
+        "reportName": "INFORMES/Copias/written.rep"
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-export-written",
+      "method": "POST",
+      "path": "/api/designer/ReadReport",
+      "json": {
+        "operation": 8,
+        "reportName": "INFORMES/Copias/written.rep"
+      },
+      "decode": [
+        "evaluateResult.value"
+      ]
+    },
+    {
+      "name": "designer-write-current-etag",
+      "method": "POST",
+      "path": "/api/designer/WriteReport",
+      "json": {
+        "reportName": "INFORMES/Copias/written.rep",
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        },
+        "properties": [
+          {
+            "name": "eTag",
+            "value": {
+              "$case": "designer-read-written",
+              "$path": "eTag"
+            }
+          }
+        ]
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-write-stale-etag",
+      "method": "POST",
+      "path": "/api/designer/WriteReport",
+      "json": {
+        "reportName": "INFORMES/Copias/written.rep",
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        },
+        "properties": [
+          {
+            "name": "eTag",
+            "value": {
+              "$case": "designer-read-written",
+              "$path": "eTag"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "designer-write-report-json",
+      "method": "POST",
+      "path": "/api/designer/WriteReport",
+      "json": {
+        "reportName": "INFORMES/Copias/written-json.rep",
+        "reportJson": {
+          "$json": {
+            "$case": "designer-read-labels",
+            "$path": "report"
+          }
+        }
+      },
+      "mask": [
+        "eTag"
+      ]
+    },
+    {
+      "name": "designer-write-no-report",
+      "method": "POST",
+      "path": "/api/designer/WriteReport",
+      "json": {
+        "reportName": "INFORMES/Copias/x.rep"
+      }
+    },
+    {
+      "name": "designer-write-no-name",
+      "method": "POST",
+      "path": "/api/designer/WriteReport",
+      "json": {
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        }
+      }
+    },
+    {
+      "name": "designer-write-outside",
+      "method": "POST",
+      "path": "/api/designer/WriteReport",
+      "json": {
+        "reportName": "INFORMES/../x.rep",
+        "report": {
+          "$case": "designer-read-customers",
+          "$path": "report"
+        }
+      }
+    },
+    {
+      "name": "designer-tree-after-writes",
+      "method": "GET",
+      "path": "/api/reports/INFORMES/tree",
+      "mask": [
+        "folders.*.reports.*.modifiedUtc"
+      ]
+    },
+    {
+      "name": "designer-execute-stored",
+      "method": "POST",
+      "path": "/api/designer/ExecuteReport",
+      "json": {
+        "reportName": "INFORMES/Ejemplos/customers.rep"
+      },
+      "pdf": [
+        "result.base64Pdf"
+      ]
+    },
+    {
+      "name": "designer-execute-document",
+      "method": "POST",
+      "path": "/api/designer/ExecuteReport",
+      "json": {
+        "report": {
+          "$case": "designer-read-invoices",
+          "$path": "report"
+        }
+      },
+      "pdf": [
+        "result.base64Pdf"
+      ]
+    },
+    {
+      "name": "designer-execute-subreports",
+      "method": "POST",
+      "path": "/api/designer/ExecuteReport",
+      "json": {
+        "report": {
+          "$case": "designer-read-sales-by-category",
+          "$path": "report"
+        },
+        "subreportIndexes": [
+          0
+        ]
+      },
+      "pdf": [
+        "result.base64Pdf"
+      ]
+    },
+    {
+      "name": "designer-execute-missing",
+      "method": "POST",
+      "path": "/api/designer/ExecuteReport",
+      "json": {
+        "reportName": "INFORMES/Ejemplos/nope.rep"
+      },
+      "pdf": [
+        "result.base64Pdf"
+      ]
+    },
+    {
+      "name": "designer-sql-schema",
+      "method": "GET",
+      "path": "/api/designer/SqlSchema?alias=SAMPLES"
+    },
+    {
+      "name": "designer-sql-schema-unknown",
+      "method": "GET",
+      "path": "/api/designer/SqlSchema?alias=NOPE"
+    },
+    {
+      "name": "designer-sql-schema-no-alias",
+      "method": "GET",
+      "path": "/api/designer/SqlSchema",
+      "expect": "status"
+    }
+  ]
+}

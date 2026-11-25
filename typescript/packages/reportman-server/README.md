@@ -70,7 +70,7 @@ SQLite encrypted with a password, Windows authentication for SQL Server, embedde
 
 | Route | Answer |
 |---|---|
-| `GET /api/health` | `{ status, version, engine, aliases, console }` |
+| `GET /api/health` | `{ status, version, engine, dataPath, aliases, console }` (`dataPath` null without a data folder; `console`, whether it has the console, is of this server alone) |
 | `GET /api/reports/aliases` | the aliases the caller may run |
 | `GET /api/reports/{alias}/tree` | `{ name, path, folders, reports: [{ name, path, size, modifiedUtc }] }` |
 | `GET /api/reports/{alias}/parameters?path=` | `[{ name, type, description, hint, visible, value, allowNulls }]`, the shape of Reportman.Server |
@@ -101,7 +101,12 @@ routes and answers of Reportman.Server's `ConnectionsController`, `ConsoleContro
 | `GET/POST /api/console/keys`, `PUT/DELETE /api/console/keys/{id}`, `POST .../{id}/rotate` | the API keys |
 | `POST /api/console/samples` | install the sample reports that are missing |
 | `GET /api/reports/samples?lang=`, `.../samples/thumbnails/{name}` | the sample reports and their pictures |
-| `GET /api/console/status` | public: whether the console needs a key |
+| `GET /api/console/status` | public: whether the console needs a key (of this server alone) |
+
+The answers are those of Reportman.Server: the tests replay a recording of its answers to the same
+requests (`test/golden-http`, which lists what is compared and what is not). This server adds
+`parameters/describe`, `console/status`, the `console` field of the health check and the 501 of a
+`text` format turned off.
 
 ## Use in a program
 
