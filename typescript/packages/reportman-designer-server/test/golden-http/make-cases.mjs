@@ -14,7 +14,8 @@ const add = (c) => cases.push(c);
 // ---- The reports API (ReportsController, HealthController) ----
 add({ name: 'health', method: 'GET', path: '/api/health', mask: ['version', 'engine', 'dataPath'] });
 add({ name: 'aliases', method: 'GET', path: '/api/reports/aliases' });
-add({ name: 'tree', method: 'GET', path: R + '/tree' });
+// The times of the files are the checkout's (the precision is tested apart, store.test.ts)
+add({ name: 'tree', method: 'GET', path: R + '/tree', mask: ['folders.*.reports.*.modifiedUtc'] });
 for (const s of samples) add({ name: 'parameters-' + s, method: 'GET', path: R + '/parameters?path=Ejemplos/' + s + '.rep' });
 for (const s of samples) add({ name: 'csv-' + s, method: 'GET', path: R + '/execute?path=Ejemplos/' + s + '.rep&format=csv', expect: 'text' });
 for (const s of ['contacts', 'customers', 'invoices']) add({ name: 'text-' + s, method: 'GET', path: R + '/execute?path=Ejemplos/' + s + '.rep&format=text', expect: 'text' });

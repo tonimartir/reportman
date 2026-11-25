@@ -19,7 +19,10 @@
     {
       "name": "tree",
       "method": "GET",
-      "path": "/api/reports/INFORMES/tree"
+      "path": "/api/reports/INFORMES/tree",
+      "mask": [
+        "folders.*.reports.*.modifiedUtc"
+      ]
     },
     {
       "name": "parameters-contacts",
