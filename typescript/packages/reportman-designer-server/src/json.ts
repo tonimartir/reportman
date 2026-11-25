@@ -5,8 +5,10 @@
 // number with a fraction or an exponent a double, a text in ISO date and time form a DateTime (the
 // reader's DateParseHandling; one in UTC or with an offset taken to the local time), any other text a
 // string, true or false a boolean, null a Null. Reading the request here does the same, before the
-// model is hydrated.
+// model is hydrated, and keeps for the .rep writer the integral numbers of the undo history written
+// as doubles (2.0), as parseReportJson of @reportman/lib does.
 
+import { parseReportJson } from '@reportman/lib';
 import { unspecifiedDateText } from './document.js';
 
 const VARIANT_TYPES = new Set(['Null', 'Byte', 'Boolean', 'Char', 'Integer', 'String', 'Double', 'Decimal', 'DateTime', 'Binary', 'Long']);
@@ -44,17 +46,39 @@ function isVariant(o: Record<string, unknown>): boolean {
   return typeof o.type === 'string' && VARIANT_TYPES.has(o.type) && keys.every((k) => k === 'type' || k === 'value');
 }
 
-/** JSON.parse of a request of the designer, its Variants typed as C# types them when it reads them. */
-export function parseDesignerJson(text: string): unknown {
+/** The Variants of a JSON value typed as C# types them (the numbers of a Variant with how they were written). */
+function typedVariants(text: string): unknown {
   return JSON.parse(text, function (this: unknown, key: string, value: unknown, context?: { source?: string }) {
     if (typeof value === 'number' && key === 'value') return new JsonNumber(value, /[.eE]/.test(context?.source ?? ''));
     if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
       const o = value as Record<string, unknown>;
-      if (o.value instanceof JsonNumber || isVariant(o)) {
-        if (isVariant(o)) return csVariant(o);
-        o.value = (o.value as JsonNumber).value;
-      }
+      if (isVariant(o)) return csVariant(o);
+      if (o.value instanceof JsonNumber) o.value = o.value.value;
     }
     return value;
   });
+}
+
+const isObject = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
+
+/** The types of the Variants of typed (the same document) set on the objects of marked, which keep their identity. */
+function retype(marked: unknown, typed: unknown): unknown {
+  if (Array.isArray(marked) && Array.isArray(typed)) {
+    for (let i = 0; i < marked.length; i++) marked[i] = retype(marked[i], typed[i]);
+    return marked;
+  }
+  if (isObject(marked) && isObject(typed)) {
+    if (isVariant(marked)) {
+      marked.type = typed.type;
+      marked.value = typed.value;
+      return marked;
+    }
+    for (const key of Object.keys(marked)) marked[key] = retype(marked[key], typed[key]);
+  }
+  return marked;
+}
+
+/** JSON.parse of a request of the designer, its Variants typed as C# types them when it reads them. */
+export function parseDesignerJson(text: string): unknown {
+  return retype(parseReportJson(text), typedVariants(text));
 }

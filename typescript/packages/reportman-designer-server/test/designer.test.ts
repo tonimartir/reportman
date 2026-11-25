@@ -236,6 +236,56 @@ describe('the paths and the versions of the reports', () => {
     expect(copy.json.eTag).toBe(original.json.eTag);
     expect(copy.json.report).toEqual(original.json.report);
   });
+
+  it('saves with the ETag the report was opened with, and refuses a stale one', async () => {
+    const { designer, data } = await designerWith({ authorize: () => true });
+    const write = (body: unknown) => call(designer, 'POST', '/api/designer/WriteReport', body);
+    const opened = await readReport(designer, { operation: 0, reportName: 'INFORMES/Ejemplos/customers.rep' });
+    const document = opened.json.report as Record<string, any>;
+    // A name that does not exist yet is created, with or without an ETag
+    const created = await write({ reportName: 'INFORMES/Nuevos/a.rep', report: document, properties: [{ name: 'eTag', value: 'whatever' }] });
+    expect(created.json.errorMessage).toBeUndefined();
+    expect(fs.existsSync(path.join(data, 'informes', 'Nuevos', 'a.rep'))).toBe(true);
+    const tag = created.json.eTag as string;
+    const firstRead = await readReport(designer, { operation: 0, reportName: 'INFORMES/Nuevos/a.rep' });
+    expect(firstRead.json.eTag).toBe(tag);
+
+    // With the ETag it was opened with (the property's name in any case): saved, the old version kept
+    const changed = structuredClone(document);
+    changed.subReports[0].sections[0].height += 10;
+    const saved = await write({ reportName: 'INFORMES/Nuevos/a.rep', report: changed, properties: [{ Name: 'ETAG', Value: tag }] });
+    expect(saved.json.errorMessage).toBeUndefined();
+    expect(saved.json.eTag).not.toBe(tag);
+    expect(fs.readdirSync(path.join(data, 'informes', 'Nuevos', '.versions')).length).toBe(1);
+    // The one it had is stale now: someone else saved it
+    const stale = await write({ reportName: 'INFORMES/Nuevos/a.rep', report: document, properties: [{ name: 'eTag', value: tag }] });
+    expect(stale.json).toEqual({ errorMessage: "'Nuevos/a.rep' was modified by someone else; reload it before saving." });
+    // Without an ETag: over the current version
+    const current = await write({ reportName: 'INFORMES/Nuevos/a.rep', report: document });
+    expect(current.json.errorMessage).toBeUndefined();
+    // The same document as the first save (a save leaves out the empty texts, as C# does)
+    expect((await readReport(designer, { operation: 0, reportName: 'INFORMES/Nuevos/a.rep' })).json.report).toEqual(firstRead.json.report);
+    // Never outside the alias, never into the kept versions
+    for (const reportName of ['INFORMES/../x.rep', 'INFORMES/Nuevos/.versions/a.rep'])
+      expect((await write({ reportName, report: document })).json).toEqual({ errorMessage: 'Invalid report path.' });
+  });
+
+  it('saves the undo history without what is older than four years', async () => {
+    const { designer } = await designerWith({ authorize: () => true });
+    const document = (await readReport(designer, { operation: 0, reportName: 'INFORMES/Ejemplos/labels.rep' })).json.report as Record<string, any>;
+    const operation = (date: string, componentName: string) => ({ operation: 0, groupId: 1, componentName, componentClass: 'TRPLABEL', date, properties: [] });
+    // The clock of the server is on 2026-11-25: four years before is 2022-11-25
+    document.undoCue = {
+      groupId: 1,
+      undoOperations: [operation('2021-06-01T10:00:00Z', 'OLD'), operation('2022-11-26T10:00:00Z', 'RECENT')],
+      redoOperations: [operation('2020-01-01T10:00:00Z', 'OLDREDO'), operation('2026-11-24T10:00:00Z', 'NEWREDO')],
+    };
+    const saved = await call(designer, 'POST', '/api/designer/WriteReport', { reportName: 'INFORMES/Copias/undo.rep', report: document });
+    expect(saved.json.errorMessage).toBeUndefined();
+    const read = (await readReport(designer, { operation: 0, reportName: 'INFORMES/Copias/undo.rep' })).json.report as Record<string, any>;
+    expect(read.undoCue.undoOperations.map((o: { componentName: string }) => o.componentName)).toEqual(['RECENT']);
+    expect(read.undoCue.redoOperations.map((o: { componentName: string }) => o.componentName)).toEqual(['NEWREDO']);
+  });
 });
 
 describe('the local schema of a connection', () => {

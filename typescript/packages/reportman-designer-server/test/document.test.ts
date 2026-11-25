@@ -19,6 +19,7 @@ describe('designerDocument: the JSON of the C# engine', () => {
   for (const c of cases) {
     it(c.id, () => {
       const expected = JSON.parse(fs.readFileSync(path.join(libDir, c.json!), 'utf8')) as unknown;
+      // As golden-cs reads it (LoadFromFile: not converted to .Net, which the server's LoadFromStream does)
       const model = readReportXml(new Uint8Array(fs.readFileSync(path.resolve(libDir, c.rep))));
       expect(JSON.parse(JSON.stringify(designerDocument(model)))).toEqual(expected);
     });
@@ -28,6 +29,7 @@ describe('designerDocument: the JSON of the C# engine', () => {
   // designer itself does when it gets them
   for (const c of cases.filter((x) => !['synthetic-quirks', 'synthetic-kitchen-sink', 'synthetic-zlib-kitchen-sink'].includes(x.id))) {
     it(c.id + ' read back gives the same document', () => {
+      // As golden-cs reads it (LoadFromFile: not converted to .Net, which the server's LoadFromStream does)
       const model = readReportXml(new Uint8Array(fs.readFileSync(path.resolve(libDir, c.rep))));
       const document = JSON.parse(JSON.stringify(designerDocument(model))) as Record<string, unknown>;
       expect(JSON.parse(JSON.stringify(designerDocument(modelFromDocument(structuredClone(document)))))).toEqual(document);

@@ -10,9 +10,8 @@ The AI assistant is not part of it: it stays in Reportman.Server, and the design
 `no-ai`.
 
 > Status: preview (`next`). The answers are compared with the ones of Reportman.Server in the
-> tests (`test/golden-http`). Saving, exporting and importing `.rep` files need the `.rep` XML
-> writer of `@reportman/lib`, which is on its way: until it is there those operations answer an
-> error.
+> tests (`test/golden-http`). Reports are saved, exported and imported as the C# engine writes
+> them (the `.rep` XML writer of `@reportman/lib`).
 
 ## The SQL editor
 

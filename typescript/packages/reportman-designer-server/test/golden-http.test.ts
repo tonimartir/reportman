@@ -53,27 +53,8 @@ const EXTENSIONS: Record<string, string[]> = {
   health: ['console'],
 };
 
-/**
- * Cases the Node server does not answer as Reportman.Server yet: the ones that write a .rep (save,
- * export, import), which need the .rep XML writer of @reportman/lib, and the ones that read what
- * they wrote.
- */
-const PENDING = new Set<string>([
-  'designer-export-report',
-  'designer-export-report-stored',
-  'designer-export-subreport',
-  'designer-import',
-  'designer-import-empty',
-  'designer-import-name',
-  'designer-read-imported',
-  'designer-write-new',
-  'designer-read-written',
-  'designer-export-written',
-  'designer-write-current-etag',
-  'designer-write-stale-etag',
-  'designer-write-report-json',
-  'designer-tree-after-writes',
-]);
+/** Cases whose route the Node server does not answer yet (none). */
+const PENDING = new Set<string>([]);
 
 /**
  * Members compared by what they mean, not by their text: replaced on both sides before comparing.

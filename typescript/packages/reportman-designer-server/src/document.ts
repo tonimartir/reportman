@@ -10,7 +10,7 @@
 // Fields C# keeps as they come (it deserializes them from the designer's JSON and writes them
 // back) are kept when the document has them; members C# derives are always derived again.
 
-import { hydrateReport, serializeReport, SectionType, VariantType, type Report } from '@reportman/lib';
+import { convertToDotNet, hydrateReport, readReportXml, serializeReport, SectionType, updateReferences, VariantType, type Report } from '@reportman/lib';
 
 type Json = Record<string, unknown>;
 
@@ -152,13 +152,21 @@ function base64Length(text: unknown): number {
 const withoutUndo = new WeakSet<Report>();
 
 /**
- * The model of a report the designer sent (its JSON), as hydrateReport reads it: every member kept,
- * the runtime ones too, so that it goes back as it came.
+ * The model of a report the designer sent (its JSON), as Reportman.Server reads it (Newtonsoft,
+ * then BaseReport.UpdateReferences): hydrateReport keeps every member, the runtime ones too, so
+ * that it goes back as it came. Read the request with parseDesignerJson.
  */
 export function modelFromDocument(document: Json): Report {
-  const model = hydrateReport(document);
+  const model = updateReferences(hydrateReport(document));
   if (document.undoCue === undefined || document.undoCue === null) withoutUndo.add(model);
   return model;
+}
+
+/** The model of a .rep (XML, plain or zlib) as Reportman.Server reads one (LoadFromStream, converted to .Net, UpdateReferences). */
+export function modelFromXml(bytes: Uint8Array): Report {
+  const model = readReportXml(bytes);
+  convertToDotNet(model);
+  return updateReferences(model);
 }
 
 /** The report as Reportman.Server sends it to the designer (the JSON of its engine's Report). */

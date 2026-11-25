@@ -31,11 +31,11 @@ import {
   type StoredValue,
   type Variant,
 } from '@reportman/engine';
-import { readReportXml, type DataInfo, type Report } from '@reportman/lib';
+import { Report, exportSubReport, importReport, writeReportXmlBytes, type DataInfo } from '@reportman/lib';
 import { openReportModel, type ConnectionFactory } from '@reportman/node';
 import { ServerError, connectionFactory, type ReportServer } from '@reportman/server';
 import type { DesignerServerOptions } from './designer.js';
-import { designerDocument, modelFromDocument } from './document.js';
+import { designerDocument, modelFromDocument, modelFromXml } from './document.js';
 import { DatasetColumnsCache, datasetColumns, datasetKey, netTypeName, type DatasetColumn } from './columns.js';
 import { SCHEMA_FOLDER, SqlSchemaService, familyOfProvider, type SchemaConnection, type SqlSchema } from './schema.js';
 
@@ -117,8 +117,16 @@ export interface OperationContext {
   reportName?: string | null;
 }
 
-const WRITER_PENDING =
-  'This designer operation needs the .rep XML writer of @reportman/lib, which is not there yet: save, export and import are not available in @reportman/designer-server.';
+/** DateTime.AddYears: the same day and time years before or after (29 February to the 28th). */
+function addYears(date: Date, years: number): Date {
+  const result = new Date(date.getTime());
+  const day = result.getDate();
+  result.setDate(1);
+  result.setFullYear(result.getFullYear() + years);
+  const last = new Date(result.getFullYear(), result.getMonth() + 1, 0).getDate();
+  result.setDate(Math.min(day, last));
+  return result;
+}
 
 // The engine's index (MetaFile.PageSizeArray, Qt's order as in Delphi), not Windows' DMPAPER_*
 const PAGE_SIZE_NAMES = [
@@ -276,7 +284,7 @@ export class DesignerOperations {
   readStoredModel(reportName: string): { model: Report; eTag: string } {
     const { alias, path: reportPath } = DesignerOperations.splitName(reportName);
     const stored = this.reports.store.open(alias, reportPath);
-    return { model: readReportXml(stored.content), eTag: stored.eTag };
+    return { model: modelFromXml(stored.content), eTag: stored.eTag };
   }
 
   /** ReadStored: a stored report ("ALIAS/path.rep") as the designer's JSON, and its ETag. */
@@ -285,9 +293,19 @@ export class DesignerOperations {
     return { report: designerDocument(model), eTag };
   }
 
+  /** ReadFromBase64Xml: the model of a .rep given in base64. */
+  private modelFromBase64(base64: string): Report {
+    return modelFromXml(fromBase64(base64));
+  }
+
   /** ReadFromBase64Xml: a .rep given in base64, as the designer's JSON. */
   async readFromBase64Xml(base64: string): Promise<ReportDocument> {
-    return designerDocument(readReportXml(fromBase64(base64)));
+    return designerDocument(this.modelFromBase64(base64));
+  }
+
+  /** The clock of the server (DateTime.Now). */
+  private now(): Date {
+    return this.options.clock?.now() ?? new Date();
   }
 
   /**
@@ -295,20 +313,34 @@ export class DesignerOperations {
    * current one when none is given; a name that does not exist yet is created), the undo history
    * older than four years pruned. Returns the new ETag.
    */
-  async write(reportName: string, report: ReportDocument, expectedETag: string | null): Promise<string> {
+  async write(reportName: string, report: ReportDocument | Report, expectedETag: string | null): Promise<string> {
     const { alias, path: reportPath } = DesignerOperations.splitName(reportName);
-    this.model(report);
-    this.checkPath(alias, reportPath);
-    void expectedETag;
-    throw new Error(WRITER_PENDING);
+    const model = this.model(report);
+    // Like the ERP: the undo history travels inside the document; what is older than four years goes
+    const cue = model.undoCue;
+    if (cue !== undefined) {
+      const limit = addYears(this.now(), -4).getTime();
+      const recent = (op: { date?: Date }) => !(op.date instanceof Date) || !(op.date.getTime() < limit);
+      cue.undoOperations = cue.undoOperations.filter(recent);
+      cue.redoOperations = cue.redoOperations.filter(recent);
+    }
+    const xml = writeReportXmlBytes(model);
+    const store = this.reports.store;
+    try {
+      return store.save(alias, reportPath, xml, expectedETag ?? this.currentETagOrNull(alias, reportPath)).eTag;
+    } catch (e) {
+      // Saving a name that does not exist yet creates it
+      if (e instanceof ServerError && e.kind === 'notFound') return store.save(alias, reportPath, xml, null).eTag;
+      throw e;
+    }
   }
 
-  /** The alias and the path of a report the store may write: the errors of FolderReportStore.Save for others. */
-  private checkPath(alias: string, reportPath: string): void {
+  private currentETagOrNull(alias: string, reportPath: string): string | null {
     try {
-      this.reports.store.open(alias, reportPath);
+      return this.reports.store.open(alias, reportPath).eTag;
     } catch (e) {
-      if (!(e instanceof ServerError) || e.kind !== 'notFound') throw e;
+      if (e instanceof ServerError && e.kind === 'notFound') return null;
+      throw e;
     }
   }
 
@@ -352,9 +384,9 @@ export class DesignerOperations {
 
   /** ImportName: saves a .rep given in base64 under a new name (written again, as C# does). */
   async importName(reportName: string, base64Xml: string): Promise<void> {
-    DesignerOperations.splitName(reportName);
-    readReportXml(fromBase64(base64Xml));
-    throw new Error(WRITER_PENDING);
+    const { alias, path: reportPath } = DesignerOperations.splitName(reportName);
+    const model = this.modelFromBase64(base64Xml);
+    this.reports.store.save(alias, reportPath, writeReportXmlBytes(model), null);
   }
 
   // ---- functions, evaluation, datasets ----
@@ -582,23 +614,21 @@ export class DesignerOperations {
 
   /** ExportReport: the report as .rep XML in base64. */
   async exportReport(report: ReportDocument | Report): Promise<EvaluateResult> {
-    this.model(report);
-    throw new Error(WRITER_PENDING);
+    return { value: Buffer.from(writeReportXmlBytes(this.model(report))).toString('base64'), dataType: 'System.String' };
   }
 
   /** ExportSubReport: a subreport as a .rep of its own, in base64. */
   async exportSubReport(report: ReportDocument, subreportIndex: number): Promise<EvaluateResult> {
-    const model = this.model(report);
-    if (!Number.isInteger(subreportIndex) || subreportIndex < 0 || subreportIndex >= model.subReports.length)
-      throw new Error("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')");
-    throw new Error(WRITER_PENDING);
+    // ExternalReport.ExportSubReport: XML, or zlib compressed when the report's stream format is XMLZlib
+    return { value: Buffer.from(exportSubReport(this.model(report), subreportIndex)).toString('base64'), dataType: 'System.String' };
   }
 
   /** ImportSubReport: the subreports of a .rep in base64 added to the report (to an empty one: null). */
   async importSubReport(target: ReportDocument | null, base64Xml: string): Promise<ReportDocument> {
-    if (target !== null) this.model(target);
-    readReportXml(fromBase64(base64Xml));
-    throw new Error(WRITER_PENDING);
+    // ImportEmpty: into a new report (new Report() of C#)
+    const model = target === null ? new Report() : this.model(target);
+    const source = this.modelFromBase64(base64Xml);
+    return designerDocument(importReport(model, source));
   }
 
   // ---- the SQL editor ----

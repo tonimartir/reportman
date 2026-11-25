@@ -6,7 +6,7 @@ export type { DesignerAuthorize, DesignerCheck, DesignerServerOptions } from './
 export { DesignerOperations, ForbiddenError, NoDataError, JsonText } from './operations.js';
 export type { DataSetInformation, EvaluateResult, FunctionHelp, OperationContext, ReportDocument, ReportResult, SyntaxCheckResult } from './operations.js';
 // The report as the designer gets it (the JSON of the C# engine's Report) and as it sends it back
-export { designerDocument, modelFromDocument } from './document.js';
+export { designerDocument, modelFromDocument, modelFromXml } from './document.js';
 export { parseDesignerJson } from './json.js';
 export type { SqlSchema, SchemaTable, SchemaColumn, SchemaForeignKey, NamedSubschema, RelationRef, AllowedValue } from './schema.js';
 export type { DesignerElementOptions } from './element.js';
