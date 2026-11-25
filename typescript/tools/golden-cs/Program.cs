@@ -58,6 +58,38 @@ using Reportman.Reporting.Design.Json;
 //   golden-cs barcode <cases.json> <out.json>
 //       What the barcode item encodes for each case, without a report: the PDF417 codewords or
 //       the bar pattern of a linear symbology (see Barcode below).
+//
+//   golden-cs write-xml <report.rep> <out.xml> [out.json]
+//       The report read by ReportReader and written back as the designer's server saves it
+//       (ReportBatchJsonAdapter.SerializeReport(report, Xml): EnsureComponentNames, StreamFormat
+//       XML, BaseReport.SaveToStream, the bytes as a UTF-8 string). out.json: the model after the
+//       save (the writer changes some parameter values), as model-json writes it.
+//
+//   golden-cs json-to-xml <report.json> <out.xml>
+//       The designer's JSON document saved as the server does (JsonConvert.DeserializeObject with
+//       ReportBatchJsonAdapter.ReportJsonSettings, Report.UpdateReferences, then
+//       SerializeReport(report, Xml)).
+//
+//   golden-cs export-subreport <report.rep|report.json> <subreport index> <out.rep>
+//       ExternalReport.ExportSubReport of that subreport, the bytes of its stream (XML, or zlib
+//       when the report's stream format is XMLZlib). A .rep is read as the designer's server
+//       reads one (LoadFromStream, UpdateReferences), a .json as json-to-xml reads it.
+//
+//   golden-cs import-report <target.rep|target.json> <source.rep> <out.json> <out.xml>
+//       ExternalReport.ImportReport(target, source) as the designer's server imports a report: the
+//       source read from its XML (LoadFromStream, UpdateReferences), the target from its XML or
+//       from the designer's JSON (as json-to-xml reads it). out.json: the target after the import
+//       with the designer's camelCase JSON settings (no EnsureComponentNames); out.xml: the target
+//       then saved as write-xml saves. A target "-" is a new Report (the server's ImportEmpty).
+//
+//   golden-cs write-components <report.rep> <out.xml>
+//       ReportWriter.WriteComponents of every component of the report (the designer's copy of
+//       components), the report read by ReportReader.
+//
+//   golden-cs batch <jobs.json> <results.json>
+//       Runs many of the commands above (model-json, write-xml, json-to-xml, export-subreport,
+//       import-report, write-components) in one process: jobs.json is an array of argument arrays, results.json an
+//       array with null for each job that succeeded or { type, message } of its exception.
 class Program
 {
     static int Main(string[] args)
@@ -83,6 +115,12 @@ class Program
                 case "zxing-width": return ZxingWidth(args);
                 case "delphi-dates": return DelphiDates(args);
                 case "barcode": return Barcode(args);
+                case "write-xml": return WriteXml(args);
+                case "json-to-xml": return JsonToXml(args);
+                case "export-subreport": return ExportSubReport(args);
+                case "import-report": return ImportReport(args);
+                case "batch": return Batch(args);
+                case "write-components": return WriteComponents(args);
                 default:
                     Console.Error.WriteLine("unknown command " + args[0]);
                     return 2;
@@ -131,6 +169,132 @@ class Program
         string json = JsonConvert.SerializeObject(report, Formatting.Indented,
             ReportBatchJsonAdapter.ReportJsonSettings);
         Output(json, args.Length > 2 ? args[2] : null);
+        return 0;
+    }
+
+    // ---- The .rep XML writer ----
+
+    static readonly ReportBatchJsonAdapter Adapter = new ReportBatchJsonAdapter();
+
+    /// <summary>A .rep as the designer's server reads it (ReportDocumentService.FromXml).</summary>
+    static Report ReportFromXml(string path)
+    {
+        var report = new Report();
+        using (var stream = new MemoryStream(File.ReadAllBytes(path), false))
+        {
+            report.LoadFromStream(stream);
+        }
+        report.UpdateReferences();
+        return report;
+    }
+
+    /// <summary>The designer's JSON document as the server's controller reads a request.</summary>
+    static Report ReportFromJson(string path)
+    {
+        string json = File.ReadAllText(path, new UTF8Encoding(false));
+        Report report = JsonConvert.DeserializeObject<Report>(json, ReportBatchJsonAdapter.ReportJsonSettings);
+        report.UpdateReferences();
+        return report;
+    }
+
+    static Report ReportFromFile(string path)
+    {
+        return path.EndsWith(".json", StringComparison.OrdinalIgnoreCase) ? ReportFromJson(path) : ReportFromXml(path);
+    }
+
+    /// <summary>The XML string SerializeReport gives, written as its UTF-8 bytes (no BOM).</summary>
+    static void SaveXml(Report report, string path)
+    {
+        string xml = Adapter.SerializeReport(report, ReportDocumentFormat.Xml);
+        File.WriteAllBytes(path, Encoding.UTF8.GetBytes(xml));
+    }
+
+    static int WriteXml(string[] args)
+    {
+        SetCulture(args);
+        var report = new Report();
+        report.LoadFromFile(args[1]);
+        SaveXml(report, args[2]);
+        if (args.Length > 3 && !args[3].StartsWith("--"))
+        {
+            string json = JsonConvert.SerializeObject(report, Formatting.Indented, ReportBatchJsonAdapter.ReportJsonSettings);
+            Output(json, args[3]);
+        }
+        return 0;
+    }
+
+    static int JsonToXml(string[] args)
+    {
+        SetCulture(args);
+        SaveXml(ReportFromJson(args[1]), args[2]);
+        return 0;
+    }
+
+    static int WriteComponents(string[] args)
+    {
+        SetCulture(args);
+        var report = new Report();
+        report.LoadFromFile(args[1]);
+        var items = new List<PrintPosItem>();
+        foreach (SubReport subrep in report.SubReports)
+            foreach (Section sec in subrep.Sections)
+                items.AddRange(sec.Components);
+        File.WriteAllBytes(args[2], Encoding.ASCII.GetBytes(ReportWriter.WriteComponents(items)));
+        return 0;
+    }
+
+    static int ExportSubReport(string[] args)
+    {
+        SetCulture(args);
+        Report report = ReportFromFile(args[1]);
+        SubReport subreport = report.SubReports[int.Parse(args[2], CultureInfo.InvariantCulture)];
+        using (var stream = new MemoryStream())
+        {
+            ExternalReport.ExportSubReport(subreport, stream);
+            File.WriteAllBytes(args[3], stream.ToArray());
+        }
+        return 0;
+    }
+
+    static int Batch(string[] args)
+    {
+        JArray jobs = JArray.Parse(File.ReadAllText(args[1]));
+        var results = new JArray();
+        foreach (JArray job in jobs)
+        {
+            string[] jobArgs = job.ToObject<string[]>();
+            try
+            {
+                switch (jobArgs[0])
+                {
+                    case "model-json": ModelJson(jobArgs); break;
+                    case "write-xml": WriteXml(jobArgs); break;
+                    case "json-to-xml": JsonToXml(jobArgs); break;
+                    case "export-subreport": ExportSubReport(jobArgs); break;
+                    case "import-report": ImportReport(jobArgs); break;
+                    case "write-components": WriteComponents(jobArgs); break;
+                    default: throw new ArgumentException("command not allowed in a batch: " + jobArgs[0]);
+                }
+                results.Add(JValue.CreateNull());
+            }
+            catch (Exception e)
+            {
+                results.Add(new JObject { ["type"] = e.GetType().FullName, ["message"] = e.Message });
+            }
+        }
+        File.WriteAllText(args[2], results.ToString(Formatting.None), new UTF8Encoding(false));
+        return 0;
+    }
+
+    static int ImportReport(string[] args)
+    {
+        SetCulture(args);
+        Report target = args[1] == "-" ? new Report() : ReportFromFile(args[1]);
+        Report source = ReportFromXml(args[2]);
+        ExternalReport.ImportReport(target, source);
+        string json = JsonConvert.SerializeObject(target, Formatting.Indented, ReportBatchJsonAdapter.ReportJsonSettings);
+        Output(json, args[3]);
+        SaveXml(target, args[4]);
         return 0;
     }
 
