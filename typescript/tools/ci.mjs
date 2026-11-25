@@ -110,8 +110,9 @@ mkdirSync(logs);
 console.log(`work folder: ${work}`);
 
 // The files of the copy: tracked, or untracked and not ignored, and still on disk
-// (and the files of the C# engine a test reads: the sRGB profile of PDF/A)
-const listed = spawnSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', 'typescript', 'samples', 'Reportman.Drawing/Resources/sRGB.icm'], {
+// (and the files of the C# engine a test reads: the sRGB profile of PDF/A, and the one report of
+// the C# tests in the corpus of the .rep writer)
+const listed = spawnSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', 'typescript', 'samples', 'Reportman.Drawing/Resources/sRGB.icm', 'tests/htmltest.rep'], {
   cwd: repoRoot,
   encoding: 'utf8',
   maxBuffer: 64 * 1024 * 1024,

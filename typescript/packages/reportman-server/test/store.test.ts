@@ -21,8 +21,8 @@ describe('@reportman/server: the folder store', () => {
   it('writes the time of a file as System.Text.Json writes a UTC DateTime', () => {
     const file = path.join(folder, 'time.txt');
     fs.writeFileSync(file, 'x');
-    fs.utimesSync(file, new Date('2026-01-02T03:04:05.120Z'), new Date('2026-01-02T03:04:05.120Z'));
-    expect(modifiedUtcOf(file)).toBe('2026-01-02T03:04:05.12Z');
+    fs.utimesSync(file, new Date('2026-01-02T03:04:05.250Z'), new Date('2026-01-02T03:04:05.250Z'));
+    expect(modifiedUtcOf(file)).toBe('2026-01-02T03:04:05.25Z');
     fs.utimesSync(file, new Date('2026-01-02T03:04:05Z'), new Date('2026-01-02T03:04:05Z'));
     expect(modifiedUtcOf(file)).toBe('2026-01-02T03:04:05Z');
   });

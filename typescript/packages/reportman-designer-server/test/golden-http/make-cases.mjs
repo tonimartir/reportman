@@ -118,6 +118,11 @@ add({ name: 'designer-sql-schema', method: 'GET', path: D + 'SqlSchema?alias=SAM
 add({ name: 'designer-sql-schema-unknown', method: 'GET', path: D + 'SqlSchema?alias=NOPE' });
 add({ name: 'designer-sql-schema-no-alias', method: 'GET', path: D + 'SqlSchema', expect: 'status' });
 
+// The cases whose answer depends on the layout of the report, so on the fonts of the machine (the
+// recording used the fonts of Windows): the replay compares them only where those fonts are
+const LAYOUT = /^(csv-|text-|pdf-|metafile-|designer-execute-(stored|document|subreports)$|error-bad-parameter$)/;
+for (const c of cases) if (LAYOUT.test(c.name)) c.layout = true;
+
 const doc = {
   description:
     'golden-http: the same requests to Reportman.Server (C#; its answers recorded into recorded.json, see README.md) and to @reportman/server (Node, test/golden-http.test.ts), in order, on a fresh data folder with the sample reports installed (alias INFORMES, folder Ejemplos, connection SAMPLES). In a body, {$case, $path} is a value of the answer to an earlier case, {$base64file} a sample report in base64, {$json} the JSON text of a value. In an answer, mask replaces values by "<masked>", decode turns base64 into text and pdf replaces a base64 PDF by its page count.',

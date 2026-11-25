@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { inflateSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { currentFontPlatform, fontDirectories, fontFiles } from '@reportman/node';
 import { goldenServer, type GoldenHandler } from './golden-http/server.js';
 
 interface GoldenCase {
@@ -26,6 +27,8 @@ interface GoldenCase {
   mask?: string[];
   decode?: string[];
   pdf?: string[];
+  /** The answer depends on the layout, so on the fonts of the machine. */
+  layout?: boolean;
 }
 interface Recorded {
   name: string;
@@ -69,6 +72,13 @@ function semantic(body: unknown): unknown {
   }
   return body;
 }
+
+/**
+ * The recording laid the reports out with the fonts of Windows (Arial...): the answers that depend on
+ * the layout are compared where those fonts are, and skipped elsewhere (a container without fonts,
+ * Linux with other fonts).
+ */
+const RECORDING_FONTS = fontFiles(fontDirectories(currentFontPlatform(), [], true)).some((f) => /[\\/]arial\.ttf$/i.test(f));
 
 let handler: GoldenHandler;
 let dataPath: string;
@@ -210,7 +220,7 @@ describe('golden-http: @reportman/server answers as Reportman.Server', () => {
   for (const c of cases) {
     const expected = recorded.get(c.name);
     const pending = PENDING.has(c.name);
-    it.skipIf(pending || expected === undefined)(c.name + (DIFFERENCES[c.name] ? ' (differs: ' + DIFFERENCES[c.name] + ')' : ''), () => {
+    it.skipIf(pending || expected === undefined || (c.layout === true && !RECORDING_FONTS))(c.name + (DIFFERENCES[c.name] ? ' (differs: ' + DIFFERENCES[c.name] + ')' : ''), () => {
       const actual = answers.get(c.name)!;
       if (DIFFERENCES[c.name] !== undefined) return;
       const body = actual.body as Record<string, unknown>;

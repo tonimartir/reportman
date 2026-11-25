@@ -83,115 +83,134 @@
       "name": "csv-contacts",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/contacts.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-customers",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-fishes",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/fishes.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-international",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/international.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-invoices",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-labels",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/labels.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-letter",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/letter.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-monthly-sales",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/monthly-sales.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-product-catalog",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/product-catalog.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-sales-by-category",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/sales-by-category.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-year-over-year",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/year-over-year.rep&format=csv",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "text-contacts",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/contacts.rep&format=text",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "text-customers",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=text",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "text-invoices",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=text",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "pdf-customers",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep",
-      "expect": "pdf"
+      "expect": "pdf",
+      "layout": true
     },
     {
       "name": "pdf-customers-download",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=pdf&download=1",
-      "expect": "pdf"
+      "expect": "pdf",
+      "layout": true
     },
     {
       "name": "pdf-customers-post",
       "method": "POST",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep",
-      "expect": "pdf"
+      "expect": "pdf",
+      "layout": true
     },
     {
       "name": "metafile-customers",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/customers.rep&format=metafile",
-      "expect": "metafile"
+      "expect": "metafile",
+      "layout": true
     },
     {
       "name": "csv-invoices-query",
       "method": "GET",
       "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv&FIRST_ORDER=7&LAST_ORDER=9",
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-invoices-json",
@@ -204,7 +223,8 @@
         },
         "format": "csv"
       },
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-invoices-json-case",
@@ -217,7 +237,8 @@
         },
         "FORMAT": "csv"
       },
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-invoices-form",
@@ -228,7 +249,8 @@
         "LAST_ORDER": "9",
         "format": "csv"
       },
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "csv-invoices-query-and-body",
@@ -239,7 +261,8 @@
           "FIRST_ORDER": 8
         }
       },
-      "expect": "text"
+      "expect": "text",
+      "layout": true
     },
     {
       "name": "error-unknown-alias-tree",
@@ -274,7 +297,8 @@
     {
       "name": "error-bad-parameter",
       "method": "GET",
-      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv&FIRST_ORDER=abc"
+      "path": "/api/reports/INFORMES/execute?path=Ejemplos/invoices.rep&format=csv&FIRST_ORDER=abc",
+      "layout": true
     },
     {
       "name": "error-bad-json",
@@ -998,7 +1022,8 @@
       },
       "pdf": [
         "result.base64Pdf"
-      ]
+      ],
+      "layout": true
     },
     {
       "name": "designer-execute-document",
@@ -1012,7 +1037,8 @@
       },
       "pdf": [
         "result.base64Pdf"
-      ]
+      ],
+      "layout": true
     },
     {
       "name": "designer-execute-subreports",
@@ -1029,7 +1055,8 @@
       },
       "pdf": [
         "result.base64Pdf"
-      ]
+      ],
+      "layout": true
     },
     {
       "name": "designer-execute-missing",

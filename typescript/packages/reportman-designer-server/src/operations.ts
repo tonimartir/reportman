@@ -268,9 +268,13 @@ export class DesignerOperations {
     return isModel(report) ? report : modelFromDocument(report);
   }
 
-  /** A fresh run of the report, with the connections, culture, fonts and clock of the alias. */
+  /**
+   * A fresh run of the report, with the connections, culture and clock of the alias, for the tools
+   * that lay nothing out (columns, functions, syntax, evaluate, data): with the standard fonts, so a
+   * machine without fonts (a slim container) still answers them; the preview uses the server's.
+   */
   private run(model: Report, context: OperationContext): Promise<ReportRun> {
-    return openReportModel(model, this.reports.openOptions(this.aliasOf(context))).prepareRun();
+    return openReportModel(model, { ...this.reports.openOptions(this.aliasOf(context)), fonts: false }).prepareRun();
   }
 
   /** The culture of the server (the translator of the engine's texts follows it). */
