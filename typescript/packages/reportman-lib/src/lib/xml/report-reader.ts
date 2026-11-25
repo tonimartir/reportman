@@ -19,6 +19,8 @@ import { TextAlignType, TextAlignVerticalType } from "../models/types.js";
 import { Variant, VariantType } from "../models/variant.js";
 import { UndoCue } from "../models/undo-cue.js";
 import { readUndoCueJson } from "./undo-cue-json.js";
+import { ensureComponentNames, markReadFromXml, setItemName } from "./report-names.js";
+import { setChildSubReport, setParentSection, setParentSubReport, setSectionSubReport } from "./report-links.js";
 import { base64ToBytes, bytesToBase64, bytesToLatin1, codeUnitsToString, utf8ToString } from "../../util/bytes.js";
 import {
   CsFormatError,
@@ -67,6 +69,8 @@ export function readReportXml(bytes: Uint8Array): Report {
  * the report properties the file does not have keep their values.
  */
 export function loadReportXml(report: Report, bytes: Uint8Array): void {
+  // Before reading: the reader names the items in the list it keys by uppercase names.
+  markReadFromXml(report);
   new ReportXmlReader(report).loadFromBytes(bytes);
 }
 
@@ -154,7 +158,7 @@ function splitNewlineText(text: string): string[] {
  * ChartItem.SeriesColorsText: the setter parses a Delphi comma text into integers (separators:
  * commas and blanks, quotes trimmed, invalid items dropped) and the getter joins them with commas.
  */
-function normalizeSeriesColorsText(value: string): string {
+export function normalizeSeriesColorsText(value: string): string {
   if (!value) return "";
   const colors: number[] = [];
   for (const token of value.split(/[, \t\r\n]/)) {
@@ -271,61 +275,7 @@ class ReportXmlReader {
 
   /** ReportItem.Name setter: renames, registering the item in the report's component list. */
   private setName(item: ReportItem, value: string): void {
-    const components = this.areport.components;
-    if (item.name.length > 0) {
-      // C# parity: the old name is looked up as it is written, while the keys are uppercase, so
-      // only an uppercase name is removed.
-      if (components.has(item.name)) {
-        if (components.get(item.name) === item) components.delete(item.name);
-      }
-    }
-    item.name = value;
-    if (item.name.length > 0) {
-      // C# parity: the same case-sensitive lookup decides whether the name is taken.
-      if (components.has(item.name)) item.name = this.findNewName(item);
-      this.addComponent(item);
-    }
-  }
-
-  /** BaseReport.AddComponent: registers the item by uppercase name unless the name is taken. */
-  private addComponent(item: ReportItem): void {
-    if (item.name.length > 0) {
-      const key = csToUpper(item.name);
-      if (!this.areport.components.has(key)) this.areport.components.set(key, item);
-    }
-  }
-
-  /** BaseReport.FindNewName: class name and the first free number from 1. */
-  private findNewName(item: ReportItem): string {
-    const clname = item.className ?? "";
-    let i = 1;
-    let nname = clname + i.toString();
-    while (this.areport.components.has(nname)) {
-      i++;
-      nname = clname + i.toString();
-    }
-    return nname;
-  }
-
-  private generateNewName(item: ReportItem): void {
-    this.setName(item, this.findNewName(item));
-  }
-
-  /** BaseReport.EnsureComponentNames: names the items without one (older reports had none). */
-  private ensureComponentNames(): void {
-    const rp = this.areport;
-    for (const dbInfo of rp.databaseInfo) if (!dbInfo.name) this.generateNewName(dbInfo);
-    for (const dataInfo of rp.dataInfo) if (!dataInfo.name) this.generateNewName(dataInfo);
-    for (const param of rp.params) if (!param.name) this.generateNewName(param);
-    for (const subReport of rp.subReports) {
-      if (!subReport.name) this.generateNewName(subReport);
-      for (const section of subReport.sections) {
-        if (!section.name) this.generateNewName(section);
-        for (const component of section.components) {
-          if (!component.name) this.generateNewName(component);
-        }
-      }
-    }
+    setItemName(this.areport.components, item, value);
   }
 
   private resetReportState(): void {
@@ -603,7 +553,7 @@ class ReportXmlReader {
     this.reloadLinks();
     // Ensure all components have names (needed for undo/redo, older versions didn't require
     // names for DataInfo, etc.)
-    this.ensureComponentNames();
+    ensureComponentNames(rp);
     this.updateDerivedValues();
   }
 
@@ -627,12 +577,12 @@ class ReportXmlReader {
   }
 
   /**
-   * The links between subreports and sections (C# resolves them into object references, which this
-   * model does not keep): the same lookups and errors, and the subreport name of each section.
+   * The links between subreports and sections: the same lookups and errors, the subreport name of
+   * each section, and the object references C# keeps (the writer saves them: report-links.ts).
    */
   private reloadLinks(): void {
     const rp = this.areport;
-    const lookup = (name: string, cast: (item: ReportItem) => boolean, typeName: string): void => {
+    const lookup = (name: string, cast: (item: ReportItem) => boolean, typeName: string): ReportItem => {
       const item = rp.components.get(name);
       if (item === undefined) {
         // C# parity: the indexer of the component list throws before the engine's own check.
@@ -644,14 +594,25 @@ class ReportXmlReader {
           name
         );
       }
+      return item;
     };
     for (const subrep of rp.subReports) {
-      if (subrep.parentSub.length > 0) lookup(subrep.parentSub, (i) => i instanceof SubReport, "SubReport");
-      if (subrep.parentSec.length > 0) lookup(subrep.parentSec, (i) => i instanceof Section, "Section");
+      if (subrep.parentSub.length > 0)
+        setParentSubReport(subrep, lookup(subrep.parentSub, (i) => i instanceof SubReport, "SubReport") as SubReport);
+      if (subrep.parentSec.length > 0)
+        setParentSection(subrep, lookup(subrep.parentSec, (i) => i instanceof Section, "Section") as Section);
       for (const sec of subrep.sections) {
-        if (sec.childSubReportName.length > 0)
-          lookup(sec.childSubReportName, (i) => i instanceof SubReport, "SubReport");
-        if (sec.subReportName.length > 0) sec.subReportName = subrep.name;
+        if (sec.childSubReportName.length > 0) {
+          const child = lookup(sec.childSubReportName, (i) => i instanceof SubReport, "SubReport") as SubReport;
+          setChildSubReport(sec, child);
+          setParentSection(child, sec);
+          // C# parity: the reader makes the child subreport its own parent subreport.
+          setParentSubReport(child, child);
+        }
+        if (sec.subReportName.length > 0) {
+          sec.subReportName = subrep.name;
+          setSectionSubReport(sec, subrep);
+        }
       }
     }
   }

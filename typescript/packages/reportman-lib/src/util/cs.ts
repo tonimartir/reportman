@@ -173,3 +173,75 @@ export function csRoundToEven(v: number): number {
   if (Math.abs(v % 1) === 0.5 && r % 2 !== 0) return r - 1;
   return r;
 }
+
+/** The decimal digits of |x| (finite, not zero) and its decimal exponent: x = 0.d1d2... × 10^scale. */
+interface DecimalDigits {
+  digits: string;
+  scale: number;
+}
+
+/** The shortest digits that read back as the same double (what .NET Core 3.0 and later formats). */
+function shortestDigits(x: number): DecimalDigits {
+  const s = Math.abs(x).toExponential();
+  const ePos = s.indexOf("e");
+  let digits = s.substring(0, ePos).replace(".", "");
+  let end = digits.length;
+  while (end > 1 && digits.charCodeAt(end - 1) === 48) end--;
+  digits = digits.substring(0, end);
+  return { digits, scale: Number(s.substring(ePos + 1)) + 1 };
+}
+
+/** The digits of |x| rounded to `precision` significant digits, trailing zeros dropped. */
+function roundedDigits(x: number, precision: number): DecimalDigits {
+  const s = Math.abs(x).toExponential(precision - 1);
+  const ePos = s.indexOf("e");
+  let digits = s.substring(0, ePos).replace(".", "");
+  let end = digits.length;
+  while (end > 1 && digits.charCodeAt(end - 1) === 48) end--;
+  digits = digits.substring(0, end);
+  return { digits, scale: Number(s.substring(ePos + 1)) + 1 };
+}
+
+/**
+ * .NET's general format of a number (Number.Formatting FormatGeneral): fixed point unless the
+ * exponent is above nMaxDigits or below -4, then d.dddE+XX (two exponent digits at least).
+ */
+function formatGeneral(negative: boolean, d: DecimalDigits, nMaxDigits: number): string {
+  const sign = negative ? "-" : "";
+  let { digits } = d;
+  const scale = d.scale;
+  if (scale > nMaxDigits || scale < -3) {
+    const exp = scale - 1;
+    const mantissa = digits.length > 1 ? digits[0] + "." + digits.substring(1) : digits;
+    const absExp = Math.abs(exp);
+    return sign + mantissa + "E" + (exp < 0 ? "-" : "+") + (absExp < 10 ? "0" : "") + absExp;
+  }
+  if (scale <= 0) return sign + "0." + "0".repeat(-scale) + digits;
+  if (digits.length <= scale) return sign + digits + "0".repeat(scale - digits.length);
+  digits = digits.substring(0, scale) + "." + digits.substring(scale);
+  return sign + digits;
+}
+
+/**
+ * double.ToString() / ToString("R") with a NumberFormatInfo whose decimal separator is "." (the
+ * invariant culture, the ReportWriter's own format): the shortest text that reads back as the
+ * same double, "-0" for a negative zero, NaN, Infinity and -Infinity.
+ */
+export function csDoubleToString(x: number): string {
+  if (Number.isNaN(x)) return "NaN";
+  if (x === Number.POSITIVE_INFINITY) return "Infinity";
+  if (x === Number.NEGATIVE_INFINITY) return "-Infinity";
+  if (x === 0) return Object.is(x, -0) ? "-0" : "0";
+  const d = shortestDigits(x);
+  // .NET 5 and later: fixed point up to 17 digits before the point (TNumber.MaxRoundTripDigits).
+  return formatGeneral(x < 0, d, Math.max(d.digits.length, 17));
+}
+
+/** double.ToString("G15") with the "." decimal separator (en-US and the invariant culture). */
+export function csDoubleToStringG15(x: number): string {
+  if (Number.isNaN(x)) return "NaN";
+  if (x === Number.POSITIVE_INFINITY) return "Infinity";
+  if (x === Number.NEGATIVE_INFINITY) return "-Infinity";
+  if (x === 0) return Object.is(x, -0) ? "-0" : "0";
+  return formatGeneral(x < 0, roundedDigits(x, 15), 15);
+}

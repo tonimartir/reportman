@@ -8,6 +8,7 @@ import { SubReport } from "../../models/sub-report.js";
 import { Report } from "../../models/report.js";
 import { ChangeObjectOperation, ChangeOperationItem, UndoCue } from "../../models/undo-cue.js";
 import { Fecha } from "../../../util/fecha.js";
+import { copyFloatMark, rememberOperationDate } from "../../xml/undo-cue-json.js";
 
 /**
  * Turns the JSON document the server sends (plain objects, camelCase, numeric enums: the report as
@@ -115,10 +116,15 @@ function hydrateOperation(raw: any): ChangeObjectOperation {
   } else if (!(raw.date instanceof Date)) {
     op.date = new Date();
   }
+  // How C# writes the date back (the kind of date Newtonsoft read), for the .rep writer.
+  rememberOperationDate(op, raw.date);
   op.properties = [];
   for (const p of raw.properties ?? []) {
     const item = new ChangeOperationItem(p.propertyName, p.propertyType, p.oldValue, p.newValue);
     op.properties.push(Object.assign(item, p));
+    // A double written as an integer (2.0) by C# and read by parseReportJson stays one.
+    copyFloatMark(p, "oldValue", item, "oldValue");
+    copyFloatMark(p, "newValue", item, "newValue");
   }
   return op;
 }

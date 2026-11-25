@@ -147,3 +147,45 @@ export function utf8ToString(bytes: Uint8Array): string {
   }
   return codeUnitsToString(units);
 }
+
+/** UTF8Encoding.GetBytes: a lone surrogate becomes U+FFFD (EF BF BD); no byte order mark. */
+export function stringToUtf8(text: string): Uint8Array {
+  const out: number[] = [];
+  for (let i = 0; i < text.length; i++) {
+    let c = text.charCodeAt(i);
+    if (c >= 0xd800 && c <= 0xdbff && i + 1 < text.length) {
+      const d = text.charCodeAt(i + 1);
+      if (d >= 0xdc00 && d <= 0xdfff) {
+        c = 0x10000 + ((c - 0xd800) << 10) + (d - 0xdc00);
+        i++;
+      } else c = 0xfffd;
+    } else if (c >= 0xd800 && c <= 0xdfff) c = 0xfffd;
+    if (c < 0x80) out.push(c);
+    else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 0x3f));
+    else if (c < 0x10000) out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f));
+    else out.push(0xf0 | (c >> 18), 0x80 | ((c >> 12) & 0x3f), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f));
+  }
+  return Uint8Array.from(out);
+}
+
+/** Every character as one byte, its low 8 bits (C# StreamUtil.SWriteLine's (byte)char). */
+export function latin1ToBytes(text: string): Uint8Array {
+  const out = new Uint8Array(text.length);
+  for (let i = 0; i < text.length; i++) out[i] = text.charCodeAt(i) & 0xff;
+  return out;
+}
+
+const hexDigits = "0123456789ABCDEF";
+
+/** StreamUtil.StreamToHex: two uppercase hexadecimal digits per byte. */
+export function bytesToHex(bytes: Uint8Array): string {
+  const parts: string[] = [];
+  const chunk = 0x4000;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    let s = "";
+    const end = Math.min(i + chunk, bytes.length);
+    for (let j = i; j < end; j++) s += hexDigits[bytes[j] >> 4] + hexDigits[bytes[j] & 15];
+    parts.push(s);
+  }
+  return parts.join("");
+}

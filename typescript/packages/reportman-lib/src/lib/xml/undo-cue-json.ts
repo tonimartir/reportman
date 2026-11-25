@@ -5,7 +5,7 @@ import {
   PropertyType,
   UndoCue,
 } from "../models/undo-cue.js";
-import { csRoundToEven, csTrim } from "../../util/cs.js";
+import { csDoubleToString, csRoundToEven, csTrim } from "../../util/cs.js";
 
 /**
  * The undo history a .rep keeps in its BINCUE property: the JSON of the engine's UndoCue, read as
@@ -19,7 +19,9 @@ export function readUndoCueJson(text: string): UndoCue | undefined {
   if (json.charCodeAt(0) === 0xfeff) json = json.substring(1);
   // Newtonsoft returns null for an empty document.
   if (csTrim(json).length === 0) return undefined;
-  const raw: unknown = JSON.parse(json);
+  // Newtonsoft reads 2.0 as a double, written back as 2.0, and 2 as an integer: the JSON text of
+  // each number is kept where the runtime gives it (JSON.parse source text access).
+  const raw: unknown = parseReportJson(json);
   if (raw === null) return undefined;
   if (!isObject(raw)) throw new Error("The undo history (BINCUE) is not a JSON object");
   const cue = new UndoCue();
@@ -35,10 +37,16 @@ function isObject(v: unknown): v is Record<string, unknown> {
 
 /** Newtonsoft matches a property case-insensitively; the last occurrence in the document wins. */
 function member(obj: Record<string, unknown>, name: string): unknown {
+  const key = memberKey(obj, name);
+  return key === undefined ? undefined : obj[key];
+}
+
+/** The key member() reads. */
+function memberKey(obj: Record<string, unknown>, name: string): string | undefined {
   const lower = name.toLowerCase();
-  let result: unknown = undefined;
+  let result: string | undefined = undefined;
   for (const key of Object.keys(obj)) {
-    if (key.toLowerCase() === lower) result = obj[key];
+    if (key.toLowerCase() === lower) result = key;
   }
   return result;
 }
@@ -71,6 +79,7 @@ function readOperation(raw: Record<string, unknown>): ChangeObjectOperation {
   const date = member(raw, "date");
   // An explicit null is a null date in C#; this model keeps the constructor's date instead.
   if (date !== undefined && date !== null) op.date = toDate(date);
+  rememberOperationDate(op, date);
   const expanded = member(raw, "expandedProperties");
   if (expanded !== undefined && expanded !== null) op.expandedProperties = toBool(expanded);
   const properties = member(raw, "properties");
@@ -79,12 +88,16 @@ function readOperation(raw: Record<string, unknown>): ChangeObjectOperation {
       throw new Error("The undo history (BINCUE) has properties that are not an array");
     for (const p of properties) {
       if (!isObject(p)) throw new Error("The undo history (BINCUE) has a property that is not an object");
+      const oldKey = memberKey(p, "oldValue");
+      const newKey = memberKey(p, "newValue");
       const item = new ChangeOperationItem(
         toStringValue(member(p, "propertyName")) as string,
         toEnum(member(p, "propertyType"), PropertyType, 0) as PropertyType,
         toObjectValue(member(p, "oldValue")),
         toObjectValue(member(p, "newValue"))
       );
+      if (oldKey !== undefined) copyFloatMark(p, oldKey, item, "oldValue");
+      if (newKey !== undefined) copyFloatMark(p, newKey, item, "newValue");
       op.properties.push(item);
     }
   }
@@ -161,13 +174,262 @@ function toObjectValue(v: unknown): unknown {
 
 function normalizeJsonValue(v: unknown): unknown {
   if (typeof v === "string") return normalizeDateText(v);
-  if (Array.isArray(v)) return v.map((x) => normalizeJsonValue(x));
+  if (Array.isArray(v)) {
+    const result = v.map((x) => normalizeJsonValue(x));
+    for (let i = 0; i < v.length; i++) copyFloatMark(v, String(i), result, String(i));
+    return result;
+  }
   if (isObject(v)) {
     const result: Record<string, unknown> = {};
-    for (const key of Object.keys(v)) result[key] = normalizeJsonValue(v[key]);
+    for (const key of Object.keys(v)) {
+      result[key] = normalizeJsonValue(v[key]);
+      copyFloatMark(v, key, result, key);
+    }
     return result;
   }
   return v;
+}
+
+// ---- What the writer needs to write a history as C# does ----
+
+/**
+ * The integral numbers of a history read with a decimal point or an exponent (2.0, 1e2): a double
+ * for Newtonsoft, written back as 2.0 and 100.0. By the object that holds them (a property of an
+ * operation, an array or an object of a value), with the value they had, so a changed value is
+ * written as the number it is.
+ */
+const floatMarks = new WeakMap<object, Map<string, number>>();
+
+function markFloat(holder: object, key: string, value: number): void {
+  if (typeof holder !== "object" || holder === null) return;
+  let marks = floatMarks.get(holder);
+  if (!marks) floatMarks.set(holder, (marks = new Map()));
+  marks.set(key, value);
+}
+
+/** A JSON.parse reviver that keeps the floats written as integers (2.0, 1e2) where the runtime gives their text. */
+function floatMarkingReviver(this: unknown, key: string, value: unknown, context?: { source?: string }): unknown {
+  if (typeof value === "number" && Number.isInteger(value) && context?.source !== undefined && /[.eE]/.test(context.source))
+    markFloat(this as object, key, value);
+  return value;
+}
+
+/**
+ * JSON.parse of a report's JSON document that keeps, for the .rep writer, which integral numbers
+ * were written as doubles (2.0): C# (Newtonsoft) reads them as doubles and writes them back so in
+ * the undo history. Only needed for a document written by the C# engine (the designer writes 2);
+ * without it such a number of the history is written as 2. Needs JSON.parse source text access
+ * (Node 21, current browsers); without it, it is JSON.parse.
+ */
+export function parseReportJson(text: string): any {
+  return JSON.parse(text, floatMarkingReviver as (this: unknown, key: string, value: unknown) => unknown);
+}
+
+/** Carries the float mark of a member to its copy (hydrateUndoCue). */
+export function copyFloatMark(from: object, fromKey: string, to: object, toKey: string): void {
+  const value = floatMarks.get(from)?.get(fromKey);
+  if (value !== undefined) markFloat(to, toKey, value);
+}
+
+function isMarkedFloat(holder: object | undefined, key: string, value: number): boolean {
+  return holder !== undefined && floatMarks.get(holder)?.get(key) === value;
+}
+
+/**
+ * The text C# writes for the date of an operation, by operation: Newtonsoft keeps the kind of the
+ * date it read (UTC "Z", local with the offset of the computer, or without zone), which a Date
+ * does not. Kept with the time it had, so a changed date is written as a UTC one.
+ */
+const operationDates = new WeakMap<ChangeObjectOperation, { time: number; text: string }>();
+
+/**
+ * Remembers how C# writes the date of an operation read from a JSON value (its "date" member):
+ * the date in the form Newtonsoft gives it back, or null for an explicit null. Called by the
+ * reader and by hydrateUndoCue.
+ */
+export function rememberOperationDate(op: ChangeObjectOperation, raw: unknown): void {
+  if (raw === null) {
+    operationDates.set(op, { time: op.date.getTime(), text: "null" });
+    return;
+  }
+  if (typeof raw !== "string") return;
+  const parsed = parseNewtonsoftDate(raw);
+  if (parsed) operationDates.set(op, { time: op.date.getTime(), text: jsonString(formatNewtonsoftDate(parsed)) });
+}
+
+/** A Date as Newtonsoft writes a UTC DateTime: the fraction of the second without its trailing zeros. */
+function formatUtcDate(date: Date): string {
+  return formatNewtonsoftDate({
+    date,
+    kind: "Utc",
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth() + 1,
+    day: date.getUTCDate(),
+    hour: date.getUTCHours(),
+    minute: date.getUTCMinutes(),
+    second: date.getUTCSeconds(),
+    ticks: date.getUTCMilliseconds() * 10000,
+  });
+}
+
+/**
+ * A JSON string as Newtonsoft writes it (StringEscapeHandling.Default): the quote, the backslash,
+ * the control characters, U+0085, U+2028 and U+2029 escaped (\uXXXX in lowercase hexadecimal but
+ * \b \t \n \f \r), any other character as it is.
+ */
+function jsonString(s: string): string {
+  let out = '"';
+  let start = 0;
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    let escaped: string | undefined;
+    if (c < 0x20 || c === 0x22 || c === 0x5c || c === 0x85 || c === 0x2028 || c === 0x2029) {
+      switch (c) {
+        case 0x09:
+          escaped = "\\t";
+          break;
+        case 0x0a:
+          escaped = "\\n";
+          break;
+        case 0x0d:
+          escaped = "\\r";
+          break;
+        case 0x0c:
+          escaped = "\\f";
+          break;
+        case 0x08:
+          escaped = "\\b";
+          break;
+        case 0x5c:
+          escaped = "\\\\";
+          break;
+        case 0x22:
+          escaped = '\\"';
+          break;
+        default:
+          escaped = "\\u" + c.toString(16).padStart(4, "0");
+      }
+    }
+    if (escaped !== undefined) {
+      out += s.substring(start, i) + escaped;
+      start = i + 1;
+    }
+  }
+  return out + s.substring(start) + '"';
+}
+
+/**
+ * A number as Newtonsoft writes the value it read from the JSON of the number: an integer (a long)
+ * as its digits, a double (a decimal point or an exponent) with ToString("R") and ".0" when that
+ * has neither.
+ */
+function jsonNumber(value: number, isFloat: boolean): string {
+  if (!Number.isFinite(value)) return "null";
+  const text = JSON.stringify(value);
+  if (!isFloat && !/[.eE]/.test(text)) return text;
+  const r = csDoubleToString(value);
+  return /[.E]/.test(r) || r === "NaN" || r.endsWith("Infinity") ? r : r + ".0";
+}
+
+/**
+ * A value of a property of an operation (C# object): the JSON value the designer sends
+ * (JSON.stringify), as Newtonsoft reads it into an object (date-like texts become dates) and
+ * writes it again.
+ */
+function jsonValue(value: unknown, holder?: object, key?: string): string {
+  if (value === undefined || value === null) return "null";
+  if (typeof value === "string") return jsonString(normalizeDateText(value));
+  if (typeof value === "number") return jsonNumber(value, isMarkedFloat(holder, key ?? "", value));
+  if (typeof value === "boolean") return value ? "true" : "false";
+  const toJSON = (value as { toJSON?: unknown }).toJSON;
+  if (typeof toJSON === "function") return jsonValue((value as { toJSON: () => unknown }).toJSON());
+  if (typeof value === "bigint") return value.toString();
+  if (Array.isArray(value)) {
+    const parts: string[] = [];
+    value.forEach((x, i) => {
+      // JSON.stringify writes a missing or not serializable item as null.
+      parts.push(x === undefined || typeof x === "function" || typeof x === "symbol" ? "null" : jsonValue(x, value, String(i)));
+    });
+    return "[" + parts.join(",") + "]";
+  }
+  if (typeof value === "object") {
+    const parts: string[] = [];
+    for (const k of Object.keys(value)) {
+      const x = (value as Record<string, unknown>)[k];
+      if (x === undefined || typeof x === "function" || typeof x === "symbol") continue;
+      parts.push(jsonString(k) + ":" + jsonValue(x, value, k));
+    }
+    return "{" + parts.join(",") + "}";
+  }
+  return "null";
+}
+
+function jsonInt(value: unknown): string {
+  return typeof value === "number" && Number.isFinite(value) ? String(Math.trunc(value)) : "0";
+}
+
+function jsonNullableString(value: unknown): string {
+  return value === undefined || value === null ? "null" : jsonString(String(value));
+}
+
+function writeOperation(op: ChangeObjectOperation): string {
+  let date: string;
+  const remembered = operationDates.get(op);
+  if (!(op.date instanceof Date) || isNaN(op.date.getTime())) date = op.date === null ? "null" : jsonValue(op.date);
+  else if (remembered && remembered.time === op.date.getTime()) date = remembered.text;
+  else date = jsonString(formatUtcDate(op.date));
+  const properties = (op.properties ?? []).map(
+    (p) =>
+      '{"PropertyName":' +
+      jsonNullableString(p.propertyName) +
+      ',"PropertyType":' +
+      jsonInt(p.propertyType) +
+      ',"OldValue":' +
+      jsonValue(p.oldValue, p, "oldValue") +
+      ',"NewValue":' +
+      jsonValue(p.newValue, p, "newValue") +
+      "}"
+  );
+  return (
+    '{"Operation":' +
+    jsonInt(op.operation) +
+    ',"GroupId":' +
+    jsonInt(op.groupId) +
+    ',"ComponentName":' +
+    jsonNullableString(op.componentName) +
+    ',"ComponentClass":' +
+    jsonNullableString(op.componentClass) +
+    ',"ParentName":' +
+    jsonNullableString(op.parentName) +
+    ',"OldItemIndex":' +
+    (op.oldItemIndex === undefined || op.oldItemIndex === null ? "null" : jsonInt(op.oldItemIndex)) +
+    ',"OldParentName":' +
+    jsonNullableString(op.oldParentName) +
+    ',"Date":' +
+    date +
+    ',"ExpandedProperties":' +
+    (op.expandedProperties === false ? "false" : "true") +
+    ',"Properties":[' +
+    properties.join(",") +
+    "]}"
+  );
+}
+
+/**
+ * The undo history as the C# writer saves it in BINCUE: JsonConvert.SerializeObject(undoCue) with
+ * Newtonsoft's default settings (PascalCase names in the order of the C# classes, nulls written,
+ * enums as numbers, dates in ISO form as Newtonsoft read them).
+ */
+export function writeUndoCueJson(cue: UndoCue): string {
+  return (
+    '{"GroupId":' +
+    jsonInt(cue.groupId) +
+    ',"UndoOperations":[' +
+    (cue.undoOperations ?? []).map(writeOperation).join(",") +
+    '],"RedoOperations":[' +
+    (cue.redoOperations ?? []).map(writeOperation).join(",") +
+    "]}"
+  );
 }
 
 /** The kinds of a .NET DateTime. */
