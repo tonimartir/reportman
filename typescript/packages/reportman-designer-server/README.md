@@ -44,6 +44,11 @@ app.listen(3000);
 // http://localhost:3000/designer/?report=REPORTS/sales.rep
 ```
 
+A whole application to run: [`examples/designer-express`](https://github.com/tonimartir/reportman/tree/main/typescript/examples/designer-express)
+(the sample reports, their SQLite database and the designer in Express). Mount it before
+`express.json()`, or give that parser a bigger limit: a report with pictures is bigger than its
+default 100 kB. `request.raw` in `authorize` is the framework's request (your session, your user).
+
 ## Security
 
 The designer opens data with the connections of your server and runs any SQL a report holds, and
