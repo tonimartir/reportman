@@ -14,8 +14,9 @@
 // its routes (ToXml, FromXml, SqlColumns, AiContext, /api/ai) stay in Reportman.Server.
 
 import { createReportServer, ServerError, type HttpServerLike, type ReportServer, type ReportServerOptions, type ServerRequest, type ServerResponse } from '@reportman/server';
-import { DesignerOperations, ForbiddenError, NoDataError, componentOf } from './operations.js';
+import { DesignerOperations, ForbiddenError, JsonText, NoDataError, componentOf } from './operations.js';
 import { elementResponse, type DesignerElementOptions } from './element.js';
+import { parseDesignerJson } from './json.js';
 
 /** What a request asks to do, for the authorize hook (the three checks of Reportman.Server). */
 export type DesignerCheck =
@@ -54,13 +55,41 @@ const NOT_LOCAL =
   'This designer server answers only this machine: give createDesignerServer an authorize function to open it to others.';
 const AI_ROUTES = new Set(['toxml', 'fromxml', 'sqlcolumns', 'aicontext']);
 
-/** JSON as Newtonsoft writes the designer's answers: null members left out. */
+/**
+ * A report document inside an answer: written as it is, its null members kept (the engine's
+ * converters write some: a Null Variant's value, the public fields of an item).
+ */
+export class ReportJson {
+  constructor(readonly document: Record<string, unknown>) {}
+}
+
+/**
+ * JSON as Newtonsoft writes the designer's answers: null members left out (null items of a list
+ * stay), a report document as it is (ReportJson) and the text of a JsonText as it comes.
+ */
 export function designerJson(status: number, value: unknown): ServerResponse {
+  const raw: string[] = [];
+  const marker = (text: string) => {
+    raw.push(text);
+    return '\u0000rm-json:' + (raw.length - 1) + '\u0000';
+  };
+  let text = JSON.stringify(value, (_key, v: unknown) => {
+    if (v === null) return undefined;
+    if (v instanceof ReportJson) return marker(JSON.stringify(v.document));
+    if (v instanceof JsonText) return marker(v.text);
+    return v;
+  });
+  if (raw.length > 0) text = text.replace(/"\\u0000rm-json:(\d+)\\u0000"/g, (_m, i: string) => raw[Number(i)]!);
   return {
     status,
     headers: { 'content-type': 'application/json; charset=utf-8' },
-    body: encoder.encode(JSON.stringify(value, (_key, v: unknown) => (v === null ? undefined : v))),
+    body: encoder.encode(text),
   };
+}
+
+/** JSON as ASP.NET writes an Ok(value) (System.Text.Json, web defaults): null members included. */
+export function webJson(status: number, value: unknown): ServerResponse {
+  return { status, headers: { 'content-type': 'application/json; charset=utf-8' }, body: encoder.encode(JSON.stringify(value)) };
 }
 
 /** The value of a member of a request body, its name in any case (Newtonsoft). */
@@ -111,6 +140,25 @@ function operationOf(value: unknown): number {
 
 function operationName(op: number): string {
   return OPERATIONS[op] ?? String(op);
+}
+
+/** A string member of a request: Newtonsoft reads a number or a boolean into a string as its text. */
+function textMember(body: Record<string, unknown>, name: string): string | null {
+  const v = member(body, name);
+  if (v === undefined || v === null) return null;
+  if (typeof v === 'string') return v;
+  if (typeof v === 'boolean') return v ? 'True' : 'False';
+  return typeof v === 'object' ? JSON.stringify(v) : String(v);
+}
+
+/** Convert.ToInt32 of a string: 0 for null, the .NET errors otherwise. */
+function convertToInt32(text: string | null): number {
+  if (text === null) return 0;
+  const t = text.trim();
+  if (!/^[+-]?\d+$/.test(t)) throw new Error(`The input string '${text}' was not in a correct format.`);
+  const n = Number(t);
+  if (n > 2147483647 || n < -2147483648) throw new Error('Value was either too large or too small for an Int32.');
+  return n;
 }
 
 /** The server of the web designer over folders of .rep files. */
@@ -209,7 +257,7 @@ export class DesignerServer implements HttpServerLike {
     if (text.trim().length === 0) return {};
     let value: unknown;
     try {
-      value = JSON.parse(text);
+      value = parseDesignerJson(text);
     } catch {
       throw new ServerError(400, 'The body is not valid JSON.');
     }
@@ -224,7 +272,7 @@ export class DesignerServer implements HttpServerLike {
     if (alias.trim().length === 0) return designerJson(400, { error: 'alias is required' });
     await this.require({ action: 'designer' }, request);
     const refresh = (request.query.get('refresh') ?? '').toLowerCase() === 'true';
-    return designerJson(200, await this.operations.sqlSchema(alias, refresh));
+    return webJson(200, await this.operations.sqlSchema(alias, refresh));
   }
 
   private async readReport(request: ServerRequest): Promise<ServerResponse> {
@@ -234,9 +282,9 @@ export class DesignerServer implements HttpServerLike {
     let op = 0;
     try {
       op = operationOf(member(body, 'operation'));
-      const reportName = (member(body, 'reportName') as string | null | undefined) ?? null;
-      const expression = (member(body, 'expression') as string | null | undefined) ?? null;
-      const datasetName = (member(body, 'datasetName') as string | null | undefined) ?? null;
+      const reportName = textMember(body, 'reportName');
+      const expression = textMember(body, 'expression');
+      const datasetName = textMember(body, 'datasetName');
       const report = member(body, 'report');
       const given = report !== null && report !== undefined && typeof report === 'object' ? (report as Record<string, unknown>) : null;
       const requireReport = (): Record<string, unknown> => {
@@ -247,14 +295,15 @@ export class DesignerServer implements HttpServerLike {
       // operation opens data, evaluates or writes: a designer's tool
       if (op === 0 && reportName !== null && reportName.trim().length > 0) await this.require({ action: 'run', alias: splitName(reportName).alias }, request);
       else await this.require({ action: 'designer' }, request);
+      const context = { reportName };
       switch (op) {
         case 0:
           if (reportName !== null && reportName.trim().length > 0) {
             const { report: read, eTag } = await ops.readStored(reportName);
-            response.report = read;
+            response.report = new ReportJson(read);
             response.eTag = eTag;
           } else if (expression !== null && expression.trim().length > 0) {
-            response.report = await ops.readFromBase64Xml(expression);
+            response.report = new ReportJson(await ops.readFromBase64Xml(expression));
           } else {
             throw new Error('reportName or a base64 .rep in expression is required');
           }
@@ -269,35 +318,35 @@ export class DesignerServer implements HttpServerLike {
           await ops.importName(reportName ?? '', expression ?? '');
           break;
         case 1:
-          response.functions = await ops.readFunctionList(requireReport(), false, false);
+          response.functions = await ops.readFunctionList(requireReport(), false, false, context);
           break;
         case 3:
-          response.functions = await ops.readFunctionList(requireReport(), true, (property(body, 'refresh') ?? '').toLowerCase() === 'true');
+          response.functions = await ops.readFunctionList(requireReport(), true, (property(body, 'refresh') ?? '').toLowerCase() === 'true', context);
           break;
         case 4:
-          response.evaluateResult = await ops.evaluate(requireReport(), expression ?? '');
+          response.evaluateResult = await ops.evaluate(requireReport(), expression ?? '', context);
           break;
         case 13:
-          response.syntaxCheck = await ops.checkSyntax(requireReport(), expression ?? '');
+          response.syntaxCheck = await ops.checkSyntax(requireReport(), expression ?? '', context);
           break;
         case 5:
           response.dataSets = await ops.readAllTableColumns(requireReport());
           break;
         case 6:
-          response.dataSets = await ops.readDataset(requireReport(), expression ?? '', datasetName ?? '');
+          response.dataSets = await ops.readDataset(requireReport(), expression ?? '', datasetName ?? '', context);
           break;
         case 8:
-          response.evaluateResult = await ops.exportReport(given ?? (await ops.readStored(reportName ?? '')).report);
+          response.evaluateResult = await ops.exportReport(given ?? ops.readStoredModel(reportName ?? '').model);
           break;
         case 7:
-          response.evaluateResult = await ops.exportSubReport(requireReport(), Number.parseInt(expression ?? '', 10));
+          response.evaluateResult = await ops.exportSubReport(requireReport(), convertToInt32(expression));
           break;
         case 9:
-          response.report = await ops.importSubReport(requireReport(), expression ?? '');
+          response.report = new ReportJson(await ops.importSubReport(requireReport(), expression ?? ''));
           break;
         case 10:
           if (given !== null) throw new Error('Import empty must have no report');
-          response.report = await ops.importSubReport(null, expression ?? '');
+          response.report = new ReportJson(await ops.importSubReport(null, expression ?? ''));
           break;
         default:
           throw new Error('Unknown operation ' + operationName(op));
@@ -313,9 +362,9 @@ export class DesignerServer implements HttpServerLike {
     try {
       let report = member(body, 'report') as Record<string, unknown> | null | undefined;
       const reportJson = member(body, 'reportJson');
-      if ((report === null || report === undefined) && typeof reportJson === 'string' && reportJson.trim().length > 0) report = JSON.parse(reportJson) as Record<string, unknown>;
+      if ((report === null || report === undefined) && typeof reportJson === 'string' && reportJson.trim().length > 0) report = parseDesignerJson(reportJson) as Record<string, unknown>;
       if (report === null || report === undefined) throw new Error('No report was provided');
-      const reportName = member(body, 'reportName') as string | null | undefined;
+      const reportName = textMember(body, 'reportName');
       if (reportName === null || reportName === undefined || reportName.trim().length === 0) throw new Error('reportName is required');
       await this.require({ action: 'design', alias: splitName(reportName).alias }, request);
       return designerJson(200, { eTag: await this.operations.write(reportName, report, property(body, 'eTag')) });
@@ -328,12 +377,12 @@ export class DesignerServer implements HttpServerLike {
     const body = this.body(request);
     try {
       const report = member(body, 'report') as Record<string, unknown> | null | undefined;
-      const reportName = (member(body, 'reportName') as string | null | undefined) ?? '';
+      const reportName = textMember(body, 'reportName') ?? '';
       if (report !== null && report !== undefined) await this.require({ action: 'designer' }, request);
       else await this.require({ action: 'run', alias: splitName(reportName).alias }, request);
-      const model = report ?? (await this.operations.readStored(reportName)).report;
+      const model = report ?? this.operations.readStoredModel(reportName).model;
       const indexes = member(body, 'subreportIndexes');
-      const result = await this.operations.execute(model, Array.isArray(indexes) ? indexes.map(Number) : null, reportName);
+      const result = await this.operations.execute(model, Array.isArray(indexes) ? indexes.map(Number) : null, { reportName });
       return designerJson(200, { result, noData: false });
     } catch (e) {
       if (e instanceof NoDataError) return designerJson(200, { noData: true, errorMessage: e.message });

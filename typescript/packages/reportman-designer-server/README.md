@@ -10,7 +10,20 @@ The AI assistant is not part of it: it stays in Reportman.Server, and the design
 `no-ai`.
 
 > Status: preview (`next`). The answers are compared with the ones of Reportman.Server in the
-> tests (`test/golden-http`).
+> tests (`test/golden-http`). Saving, exporting and importing `.rep` files need the `.rep` XML
+> writer of `@reportman/lib`, which is on its way: until it is there those operations answer an
+> error.
+
+## The SQL editor
+
+The tables and columns the SQL editor completes come from the connection: with a data folder, a
+connection of its `dbxconnections.ini` keeps them in a local schema file,
+`dbxschemas/<ALIAS>.json` next to it — the file the Delphi and .NET designers keep, with the
+subschemas and the descriptions people wrote — generated from the database's catalog the first
+time and read again (keeping what people wrote) when the designer asks to refresh. A connection
+your program gives is read from its catalog (kept five minutes). The catalog is read for SQLite,
+PostgreSQL, MySQL, SQL Server and Firebird; an Agent connection has no schema here
+(Reportman.Server's AI package describes it).
 
 ## Use
 

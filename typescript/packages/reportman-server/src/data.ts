@@ -32,6 +32,8 @@ export interface SamplesInstallResult {
   reports: number;
   database: boolean;
   connection: boolean;
+  /** The local schema of the SAMPLES connection (dbxschemas/SAMPLES.json) was installed. */
+  schema: boolean;
 }
 
 /** One sample report of samples.ini, in a language (SampleEntry). */
@@ -146,6 +148,14 @@ export class ServerData {
   }
   get sampleDatabaseFile(): string {
     return path.join(this.dataPath, 'ejemplos', 'samples.db');
+  }
+  /**
+   * The local schema of the SAMPLES connection, for the SQL editor of the designer: dbxschemas/
+   * SAMPLES.json next to dbxconnections.ini, as every designer keeps it (its subschemas and what
+   * each table and column means).
+   */
+  get sampleSchemaFile(): string {
+    return path.join(this.dataPath, 'dbxschemas', SAMPLE_CONNECTION_ALIAS + '.json');
   }
 
   // ---- aliases (server.json) ----
@@ -308,7 +318,8 @@ export class ServerData {
   /**
    * The sample reports that are missing (InstallSamples of Reportman.Server): the reports into
    * informes/Ejemplos, never over a file that is there; their database into ejemplos/, replaced
-   * by a newer one; and the SAMPLES connection when dbxconnections.ini has none.
+   * by a newer one; the local schema of their connection into dbxschemas/ when it is not there;
+   * and the SAMPLES connection when dbxconnections.ini has none.
    */
   installSamples(source = samplesSource()): SamplesInstallResult {
     if (source === null) throw new ServerError(404, 'This server has no sample reports.');
@@ -330,6 +341,14 @@ export class ServerData {
       renameSync(temporary, this.sampleDatabaseFile);
       database = true;
     }
+    // The local schema of their connection, never over one (it may have been changed)
+    let schema = false;
+    const sourceSchema = path.join(source, 'dbxschemas', SAMPLE_CONNECTION_ALIAS + '.json');
+    if (existsSync(sourceSchema) && !existsSync(this.sampleSchemaFile)) {
+      mkdirSync(path.dirname(this.sampleSchemaFile), { recursive: true });
+      copyFileSync(sourceSchema, this.sampleSchemaFile);
+      schema = true;
+    }
     let connection = false;
     const existing = existsSync(this.connectionsFile) ? readFileSync(this.connectionsFile, 'utf8') : '';
     if (!existing.split(/\r?\n/).some((l) => l.trim().toUpperCase() === '[' + SAMPLE_CONNECTION_ALIAS + ']')) {
@@ -346,7 +365,7 @@ export class ServerData {
       writeAtomic(this.connectionsFile, existing + separator + section + '\n');
       connection = true;
     }
-    return { reports, database, connection };
+    return { reports, database, connection, schema };
   }
 }
 

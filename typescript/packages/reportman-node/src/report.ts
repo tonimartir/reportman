@@ -58,6 +58,8 @@ export interface OpenReportOptions extends DataSources {
 export interface PdfOptions extends RunOptions {
   /** Flate compress the content streams (the report's PDFCompressed by default). */
   compressed?: boolean;
+  /** Called with the metafile the PDF was printed from (its pages, page size...), after printing. */
+  onMetafile?: (metaFile: MetaFile) => void;
 }
 
 /** Options of one run (executeToPdf, executeToMetafile, executeWithDevice). */
@@ -78,6 +80,13 @@ export interface RunOptions {
    * first argument) are not applied.
    */
   assign?: Readonly<Record<string, unknown>>;
+  /**
+   * The values a parameters form would start from, asking nobody anything and checking nothing
+   * (ReportParameters.ApplyDefaults: what the preview of a designer runs with). Ignored with assign.
+   */
+  defaults?: boolean;
+  /** Run only these subreports (by index) and their child subreports (ExecuteSubReportIndexes). */
+  subReportIndexes?: number[];
 }
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}(?:[T ]\d{2}:\d{2}(?::\d{2}(?:\.\d{1,7})?)?)?(?:Z|[+-]\d{2}:?\d{2})?$/;
@@ -155,7 +164,9 @@ export class NodeReport {
       await this.setParameters(run, values, options);
       const device = run.device as PdfDevice;
       device.compressed = options.compressed ?? this.model.pdfCompressed;
-      return await withSignal(options.signal, () => printPdf(run, device, options.signal));
+      const pdf = await withSignal(options.signal, () => printPdf(run, device, options.signal));
+      options.onMetafile?.(run.metaFile);
+      return pdf;
     } finally {
       await run.close();
     }
@@ -201,7 +212,8 @@ export class NodeReport {
   /** The values of the form (checked), or the assigned ones (set as they come). */
   private async setParameters(run: ReportRun, values: Readonly<Record<string, ParameterInput>> | null | undefined, options: RunOptions): Promise<void> {
     if (options.assign === undefined) {
-      await run.applyParameters(values ?? {});
+      if (options.defaults === true) await run.applyDefaults();
+      else await run.applyParameters(values ?? {});
       return;
     }
     for (const [key, value] of Object.entries(options.assign)) {
@@ -210,6 +222,15 @@ export class NodeReport {
       // A name the report does not have is left out, as Reportman.Server does
       if (p !== undefined) run.setParameterValue(p.alias, assignedValue(value));
     }
+  }
+
+  /**
+   * A fresh run of a fresh copy of the model, for a host that drives the engine itself (the tools of
+   * a designer: its evaluator, its datasets), with the connections, culture, clock and fonts of the
+   * options. Close it (run.close()) when done.
+   */
+  async prepareRun(runOptions: RunOptions = {}, device?: PrintOut): Promise<ReportRun> {
+    return this.prepare(runOptions, device);
   }
 
   /** A fresh run of a fresh copy of the model: the engine converts and fills what it runs. */
@@ -240,6 +261,7 @@ export class NodeReport {
       culture: this.options.culture ?? 'en-US',
       host,
       convertToDotNet: true,
+      subReportIndexes: runOptions.subReportIndexes,
       // The engine cancels when its progress callback returns true
       onProgress:
         signal === undefined && onProgress === undefined

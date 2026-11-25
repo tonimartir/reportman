@@ -53,11 +53,41 @@ const EXTENSIONS: Record<string, string[]> = {
   health: ['console'],
 };
 
-/** Cases whose route the Node server does not answer yet (the designer protocol, P3). */
+/**
+ * Cases the Node server does not answer as Reportman.Server yet: the ones that write a .rep (save,
+ * export, import), which need the .rep XML writer of @reportman/lib, and the ones that read what
+ * they wrote.
+ */
 const PENDING = new Set<string>([
-  ...cases.filter((c) => c.path.startsWith('/api/designer/')).map((c) => c.name),
+  'designer-export-report',
+  'designer-export-report-stored',
+  'designer-export-subreport',
+  'designer-import',
+  'designer-import-empty',
+  'designer-import-name',
+  'designer-read-imported',
+  'designer-write-new',
+  'designer-read-written',
+  'designer-export-written',
+  'designer-write-current-etag',
+  'designer-write-stale-etag',
+  'designer-write-report-json',
   'designer-tree-after-writes',
 ]);
+
+/**
+ * Members compared by what they mean, not by their text: replaced on both sides before comparing.
+ * httpAgentBaseUrl of a connection the .rep does not set is the default of the engine, which C#
+ * compiles in: "https://api.reportman.es:7006" in a Debug build (the one the answers were recorded
+ * with), "https://aiapi.reportman.es" in a Release build (the one Node gives).
+ */
+function semantic(body: unknown): unknown {
+  const report = (body as { report?: { databaseInfo?: Record<string, unknown>[] } } | null)?.report;
+  for (const db of report?.databaseInfo ?? []) {
+    if (db.httpAgentBaseUrl === 'https://api.reportman.es:7006' || db.httpAgentBaseUrl === 'https://aiapi.reportman.es') db.httpAgentBaseUrl = '<engine default>';
+  }
+  return body;
+}
 
 let handler: GoldenHandler;
 let dataPath: string;
@@ -204,7 +234,7 @@ describe('golden-http: @reportman/server answers as Reportman.Server', () => {
       if (DIFFERENCES[c.name] !== undefined) return;
       const body = actual.body as Record<string, unknown>;
       for (const field of EXTENSIONS[c.name] ?? []) delete body[field];
-      expect({ status: actual.status, body: actual.body }).toEqual({ status: expected!.status, body: expected!.body });
+      expect({ status: actual.status, body: semantic(actual.body) }).toEqual({ status: expected!.status, body: semantic(structuredClone(expected!.body)) });
       if (c.expect !== 'status') {
         expect(actual.contentType).toBe(expected!.contentType);
         expect(actual.contentDisposition).toBe(expected!.contentDisposition);

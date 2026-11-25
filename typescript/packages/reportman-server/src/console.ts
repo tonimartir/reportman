@@ -288,7 +288,7 @@ export class ConsoleApi {
     }
     if (head === 'samples' && rest.length === 1 && method === 'POST') {
       const result = this.data.installSamples();
-      return ok({ ...result, schema: false });
+      return ok(result);
     }
     if (head === 'keys') {
       if (rest.length === 1 && method === 'GET') return ok(this.data.keys().map(keyView));

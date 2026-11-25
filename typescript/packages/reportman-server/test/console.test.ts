@@ -120,9 +120,9 @@ describe('@reportman/server console: aliases and samples', () => {
     expect((await admin('DELETE', '/api/console/aliases/NOPE')).status).toBe(404);
   });
 
-  it('installs the sample reports, their database and the SAMPLES connection once', async () => {
+  it('installs the sample reports, their database, their local schema and the SAMPLES connection once', async () => {
     const first = await adminJson('POST', '/api/console/samples');
-    expect(first).toEqual({ reports: 11, database: true, connection: true, schema: false });
+    expect(first).toEqual({ reports: 11, database: true, connection: true, schema: true });
     expect(await adminJson('POST', '/api/console/samples')).toEqual({ reports: 0, database: false, connection: false, schema: false });
     const ini = fs.readFileSync(path.join(s.data, 'dbxconnections.ini'), 'utf8');
     expect(ini).toContain('[SAMPLES]\nDriverName=ADO.NET\nProviderFactory=SQLiteCore\nParam.DataSource=ejemplos/samples.db\nParam.Mode=ReadOnly');

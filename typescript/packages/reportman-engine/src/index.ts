@@ -115,6 +115,8 @@ export type { ParameterDescription, ParameterOption, ParameterInput, ParameterJs
 export { ReportException, NoDataToPrintException } from './report/errors.js';
 export { ReportRuntime, MAX_PAGENUM } from './report/report.js';
 export type { ReportProgress, ReportRuntimeOptions } from './report/report.js';
+// The identifier of an expression item (its Identifier), as a designer lists it apart
+export { EvalIdenExpression } from './report/identifiers.js';
 export { prepareReport, ReportRun } from './report/run.js';
 export type { PrepareReportOptions, ParametersOptions } from './report/run.js';
 export { convertToDotNet } from './report/convert.js';

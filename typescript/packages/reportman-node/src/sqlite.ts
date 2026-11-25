@@ -30,6 +30,15 @@ class ProviderError extends Error {
   }
 }
 
+/**
+ * SqliteException of Microsoft.Data.Sqlite: "SQLite Error 1: 'no such table: X'." (the primary
+ * result code of the error, without its extended part, and the message of SQLite).
+ */
+function sqliteError(e: unknown): Error {
+  const code = typeof (e as { errcode?: unknown }).errcode === 'number' ? (e as { errcode: number }).errcode & 0xff : 1;
+  return new Error(`SQLite Error ${code}: '${e instanceof Error ? e.message : String(e)}'.`);
+}
+
 /** SqliteValueReader.Sqlite3AffinityType of a declared type. */
 function affinity(declared: string | null): 'INTEGER' | 'TEXT' | 'BLOB' | 'REAL' {
   if (declared === null) return 'BLOB';
@@ -131,13 +140,18 @@ class SqliteConnection implements DataConnection {
     try {
       stmt = this.db.prepare(command.sql);
     } catch (e) {
-      throw new Error('SQLite Error 1: ' + (e as Error).message);
+      throw sqliteError(e);
     }
     stmt.setReadBigInts(true);
     stmt.setReturnArrays(true);
     const args: Record<string, null | bigint | number | string | Uint8Array> = {};
     for (const [k, v] of bound) args[k] = v;
-    const rows = stmt.all(args) as unknown as unknown[][];
+    let rows: unknown[][];
+    try {
+      rows = stmt.all(args) as unknown as unknown[][];
+    } catch (e) {
+      throw sqliteError(e);
+    }
     const cols = stmt.columns();
     const first = rows[0];
     const columns: DataColumnInfo[] = cols.map((c, i) => {
