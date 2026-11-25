@@ -21,8 +21,10 @@
     "check:dfm": "node tools/check-dfm.mjs",
     "demo": "node demo/demo.mjs",
     "version:set": "node tools/set-version.mjs",
-    "release:next": "node tools/set-version.mjs --check && npm run clean && npm run build && npm test && npm run check:dist && node tools/release.mjs --tag next",
-    "release:publish": "node tools/release.mjs --tag next"
+    "release:next": "node tools/set-version.mjs --check && npm run clean && npm run build && npm run build:designer && npm test && npm run test:designer && npm run check:dist && node tools/release.mjs --tag next",
+    "release:publish": "node tools/release.mjs --tag next",
+    "build:designer": "cd designer && npm ci --no-audit --no-fund && npm run build:package",
+    "test:designer": "cd designer && npm test"
   },
   "engines": {
     "node": ">=22.12"

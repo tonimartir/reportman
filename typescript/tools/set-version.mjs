@@ -41,7 +41,9 @@ function stamp(pkg, version) {
 const packageDirs = fs
   .readdirSync(path.join(root, 'packages'))
   .map((d) => path.join(root, 'packages', d))
-  .filter((d) => fs.existsSync(path.join(d, 'package.json')));
+  .filter((d) => fs.existsSync(path.join(d, 'package.json')))
+  // The Angular library of the web designer (not an npm workspace, not published yet)
+  .concat([path.join(root, 'designer', 'projects', 'reportman-designer')]);
 
 const arg = process.argv[2];
 if (arg === '--check') {

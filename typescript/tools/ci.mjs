@@ -37,7 +37,10 @@ const TAR = process.platform === 'win32' ? join(process.env.SystemRoot ?? 'C:\\W
 const STEPS = [
   ['npm ci', ['ci', '--no-audit', '--no-fund']],
   ['build', ['run', 'build']],
+  // The web designer: its Angular workspace (designer/, not an npm workspace) and the element package
+  ['build:designer', ['run', 'build:designer']],
   ['test', ['test']],
+  ['test:designer', ['run', 'test:designer']],
   ['check:pure-js', ['run', 'check:pure-js']],
   ['check:dist', ['run', 'check:dist']],
   // The expression parity in a Chromium-based browser of the computer (skipped where there is none)
