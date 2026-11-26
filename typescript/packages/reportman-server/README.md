@@ -139,7 +139,9 @@ them.
   before are fine.
 - **Fastify**: `fastify.register(fastifyPlugin(server))`.
 - **Anything else**: `server.handle({ method, path, query, headers, body })` gives
-  `{ status, headers, body }`.
+  `{ status, headers, body }`, or `{ status, headers, stream }` for an answer that arrives in parts
+  (the AI of `@reportman/designer-server`): write each part as it comes. The request's `signal`
+  tells a server that the client went away; `nodeHandler` and `fastifyPlugin` do both.
 
 A key goes in the `X-ReportmanServer-ApiKey` header, or as `apikey` in the query for plain links.
 **Without any key (in `apiKeys` or `apikeys.json`) the reports API is open**: only for a server

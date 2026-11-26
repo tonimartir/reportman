@@ -2,6 +2,8 @@
 // ones of node:http) and Fastify.
 
 import type { IncomingMessage, ServerResponse as NodeResponse } from 'node:http';
+import { Readable } from 'node:stream';
+import type { ReadableStream as NodeWebStream } from 'node:stream/web';
 import type { HttpServerLike, ServerRequest, ServerResponse } from './server.js';
 
 /** The body of a node:http request, or of one a framework already read (Express's body parsers). */
@@ -38,9 +40,50 @@ export async function toServerRequest(req: IncomingMessage & { body?: unknown; o
   return { method: req.method ?? 'GET', path: url.pathname, query: url.searchParams, headers, body: await readBody(req), remoteAddress: req.socket?.remoteAddress, raw: req };
 }
 
+/**
+ * Aborts when the client goes away before the answer ends (the response closes unfinished): the
+ * signal of the request, for a server that relays a long answer.
+ */
+function clientGone(res: NodeResponse): AbortSignal {
+  const controller = new AbortController();
+  res.on('close', () => {
+    if (!res.writableFinished) controller.abort(new Error('The client closed the connection.'));
+  });
+  return controller.signal;
+}
+
+/** Writes a body that arrives in parts as each one comes; cancelled when the client goes away. */
+async function pipeStream(res: NodeResponse, stream: ReadableStream<Uint8Array>): Promise<void> {
+  const reader = stream.getReader();
+  const stop = (): void => {
+    reader.cancel().catch(() => undefined);
+  };
+  res.on('close', stop);
+  try {
+    // The headers now: a client waits for the first part of a long answer with them
+    res.flushHeaders();
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (res.destroyed) return;
+      res.write(value);
+    }
+    res.end();
+  } catch {
+    // The source failed after the headers went: the client sees the connection cut
+    res.destroy();
+  } finally {
+    res.off('close', stop);
+  }
+}
+
 function send(res: NodeResponse, response: ServerResponse): void {
   res.statusCode = response.status;
   for (const [k, v] of Object.entries(response.headers)) res.setHeader(k, v);
+  if (response.stream !== undefined) {
+    void pipeStream(res, response.stream);
+    return;
+  }
   res.setHeader('content-length', String(response.body.length));
   res.end(response.body);
 }
@@ -57,8 +100,9 @@ export function nodeHandler(server: HttpServerLike): (req: IncomingMessage, res:
       next();
       return;
     }
+    const signal = clientGone(res);
     toServerRequest(req)
-      .then((request) => server.handle(request))
+      .then((request) => server.handle({ ...request, signal }))
       .then((response) => send(res, response))
       .catch((e: unknown) => {
         if (next !== undefined) next(e);
@@ -78,7 +122,9 @@ interface FastifyLike {
 interface FastifyReplyLike {
   code(status: number): FastifyReplyLike;
   header(name: string, value: string): FastifyReplyLike;
-  send(body: Uint8Array): void;
+  send(body: Uint8Array | Readable): void;
+  /** Fastify's node:http response (always there in Fastify): the signal of the request watches it. */
+  raw?: NodeResponse;
 }
 
 /**
@@ -91,10 +137,12 @@ export function fastifyPlugin(server: HttpServerLike): (fastify: FastifyLike, _o
     const handler = async (request: { raw: IncomingMessage; body?: unknown }, reply: FastifyReplyLike): Promise<void> => {
       const raw = request.raw as IncomingMessage & { body?: unknown };
       raw.body = request.body;
-      const response = await server.handle(await toServerRequest(raw));
+      const signal = reply.raw !== undefined ? clientGone(reply.raw) : undefined;
+      const response = await server.handle({ ...(await toServerRequest(raw)), signal });
       reply.code(response.status);
       for (const [k, v] of Object.entries(response.headers)) reply.header(k, v);
-      reply.send(response.body);
+      // A body in parts goes as a Node stream, which Fastify writes as it comes
+      reply.send(response.stream !== undefined ? Readable.fromWeb(response.stream as NodeWebStream) : response.body);
     };
     for (const route of server.routes()) fastify.all(route, handler);
     done();

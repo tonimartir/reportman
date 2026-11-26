@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { sqlite } from '@reportman/node';
 import { decodeCp437 } from '@reportman/export';
-import { createReportServer, fastifyPlugin, nodeHandler, type ReportServerOptions } from '@reportman/server';
+import { createReportServer, fastifyPlugin, nodeHandler, type HttpServerLike, type ReportServerOptions } from '@reportman/server';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const samples = path.resolve(here, '../../../../samples');
@@ -210,5 +210,78 @@ describe('@reportman/server: adapters', () => {
     await routes.get('/api/reports/*')!({ raw }, reply);
     expect(sent.status).toBe(200);
     expect(JSON.parse(new TextDecoder().decode(sent.body))).toEqual(['Other', 'SAMPLES']);
+  });
+
+  it('writes a body that arrives in parts as each part comes, and tells the server when the client goes', async () => {
+    const encoder = new TextEncoder();
+    let cancelled = false;
+    let signal: AbortSignal | undefined;
+    let release: () => void = () => undefined;
+    const streaming: HttpServerLike = {
+      owns: () => true,
+      routes: () => ['/events'],
+      handle: async (request) => {
+        signal = request.signal;
+        return {
+          status: 200,
+          headers: { 'content-type': 'text/event-stream' },
+          body: new Uint8Array(0),
+          stream: new ReadableStream<Uint8Array>({
+            async start(controller) {
+              controller.enqueue(encoder.encode('data: 1\n\n'));
+              // The second part waits until the client has read the first one
+              await new Promise<void>((r) => (release = r));
+              controller.enqueue(encoder.encode('data: 2\n\n'));
+              controller.close();
+            },
+            cancel() {
+              cancelled = true;
+            },
+          }),
+        };
+      },
+    };
+    const server = http.createServer(nodeHandler(streaming));
+    await new Promise<void>((r) => server.listen(0, '127.0.0.1', r));
+    try {
+      const port = (server.address() as AddressInfo).port;
+      const reply = await fetch(`http://127.0.0.1:${port}/events`);
+      expect(reply.headers.get('content-length')).toBeNull();
+      const reader = reply.body!.getReader();
+      expect(new TextDecoder().decode((await reader.read()).value)).toBe('data: 1\n\n');
+      release();
+      expect(new TextDecoder().decode((await reader.read()).value)).toBe('data: 2\n\n');
+      expect((await reader.read()).done).toBe(true);
+      expect(signal?.aborted).toBe(false);
+
+      // A client that goes before the end: the signal aborts and the stream is cancelled
+      const gone = new AbortController();
+      const second = await fetch(`http://127.0.0.1:${port}/events`, { signal: gone.signal });
+      await second.body!.getReader().read();
+      gone.abort();
+      for (let i = 0; i < 50 && !(cancelled && signal?.aborted); i++) await new Promise((r) => setTimeout(r, 20));
+      expect(signal?.aborted).toBe(true);
+      expect(cancelled).toBe(true);
+      release();
+    } finally {
+      await new Promise<void>((r) => server.close(() => r()));
+    }
+
+    // Fastify: a Node stream, which it writes as it comes
+    const routes = new Map<string, (request: { raw: http.IncomingMessage; body?: unknown }, reply: unknown) => Promise<void> | void>();
+    fastifyPlugin(streaming)({ addContentTypeParser: () => undefined, all: (p: string, h: never) => routes.set(p, h) }, {}, () => undefined);
+    let sentBody: unknown;
+    const reply = { code: () => reply, header: () => reply, send: (b: unknown) => (sentBody = b) };
+    const raw = { url: '/events', method: 'GET', headers: {}, readableEnded: true } as unknown as http.IncomingMessage;
+    const handled = routes.get('/events')!({ raw }, reply);
+    await handled;
+    const parts: string[] = [];
+    const reading = (async () => {
+      for await (const chunk of sentBody as AsyncIterable<Uint8Array>) parts.push(new TextDecoder().decode(chunk));
+    })();
+    await new Promise((r) => setTimeout(r, 20));
+    release();
+    await reading;
+    expect(parts.join('')).toBe('data: 1\n\ndata: 2\n\n');
   });
 });

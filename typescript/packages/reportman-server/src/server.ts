@@ -51,6 +51,11 @@ export interface ServerRequest {
    * request), for a hook that looks at the program's own session (the designer's authorize).
    */
   raw?: unknown;
+  /**
+   * Aborted when the client goes away before the answer ends, when the adapter can tell (nodeHandler,
+   * fastifyPlugin): a server that relays a long answer stops the call it relays.
+   */
+  signal?: AbortSignal;
 }
 
 /** A server an adapter (nodeHandler, fastifyPlugin) plugs into a framework. */
@@ -68,6 +73,11 @@ export interface ServerResponse {
   status: number;
   headers: Record<string, string>;
   body: Uint8Array;
+  /**
+   * A body that arrives in parts (the events of an AI answer), written as each part comes, with no
+   * Content-Length; `body` is then empty. The adapters cancel it when the client goes away.
+   */
+  stream?: ReadableStream<Uint8Array>;
 }
 
 /** An API key: the aliases whose reports it runs ('*' all of them). */
