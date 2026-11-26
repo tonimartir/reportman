@@ -4,11 +4,13 @@ Report Manager's web report designer as a custom element, `<reportman-designer>`
 whatever its framework (or none). It brings its own Angular, Material, the designer
 (`@reportman/ngx-designer`) and Monaco, inside a shadow root: the page's styles do not reach it and
 its styles do not reach the page. It talks to a Reportman designer server: **@reportman/designer-server**
-(Node.js) or **Reportman.Server** (.NET). Both can serve the element themselves.
+(Node.js) or **Reportman.Server** (.NET). Both can serve the element themselves, and both pass its
+AI copilot (it designs and changes reports from a request in plain words) on to Reportman AI.
 
 **Live demo:** <https://reportman.es/demo/designer/> — the designer in your browser on the sample
 reports, with nothing installed: its server is a service worker of the page
-(`@reportman/designer-server/browser`, the JavaScript engine and the sample SQLite database).
+(`@reportman/designer-server/browser`, the JavaScript engine and the sample SQLite database). Make a
+new report there and the copilot designs it from a sentence.
 
 The npm package `@reportman/designer` is this element built (`typescript/packages/reportman-designer`);
 the sources are in the Angular workspace `typescript/designer` of this repository.
@@ -34,13 +36,15 @@ The element takes the height its container gives it (at least 480 px).
 | `report` | `ALIAS/path.rep`, the report to design (required) |
 | `server` | origin of the designer server; the page's origin by default |
 | `api-base` | where its routes hang: `{api-base}/designer`, `{api-base}/ai/`, `{api-base}/ai-login`; `/api` by default. A host that answers per company or per tenant puts it in the route, e.g. `/api/companies/12/designer` (the server's `DesignerOptions.ApiBase`) |
-| `ai-account` | `login` (default): the person logs into Reportman AI from the chat. `host`: the host's server puts the person's account on every AI call (`IAiCredentials`) and says the credits to show (`IAiAccountStatus`); the chat neither logs in nor out |
+| `ai-account` | `login` (default): the person logs into Reportman AI from the chat. `host`: the host's server puts the person's account on every AI call (`IAiCredentials` of Reportman.Server, `credentials` of @reportman/designer-server) and says the credits to show (`IAiAccountStatus`, `accountStatus`); the chat neither logs in nor out |
 | `lang` | `es` (default), `en`, `ca`, `fr`, `de`, `it`, `pt` or `zh`; any other is English |
 | `readonly` | no Save; designing and previewing still work |
 | `closable` | a close button, which only fires `closed` |
 | `no-ai` | the element without the Reportman AI copilot |
 | `ai-install-id` | the server's installation for Reportman AI; asked to the server (`/api/session/config`) when missing, and not needed with `ai-account="host"` or `no-ai` |
 | `ai-callback` | the path of the page's origin where the AI's Google/Microsoft login comes back; `ai-callback.html` next to the script by default |
+| `design-prompt` | a new report's request: the copilot designs it as soon as the report opens (the new report wizard of Reportman.Server does it so) |
+| `design-subschema` | with `design-prompt`, the subschema of the local schema file of the report's connection the copilot designs with; without it, the one a dataset of the report names, else the first |
 
 Property `getToken`: a function (it may be async) returning the page's session as a Bearer token,
 added to every call of the designer.
@@ -84,7 +88,9 @@ Reportman.Server the app serves its own copy.
 - Angular also writes its emulated component styles to the page's head; they are scoped by
   `_ngcontent` attributes and do not touch the page.
 
-One designer per page: the element's configuration is one per script.
+One designer at a time per page: the element's configuration is one per script. A page may close
+it (remove the element) and open another, for another report or in a new dialog: the element's
+stylesheet is read once and given to each new one.
 
 ## Building
 

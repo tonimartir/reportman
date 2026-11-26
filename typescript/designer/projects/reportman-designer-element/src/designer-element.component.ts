@@ -28,7 +28,9 @@ const LABEL_KEYS: Record<keyof DesignerLabels, string> = {
  * Reportman AI from the chat, the default; host: the host's server puts the person's account),
  * ai-install-id (asked to Reportman.Server when missing and the account is not the host's),
  * ai-callback (the path of this origin where the AI's login comes back; ai-callback.html next to
- * this script by default).
+ * this script by default), design-prompt (a new report's request: the copilot designs it as soon as
+ * the report opens, as the new report wizard of Reportman.Server does) and design-subschema (the
+ * subschema of the local schema file of the report's connection the copilot designs it with).
  * Property getToken: a function giving the page's session as a Bearer token.
  * Events: saved ({ reportName }), executed (the preview, also shown here), closed, sessionlost.
  */
@@ -88,7 +90,9 @@ export class DesignerElementComponent implements OnInit {
   readonly noAi = input(false, { transform: booleanAttribute });
   readonly aiInstallId = input('');
   readonly aiCallback = input('');
-  readonly getToken = input<(() => string | null | undefined | Promise<string | null | undefined>) | null>(null);
+  readonly designPrompt = input('');
+  readonly designSubschema = input('');
+  readonly getToken =input<(() => string | null | undefined | Promise<string | null | undefined>) | null>(null);
 
   readonly saved = output<{ reportName: string }>();
   readonly executed = output<ReportResult>();
@@ -102,6 +106,7 @@ export class DesignerElementComponent implements OnInit {
   // of them starts, and the account would start before the attributes are read (ngOnInit).
   private injector = inject(Injector);
   @ViewChild('editor') editor?: ReportEditorComponent;
+  @ViewChild(CopilotPanelComponent) copilot?: CopilotPanelComponent;
 
   /** Shown once the stylesheet is in and the configuration is known. */
   readonly ready = signal(false);
@@ -151,6 +156,19 @@ export class DesignerElementComponent implements OnInit {
     this.ready.set(!!this.report());
     // The AI account (or this installation's guest credits) for the copilot's card and gauge.
     if (elementConfig.ai) void this.injector.get(AiAccountService).checkStatus();
+    const prompt = this.designPrompt().trim();
+    if (elementConfig.ai && prompt.length > 0 && this.ready()) void this.startDesign(prompt, this.designSubschema().trim());
+  }
+
+  /**
+   * A new report's request (design-prompt): the copilot's tab shows, takes the subschema chosen for it
+   * and designs with that text, once the report and the chat are there.
+   */
+  private async startDesign(prompt: string, subschema: string): Promise<void> {
+    for (let i = 0; i < 100 && (!this.copilot || !this.editor); i++) await new Promise((r) => setTimeout(r, 100));
+    if (!this.copilot || !this.editor) return;
+    this.editor.showCopilot();
+    await this.copilot.startDesignPrompt(prompt, 0, 0, subschema);
   }
 
   async save(): Promise<void> {
@@ -191,14 +209,35 @@ async function askInstallId(configUrl: string): Promise<string> {
   }
 }
 
-/** The designer's stylesheet inside the shadow root (the page's own never reach in). */
-function addStylesheet(root: ShadowRoot, href: string): Promise<void> {
-  return new Promise((resolve) => {
+/** The text of the designer's stylesheet, read once for every element of the page (null: it cannot be read). */
+let stylesheetText: Promise<string | null> | undefined;
+
+/**
+ * The designer's stylesheet inside the shadow root (the page's own never reach in), first, before the
+ * styles of the components. Its text is read once and goes in as a <style>: a <link> in the shadow root
+ * of a new element (a page that closes the designer and opens another) may never fire its load in
+ * Chrome while the element before it is being destroyed, and the designer would wait for it forever.
+ * Where the text cannot be read (an element from another origin without CORS), a <link>, waited for
+ * three seconds at most.
+ */
+async function addStylesheet(root: ShadowRoot, href: string): Promise<void> {
+  stylesheetText ??= fetch(href)
+    .then((reply) => (reply.ok ? reply.text() : null))
+    .catch(() => null);
+  const text = await stylesheetText;
+  if (text !== null) {
+    const style = document.createElement('style');
+    style.textContent = text;
+    root.prepend(style);
+    return;
+  }
+  await new Promise<void>((resolve) => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
     link.onload = () => resolve();
     link.onerror = () => resolve();
+    setTimeout(resolve, 3000);
     root.prepend(link);
   });
 }

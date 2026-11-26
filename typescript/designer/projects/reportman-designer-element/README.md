@@ -37,6 +37,8 @@ The element takes the height its container gives it (at least 480 px).
 | `no-ai` | the element without the Reportman AI copilot |
 | `ai-install-id` | the server's installation for Reportman AI; asked to the server (`/api/session/config`) when missing, and not needed with `ai-account="host"` or `no-ai` |
 | `ai-callback` | the path of the page's origin where the AI's Google/Microsoft login comes back; `ai-callback.html` next to the script by default |
+| `design-prompt` | a new report's request: the copilot designs it as soon as the report opens (the new report wizard of Reportman.Server does it so) |
+| `design-subschema` | with `design-prompt`, the subschema of the local schema file of the report's connection the copilot designs with; without it, the one a dataset of the report names, else the first |
 
 Property `getToken`: a function (it may be async) returning the page's session as a Bearer token,
 added to every call of the designer.
@@ -80,7 +82,9 @@ Reportman.Server the app serves its own copy.
 - Angular also writes its emulated component styles to the page's head; they are scoped by
   `_ngcontent` attributes and do not touch the page.
 
-One designer per page: the element's configuration is one per script.
+One designer at a time per page: the element's configuration is one per script. A page may close
+it (remove the element) and open another, for another report or in a new dialog: the element's
+stylesheet is read once and given to each new one.
 
 ## Building
 
