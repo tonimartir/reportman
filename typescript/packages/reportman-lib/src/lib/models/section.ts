@@ -26,6 +26,12 @@ export class Section extends PrintItem {
   public vertDesp = false;
   // C# parity: the constructor first sets the table, field and search field of the external section
   // to REPMAN_REPORTS, REPORT and REPORT_NAME and then clears them.
+  //
+  // External sections (Report files sharing sections), compatibility only (26-11-2026), as the C#
+  // engine: these six properties are read and written so that a report keeps them, but no section is
+  // loaded from its file or its database; the section prints the items the .rep carries (the copy the
+  // Delphi designer saves with it). Only the Delphi engine loads them. The web designer does not show
+  // them. Until somebody asks for them.
   public externalFilename = "";
   public externalConnection = "";
   public externalTable = "";

@@ -253,19 +253,9 @@ export class DesignerInterfaceSection extends DesignerInterfaceSize {
       lvalues?.push(this.section.forcePrint);
     }
 
-    /* // External section
-    lnames.push(tr(830));
-    ltypes.push(tr(830));
-    lhints.push(ref);
-    lcat.push(cat);
-    if (lvalues) lvalues.push(this.FSection.ExternalFilename);
-
-    // External Data
-    lnames.push(tr(861));
-    ltypes.push(tr(861));
-    lhints.push(ref);
-    lcat.push(cat);
-    if (lvalues) lvalues.push(this.FSection.GetExternalDataDescription());*/
+    // External path (830) and External database (861) are not shown, on purpose (26-11-2026): the
+    // TypeScript engine, as the C# one, keeps them for compatibility and loads no external section
+    // (the section prints the items the .rep carries). Until somebody asks for them.
 
     // Back image expression
     lnames.push("backExpression");
@@ -447,8 +437,6 @@ export class DesignerInterfaceSection extends DesignerInterfaceSize {
               false
             )
           : "";
-      // case "externalFilename":
-      //  return this.section.externalFilename;
       case "backExpression":
         return this.section.backExpression;
       case "streamBase64":

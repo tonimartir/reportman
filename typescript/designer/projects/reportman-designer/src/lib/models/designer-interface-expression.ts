@@ -10,6 +10,12 @@ import { DesignerInterfaceText } from "./designer-interface-text";
 // Index in the dropdown -> ParamType numeric value:
 const DATATYPE_INDEX_TO_PARAMTYPE = [16, 0, 1, 2, 6, 3, 5, 4, 7];
 
+/**
+ * The properties of an expression. The six of the plain text export (Export Expression, Exp. Format,
+ * Exp. Line, Exp. Position, Exp. Size, Exp. New Line), which the Delphi designer shows, are left out
+ * on purpose (26-11-2026): very rarely used, hard to adjust, and no export of the TypeScript engine
+ * reads them. They stay in the model (deprecated) so a report keeps them; until somebody asks for them.
+ */
 export class DesignerInterfaceExpression extends DesignerInterfaceText {
   constructor(
     nreport: Report,
