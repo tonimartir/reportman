@@ -55,12 +55,15 @@ interface AiRequest {
           <!-- The dataset's own choice, as the copilot's list: it never moves the copilot's. -->
           <rp-schema-selector class="rp-sql-schema" [choice]="schemas" (chosen)="schemaChosen($event)"></rp-schema-selector>
         }
-        <button type="button" class="rpd-tool rpd-tool-text rp-sql-ai-toggle" [class.is-active]="ai.sqlAutoComplete()" (click)="toggleAi()"
-          [matTooltip]="t.t('Ai_AutoCompleteHint')" [matTooltipShowDelay]="300" [attr.aria-pressed]="ai.sqlAutoComplete()" [attr.aria-label]="t.t('Ai_AutoCompleteHint')">
-          <span class="material-icons" aria-hidden="true">auto_awesome</span> {{ t.t('Ai_AutoComplete') }}
-        </button>
-        @if (ai.sqlAutoComplete()) {
-          <rp-ai-usage-header class="rp-sql-usage" [tracker]="tracker" [showGauge]="false" [compact]="true" [showTail]="false" scope="sql" (stop)="stopAi()"></rp-ai-usage-header>
+        <!-- The AI switch only where the AI is part of the designer (not with the element's no-ai) -->
+        @if (aiShown) {
+          <button type="button" class="rpd-tool rpd-tool-text rp-sql-ai-toggle" [class.is-active]="ai.sqlAutoComplete()" (click)="toggleAi()"
+            [matTooltip]="t.t('Ai_AutoCompleteHint')" [matTooltipShowDelay]="300" [attr.aria-pressed]="ai.sqlAutoComplete()" [attr.aria-label]="t.t('Ai_AutoCompleteHint')">
+            <span class="material-icons" aria-hidden="true">auto_awesome</span> {{ t.t('Ai_AutoComplete') }}
+          </button>
+          @if (ai.sqlAutoComplete()) {
+            <rp-ai-usage-header class="rp-sql-usage" [tracker]="tracker" [showGauge]="false" [compact]="true" [showTail]="false" scope="sql" (stop)="stopAi()"></rp-ai-usage-header>
+          }
         }
       }
     </div>
@@ -137,6 +140,11 @@ export class SqlEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   private schemaTouched = false;
   private initialized = false;
   private schemaStart = 0;
+
+  /** Whether the AI is part of this designer (DesignerAi.enabled: false with the element's no-ai). */
+  get aiShown(): boolean {
+    return this.ai !== null && (this.ai.enabled?.() ?? true);
+  }
 
   constructor(public t: TranslationService, @Optional() @Inject(DESIGNER_AI) public ai: DesignerAi | null) {
     this.schemas = ai ? new SchemaChoice({ scope: 'sql' }) : null;
@@ -446,7 +454,7 @@ export class SqlEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     const model = editor.getModel();
     if (!ai || !model) return;
     const owner = this;
-    const enabled = () => ai.sqlAutoComplete() && ai.available();
+    const enabled = () => (ai.enabled?.() ?? true) && ai.sqlAutoComplete() && ai.available();
     for (const lang of ['sql', 'pgsql', 'mysql']) {
       this.disposables.push(monaco.languages.registerInlineCompletionsProvider(lang, {
         provideInlineCompletions: async (m: Monaco.editor.ITextModel, position: Monaco.Position, context: Monaco.languages.InlineCompletionContext) => {
