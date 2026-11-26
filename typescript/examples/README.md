@@ -32,6 +32,10 @@ npx reportman-pdf invoices.rep --describe --sqlite SAMPLES=samples.db           
 npx reportman-pdf invoices.rep -o invoices.pdf --sqlite SAMPLES=samples.db -paramFIRST_ORDER=7 -paramLAST_ORDER=9
 ```
 
+`letter.rep` (HTML text) and `international.rep` (eight scripts) need the TrueType fonts of the
+system: add `--fonts` (or `--font-folder <folder>`). Which fonts, on Windows, Linux, macOS and in
+Docker: [Fonts](../packages/reportman-node/README.md#fonts) in the README of `@reportman/node`.
+
 From a program (ES module; a CommonJS program loads it the same way with `require`):
 
 ```js

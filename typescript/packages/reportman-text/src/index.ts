@@ -8,7 +8,7 @@ export { PDFFont } from './pdffont.js';
 export { getStdLineSpacing, type1FontToPdfFontName, pdfNameOf, utf8Bytes } from './stdfonts.js';
 export type { StdLineSpacing } from './stdfonts.js';
 export { unicodeToWin1252, win1252Byte } from './win1252.js';
-export { TextCanvas, CONS_PDFRES, PDFA3_NO_FONT_PROVIDER, ShaperNotSupportedError, needsUnicodeFont } from './textcanvas.js';
+export { TextCanvas, CONS_PDFRES, PDFA3_NO_FONT_PROVIDER, NEEDS_TRUETYPE_FONTS, ShaperNotSupportedError, needsUnicodeFont } from './textcanvas.js';
 export type { TextExtentResult } from './textcanvas.js';
 export { StandardTextMeasurer } from './measurer.js';
 // The TrueType provider

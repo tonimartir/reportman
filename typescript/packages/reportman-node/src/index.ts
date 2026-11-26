@@ -22,6 +22,7 @@ export {
   ParameterProblem,
   NoDataToPrintException,
   NotSupportedYetError,
+  NeedsFontsError,
   ReportException,
   SynchronousDataRequiredError,
   isSynchronousDataRequired,

@@ -306,7 +306,7 @@ describe('texts with the standard fonts', () => {
     page.objects.push(barcode);
     const { ctx, result } = await draw(meta);
     expect(result.skipped.map((s) => s.objectIndex)).toEqual([1]);
-    expect(result.skipped[0]!.reason).toMatch(/Right to left text needs a text shaper/);
+    expect(result.skipped[0]!.reason).toMatch(/Right to left text needs TrueType fonts/);
     // The objects before and after it are drawn
     expect(ctx.ops('fillText').map((c) => c.text).join('')).toBe('αβχAfter');
   });

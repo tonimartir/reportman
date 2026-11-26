@@ -200,10 +200,9 @@ describe('unions of datasets (Mybase)', () => {
   });
 });
 
-describe('not supported yet', () => {
-  // product-catalog (barcodes) runs: barcode-parity.test.ts; fishes (images) runs:
-  // image-parity.test.ts (img-fishes, without its chart); monthly-sales, sales-by-category and
-  // fishes with its chart run: chart-parity.test.ts
+describe('without TrueType fonts', () => {
+  // HTML text is laid out by the TrueType provider (freetype-parity.test.ts runs letter with it);
+  // with the standard 14 PDF fonts the error says which fonts to give
   it.each(['letter'])(
     'fails clearly for the sample %s (HTML text)',
     async (name) => {
@@ -213,7 +212,7 @@ describe('not supported yet', () => {
         data: sqliteHost(samplesDb),
         host: { now: () => RpDateTime.create(2026, 1, 1), fileExists: () => false },
       });
-      await expect(run.execute()).rejects.toThrow(/is not supported yet by the TypeScript report engine/);
+      await expect(run.execute()).rejects.toThrow(/^HTML text \(the item TRpExpression\d+\) needs TrueType fonts.*the fonts option of @reportman\/node/);
     },
   );
 });

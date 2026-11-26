@@ -45,15 +45,27 @@ Node 22.12 or later. The packages are ES modules only; a CommonJS program loads 
 
 ## Fonts
 
+A report that only prints Latin text with the standard fonts needs nothing. HTML text, right to
+left text, other scripts (Greek, Cyrillic, Arabic, Hebrew, Devanagari, Thai, Japanese...),
+embedded TrueType fonts and PDF/A-3 need the TrueType fonts of the machine, which the engine
+embeds only when it is given them:
+
 ```ts
 const report = await openReport('letter.rep', {
   connections: { SAMPLES: sqlite('samples.db') },
-  fonts: { folders: ['./fonts'] },   // the system font folders and these, scanned once
+  fonts: {},                                    // the font folders of the system
+  // fonts: { folders: ['./fonts'] },           // a folder of the application first, then the system ones
+  // fonts: { folders: ['./fonts'], systemFolders: false },   // only that folder: the same PDF everywhere
 });
 ```
 
+On the command line: `npx reportman-pdf letter.rep --fonts` (or `--font-folder ./fonts`). The
+folders are scanned once per process.
+
 - Without `fonts` (or `fonts: false`) the PDF uses the standard 14 PDF fonts, as the C# device
-  `PrintOutPDFStandard`: HTML text, right to left text and PDF/A-3 fail with a clear error.
+  `PrintOutPDFStandard`: they have only the characters of Windows-1252, so the others print as
+  `?` or as a similar Latin letter (Greek α as a), and HTML text, right to left text and PDF/A-3
+  fail with an error that says to give fonts.
 - With `fonts` the PDF is the one of the C# FreeType device (`PrintOutPDFFreeType`): each font is
   chosen by the report's font name and style (`WFontName` on Windows, `LFontName` elsewhere, or
   `platform`), a character the font lacks takes a font that has it, every text is shaped
@@ -62,6 +74,36 @@ const report = await openReport('letter.rep', {
   `@reportman/text` can be given instead, for fonts that are not files on the disk.
 - The fonts are read with fontkit: TrueType, OpenType CFF and collections. Type 1 fonts (`.pfb`)
   are not read, and a CFF2 (variable OpenType) font fails with a clear error.
+
+### On each system
+
+A report names a font for Windows (`WFontName`) and one for Linux and macOS (`LFontName`). The
+engine takes the one of the system it runs on, and a character that font lacks takes another font
+of the folders that has it. So the PDF depends on the fonts installed:
+
+| System | Folders of `fonts: {}` | What to install |
+|---|---|---|
+| Windows | `%WINDIR%\Fonts` and `%LOCALAPPDATA%\Microsoft\Windows\Fonts` | Nothing for the usual scripts: Arial, Nirmala UI (Devanagari), Leelawadee UI (Thai) and Yu Gothic (Japanese) come with Windows. |
+| Linux | The `<dir>` folders of `/etc/fonts/fonts.conf`, `/usr/share/fonts` and `/usr/local/share/fonts` | The families the reports name, or others with the same characters. Debian and Ubuntu: `apt install fonts-dejavu-core fonts-liberation fonts-noto-core fonts-noto-cjk` (Liberation Sans has the metrics of Arial; `fonts-noto-cjk`, for Chinese, Japanese and Korean, is large). Other distributions: their DejaVu, Liberation and Noto packages. |
+| macOS | `/Library/Fonts`, `~/Library/Fonts` and `/System/Library/Fonts` | Helvetica, Arial and fonts for the other scripts come with macOS, and the engine takes them for the characters the named family lacks. Install the families the reports name (DejaVu, Noto) for the PDF of Linux. |
+
+The slim Docker images of Node.js (`node:22-slim`, `node:22-alpine`) have no fonts at all:
+
+```dockerfile
+FROM node:22-slim
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      fonts-dejavu-core fonts-liberation fonts-noto-core fonts-noto-cjk \
+    && rm -rf /var/lib/apt/lists/*
+```
+
+For the same PDF on every machine, with nothing installed, put the font files (`.ttf`, `.otf`,
+`.ttc`, `.woff`, `.woff2`) in a folder of the application and give only that folder:
+`fonts: { folders: [path.join(__dirname, 'fonts')], systemFolders: false }`. The fonts of Windows
+are licensed with Windows: elsewhere, use free fonts such as Liberation Sans (for Arial), DejaVu
+and Noto, which allow embedding.
+
+The sample `international.rep` (nine languages, eight scripts) prints this at its top: the fonts it
+uses on each system and how to give them.
 
 ## The two steps
 

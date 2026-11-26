@@ -32,13 +32,18 @@ export const CONS_PDFRES = 72;
 /** The message of the C# engine when PDF/A-3 has no font provider. */
 export const PDFA3_NO_FONT_PROVIDER = 'No info provider for fonts, pdf conformance A3 requires embedded fonts';
 
-/** The error of a text that needs the shaper, which is not ported. */
+/**
+ * What a text the standard 14 PDF fonts cannot lay out says (the engine's HTML text check says the
+ * same): it needs the TrueType provider, which the host gives with its fonts.
+ */
+export const NEEDS_TRUETYPE_FONTS =
+  ' needs TrueType fonts, and the PDF has only the standard 14 PDF fonts: give it fonts (the fonts option of @reportman/node: ' +
+  "fonts: {} for the fonts of the system, fonts: { folders: ['./fonts'] } for a folder of its own; reportman-pdf --fonts)";
+
+/** The error of a text that needs the shaper and the TrueType provider, when there are no fonts. */
 export class ShaperNotSupportedError extends Error {
   constructor(what: string) {
-    super(
-      what +
-        ' needs a text shaper and a font provider (DirectWrite / HarfBuzz in C#); only the standard 14 PDF fonts are supported yet',
-    );
+    super(what + NEEDS_TRUETYPE_FONTS);
     this.name = 'ShaperNotSupportedError';
   }
 }

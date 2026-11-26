@@ -30,7 +30,7 @@ import { toUpperNet, trimNet } from '../util/chars.js';
 import { messageOf } from '../util/netexception.js';
 import { sampleStandardDeviation, standardDeviation } from '../util/doubleutil.js';
 import { ParamType, Variant, VariantType } from '../variant/variant.js';
-import { NotSupportedYetError } from '../data/errors.js';
+import { NeedsFontsError, NotSupportedYetError } from '../data/errors.js';
 import { ReportException } from './errors.js';
 import { EvalIdenExpression } from './identifiers.js';
 import type { ReportRuntime } from './report.js';
@@ -325,7 +325,7 @@ export class PrintItemText extends PrintPosItem {
   protected checkHtml(adriver: PrintOut | null = null): void {
     if (!this.isHtml) return;
     const driver = this.report.driver ?? adriver;
-    if (driver === null || !driver.supportsHtmlText()) throw new NotSupportedYetError('HTML text (the item ' + this.name + ')');
+    if (driver === null || !driver.supportsHtmlText()) throw new NeedsFontsError('HTML text (the item ' + this.name + ')');
   }
 
   /**

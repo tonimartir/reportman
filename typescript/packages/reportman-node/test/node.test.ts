@@ -193,9 +193,9 @@ describe('reportman-node: the fonts option', () => {
     const fonts = { systemFolders: false, folders: [dir], platform: 'windows' as const };
     expect(fontLibrary(fonts).keys().length).toBeGreaterThanOrEqual(4);
     const letter = path.join(samples, 'letter.rep');
-    // Without fonts HTML text needs the shaper the standard 14 fonts do not have
+    // Without fonts HTML text fails saying which fonts to give
     const standard = await openReport(letter, { connections: { SAMPLES: sqlite(samplesDb) } });
-    await expect(standard.executeToPdf({})).rejects.toThrow(/HTML text .* is not supported yet/);
+    await expect(standard.executeToPdf({})).rejects.toThrow(/HTML text \(the item \w+\) needs TrueType fonts.*fonts: \{\}/);
     const report = await openReport(letter, { connections: { SAMPLES: sqlite(samplesDb) }, fonts });
     const pdf = latin1(await report.executeToPdf({}, { compressed: false }));
     expect(pdf).toMatch(/\/BaseFont \/[A-Z]{6}\+Arial/);

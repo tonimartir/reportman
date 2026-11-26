@@ -41,6 +41,12 @@ The eleven samples, with pictures of their pages, their `.rep` files and their P
 | `--culture <name>` | the culture of the runs (`en-US`) |
 | `--standard-fonts` | the 14 standard PDF fonts instead of the TrueType fonts of the system |
 
+The PDF embeds the TrueType fonts of the machine, so what it shows depends on the fonts installed:
+a slim Docker image has none, and a Linux server needs the families its reports name (or others
+with the same characters). Which ones, on Windows, Linux, macOS and in Docker:
+[Fonts](https://github.com/tonimartir/reportman/tree/main/typescript/packages/reportman-node#fonts)
+in the README of `@reportman/node`.
+
 Reports saved by Delphi in a DFM form are served too when `@reportman/dfm` is installed next to
 the server (it converts them to XML as they are opened); reports saved as XML do not need it. SQLite is built in. For other databases
 install their drivers next to the server and they are used: `@reportman/driver-postgres`, `@reportman/driver-firebird`, `@reportman/driver-mysql`,

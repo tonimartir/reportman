@@ -102,7 +102,7 @@ describe('errors of the parts that are not ported', () => {
       ShaperNotSupportedError,
     );
     expect(() => measurer.textExtentLineInfo(newTextObjectStruct({ text: '<b>a</b>', fontSize: 10, isHtml: true }), { x: 1000, y: 0 })).toThrow(
-      /HTML text needs a text shaper/,
+      /HTML text needs TrueType fonts/,
     );
   });
   it('fails for forced complex shaping (printer fonts Recalculate)', () => {
