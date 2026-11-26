@@ -9,6 +9,9 @@ the SQL editor's data and tables) over folders of `.rep` files, with the connect
 The AI assistant is not part of it: it stays in Reportman.Server, and the designer runs with
 `no-ai`.
 
+**Live demo:** <https://reportman.es/demo/designer/> — the designer on the sample reports, answered
+in the browser by this package's protocol (see *Without Node.js* below).
+
 > Status: preview (`next`). The answers are compared with the ones of Reportman.Server in the
 > tests (`test/golden-http`). Reports are saved, exported and imported as the C# engine writes
 > them (the `.rep` XML writer of `@reportman/lib`).
@@ -48,6 +51,32 @@ A whole application to run: [`examples/designer-express`](https://github.com/ton
 (the sample reports, their SQLite database and the designer in Express). Mount it before
 `express.json()`, or give that parser a bigger limit: a report with pictures is bigger than its
 default 100 kB. `request.raw` in `authorize` is the framework's request (your session, your user).
+
+## Without Node.js: `@reportman/designer-server/browser`
+
+The protocol and the operations of the designer use no Node.js API: `@reportman/designer-server/browser`
+gives them over a backend of your own, so a page can answer its designer itself — a service worker
+that takes the requests of the element's `api-base` — or another JavaScript server can. The backend
+says where the reports are stored and how a report runs (the engine with its connections, culture,
+clock and fonts); the live demo keeps the reports in the browser's Cache Storage and runs them on
+sql.js.
+
+```ts
+import { DesignerOperations, DesignerProtocol, type DesignerBackend } from '@reportman/designer-server/browser';
+
+const backend: DesignerBackend = {
+  store,                                   // open(alias, path) / save(alias, path, bytes, eTag)
+  open: (model, reportAlias, layout) => runner(model, layout), // prepareRun() and executeToPdf()
+  fingerprint: () => 'my-database',        // a key of the caches for a connection alias
+  schemaConnection: (alias) => ({ kind: 'direct', alias, family: 'sqlite', factory, definition: null, keepsFile: false, fingerprint: 'my-database' }),
+};
+const protocol = new DesignerProtocol(new DesignerOperations(backend), { authorize: () => true, basePath: '/designer' });
+// in a service worker: if (protocol.owns(url.pathname)) event.respondWith(answer(protocol.handle(request)))
+```
+
+`DesignerProtocol` refuses everything unless it is given `authorize`: give it one that says who may
+design when the protocol answers other people (in a page's own service worker, everyone is the visitor).
+The Node server (`createDesignerServer`) is this protocol over `nodeDesignerBackend`.
 
 ## Security
 

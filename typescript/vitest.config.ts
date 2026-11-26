@@ -24,10 +24,17 @@ const packages = [
 
 export default defineConfig({
   resolve: {
-    alias: packages.map((name) => ({
-      find: new RegExp(`^@reportman/${name}$`),
-      replacement: fileURLToPath(new URL(`./packages/reportman-${name}/src/index.ts`, import.meta.url)),
-    })),
+    alias: [
+      // The designer's protocol without Node.js (the entry of a page or a service worker)
+      {
+        find: /^@reportman\/designer-server\/browser$/,
+        replacement: fileURLToPath(new URL('./packages/reportman-designer-server/src/browser.ts', import.meta.url)),
+      },
+      ...packages.map((name) => ({
+        find: new RegExp(`^@reportman/${name}$`),
+        replacement: fileURLToPath(new URL(`./packages/reportman-${name}/src/index.ts`, import.meta.url)),
+      })),
+    ],
   },
   test: {
     include: ['packages/*/test/**/*.test.ts', 'tools/**/*.test.ts'],

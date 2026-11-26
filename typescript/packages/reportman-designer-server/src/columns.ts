@@ -3,7 +3,6 @@
 // Reportman.Server): a dataset is executed once per SQL text and connection, then its columns are
 // served from here for fifteen minutes, until it changes or the designer asks to refresh.
 
-import { createHash } from 'node:crypto';
 import { runAsync, type ReportRun } from '@reportman/engine';
 import type { DataInfo, Report } from '@reportman/lib';
 
@@ -140,5 +139,6 @@ export function datasetKey(model: Report, dinfo: DataInfo, connection: (database
     visiting.delete(source.toUpperCase());
   }
   visiting.delete(dinfo.alias.toUpperCase());
-  return 'dscols|' + dinfo.alias.toUpperCase() + '|union|' + createHash('sha256').update(parts.join('|')).digest('hex');
+  // The whole definition, not a digest of it: the key of a map in memory (and no node:crypto)
+  return 'dscols|' + dinfo.alias.toUpperCase() + '|union|' + parts.join('|');
 }

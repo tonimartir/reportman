@@ -1,14 +1,16 @@
 // The designer operations of Reportman.Server (Reportman.Designer.Server's DesignerService), one by
-// one, over the folder store and the engine of @reportman/node. A report travels as the JSON the
-// designer edits (the camelCase document of the C# engine, read with hydrateReport, written by
-// designerDocument); the answers are the ones of Reportman.Server (test/golden-http compares them).
+// one, over a backend: where the reports are stored and how a report runs with its connections. A
+// report travels as the JSON the designer edits (the camelCase document of the C# engine, read with
+// hydrateReport, written by designerDocument); the answers are the ones of Reportman.Server
+// (test/golden-http compares them).
 //
-// The connections are only the server's (the ones of its dbxconnections.ini and the ones the program
-// gives): a report connection the server does not define fails, whatever the report carries, and a
-// connection string the report carries (ADOCONNECTIONSTRING) never changes where it goes.
+// This module uses no Node.js API, so the operations run in a browser too (a service worker answering
+// the designer, as the live demo of reportman.es does). The backend of the Node server is
+// node-backend.ts: the folder store and the engine of @reportman/node, with the connections of the
+// server only (the ones of its dbxconnections.ini and the ones the program gives): a report connection
+// the server does not define fails, whatever the report carries, and a connection string the report
+// carries (ADOCONNECTIONSTRING) never changes where it goes.
 
-import { createHash } from 'node:crypto';
-import path from 'node:path';
 import {
   CsDecimal,
   DateTimeKind,
@@ -32,12 +34,72 @@ import {
   type Variant,
 } from '@reportman/engine';
 import { Report, exportSubReport, importReport, writeReportXmlBytes, type DataInfo } from '@reportman/lib';
-import { openReportModel, type ConnectionFactory } from '@reportman/node';
-import { ServerError, connectionFactory, type ReportServer } from '@reportman/server';
-import type { DesignerServerOptions } from './designer.js';
 import { designerDocument, modelFromDocument, modelFromXml } from './document.js';
 import { DatasetColumnsCache, datasetColumns, datasetKey, netTypeName, type DatasetColumn } from './columns.js';
-import { SCHEMA_FOLDER, SqlSchemaService, familyOfProvider, type SchemaConnection, type SqlSchema } from './schema.js';
+import { SqlSchemaService, type SchemaConnection, type SchemaFiles, type SqlSchema } from './schema.js';
+import { base64ToBytes, bytesToBase64 } from './base64.js';
+
+/** A stored report: its bytes and its version tag. */
+export interface StoredReportContent {
+  content: Uint8Array;
+  eTag: string;
+}
+
+/**
+ * Where the designer's reports are kept, by alias and path (FolderReportStore of @reportman/server).
+ * A report that is not there fails with an error whose `kind` is 'notFound'; a save with an ETag
+ * that is not the current one fails too (someone else changed it).
+ */
+export interface DesignerStore {
+  open(alias: string, path: string): StoredReportContent | Promise<StoredReportContent>;
+  /** Saves a report; expectedETag null creates it (it must not exist). Returns its new ETag. */
+  save(alias: string, path: string, content: Uint8Array, expectedETag: string | null): { eTag: string } | Promise<{ eTag: string }>;
+}
+
+/** What the preview printed, besides its PDF. */
+export interface PrintedMetafile {
+  customX: number;
+  customY: number;
+  pageSizeIndex: number;
+  pages: { currentCount: number };
+}
+
+/** A report opened to run, with the connections, culture, clock and fonts of its host. */
+export interface DesignerRunner {
+  /** A fresh run of a fresh copy of the model, for the tools (functions, syntax, data). Close it. */
+  prepareRun(): Promise<ReportRun>;
+  /** The preview: the PDF with the values the parameters form would start from. */
+  executeToPdf(options: { subReportIndexes?: number[]; onMetafile: (meta: PrintedMetafile) => void }): Promise<Uint8Array>;
+}
+
+/** Where the designer's operations store and run reports. */
+export interface DesignerBackend {
+  readonly store: DesignerStore;
+  /**
+   * The model ready to run with the connections of a report alias ('' without one). layout false:
+   * the tools that lay nothing out, which run with the standard fonts.
+   */
+  open(model: Report, reportAlias: string, layout: boolean): DesignerRunner;
+  /** What a connection alias opens, as a key of the caches (never the connection string: it may carry a password). */
+  fingerprint(reportAlias: string, databaseAlias: string): string;
+  /** What the host knows of a connection alias, for the SQL editor (null: it does not define it). */
+  schemaConnection(alias: string): SchemaConnection | null;
+  /** The local schema files of the direct connections (dbxschemas), when the host keeps them. */
+  readonly schemaFiles?: SchemaFiles | null;
+}
+
+/** The culture and clock of the operations. */
+export interface DesignerOperationsOptions {
+  /** The culture of the engine's texts, a .NET culture name ('en-US' by default). */
+  culture?: string;
+  /** The clock (DateTime.Now). */
+  clock?: { now(): Date };
+}
+
+/** A store error saying that the report is not there (ServerError of kind notFound). */
+function isNotFound(e: unknown): boolean {
+  return e !== null && typeof e === 'object' && (e as { kind?: unknown }).kind === 'notFound';
+}
 
 /** The caller may not do what it asks (ForbiddenException): 403, or errorMessage in the protocol. */
 export class ForbiddenError extends Error {
@@ -200,7 +262,7 @@ function dateTimeJson(d: RpDateTime): string {
 function rowValue(v: StoredValue): unknown {
   if (v === null) return null;
   if (typeof v === 'bigint') return Number.isSafeInteger(Number(v)) ? Number(v) : new JsonText(v.toString());
-  if (v instanceof Uint8Array) return Buffer.from(v).toString('base64');
+  if (v instanceof Uint8Array) return bytesToBase64(v);
   if (v instanceof CsDecimal) return new JsonText(v.toInvariantString());
   if (v instanceof RpDateTime) return dateTimeJson(v);
   return v;
@@ -211,35 +273,22 @@ function fromBase64(text: string): Uint8Array {
   const clean = text.replace(/[ \t\r\n]/g, '');
   if (clean.length % 4 !== 0 || !/^[A-Za-z0-9+/]*={0,2}$/.test(clean))
     throw new Error('The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.');
-  return new Uint8Array(Buffer.from(clean, 'base64'));
+  return base64ToBytes(clean);
 }
 
 const message = (e: unknown): string => (e instanceof Error ? e.message : String(e));
 
-// Identity of the factories the program gives, for the keys of the caches
-const factoryIds = new WeakMap<object, number>();
-let nextFactoryId = 1;
-function factoryId(f: object): string {
-  let id = factoryIds.get(f);
-  if (id === undefined) {
-    id = nextFactoryId++;
-    factoryIds.set(f, id);
-  }
-  return 'given:' + id;
-}
-
-/** The operations of the designer over the store and the connections of a report server. */
+/** The operations of the designer over a backend: its store and how its reports run. */
 export class DesignerOperations {
-  readonly reports: ReportServer;
-  private readonly options: DesignerServerOptions;
+  readonly backend: DesignerBackend;
+  private readonly options: DesignerOperationsOptions;
   private readonly columns = new DatasetColumnsCache();
   private readonly schemas: SqlSchemaService;
 
-  constructor(reports: ReportServer, options: DesignerServerOptions) {
-    this.reports = reports;
+  constructor(backend: DesignerBackend, options: DesignerOperationsOptions = {}) {
+    this.backend = backend;
     this.options = options;
-    const folder = options.dataPath === undefined ? null : path.join(path.resolve(options.dataPath), SCHEMA_FOLDER);
-    this.schemas = new SqlSchemaService((alias) => this.schemaConnection(alias), folder, () => options.clock?.now() ?? new Date());
+    this.schemas = new SqlSchemaService((alias) => backend.schemaConnection(alias), backend.schemaFiles ?? null, () => options.clock?.now() ?? new Date());
   }
 
   // ---- names, models ----
@@ -274,7 +323,7 @@ export class DesignerOperations {
    * machine without fonts (a slim container) still answers them; the preview uses the server's.
    */
   private run(model: Report, context: OperationContext): Promise<ReportRun> {
-    return openReportModel(model, { ...this.reports.openOptions(this.aliasOf(context)), fonts: false }).prepareRun();
+    return this.backend.open(model, this.aliasOf(context), false).prepareRun();
   }
 
   /** The culture of the server (the translator of the engine's texts follows it). */
@@ -285,15 +334,15 @@ export class DesignerOperations {
   // ---- read / write / execute ----
 
   /** ReadStored: the model of a stored report ("ALIAS/path.rep") and its ETag. */
-  readStoredModel(reportName: string): { model: Report; eTag: string } {
+  async readStoredModel(reportName: string): Promise<{ model: Report; eTag: string }> {
     const { alias, path: reportPath } = DesignerOperations.splitName(reportName);
-    const stored = this.reports.store.open(alias, reportPath);
+    const stored = await this.backend.store.open(alias, reportPath);
     return { model: modelFromXml(stored.content), eTag: stored.eTag };
   }
 
   /** ReadStored: a stored report ("ALIAS/path.rep") as the designer's JSON, and its ETag. */
   async readStored(reportName: string): Promise<{ report: ReportDocument; eTag: string }> {
-    const { model, eTag } = this.readStoredModel(reportName);
+    const { model, eTag } = await this.readStoredModel(reportName);
     return { report: designerDocument(model), eTag };
   }
 
@@ -329,21 +378,21 @@ export class DesignerOperations {
       cue.redoOperations = cue.redoOperations.filter(recent);
     }
     const xml = writeReportXmlBytes(model);
-    const store = this.reports.store;
+    const store = this.backend.store;
     try {
-      return store.save(alias, reportPath, xml, expectedETag ?? this.currentETagOrNull(alias, reportPath)).eTag;
+      return (await store.save(alias, reportPath, xml, expectedETag ?? (await this.currentETagOrNull(alias, reportPath)))).eTag;
     } catch (e) {
       // Saving a name that does not exist yet creates it
-      if (e instanceof ServerError && e.kind === 'notFound') return store.save(alias, reportPath, xml, null).eTag;
+      if (isNotFound(e)) return (await store.save(alias, reportPath, xml, null)).eTag;
       throw e;
     }
   }
 
-  private currentETagOrNull(alias: string, reportPath: string): string | null {
+  private async currentETagOrNull(alias: string, reportPath: string): Promise<string | null> {
     try {
-      return this.reports.store.open(alias, reportPath).eTag;
+      return (await this.backend.store.open(alias, reportPath)).eTag;
     } catch (e) {
-      if (e instanceof ServerError && e.kind === 'notFound') return null;
+      if (isNotFound(e)) return null;
       throw e;
     }
   }
@@ -351,12 +400,11 @@ export class DesignerOperations {
   /** Execute: the preview, with the values the parameters form would start from. */
   async execute(report: ReportDocument | Report, subreportIndexes: number[] | null, context: OperationContext = {}): Promise<ReportResult> {
     const model = this.model(report);
-    const node = openReportModel(model, this.reports.openOptions(this.aliasOf(context)));
-    let meta: { customX: number; customY: number; pageSizeIndex: number; pages: { currentCount: number } } | undefined;
+    const runner = this.backend.open(model, this.aliasOf(context), true);
+    let meta: PrintedMetafile | undefined;
     let pdf: Uint8Array;
     try {
-      pdf = await node.executeToPdf(null, {
-        defaults: true,
+      pdf = await runner.executeToPdf({
         subReportIndexes: subreportIndexes ?? undefined,
         onMetafile: (m) => (meta = m),
       });
@@ -366,7 +414,7 @@ export class DesignerOperations {
     }
     const printed = meta as typeof meta;
     const result: ReportResult = {
-      base64Pdf: Buffer.from(pdf).toString('base64'),
+      base64Pdf: bytesToBase64(pdf),
       pageWidth: printed?.customX ?? 0,
       pageHeight: printed?.customY ?? 0,
       pageCount: printed?.pages.currentCount ?? 0,
@@ -382,15 +430,15 @@ export class DesignerOperations {
   async duplicate(reportName: string, newReportName: string): Promise<void> {
     const { alias, path: reportPath } = DesignerOperations.splitName(reportName);
     const target = DesignerOperations.splitName(newReportName);
-    const stored = this.reports.store.open(alias, reportPath);
-    this.reports.store.save(target.alias, target.path, stored.content, null);
+    const stored = await this.backend.store.open(alias, reportPath);
+    await this.backend.store.save(target.alias, target.path, stored.content, null);
   }
 
   /** ImportName: saves a .rep given in base64 under a new name (written again, as C# does). */
   async importName(reportName: string, base64Xml: string): Promise<void> {
     const { alias, path: reportPath } = DesignerOperations.splitName(reportName);
     const model = this.modelFromBase64(base64Xml);
-    this.reports.store.save(alias, reportPath, writeReportXmlBytes(model), null);
+    await this.backend.store.save(alias, reportPath, writeReportXmlBytes(model), null);
   }
 
   // ---- functions, evaluation, datasets ----
@@ -398,18 +446,7 @@ export class DesignerOperations {
   /** The key of the columns of a dataset: its definition and what the server opens for its connection. */
   private columnsKey(model: Report, context: OperationContext): (dinfo: DataInfo) => string {
     const alias = this.aliasOf(context);
-    return (dinfo) => datasetKey(model, dinfo, (databaseAlias) => this.connectionFingerprint(alias, databaseAlias));
-  }
-
-  /** What a connection alias opens, hashed (never the connection string itself: it may carry a password). */
-  private connectionFingerprint(reportAlias: string, databaseAlias: string): string {
-    const given = typeof this.options.connections === 'function' ? this.options.connections(reportAlias) : this.options.connections;
-    const key = Object.keys(given ?? {}).find((k) => k.toUpperCase() === databaseAlias.toUpperCase());
-    if (key !== undefined) return factoryId(given![key]!);
-    const c = this.reports.console?.connections.get(databaseAlias) ?? null;
-    if (c === null) return 'unknown';
-    const text = [c.kind, c.providerFactory, c.connectionString, c.hubDatabaseId, c.apiKey].join('|');
-    return createHash('sha256').update(text).digest('hex').substring(0, 16);
+    return (dinfo) => datasetKey(model, dinfo, (databaseAlias) => this.backend.fingerprint(alias, databaseAlias));
   }
 
   /** The columns of every dataset of the report (the cache), with the errors of the ones that failed. */
@@ -618,13 +655,13 @@ export class DesignerOperations {
 
   /** ExportReport: the report as .rep XML in base64. */
   async exportReport(report: ReportDocument | Report): Promise<EvaluateResult> {
-    return { value: Buffer.from(writeReportXmlBytes(this.model(report))).toString('base64'), dataType: 'System.String' };
+    return { value: bytesToBase64(writeReportXmlBytes(this.model(report))), dataType: 'System.String' };
   }
 
   /** ExportSubReport: a subreport as a .rep of its own, in base64. */
   async exportSubReport(report: ReportDocument, subreportIndex: number): Promise<EvaluateResult> {
     // ExternalReport.ExportSubReport: XML, or zlib compressed when the report's stream format is XMLZlib
-    return { value: Buffer.from(exportSubReport(this.model(report), subreportIndex)).toString('base64'), dataType: 'System.String' };
+    return { value: bytesToBase64(exportSubReport(this.model(report), subreportIndex)), dataType: 'System.String' };
   }
 
   /** ImportSubReport: the subreports of a .rep in base64 added to the report (to an empty one: null). */
@@ -636,37 +673,6 @@ export class DesignerOperations {
   }
 
   // ---- the SQL editor ----
-
-  /** What the server knows of a connection alias, for its schema. */
-  private schemaConnection(alias: string): SchemaConnection | null {
-    const given = typeof this.options.connections === 'function' ? this.options.connections('') : this.options.connections;
-    const key = Object.keys(given ?? {}).find((k) => k.toUpperCase() === alias.toUpperCase());
-    const definition = this.reports.console?.connections.get(alias) ?? null;
-    if (key !== undefined) {
-      const factory: ConnectionFactory = given![key]!;
-      // The program's connection wins over the one of dbxconnections.ini, as in the reports
-      return { kind: 'direct', alias, family: 'other', factory, definition: null, keepsFile: false, fingerprint: factoryId(factory) };
-    }
-    if (definition === null) return null;
-    if (definition.kind === 'agent') return { kind: 'agent', alias, hubDatabaseId: definition.hubDatabaseId };
-    let factory: ConnectionFactory | undefined;
-    let factoryError: string | undefined;
-    try {
-      factory = connectionFactory(definition, this.options.drivers ?? {});
-    } catch (e) {
-      factoryError = message(e);
-    }
-    return {
-      kind: 'direct',
-      alias,
-      family: familyOfProvider(definition.providerFactory),
-      factory,
-      factoryError,
-      definition,
-      keepsFile: true,
-      fingerprint: this.connectionFingerprint('', alias),
-    };
-  }
 
   /** SqlSchema: the tables, columns and keys of a connection alias, for the SQL editor. */
   async sqlSchema(alias: string, refresh: boolean): Promise<SqlSchema> {

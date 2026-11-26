@@ -12,8 +12,6 @@
 // only). An Agent connection has no schema here: the Hub describes it to Reportman.Server's AI
 // package, which this server does not have (the answer says so, as Reportman.Server without it).
 
-import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
-import path from 'node:path';
 import type { ConnectionRequest, DataColumnInfo, DataConnection, DataValue, QueryResult } from '@reportman/engine';
 import { DatabaseInfo } from '@reportman/lib';
 import type { ConnectionFactory } from '@reportman/node';
@@ -141,7 +139,18 @@ export interface LocalSchemaFile extends Extra {
 
 /** The folder of the files, next to dbxconnections.ini. */
 export const SCHEMA_FOLDER = 'dbxschemas';
-const CURRENT_VERSION = 2;
+export const CURRENT_VERSION = 2;
+
+/**
+ * Where the local schema files of the direct connections are kept (dbxschemas/<ALIAS>.json of the
+ * Node server: schema-files.ts); a host without them (a browser) gives none.
+ */
+export interface SchemaFiles {
+  /** LocalSchemaStore.Load: the file of an alias, or null when there is none. */
+  load(alias: string): LocalSchemaFile | null;
+  /** LocalSchemaStore.Save. */
+  save(alias: string, schema: LocalSchemaFile): void;
+}
 /** The number of tables from which a catalog is large: its file keeps the names only. */
 export const LARGE_CATALOG_THRESHOLD = 5000;
 
@@ -291,28 +300,6 @@ export function parseSchemaFile(text: string): LocalSchemaFile {
   return file;
 }
 
-/** The path of the file of an alias: the alias in upper case, the characters a file name cannot have as '_'. */
-export function schemaFilePath(folder: string, alias: string): string {
-  const name = alias.trim().toUpperCase();
-  if (name.length === 0) throw new Error('No connection alias');
-  return path.join(folder, name.replace(/[<>:"/\\|?*\u0000-\u001f]/g, '_') + '.json');
-}
-
-/** LocalSchemaStore.Load: the file, or null when there is none. */
-export function loadSchemaFile(file: string): LocalSchemaFile | null {
-  if (!existsSync(file)) return null;
-  return parseSchemaFile(readFileSync(file, 'utf8'));
-}
-
-/** LocalSchemaStore.Save: indented, UTF-8 without BOM, written next to the old one and moved over it. */
-export function saveSchemaFile(schema: LocalSchemaFile, file: string): void {
-  if (schema.version < CURRENT_VERSION) schema.version = CURRENT_VERSION;
-  mkdirSync(path.dirname(file), { recursive: true });
-  const temp = file + '.tmp';
-  writeFileSync(temp, JSON.stringify(schema, null, 2), 'utf8');
-  if (existsSync(file)) rmSync(file);
-  renameSync(temp, file);
-}
 
 /** DatabaseCatalogReader.LooseType: the cloud's column type of a declared database type. */
 export function looseType(declared: string): string {
@@ -807,11 +794,11 @@ export class SqlSchemaService {
 
   /**
    * @param find What the server knows of an alias (null: it does not define it).
-   * @param folder The folder of the local schema files (dataPath/dbxschemas), null without a data folder.
+   * @param files The local schema files (dataPath/dbxschemas), null without a data folder.
    */
   constructor(
     private readonly find: (alias: string) => SchemaConnection | null,
-    private readonly folder: string | null,
+    private readonly files: SchemaFiles | null,
     private readonly now: () => Date = () => new Date(),
   ) {}
 
@@ -828,7 +815,7 @@ export class SqlSchemaService {
           : 'This server cannot read the schema of Agent connections (it has no Reportman AI)';
       return schema;
     }
-    if (definition.keepsFile && this.folder !== null) return { ...(await this.fromFile(alias, definition, refresh)), source: 'file' };
+    if (definition.keepsFile && this.files !== null) return { ...(await this.fromFile(alias, definition, refresh)), source: 'file' };
     // A connection the program opens itself: its catalog, kept a few minutes
     const key = alias.toUpperCase() + '|' + definition.fingerprint;
     const cached = this.catalogCache.get(key);
@@ -860,10 +847,10 @@ export class SqlSchemaService {
 
   /** FromFileAsync: the file of the connection, generated (or, with refresh, read again and merged) from the catalog. */
   private async fromFile(alias: string, definition: Extract<SchemaConnection, { kind: 'direct' }>, refresh: boolean): Promise<SqlSchema> {
-    const file = schemaFilePath(this.folder!, alias);
+    const files = this.files!;
     let previous: LocalSchemaFile | null = null;
     try {
-      previous = loadSchemaFile(file);
+      previous = files.load(alias);
     } catch {
       // a file that cannot be read is generated again
     }
@@ -876,7 +863,7 @@ export class SqlSchemaService {
     }
     const merged = mergeSchemaFiles(previous, fresh);
     try {
-      saveSchemaFile(merged, file);
+      files.save(alias, merged);
     } catch {
       // the answer is the schema all the same
     }

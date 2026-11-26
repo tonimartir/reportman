@@ -10,6 +10,7 @@
 // Fields C# keeps as they come (it deserializes them from the designer's JSON and writes them
 // back) are kept when the document has them; members C# derives are always derived again.
 
+import { base64ToBytes } from './base64.js';
 import { hydrateReport, readReportXml, serializeReport, SectionType, updateReferences, VariantType, type Report } from '@reportman/lib';
 
 type Json = Record<string, unknown>;
@@ -145,7 +146,7 @@ function printAlignment(item: Json, language: number): number {
 
 /** The length of the bytes of a base64 text. */
 function base64Length(text: unknown): number {
-  return typeof text === 'string' && text.length > 0 ? Buffer.from(text, 'base64').length : 0;
+  return typeof text === 'string' && text.length > 0 ? base64ToBytes(text).length : 0;
 }
 
 // The models hydrated from a document that had no undo history (C# writes none back for them)
