@@ -1,6 +1,6 @@
 {
   "name": "@reportman/metafile",
-  "version": "4.1.0-alpha.3",
+  "version": "4.1.0-alpha.4",
   "description": "Report Manager metafile: the device-independent pages a report is laid out into, and the layout device contract that measures and draws them.",
   "license": "MPL-2.0",
   "type": "module",

@@ -327,7 +327,7 @@ export class ReportServer implements HttpServerLike {
     if (parts.length === 2 && parts[1]!.toLowerCase() === 'health' && method === 'GET') {
       return json(200, {
         status: 'ok',
-        version: this.options.version ?? '4.1.0-alpha.3',
+        version: this.options.version ?? '4.1.0-alpha.4',
         engine: 'typescript',
         // As Reportman.Server; null without a data folder
         dataPath: this.options.dataPath === undefined ? null : path.resolve(this.options.dataPath),

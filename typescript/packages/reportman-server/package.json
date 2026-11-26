@@ -1,6 +1,6 @@
 {
   "name": "@reportman/server",
-  "version": "4.1.0-alpha.3",
+  "version": "4.1.0-alpha.4",
   "description": "Report Manager server for Node.js: the reports API of Reportman.Server (list, parameters, execute to PDF, metafile, text or CSV) over folders of .rep files, and its console (connections, aliases, API keys, sample reports, API explorer).",
   "license": "MPL-2.0",
   "type": "module",
@@ -35,21 +35,21 @@
     "tag": "next"
   },
   "dependencies": {
-    "@reportman/node": "4.1.0-alpha.3",
-    "@reportman/engine": "4.1.0-alpha.3",
-    "@reportman/lib": "4.1.0-alpha.3",
-    "@reportman/export": "4.1.0-alpha.3",
-    "@reportman/metafile": "4.1.0-alpha.3"
+    "@reportman/node": "4.1.0-alpha.4",
+    "@reportman/engine": "4.1.0-alpha.4",
+    "@reportman/lib": "4.1.0-alpha.4",
+    "@reportman/export": "4.1.0-alpha.4",
+    "@reportman/metafile": "4.1.0-alpha.4"
   },
   "scripts": {
     "prepack": "node scripts/copy-samples.mjs"
   },
   "peerDependencies": {
-    "@reportman/driver-postgres": "4.1.0-alpha.3",
-    "@reportman/driver-firebird": "4.1.0-alpha.3",
-    "@reportman/driver-mysql": "4.1.0-alpha.3",
-    "@reportman/driver-mssql": "4.1.0-alpha.3",
-    "@reportman/driver-http": "4.1.0-alpha.3"
+    "@reportman/driver-postgres": "4.1.0-alpha.4",
+    "@reportman/driver-firebird": "4.1.0-alpha.4",
+    "@reportman/driver-mysql": "4.1.0-alpha.4",
+    "@reportman/driver-mssql": "4.1.0-alpha.4",
+    "@reportman/driver-http": "4.1.0-alpha.4"
   },
   "peerDependenciesMeta": {
     "@reportman/driver-postgres": {

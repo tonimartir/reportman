@@ -1,6 +1,6 @@
 {
   "name": "@reportman/driver-mssql",
-  "version": "4.1.0-alpha.3",
+  "version": "4.1.0-alpha.4",
   "description": "SQL Server for Report Manager in Node.js (tedious, pure JavaScript), with the behaviour of Microsoft.Data.SqlClient, the provider of the C# engine.",
   "license": "MPL-2.0",
   "type": "module",
@@ -31,9 +31,9 @@
   },
   "dependencies": {
     "tedious": "^20.3.9",
-    "@reportman/engine": "4.1.0-alpha.3"
+    "@reportman/engine": "4.1.0-alpha.4"
   },
   "devDependencies": {
-    "@reportman/node": "4.1.0-alpha.3"
+    "@reportman/node": "4.1.0-alpha.4"
   }
 }
