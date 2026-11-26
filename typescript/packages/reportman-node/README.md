@@ -87,7 +87,8 @@ of the folders that has it. So the PDF depends on the fonts installed:
 | Linux | The `<dir>` folders of `/etc/fonts/fonts.conf`, `/usr/share/fonts` and `/usr/local/share/fonts` | The families the reports name, or others with the same characters. Debian and Ubuntu: `apt install fonts-dejavu-core fonts-liberation fonts-noto-core fonts-noto-cjk` (Liberation Sans has the metrics of Arial; `fonts-noto-cjk`, for Chinese, Japanese and Korean, is large). Other distributions: their DejaVu, Liberation and Noto packages. |
 | macOS | `/Library/Fonts`, `~/Library/Fonts` and `/System/Library/Fonts` | Helvetica, Arial and fonts for the other scripts come with macOS, and the engine takes them for the characters the named family lacks. Install the families the reports name (DejaVu, Noto) for the PDF of Linux. |
 
-The slim Docker images of Node.js (`node:22-slim`, `node:22-alpine`) have no fonts at all:
+The slim Docker images of Node.js (`node:22-slim`, `node:22-alpine`) have no fonts at all, and
+there a report run with `fonts: {}` fails with `No fonts detected`:
 
 ```dockerfile
 FROM node:22-slim
