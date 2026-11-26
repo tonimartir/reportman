@@ -4,15 +4,64 @@
 // the data is the sample SQLite database in sql.js, and a report runs with the engine and the PDF
 // writer of the @reportman packages, with the open fonts of the demo.
 import initSqlJs, { type SqlJsStatic } from 'sql.js';
-import { hydrateReport, serializeReport, type Report } from '@reportman/lib';
+import { Report, SubReport, hydrateReport, readReportXml, serializeReport, writeReportXmlBytes } from '@reportman/lib';
 import { PdfDevice, systemClock } from '@reportman/pdf';
 import { prepareReport, type EvalHost, type ReportRun } from '@reportman/engine';
-import type { DesignerBackend, DesignerRunner, DesignerStore, SchemaConnection, StoredReportContent } from '@reportman/designer-server/browser';
+import {
+  parseSchemaFile,
+  type DesignerBackend,
+  type DesignerRunner,
+  type DesignerStore,
+  type LocalSchemaFile,
+  type SchemaConnection,
+  type SchemaFiles,
+  type StoredReportContent,
+} from '@reportman/designer-server/browser';
 import { dataHost, printPdf, wallClock, type ConnectionFactory } from '../browser-report.js';
 import { fontLibraryOf, fontsOf } from '../fonts.js';
 import { sqlJs } from '../sqljs.js';
 
-import { SAMPLES_ALIAS, STORE_CACHE, storeKey } from './names.js';
+import { SAMPLES_ALIAS, STORE_CACHE, schemaKey, storeKey } from './names.js';
+
+/**
+ * The local schema file of the samples' connection (samples/dbxschemas/SAMPLES.json, the one
+ * Reportman.Server keeps): its subschemas are what the copilot designs with, and each sample's
+ * datasets name theirs. The designer reads it synchronously, so it is read before (ready); what the
+ * visitor changes (a refresh from the catalog) is kept in the Cache Storage, as the reports.
+ */
+export class DemoSchemaFiles implements SchemaFiles {
+  private readonly files = new Map<string, LocalSchemaFile>();
+  private reading: Promise<void> | undefined;
+
+  constructor(private readonly base: string) {}
+
+  /** The file of the samples, the visitor's copy first. */
+  ready(): Promise<void> {
+    this.reading ??= (async () => {
+      const cache = await caches.open(STORE_CACHE);
+      const saved = await cache.match(schemaKey(this.base, SAMPLES_ALIAS));
+      const reply = saved ?? (await fetch(new URL('samples/dbxschemas/' + SAMPLES_ALIAS + '.json', this.base).href));
+      if (reply.ok) this.files.set(SAMPLES_ALIAS, parseSchemaFile(await reply.text()));
+    })().catch(() => {
+      // Without the file the connection is described from its catalog
+      this.reading = undefined;
+    });
+    return this.reading;
+  }
+
+  load(alias: string): LocalSchemaFile | null {
+    return this.files.get(alias.toUpperCase()) ?? null;
+  }
+
+  save(alias: string, schema: LocalSchemaFile): void {
+    this.files.set(alias.toUpperCase(), schema);
+    const text = JSON.stringify(schema, null, 2);
+    void caches
+      .open(STORE_CACHE)
+      .then((cache) => cache.put(schemaKey(this.base, alias), new Response(text, { headers: { 'content-type': 'application/json' } })))
+      .catch(() => undefined);
+  }
+}
 
 /** An error of the store, as FolderReportStore of @reportman/server throws them. */
 class StoreError extends Error {
@@ -114,7 +163,7 @@ export interface DemoBackendOptions {
 }
 
 /** The backend of the designer of the demo. */
-export function demoBackend(base: string, options: DemoBackendOptions): DesignerBackend {
+export function demoBackend(base: string, options: DemoBackendOptions, schemaFiles: DemoSchemaFiles): DesignerBackend {
   const connection = sampleConnection(base);
   return {
     store: new DemoStore(base),
@@ -156,8 +205,25 @@ export function demoBackend(base: string, options: DemoBackendOptions): Designer
     },
     fingerprint: () => 'samples.db',
     schemaConnection(alias: string): SchemaConnection {
-      return { kind: 'direct', alias, family: 'sqlite', factory: connection, definition: null, keepsFile: false, fingerprint: 'samples.db' };
+      // The samples' connection keeps its schema in its file (with its subschemas); another alias, its catalog
+      const keepsFile = alias.toUpperCase() === SAMPLES_ALIAS && schemaFiles.load(alias) !== null;
+      return { kind: 'direct', alias, family: 'sqlite', factory: connection, definition: null, keepsFile, fingerprint: 'samples.db' };
     },
-    schemaFiles: null,
+    schemaFiles,
   };
+}
+
+/**
+ * A new report on the samples' database: the connection of the samples (taken from one of them), one
+ * empty subreport with its sections and nothing else, as «New report» of the designer leaves it.
+ */
+export async function newReportXml(store: DemoStore, sample = 'customers.rep'): Promise<Uint8Array> {
+  const source = readReportXml((await store.open(SAMPLES_ALIAS, sample)).content);
+  const report = new Report();
+  report.databaseInfo = source.databaseInfo;
+  const subreport = new SubReport();
+  SubReport.initNew(report, subreport);
+  report.newName(subreport);
+  report.subReports.push(subreport);
+  return writeReportXmlBytes(report);
 }

@@ -42,12 +42,15 @@ const option = (name) => {
   return i < 0 ? undefined : rest[i + 1];
 };
 
-/** The sample files the demo serves: the reports, their database and samples.ini. */
+/** The sample files the demo serves: the reports, their database, samples.ini and the local schema of their connection. */
 function sampleFiles() {
-  return readdirSync(samples).filter((f) => /\.rep$/i.test(f) || f === 'samples.db' || f === 'samples.ini');
+  const files = readdirSync(samples).filter((f) => /\.rep$/i.test(f) || f === 'samples.db' || f === 'samples.ini');
+  // The subschemas the designer's copilot designs with (dbxschemas/SAMPLES.json, as Reportman.Server keeps it)
+  if (existsSync(join(samples, 'dbxschemas', 'SAMPLES.json'))) files.push('dbxschemas/SAMPLES.json');
+  return files;
 }
 
-const TYPES = { '.rep': 'application/xml', '.db': 'application/octet-stream', '.ini': 'text/plain; charset=utf-8', '.png': 'image/png', '.css': 'text/css', '.wasm': 'application/wasm', '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.woff2': 'font/woff2' };
+const TYPES = { '.json': 'application/json', '.rep': 'application/xml', '.db': 'application/octet-stream', '.ini': 'text/plain; charset=utf-8', '.png': 'image/png', '.css': 'text/css', '.wasm': 'application/wasm', '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.woff2': 'font/woff2' };
 const typeOf = (f) => TYPES[f.slice(f.lastIndexOf('.'))] ?? 'application/octet-stream';
 
 /** Serves a file of the disk. */
