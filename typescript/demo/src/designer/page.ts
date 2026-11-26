@@ -351,6 +351,18 @@ async function start(): Promise<void> {
   });
   status.textContent = '';
   open(first);
+  showDesigner();
+}
+
+/**
+ * The whole designer in the window, the prompt box of its copilot included: below the intro text it
+ * ends under the window's edge, so the page scrolls down to the demo's bar (the text stays above).
+ * Not when the visitor already moved or the designer fits.
+ */
+function showDesigner(): void {
+  if (window.scrollY > 0 || location.hash.length > 0) return;
+  if (host.getBoundingClientRect().bottom <= window.innerHeight) return;
+  document.querySelector('.designer-toolbar')?.scrollIntoView({ block: 'start' });
 }
 
 start().catch((e: unknown) => {
