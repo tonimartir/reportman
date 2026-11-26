@@ -94,7 +94,15 @@ function stageStatus(name, ver) {
   if (!r.ok) {
     // A dry run may have no login: it stages nothing, so it does not need to know
     if (dryRun) return null;
-    throw new Error(`npm stage list ${name} failed: ${r.err || r.out}`);
+    // Not known: say why (npm's error is in its output too, after its notices) and stage it anyway;
+    // npm refuses to stage a version twice, and the staging below says so
+    const notice = /bypass 2FA are being restricted|gh\.io\/npm-gat-bypass2fa|^npm notice\s*$/i;
+    const why = [r.err, r.out]
+      .flatMap((s) => s.split(/\r?\n/))
+      .filter((line) => line.trim() !== '' && !notice.test(line))
+      .join(' | ');
+    console.warn(`npm stage list ${name} failed (${why || 'npm said nothing more'}): staging it anyway`);
+    return null;
   }
   const items = r.out === '' ? [] : [].concat(JSON.parse(r.out)).filter((i) => String(i.version) === ver);
   const status = items.map((i) => String(i.status ?? '')).find((s) => !/reject/i.test(s));
