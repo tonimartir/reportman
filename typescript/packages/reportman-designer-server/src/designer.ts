@@ -8,9 +8,17 @@
 //   POST {base}/api/designer/ExecuteReport  the preview: the PDF of a report or of an unsaved one
 //   GET  {base}/api/designer/SqlSchema      the tables and columns of a connection (SQL editor)
 //   GET  {base}/api/designer/agent-schemas  always [] (the Agent connections are of Reportman.Server)
+//   POST {base}/api/designer/ToXml, FromXml, SqlColumns, AiContext   the AI copilot's operations
 //   GET  {base}/designer/...                the <reportman-designer> element and a page with it
+//
+// With the ai option, the designer's AI too: {base}/api/ai/* and {base}/api/ai-login/* on to the
+// Reportman AI cloud as this installation, and {base}/api/session/config (ai.ts).
 
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { createReportServer, type HttpServerLike, type ReportServer, type ReportServerOptions, type ServerRequest, type ServerResponse } from '@reportman/server';
+import type { DesignerAiOptions } from './ai.js';
 import { DesignerOperations } from './operations.js';
 import { DesignerProtocol, designerJson, type DesignerAuthorize } from './protocol.js';
 import { nodeDesignerBackend } from './node-backend.js';
@@ -30,6 +38,38 @@ export interface DesignerServerOptions extends ReportServerOptions {
   basePath?: string;
   /** The element's files and the page of the designer under {base}/designer/ (on by default). */
   element?: DesignerElementOptions | false;
+  /**
+   * The designer's AI (the copilot, the SQL and expression assistants) through this server, as
+   * Reportman.Server gives it: true, or its options. The installation the calls go as (its guest
+   * credits) is installId, or the one kept in the data folder (server-id, the file of Reportman.Server).
+   * The people who design reports use it (authorize's designer check).
+   */
+  ai?: true | (Omit<DesignerAiOptions, 'installId'> & { installId?: string });
+}
+
+/**
+ * The installation of a data folder: its server-id (made the first time, as Reportman.Server makes it)
+ * as repman-server-<id>.
+ */
+export function dataFolderInstallId(dataPath: string): string {
+  const file = path.join(dataPath, 'server-id');
+  let id = existsSync(file) ? readFileSync(file, 'utf8').trim() : '';
+  if (id.length === 0) {
+    id = 'rpsrv-' + randomUUID().replace(/-/g, '');
+    mkdirSync(dataPath, { recursive: true });
+    writeFileSync(file, id);
+  }
+  return 'repman-server-' + (id.startsWith('rpsrv-') ? id.substring('rpsrv-'.length) : id);
+}
+
+/** The AI options of the designer server: its installation resolved. */
+function aiOptions(options: DesignerServerOptions): DesignerAiOptions | undefined {
+  const ai = options.ai;
+  if (ai === undefined) return undefined;
+  const given = ai === true ? {} : ai;
+  const installId = given.installId ?? (options.dataPath !== undefined ? dataFolderInstallId(options.dataPath) : undefined);
+  if (installId === undefined) throw new Error("The designer's AI needs an installId (repman-...) or a data folder to keep one in (dataPath).");
+  return { ...given, installId };
 }
 
 const LOOPBACK = /^(127\.\d+\.\d+\.\d+|::1|::ffff:127\.\d+\.\d+\.\d+)$/;
@@ -47,7 +87,7 @@ export class DesignerServer extends DesignerProtocol implements HttpServerLike {
 
   constructor(options: DesignerServerOptions) {
     const reports = createReportServer({ ...options, canDesign: true });
-    super(new DesignerOperations(nodeDesignerBackend(reports, options), options), options);
+    super(new DesignerOperations(nodeDesignerBackend(reports, options), options), { ...options, ai: aiOptions(options) });
     this.reports = reports;
     this.element = options.element ?? {};
   }
@@ -74,7 +114,7 @@ export class DesignerServer extends DesignerProtocol implements HttpServerLike {
     const inner = this.inside(request.path);
     if (inner === null) return designerJson(404, { error: 'Not found.' });
     const parts = inner.split('/').filter((p) => p.length > 0);
-    if (parts[0]?.toLowerCase() === 'designer' && this.element !== false) return elementResponse(parts.slice(1), request, this.element, this.base);
+    if (parts[0]?.toLowerCase() === 'designer' && this.element !== false) return elementResponse(parts.slice(1), request, this.element, this.base, this.ai !== null);
     return super.handle(request);
   }
 }

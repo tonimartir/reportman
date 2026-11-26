@@ -23,6 +23,9 @@ const designer = createDesignerServer({
   //   authorize: (check, request) => request.raw.user?.canDesignReports === true,
   // (request.raw is Express's request); check is { action: 'run' | 'design', alias } or
   // { action: 'designer' } (open data, evaluate expressions, preview a report not saved).
+  // The AI copilot, through this server to Reportman AI (this installation's guest credits, or
+  // the account the person logs into from the chat); leave it out for a designer without AI.
+  ai: true,
 });
 
 const app = express();

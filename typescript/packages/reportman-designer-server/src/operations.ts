@@ -33,7 +33,8 @@ import {
   type StoredValue,
   type Variant,
 } from '@reportman/engine';
-import { Report, exportSubReport, importReport, writeReportXmlBytes, type DataInfo } from '@reportman/lib';
+import { DataInfo, DriverType, Param, ParamType, Report, VariantType as ModelVariantType, exportSubReport, importReport, writeReportXmlBytes, type Variant as ModelVariant } from '@reportman/lib';
+import { whyNotARead } from './ai-sql-guard.js';
 import { designerDocument, modelFromDocument, modelFromXml } from './document.js';
 import { DatasetColumnsCache, datasetColumns, datasetKey, netTypeName, type DatasetColumn } from './columns.js';
 import { SqlSchemaService, type SchemaConnection, type SchemaFiles, type SqlSchema } from './schema.js';
@@ -678,6 +679,301 @@ export class DesignerOperations {
   async sqlSchema(alias: string, refresh: boolean): Promise<SqlSchema> {
     return this.schemas.get(alias, refresh);
   }
+
+  // ---- the AI copilot (DesignerController's ToXml, FromXml, SqlColumns and AiContext) ----
+
+  /**
+   * ToXml: the document as .rep XML, what the copilot exchanges with the cloud, as the Delphi and C#
+   * designers do (the text of the bytes, a byte order mark kept as Encoding.UTF8.GetString keeps it).
+   */
+  toXml(report: ReportDocument | Report): string {
+    return new TextDecoder('utf-8', { ignoreBOM: true }).decode(writeReportXmlBytes(this.model(report)));
+  }
+
+  /** FromXml: the copilot's answer (.rep XML) as the JSON document the designer edits. */
+  fromXml(xml: string): ReportDocument {
+    return designerDocument(modelFromXml(new TextEncoder().encode(xml)));
+  }
+
+  /**
+   * AiContext (AiContextBuilder.Build): the live context the copilot sends with every request, as the
+   * Delphi designer builds it (PrepareLiveContext): the functions and constants of the expressions,
+   * the parameters as memory variables, and the columns of every dataset, opened here.
+   */
+  async aiContext(report: ReportDocument, refresh: boolean, context: OperationContext = {}): Promise<AiLiveContext> {
+    const model = this.model(report);
+    const result: AiLiveContext = {
+      expressionContext: { datasetColumnsBlocks: [], functions: [], constants: [], memoryVariablesBlock: '' },
+      runtimeDataSources: [],
+      openErrors: [],
+    };
+    // Functions and constants of the expression language, from the same list the builder shows
+    const constants = this.translator().translateStr(250).toUpperCase();
+    for (const f of await this.readFunctionList(report, false, false, context)) {
+      if (f.name === undefined || f.name.length === 0) continue;
+      const entry = { model: f.model ?? f.name, help: f.hint ?? '' };
+      if ((f.category ?? '').toUpperCase() === constants) result.expressionContext.constants.push(entry);
+      else result.expressionContext.functions.push(entry);
+    }
+    // Parameters = memory variables
+    let memory = '[MEMORY_VARIABLES]\n';
+    for (const p of model.params) memory += 'M.' + p.alias + ':' + aiParamTypeName(p.paramType) + '\n';
+    result.expressionContext.memoryVariablesBlock = memory + '[/MEMORY_VARIABLES]';
+    // Datasets: their columns, from the cache (a dataset is opened once per SQL text)
+    const errors: string[] = [];
+    const columns = await this.datasetColumns(model, context, refresh, errors);
+    for (const dinfo of model.dataInfo) {
+      const source: AiRuntimeDataSource = {
+        name: dinfo.alias,
+        alias: dinfo.databaseAlias ?? '',
+        runtimeSchema: { status: 'live_context', source: 'server_live', refreshRequired: false, datasetColumnsBlock: '', issues: [] },
+      };
+      const list = columns.get(dinfo.alias.toUpperCase());
+      if (list !== undefined) {
+        let block = '[DATASET_COLUMNS ' + dinfo.alias + ' columns]\n';
+        for (const c of list) block += c.name + ':' + aiTypeName(c.type) + '\n';
+        block += '[/DATASET_COLUMNS]';
+        source.runtimeSchema.datasetColumnsBlock = block;
+        result.expressionContext.datasetColumnsBlocks.push(block);
+      } else {
+        const prefix = (dinfo.alias + ':').toUpperCase();
+        const why = errors.find((e) => e.toUpperCase().startsWith(prefix)) ?? dinfo.alias + ': not opened';
+        source.runtimeSchema.status = 'refresh_failed';
+        source.runtimeSchema.refreshRequired = true;
+        source.runtimeSchema.issues.push({ severity: 'error', code: 'open_failed', message: why });
+        result.openErrors.push(why);
+      }
+      result.runtimeDataSources.push(source);
+    }
+    return result;
+  }
+
+  /**
+   * SqlColumns (DatasetColumnsCache.Probe): the columns of a SQL the copilot wrote, run as one more
+   * dataset of the report the cloud gave back (its XML) on that connection: the report's parameters it
+   * names take their defaults, as in the preview, and the new ones the value the AI gave. Throws with
+   * the database's message when it does not run: the cloud fixes the SQL with it.
+   *
+   * The AI wrote this SQL and nobody reads it before it runs, so only a single read gets here
+   * (whyNotARead) and the connection is closed without committing.
+   */
+  async sqlColumns(xml: string, databaseAlias: string, sql: string, parameters: readonly AiProbeParameter[], context: OperationContext = {}): Promise<DatasetColumn[]> {
+    const notARead = whyNotARead(sql);
+    if (notARead !== null) throw new Error(notARead);
+    const model = modelFromXml(new TextEncoder().encode(xml));
+    const database = model.databaseInfo.find((d) => (d.alias ?? '').toUpperCase() === databaseAlias.toUpperCase());
+    if (database === undefined) throw new Error('The report has no connection ' + databaseAlias);
+    if (database.driver === DriverType.HttpAgent) throw new Error('The SQL of an Agent connection is checked by the cloud.');
+    if (database.driver === DriverType.Mybase) throw new Error('The connection ' + databaseAlias + ' is in memory (unions of datasets): it runs no SQL.');
+    let alias = 'COPILOT_PROBE';
+    for (let n = 1; model.dataInfo.some((d) => d.alias.toUpperCase() === alias); n++) alias = 'COPILOT_PROBE' + n;
+    const probe = new DataInfo();
+    probe.alias = alias;
+    probe.databaseAlias = database.alias ?? databaseAlias;
+    probe.sql = sql;
+    model.newName(probe);
+    model.components.set(probe.name.toUpperCase(), probe);
+    model.dataInfo.push(probe);
+    for (const parameter of parameters) linkProbeParameter(model, alias, parameter);
+    const run = await this.run(model, context);
+    try {
+      try {
+        await run.applyDefaults();
+      } catch {
+        // The defaults of the report's parameters failed: the SQL runs with the values they have
+      }
+      const dinfo = run.runtime.dataInfoByAlias(alias)!;
+      await runAsync(dinfo.connect());
+      return datasetColumns(run, alias);
+    } finally {
+      // Never committed: whatever the statement did, it is rolled back
+      for (const db of run.runtime.databases) {
+        try {
+          await runAsync(db.close(false));
+        } catch {
+          // Closing failed: the run closes what is left
+        }
+      }
+      await run.close();
+    }
+  }
+}
+
+/** A parameter of the copilot's SQL: its name, the value the AI gave and its System.Data.DbType. */
+export interface AiProbeParameter {
+  name?: string | null;
+  value?: unknown;
+  dbType?: number | null;
+}
+
+/** What AiContext answers (AiContextBuilder.AiContext). */
+export interface AiLiveContext {
+  expressionContext: {
+    datasetColumnsBlocks: string[];
+    functions: { model: string; help: string }[];
+    constants: { model: string; help: string }[];
+    memoryVariablesBlock: string;
+  };
+  runtimeDataSources: AiRuntimeDataSource[];
+  /** Datasets that could not be opened, for the page to warn before sending. */
+  openErrors: string[];
+}
+
+/** A dataset of the live context, with its columns or why they could not be read. */
+export interface AiRuntimeDataSource {
+  name: string;
+  alias: string;
+  runtimeSchema: {
+    status: string;
+    source: string;
+    refreshRequired: boolean;
+    datasetColumnsBlock: string;
+    issues: { severity: string; code: string; message: string }[];
+  };
+}
+
+/** AiContextBuilder.TypeName: the type vocabulary of the Delphi designer's context blocks. */
+function aiTypeName(netType: string): string {
+  switch (netType) {
+    case 'System.Int16':
+    case 'System.Int32':
+    case 'System.Int64':
+    case 'System.Byte':
+    case 'System.SByte':
+    case 'System.UInt16':
+    case 'System.UInt32':
+    case 'System.UInt64':
+      return 'integer';
+    case 'System.Decimal':
+      return 'currency';
+    case 'System.Double':
+    case 'System.Single':
+      return 'float';
+    case 'System.DateTime':
+    case 'System.DateTimeOffset':
+      return 'datetime';
+    case 'System.TimeSpan':
+    case 'System.TimeOnly':
+      return 'time';
+    case 'System.DateOnly':
+      return 'date';
+    case 'System.Boolean':
+      return 'boolean';
+    case 'System.Byte[]':
+      return 'blob';
+    default:
+      return 'string';
+  }
+}
+
+/** AiContextBuilder.ParamTypeName. */
+function aiParamTypeName(type: ParamType): string {
+  switch (type) {
+    case ParamType.Integer:
+      return 'integer';
+    case ParamType.Double:
+      return 'float';
+    case ParamType.Currency:
+      return 'currency';
+    case ParamType.Date:
+      return 'date';
+    case ParamType.Time:
+      return 'time';
+    case ParamType.DateTime:
+      return 'datetime';
+    case ParamType.Bool:
+      return 'boolean';
+    default:
+      return 'string';
+  }
+}
+
+// System.Data.DbType, the numbers the cloud sends
+const DB_TYPE_PARAM: Record<number, ParamType> = {
+  3: ParamType.Bool, // Boolean
+  2: ParamType.Integer, // Byte
+  14: ParamType.Integer, // SByte
+  10: ParamType.Integer, // Int16
+  11: ParamType.Integer, // Int32
+  12: ParamType.Integer, // Int64
+  18: ParamType.Integer, // UInt16
+  19: ParamType.Integer, // UInt32
+  20: ParamType.Integer, // UInt64
+  4: ParamType.Currency, // Currency
+  7: ParamType.Currency, // Decimal
+  21: ParamType.Currency, // VarNumeric
+  8: ParamType.Double, // Double
+  15: ParamType.Double, // Single
+  5: ParamType.Date, // Date
+  17: ParamType.Time, // Time
+  6: ParamType.DateTime, // DateTime
+  26: ParamType.DateTime, // DateTime2
+  27: ParamType.DateTime, // DateTimeOffset
+};
+
+/** DatasetColumnsCache.ParamTypeOf: by the DbType the AI gave, else by the value. */
+function probeParamType(dbType: number | null | undefined, value: unknown): ParamType {
+  if (typeof dbType === 'number' && DB_TYPE_PARAM[dbType] !== undefined) return DB_TYPE_PARAM[dbType]!;
+  if (typeof value === 'boolean') return ParamType.Bool;
+  if (typeof value === 'number') return Number.isInteger(value) ? ParamType.Integer : ParamType.Double;
+  return ParamType.String;
+}
+
+/** DatasetColumnsCache.ToVariant: the AI's value as a value of the parameter's type (its text when it is not one). */
+function probeVariant(value: unknown, type: ParamType): ModelVariant {
+  if (value === null || value === undefined) return { type: ModelVariantType.Null, value: null };
+  const text = typeof value === 'string' ? value : String(value);
+  const asText: ModelVariant = { type: ModelVariantType.String, value: text };
+  switch (type) {
+    case ParamType.Bool:
+      if (typeof value === 'boolean') return { type: ModelVariantType.Boolean, value };
+      if (typeof value === 'number') return { type: ModelVariantType.Boolean, value: value !== 0 };
+      if (/^\s*true\s*$/i.test(text)) return { type: ModelVariantType.Boolean, value: true };
+      if (/^\s*false\s*$/i.test(text)) return { type: ModelVariantType.Boolean, value: false };
+      return asText;
+    case ParamType.Integer:
+      if (typeof value === 'number') return Number.isFinite(value) ? { type: ModelVariantType.Integer, value: Math.round(value) } : asText;
+      return /^\s*[+-]?\d+\s*$/.test(text) ? { type: ModelVariantType.Integer, value: Number(text) } : asText;
+    case ParamType.Double:
+    case ParamType.Currency: {
+      if (typeof value === 'number') return { type: ModelVariantType.Double, value };
+      const n = Number(text.trim());
+      return text.trim().length > 0 && Number.isFinite(n) ? { type: ModelVariantType.Double, value: n } : asText;
+    }
+    case ParamType.Date:
+    case ParamType.Time:
+    case ParamType.DateTime: {
+      const d = new Date(text);
+      return Number.isNaN(d.getTime()) ? asText : { type: ModelVariantType.DateTime, value: d };
+    }
+    default:
+      return asText;
+  }
+}
+
+/**
+ * DatasetColumnsCache.LinkParameter: the parameter as the cloud will leave it when it applies the
+ * dataset: the report's one of that alias (upper case, without @ or :) now also feeds this dataset; a
+ * new one is created with the AI's value.
+ */
+function linkProbeParameter(model: Report, datasetAlias: string, parameter: AiProbeParameter): void {
+  const name = [...(parameter.name ?? '').replace(/^[@:?]+/, '').trim()].map((c) => (/[\p{L}\p{N}]/u.test(c) ? c : '_')).join('').toUpperCase();
+  if (name.length === 0) return;
+  const existing = model.params.find((p) => p.alias.toUpperCase() === name);
+  if (existing !== undefined) {
+    if (!existing.datasets.some((d) => d.toUpperCase() === datasetAlias.toUpperCase())) existing.datasets.push(datasetAlias);
+    return;
+  }
+  const value = parameter.value;
+  const type = probeParamType(parameter.dbType, value);
+  const created = new Param();
+  created.alias = name;
+  created.paramType = type;
+  model.newName(created);
+  model.components.set(created.name.toUpperCase(), created);
+  created.value = probeVariant(value, type);
+  created.datasets.push(datasetAlias);
+  model.params.push(created);
 }
 
 function isModel(report: ReportDocument | Report): report is Report {

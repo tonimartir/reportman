@@ -6,17 +6,27 @@
 //   POST {base}/api/designer/ExecuteReport  the preview: the PDF of a report or of an unsaved one
 //   GET  {base}/api/designer/SqlSchema      the tables and columns of a connection (SQL editor)
 //   GET  {base}/api/designer/agent-schemas  always [] (the Agent connections are of Reportman.Server)
+//   POST {base}/api/designer/ToXml          the AI copilot: the report as .rep XML for the cloud
+//   POST {base}/api/designer/FromXml        the copilot's answer (XML) as the designer's JSON
+//   POST {base}/api/designer/SqlColumns     the columns of a SQL the copilot wrote (only a read)
+//   POST {base}/api/designer/AiContext      the live context: functions, parameters, dataset columns
+//
+// With the ai option, the AI of the designer goes through the server too (ai.ts):
+//
+//   GET  {base}/api/session/config          where the AI's login goes and this installation's id
+//   *    {base}/api/ai/{cloud route}        the copilot's calls, on to the Reportman AI cloud
+//   *    {base}/api/ai-login/{cloud route}  the AI's login, on to the cloud
 //
 // The bodies are the JSON of Reportman.Server (camelCase, names in any case, nulls left out) and
-// an operation that fails answers 200 with errorMessage, as there. The AI assistant is not here:
-// its routes (ToXml, FromXml, SqlColumns, AiContext, /api/ai) stay in Reportman.Server.
+// an operation that fails answers 200 with errorMessage, as there.
 //
 // No Node.js API: the Node server (designer.ts) adds the report server and the element's files, and
 // a page can answer its designer itself (a service worker over a store in the browser).
 
 import type { ServerRequest, ServerResponse } from '@reportman/server';
-import { DesignerOperations, ForbiddenError, JsonText, NoDataError, componentOf } from './operations.js';
+import { DesignerOperations, ForbiddenError, JsonText, NoDataError, componentOf, type AiProbeParameter } from './operations.js';
 import { parseDesignerJson } from './json.js';
+import { DesignerAiBridge, aiRouteMethod, type DesignerAiOptions } from './ai.js';
 
 /** What a request asks to do, for the authorize hook (the three checks of Reportman.Server). */
 export type DesignerCheck =
@@ -42,10 +52,15 @@ export interface DesignerProtocolOptions {
   authorize?: DesignerAuthorize;
   /** The prefix of every route ('' by default): '/reportman' answers /reportman/api/designer/... */
   basePath?: string;
+  /**
+   * The designer's AI through this server: {base}/api/ai/* and {base}/api/ai-login/* go on to the
+   * Reportman AI cloud as this installation, and {base}/api/session/config says it to the element.
+   * Without it the element runs with no-ai.
+   */
+  ai?: DesignerAiOptions | DesignerAiBridge;
 }
 
 const encoder = new TextEncoder();
-const AI_ROUTES = new Set(['toxml', 'fromxml', 'sqlcolumns', 'aicontext']);
 
 /**
  * A report document inside an answer: written as it is, its null members kept (the engine's
@@ -165,12 +180,16 @@ export class DesignerProtocol {
   readonly operations: DesignerOperations;
   protected readonly authorize: DesignerAuthorize | undefined;
   protected readonly base: string;
+  /** The designer's AI through this server, when it was given (the ai option). */
+  readonly ai: DesignerAiBridge | null;
 
   constructor(operations: DesignerOperations, options: DesignerProtocolOptions = {}) {
     this.operations = operations;
     this.authorize = options.authorize;
     this.base = '/' + (options.basePath ?? '').trim().replace(/^\/+|\/+$/g, '');
     if (this.base === '/') this.base = '';
+    const ai = options.ai;
+    this.ai = ai === undefined ? null : ai instanceof DesignerAiBridge ? ai : new DesignerAiBridge(ai);
   }
 
   /** The path inside the base, or null when it is outside. */
@@ -182,14 +201,18 @@ export class DesignerProtocol {
     return lower.startsWith(base + '/') ? path.substring(this.base.length) : null;
   }
 
-  /** Whether a path is one of the protocol's routes ({base}/api/designer/...). */
+  /** Whether a path is one of the protocol's routes ({base}/api/designer/..., and the AI's with the ai option). */
   owns(path: string): boolean {
     const p = this.inside(path)?.toLowerCase().replace(/\/+$/, '');
-    return p !== undefined && p.startsWith('/api/designer/');
+    if (p === undefined) return false;
+    if (p.startsWith('/api/designer/')) return true;
+    return this.ai !== null && (p === '/api/session/config' || p.startsWith('/api/ai/') || p.startsWith('/api/ai-login/'));
   }
 
   routes(): string[] {
-    return [this.base + '/api/designer/*'];
+    const routes = [this.base + '/api/designer/*'];
+    if (this.ai !== null) routes.push(this.base + '/api/session/config', this.base + '/api/ai/*', this.base + '/api/ai-login/*');
+    return routes;
   }
 
   /** Why a request may not do what it asks without an authorize function (null: it may). */
@@ -223,6 +246,11 @@ export class DesignerProtocol {
     if (inner === null) return designerJson(404, { error: 'Not found.' });
     const parts = inner.split('/').filter((p) => p.length > 0);
     const method = request.method.toUpperCase();
+    if (this.ai !== null && parts[0]?.toLowerCase() === 'api') {
+      const area = parts[1]?.toLowerCase();
+      if (area === 'session' && parts.length === 3 && parts[2]!.toLowerCase() === 'config' && method === 'GET') return this.ai.sessionConfig(this.base);
+      if (area === 'ai' || area === 'ai-login') return this.aiCall(request, area, parts.slice(2).join('/'));
+    }
     if (parts.length !== 3 || parts[0]?.toLowerCase() !== 'api' || parts[1]?.toLowerCase() !== 'designer') return designerJson(404, { error: 'Not found.' });
     const route = parts[2]!.toLowerCase();
     try {
@@ -234,8 +262,10 @@ export class DesignerProtocol {
       if (method === 'POST' && route === 'readreport') return await this.readReport(request);
       if (method === 'POST' && route === 'writereport') return await this.writeReport(request);
       if (method === 'POST' && route === 'executereport') return await this.executeReport(request);
-      if (method === 'POST' && AI_ROUTES.has(route))
-        return designerJson(404, { error: 'The AI assistant is not part of @reportman/designer-server: open the designer with no-ai.' });
+      if (method === 'POST' && route === 'toxml') return await this.toXml(request);
+      if (method === 'POST' && route === 'fromxml') return await this.fromXml(request);
+      if (method === 'POST' && route === 'sqlcolumns') return await this.sqlColumns(request);
+      if (method === 'POST' && route === 'aicontext') return await this.aiContext(request);
     } catch (e) {
       if (e instanceof ForbiddenError) return designerJson(403, { error: e.message });
       const status = serverStatus(e);
@@ -381,6 +411,92 @@ export class DesignerProtocol {
     } catch (e) {
       if (e instanceof NoDataError) return designerJson(200, { noData: true, errorMessage: e.message });
       return designerJson(200, { noData: false, ...errorAnswer(e) });
+    }
+  }
+
+  // ---- the AI ----
+
+  /**
+   * {base}/api/ai/* and {base}/api/ai-login/*: for whoever designs (no Reportman AI account is needed:
+   * without one the installation's guest credits pay). A route the bridge does not pass is a 404 first.
+   */
+  private async aiCall(request: ServerRequest, area: string, route: string): Promise<ServerResponse> {
+    const ai = this.ai!;
+    if (area === 'ai' && aiRouteMethod(route.replace(/^\/+|\/+$/g, '')) !== request.method.toUpperCase()) return ai.bridge(request, route);
+    const why = await this.refused({ action: 'designer' }, request);
+    if (why !== null) return webJson(403, { error: 'The AI of the designer is for the users who design reports.', code: 'NotDesigner' });
+    return area === 'ai' ? ai.bridge(request, route) : ai.login(request, route);
+  }
+
+  /** The report of a copilot's request: report, or the document in reportJson (WriteReportRequest). */
+  private copilotReport(body: Record<string, unknown>): Record<string, unknown> | null {
+    const report = member(body, 'report');
+    if (report !== null && report !== undefined && typeof report === 'object') return report as Record<string, unknown>;
+    const reportJson = member(body, 'reportJson');
+    if (typeof reportJson === 'string' && reportJson.trim().length > 0) return parseDesignerJson(reportJson) as Record<string, unknown>;
+    return null;
+  }
+
+  /** POST ToXml: the document as .rep XML, what the copilot exchanges with the cloud. */
+  private async toXml(request: ServerRequest): Promise<ServerResponse> {
+    const report = this.copilotReport(this.body(request));
+    if (report === null) return webJson(400, { error: 'No report was provided' });
+    await this.require({ action: 'designer' }, request);
+    return webJson(200, { xml: this.operations.toXml(report) });
+  }
+
+  /** POST FromXml: the copilot's answer (XML) back as the JSON document the designer edits. */
+  private async fromXml(request: ServerRequest): Promise<ServerResponse> {
+    const xml = member(this.body(request), 'xml');
+    if (typeof xml !== 'string' || xml.trim().length === 0) return webJson(400, { error: 'No xml was provided' });
+    await this.require({ action: 'designer' }, request);
+    try {
+      return designerJson(200, { report: new ReportJson(this.operations.fromXml(xml)) });
+    } catch (e) {
+      return webJson(400, { error: e instanceof Error ? e.message : String(e) });
+    }
+  }
+
+  /**
+   * POST SqlColumns: the columns of a SQL the copilot wrote, run as one more dataset of the report the
+   * cloud gave back (its XML). A SQL that does not run is an answer too (error): the cloud fixes it.
+   */
+  private async sqlColumns(request: ServerRequest): Promise<ServerResponse> {
+    await this.require({ action: 'designer' }, request);
+    const body = this.body(request);
+    const xml = member(body, 'xml');
+    const databaseAlias = member(body, 'databaseAlias');
+    const sql = member(body, 'sql');
+    const blank = (v: unknown) => typeof v !== 'string' || v.trim().length === 0;
+    if (blank(xml) || blank(databaseAlias) || blank(sql)) return webJson(400, { error: 'xml, databaseAlias and sql are required' });
+    const given = member(body, 'parameters');
+    const parameters: AiProbeParameter[] = Array.isArray(given)
+      ? given
+          .filter((p): p is Record<string, unknown> => p !== null && typeof p === 'object')
+          .map((p) => {
+            const dbType = member(p, 'dbType');
+            const name = member(p, 'name');
+            return { name: typeof name === 'string' ? name : null, value: member(p, 'value'), dbType: typeof dbType === 'number' ? dbType : null };
+          })
+      : [];
+    try {
+      const columns = await this.operations.sqlColumns(xml as string, databaseAlias as string, sql as string, parameters);
+      return webJson(200, { columns: columns.map((c) => ({ name: c.name, dataType: c.type })) });
+    } catch (e) {
+      return webJson(200, { error: e instanceof Error ? e.message : String(e) });
+    }
+  }
+
+  /** POST AiContext: the live context for the copilot (columns of every dataset, functions, parameters). */
+  private async aiContext(request: ServerRequest): Promise<ServerResponse> {
+    const body = this.body(request);
+    const report = this.copilotReport(body);
+    if (report === null) return webJson(400, { error: 'No report was provided' });
+    await this.require({ action: 'designer' }, request);
+    try {
+      return webJson(200, await this.operations.aiContext(report, (property(body, 'refresh') ?? '').toLowerCase() === 'true'));
+    } catch (e) {
+      return webJson(400, { error: e instanceof Error ? e.message : String(e) });
     }
   }
 }

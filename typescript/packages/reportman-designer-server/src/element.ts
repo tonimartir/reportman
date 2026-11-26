@@ -90,8 +90,8 @@ function fileResponse(file: string): ServerResponse {
 
 const escapeHtml = (s: string): string => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
-/** The page of the designer: the element on the whole window, the report of ?report=. */
-function page(request: ServerRequest, base: string): ServerResponse {
+/** The page of the designer: the element on the whole window, the report of ?report=; no-ai without the server's AI. */
+function page(request: ServerRequest, base: string, ai: boolean): ServerResponse {
   const report = request.query.get('report') ?? '';
   const lang = request.query.get('lang') ?? '';
   const html = `<!doctype html>
@@ -104,7 +104,7 @@ function page(request: ServerRequest, base: string): ServerResponse {
 <script type="module" src="${base}/designer/main.js"></script>
 </head>
 <body>
-<reportman-designer no-ai api-base="${escapeHtml(base + '/api')}" report="${escapeHtml(report)}"${lang.length > 0 ? ` lang="${escapeHtml(lang)}"` : ''}></reportman-designer>
+<reportman-designer${ai ? '' : ' no-ai'} api-base="${escapeHtml(base + '/api')}" report="${escapeHtml(report)}"${lang.length > 0 ? ` lang="${escapeHtml(lang)}"` : ''}></reportman-designer>
 </body>
 </html>
 `;
@@ -123,11 +123,11 @@ function page(request: ServerRequest, base: string): ServerResponse {
 }
 
 /** Answers GET {base}/designer/<parts>. */
-export function elementResponse(parts: string[], request: ServerRequest, options: DesignerElementOptions, base: string): ServerResponse {
+export function elementResponse(parts: string[], request: ServerRequest, options: DesignerElementOptions, base: string, ai = false): ServerResponse {
   if (request.method.toUpperCase() !== 'GET' && request.method.toUpperCase() !== 'HEAD') return notFound('Not found.');
   if (parts.length === 0 || (parts.length === 1 && parts[0] === 'index.html')) {
     if (options.page === false) return notFound('Not found.');
-    return page(request, base);
+    return page(request, base, ai);
   }
   const { element, monaco } = folders(options);
   // assets/monaco-editor/min/...: Monaco's files, from its own package

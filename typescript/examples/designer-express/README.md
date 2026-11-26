@@ -44,6 +44,10 @@ const designer = createDesignerServer({
   request (your session, your user).
 - Mount `nodeHandler(designer)` before `express.json()`, or give that parser a bigger limit: a report
   with pictures is bigger than its default 100 kB.
-- The designer has no AI assistant here: the AI stays in Reportman.Server (`no-ai`).
+- The designer's AI copilot (`ai: true`) goes through this server to Reportman AI, as this
+  installation (the `server-id` of the data folder): without a Reportman AI account its guest
+  credits pay, and the person can log in from the chat. It runs the SQL it writes on your
+  connections to learn its columns (only a single `SELECT` or `WITH`, never committed). Leave `ai`
+  out for a designer without AI.
 
 License: MPL-2.0.

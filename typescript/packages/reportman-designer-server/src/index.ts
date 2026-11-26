@@ -20,12 +20,21 @@ export type {
   ReportResult,
   StoredReportContent,
   SyntaxCheckResult,
+  AiLiveContext,
+  AiRuntimeDataSource,
+  AiProbeParameter,
 } from './operations.js';
+// The designer's AI through the server: the bridge to the Reportman AI cloud and its login
+export { DesignerAiBridge, aiRouteMethod, AI_INSTALL_ID_HEADER, AI_TOKEN_HEADER } from './ai.js';
+export type { DesignerAiOptions, DesignerAiCredentials, DesignerAiCall } from './ai.js';
+export { whyNotARead } from './ai-sql-guard.js';
+export { dataFolderInstallId } from './designer.js';
 export { nodeDesignerBackend } from './node-backend.js';
 // The report as the designer gets it (the JSON of the C# engine's Report) and as it sends it back
 export { designerDocument, modelFromDocument, modelFromXml } from './document.js';
 export { parseDesignerJson } from './json.js';
-export type { SchemaConnection, SchemaFiles, SqlSchema, SchemaTable, SchemaColumn, SchemaForeignKey, NamedSubschema, RelationRef, AllowedValue } from './schema.js';
+export type { SchemaConnection, SchemaFiles, SqlSchema, SchemaTable, SchemaColumn, SchemaForeignKey, NamedSubschema, RelationRef, AllowedValue, LocalSchemaFile } from './schema.js';
+export { parseSchemaFile } from './schema.js';
 export type { DesignerElementOptions } from './element.js';
 export { nodeHandler, fastifyPlugin, toServerRequest } from '@reportman/server';
 export type { HttpServerLike, ServerRequest, ServerResponse } from '@reportman/server';
