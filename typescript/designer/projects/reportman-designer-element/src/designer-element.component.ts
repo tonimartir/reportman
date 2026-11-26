@@ -75,7 +75,9 @@ const LABEL_KEYS: Record<keyof DesignerLabels, string> = {
   `,
   styles: [`
     :host { display: flex; flex-direction: column; position: relative; height: 100%; min-height: 480px; }
-    report-editor { flex: 1 1 auto; min-height: 0; }
+    /* The height of the element whatever display the page gives it: a page rule (display: block) wins
+       over :host, and the editor would then take the height of its contents and overflow the element */
+    report-editor { flex: 1 1 auto; min-height: 0; height: 100%; }
     .rpd-title small { opacity: .7; }
   `],
 })

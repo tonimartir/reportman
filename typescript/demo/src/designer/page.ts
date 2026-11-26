@@ -94,14 +94,47 @@ function ownReports(): string[] {
   }
 }
 
-/** The service worker of this folder, controlling the page. */
+/** Resolves when a service worker that is installing or waiting is the active one, or was discarded. */
+function activated(worker: ServiceWorker): Promise<void> {
+  return new Promise((resolve) => {
+    const check = () => {
+      if (worker.state === 'activated' || worker.state === 'redundant') {
+        worker.removeEventListener('statechange', check);
+        resolve();
+      }
+    };
+    worker.addEventListener('statechange', check);
+    check();
+  });
+}
+
+/**
+ * The service worker of this folder, controlling the page, and the one of this version of the demo: a
+ * browser that came before keeps the worker it installed then (the server of the designer as it was),
+ * so the page asks for the new one now and waits until it answers, instead of talking to the old one.
+ */
 async function worker(): Promise<void> {
   if (!('serviceWorker' in navigator)) throw new Error(TEXTS.noWorker);
+  let registration: ServiceWorkerRegistration;
   try {
-    await navigator.serviceWorker.register('./sw.js', { scope: './' });
+    registration = await navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'none' });
   } catch {
     // A private window of some browsers, a browser embedded in an application, a policy
     throw new Error(TEXTS.noWorker);
+  }
+  try {
+    // sw.js is read again now: when it changed, the new worker starts installing
+    await registration.update();
+  } catch {
+    // offline: the worker there is will do
+  }
+  const next = registration.installing ?? registration.waiting;
+  if (next !== null) {
+    // It takes over at once (skipWaiting and clients.claim): the page waits for it to be the one that answers
+    const taken = new Promise<void>((resolve) => navigator.serviceWorker.addEventListener('controllerchange', () => resolve(), { once: true }));
+    await activated(next);
+    if (next.state === 'activated' && navigator.serviceWorker.controller?.scriptURL !== undefined && navigator.serviceWorker.controller !== next)
+      await Promise.race([taken, new Promise((r) => setTimeout(r, 3000))]);
   }
   await navigator.serviceWorker.ready;
   if (navigator.serviceWorker.controller === null)

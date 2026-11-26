@@ -274,7 +274,9 @@ export class AiChatComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.promptBox?.nativeElement.focus(), 50);
+    // Without moving anything: the designer inside a page (a box below the page's own text) must not
+    // scroll the page, nor its own box, to show the prompt box
+    setTimeout(() => this.promptBox?.nativeElement.focus({ preventScroll: true }), 50);
   }
 
   netLines() {
@@ -317,7 +319,7 @@ export class AiChatComponent implements OnInit, AfterViewInit {
     } finally {
       this.tracker.finish();
       this.tab.set('chat');
-      setTimeout(() => this.promptBox?.nativeElement.focus(), 0);
+      setTimeout(() => this.promptBox?.nativeElement.focus({ preventScroll: true }), 0);
     }
   }
 
