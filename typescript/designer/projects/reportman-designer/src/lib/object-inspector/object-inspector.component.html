@@ -211,6 +211,25 @@
                       </div>
                     </div>
                   }
+                  @case ("fontRotation") {
+                    @let rotation = textRotation(prop);
+                    <div class="rpd-prop">
+                      <div class="rpd-prop-label" [title]="prop.label">
+                        <span>{{ prop.label }}</span>
+                      </div>
+                      <div class="rpd-prop-value">
+                        <boton
+                          class="rpd-fill"
+                          estilo="report"
+                          [icono]="rotation.icon"
+                          [obtenerOpciones]="rotationOptions | bind: this"
+                          [title]="prop.label + ': ' + rotation.name"
+                        >
+                          <span>{{ rotation.name }}</span>
+                        </boton>
+                      </div>
+                    </div>
+                  }
                   @case ("type1Font") {
                     <div class="rpd-prop">
                       <div class="rpd-prop-label" [title]="prop.label">

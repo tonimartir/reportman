@@ -98,11 +98,14 @@ export class DesignerInterfaceBarcode extends DesignerInterfaceSizePos {
       case "bColor":
       case "backColor":
       case "transparent":
-      case "eccLevel":
       case "numRows":
       case "numColumns":
       case "truncated":
         this.setValue(pname, newvalue);
+        break;
+      case "eccLevel":
+        // The list shows Auto first (the report's -1), then the levels from 0: GetProperty adds one
+        this.setValue(pname, Number(newvalue) - 1);
         break;
       case "rotation":
         switch (newvalue) {

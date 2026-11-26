@@ -1871,6 +1871,24 @@ export class ReportEditorComponent implements OnInit, OnChanges, OnDestroy {
           }
           cEditor.rectTitle = textTitle;
           groupObject.push(textTitle);
+          // The outline of a rotated text or barcode: always made (hidden), since adding it later
+          // would recompute the size of the group
+          const rotationOutline = new Rect({
+            left: 0,
+            top: 0,
+            width: scaledWidth,
+            height: scaledHeight,
+            fill: "transparent",
+            stroke: "#0d9488",
+            strokeDashArray: [4, 3],
+            originX: "left",
+            originY: "top",
+            visible: false,
+            selectable: false,
+            evented: false,
+          });
+          cEditor.rectRotation = rotationOutline;
+          groupObject.push(rotationOutline);
         }
         break;
       case "TRPSHAPE":

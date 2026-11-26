@@ -20,6 +20,9 @@ import {
   ShapeType,
   ImageItem,
   ImageDrawStyleType,
+  PrintItemText,
+  BarcodeItem,
+  BarcodeType,
 } from "@reportman/lib";
 import { DesignUtils } from "./design-utils";
 
@@ -75,6 +78,9 @@ export class ComponentEditorDesign {
   public clipPathComponent?: Rect;
   public clipPathSection?: Rect;
   public rectTitle?: Textbox;
+  /** The dashed outline of where a rotated text or barcode prints (hidden when it is not rotated). */
+  public rectRotation?: Rect;
+  private clipRotation?: Rect;
   public recEllipse?: Ellipse;
   public recRect?: Rect;
   public recImage?: FabricImage;
@@ -382,6 +388,68 @@ export class ComponentEditorDesign {
       // component is resized the box has to move back to the left edge, or the text keeps the
       // offset of the old width and looks centred or clipped.
       textTitle.set({ top: topTextPos, left: -scaledWidth / 2 });
+      this.applyRotation(textTitle, scaledWidth, scaledHeight, topTextPos);
+    }
+  }
+
+  /**
+   * The rotation of a text (fontRotation) or a barcode (rotation), both in tenths of a degree,
+   * counterclockwise, as the engine prints them: the whole rectangle of the item turns around its
+   * top left corner (PDF and GDI), a QR code around its centre. The box is still what moves and
+   * resizes; the text is drawn where it will print, even outside it, with a dashed outline of the
+   * turned rectangle.
+   */
+  private applyRotation(textTitle: Textbox, width: number, height: number, textTop: number) {
+    const component = this.component as PrintItemText | BarcodeItem;
+    let degrees = 0;
+    let aroundCentre = false;
+    switch (component.className) {
+      case "TRPLABEL":
+      case "TRPEXPRESSION":
+        degrees = ((component as PrintItemText).fontRotation ?? 0) / 10;
+        break;
+      case "TRPBARCODE":
+        degrees = ((component as BarcodeItem).rotation ?? 0) / 10;
+        aroundCentre = (component as BarcodeItem).barType === BarcodeType.CodeQR;
+        break;
+    }
+    const outline = this.rectRotation;
+    const group = this.group;
+    const left = -width / 2;
+    const top = -height / 2;
+    if (!degrees) {
+      if (textTitle.angle) textTitle.set({ angle: 0, left });
+      if (outline?.visible) outline.set({ visible: false });
+      if (group && !group.objectCaching) {
+        group.set({ objectCaching: true });
+        group.dirty = true;
+      }
+      return;
+    }
+    // Fabric turns clockwise and Reportman counterclockwise
+    const angle = -degrees;
+    const radians = (angle * Math.PI) / 180;
+    const cos = Math.cos(radians);
+    const sin = Math.sin(radians);
+    // The pivot, in the group's coordinates (its centre is 0, 0)
+    const pivotX = aroundCentre ? 0 : left;
+    const pivotY = aroundCentre ? 0 : top;
+    const turn = (x: number, y: number) => ({
+      x: pivotX + (x - pivotX) * cos - (y - pivotY) * sin,
+      y: pivotY + (x - pivotX) * sin + (y - pivotY) * cos,
+    });
+    // The clip of the text is the item's rectangle, in the text's own coordinates (centred), so it
+    // turns with it
+    this.clipRotation ??= new Rect({ originX: "center", originY: "center" });
+    this.clipRotation.set({ left: 0, top: -textTop - textTitle.height / 2, width, height });
+    const textCorner = turn(left, textTop);
+    textTitle.set({ angle, left: textCorner.x, top: textCorner.y, clipPath: this.clipRotation });
+    const outlineCorner = turn(left, top);
+    outline?.set({ visible: true, angle, left: outlineCorner.x, top: outlineCorner.y, width, height });
+    // The group's cache measures its box: it would cut the text that goes out of it
+    if (group) {
+      group.set({ objectCaching: false });
+      group.dirty = true;
     }
   }
   private createPatternFromBrushType(brushType: BrushType, color: string): Pattern | string | null {

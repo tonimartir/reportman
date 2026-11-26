@@ -71,6 +71,22 @@ import { LabelDialogComponent } from "../dialogs/label-dialog/label-dialog.compo
 import { UnionsDialogComponent } from "../dialogs/unions-dialog/unions-dialog.component";
 import { UNIONS_PROPERTY_TYPE, applyUnionSettings, knownDatasetFields } from "../models/union-settings";
 
+/** The rotations of a text the menu offers first, in degrees: positive is counterclockwise, as Reportman draws. */
+const TEXT_ROTATIONS = [
+  { key: "DesignerRotationNone", icon: "matTextRotationNone", degrees: 0 },
+  { key: "DesignerRotationAngleUp", icon: "matTextRotationAngleup", degrees: 45 },
+  { key: "DesignerRotationAngleDown", icon: "matTextRotationAngledown", degrees: -45 },
+  { key: "DesignerRotationUp", icon: "matTextRotateUp", degrees: 90 },
+  { key: "DesignerRotationDown", icon: "matTextRotationDown", degrees: -90 },
+];
+/** The angles of the «Custom angle» submenu. */
+const CUSTOM_ANGLES = [90, 75, 60, 45, 30, 15, 0, -15, -30, -45, -60, -75, -90];
+/**
+ * Properties the inspector shows converted (degrees, an index): the undo history must keep what the
+ * report holds, which the item has once it is set, not what the inspector showed.
+ */
+const CONVERTED_PROPERTIES = ["fontRotation", "rotation", "eccLevel"];
+
 @Component({
   selector: "object-inspector",
   imports: [CommonModule, FormsModule, SharedModule, CdkAccordion, CdkAccordionItem],
@@ -482,6 +498,10 @@ export class ObjectInspectorComponent implements OnInit, IObjectInspector, OnDes
           );
         }
         propInter.SetProperty(propValue.name, newValue);
+        if (CONVERTED_PROPERTIES.includes(propValue.name)) {
+          // Undo applies the value as it is: the report's tenths of a degree, the report's level
+          newValue = (item as any)[propValue.name];
+        }
       }
       const propTyp =
         valueName === "allStrings"
@@ -576,6 +596,7 @@ export class ObjectInspectorComponent implements OnInit, IObjectInspector, OnDes
               case "expression":
               case "valueExpression":
               case "transparent":
+              case "fontRotation":
                 selItem.ComponentEditor.update(propValue.name, multipleSelection);
                 return multipleSelection ? ResfreshLevel.UpdateSureport : ResfreshLevel.UpdateView;
             }
@@ -596,6 +617,8 @@ export class ObjectInspectorComponent implements OnInit, IObjectInspector, OnDes
           case "TRPBARCODE":
             switch (propValue.name) {
               case "expression":
+              case "rotation":
+              case "barType":
               case "width":
               case "height":
               case "posX":
@@ -869,6 +892,82 @@ export class ObjectInspectorComponent implements OnInit, IObjectInspector, OnDes
     }
     prop.valueStringTmp = result;
     prop.commitValue();
+  }
+
+  // ---- the rotation of a text (fontRotation, in degrees here) ----
+
+  /** The current rotation as the menu's button shows it: a named one, a custom angle, or several values. */
+  protected textRotation(prop: PropertyValue): { name: string; icon: string } {
+    if (!Number.isFinite(prop.valueInteger)) {
+      return { name: this.translator.t("DesignerRotationMixed"), icon: "tablerAngle" };
+    }
+    const degrees = ObjectInspectorComponent.normalizeDegrees(prop.valueInteger);
+    const named = TEXT_ROTATIONS.find((r) => r.degrees === degrees);
+    return named
+      ? { name: this.translator.t(named.key), icon: named.icon }
+      : { name: this.translator.t("DesignerRotationCustomValue", { degrees: String(degrees) }), icon: "tablerAngle" };
+  }
+
+  /** The menu of the rotation: the named ones, and a submenu of angles every 15 degrees and any other. */
+  protected rotationOptions(): OpcionMenu[] {
+    const prop = this.properties.find((p) => p.name === "fontRotation");
+    if (!prop) {
+      return [];
+    }
+    const current = !Number.isFinite(prop.valueInteger) ? undefined : ObjectInspectorComponent.normalizeDegrees(prop.valueInteger);
+    const isNamed = TEXT_ROTATIONS.some((r) => r.degrees === current);
+    return [
+      ...TEXT_ROTATIONS.map(
+        (r): OpcionMenu => ({
+          nombre: this.translator.t(r.key),
+          icono: r.icon,
+          checked: r.degrees === current,
+          callback: () => this.setRotation(prop, r.degrees),
+        })
+      ),
+      { nombre: "", separador: true },
+      {
+        nombre: this.translator.t("DesignerRotationCustom"),
+        icono: "tablerAngle",
+        checked: current !== undefined && !isNamed,
+        opciones: [
+          ...CUSTOM_ANGLES.map(
+            (degrees): OpcionMenu => ({
+              nombre: degrees + "°",
+              checked: degrees === current,
+              callback: () => this.setRotation(prop, degrees),
+            })
+          ),
+          { nombre: "", separador: true },
+          { nombre: this.translator.t("DesignerRotationOther"), callback: () => this.askRotation(prop) },
+        ],
+      },
+    ];
+  }
+
+  private async askRotation(prop: PropertyValue) {
+    const answer = await this.pres.pedirNumero({
+      titulo: this.translator.t("DesignerRotationCustom"),
+      descripcion: this.translator.t("DesignerRotationPrompt"),
+      valorOmision: !Number.isFinite(prop.valueInteger) ? 0 : prop.valueInteger,
+    });
+    const degrees = Number(answer.valor);
+    if (answer.cancelado || answer.valor == undefined || !Number.isFinite(degrees)) {
+      return;
+    }
+    this.setRotation(prop, degrees);
+  }
+
+  private setRotation(prop: PropertyValue, degrees: number) {
+    // Reportman keeps tenths of a degree in a short: normalizing keeps it in range
+    prop.valueIntegerTmp = Math.round(ObjectInspectorComponent.normalizeDegrees(degrees) * 10) / 10;
+    prop.commitValue();
+  }
+
+  /** 270° and -90° are the same rotation: taken to (-180, 180] to compare them. */
+  private static normalizeDegrees(degrees: number): number {
+    const rest = ((degrees % 360) + 360) % 360;
+    return rest > 180 ? rest - 360 : rest;
   }
 }
 export interface ObjectPropertiesServices {

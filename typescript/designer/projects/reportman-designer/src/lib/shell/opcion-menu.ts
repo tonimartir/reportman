@@ -76,6 +76,13 @@ export function iconName(icono: number | string | undefined | null): string {
     tablerDots: 'more_horiz',
     tablerHistoryOff: 'history_toggle_off',
     tablerTextPlus: 'post_add',
+    // The rotation of a text
+    matTextRotationNone: 'text_rotation_none',
+    matTextRotationAngleup: 'text_rotation_angleup',
+    matTextRotationAngledown: 'text_rotation_angledown',
+    matTextRotateUp: 'text_rotate_up',
+    matTextRotationDown: 'text_rotation_down',
+    tablerAngle: 'architecture',
   };
   return named[icono] ?? icono;
 }

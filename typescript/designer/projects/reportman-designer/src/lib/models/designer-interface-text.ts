@@ -141,8 +141,11 @@ export class DesignerInterfaceText extends DesignerInterfaceSizePos {
       case "wordWrap":
       case "isHtml":
       case "singleLine":
-      case "fontRotation":
         this.setValue(pname, newvalue);
+        return;
+      case "fontRotation":
+        // The inspector works in degrees; the report keeps tenths of a degree (GetProperty divides)
+        this.setValue(pname, Math.round(Number(newvalue) * 10));
         return;
       default:
         super.SetProperty(pname, newvalue);

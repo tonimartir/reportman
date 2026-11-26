@@ -80,6 +80,9 @@ export class OpcionesMenuComponent {
   selector: 'boton',
   imports: [CommonModule, MatMenuModule, MatTooltipModule, OpcionesMenuComponent],
   template: `
+    <!-- The projected content, once: an <ng-content> in each branch below would only ever fill one
+         of them (the last), and the tool buttons lost their text (a menu button that names its value) -->
+    <ng-template #content><ng-content></ng-content></ng-template>
     @if (estilo === 'report' || estilo === 'ninguno') {
       <!-- The designer's own tool button (designer.scss): one size and one icon size everywhere,
            so iconoSize and iconoColor are deliberately not applied here. -->
@@ -88,7 +91,7 @@ export class OpcionesMenuComponent {
         (click)="onClick($event)" (dblclick)="dblclicked.emit($event)" (contextmenu)="onContext($event)" (auxclick)="auxclicked.emit($event)"
         [matMenuTriggerFor]="hasMenu ? menu : null" #trigger="matMenuTrigger" (menuOpened)="loadOptions()">
         @if (icono) { <span class="material-icons" aria-hidden="true">{{ iconName(icono) }}</span> }
-        <ng-content></ng-content>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
         @if (hasMenu && !ocultarFlechaOpciones && estilo === 'report') { <span class="material-icons rpd-tool-caret" aria-hidden="true">arrow_drop_down</span> }
       </button>
     } @else {
@@ -99,7 +102,7 @@ export class OpcionesMenuComponent {
         (click)="onClick($event)" (dblclick)="dblclicked.emit($event)" (contextmenu)="onContext($event)" (auxclick)="auxclicked.emit($event)"
         [matMenuTriggerFor]="hasMenu ? menu : null" #trigger="matMenuTrigger" (menuOpened)="loadOptions()">
         @if (icono) { <span class="material-icons" aria-hidden="true">{{ iconName(icono) }}</span> }
-        <ng-content></ng-content>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
         @if (hasMenu && !ocultarFlechaOpciones) { <span class="material-icons rpd-tool-caret" aria-hidden="true">arrow_drop_down</span> }
       </button>
     }
