@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OpcionMenu, iconName } from '../opcion-menu';
+import { ShapeIconComponent } from './shape-icon.component';
 
 export type EstiloBoton = 'normal' | 'confirmacion' | 'ninguno' | 'report';
 export type ColorBoton = 'normal' | 'positivo' | 'negativo' | 'neutro';
@@ -25,7 +26,7 @@ export async function resolveOpciones(opciones: OpcionMenu[] | undefined, depth 
 /** Renders a list of OpcionMenu inside a mat-menu, sub-menus included (it nests itself). */
 @Component({
   selector: 'rp-opciones-menu',
-  imports: [CommonModule, MatMenuModule, MatIconModule],
+  imports: [CommonModule, MatMenuModule, MatIconModule, ShapeIconComponent],
   template: `
     @for (op of opciones; track $index) {
       @if (op.separador || op.separadorCompleto) {
@@ -40,6 +41,13 @@ export async function resolveOpciones(opciones: OpcionMenu[] | undefined, depth 
         <mat-menu #sub="matMenu" class="rp-designer-menu">
           <rp-opciones-menu [opciones]="op.opciones ?? []"></rp-opciones-menu>
         </mat-menu>
+      } @else if (op.shape !== undefined) {
+        <!-- A shape keeps its drawing when it is the current one: the check goes after its name -->
+        <button mat-menu-item [disabled]="op.disabled" [title]="op.title || ''" (click)="op.callback?.()"
+          [class.rp-menu-checked]="op.checked" [attr.aria-checked]="op.checked ? 'true' : 'false'" role="menuitemradio">
+          <rp-shape-icon matMenuItemIcon [shape]="op.shape"></rp-shape-icon>
+          <span class="rp-menu-shape-text">{{ op.nombre }}@if (op.checked) {<span class="material-icons rp-menu-check" aria-hidden="true">check</span>}</span>
+        </button>
       } @else {
         <button mat-menu-item [disabled]="op.disabled" [title]="op.title || ''" (click)="op.callback?.()"
           [style.background]="op.colorFondo || null" [style.color]="op.colorTexto || null" [class]="op.clasesCss || ''">
@@ -53,6 +61,9 @@ export async function resolveOpciones(opciones: OpcionMenu[] | undefined, depth 
     .rp-menu-sep { border-top: 1px solid var(--rpd-border-soft, #e0e0e0); margin: 3px 0; }
     .rp-menu-sep-full { border-top-width: 2px; margin: 5px 0; }
     .rp-menu-info { padding: 4px 12px; color: var(--rpd-text-3, #888); font-size: var(--rpd-fs, 11px); }
+    .rp-menu-shape-text { display: inline-flex; align-items: center; gap: 12px; }
+    .rp-menu-checked .rp-menu-shape-text { font-weight: 600; }
+    .rp-menu-check { font-size: 18px; }
   `],
 })
 export class OpcionesMenuComponent {

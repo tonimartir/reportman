@@ -198,7 +198,7 @@ export class AiAccountComponent {
     .rp-login { display: flex; flex-direction: column; gap: 10px; width: min(400px, 86vw); box-sizing: border-box; }
     .rp-login-gift { margin: 0; color: #555; font-size: 13px; line-height: 1.45; }
     .rp-login-providers { display: flex; flex-direction: column; gap: 6px; }
-    // The logo of each provider, as in the desktop designers' login
+    /* The logo of each provider, as in the desktop designers' login */
     .rp-provider-logo { width: 18px; height: 18px; margin-right: 8px; vertical-align: middle; }
     .rp-login-or { color: #777; font-size: 12px; text-align: center; }
     .rp-login-email { display: flex; flex-direction: column; gap: 8px; }

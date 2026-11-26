@@ -2962,108 +2962,29 @@ export class ReportEditorComponent implements OnInit, OnChanges, OnDestroy {
     const designElement = designElementButton.designElement;
     switch (designElement) {
       case DesignElementType.Shape: {
-        const resultado: OpcionMenu[] = [];
-        resultado.push({
-          nombre: "",
-          icono: "matRectangleOutline",
-          title: this.translator.TranslateStr(606),
-          checked: designElementButton.currentShape == ShapeType.Rectangle,
+        // The shapes in the order of the Shape property of the object inspector, with its texts;
+        // each entry shows the drawing of its shape (rp-shape-icon)
+        const shapes: [ShapeType, number][] = [
+          [ShapeType.Rectangle, 606],
+          [ShapeType.Square, 609],
+          [ShapeType.RoundRect, 607],
+          [ShapeType.RoundSquare, 608],
+          [ShapeType.Ellipse, 605],
+          [ShapeType.Circle, 604],
+          [ShapeType.HorzLine, 306],
+          [ShapeType.VertLine, 307],
+          [ShapeType.Oblique1, 719],
+          [ShapeType.Oblique2, 720],
+        ];
+        return shapes.map(([shape, text]) => ({
+          nombre: this.translator.TranslateStr(text),
+          shape,
+          checked: designElementButton.currentShape == shape,
           callback: () => {
             this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.Rectangle;
+            designElementButton.currentShape = shape;
           },
-        });
-        resultado.push({
-          nombre: "",
-          icono: "matSquareOutline",
-          title: this.translator.TranslateStr(609),
-          checked: designElementButton.currentShape == ShapeType.Square,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.Square;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: "tablerRectangle",
-          title: this.translator.TranslateStr(607),
-          checked: designElementButton.currentShape == ShapeType.RoundRect,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.RoundRect;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: "tablerSquare",
-          title: this.translator.TranslateStr(608),
-          checked: designElementButton.currentShape == ShapeType.RoundSquare,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.RoundSquare;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: "tablerOvalVertical",
-          title: this.translator.TranslateStr(605),
-          checked: designElementButton.currentShape == ShapeType.Ellipse,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.Ellipse;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: "tablerCircle",
-          title: this.translator.TranslateStr(604),
-          checked: designElementButton.currentShape == ShapeType.Circle,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.Circle;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: 198,
-          title: this.translator.TranslateStr(306),
-          checked: designElementButton.currentShape == ShapeType.HorzLine,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.HorzLine;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: 199,
-          title: this.translator.TranslateStr(307),
-          checked: designElementButton.currentShape == ShapeType.VertLine,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.VertLine;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: 200,
-          title: this.translator.TranslateStr(719),
-          checked: designElementButton.currentShape == ShapeType.Oblique1,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.Oblique1;
-          },
-        });
-        resultado.push({
-          nombre: "",
-          icono: 201,
-          title: this.translator.TranslateStr(720),
-          checked: designElementButton.currentShape == ShapeType.Oblique2,
-          callback: () => {
-            this.toolElementClicked(designElementButton.designElement);
-            designElementButton.currentShape = ShapeType.Oblique2;
-          },
-        });
-        return resultado;
+        }));
       }
       default:
         return [];
