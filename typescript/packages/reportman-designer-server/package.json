@@ -1,7 +1,7 @@
 {
   "name": "@reportman/designer-server",
   "version": "4.1.0-alpha.3",
-  "description": "Report Manager web designer for Node.js: the designer protocol of Reportman.Server (open, save, preview, functions, expressions, datasets) over folders of .rep files, and the <reportman-designer> element served from your own app. No AI: the assistant stays in Reportman.Server.",
+  "description": "Report Manager web designer for Node.js: the designer protocol of Reportman.Server (open, save, preview, functions, expressions, datasets) over folders of .rep files, and the <reportman-designer> element served from your own app; with ai: true, its AI copilot through Reportman AI.",
   "license": "MPL-2.0",
   "type": "module",
   "repository": {

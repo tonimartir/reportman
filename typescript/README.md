@@ -29,8 +29,8 @@ in a web console.
 | `@reportman/export` | Metafile → CSV (as C#), SVG and HTML (as the Delphi drivers); the text of line, dot matrix and receipt printers (`PrintOutText`) | browser, Node |
 | `@reportman/canvas` | The preview: the pages of a metafile on a Canvas 2D context, drawn as the PDF draws them | browser |
 | `@reportman/server` | The reports API of Reportman.Server (list, parameters, run to PDF, `.rpmf`, text, CSV) for `node:http`, Express and Fastify; with a data folder, its console (connections, aliases, API keys, samples, API explorer) and the `reportman-server` command | Node |
-| `@reportman/designer-server` | The web designer for Node.js: the designer protocol of Reportman.Server (open, save, preview, expressions, the SQL editor's data and tables) and the `<reportman-designer>` element served from your own origin, for `node:http`, Express and Fastify. No AI | Node |
-| `@reportman/designer` | The web designer as a custom element, `<reportman-designer>` (Angular inside a shadow root; sources in `designer/`), for any page | browser |
+| `@reportman/designer-server` | The web designer for Node.js: the designer protocol of Reportman.Server (open, save, preview, expressions, the SQL editor's data and tables) and the `<reportman-designer>` element served from your own origin, for `node:http`, Express and Fastify; with `ai: true`, the AI copilot through Reportman AI | Node |
+| `@reportman/designer` | The web designer as a custom element, `<reportman-designer>` (Angular inside a shadow root; sources in `designer/`), for any page, with the AI copilot; [live demo](https://reportman.es/demo/designer/) | browser |
 | `@reportman/driver-postgres` | PostgreSQL (`pg`), as Npgsql | Node |
 | `@reportman/driver-firebird` | Firebird (`node-firebird`), as FirebirdClient | Node |
 | `@reportman/driver-mysql` | MySQL and MariaDB (`mysql2`), as MySqlConnector | Node |
