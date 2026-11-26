@@ -23,6 +23,18 @@ const ts = join(demo, '..');
 const samples = join(ts, '..', 'samples');
 const wasm = join(ts, 'node_modules', 'sql.js', 'dist', 'sql-wasm-browser.wasm');
 const packages = ['lib', 'metafile', 'text', 'pdf', 'engine', 'canvas'];
+// The designer's page: the element of @reportman/designer (npm run build:designer makes its dist) and
+// Monaco, copied as they are; its server is a service worker built from the sources
+const designerDist = join(ts, 'packages', 'reportman-designer', 'dist');
+const monacoMin = join(ts, 'node_modules', 'monaco-editor', 'min');
+
+/** The packages from their sources, the designer's protocol without Node too. */
+function aliases() {
+  return [
+    { find: /^@reportman\/designer-server\/browser$/, replacement: join(ts, 'packages', 'reportman-designer-server', 'src', 'browser.ts') },
+    ...packages.map((n) => ({ find: new RegExp(`^@reportman/${n}$`), replacement: join(ts, 'packages', `reportman-${n}`, 'src', 'index.ts') })),
+  ];
+}
 
 const [command = 'dev', ...rest] = process.argv.slice(2);
 const option = (name) => {
@@ -57,9 +69,7 @@ function config(extra = {}) {
     root: demo,
     base: './',
     logLevel: 'warn',
-    resolve: {
-      alias: packages.map((n) => ({ find: new RegExp(`^@reportman/${n}$`), replacement: join(ts, 'packages', `reportman-${n}`, 'src', 'index.ts') })),
-    },
+    resolve: { alias: aliases() },
     server: { host: '127.0.0.1', port: 0, fs: { allow: [ts, samples] } },
     plugins: [
       {
@@ -106,7 +116,13 @@ if (command === 'dev') {
  * withCheck adds the check page, so the check runs the code the website serves.
  */
 async function buildSite(out, withCheck) {
-  const input = { index: join(demo, 'index.html'), indexes: join(demo, 'indexes.html') };
+  if (!existsSync(join(designerDist, 'main.js'))) throw new Error('No ' + designerDist + ': run npm run build:designer first');
+  const input = {
+    index: join(demo, 'index.html'),
+    indexes: join(demo, 'indexes.html'),
+    designer: join(demo, 'designer', 'index.html'),
+    designeres: join(demo, 'designer', 'indexes.html'),
+  };
   if (withCheck) input.check = join(demo, 'check.html');
   await build(
     config({
@@ -129,6 +145,44 @@ async function buildSite(out, withCheck) {
     cpSync(join(samples, f), join(out, 'samples', f));
   }
   cpSync(wasm, join(out, 'sql-wasm.wasm'));
+  await buildDesignerWorker(join(out, 'designer'));
+  copyDesignerElement(join(out, 'designer', 'element'));
+}
+
+/**
+ * The service worker of the designer's page (designer/sw.js): a classic script, as every browser
+ * runs one, with the engine, the PDF writer, the protocol and sql.js inside.
+ */
+async function buildDesignerWorker(outDir) {
+  await build({
+    configFile: false,
+    root: demo,
+    logLevel: 'error',
+    // The fonts and thumbnails of public/ are the site's, already copied by the pages' build
+    publicDir: false,
+    resolve: { alias: aliases() },
+    define: { 'process.env.NODE_ENV': JSON.stringify('production') },
+    build: {
+      outDir,
+      emptyOutDir: false,
+      target: 'es2022',
+      chunkSizeWarningLimit: 4000,
+      lib: { entry: join(demo, 'src', 'designer', 'sw.ts'), formats: ['iife'], name: 'reportmanDesignerWorker', fileName: () => 'sw.js' },
+    },
+  });
+}
+
+/**
+ * The element's files (as npm ships them) and Monaco's, next to it, as the designer looks for them.
+ * The designer edits SQL and expressions only: the workers of TypeScript, CSS, HTML and JSON
+ * (8.7 MB of the 16 of Monaco) are left out.
+ */
+function copyDesignerElement(outDir) {
+  cpSync(designerDist, outDir, { recursive: true, filter: (f) => !/[\\/](test\.html|prerendered-routes\.json)$/.test(f) });
+  cpSync(monacoMin, join(outDir, 'assets', 'monaco-editor', 'min'), {
+    recursive: true,
+    filter: (f) => !/[\\/]assets[\\/](ts|css|html|json)\.worker-[^\\/]*\.js$/.test(f),
+  });
 }
 
 /** A Chromium-based browser of this computer (as tools/check-browser.mjs finds it). */

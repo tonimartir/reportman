@@ -6,6 +6,10 @@ whatever its framework (or none). It brings its own Angular, Material, the desig
 its styles do not reach the page. It talks to a Reportman designer server: **@reportman/designer-server**
 (Node.js) or **Reportman.Server** (.NET). Both can serve the element themselves.
 
+**Live demo:** <https://reportman.es/demo/designer/> — the designer in your browser on the sample
+reports, with nothing installed: its server is a service worker of the page
+(`@reportman/designer-server/browser`, the JavaScript engine and the sample SQLite database).
+
 The npm package `@reportman/designer` is this element built (`typescript/packages/reportman-designer`);
 the sources are in the Angular workspace `typescript/designer` of this repository.
 

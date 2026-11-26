@@ -103,7 +103,7 @@ export class BrowserReport {
 }
 
 /** The data host of the engine for the connections given (createDataHost of @reportman/node). */
-function dataHost(connections: Readonly<Record<string, ConnectionFactory>>): DataHost {
+export function dataHost(connections: Readonly<Record<string, ConnectionFactory>>): DataHost {
   const byAlias = new Map<string, ConnectionFactory>();
   for (const [key, value] of Object.entries(connections)) byAlias.set(key.toUpperCase(), value);
   return {
@@ -117,7 +117,7 @@ function dataHost(connections: Readonly<Record<string, ConnectionFactory>>): Dat
 }
 
 /** The local wall clock of a PDF clock (DateTime.Now). */
-function wallClock(clock: PdfClock): RpDateTime {
+export function wallClock(clock: PdfClock): RpDateTime {
   const instant = clock.now();
   const local = new Date(instant.getTime() + clock.offsetMinutes(instant) * 60000);
   return RpDateTime.create(
@@ -131,7 +131,7 @@ function wallClock(clock: PdfClock): RpDateTime {
 }
 
 /** printPdf of @reportman/node: PrintOutPDFBase.Print of C#, each page drawn as it is generated. */
-async function printPdf(run: ReportRun, device: PdfDevice): Promise<Uint8Array> {
+export async function printPdf(run: ReportRun, device: PdfDevice): Promise<Uint8Array> {
   const meta = run.metaFile;
   await run.begin();
   device.preparePrint(meta);
