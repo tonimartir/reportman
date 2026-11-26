@@ -5,8 +5,8 @@ The Report Manager engine as npm packages: run `.rep` reports from Node.js (and 
 translation of the C# engine in this repository; the two engines are meant to give the same output
 for the same report.
 
-Status: **preview**, versions `4.1.0-alpha.N` with the npm tag `next`
-(`npm install @reportman/node@next`); the API may change until 4.1.0. The plan (in Spanish) is
+Status: **preview**, versions `4.1.0-alpha.N`, each one on the npm tag `latest` until 4.1.0
+(`npm install @reportman/node`); the API may change until 4.1.0. The plan (in Spanish) is
 `docs/npm_typescript_plan.md` of the Delphi repository (`tonimartir/reportmandelphi`).
 
 **Examples:** the eleven sample reports, with pictures of their pages, their `.rep` files and the
@@ -98,22 +98,31 @@ Every package has the same version, the one the Delphi and C# engines share at e
 (4.x). `npm run version:set -- 4.1.0-alpha.2` sets it on all of them, on the references between
 them and in `package-lock.json` (edit the status lines of the README files by hand);
 `npm run release:next` checks that they share it, builds from scratch, runs the tests and
-`check:dist`, and stages them with the tag `next` (`tools/release.mjs`, npm 11.15 or later):
-`npm stage publish` asks for no 2FA, and the staged versions are approved together in the
-**Staged Packages** tab of the account settings on npmjs.com, with one 2FA for the batch (the tab
-may show them in pages: on 23-11-2026 it approved ten of the fifteen; `npm stage list` says what
-is left). Then
-`npm run release:publish` (it can be run again: it does only what the registry does not have yet)
-moves the tag `latest`, which npm gives to the first version of a package and the website shows,
-to the newest preview while there is no final version. The registry takes some minutes to show a
-new version everywhere: a package may look missing for a while.
+`check:dist`, and stages them (`tools/release.mjs`, npm 11.15 or later): `npm stage publish` asks
+for no 2FA, and the staged versions are approved together in the **Staged Packages** tab of the
+account settings on npmjs.com: tick **Add to batch** on every one (the tab may show them in pages)
+and approve the batch, **one 2FA for the whole release**. That is all: each version is published
+with the tag it was staged with. `npm run release:publish` only stages what is still missing (a
+run that stopped half way) and says what waits for its approval; the registry takes some minutes
+to show a new version everywhere, so a package may look missing for a while.
 
-Moving a tag asks for the 2FA once a package with a login session. With `NPM_STAGE_TOKEN` set in
-the terminal to a granular access token of the account with the permission **Read and write
-(stage only)** and **Bypass two-factor authentication** (for the `@reportman` packages, created on
-npmjs.com), every command of the release runs with that token and none asks for the 2FA: such a
-token cannot publish, only stage, move tags and deprecate, and what it stages waits for the
-approval. `--direct` publishes with `npm publish` instead (one 2FA a package).
+The tag is chosen when staging and never moved afterwards: `latest`, which npm gives to the first
+version of a package anyway and the website shows, while a package has no final version (so a plain
+`npm install` gets the newest preview); `next` only for a preview of a package whose `latest` is a
+final version. The tag `next` stays on `4.1.0-alpha.4` (the last release staged with it).
+
+**The release never asks for more than that one 2FA.** `npm publish`, `npm dist-tag` and
+`npm deprecate` ask for it once per command, so once per package, even with a token that bypasses
+2FA (npm restricted those tokens in July 2026); the release of 26-11-2026 cost more than thirty
+prompts moving `latest` and deprecating the placeholders `0.0.0-stage` that npm publishes when a
+new package is staged. `tools/release.mjs` refuses to run any npm command but `view` and `stage`.
+The placeholder of a new package is harmless once its first real version is approved (that version
+takes `latest`); deprecate it by hand only if it matters, knowing it costs a 2FA.
+
+`NPM_STAGE_TOKEN`, set in the terminal to a granular access token of the account with the permission
+**Read and write (stage only)** (for the `@reportman` packages, created on npmjs.com), makes every
+command of the release run with that token instead of the login session; what it stages waits for
+the approval like the rest.
 
 ### Continuous integration, on this computer
 

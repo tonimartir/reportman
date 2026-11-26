@@ -10,7 +10,7 @@ preview extends the same `TextCanvas` of `@reportman/text`, so a text is measure
 lines exactly as in the PDF, and the shapes, line widths, dashes, image styles and their C# quirks
 follow the PDF code line by line.
 
-Status: preview (`4.1.0-alpha.N`, npm tag `next`). Browser (or a worker with an
+Status: preview (`4.1.0-alpha.N`). Browser (or a worker with an
 `OffscreenCanvas`); the drawing code works on an interface, so it also runs in Node with any object
 that has the methods of a 2D context.
 

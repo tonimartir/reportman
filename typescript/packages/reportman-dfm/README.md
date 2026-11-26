@@ -10,7 +10,7 @@ It is optional: install it only to open DFM reports. `@reportman/node` (and so `
 uses it on its own when it is installed; without it a DFM report is refused with a message that
 says how to convert it.
 
-Status: preview (`4.1.0-alpha.N`, npm tag `next`). Pure JavaScript; its only dependency is
+Status: preview (`4.1.0-alpha.N`). Pure JavaScript; its only dependency is
 `fflate`. Browser and Node.
 
 ## Examples

@@ -4,7 +4,7 @@ Run Report Manager `.rep` reports from Node.js to PDF, with JavaScript only: no 
 no WebAssembly, no external binaries. The report is laid out by `@reportman/engine`, a translation
 of the C# engine, and gives the same PDF.
 
-Status: preview (`4.1.0-alpha.N`, npm tag `next`): the API may change until 4.1.0. Supported
+Status: preview (`4.1.0-alpha.N`): the API may change until 4.1.0. Supported
 today: labels, expressions, shapes, images (JPEG, PNG, BMP, GIF), barcodes (1D, PDF417, QR),
 charts, sections and groups, subreports, master/detail, parameters, the standard 14 PDF fonts
 and, with the `fonts` option, embedded TrueType and OpenType fonts with HTML text, right to left
@@ -33,9 +33,9 @@ npx @reportman/server --samples     # the samples in a web console at http://127
 ## Install
 
 ```bash
-npm install @reportman/node@next
-npm install @reportman/driver-postgres@next   # or driver-firebird, driver-mysql, driver-mssql, driver-http
-npm install @reportman/dfm@next               # only for reports saved by Delphi in a DFM form
+npm install @reportman/node
+npm install @reportman/driver-postgres   # or driver-firebird, driver-mysql, driver-mssql, driver-http
+npm install @reportman/dfm               # only for reports saved by Delphi in a DFM form
 ```
 
 Reports saved as XML need no `@reportman/dfm` (see [Command line](#command-line)).
