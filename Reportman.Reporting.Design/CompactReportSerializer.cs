@@ -55,7 +55,7 @@ namespace Reportman.Reporting.Design
     ///
     /// Component base (extras): Hidden, Visible, PartialFlag, AnnotationExpression
     ///
-    /// TextItem (extras): FontRotation, WordBreak, InterLine, PrintStep, Type1Font
+    /// TextItem (extras): WordBreak, InterLine, PrintStep, Type1Font
     ///
     /// Expression (extras): DataType, ExportDisplayFormat, ExportExpression, ExportLine,
     ///   ExportPosition, ExportSize, ExportDoNewLine
@@ -302,11 +302,13 @@ namespace Reportman.Reporting.Design
 
         private static void WriteTextProps(StringBuilder sb, PrintItemText t, string i)
         {
-            // Schema-allowed TextItem: Alignment, VAlignment, FontName, FontSize,
+            // Schema-allowed TextItem: Alignment, VAlignment, FontName, FontSize, FontRotation,
             //   FontStyle, FontColor, BackColor, Transparent, CutText, WordWrap,
             //   SingleLine, MultiPage, IsHtml, RightToLeft
             AlwaysStr(sb, i, "FontName", t.WFontName);
             Int(sb, i, "FontSize", t.FontSize, 10);
+            // The value is in tenths of a degree, counterclockwise (900 is 90 degrees), as the XML stores it
+            Int(sb, i, "FontRotation", t.FontRotation, 0);
             Int(sb, i, "FontStyle", t.FontStyle, 0);
             Col(sb, i, "FontColor", t.FontColor, 0);
             Col(sb, i, "BackColor", t.BackColor, 0xFFFFFF);
